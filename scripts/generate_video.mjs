@@ -161,7 +161,7 @@ if (fs.existsSync(rawEpisodePath) && !isForce) {
   console.log(`   (Use --force to regenerate from LLM)`);
 } else {
   console.log(`🤖 Generating episode payload with model ${targetModel}...`);
-  const genCommand = `node scripts/generate_episode.mjs --dir="${dataDir}" --model=${targetModel} --temperature=0.2 --curriculum="${curriculumDirective.replace(/"/g, '\\"')}"`;
+  const genCommand = `"${process.execPath}" --max-http-header-size=65536 scripts/generate_episode.mjs --dir="${dataDir}" --model=${targetModel} --temperature=0.2 --curriculum="${curriculumDirective.replace(/"/g, '\\"')}"`;
   
   try {
     execSync(genCommand, { stdio: 'inherit', cwd: rootDir });
@@ -178,7 +178,7 @@ console.log(`\n🔍 [STEP 4] Running Zod Schema Validation...`);
 let validationPassed = false;
 
 try {
-  execSync(`node scripts/validate_episode.mjs --dir="${dataDir}"`, { stdio: 'inherit', cwd: rootDir });
+  execSync(`"${process.execPath}" scripts/validate_episode.mjs --dir="${dataDir}"`, { stdio: 'inherit', cwd: rootDir });
   validationPassed = true;
 } catch {
   console.warn(`\n⚠️ Initial validation detected issues. Executing SINGLE-PASS automated self-correction...`);
@@ -212,7 +212,7 @@ try {
     }
 
     // Single re-validation attempt
-    execSync(`node scripts/validate_episode.mjs --dir="${dataDir}"`, { stdio: 'inherit', cwd: rootDir });
+    execSync(`"${process.execPath}" scripts/validate_episode.mjs --dir="${dataDir}"`, { stdio: 'inherit', cwd: rootDir });
     validationPassed = true;
     console.log(`✅ Single-pass self-correction succeeded!`);
   } catch (reErr) {
@@ -227,7 +227,7 @@ try {
 if (!skipTTS) {
   console.log(`\n🎙️ [STEP 5] Compiling Hinglish TTS Audio (${ttsMode.toUpperCase()})...`);
   const ttsFlag = ttsMode === 'gemini' ? '--tts=gemini' : '';
-  const compileCommand = `node scripts/compile_tts_audio.mjs --dir="${dataDir}" ${ttsFlag} --force`;
+  const compileCommand = `"${process.execPath}" scripts/compile_tts_audio.mjs --dir="${dataDir}" ${ttsFlag} --force`;
   
   try {
     execSync(compileCommand, { stdio: 'inherit', cwd: rootDir });

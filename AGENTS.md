@@ -36,7 +36,8 @@ When triggered (e.g. `"Generate Chapter 2 Part 1 using Argon"` or `npm run make-
      - Final Render Target: `out/chapters/<chapter_key>.mp4`
    - **Strict Isolation**: Never modify or overwrite base production files (`src/data/episode_raw.json` or `src/data/episode_compiled.json`).
 3. **Argon Generation via Proxy (`free-gemini-api`)**:
-   - Route script generation request through **Gemini 4 Argon** (`gemini-4-argon`) utilizing the local `free-gemini-api` proxy setup (`https://github.com/kodelyx/free-gemini-api.git`) via `GEMINI_BASE_URL` or fallback direct client.
+   - Route script generation request through **Gemini 4 Argon** (`gemini-4-argon`) utilizing the local `free-gemini-api` proxy setup (`https://github.com/kodelyx/free-gemini-api.git`) at `http://127.0.0.1:8001/v1/chat/completions`.
+   - The proxy connects directly to the user's authenticated web session on `gemini.google.com` via the companion Chrome extension (`free-gemini-api/gemini-extension`), allowing genuine Gemini 4 Argon generation without paid Google AI Studio API keys.
    - Enforce strict JSON schema compliance (`src/data/schema_reference.json`) with low temperature (`0.2`), valid visual template typing, zero Devanagari in UI states, and correct phonetic mapping (`नतीजे` instead of `रिज़ल्ट`).
 4. **Single-Pass Automated Self-Correction Loop**:
    - Run `node scripts/validate_episode.mjs --dir=src/data/chapters/<chapter_key>_argon`.

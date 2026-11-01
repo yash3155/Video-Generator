@@ -27,7 +27,7 @@ Our engine enforces a structured **12-slide cognitive arc**:
 
 | Layer | Technology | Details |
 | :--- | :--- | :--- |
-| **Default AI Engine** | **Gemini 4 Argon** (`gemini-4-argon`) | Deep reasoning model; proxy routing via `free-gemini-api` |
+| **Default AI Engine** | **Gemini 4 Argon** (`gemini-4-argon`) | Deep reasoning model; proxy routing via `free-gemini-api` (`http://127.0.0.1:8001`) with Chrome extension cookie bridge |
 | **Video Engine** | [Remotion](https://www.remotion.dev/) (v4.0.267) | Programmatic React-based canvas rendering |
 | **Language & UI** | React 18, TypeScript, Tailwind CSS | Modular components, spring physics, zero external video assets |
 | **Icons** | `lucide-react` | Dynamic icon mapping across domain templates |

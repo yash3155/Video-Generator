@@ -34,6 +34,12 @@ const sideCardStyles: Record<
     titleColor: 'text-[#166534]',
     subtitleColor: 'text-[#059669]',
   },
+  active_teal: {
+    border: 'border-[#0D9488] border-2 shadow-[0_4px_16px_rgba(13,148,136,0.12)]',
+    bg: 'bg-[#F0FDFA]',
+    titleColor: 'text-[#115E59]',
+    subtitleColor: 'text-[#0F766E]',
+  },
   active_amber: {
     border: 'border-[#F59E0B] border-2 shadow-[0_4px_16px_rgba(245,158,11,0.12)]',
     bg: 'bg-[#FFFBEB]',
@@ -59,6 +65,23 @@ const sideCardStyles: Record<
     subtitleColor: 'text-[#6B7280]',
   },
 };
+
+function normalizeSideCardState(rawState?: string, idx = 0): string {
+  if (!rawState) return 'active_amber';
+  if (sideCardStyles[rawState]) return rawState;
+  const s = rawState.toLowerCase();
+  if (s === 'warning' || s === 'amber') return 'active_amber';
+  if (s === 'danger' || s === 'error' || s === 'red') return 'active_red';
+  if (s === 'teal' || s === 'active_teal') return 'active_teal';
+  if (s === 'green' || s === 'success') return 'active_green';
+  if (s === 'purple') return 'active_purple';
+  if (s === 'visible' || s === 'inactive') return 'muted';
+  if (s === 'active') {
+    const cycle = ['active_blue', 'active_teal', 'active_amber', 'active_purple'];
+    return cycle[idx % cycle.length];
+  }
+  return 'default';
+}
 
 export const DataVisualizer: React.FC<DataVisualizerProps> = ({
   beat,
@@ -86,15 +109,17 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
     }
   }
 
-  const yUnit = uiState.yAxisUnit || presetData.unit || '₹';
+  // Sanitize yAxisUnit so "pts", "points", or "you" never corrupt numbers into "pts148" or "you118"
+  const rawUnit = (uiState.yAxisUnit ?? presetData.unit ?? '₹').trim();
+  const yUnit = /^(pts|points|you|index|none)$/i.test(rawUnit) ? '₹' : rawUnit;
 
-  // Chart layout dimensions — reserve generous bottom space above volume bars so bottom pills never collide with wicks
+  // Chart layout dimensions
   const svgW = 1100;
   const svgH = 580;
   const padLeft = 70;
   const padRight = 110;
   const padTop = 65;
-  const padBottom = 115; // Increased from 80 to 115 so candles sit higher and bottom callouts have a dedicated 50px clear lane
+  const padBottom = 115;
   const plotW = svgW - padLeft - padRight;
   const plotH = svgH - padTop - padBottom;
 
@@ -126,18 +151,18 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
   const animatedCandleCount =
     beatIndexInScene === 0
       ? Math.round(
-        interpolate(beatFrame, [0, revealDuration], [1, currentCandleTarget], {
-          extrapolateRight: 'clamp',
-        })
-      )
-      : Math.round(
-        interpolate(
-          beatFrame,
-          [0, revealDuration],
-          [prevCandleTarget, currentCandleTarget],
-          { extrapolateRight: 'clamp' }
+          interpolate(beatFrame, [0, revealDuration], [1, currentCandleTarget], {
+            extrapolateRight: 'clamp',
+          })
         )
-      );
+      : Math.round(
+          interpolate(
+            beatFrame,
+            [0, revealDuration],
+            [prevCandleTarget, currentCandleTarget],
+            { extrapolateRight: 'clamp' }
+          )
+        );
 
   const visibleCandles = allCandles.slice(0, animatedCandleCount);
   const slotW = totalCandles > 0 ? plotW / totalCandles : 1;
@@ -154,6 +179,14 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
   const isLatestGreen = latestCandle ? latestCandle.close >= latestCandle.open : true;
   const livePriceColor = isLatestGreen ? '#16A34A' : '#DC2626';
 
+  // Auto-inject support trendline if preset is 'uptrend_break' and overlays were omitted by LLM
+  const effectiveOverlays =
+    uiState.overlays && uiState.overlays.length > 0
+      ? uiState.overlays
+      : uiState.preset === 'uptrend_break'
+        ? [{ type: 'trendline' as const, startIndex: 2, endIndex: 15, color: 'green' as const }]
+        : [];
+
   // Accumulate Side Cards Across Beats within this Scene
   const accumulatedSideCards: SideCard[] = [];
   const seenCardTitles = new Set<string>();
@@ -166,13 +199,14 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
   beatsToScan.forEach((b, bIdx) => {
     const isCurrentBeat = bIdx === beatIndexInScene;
     const cards = (b.ui_state as DataVisualizerUI)?.sideCards || [];
-    cards.forEach((c) => {
+    cards.forEach((c, cIdx) => {
+      const normalizedActive = normalizeSideCardState(c.state, bIdx + cIdx);
       if (!seenCardTitles.has(c.title)) {
         seenCardTitles.add(c.title);
         accumulatedSideCards.push({
           title: c.title,
           subtitle: c.subtitle,
-          state: isCurrentBeat ? c.state || 'default' : 'muted',
+          state: isCurrentBeat ? normalizedActive : 'muted',
         });
       } else {
         const existingIdx = accumulatedSideCards.findIndex((x) => x.title === c.title);
@@ -180,7 +214,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
           accumulatedSideCards[existingIdx] = {
             title: c.title,
             subtitle: c.subtitle,
-            state: isCurrentBeat ? c.state || 'default' : 'muted',
+            state: isCurrentBeat ? normalizedActive : 'muted',
           };
         }
       }
@@ -188,6 +222,16 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
   });
 
   const displaySideCards = accumulatedSideCards.slice(-5);
+
+  // Track placed annotation bounding boxes to prevent pill-to-pill & pointer-line collisions
+  const placedPills: Array<{
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+    anchorX: number;
+    isBottom: boolean;
+  }> = [];
 
   return (
     <div className="w-full h-full flex items-center justify-between gap-8 relative z-10">
@@ -204,7 +248,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
             </span>
           </div>
 
-          {latestCandle && (
+          {presetData.candlesticks && latestCandle && (
             <div className="flex items-center space-x-3 font-mono text-xs">
               <span className="text-[#8B7355]">
                 O <strong className="text-[#1E1E1E]">{latestCandle.open}</strong>
@@ -285,7 +329,6 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   const topBody = Math.min(yOpen, yClose);
                   const bodyH = Math.max(3.5, Math.abs(yClose - yOpen));
 
-                  // Volume bar anchored near bottom above X-axis dates
                   const maxVolH = 38;
                   const volBarH = (c.volume / 250) * maxVolH;
                   const volBaselineY = svgH - 28;
@@ -340,7 +383,6 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                 {/* 2. Head and Shoulders On-Chart Geometry */}
                 {uiState.preset === 'head_and_shoulders' && (
                   <g>
-                    {/* Left Shoulder Peak (index 4) */}
                     {visibleCandles.length >= 4 && allCandles[4] && (() => {
                       const cx = padLeft + 4 * slotW + slotW / 2;
                       const cy = getYPos(allCandles[4].high);
@@ -355,7 +397,6 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                       );
                     })()}
 
-                    {/* Head Peak (index 12) */}
                     {visibleCandles.length >= 12 && allCandles[12] && (() => {
                       const cx = padLeft + 12 * slotW + slotW / 2;
                       const cy = getYPos(allCandles[12].high);
@@ -370,7 +411,6 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                       );
                     })()}
 
-                    {/* Right Shoulder Peak (index 20) */}
                     {visibleCandles.length >= 20 && allCandles[20] && (() => {
                       const cx = padLeft + 20 * slotW + slotW / 2;
                       const cy = getYPos(allCandles[20].high);
@@ -385,19 +425,16 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                       );
                     })()}
 
-                    {/* Neckline connecting trough after Left Shoulder (idx 7) to right edge */}
                     {visibleCandles.length >= 17 && (() => {
                       const yNeckline = getYPos(142);
                       const xTrough1 = padLeft + 7 * slotW + slotW / 2;
                       const xEnd = padLeft + plotW;
 
-                      // Place compact neckline badge at the FAR RIGHT above the neckline (zero candles live at xEnd - 115, yNeckline - 26!)
                       const neckPillW = 110;
                       const neckPillH = 20;
                       const neckPillX = xEnd - neckPillW - 8;
                       const neckPillY = yNeckline - neckPillH - 6;
 
-                      // Breakdown pill below breakdown candle (index 25) on Beat 3
                       const showBreakdown = visibleCandles.length >= 26 && allCandles[25];
                       let breakdownRender = null;
                       if (showBreakdown) {
@@ -501,13 +538,13 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                     <rect
                       x={padLeft + plotW + 4}
                       y={latestCloseY - 12}
-                      width="58"
+                      width="64"
                       height="24"
                       rx="12"
                       fill={livePriceColor}
                     />
                     <text
-                      x={padLeft + plotW + 33}
+                      x={padLeft + plotW + 36}
                       y={latestCloseY + 4}
                       textAnchor="middle"
                       fill="#FFFFFF"
@@ -515,85 +552,84 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                       fontFamily="JetBrains Mono, monospace"
                       fontWeight="bold"
                     >
-                      {latestCandle.close}
+                      {yUnit}{latestCandle.close}
                     </text>
                   </g>
                 )}
 
-                {/* 5. Dynamic Overlays from ui_state */}
-                {uiState.overlays &&
-                  uiState.overlays.map((ov, oIdx) => {
-                    if (ov.type === 'trendline' && ov.startIndex !== undefined && ov.endIndex !== undefined) {
-                      const cStart = allCandles[ov.startIndex];
-                      const cEnd = allCandles[ov.endIndex];
-                      if (!cStart || !cEnd) return null;
-                      if (visibleCandles.length <= ov.startIndex + 1) return null;
+                {/* 5. Dynamic Overlays from ui_state (or auto-fallback trendline) */}
+                {effectiveOverlays.map((ov, oIdx) => {
+                  if (ov.type === 'trendline' && ov.startIndex !== undefined && ov.endIndex !== undefined) {
+                    const cStart = allCandles[ov.startIndex];
+                    const cEnd = allCandles[ov.endIndex];
+                    if (!cStart || !cEnd) return null;
+                    if (visibleCandles.length <= ov.startIndex + 1) return null;
 
-                      const x1 = padLeft + ov.startIndex * slotW + slotW / 2;
-                      const y1 = getYPos(cStart.low);
-                      const x2 = padLeft + ov.endIndex * slotW + slotW / 2;
-                      const y2 = getYPos(cEnd.low);
-                      const strokeCol = ov.color === 'red' ? '#DC2626' : '#16A34A';
+                    const x1 = padLeft + ov.startIndex * slotW + slotW / 2;
+                    const y1 = getYPos(cStart.low);
+                    const x2 = padLeft + ov.endIndex * slotW + slotW / 2;
+                    const y2 = getYPos(cEnd.low);
+                    const strokeCol = ov.color === 'red' ? '#DC2626' : '#16A34A';
 
-                      const currentMaxX = padLeft + Math.min(plotW, (visibleCandles.length - 0.5) * slotW);
+                    const currentMaxX = padLeft + Math.min(plotW, (visibleCandles.length - 0.5) * slotW);
 
-                      return (
-                        <g key={oIdx}>
-                          <defs>
-                            <clipPath id={`trendlineClip-${oIdx}`}>
-                              <rect x={padLeft} y={0} width={Math.max(0, currentMaxX - padLeft)} height={svgH} />
-                            </clipPath>
-                          </defs>
-                          <line
-                            x1={x1}
-                            y1={y1}
-                            x2={x2}
-                            y2={y2}
-                            stroke={strokeCol}
-                            strokeWidth="3"
-                            clipPath={`url(#trendlineClip-${oIdx})`}
-                          />
-                          <circle cx={x1} cy={y1} r="5" fill="#FFFFFF" stroke={strokeCol} strokeWidth="2.5" />
-                          {visibleCandles.length > ov.endIndex && (
-                            <circle cx={x2} cy={y2} r="5" fill="#FFFFFF" stroke={strokeCol} strokeWidth="2.5" />
-                          )}
-                        </g>
-                      );
-                    }
-                    if (ov.type === 'horizontal_level' && ov.priceLevel) {
-                      if (uiState.preset === 'head_and_shoulders') return null;
+                    return (
+                      <g key={oIdx}>
+                        <defs>
+                          <clipPath id={`trendlineClip-${oIdx}`}>
+                            <rect x={padLeft} y={0} width={Math.max(0, currentMaxX - padLeft)} height={svgH} />
+                          </clipPath>
+                        </defs>
+                        <line
+                          x1={x1}
+                          y1={y1}
+                          x2={x2}
+                          y2={y2}
+                          stroke={strokeCol}
+                          strokeWidth="3"
+                          clipPath={`url(#trendlineClip-${oIdx})`}
+                        />
+                        <circle cx={x1} cy={y1} r="5" fill="#FFFFFF" stroke={strokeCol} strokeWidth="2.5" />
+                        {visibleCandles.length > ov.endIndex && (
+                          <circle cx={x2} cy={y2} r="5" fill="#FFFFFF" stroke={strokeCol} strokeWidth="2.5" />
+                        )}
+                      </g>
+                    );
+                  }
+                  if (ov.type === 'horizontal_level' && ov.priceLevel) {
+                    if (uiState.preset === 'head_and_shoulders') return null;
 
-                      const yPos = getYPos(ov.priceLevel);
-                      const strokeCol = ov.color === 'red' ? '#DC2626' : '#F59E0B';
-                      return (
-                        <g key={oIdx}>
-                          <line
-                            x1={padLeft}
-                            y1={yPos}
-                            x2={padLeft + plotW}
-                            y2={yPos}
-                            stroke={strokeCol}
-                            strokeWidth="2.5"
-                            strokeDasharray="6 4"
-                          />
-                          {ov.label && (
-                            <text
-                              x={padLeft + plotW - 12}
-                              y={yPos - 8}
-                              textAnchor="end"
-                              fill={strokeCol}
-                              fontSize="12"
-                              fontFamily="JetBrains Mono, monospace"
-                              fontWeight="bold"
-                            >
-                              {ov.label} ({yUnit}{ov.priceLevel})
-                            </text>
-                          )}
-                        </g>
-                      );
-                    }
-                    return null;
-                  })}
+                    const yPos = getYPos(ov.priceLevel);
+                    const strokeCol = ov.color === 'red' ? '#DC2626' : '#F59E0B';
+                    return (
+                      <g key={oIdx}>
+                        <line
+                          x1={padLeft}
+                          y1={yPos}
+                          x2={padLeft + plotW}
+                          y2={yPos}
+                          stroke={strokeCol}
+                          strokeWidth="2.5"
+                          strokeDasharray="6 4"
+                        />
+                        {ov.label && (
+                          <text
+                            x={padLeft + plotW - 12}
+                            y={yPos - 8}
+                            textAnchor="end"
+                            fill={strokeCol}
+                            fontSize="12"
+                            fontFamily="JetBrains Mono, monospace"
+                            fontWeight="bold"
+                          >
+                            {ov.label} ({yUnit}{ov.priceLevel})
+                          </text>
+                        )}
+                      </g>
+                    );
+                  }
+                  return null;
+                })}
               </g>
             )}
 
@@ -603,6 +639,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                 {(() => {
                   const allPts = presetData.points;
                   const totalPts = allPts.length;
+                  const prevPtTarget = Math.max(2, Math.round((prevStep / totalSteps) * totalPts));
                   const ptTarget = Math.max(
                     2,
                     Math.round((currentStep / totalSteps) * totalPts)
@@ -610,11 +647,15 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   const animPtsCount =
                     beatIndexInScene === 0
                       ? Math.round(
-                        interpolate(beatFrame, [0, revealDuration], [2, ptTarget], {
-                          extrapolateRight: 'clamp',
-                        })
-                      )
-                      : ptTarget;
+                          interpolate(beatFrame, [0, revealDuration], [2, ptTarget], {
+                            extrapolateRight: 'clamp',
+                          })
+                        )
+                      : Math.round(
+                          interpolate(beatFrame, [0, revealDuration], [prevPtTarget, ptTarget], {
+                            extrapolateRight: 'clamp',
+                          })
+                        );
                   const visiblePts = allPts.slice(0, animPtsCount);
                   const ptSlotW = plotW / (totalPts - 1 || 1);
 
@@ -634,6 +675,10 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   const areaD = `${pathD} L ${coords[coords.length - 1].x} ${padTop + plotH} L ${coords[0].x} ${padTop + plotH} Z`;
                   const threshold = visiblePts[0]?.threshold;
                   const thresholdY = threshold ? getYPos(threshold) : null;
+                  const latestPt = coords[coords.length - 1];
+                  const lineStroke = presetData.type === 'behavioral' ? '#8B5CF6' : '#2563EB';
+
+                  let lastLabelX = -999;
 
                   return (
                     <>
@@ -689,11 +734,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                       <path
                         d={pathD}
                         fill="none"
-                        stroke={
-                          presetData.type === 'behavioral'
-                            ? '#8B5CF6'
-                            : '#2563EB'
-                        }
+                        stroke={lineStroke}
                         strokeWidth="3.5"
                         strokeLinecap="round"
                       />
@@ -704,32 +745,34 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                         const barH = (barMetric / 100) * maxBarH;
                         const barY = svgH - 28 - barH;
 
+                        const canShowLabel =
+                          Boolean(c.point.xLabel) && c.x - lastLabelX >= 72;
+                        if (canShowLabel) {
+                          lastLabelX = c.x;
+                        }
+
                         return (
                           <g key={idx}>
                             <circle
                               cx={c.x}
                               cy={c.y}
-                              r="5"
+                              r="4.5"
                               fill="#FFFFFF"
-                              stroke={
-                                presetData.type === 'behavioral'
-                                  ? '#8B5CF6'
-                                  : '#2563EB'
-                              }
-                              strokeWidth="3"
+                              stroke={lineStroke}
+                              strokeWidth="2.5"
                             />
                             {barMetric > 0 && (
                               <rect
-                                x={c.x - 10}
+                                x={c.x - 6}
                                 y={barY}
-                                width="20"
+                                width="12"
                                 height={barH}
                                 fill={barMetric > 85 ? '#EF4444' : '#3B82F6'}
                                 opacity={0.35}
                                 rx="1.5"
                               />
                             )}
-                            {c.point.xLabel && (
+                            {canShowLabel && (
                               <text
                                 x={c.x}
                                 y={svgH - 10}
@@ -745,16 +788,49 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                           </g>
                         );
                       })}
+
+                      {/* Live Right-Axis Value Pill for Line Charts */}
+                      {latestPt && (
+                        <g>
+                          <line
+                            x1={latestPt.x}
+                            y1={latestPt.y}
+                            x2={padLeft + plotW}
+                            y2={latestPt.y}
+                            stroke={lineStroke}
+                            strokeWidth="1.6"
+                            strokeDasharray="4 3"
+                          />
+                          <rect
+                            x={padLeft + plotW + 4}
+                            y={latestPt.y - 12}
+                            width="64"
+                            height="24"
+                            rx="12"
+                            fill={lineStroke}
+                          />
+                          <text
+                            x={padLeft + plotW + 36}
+                            y={latestPt.y + 4}
+                            textAnchor="middle"
+                            fill="#FFFFFF"
+                            fontSize="11"
+                            fontFamily="JetBrains Mono, monospace"
+                            fontWeight="bold"
+                          >
+                            {yUnit}{Math.round(latestPt.point.value)}
+                          </text>
+                        </g>
+                      )}
                     </>
                   );
                 })()}
               </g>
             )}
 
-            {/* ANNOTATIONS CALLOUT PILLS — FULL HORIZONTAL FOOTPRINT CLEARANCE */}
+            {/* ANNOTATIONS CALLOUT PILLS — FULL HORIZONTAL FOOTPRINT + MULTI-PILL COLLISION ENGINE */}
             {uiState.annotations &&
               uiState.annotations.map((ann, idx) => {
-                // Suppress redundant neckline annotation if head_and_shoulders preset already renders it
                 if (
                   uiState.preset === 'head_and_shoulders' &&
                   /neckline/i.test(ann.text)
@@ -762,8 +838,22 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   return null;
                 }
 
+                // Works for both candlestick charts and point/line charts!
+                const seriesLength =
+                  allCandles.length > 0
+                    ? allCandles.length
+                    : (presetData.points?.length || 0);
+                const visibleLength =
+                  allCandles.length > 0
+                    ? animatedCandleCount
+                    : Math.max(2, Math.round((currentStep / totalSteps) * seriesLength));
+                const effectiveSlotW =
+                  allCandles.length > 0
+                    ? slotW
+                    : plotW / Math.max(1, seriesLength - 1);
+
                 let targetIdx = ann.candleIndex;
-                if (targetIdx === undefined && ann.value !== undefined) {
+                if (targetIdx === undefined && ann.value !== undefined && allCandles.length > 0) {
                   const nearestIdx = allCandles.findIndex(
                     (c) =>
                       Math.abs(c.close - ann.value!) <= 2 ||
@@ -774,80 +864,169 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   }
                 }
 
-                if (targetIdx !== undefined && animatedCandleCount < targetIdx) {
+                // Scale targetIdx if LLM used a 0..30 candle index on a longer/shorter points array
+                if (
+                  targetIdx !== undefined &&
+                  allCandles.length === 0 &&
+                  presetData.points &&
+                  seriesLength > 35 &&
+                  targetIdx <= 30
+                ) {
+                  targetIdx = Math.min(
+                    seriesLength - 1,
+                    Math.round((targetIdx / 30) * (seriesLength - 1))
+                  );
+                }
+
+                if (targetIdx !== undefined && visibleLength < targetIdx) {
                   return null;
                 }
 
                 const isRed = ann.color === 'red';
                 const isAmber = ann.color === 'amber';
-                const bg = isRed ? '#FEE2E2' : isAmber ? '#FEF3C7' : '#EFF6FF';
-                const stroke = isRed ? '#EF4444' : isAmber ? '#F59E0B' : '#3B82F6';
-                const textCol = isRed ? '#991B1B' : isAmber ? '#92400E' : '#1E40AF';
+                const isTeal = ann.color === 'teal' || ann.color === 'green';
+                const bg = isRed
+                  ? '#FEE2E2'
+                  : isAmber
+                    ? '#FEF3C7'
+                    : isTeal
+                      ? '#F0FDFA'
+                      : '#EFF6FF';
+                const stroke = isRed
+                  ? '#EF4444'
+                  : isAmber
+                    ? '#F59E0B'
+                    : isTeal
+                      ? '#0D9488'
+                      : '#3B82F6';
+                const textCol = isRed
+                  ? '#991B1B'
+                  : isAmber
+                    ? '#92400E'
+                    : isTeal
+                      ? '#115E59'
+                      : '#1E40AF';
 
                 const isBottom = isRed;
-
-                const pillW = Math.max(130, ann.text.length * 8 + 26);
+                const pillW = Math.max(130, ann.text.length * 7.8 + 26);
                 const pillH = 28;
 
                 let anchorX = padLeft + plotW * 0.5;
-                if (targetIdx !== undefined && allCandles[targetIdx]) {
-                  anchorX = padLeft + targetIdx * slotW + slotW / 2;
+                if (targetIdx !== undefined) {
+                  anchorX =
+                    allCandles.length > 0
+                      ? padLeft + targetIdx * effectiveSlotW + effectiveSlotW / 2
+                      : padLeft + targetIdx * effectiveSlotW;
                 }
 
-                const pillX = Math.min(
+                let pillX = Math.min(
                   padLeft + plotW - pillW - 10,
                   Math.max(padLeft + 10, anchorX - pillW / 2)
                 );
 
-                // Find EVERY candle whose X position falls underneath [pillX - 12, pillX + pillW + 12]
+                // If another pill is already placed nearby, shift pillX away from its anchorX so vertical pointer lines never cross another pill!
+                placedPills.forEach((prev) => {
+                  if (prev.isBottom === isBottom) {
+                    const xOverlap =
+                      pillX < prev.x + prev.w + 10 && pillX + pillW + 10 > prev.x;
+                    if (xOverlap) {
+                      if (anchorX < prev.anchorX) {
+                        pillX = Math.max(padLeft + 8, anchorX - pillW + 18);
+                      } else {
+                        pillX = Math.min(padLeft + plotW - pillW - 8, anchorX - 18);
+                      }
+                    }
+                  }
+                });
+
                 const firstSpannedIdx = Math.max(
                   0,
-                  Math.floor((pillX - 12 - padLeft) / slotW)
+                  Math.floor((pillX - 12 - padLeft) / effectiveSlotW)
                 );
                 const lastSpannedIdx = Math.min(
-                  visibleCandles.length - 1,
-                  Math.ceil((pillX + pillW + 12 - padLeft) / slotW)
-                );
-                const spannedCandles = visibleCandles.slice(
-                  firstSpannedIdx,
-                  Math.max(firstSpannedIdx + 1, lastSpannedIdx + 1)
+                  Math.max(0, visibleLength - 1),
+                  Math.ceil((pillX + pillW + 12 - padLeft) / effectiveSlotW)
                 );
 
                 let anchorY = padTop + plotH * 0.5;
                 let pillY: number;
-                let lineConnectY: number;
 
-                if (targetIdx !== undefined && allCandles[targetIdx] && spannedCandles.length > 0) {
+                if (allCandles.length > 0 && targetIdx !== undefined && allCandles[targetIdx]) {
+                  const spannedCandles = visibleCandles.slice(
+                    firstSpannedIdx,
+                    Math.max(firstSpannedIdx + 1, lastSpannedIdx + 1)
+                  );
                   const c = allCandles[targetIdx];
 
                   if (isBottom) {
                     anchorY = getYPos(c.low);
-                    // Place pill strictly below the lowest wick across the ENTIRE horizontal width of the pill
                     const lowestWickYAcrossPill = Math.max(
                       ...spannedCandles.map((sc) => getYPos(sc.low))
                     );
-                    const maxAllowedBottomY = svgH - 72 - pillH; // Above volume bars
-                    pillY = Math.min(maxAllowedBottomY, lowestWickYAcrossPill + 16);
-                    lineConnectY = pillY;
+                    pillY = Math.min(svgH - 70 - pillH, lowestWickYAcrossPill + 16);
                   } else {
                     anchorY = getYPos(c.high);
-                    // Place pill strictly above the highest wick across the ENTIRE horizontal width of the pill
                     const highestWickYAcrossPill = Math.min(
                       ...spannedCandles.map((sc) => getYPos(sc.high))
                     );
-                    pillY = Math.max(12, highestWickYAcrossPill - 16 - pillH);
-                    lineConnectY = pillY + pillH;
+                    pillY = Math.max(10, highestWickYAcrossPill - 16 - pillH);
+                  }
+                } else if (
+                  presetData.points &&
+                  targetIdx !== undefined &&
+                  presetData.points[targetIdx]
+                ) {
+                  const spannedPts = presetData.points.slice(
+                    firstSpannedIdx,
+                    Math.max(firstSpannedIdx + 1, lastSpannedIdx + 1)
+                  );
+                  const pt = presetData.points[targetIdx];
+                  anchorY = getYPos(pt.value);
+                  if (isBottom) {
+                    const lowestPtY = Math.max(...spannedPts.map((p) => getYPos(p.value)));
+                    pillY = Math.min(svgH - 70 - pillH, lowestPtY + 18);
+                  } else {
+                    const highestPtY = Math.min(...spannedPts.map((p) => getYPos(p.value)));
+                    pillY = Math.max(10, highestPtY - 18 - pillH);
                   }
                 } else if (ann.value !== undefined) {
                   anchorY = getYPos(ann.value);
                   pillY = isBottom
-                    ? Math.min(svgH - 72 - pillH, anchorY + 24)
-                    : Math.max(12, anchorY - 24 - pillH);
-                  lineConnectY = isBottom ? pillY : pillY + pillH;
+                    ? Math.min(svgH - 70 - pillH, anchorY + 24)
+                    : Math.max(10, anchorY - 24 - pillH);
                 } else {
                   pillY = anchorY;
-                  lineConnectY = pillY;
                 }
+
+                // Multi-pill vertical staggering: if bounding box still intersects any previously placed pill, push it clear!
+                placedPills.forEach((prev) => {
+                  const horizOverlap =
+                    pillX < prev.x + prev.w + 8 && pillX + pillW + 8 > prev.x;
+                  const vertOverlap =
+                    pillY < prev.y + prev.h + 6 && pillY + pillH + 6 > prev.y;
+                  if (horizOverlap && vertOverlap) {
+                    if (isBottom) {
+                      pillY = Math.min(svgH - 64 - pillH, prev.y + prev.h + 8);
+                    } else {
+                      pillY = Math.max(6, prev.y - pillH - 8);
+                    }
+                  }
+                });
+
+                placedPills.push({
+                  x: pillX,
+                  y: pillY,
+                  w: pillW,
+                  h: pillH,
+                  anchorX,
+                  isBottom,
+                });
+
+                const lineConnectY = isBottom ? pillY : pillY + pillH;
+                const pointerTargetX = Math.min(
+                  pillX + pillW - 14,
+                  Math.max(pillX + 14, anchorX)
+                );
 
                 return (
                   <g key={idx}>
@@ -855,7 +1034,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                     <line
                       x1={anchorX}
                       y1={anchorY}
-                      x2={anchorX}
+                      x2={pointerTargetX}
                       y2={lineConnectY}
                       stroke={stroke}
                       strokeWidth="1.5"

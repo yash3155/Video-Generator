@@ -67,6 +67,27 @@ const cardColorMap: Record<
   },
 };
 
+const activeColorCycle = [
+  'active_amber',
+  'active_blue',
+  'active_green',
+  'active_purple',
+];
+
+function resolveCardThemeKey(state: string | undefined, idx: number): string {
+  if (!state) return activeColorCycle[idx % activeColorCycle.length];
+  if (cardColorMap[state]) return state;
+  const s = state.toLowerCase();
+  if (s === 'active') return activeColorCycle[idx % activeColorCycle.length];
+  if (s === 'visible' || s === 'completed' || s === 'done') return 'muted';
+  if (s === 'warning' || s === 'amber') return 'active_amber';
+  if (s === 'danger' || s === 'red') return 'active_red';
+  if (s === 'blue') return 'active_blue';
+  if (s === 'green' || s === 'teal') return 'active_green';
+  if (s === 'purple') return 'active_purple';
+  return activeColorCycle[idx % activeColorCycle.length];
+}
+
 export const ProgressiveCards: React.FC<ProgressiveCardsProps> = ({
   beat,
   beatIndexInScene = 0,
@@ -84,7 +105,6 @@ export const ProgressiveCards: React.FC<ProgressiveCardsProps> = ({
 
   return (
     <div className="w-full h-full flex flex-col justify-center relative z-10 px-8 py-2 my-auto">
-      {/* Centered Cards Container with Fixed 2x2 Grid Slots & Grouped Section Header */}
       <div
         className={
           isGrid
@@ -92,7 +112,6 @@ export const ProgressiveCards: React.FC<ProgressiveCardsProps> = ({
             : 'w-full max-w-4xl mx-auto my-auto flex flex-col justify-center'
         }
       >
-        {/* Section Header placed directly above the cards so it visually groups together */}
         {uiState.sectionHeader && (
           <div className="mb-4 flex items-center justify-start">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8B7355] bg-[#F3EFE6] px-4 py-1.5 rounded-full border border-[#E5DFD3]">
@@ -111,7 +130,6 @@ export const ProgressiveCards: React.FC<ProgressiveCardsProps> = ({
           {allCards.map((card: ProgressiveCardItem, idx: number) => {
             const isHidden = card.state === 'hidden';
 
-            // When in grid layout, keep hidden cards as invisible placeholders so visible cards never jump cells
             if (isGrid && isHidden) {
               return (
                 <div
@@ -126,7 +144,6 @@ export const ProgressiveCards: React.FC<ProgressiveCardsProps> = ({
               return null;
             }
 
-            // Check if this card was newly activated or revealed on this beat
             let wasAlreadyVisible = false;
             if (beatIndexInScene > 0 && allBeatsInScene[beatIndexInScene - 1]) {
               const prevCards =
@@ -153,8 +170,14 @@ export const ProgressiveCards: React.FC<ProgressiveCardsProps> = ({
               scale = 0.98 + entrance * 0.02;
             }
 
+            // If this card is newly revealed on this beat and state was left as 'default', highlight it automatically
+            const effectiveStateKey =
+              !wasAlreadyVisible && (!card.state || card.state === 'default')
+                ? activeColorCycle[idx % activeColorCycle.length]
+                : resolveCardThemeKey(card.state, idx);
+
             const colorTheme =
-              cardColorMap[card.state || 'default'] || cardColorMap.default;
+              cardColorMap[effectiveStateKey] || cardColorMap.default;
 
             return (
               <div
@@ -165,7 +188,6 @@ export const ProgressiveCards: React.FC<ProgressiveCardsProps> = ({
                 }}
                 className={`p-5 rounded-2xl border transition-all flex items-center space-x-6 min-h-[96px] ${colorTheme.bg} ${colorTheme.border}`}
               >
-                {/* Dynamic Lucide Icon */}
                 <div
                   className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border border-black/5 shadow-sm ${colorTheme.iconBg}`}
                 >
@@ -176,7 +198,6 @@ export const ProgressiveCards: React.FC<ProgressiveCardsProps> = ({
                   />
                 </div>
 
-                {/* Title & Subtitle */}
                 <div className="flex-1 flex flex-col justify-center">
                   <h3
                     className={`text-xl font-bold tracking-tight ${colorTheme.titleColor}`}

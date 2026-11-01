@@ -30,7 +30,6 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
 
   const isUp = uiState.trend === 'up';
 
-  // Animated scale needle
   const indicatorSpring = spring({
     frame: beatFrame,
     fps,
@@ -38,17 +37,25 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
   });
 
   const scalePercent = isUp
-    ? 50 - indicatorSpring * 26 // moves up towards 24%
-    : 50 + indicatorSpring * 26; // moves down towards 76%
+    ? 50 - indicatorSpring * 26
+    : 50 + indicatorSpring * 26;
 
   const leftCount = Math.min(25, Math.max(0, uiState.leftCount));
   const rightCount = Math.min(25, Math.max(0, uiState.rightCount));
 
+  // Auto-scale centerMetric font size so multi-word strings ("Crowd Belief") never wrap or collide with the icon
+  const metricText = String(uiState.centerMetric || '');
+  const metricFontClass =
+    metricText.length > 10
+      ? 'text-xl font-extrabold'
+      : metricText.length > 6
+        ? 'text-2xl font-black'
+        : 'text-4xl font-black';
+
   return (
     <div className="w-full h-full flex flex-col justify-between items-center relative z-10 px-8 py-4">
-      {/* 3-Column Tug-of-War arena directly on dot grid */}
       <div className="w-full flex-1 flex items-center justify-between gap-12">
-        {/* LEFT COLUMN: Buyers - Clean Header + Solid Green Silhouettes directly on Canvas */}
+        {/* LEFT COLUMN */}
         <div className="flex-1 h-full flex flex-col justify-between py-2">
           <div>
             <div className="flex items-baseline justify-between mb-2 pb-1 border-b border-[#E5E7EB]">
@@ -74,7 +81,6 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
             </div>
           </div>
 
-          {/* Clean 5-column grid of Solid Green Silhouettes WITHOUT square tile boxes */}
           <div className="grid grid-cols-5 gap-y-4 gap-x-3 my-auto max-h-[320px] p-1">
             {Array.from({ length: leftCount }).map((_, idx) => {
               const iconEntrance = spring({
@@ -101,23 +107,25 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
           <div className="h-4" />
         </div>
 
-        {/* CENTER COLUMN: Vertical Scale with Gray Trail Line */}
+        {/* CENTER COLUMN */}
         <div className="w-72 h-full bg-[#FAFAF8] rounded-3xl border-2 border-[#E8E6DF] p-6 flex flex-col items-center justify-between shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-          <div className="text-center">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8B7355]">
+          <div className="text-center w-full">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8B7355] block truncate">
               {uiState.centerTitle}
             </span>
-            <div className="flex items-center justify-center space-x-2 mt-1">
-              <span className="text-4xl font-black font-mono tracking-tight text-[#1E1E1E]">
-                {uiState.centerMetric}
+            <div className="flex items-center justify-center space-x-2 mt-1.5">
+              <span
+                className={`${metricFontClass} font-mono tracking-tight text-[#1E1E1E] whitespace-nowrap`}
+              >
+                {metricText}
               </span>
               {isUp ? (
-                <div className="bg-[#DCFCE7] p-1.5 rounded-full text-[#16A34A]">
-                  <TrendingUp size={24} strokeWidth={3} />
+                <div className="bg-[#DCFCE7] p-1.5 rounded-full text-[#16A34A] shrink-0">
+                  <TrendingUp size={22} strokeWidth={3} />
                 </div>
               ) : (
-                <div className="bg-[#FEE2E2] p-1.5 rounded-full text-[#DC2626]">
-                  <TrendingDown size={24} strokeWidth={3} />
+                <div className="bg-[#FEE2E2] p-1.5 rounded-full text-[#DC2626] shrink-0">
+                  <TrendingDown size={22} strokeWidth={3} />
                 </div>
               )}
             </div>
@@ -125,10 +133,8 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
 
           {/* Vertical Ladder / Scale with Motion Trail */}
           <div className="relative w-28 h-64 my-auto bg-white rounded-2xl border border-[#E5E5E0] flex items-center justify-center p-3 shadow-inner">
-            {/* Background rail */}
             <div className="absolute top-4 bottom-4 left-1/2 -translate-x-1/2 w-1.5 bg-[#EAE8E1] rounded-full" />
 
-            {/* Subtle gray trail line showing price movement */}
             <div
               className="absolute left-1/2 -translate-x-1/2 w-1.5 bg-[#CBD5E1] rounded-full"
               style={{
@@ -137,7 +143,6 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
               }}
             />
 
-            {/* Ladder ticks */}
             <div className="absolute top-6 bottom-6 left-0 right-0 flex flex-col justify-between px-4">
               {Array.from({ length: 9 }).map((_, i) => (
                 <div
@@ -152,7 +157,6 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
               ))}
             </div>
 
-            {/* Animated Target Dot */}
             <div
               className="absolute left-0 right-0 flex items-center justify-center transition-all"
               style={{
@@ -183,7 +187,7 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Sellers - Clean Header + Solid Red Silhouettes directly on Canvas */}
+        {/* RIGHT COLUMN */}
         <div className="flex-1 h-full flex flex-col justify-between py-2">
           <div>
             <div className="flex items-baseline justify-between mb-2 pb-1 border-b border-[#E5E7EB]">
@@ -209,7 +213,6 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
             </div>
           </div>
 
-          {/* Clean 5-column grid of Solid Red Silhouettes WITHOUT square tile boxes */}
           <div className="grid grid-cols-5 gap-y-4 gap-x-3 my-auto max-h-[320px] p-1">
             {Array.from({ length: rightCount }).map((_, idx) => {
               const iconEntrance = spring({
@@ -237,12 +240,12 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
         </div>
       </div>
 
-      {/* Optional Bottom Pill Callout */}
+      {/* Bottom Pill Callout */}
       {uiState.bottomPill && (
         <div className="mt-4">
           <span
             className={`inline-flex items-center px-6 py-2 rounded-full text-base font-semibold tracking-wide shadow-sm border ${
-              uiState.bottomPill.color === 'green'
+              uiState.bottomPill.color === 'green' || uiState.bottomPill.color === 'teal'
                 ? 'bg-[#F0FDF4] text-[#166534] border-[#86EFAC]'
                 : uiState.bottomPill.color === 'red'
                   ? 'bg-[#FEF2F2] text-[#991B1B] border-[#FCA5A5]'

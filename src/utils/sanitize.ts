@@ -13,6 +13,12 @@ export function sanitizeForHindiTTS(text: string): string {
   sanitized = sanitized.replace(/रि[ज़जज़]िट/gi, 'नतीजे');
   sanitized = sanitized.replace(/रि[ज़जज़]ट/gi, 'नतीजे');
 
+  // Fix slurred English loanwords in Devanagari (Expiry, Walk, Self-fulfilling, Leverage)
+  sanitized = sanitized.replace(/एकसपायरी/g, 'एक्सपायरी');
+  sanitized = sanitized.replace(/वॉल्क|वाल्क/g, 'वॉक');
+  sanitized = sanitized.replace(/सेल्[फ़फ][\s-]*अ[\s-]*फुलफिलिंग/g, 'सेल्फ-फुलफिलिंग');
+  sanitized = sanitized.replace(/लेवरेज्ड/g, 'लीवरेज्ड');
+
   // Smooth out awkward regulatory & English clusters
   sanitized = sanitized.replace(/दवा रेगुलेटर\s*\(?FDA\)?/gi, 'दवा रेगुलेटर');
   sanitized = sanitized.replace(/\bUSFDA\b/gi, 'एफ डी ए');

@@ -74,19 +74,6 @@ if (notesArg) {
   }
 }
 
-// Initialize Gemini Client
-const geminiApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
-if (!geminiApiKey) {
-  console.error('[ERROR] GEMINI_API_KEY is not set in environment or .env.');
-  process.exit(1);
-}
-
-const clientOptions = { apiKey: geminiApiKey };
-if (geminiBaseUrl) {
-  clientOptions.httpOptions = { baseUrl: geminiBaseUrl };
-}
-const aiClient = new GoogleGenAI(clientOptions);
-
 const systemInstruction = `
 You are the Lead Pedagogical Storyboard Architect for an autonomous educational video engine built in Remotion.
 You synthesize dense technical or domain knowledge into a 12-slide, 35-50 beat episode payload conforming to the exact schema specification.
@@ -127,25 +114,139 @@ Domain Personas:
 ${JSON.stringify(personas, null, 2)}
 `;
 
+async function callGeminiArgonDirect(fullPrompt) {
+  const cookiePath = path.resolve(rootDir, '..', 'free-gemini-api', 'cookies', 'cookies.json');
+  if (!fs.existsSync(cookiePath)) {
+    throw new Error(`cookies.json not found at: ${cookiePath}. Please ensure Chrome extension is loaded and active.`);
+  }
+
+  const cookies = JSON.parse(fs.readFileSync(cookiePath, 'utf8'));
+  const cookieStr = cookies.map((c) => `${c.name}=${c.value}`).join('; ');
+
+  console.log(`[ARGON ENGINE] Connecting to gemini.google.com with authenticated session (${cookies.length} cookies)...`);
+  const authRes = await fetch('https://gemini.google.com/app', {
+    headers: {
+      Cookie: cookieStr,
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36',
+    },
+  });
+
+  const html = await authRes.text();
+  const snMatch = html.match(/"SNlM0e":"(.*?)"/);
+  const blMatch = html.match(/"cfb2h":"(.*?)"/);
+  const fsidMatch = html.match(/"FdrFJe":"(.*?)"/);
+
+  if (!snMatch) {
+    throw new Error('Could not extract SNlM0e CSRF token from Gemini session. Please refresh gemini.google.com.');
+  }
+
+  const snlm0e = snMatch[1];
+  const bl = blMatch ? blMatch[1] : 'boq_gemini-web-uiserver_20261029.22_p0';
+  const fsid = fsidMatch ? fsidMatch[1] : '';
+
+  console.log(`[ARGON ENGINE] Session verified! Calling Gemini 4 Argon frontier model...`);
+
+  const reqId = Math.floor(Math.random() * 9000000) + 1000000;
+  const msgInner = [fullPrompt, 0, null, [], null, null, 0];
+  const msgLang = ['en-GB'];
+  const msgContext = ['', '', '', null, null, null, null, null, null, ''];
+  const msgStruct = [msgInner, msgLang, msgContext];
+  const fReqVal = [null, JSON.stringify(msgStruct)];
+  const fReqJSON = JSON.stringify(fReqVal);
+
+  const bodyParams = new URLSearchParams();
+  bodyParams.set('f.req', fReqJSON);
+  bodyParams.set('at', snlm0e);
+
+  const url = `https://gemini.google.com/_/BardChatUi/data/assistant.lamda.BardFrontendService/StreamGenerate?bl=${encodeURIComponent(bl)}&_reqid=${reqId}&rt=c${fsid ? `&f.sid=${encodeURIComponent(fsid)}` : ''}`;
+
+  // Argon Header (ModeID 95a4c0abcba24364)
+  const jspbHeader = `[1,null,null,null,"95a4c0abcba24364",null,null,null,[4,5,6,8,16,19,20],null,null,null,null,null,8,1,null,null,null,null]`;
+
+  const genRes = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Cookie: cookieStr,
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36',
+      Origin: 'https://gemini.google.com',
+      Referer: 'https://gemini.google.com/app',
+      'X-Same-Domain': '1',
+      'x-goog-ext-525001261-jspb': jspbHeader,
+      'x-goog-ext-525005358-jspb': '["DIRECT-API-SESSION",1]',
+      'x-goog-ext-73010989-jspb': '[0]',
+    },
+    body: bodyParams.toString(),
+  });
+
+  if (!genRes.ok) {
+    throw new Error(`Gemini 4 Argon StreamGenerate failed with status: ${genRes.status}`);
+  }
+
+  const rawBody = await genRes.text();
+  let generatedText = '';
+  const lines = rawBody.split('\n');
+  for (const line of lines) {
+    if (!line.trim().startsWith('[[')) continue;
+    try {
+      const wrapper = JSON.parse(line.trim());
+      for (const item of wrapper) {
+        if (!Array.isArray(item) || item[0] !== 'wrb.fr') continue;
+        const inner = JSON.parse(item[2]);
+        if (inner && inner[4] && inner[4][0] && inner[4][0][1] && inner[4][0][1][0]) {
+          generatedText = inner[4][0][1][0];
+        }
+      }
+    } catch { }
+  }
+
+  if (!generatedText) {
+    throw new Error('Gemini 4 Argon returned an empty response. Raw payload length: ' + rawBody.length);
+  }
+
+  return generatedText;
+}
+
 export async function generateEpisode() {
   if (dryRun) {
     console.log('[DRY RUN] Prompt prepared. Exiting without making API call.');
     return;
   }
 
-  console.log(`[GENERATOR] Calling ${targetModel}...`);
+  let responseText = null;
 
-  const response = await aiClient.models.generateContent({
-    model: targetModel,
-    contents: prompt,
-    config: {
-      temperature,
-      systemInstruction,
-      responseMimeType: 'application/json',
-    },
-  });
+  // Route A: If Argon requested or cookies available, use direct authenticated Gemini 4 Argon engine
+  const cookiePath = path.resolve(rootDir, '..', 'free-gemini-api', 'cookies', 'cookies.json');
+  const hasCookies = fs.existsSync(cookiePath);
+  const isArgonTarget = targetModel.toLowerCase().includes('argon');
 
-  const responseText = response.text || response.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (isArgonTarget || hasCookies) {
+    console.log(`[GENERATOR] Invoking Gemini 4 Argon via authenticated web session...`);
+    const fullSystemPrompt = `${systemInstruction}\n\nTask Instructions:\n${prompt}`;
+    responseText = await callGeminiArgonDirect(fullSystemPrompt);
+  } else {
+    // Route B: GoogleGenAI SDK Fallback
+    const geminiApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+    if (!geminiApiKey) {
+      throw new Error('Neither Gemini session cookies (cookies/cookies.json) are present nor GEMINI_API_KEY is configured.');
+    }
+    console.log(`[GENERATOR] Calling Google GenAI SDK with model ${targetModel}...`);
+    const clientOptions = { apiKey: geminiApiKey };
+    const aiClient = new GoogleGenAI(clientOptions);
+    const response = await aiClient.models.generateContent({
+      model: targetModel,
+      contents: prompt,
+      config: {
+        temperature,
+        systemInstruction,
+        responseMimeType: 'application/json',
+      },
+    });
+    responseText = response.text || response.candidates?.[0]?.content?.parts?.[0]?.text;
+  }
+
   if (!responseText) {
     throw new Error('No text returned in Gemini response.');
   }
@@ -158,6 +259,82 @@ export async function generateEpisode() {
   }
 
   const episodeData = JSON.parse(cleanedJson);
+
+  // Auto-normalize scene card immutability & phonetics before validation
+  if (Array.isArray(episodeData.scenes)) {
+    episodeData.scenes.forEach((scene) => {
+      // 1. Progressive Cards Immutability & Single Reveal Enforcement
+      if (scene.template === 'progressive_cards' && Array.isArray(scene.beats)) {
+        const numBeats = scene.beats.length;
+
+        // If cards exceed beats, merge excess cards into the last reveal card
+        scene.beats.forEach((b) => {
+          if (b.ui_state && Array.isArray(b.ui_state.cards) && b.ui_state.cards.length > numBeats) {
+            const keep = b.ui_state.cards.slice(0, numBeats - 1);
+            const tail = b.ui_state.cards.slice(numBeats - 1);
+            const merged = {
+              ...tail[0],
+              title: tail.map((c) => c.title).join(' & ').slice(0, 50),
+              subtitle: tail.map((c) => c.subtitle).join(' · ').slice(0, 90),
+            };
+            b.ui_state.cards = [...keep, merged];
+          }
+        });
+
+        // Synchronize canonical titles/subtitles from beat 0 and enforce single-card progressive reveal
+        const firstCards = scene.beats[0]?.ui_state?.cards || [];
+        scene.beats.forEach((b, bIdx) => {
+          if (b.ui_state && Array.isArray(b.ui_state.cards)) {
+            b.ui_state.cards = firstCards.map((c, cIdx) => {
+              let state = 'hidden';
+              if (cIdx < bIdx) state = 'muted';
+              else if (cIdx === bIdx) state = 'active_amber';
+              return {
+                title: c.title,
+                subtitle: c.subtitle,
+                state,
+              };
+            });
+          }
+        });
+      }
+
+      // 2. Interactive Quiz Immutability & Answer Object-to-String Normalization
+      if (scene.template === 'interactive_quiz' && Array.isArray(scene.beats)) {
+        let canonicalQuestion = '';
+        scene.beats.forEach((b) => {
+          if (b.ui_state && b.ui_state.question && !canonicalQuestion) {
+            canonicalQuestion = b.ui_state.question;
+          }
+          // Normalize answer if LLM returned an object instead of string
+          if (b.ui_state && b.ui_state.answer && typeof b.ui_state.answer === 'object') {
+            const parts = [];
+            if (b.ui_state.answer.verdict) parts.push(b.ui_state.answer.verdict);
+            if (b.ui_state.answer.explanation) parts.push(b.ui_state.answer.explanation);
+            b.ui_state.answer = parts.length > 0 ? parts.join(' — ') : JSON.stringify(b.ui_state.answer);
+          }
+        });
+        if (canonicalQuestion) {
+          scene.beats.forEach((b) => {
+            if (b.ui_state) {
+              b.ui_state.question = canonicalQuestion;
+            }
+          });
+        }
+      }
+
+      // 3. Phonetic TTS Sanitation
+      if (Array.isArray(scene.beats)) {
+        scene.beats.forEach((b) => {
+          if (b.hindi_tts) {
+            b.hindi_tts = b.hindi_tts
+              .replace(/रि[ज़जज़]ल्ट्स|रि[ज़जज़]ल्ट|रि[ज़जज़]िट|रि[ज़जज़]ट/gi, 'नतीजे')
+              .replace(/USFDA|यू\s*एस\s*एफ\s*डी\s*ए/gi, 'दवा रेगुलेटर (FDA)');
+          }
+        });
+      }
+    });
+  }
 
   // Zod Guardrail Validation
   console.log(`[VALIDATION] Running Zod guardrails on generated episode payload...`);
