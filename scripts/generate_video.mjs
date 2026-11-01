@@ -256,7 +256,7 @@ const renderProps = isArgon
   ? `--props="${compiledEpisodePath}"`
   : '';
 
-const renderCommand = `npx remotion render src/index.ts EpisodeComposition "${outputVideo}" ${renderProps}`.trim();
+const renderCommand = `npx remotion render src/index.ts EpisodeComposition "${outputVideo}" ${renderProps} --crf=16 --pixel-format=yuv420p`.trim();
 
 try {
   execSync(renderCommand, { stdio: 'inherit', cwd: rootDir });

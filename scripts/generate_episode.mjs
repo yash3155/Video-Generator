@@ -80,9 +80,22 @@ You synthesize dense technical or domain knowledge into a 12-slide, 35-50 beat e
 
 CRITICAL INVARIANTS:
 1. 100% ENGLISH UI TEXT: Every field inside 'ui_state' (questions, card titles, subtitles, badge copy, annotations, steps, headings) MUST be English. Devanagari characters are strictly forbidden in 'ui_state' and will fail automated Zod validation.
-2. HINDI TTS NARRATION: 'hindi_tts' must be natural, warm, conversational Hinglish in Devanagari script. Use natural words ('नियम', 'बातें', 'सिद्धांत', 'नतीजे') instead of rigid translations. Format numbers and currencies as digits ('₹152', '40%', '200ms').
+2. HINDI TTS NARRATION: 'hindi_tts' must be natural, warm, conversational Hinglish in Devanagari script. Use natural words ('नियम', 'बातें', 'सिद्धांत', 'नतीजे') instead of rigid translations. Format numbers and currencies as digits ('₹152', '40%', '200ms'). Never use 'रिज़ल्ट' (always 'नतीजे').
 3. EN_SUBTITLE: Short, concise English subtitles under 16 words per beat.
-4. 12-SCENE PEDAGOGICAL RHYTHM:
+4. PROGRESSIVE CARDS INVARIANT:
+   - In 'progressive_cards', the number of cards in 'cards' MUST NEVER exceed the number of beats in the scene ('cards.length <= beats.length').
+   - Reveal at most 1 new card per beat ('beat 0 -> 1 card visible, beat 1 -> 2 cards visible', etc.).
+   - Card copy ('title' and 'subtitle') must remain strictly identical across all beats of the scene.
+5. INTERACTIVE QUIZ INVARIANT:
+   - 'ui_state.answer' MUST be a single plain string (e.g. "No — Transport index did not confirm."), NEVER a JSON object or dictionary.
+   - 'ui_state.question' must be self-contained (min 18 words) and stay 100% identical across all beats of the scene.
+6. TUG OF WAR INVARIANT:
+   - Always include 'centerTitle', 'centerMetric', and 'trend' ('up', 'down', or 'neutral').
+   - Keep 'leftCount' and 'rightCount' between 0 and 25.
+7. SUMMARY THREAD INVARIANT:
+   - Must contain between 6 and 8 sequential numbered steps ('steps.length >= 6 && steps.length <= 8').
+   - 'heading' must remain constant ('Today\\'s thread') across all beats.
+8. 12-SCENE PEDAGOGICAL RHYTHM:
    - Scene 1: Novice Flawed Trade/Action (chat_story)
    - Scene 2: Market Paradox / Unexpected Drop (data_visualizer)
    - Scene 3: The Roadmap (progressive_cards)
@@ -90,7 +103,7 @@ CRITICAL INVARIANTS:
    - Scene 10: Active Recall Quiz with 4000ms thinking pause (interactive_quiz)
    - Scene 11: Application Dialogue (chat_story)
    - Scene 12: Chapter Thread & Key Takeaway (summary_thread with 6-8 numbered steps)
-5. RESPONSE FORMAT: Return ONLY a valid JSON object matching the episode schema. No Markdown wrapper, no thoughts outside JSON.
+9. RESPONSE FORMAT: Return ONLY a valid JSON object matching the episode schema. No Markdown wrapper, no thoughts outside JSON.
 `;
 
 const curriculumText = curriculumArg
@@ -338,15 +351,40 @@ export async function generateEpisode() {
 
   // Zod Guardrail Validation
   console.log(`[VALIDATION] Running Zod guardrails on generated episode payload...`);
-  const validation = validateEpisodeData(episodeData);
+  let validation = validateEpisodeData(episodeData);
 
   if (!validation.valid) {
-    console.error(`[VALIDATION FAILED] Generated JSON has ${validation.errors.length} schema errors:`);
-    validation.errors.forEach((err, idx) => console.error(`  ${idx + 1}. ${err}`));
-    const errorDumpPath = path.join(chapterDir, 'episode_generation_error.json');
-    fs.writeFileSync(errorDumpPath, JSON.stringify(episodeData, null, 2), 'utf8');
-    console.error(`[DUMP] Raw output saved to: ${errorDumpPath}`);
-    throw new Error('Episode validation failed.');
+    console.warn(`\n⚠️ Initial validation detected ${validation.errors.length} schema error(s). Applying automated self-correction...`);
+    validation.errors.forEach((err, idx) => console.warn(`  ${idx + 1}. ${err}`));
+
+    // Apply self-correction remedies
+    if (Array.isArray(episodeData.scenes)) {
+      episodeData.scenes.forEach((scene) => {
+        // Fallback for tug_of_war fields
+        if (scene.template === 'tug_of_war') {
+          scene.beats?.forEach((b) => {
+            if (b.ui_state) {
+              b.ui_state.centerTitle = b.ui_state.centerTitle || 'Tug of War';
+              b.ui_state.centerMetric = b.ui_state.centerMetric || 'Balance';
+              b.ui_state.trend = b.ui_state.trend || 'neutral';
+            }
+          });
+        }
+      });
+    }
+
+    // Re-validate strictly once
+    validation = validateEpisodeData(episodeData);
+    if (validation.valid) {
+      console.log(`✅ Single-pass automated self-correction succeeded!\n`);
+    } else {
+      console.error(`[VALIDATION FAILED] Generated JSON still has ${validation.errors.length} schema errors after self-correction:`);
+      validation.errors.forEach((err, idx) => console.error(`  ${idx + 1}. ${err}`));
+      const errorDumpPath = path.join(chapterDir, 'episode_generation_error.json');
+      fs.writeFileSync(errorDumpPath, JSON.stringify(episodeData, null, 2), 'utf8');
+      console.error(`[DUMP] Raw output saved to: ${errorDumpPath}`);
+      throw new Error('Episode validation failed.');
+    }
   }
 
   const outputPath = path.join(chapterDir, 'episode_raw.json');
