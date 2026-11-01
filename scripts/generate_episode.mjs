@@ -2,6 +2,7 @@ import 'dotenv/config';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawn } from 'node:child_process';
 import { GoogleGenAI } from '@google/genai';
 import { validateEpisodeData } from './validate_episode.mjs';
 
@@ -130,13 +131,35 @@ const curriculumText = curriculumArg
     ? promptArg.slice('--prompt='.length)
     : '';
 
+function formatChapterBreadcrumb(slug) {
+  if (!slug) return 'CHAPTER 1 · PART 1';
+  const match = slug.match(/ch(\d+)_part(\d+)/i);
+  if (match) {
+    return `CHAPTER ${parseInt(match[1], 10)} · PART ${parseInt(match[2], 10)}`;
+  }
+  if (slug.toLowerCase().includes('appendix')) {
+    return 'APPENDIX';
+  }
+  return slug.replace(/_argon/i, '').replace(/_/g, ' ').toUpperCase();
+}
+
 const prompt = `
-Generate a complete episode for:
+Generate a complete, high-fidelity episode for:
 - Course: ${topicArg ? topicArg.split('=')[1] : 'TECHNICAL ANALYSIS · MURPHY'}
-- Chapter: ${chapterSlug.toUpperCase()}
+- Chapter: ${formatChapterBreadcrumb(chapterSlug)}
 - Domain: ${domainArg ? domainArg.split('=')[1] : 'Finance / Trading'}
 ${curriculumText ? `\nCurriculum Directives & Scope:\n${curriculumText}\n` : ''}
 ${contextText ? `\nInput Context:\n${contextText}\n` : ''}
+
+CRITICAL STRUCTURAL REQUIREMENTS:
+You MUST generate EXACTLY 11 to 12 distinct scenes and at least 35 total beats. Do NOT compress into a brief 5-7 scene summary:
+- Scene 0: Hook Part 1 (chat_story, 2-3 beats)
+- Scene 1: Hook Part 2 (data_visualizer, 3 beats, e.g. price drops or unexpected action)
+- Scene 2: The Roadmap (progressive_cards, 3-4 beats)
+- Scenes 3-8: Deep Dives into Core Concepts (alternating data_visualizer, progressive_cards, split_comparison, tug_of_war, 2-3 beats each)
+- Scene 9: Active Recall Quiz (interactive_quiz, EXACTLY 3 beats: Beat 0 intro, Beat 1 thinking pause with showThinkingSpinner: true & pauseAfterMs: 3200, Beat 2 answer reveal with showThinkingSpinner: false)
+- Scene 10: Practical Application Dialogue (chat_story, 2-3 beats)
+- Scene 11: The Whole Picture (summary_thread, EXACTLY 4-5 beats, with 6 to 8 numbered steps and heading "Today's thread")
 
 Schema Reference:
 ${JSON.stringify(schemaRef, null, 2)}
@@ -240,6 +263,76 @@ async function callGeminiArgonDirect(fullPrompt) {
   return generatedText;
 }
 
+async function ensureProxyRunning() {
+  const proxyHealthUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001')
+    .replace(/\/v1\/chat\/completions\/?$/, '')
+    .replace(/\/+$/, '') + '/health';
+
+  try {
+    const res = await fetch(proxyHealthUrl, { signal: AbortSignal.timeout(1200) });
+    if (res.ok) return true;
+  } catch {}
+
+  const exePath = path.resolve(rootDir, '..', 'free-gemini-api', 'gemini-core-windows-amd64.exe');
+  if (fs.existsSync(exePath)) {
+    console.log('[PROXY] Local free-gemini-api proxy is not running. Launching in background...');
+    const subprocess = spawn(exePath, [], {
+      cwd: path.dirname(exePath),
+      detached: true,
+      stdio: 'ignore',
+    });
+    subprocess.unref();
+
+    for (let i = 0; i < 10; i++) {
+      await new Promise((r) => setTimeout(r, 600));
+      try {
+        const res = await fetch(proxyHealthUrl, { signal: AbortSignal.timeout(600) });
+        if (res.ok) {
+          console.log('[PROXY] Local proxy is online and ready!');
+          return true;
+        }
+      } catch {}
+    }
+  }
+  return false;
+}
+
+async function callGeminiArgonViaProxy(promptText, model = 'gemini-4-argon', temp = 0.2) {
+  const baseUrl = process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001/v1/chat/completions';
+  const completionsUrl = baseUrl.endsWith('/v1/chat/completions')
+    ? baseUrl
+    : `${baseUrl.replace(/\/+$/, '')}/v1/chat/completions`;
+
+  console.log(`[ARGON PROXY] Routing generation request through: ${completionsUrl} (model: ${model})...`);
+  const res = await fetch(completionsUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer none',
+    },
+    body: JSON.stringify({
+      model: model,
+      messages: [
+        { role: 'system', content: systemInstruction },
+        { role: 'user', content: promptText },
+      ],
+      temperature: temp,
+    }),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text();
+    throw new Error(`Argon Proxy request failed (status ${res.status}): ${errText}`);
+  }
+
+  const data = await res.json();
+  const content = data.choices?.[0]?.message?.content;
+  if (!content) {
+    throw new Error('Argon Proxy returned an empty response. Response payload: ' + JSON.stringify(data));
+  }
+  return content;
+}
+
 export async function generateEpisode() {
   if (dryRun) {
     console.log('[DRY RUN] Prompt prepared. Exiting without making API call.');
@@ -248,13 +341,15 @@ export async function generateEpisode() {
 
   let responseText = null;
 
-  // Route A: If Argon requested or cookies available, use direct authenticated Gemini 4 Argon engine
-  const cookiePath = path.resolve(rootDir, '..', 'free-gemini-api', 'cookies', 'cookies.json');
-  const hasCookies = fs.existsSync(cookiePath);
+  // Route A: Check if local proxy is online or can be started
   const isArgonTarget = targetModel.toLowerCase().includes('argon');
+  const proxyOnline = await ensureProxyRunning();
 
-  if (isArgonTarget || hasCookies) {
-    console.log(`[GENERATOR] Invoking Gemini 4 Argon via authenticated web session...`);
+  if (proxyOnline && (isArgonTarget || !process.env.GEMINI_API_KEY)) {
+    console.log(`[GENERATOR] Using active free-gemini-api proxy with model ${targetModel}...`);
+    responseText = await callGeminiArgonViaProxy(prompt, targetModel, temperature);
+  } else if (isArgonTarget || fs.existsSync(path.resolve(rootDir, '..', 'free-gemini-api', 'cookies', 'cookies.json'))) {
+    console.log(`[GENERATOR] Invoking Gemini 4 Argon via authenticated web session fallback...`);
     const fullSystemPrompt = `${systemInstruction}\n\nTask Instructions:\n${prompt}`;
     responseText = await callGeminiArgonDirect(fullSystemPrompt);
   } else {
@@ -330,8 +425,32 @@ export async function generateEpisode() {
         });
       }
 
-      // 2. Interactive Quiz Immutability & Answer Object-to-String Normalization
+      // 2. Interactive Quiz 3-Beat & Immutability Normalization
       if (scene.template === 'interactive_quiz' && Array.isArray(scene.beats)) {
+        // If LLM returned 2 beats (thinking spinner + answer), synthesize the missing scenario intro beat
+        if (scene.beats.length === 2) {
+          const bSpin = scene.beats[0];
+          const bAns = scene.beats[1];
+          const qText = bSpin.ui_state?.question || bAns.ui_state?.question || 'What is the correct market interpretation?';
+          const introBeat = {
+            id: `${bSpin.id || 'b'}_intro`,
+            hindi_tts: 'ध्यान से सोचिए और बताइए कि डाउ थ्योरी और चार्ट विश्लेषण के हिसाब से सही फैसला क्या होगा।',
+            en_subtitle: 'Carefully analyze the market scenario and predict the confirmed technical signal.',
+            pauseAfterMs: 400,
+            ui_state: {
+              badge: bSpin.ui_state?.badge || 'Concept Check',
+              question: qText,
+              showThinkingSpinner: false,
+              answer: null,
+            },
+          };
+          bSpin.ui_state.showThinkingSpinner = true;
+          bSpin.ui_state.answer = null;
+          bSpin.pauseAfterMs = Math.max(bSpin.pauseAfterMs || 0, 3200);
+          bAns.ui_state.showThinkingSpinner = false;
+          scene.beats = [introBeat, bSpin, bAns];
+        }
+
         let canonicalQuestion = '';
         scene.beats.forEach((b) => {
           if (b.ui_state && b.ui_state.question && !canonicalQuestion) {
@@ -352,9 +471,178 @@ export async function generateEpisode() {
             }
           });
         }
+        if (scene.beats.length >= 2 && (scene.beats[1].pauseAfterMs ?? 0) < 3000) {
+          scene.beats[1].pauseAfterMs = 3200;
+        }
       }
 
-      // 3. Phonetic TTS Sanitation
+      // 3. Tug of War Silhouette Clamping & Defaults
+      if (scene.template === 'tug_of_war' && Array.isArray(scene.beats)) {
+        scene.beats.forEach((b) => {
+          if (b.ui_state) {
+            if (typeof b.ui_state.leftCount === 'number') {
+              b.ui_state.leftCount = Math.min(25, Math.max(0, Math.round(b.ui_state.leftCount)));
+            }
+            if (typeof b.ui_state.rightCount === 'number') {
+              b.ui_state.rightCount = Math.min(25, Math.max(0, Math.round(b.ui_state.rightCount)));
+            }
+            b.ui_state.centerTitle = b.ui_state.centerTitle || 'Tug of War';
+            b.ui_state.centerMetric = b.ui_state.centerMetric || 'Balance';
+            b.ui_state.trend = b.ui_state.trend || 'neutral';
+          }
+        });
+      }
+
+      // 4. Data Visualizer Price Clamping to Preset Bounds
+      if (scene.template === 'data_visualizer' && Array.isArray(scene.beats)) {
+        const PRESET_BOUNDS = {
+          uptrend_then_drop: { min: 115, max: 165 },
+          uptrend_break: { min: 92, max: 152 },
+          head_and_shoulders: { min: 124, max: 182 },
+          random_walk_line: { min: 70, max: 185 },
+        };
+        const preset = scene.beats[0]?.ui_state?.preset;
+        const bounds = PRESET_BOUNDS[preset];
+        if (bounds) {
+          const clampPriceStr = (str) => {
+            if (typeof str !== 'string') return str;
+            return str.replace(/₹\s*(\d+(?:\.\d+)?)/g, (match, p) => {
+              const val = parseFloat(p);
+              if (val < bounds.min) return `₹${bounds.min}`;
+              if (val > bounds.max) return `₹${bounds.max}`;
+              return match;
+            });
+          };
+
+          scene.beats.forEach((b) => {
+            if (b.hindi_tts) b.hindi_tts = clampPriceStr(b.hindi_tts);
+            if (b.en_subtitle) b.en_subtitle = clampPriceStr(b.en_subtitle);
+            if (b.ui_state) {
+              if (Array.isArray(b.ui_state.annotations)) {
+                b.ui_state.annotations.forEach((ann) => {
+                  if (ann.text) ann.text = clampPriceStr(ann.text);
+                  if (typeof ann.value === 'number') {
+                    ann.value = Math.min(bounds.max, Math.max(bounds.min, ann.value));
+                  }
+                });
+              }
+              if (Array.isArray(b.ui_state.sideCards)) {
+                b.ui_state.sideCards.forEach((c) => {
+                  if (c.title) c.title = clampPriceStr(c.title);
+                  if (c.subtitle) c.subtitle = clampPriceStr(c.subtitle);
+                });
+              }
+            }
+          });
+        }
+      }
+
+      // 5. Split Comparison ASCII Arrow Removal
+      if (scene.template === 'split_comparison' && Array.isArray(scene.beats)) {
+        scene.beats.forEach((b) => {
+          ['leftColumn', 'rightColumn'].forEach((col) => {
+            if (b.ui_state?.[col]?.bullets && Array.isArray(b.ui_state[col].bullets)) {
+              b.ui_state[col].bullets = b.ui_state[col].bullets.map((bullet) =>
+                typeof bullet === 'string' ? bullet.replace(/^(-->|->|→)\s*/, '') : bullet
+              );
+            }
+          });
+        });
+      }
+
+      // 6. Summary Thread Heading, Steps Count (6-8), & Beat Expansion
+      if (scene.template === 'summary_thread' && Array.isArray(scene.beats)) {
+        // Ensure steps array length is between 6 and 8
+        scene.beats.forEach((b) => {
+          if (b.ui_state && Array.isArray(b.ui_state.steps)) {
+            while (b.ui_state.steps.length < 6) {
+              b.ui_state.steps.push(
+                `Key Takeaway ${b.ui_state.steps.length + 1}: Always trade the confirmed evidence, not emotional assumptions`
+              );
+            }
+            if (b.ui_state.steps.length > 8) {
+              b.ui_state.steps = b.ui_state.steps.slice(0, 8);
+            }
+          }
+        });
+
+        const totalSteps = scene.beats[0]?.ui_state?.steps?.length || 6;
+
+        // If fewer than 4 beats, expand into standard 4-beat summary progression
+        if (scene.beats.length < 4 && scene.beats.length > 0) {
+          const orig = scene.beats[0];
+          const mid = Math.floor(totalSteps / 2);
+          scene.beats = [
+            {
+              id: `${orig.id || 'sum'}_b0`,
+              hindi_tts: 'आइए आज के पूरे चैप्टर की सभी जरूरी बातों को एक साथ दोहराते हैं।',
+              en_subtitle: "Let's review the cornerstone principles and lessons covered in today's session.",
+              pauseAfterMs: 400,
+              ui_state: {
+                ...orig.ui_state,
+                heading: "Today's thread",
+                activeStepRange: [0, 0],
+              },
+            },
+            {
+              id: `${orig.id || 'sum'}_b1`,
+              hindi_tts: 'चार्ट के प्रकार और सही टाइमफ्रेम का चुनाव ही आपकी शुरुआती बढ़त तय करता है।',
+              en_subtitle: 'Selecting the appropriate chart resolution establishes your foundational market edge.',
+              pauseAfterMs: 400,
+              ui_state: {
+                ...orig.ui_state,
+                heading: "Today's thread",
+                activeStepRange: [1, mid],
+              },
+            },
+            {
+              id: `${orig.id || 'sum'}_b2`,
+              hindi_tts: 'वॉल्यूम और ओपन इंटरेस्ट से ब्रेकआउट की पुष्टि किए बिना कभी ट्रेड में न उतरें।',
+              en_subtitle: 'Never enter positions without volume and open interest confirming the move.',
+              pauseAfterMs: 400,
+              ui_state: {
+                ...orig.ui_state,
+                heading: "Today's thread",
+                activeStepRange: [mid + 1, totalSteps],
+              },
+            },
+            {
+              id: `${orig.id || 'sum'}_b3`,
+              hindi_tts: orig.hindi_tts || 'प्राइस एक्शन और वॉल्यूम का यह संगम आपको अनचाहे नुकसान से बचाएगा।',
+              en_subtitle: orig.en_subtitle || 'Aligning price with volume ensures sustainable trading success.',
+              pauseAfterMs: 600,
+              ui_state: {
+                ...orig.ui_state,
+                heading: "Today's thread",
+                activeStepRange: [1, totalSteps],
+              },
+            },
+          ];
+        } else {
+          const numIntermediate = scene.beats.length - 2;
+          scene.beats.forEach((b, bIdx) => {
+            if (b.ui_state) {
+              b.ui_state.heading = "Today's thread";
+              if (bIdx === 0) {
+                b.ui_state.activeStepRange = [0, 0];
+              } else if (bIdx === scene.beats.length - 1) {
+                b.ui_state.activeStepRange = [1, totalSteps];
+              } else if (
+                !Array.isArray(b.ui_state.activeStepRange) ||
+                b.ui_state.activeStepRange.length !== 2 ||
+                b.ui_state.activeStepRange[1] === 0
+              ) {
+                const stepChunk = Math.ceil(totalSteps / numIntermediate);
+                const start = (bIdx - 1) * stepChunk + 1;
+                const end = Math.min(totalSteps, bIdx * stepChunk);
+                b.ui_state.activeStepRange = [start, end];
+              }
+            }
+          });
+        }
+      }
+
+      // 5. Phonetic TTS Sanitation
       if (Array.isArray(scene.beats)) {
         scene.beats.forEach((b) => {
           if (b.hindi_tts) {
@@ -365,6 +653,11 @@ export async function generateEpisode() {
         });
       }
     });
+  }
+
+  // Normalize Chapter Breadcrumb in Meta
+  if (episodeData.meta) {
+    episodeData.meta.chapter = formatChapterBreadcrumb(episodeData.meta.chapter || chapterSlug);
   }
 
   // Zod Guardrail Validation
@@ -385,6 +678,32 @@ export async function generateEpisode() {
               b.ui_state.centerTitle = b.ui_state.centerTitle || 'Tug of War';
               b.ui_state.centerMetric = b.ui_state.centerMetric || 'Balance';
               b.ui_state.trend = b.ui_state.trend || 'neutral';
+              if (typeof b.ui_state.leftCount === 'number') {
+                b.ui_state.leftCount = Math.min(25, Math.max(0, Math.round(b.ui_state.leftCount)));
+              }
+              if (typeof b.ui_state.rightCount === 'number') {
+                b.ui_state.rightCount = Math.min(25, Math.max(0, Math.round(b.ui_state.rightCount)));
+              }
+            }
+          });
+        }
+        // Fallback for summary_thread activeStepRange
+        if (scene.template === 'summary_thread' && Array.isArray(scene.beats)) {
+          const totalSteps = scene.beats[0]?.ui_state?.steps?.length || 6;
+          const numIntermediate = Math.max(1, scene.beats.length - 2);
+          scene.beats.forEach((b, bIdx) => {
+            if (b.ui_state) {
+              b.ui_state.heading = "Today's thread";
+              if (bIdx === 0) {
+                b.ui_state.activeStepRange = [0, 0];
+              } else if (bIdx === scene.beats.length - 1) {
+                b.ui_state.activeStepRange = [1, totalSteps];
+              } else {
+                const stepChunk = Math.ceil(totalSteps / numIntermediate);
+                const start = (bIdx - 1) * stepChunk + 1;
+                const end = Math.min(totalSteps, bIdx * stepChunk);
+                b.ui_state.activeStepRange = [start, end];
+              }
             }
           });
         }

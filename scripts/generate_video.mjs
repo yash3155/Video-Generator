@@ -102,7 +102,7 @@ if (!curriculumMatch) {
   process.exit(1);
 }
 
-const curriculumDirective = curriculumMatch[1];
+const curriculumDirective = curriculumMatch[1].replace(/\r?\n/g, ' ').trim();
 
 // -------------------------------------------------------------------
 // 2. Workspace & Path Initialization
