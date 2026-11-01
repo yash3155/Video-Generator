@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "domain": "finance",
+    "course": "TECHNICAL ANALYSIS · MURPHY",
+    "chapter": "CHAPTER 1 · PART 1",
+    "totalSegments": 7
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "Record profit",
+      "template": "chat_story",
+      "badge": "March · result day",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "मार्च की एक सुबह, राजू फोन पर न्यूज़ पढ़ता है।",
+          "en_subtitle": "One March morning, Raju reads the news on his phone.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": ["— morning: Raju reads the news on his phone —"],
+            "messages": [
+              { "sender": "Raju", "avatar": "R", "text": "Such good news. It will fly now!", "theme": "amber", "align": "left" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Good news, falling price",
+      "template": "data_visualizer",
+      "beats": [
+        {
+          "id": "b02",
+          "hindi_tts": "पर शाम तक, शेयर 7 परसेंट गिर चुका है।",
+          "en_subtitle": "But by evening, the share has fallen 7 percent.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "chartTitle": "Kesar Paints Ltd",
+            "chartSubtitle": "daily · fictional",
+            "preset": "uptrend_then_drop",
+            "progressStep": 2,
+            "totalSteps": 3,
+            "yAxisUnit": "₹",
+            "annotations": [
+              { "type": "price_label", "text": "Raju buys ₹152", "value": 152, "color": "amber" },
+              { "type": "callout", "text": "result day: -7%", "color": "red" }
+            ],
+            "sideCards": [
+              { "title": "Raju buys", "subtitle": "at the open, ₹152", "state": "muted" },
+              { "title": "By the close", "subtitle": "-7% on record profit", "state": "active_red" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "Who was left to buy?",
+      "template": "tug_of_war",
+      "beats": [
+        {
+          "id": "b03",
+          "hindi_tts": "यानी बहुत से लोग अच्छे रिजल्ट की उम्मीद में पहले ही खरीद चुके थे।",
+          "en_subtitle": "So many people had already bought, hoping for good results.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftLabel": "Buyers",
+            "leftCount": 20,
+            "rightLabel": "Sellers",
+            "rightCount": 2,
+            "centerTitle": "KESAR PAINTS",
+            "centerMetric": "₹158",
+            "trend": "up",
+            "bottomPill": { "text": "buying in hope, before the news", "color": "green" }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "The first premise",
+      "template": "progressive_cards",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "इसे कहते हैं: मार्केट एक्शन डिस्काउंट्स एवरीथिंग।",
+          "en_subtitle": "This is called: market action discounts everything.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "sectionHeader": "Three premises",
+            "layout": "stack",
+            "cards": [
+              { "icon": "TrendingUp", "title": "Market action discounts everything", "subtitle": "the cornerstone of technical analysis", "state": "active_amber" },
+              { "icon": "FileText", "title": "Everything is already in the price", "subtitle": "news, hopes, fears: whatever can move it", "state": "hidden" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Fundamental vs technical",
+      "template": "split_comparison",
+      "beats": [
+        {
+          "id": "b05",
+          "hindi_tts": "फंडामेंटल एनालिस्ट पूछता है: यह कंपनी असल में कितने की है?",
+          "en_subtitle": "A fundamental analyst asks: what is this company really worth?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "showVsBadge": true,
+            "leftColumn": {
+              "icon": "BookOpen",
+              "title": "Fundamental",
+              "subtitle": "what is the company worth?",
+              "theme": "blue",
+              "active": true,
+              "bullets": ["→ is it really worth the price?", "→ reads profit, debt, the business"]
+            },
+            "rightColumn": {
+              "icon": "BarChart2",
+              "title": "Technical",
+              "subtitle": "what are people doing now?",
+              "theme": "amber",
+              "active": false,
+              "bullets": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Your turn",
+      "template": "interactive_quiz",
+      "beats": [
+        {
+          "id": "b06",
+          "hindi_tts": "सोचिए।",
+          "en_subtitle": "Think.",
+          "pauseAfterMs": 4000,
+          "ui_state": {
+            "badge": "Your turn",
+            "question": "A company reports results tomorrow, and its share is already up 30% in a month. If the results are good, will the share surely rise?",
+            "showThinkingSpinner": true,
+            "answer": null
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "The whole picture",
+      "template": "summary_thread",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "तो आज का धागा यह है: खबर प्राइस में पहले से होती है, इसलिए प्राइस को पढ़िए।",
+          "en_subtitle": "The news is already in the price, so read the price.",
+          "pauseAfterMs": 600,
+          "ui_state": {
+            "headerBadge": "CHAPTER 1 · PART 1 · THE WHOLE PICTURE",
+            "heading": "Today's thread",
+            "activeStepIndex": 3,
+            "steps": [
+              "Record profit, and -7% that day",
+              "Two months of buying in hope",
+              "News day: no buyers left"
+            ],
+            "bottomTakeaway": "The news is already in the price: so read the price."
+          }
+        }
+      ]
+    }
+  ]
+}
+
