@@ -82,28 +82,46 @@ CRITICAL INVARIANTS:
 1. 100% ENGLISH UI TEXT: Every field inside 'ui_state' (questions, card titles, subtitles, badge copy, annotations, steps, headings) MUST be English. Devanagari characters are strictly forbidden in 'ui_state' and will fail automated Zod validation.
 2. HINDI TTS NARRATION: 'hindi_tts' must be natural, warm, conversational Hinglish in Devanagari script. Use natural words ('नियम', 'बातें', 'सिद्धांत', 'नतीजे') instead of rigid translations. Format numbers and currencies as digits ('₹152', '40%', '200ms'). Never use 'रिज़ल्ट' (always 'नतीजे').
 3. EN_SUBTITLE: Short, concise English subtitles under 16 words per beat.
-4. PROGRESSIVE CARDS INVARIANT:
+4. EXACT CHAPTER BREADCRUMB: 'meta.chapter' must strictly follow the format: 'CHAPTER X · PART Y' (or 'APPENDIX ...'). Never include '_ARGON' or underscores.
+5. DETERMINISTIC CHART PRESET PRICE TABLE (CRITICAL):
+   When creating scenes with 'data_visualizer', you MUST adhere to the exact candle price bounds of the chosen preset across all spoken beats ('hindi_tts', 'en_subtitle'), annotations, and side cards:
+   - 'uptrend_then_drop': Bounds [115, 165] (starts ~₹120, peaks at ₹158 on candle 18–23, drops to ₹141 on candle 27)
+   - 'uptrend_break': Bounds [92, 152] (climbs from ₹98 to ₹148 on candle 16, breaks support at ₹140, drops to ₹134)
+   - 'head_and_shoulders': Bounds [124, 182] (Left Shoulder ₹158 at idx 4, Head ₹175 at idx 12, Right Shoulder ₹156 at idx 20, Neckline ₹142 breaks at idx 25)
+   - 'random_walk_line': Bounds [70, 185]
+   Mentioning any price outside these ranges is strictly forbidden and immediately fails validation.
+6. PROGRESSIVE CARDS INVARIANT:
    - In 'progressive_cards', the number of cards in 'cards' MUST NEVER exceed the number of beats in the scene ('cards.length <= beats.length').
    - Reveal at most 1 new card per beat ('beat 0 -> 1 card visible, beat 1 -> 2 cards visible', etc.).
    - Card copy ('title' and 'subtitle') must remain strictly identical across all beats of the scene.
-5. INTERACTIVE QUIZ INVARIANT:
-   - 'ui_state.answer' MUST be a single plain string (e.g. "No — Transport index did not confirm."), NEVER a JSON object or dictionary.
-   - 'ui_state.question' must be self-contained (min 18 words) and stay 100% identical across all beats of the scene.
-6. TUG OF WAR INVARIANT:
+7. INTERACTIVE QUIZ 3-BEAT INVARIANT:
+   - The scene MUST contain exactly 3 beats:
+     * Beat 0: Scenario introduction ('showThinkingSpinner: false', 'answer: null')
+     * Beat 1: Thinking pause ('showThinkingSpinner: true', 'answer: null', 'pauseAfterMs: 3200')
+     * Beat 2: Answer reveal ('showThinkingSpinner: false', 'answer: "..."' as a non-empty string)
+   - 'ui_state.answer' MUST be a single plain string, NEVER a JSON object or dictionary.
+   - 'ui_state.question' must be a self-contained scenario + question (min 18 words) and stay 100% identical across all 3 beats.
+8. SPLIT COMPARISON INVARIANT:
+   - Bullets must NOT start with ASCII arrows ('-->' or '->').
+9. TUG OF WAR INVARIANT:
    - Always include 'centerTitle', 'centerMetric', and 'trend' ('up', 'down', or 'neutral').
    - Keep 'leftCount' and 'rightCount' between 0 and 25.
-7. SUMMARY THREAD INVARIANT:
-   - Must contain between 6 and 8 sequential numbered steps ('steps.length >= 6 && steps.length <= 8').
+10. SUMMARY THREAD INVARIANT:
+   - Scene must have at least 4 beats ('scene.beats.length >= 4').
+   - Beat 0 must have 'activeStepRange: [0, 0]' and introduce the recap thread.
+   - Intermediate beats sequentially cover steps from 1 to 'steps.length'.
+   - Final beat displays all steps with 'bottomTakeaway'.
+   - 'steps' array must contain 6 to 8 items ('steps.length >= 6 && steps.length <= 8').
    - 'heading' must remain constant ('Today\\'s thread') across all beats.
-8. 12-SCENE PEDAGOGICAL RHYTHM:
+11. 12-SCENE PEDAGOGICAL RHYTHM:
    - Scene 1: Novice Flawed Trade/Action (chat_story)
    - Scene 2: Market Paradox / Unexpected Drop (data_visualizer)
    - Scene 3: The Roadmap (progressive_cards)
    - Scene 4-9: Mental Models & Dynamics (alternating data_visualizer, tug_of_war, progressive_cards, split_comparison)
-   - Scene 10: Active Recall Quiz with 4000ms thinking pause (interactive_quiz)
+   - Scene 10: Active Recall Quiz with 3200ms thinking pause (interactive_quiz, 3 beats)
    - Scene 11: Application Dialogue (chat_story)
-   - Scene 12: Chapter Thread & Key Takeaway (summary_thread with 6-8 numbered steps)
-9. RESPONSE FORMAT: Return ONLY a valid JSON object matching the episode schema. No Markdown wrapper, no thoughts outside JSON.
+   - Scene 12: Chapter Thread & Key Takeaway (summary_thread, >= 4 beats)
+12. RESPONSE FORMAT: Return ONLY a valid JSON object matching the episode schema. No Markdown wrapper, no thoughts outside JSON.
 `;
 
 const curriculumText = curriculumArg

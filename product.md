@@ -146,6 +146,16 @@ The project uses modular persona profiles defined in `src/data/personas.json`:
 - **Candle-Synced Annotations:** Annotations specify a `candleIndex` and remain hidden until that specific candle is revealed on the timeline.
 - **Stacked Side Cards (30% right column):** Stacks up to 5 side cards. Older cards transition to `muted` (light gray border/text); the active beat's card highlights with colored borders and soft box-shadows.
 
+### 6.2.1. Deterministic Chart Preset Price Table
+Whenever an episode payload involving financial stock charts (`data_visualizer`) is generated, the narration dialogue (`chat_story`), chart callouts (`data_visualizer`), and quiz scenarios (`interactive_quiz`) must strictly adhere to the exact candle prices and price bounds of the chosen preset. Referencing prices outside these preset ranges violates the physical candle chart and fails automated Zod validation immediately (`process.exit(1)`):
+
+| Preset Name | Valid Price Range | Default Ticker | Key Deterministic Price Levels & Profile |
+| :--- | :--- | :--- | :--- |
+| `uptrend_then_drop` | **₹115 – ₹165** | Kesar Paints Ltd | Starts ~₹120 on Jan 02, climbs to ₹152 on candle 16, peaks at **₹158** on candle 18–23, drops to **₹141** on candle 27 pullback. |
+| `uptrend_break` | **₹92 – ₹152** | Index / Nifty | Climbs from ₹98 to **₹148** on candle 16, establishes support at **₹140**, breaks support on candles 18–21, drops to **₹134**. |
+| `head_and_shoulders`| **₹124 – ₹182** | Auto Sector Ltd | Left Shoulder **₹158** (idx 4), Trough 1 **₹142** (idx 7), Head **₹175** (idx 12), Trough 2 **₹142** (idx 16), Right Shoulder **₹156** (idx 20), Neckline **₹142** breaks on candle 25, dropping to ₹128. |
+| `random_walk_line` | **₹70 – ₹185** | General Stock | Deterministic random walk baseline oscillating between ₹70 and ₹185. |
+
 ### 6.3. `tug_of_war` (Market Depth & Supply/Demand Imbalance)
 - **Layout:** 3-column force arena rendered directly on the dot-grid canvas.
 - **Left Column:** Buyer count + green progress meter + 5-column grid of solid user silhouettes (`#16A34A`, max 25 count) animated with staggered springs.

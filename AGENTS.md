@@ -93,6 +93,18 @@ Always preserve the domain's `keepEnglishTerms` phonetically in Devanagari or En
 
 ---
 
+### Mandatory Deterministic Chart Preset Price Table
+Whenever Gemini 4 Argon generates an episode payload involving financial stock charts (`data_visualizer`), it MUST use the exact candle prices and price bounds of the chosen preset across all story dialogue (`chat_story`), chart callouts (`data_visualizer`), and quiz scenarios (`interactive_quiz`). Referencing prices outside these preset ranges violates the physical candle chart and fails automated Zod validation immediately (`process.exit(1)`):
+
+| Preset Name | Valid Price Range | Default Ticker | Key Deterministic Price Levels & Profile |
+| :--- | :--- | :--- | :--- |
+| `uptrend_then_drop` | **₹115 – ₹165** | Kesar Paints Ltd | Starts ~₹120 on Jan 02, climbs to ₹152 on candle 16, peaks at **₹158** on candle 18–23, drops to **₹141** on candle 27 pullback. |
+| `uptrend_break` | **₹92 – ₹152** | Index / Nifty | Climbs from ₹98 to **₹148** on candle 16, establishes support at **₹140**, breaks support on candles 18–21, drops to **₹134**. |
+| `head_and_shoulders`| **₹124 – ₹182** | Auto Sector Ltd | Left Shoulder **₹158** (idx 4), Trough 1 **₹142** (idx 7), Head **₹175** (idx 12), Trough 2 **₹142** (idx 16), Right Shoulder **₹156** (idx 20), Neckline **₹142** breaks on candle 25, dropping to ₹128. |
+| `random_walk_line` | **₹70 – ₹185** | General Stock | Deterministic random walk baseline oscillating between ₹70 and ₹185. |
+
+---
+
 ### Step 3: Design the 12-Slide Pedagogical Story Arc
 Every generated video must strictly follow this 12-slide pedagogical rhythm:
 
@@ -136,10 +148,15 @@ Construct the JSON payload conforming strictly to [`src/data/schema_reference.js
   - **Data Visualizer**: Bottom X-axis is strictly reserved for clean dates/months (`Jan`, `Feb`, `Mar`, `Apr`). Never print pattern names (`Head`, `Shoulder`, `Breakdown`) on the X-axis. On `head_and_shoulders`, highlight peaks with amber circles and labels (`LEFT SHOULDER`, `HEAD (₹175)`, `RIGHT SHOULDER`) only after candle count reaches each peak (`>= 4`, `>= 12`, `>= 20`), and reveal the neckline (starting from trough 1 at index 7) only after reaching the second trough. Trendlines must be clipped to currently visible candles.
   - **Dynamic Bounding Box Collision Engine**: `DataVisualizer.tsx` executes a 3-pass defensive collision-resolution loop over all active annotations. If two pills overlap horizontally (`dx < w1 + w2 + 12px`) and vertically (`dy < h + 10px`), the overlapping pill is automatically shifted by `±32px` (staggered downward for bottom callouts, upward for top callouts) and the SVG pointer line is dynamically redrawn to the new shifted anchor.
   - **Strict Y-Axis Margin Guard**: All chart annotations, peak pills, and neckline indicators are strictly bounded within `[padTop - 15, svgH - padBottom - 28]`. No chart element may ever render outside the active canvas or overlap volume/metric bars.
-  - **Progressive Cards**: In grid layout, hidden cards render as invisible cell placeholders so visible cards never jump. Reveal at most 1 new card per beat. Card copy must stay strictly immutable within a scene. Section header pill anchored directly inside card container wrapper (`mb-4`).
-  - **Split Comparison**: Beat 1 hides the right column and VS badge when `rightColumn.active: false` and `bullets: []`. Beat 2 animates in the right column and VS badge.
-  - **Interactive Quiz**: `ui_state.question` must be a complete self-contained scenario + question with a minimum of 18 words and stay 100% identical across all beats of the scene. Responsive `text-2xl lg:text-3xl leading-snug` card sizing prevents text clipping. Do not put dialogue reflections inside the quiz; use a dedicated `chat_story` scene for closing dialogue.
-  - **Summary Thread**: Must contain between 6 and 8 sequential numbered steps (`steps.length >= 6 && steps.length <= 8`). Supports `activeStepRange: [start, end]` starting with `[0, 0]`. The `heading` must remain constant (`"Today's thread"`) across all beats. Step copy uses `leading-snug break-words` (never `truncate`) so no bullet point is cut off. On the final beat, all steps remain visible and the bottom takeaway banner animates in.
+  - **Progressive Cards**: In grid layout, hidden cards render as invisible cell placeholders so visible cards never jump. Reveal at most 1 new card per beat (`cards.length <= beats.length`). Card copy must stay strictly immutable within a scene. Section header pill anchored directly inside card container wrapper (`mb-4`).
+  - **Split Comparison**: Beat 1 hides the right column and VS badge when `rightColumn.active: false` and `bullets: []`. Beat 2 animates in the right column and VS badge. Bullets must NEVER start with ASCII arrows (`-->` or `->`).
+  - **Interactive Quiz 3-Beat Lock**: Scene must contain exactly 3 beats:
+    - Beat 0: Scenario introduction (`showThinkingSpinner: false`, `answer: null`).
+    - Beat 1: Thinking pause (`showThinkingSpinner: true`, `answer: null`, `pauseAfterMs >= 3000`).
+    - Beat 2: Answer reveal (`showThinkingSpinner: false`, `answer: non-empty string`).
+    - `ui_state.question` must be a self-contained scenario + question (minimum 18 words) and stay 100% identical across all 3 beats.
+  - **Summary Thread Completeness Lock**: Must contain at least 4 beats (`scene.beats.length >= 4`). Beat 0 has `activeStepRange: [0, 0]`. Intermediate beats sequentially cover steps from 1 to `steps.length` without skipping the final step before the takeaway beat. `ui_state.heading` must strictly be `"Today's thread"`. Steps array must contain between 6 and 8 steps (`steps.length >= 6 && steps.length <= 8`).
+  - **Breadcrumb & Chapter Formatting**: `meta.chapter` must strictly match `/^CHAPTER \d+ · PART \d+$/` or `/^APPENDIX/i`. Underscores or `_ARGON` are strictly prohibited.
 - **Tug of War Silhouette Limits**: Keep `leftCount` and `rightCount` between 0 and 25 to render a clean, crisp 5-column grid of user silhouettes directly on the white dot-grid canvas without outer tint boxes.
 - **Pacing**: `pauseAfterMs: 400` for normal beats, `4000` for quiz thinking pauses, and `600` for chapter takeaways.
 - **Schema Validation & Bulletproof Guardrails**:

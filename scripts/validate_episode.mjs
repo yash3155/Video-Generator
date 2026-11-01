@@ -15,6 +15,45 @@ const englishOnlyString = (fieldName) =>
   });
 
 // ----------------------------------------------------
+// PRESET PRICE BOUNDS & UTILITIES
+// ----------------------------------------------------
+export const PRESET_PRICE_BOUNDS = {
+  uptrend_then_drop: {
+    min: 115,
+    max: 165,
+    desc: 'starts ~₹120, peaks at ₹158 on candle 18–23, drops to ₹141 on candle 27',
+  },
+  uptrend_break: {
+    min: 92,
+    max: 152,
+    desc: 'climbs from ₹98 to ₹148 on candle 16, support at ₹140 breaks on candle 18–21, drops to ₹134',
+  },
+  head_and_shoulders: {
+    min: 124,
+    max: 182,
+    desc: 'Left Shoulder ₹158 at idx 4, Head ₹175 at idx 12, Right Shoulder ₹156 at idx 20, Neckline ₹142 breaks at idx 25',
+  },
+  random_walk_line: {
+    min: 70,
+    max: 185,
+    desc: 'range from ₹70 to ₹185',
+  },
+};
+
+export function extractRupeePrices(text) {
+  if (!text || typeof text !== 'string') return [];
+  const matches = [];
+  const regex = /₹\s*([0-9]+(?:,[0-9]+)*(?:\.[0-9]+)?)/g;
+  let m;
+  while ((m = regex.exec(text)) !== null) {
+    const numStr = m[1].replace(/,/g, '');
+    const val = parseFloat(numStr);
+    if (!isNaN(val)) matches.push(val);
+  }
+  return matches;
+}
+
+// ----------------------------------------------------
 // ZOD SCHEMAS FOR TEMPLATE UI STATES
 // ----------------------------------------------------
 
@@ -209,6 +248,22 @@ export function validateEpisodeData(data) {
     });
   }
 
+  // Validate Meta Chapter format (Breadcrumb Cleanliness Lock)
+  if (data?.meta?.chapter) {
+    const chap = String(data.meta.chapter).trim();
+    if (chap.includes('_ARGON') || chap.includes('_')) {
+      errors.push(
+        `[META ERROR] meta.chapter must NOT contain "_ARGON" or underscores. Got "${chap}". Must match format: "CHAPTER X · PART Y" or "APPENDIX ..."`
+      );
+    }
+    const validChapterRegex = /^(?:CHAPTER\s+\d+\s*·\s*PART\s+\d+|APPENDIX.*)$/i;
+    if (!validChapterRegex.test(chap)) {
+      errors.push(
+        `[META ERROR] meta.chapter "${chap}" does not match required format: "CHAPTER X · PART Y" or "APPENDIX ..."`
+      );
+    }
+  }
+
   // Validate Scenes array
   if (!Array.isArray(data?.scenes) || data.scenes.length === 0) {
     errors.push(`[SCENE ERROR] 'scenes' must be a non-empty array`);
@@ -240,6 +295,45 @@ export function validateEpisodeData(data) {
     if (!Array.isArray(scene.beats) || scene.beats.length === 0) {
       errors.push(`${scenePrefix}: 'beats' must be a non-empty array`);
       return;
+    }
+
+    // PRESET PRICE RANGE LOCK:
+    if (scene.template === 'data_visualizer') {
+      const preset = scene.beats[0]?.ui_state?.preset;
+      const bounds = PRESET_PRICE_BOUNDS[preset];
+      if (bounds) {
+        scene.beats.forEach((beat, bIdx) => {
+          const beatPrefix = `${scenePrefix} -> Beat[${bIdx}]`;
+          const pricesToCheck = [];
+
+          pricesToCheck.push(...extractRupeePrices(beat.hindi_tts));
+          pricesToCheck.push(...extractRupeePrices(beat.en_subtitle));
+
+          if (Array.isArray(beat.ui_state?.annotations)) {
+            beat.ui_state.annotations.forEach((ann) => {
+              pricesToCheck.push(...extractRupeePrices(ann.text));
+              if (typeof ann.value === 'number') {
+                pricesToCheck.push(ann.value);
+              }
+            });
+          }
+
+          if (Array.isArray(beat.ui_state?.sideCards)) {
+            beat.ui_state.sideCards.forEach((card) => {
+              pricesToCheck.push(...extractRupeePrices(card.title));
+              pricesToCheck.push(...extractRupeePrices(card.subtitle));
+            });
+          }
+
+          pricesToCheck.forEach((price) => {
+            if (price < bounds.min || price > bounds.max) {
+              errors.push(
+                `${beatPrefix}: price ₹${price} is out of bounds [${bounds.min}, ${bounds.max}] for preset "${preset}". Valid bounds for ${preset} are [${bounds.min}, ${bounds.max}] (${bounds.desc}).`
+              );
+            }
+          });
+        });
+      }
     }
 
     // IMMUTABLE CARD TEXT & MAX 1 CARD REVEAL CHECK:
@@ -280,8 +374,62 @@ export function validateEpisodeData(data) {
       });
     }
 
-    // IMMUTABLE & SELF-CONTAINED QUIZ QUESTION CHECK:
+    // INTERACTIVE QUIZ: 3-BEAT LOCK & IMMUTABLE QUESTION CHECK:
     if (scene.template === 'interactive_quiz') {
+      if (scene.beats.length !== 3) {
+        errors.push(
+          `${scenePrefix}: interactive_quiz must have exactly 3 beats (got ${scene.beats.length}). Expected: Beat 0 (scenario intro), Beat 1 (thinking pause), Beat 2 (answer reveal).`
+        );
+      } else {
+        const [b0, b1, b2] = scene.beats;
+
+        // Beat 0: showThinkingSpinner: false, answer: null/falsy
+        if (b0.ui_state?.showThinkingSpinner) {
+          errors.push(
+            `${scenePrefix} -> Beat[0]: showThinkingSpinner must be false on the scenario intro beat.`
+          );
+        }
+        if (b0.ui_state?.answer) {
+          errors.push(
+            `${scenePrefix} -> Beat[0]: answer must be null on the scenario intro beat.`
+          );
+        }
+
+        // Beat 1: showThinkingSpinner: true, answer: null/falsy, pauseAfterMs >= 3000
+        if (!b1.ui_state?.showThinkingSpinner) {
+          errors.push(
+            `${scenePrefix} -> Beat[1]: showThinkingSpinner must be true on the thinking pause beat.`
+          );
+        }
+        if (b1.ui_state?.answer) {
+          errors.push(
+            `${scenePrefix} -> Beat[1]: answer must be null on the thinking pause beat.`
+          );
+        }
+        const pause = b1.pauseAfterMs ?? 0;
+        if (pause < 3000) {
+          errors.push(
+            `${scenePrefix} -> Beat[1]: pauseAfterMs must be at least 3000ms for thinking pause (got ${pause}ms).`
+          );
+        }
+
+        // Beat 2: showThinkingSpinner: false, answer: non-empty string
+        if (b2.ui_state?.showThinkingSpinner) {
+          errors.push(
+            `${scenePrefix} -> Beat[2]: showThinkingSpinner must be false on the answer reveal beat.`
+          );
+        }
+        if (
+          !b2.ui_state?.answer ||
+          typeof b2.ui_state.answer !== 'string' ||
+          b2.ui_state.answer.trim().length === 0
+        ) {
+          errors.push(
+            `${scenePrefix} -> Beat[2]: answer must be a non-empty string on the answer reveal beat.`
+          );
+        }
+      }
+
       let baselineQuestion = null;
       scene.beats.forEach((beat, bIdx) => {
         const q = beat?.ui_state?.question;
@@ -303,9 +451,33 @@ export function validateEpisodeData(data) {
       });
     }
 
-    // SUMMARY THREAD: 6-8 STEPS & IMMUTABLE HEADING CHECK:
+    // SUMMARY THREAD: >= 4 BEATS, SEQUENTIAL STEP COMPLETENESS & IMMUTABLE HEADING CHECK:
     if (scene.template === 'summary_thread') {
-      let baselineHeading = null;
+      if (scene.beats.length < 4) {
+        errors.push(
+          `${scenePrefix}: summary_thread must have at least 4 beats (got ${scene.beats.length}).`
+        );
+      }
+
+      // Beat 0 activeStepRange must be [0, 0]
+      const b0Range = scene.beats[0]?.ui_state?.activeStepRange;
+      if (!Array.isArray(b0Range) || b0Range[0] !== 0 || b0Range[1] !== 0) {
+        errors.push(
+          `${scenePrefix} -> Beat[0]: activeStepRange must be [0, 0] for the intro beat (got ${JSON.stringify(b0Range)}).`
+        );
+      }
+
+      // Check heading: must be exactly "Today's thread"
+      scene.beats.forEach((beat, bIdx) => {
+        const heading = beat?.ui_state?.heading;
+        if (heading !== "Today's thread") {
+          errors.push(
+            `${scenePrefix} -> Beat[${bIdx}]: heading must be exactly "Today's thread" (got "${heading}").`
+          );
+        }
+      });
+
+      // Steps count between 6 and 8
       scene.beats.forEach((beat, bIdx) => {
         const steps = beat?.ui_state?.steps;
         if (Array.isArray(steps)) {
@@ -315,25 +487,51 @@ export function validateEpisodeData(data) {
             );
           }
         }
-        const heading = beat?.ui_state?.heading;
-        if (heading) {
-          if (!baselineHeading) {
-            baselineHeading = heading;
-          } else if (baselineHeading !== heading) {
-            errors.push(
-              `${scenePrefix} -> Beat[${bIdx}]: summary thread heading mutated from "${baselineHeading}" to "${heading}". Heading must stay constant across all beats.`
-            );
-          }
-        }
       });
+
+      // Sequential coverage check
+      const totalSteps = scene.beats[0]?.ui_state?.steps?.length || 0;
+      if (totalSteps > 0 && scene.beats.length >= 4) {
+        let maxCovered = 0;
+        scene.beats.slice(1, scene.beats.length - 1).forEach((beat) => {
+          const range = beat?.ui_state?.activeStepRange;
+          if (Array.isArray(range) && range.length === 2) {
+            if (range[1] > maxCovered) maxCovered = range[1];
+          }
+        });
+
+        const finalRange = scene.beats[scene.beats.length - 1]?.ui_state?.activeStepRange;
+        const finalCovered = Array.isArray(finalRange) ? finalRange[1] : 0;
+        if (maxCovered < totalSteps && finalCovered < totalSteps) {
+          errors.push(
+            `${scenePrefix}: steps were skipped before the final takeaway beat. Steps must cover 1 to ${totalSteps} (max reached was ${Math.max(maxCovered, finalCovered)}).`
+          );
+        }
+      }
     }
 
+    // SPLIT COMPARISON: NO ASCII ARROWS (--> or ->) IN BULLETS & IMMUTABLE COLUMN TITLES:
     if (scene.template === 'split_comparison') {
       let baselineLeft = null;
       let baselineRight = null;
       scene.beats.forEach((beat, bIdx) => {
         const left = beat?.ui_state?.leftColumn;
         const right = beat?.ui_state?.rightColumn;
+
+        const checkBullets = (colName, bullets) => {
+          if (Array.isArray(bullets)) {
+            bullets.forEach((bullet, idx) => {
+              if (typeof bullet === 'string' && /^(-->|->)/.test(bullet.trim())) {
+                errors.push(
+                  `${scenePrefix} -> Beat[${bIdx}]: ${colName}.bullets[${idx}] starts with an ASCII arrow ("${bullet}"). Bullets must NOT start with "-->" or "->".`
+                );
+              }
+            });
+          }
+        };
+        checkBullets('leftColumn', left?.bullets);
+        checkBullets('rightColumn', right?.bullets);
+
         if (left && right) {
           if (!baselineLeft) {
             baselineLeft = { title: left.title, subtitle: left.subtitle };
