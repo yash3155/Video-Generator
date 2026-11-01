@@ -85,9 +85,10 @@ CRITICAL INVARIANTS:
 4. EXACT CHAPTER BREADCRUMB: 'meta.chapter' must strictly follow the format: 'CHAPTER X · PART Y' (or 'APPENDIX ...'). Never include '_ARGON' or underscores.
 5. DETERMINISTIC CHART PRESET PRICE TABLE (CRITICAL):
    When creating scenes with 'data_visualizer', you MUST adhere to the exact candle price bounds of the chosen preset across all spoken beats ('hindi_tts', 'en_subtitle'), annotations, and side cards:
-   - 'uptrend_then_drop': Bounds [115, 165] (starts ~₹120, peaks at ₹158 on candle 18–23, drops to ₹141 on candle 27)
-   - 'uptrend_break': Bounds [92, 152] (climbs from ₹98 to ₹148 on candle 16, breaks support at ₹140, drops to ₹134)
-   - 'head_and_shoulders': Bounds [124, 182] (Left Shoulder ₹158 at idx 4, Head ₹175 at idx 12, Right Shoulder ₹156 at idx 20, Neckline ₹142 breaks at idx 25)
+   - 'uptrend_then_drop': Candle High is ₹158 (starts ~₹120, peaks at ₹158 on candle 18–23, drops to ₹141 on candle 27). NEVER mention ₹165 (165 is only the empty Y-axis top border)!
+   - 'uptrend_break': Candle High is ₹148 (climbs from ₹98 to ₹148 on candle 16, breaks support at ₹140, drops to ₹134). NEVER mention ₹150 or ₹152 (152 is only the empty Y-axis top border)!
+   - 'bull_breakout': Breaks resistance at ₹150 on expanding volume, rallies to ₹168 (Bounds [119, 168]).
+   - 'head_and_shoulders': Left Shoulder ₹158 at idx 4, Head ₹175 at idx 12, Right Shoulder ₹156 at idx 20, Neckline breaks at ₹142 to ₹134.
    - 'random_walk_line': Bounds [70, 185]
    Mentioning any price outside these ranges is strictly forbidden and immediately fails validation.
 6. PROGRESSIVE CARDS INVARIANT:
@@ -106,11 +107,11 @@ CRITICAL INVARIANTS:
 9. TUG OF WAR INVARIANT:
    - Always include 'centerTitle', 'centerMetric', and 'trend' ('up', 'down', or 'neutral').
    - Keep 'leftCount' and 'rightCount' between 0 and 25.
-10. SUMMARY THREAD INVARIANT:
-   - Scene must have at least 4 beats ('scene.beats.length >= 4').
+10. SUMMARY THREAD INVARIANT (2-STEP LOCK):
+   - Scene must have at least 4 beats ('scene.beats.length >= 4'). For 7-8 steps, use 5-6 beats.
    - Beat 0 must have 'activeStepRange: [0, 0]' and introduce the recap thread.
-   - Intermediate beats sequentially cover steps from 1 to 'steps.length'.
-   - Final beat displays all steps with 'bottomTakeaway'.
+   - Body beats must highlight AT MOST 2 steps per beat (e.g. [1, 2], [3, 4], [5, 6], [7, 8]). NEVER highlight 3 steps at once (e.g. [1, 3] or [4, 6] strictly fails validation!).
+   - Final beat displays all steps ([1, totalSteps]) with 'bottomTakeaway'.
    - 'steps' array must contain 6 to 8 items ('steps.length >= 6 && steps.length <= 8').
    - 'heading' must remain constant ('Today\\'s thread') across all beats.
 11. 12-SCENE PEDAGOGICAL RHYTHM:
@@ -309,6 +310,7 @@ async function callGeminiArgonViaProxy(promptText, model = 'gemini-4-argon', tem
       'Content-Type': 'application/json',
       Authorization: 'Bearer none',
     },
+    signal: AbortSignal.timeout(240000), // 240s: Allow full deep-reasoning and JSON synthesis
     body: JSON.stringify({
       model: model,
       messages: [
@@ -332,6 +334,326 @@ async function callGeminiArgonViaProxy(promptText, model = 'gemini-4-argon', tem
   return content;
 }
 
+const PRESET_CANDLE_BOUNDS = {
+  uptrend_then_drop: {
+    minCandle: 119,
+    maxCandle: 160,
+    forbiddenPrices: [165],
+    defaultSafeMin: 120,
+    defaultSafeMax: 158,
+  },
+  uptrend_break: {
+    minCandle: 97,
+    maxCandle: 149,
+    forbiddenPrices: [152],
+    defaultSafeMin: 98,
+    defaultSafeMax: 148,
+  },
+  bull_breakout: {
+    minCandle: 119,
+    maxCandle: 169,
+    forbiddenPrices: [175],
+    defaultSafeMin: 120,
+    defaultSafeMax: 168,
+  },
+  head_and_shoulders: {
+    minCandle: 133,
+    maxCandle: 175,
+    forbiddenPrices: [182, 124],
+    defaultSafeMin: 134,
+    defaultSafeMax: 175,
+  },
+  random_walk_line: {
+    minCandle: 95,
+    maxCandle: 175,
+    forbiddenPrices: [],
+    defaultSafeMin: 100,
+    defaultSafeMax: 165,
+  },
+};
+
+function normalizeAndRemedyEpisode(data, slug) {
+  if (!data || !Array.isArray(data.scenes)) return data;
+
+  if (data.meta) {
+    data.meta.chapter = formatChapterBreadcrumb(data.meta.chapter || slug);
+  }
+
+  data.scenes.forEach((scene) => {
+    // 1. Progressive Cards Immutability & Single Reveal Enforcement
+    if (scene.template === 'progressive_cards' && Array.isArray(scene.beats)) {
+      const numBeats = scene.beats.length;
+      scene.beats.forEach((b) => {
+        if (b.ui_state && Array.isArray(b.ui_state.cards) && b.ui_state.cards.length > numBeats) {
+          const keep = b.ui_state.cards.slice(0, numBeats - 1);
+          const tail = b.ui_state.cards.slice(numBeats - 1);
+          const merged = {
+            ...tail[0],
+            title: tail.map((c) => c.title).join(' & ').slice(0, 50),
+            subtitle: tail.map((c) => c.subtitle).join(' · ').slice(0, 90),
+          };
+          b.ui_state.cards = [...keep, merged];
+        }
+      });
+
+      const firstCards = scene.beats[0]?.ui_state?.cards || [];
+      scene.beats.forEach((b, bIdx) => {
+        if (b.ui_state && Array.isArray(b.ui_state.cards)) {
+          b.ui_state.cards = firstCards.map((c, cIdx) => {
+            let state = 'hidden';
+            if (cIdx < bIdx) state = 'muted';
+            else if (cIdx === bIdx) state = 'active_amber';
+            return {
+              title: c.title,
+              subtitle: c.subtitle,
+              state,
+            };
+          });
+        }
+      });
+    }
+
+    // 2. Interactive Quiz 3-Beat & Immutability Normalization
+    if (scene.template === 'interactive_quiz' && Array.isArray(scene.beats)) {
+      if (scene.beats.length === 2) {
+        const bSpin = scene.beats[0];
+        const bAns = scene.beats[1];
+        const qText = bSpin.ui_state?.question || bAns.ui_state?.question || 'What is the correct market interpretation?';
+        const introBeat = {
+          id: `${bSpin.id || 'b'}_intro`,
+          hindi_tts: 'ध्यान से सोचिए और बताइए कि डाउ थ्योरी और चार्ट विश्लेषण के हिसाब से सही फैसला क्या होगा।',
+          en_subtitle: 'Carefully analyze the market scenario and predict the confirmed technical signal.',
+          pauseAfterMs: 400,
+          ui_state: {
+            badge: bSpin.ui_state?.badge || 'Concept Check',
+            question: qText,
+            showThinkingSpinner: false,
+            answer: null,
+          },
+        };
+        bSpin.ui_state.showThinkingSpinner = true;
+        bSpin.ui_state.answer = null;
+        bSpin.pauseAfterMs = Math.max(bSpin.pauseAfterMs || 0, 3200);
+        bAns.ui_state.showThinkingSpinner = false;
+        scene.beats = [introBeat, bSpin, bAns];
+      }
+
+      let canonicalQuestion = '';
+      scene.beats.forEach((b) => {
+        if (b.ui_state && b.ui_state.question && !canonicalQuestion) {
+          canonicalQuestion = b.ui_state.question;
+        }
+        if (b.ui_state && b.ui_state.answer && typeof b.ui_state.answer === 'object') {
+          const parts = [];
+          if (b.ui_state.answer.verdict) parts.push(b.ui_state.answer.verdict);
+          if (b.ui_state.answer.explanation) parts.push(b.ui_state.answer.explanation);
+          b.ui_state.answer = parts.length > 0 ? parts.join(' — ') : JSON.stringify(b.ui_state.answer);
+        }
+      });
+      if (canonicalQuestion) {
+        scene.beats.forEach((b) => {
+          if (b.ui_state) {
+            b.ui_state.question = canonicalQuestion;
+          }
+        });
+      }
+      if (scene.beats.length >= 2 && (scene.beats[1].pauseAfterMs ?? 0) < 3000) {
+        scene.beats[1].pauseAfterMs = 3200;
+      }
+    }
+
+    // 3. Tug of War Silhouette Clamping & Defaults
+    if (scene.template === 'tug_of_war' && Array.isArray(scene.beats)) {
+      scene.beats.forEach((b) => {
+        if (b.ui_state) {
+          if (typeof b.ui_state.leftCount === 'number') {
+            b.ui_state.leftCount = Math.min(25, Math.max(0, Math.round(b.ui_state.leftCount)));
+          }
+          if (typeof b.ui_state.rightCount === 'number') {
+            b.ui_state.rightCount = Math.min(25, Math.max(0, Math.round(b.ui_state.rightCount)));
+          }
+          b.ui_state.centerTitle = b.ui_state.centerTitle || 'Tug of War';
+          b.ui_state.centerMetric = b.ui_state.centerMetric || 'Balance';
+          b.ui_state.trend = b.ui_state.trend || 'neutral';
+        }
+      });
+    }
+
+    // 4. Data Visualizer Price Clamping to Exact Preset Bounds
+    if (scene.template === 'data_visualizer' && Array.isArray(scene.beats)) {
+      scene.beats.forEach((b) => {
+        const ui = b.ui_state;
+        if (!ui) return;
+        const preset = ui.preset || 'uptrend_then_drop';
+        const bounds = PRESET_CANDLE_BOUNDS[preset];
+        if (!bounds) return;
+
+        if (preset === 'head_and_shoulders') {
+          if (!/shoulder|head|neckline|reversal pattern/i.test(`${scene.title || ''} ${ui.chartTitle || ''} ${ui.chartSubtitle || ''}`)) {
+            ui.chartSubtitle = `${ui.chartSubtitle || ''} · reversal pattern`.trim();
+          }
+        }
+
+        const clampPriceStr = (str) => {
+          if (typeof str !== 'string') return str;
+          return str.replace(/₹\s*(\d+(?:,\d+)?(?:\.\d+)?)/g, (match, p) => {
+            const val = parseFloat(p.replace(/,/g, ''));
+            if (val < bounds.minCandle) return `₹${bounds.defaultSafeMin}`;
+            if (val > bounds.maxCandle || bounds.forbiddenPrices.includes(val)) return `₹${bounds.defaultSafeMax}`;
+            return match;
+          });
+        };
+
+        if (b.hindi_tts) b.hindi_tts = clampPriceStr(b.hindi_tts);
+        if (b.en_subtitle) b.en_subtitle = clampPriceStr(b.en_subtitle);
+        if (Array.isArray(ui.annotations)) {
+          ui.annotations.forEach((ann) => {
+            if (ann.text) ann.text = clampPriceStr(ann.text);
+            if (typeof ann.value === 'number') {
+              if (ann.value < bounds.minCandle) ann.value = bounds.defaultSafeMin;
+              if (ann.value > bounds.maxCandle || bounds.forbiddenPrices.includes(ann.value)) {
+                ann.value = bounds.defaultSafeMax;
+              }
+            }
+          });
+        }
+        if (Array.isArray(ui.sideCards)) {
+          ui.sideCards.forEach((c) => {
+            if (c.title) c.title = clampPriceStr(c.title);
+            if (c.subtitle) c.subtitle = clampPriceStr(c.subtitle);
+          });
+        }
+      });
+    }
+
+    // 5. Split Comparison ASCII Arrow Removal
+    if (scene.template === 'split_comparison' && Array.isArray(scene.beats)) {
+      scene.beats.forEach((b) => {
+        ['leftColumn', 'rightColumn'].forEach((colKey) => {
+          if (b.ui_state?.[colKey]?.bullets && Array.isArray(b.ui_state[colKey].bullets)) {
+            b.ui_state[colKey].bullets = b.ui_state[colKey].bullets.map((txt) =>
+              typeof txt === 'string' ? txt.replace(/^\s*(-->|->|→)\s*/, '') : txt
+            );
+          }
+        });
+      });
+    }
+
+    // 6. Summary Thread Heading, Steps Count (6-8), & 2-Step Sequential Beats
+    if (scene.template === 'summary_thread' && Array.isArray(scene.beats)) {
+      const firstUI = scene.beats[0]?.ui_state || {};
+      let steps = firstUI.steps || [];
+      if (!Array.isArray(steps) || steps.length < 6) {
+        if (!Array.isArray(steps)) steps = [];
+        while (steps.length < 6) {
+          steps.push(`Key Principle ${steps.length + 1}: Always trade the confirmed evidence, not emotional assumptions.`);
+        }
+      } else if (steps.length > 8) {
+        steps = steps.slice(0, 8);
+      }
+      const totalSteps = steps.length;
+
+      // Body 2-step chunks: e.g. [1,2], [3,4], [5,6], [7,8]
+      const bodyRanges = [];
+      for (let s = 1; s <= totalSteps; s += 2) {
+        bodyRanges.push([s, Math.min(totalSteps, s + 1)]);
+      }
+      const requiredTotalBeats = 1 + bodyRanges.length + 1; // intro + body + takeaway
+
+      scene.beats.forEach((b) => {
+        if (!b.ui_state) b.ui_state = {};
+        b.ui_state.steps = steps;
+        b.ui_state.heading = "Today's thread";
+      });
+
+      if (scene.beats.length < requiredTotalBeats) {
+        const origIntro = scene.beats[0];
+        const origTakeaway = scene.beats[scene.beats.length - 1];
+        const existingBody = scene.beats.slice(1, -1);
+
+        const newBeats = [
+          {
+            ...origIntro,
+            ui_state: {
+              ...origIntro.ui_state,
+              steps,
+              heading: "Today's thread",
+              activeStepRange: [0, 0],
+            },
+          },
+        ];
+
+        bodyRanges.forEach((range, idx) => {
+          if (idx < existingBody.length) {
+            newBeats.push({
+              ...existingBody[idx],
+              ui_state: {
+                ...existingBody[idx].ui_state,
+                steps,
+                heading: "Today's thread",
+                activeStepRange: range,
+              },
+            });
+          } else {
+            const stepNames = steps.slice(range[0] - 1, range[1]).map((s) => s.replace(/^.*?:/g, '').trim()).join(' और ');
+            newBeats.push({
+              id: `${origIntro.id || 'sum'}_b${idx + 1}`,
+              hindi_tts: `चार्ट पर हमेशा याद रखें: ${stepNames}।`,
+              en_subtitle: `Crucial rule: ${steps.slice(range[0] - 1, range[1]).join('; ')}.`,
+              pauseAfterMs: 400,
+              ui_state: {
+                ...origIntro.ui_state,
+                steps,
+                heading: "Today's thread",
+                activeStepRange: range,
+              },
+            });
+          }
+        });
+
+        newBeats.push({
+          ...origTakeaway,
+          id: origTakeaway.id || `${origIntro.id || 'sum'}_takeaway`,
+          pauseAfterMs: 600,
+          ui_state: {
+            ...origTakeaway.ui_state,
+            steps,
+            heading: "Today's thread",
+            activeStepRange: [1, totalSteps],
+          },
+        });
+
+        scene.beats = newBeats;
+      } else {
+        scene.beats[0].ui_state.activeStepRange = [0, 0];
+        const bodyBeats = scene.beats.slice(1, -1);
+        bodyBeats.forEach((b, idx) => {
+          if (idx < bodyRanges.length) {
+            b.ui_state.activeStepRange = bodyRanges[idx];
+          } else {
+            b.ui_state.activeStepRange = [totalSteps, totalSteps];
+          }
+        });
+        scene.beats[scene.beats.length - 1].ui_state.activeStepRange = [1, totalSteps];
+      }
+    }
+
+    // 7. Phonetic TTS Sanitation
+    if (Array.isArray(scene.beats)) {
+      scene.beats.forEach((b) => {
+        if (b.hindi_tts) {
+          b.hindi_tts = b.hindi_tts
+            .replace(/रि[ज़जज़]ल्ट्स|रि[ज़जज़]ल्ट|रि[ज़जज़]िट|रि[ज़जज़]ट/gi, 'नतीजे')
+            .replace(/USFDA|यू\s*एस\s*एफ\s*डी\s*ए/gi, 'दवा रेगुलेटर (FDA)')
+            .replace(/freight\s+train/gi, 'भारी ट्रेन');
+        }
+      });
+    }
+  });
+
+  return data;
+}
+
 export async function generateEpisode() {
   if (dryRun) {
     console.log('[DRY RUN] Prompt prepared. Exiting without making API call.');
@@ -346,7 +668,13 @@ export async function generateEpisode() {
 
   if (proxyOnline && (isArgonTarget || !process.env.GEMINI_API_KEY)) {
     console.log(`[GENERATOR] Using active free-gemini-api proxy with model ${targetModel}...`);
-    responseText = await callGeminiArgonViaProxy(prompt, targetModel, temperature);
+    try {
+      responseText = await callGeminiArgonViaProxy(prompt, targetModel, temperature);
+    } catch (proxyErr) {
+      console.warn(`[WARN] Proxy attempt failed (${proxyErr.message}). Falling back to direct authenticated session...`);
+      const fullSystemPrompt = `${systemInstruction}\n\nTask Instructions:\n${prompt}`;
+      responseText = await callGeminiArgonDirect(fullSystemPrompt);
+    }
   } else if (isArgonTarget || fs.existsSync(path.resolve(rootDir, '..', 'free-gemini-api', 'cookies', 'cookies.json'))) {
     console.log(`[GENERATOR] Invoking Gemini 4 Argon via authenticated web session fallback...`);
     const fullSystemPrompt = `${systemInstruction}\n\nTask Instructions:\n${prompt}`;
@@ -377,295 +705,35 @@ export async function generateEpisode() {
   }
 
   let cleanedJson = responseText.trim();
-  if (cleanedJson.startsWith('```json')) {
-    cleanedJson = cleanedJson.replace(/^```json/, '').replace(/```$/, '').trim();
-  } else if (cleanedJson.startsWith('```')) {
-    cleanedJson = cleanedJson.replace(/^```/, '').replace(/```$/, '').trim();
+  if (cleanedJson.includes('```json')) {
+    const start = cleanedJson.indexOf('```json') + 7;
+    const end = cleanedJson.lastIndexOf('```');
+    if (end > start) {
+      cleanedJson = cleanedJson.substring(start, end).trim();
+    }
+  } else if (cleanedJson.includes('```')) {
+    const start = cleanedJson.indexOf('```') + 3;
+    const end = cleanedJson.lastIndexOf('```');
+    if (end > start) {
+      cleanedJson = cleanedJson.substring(start, end).trim();
+    }
+  } else if (cleanedJson.includes('{') && cleanedJson.lastIndexOf('}') > cleanedJson.indexOf('{')) {
+    cleanedJson = cleanedJson.substring(cleanedJson.indexOf('{'), cleanedJson.lastIndexOf('}') + 1).trim();
   }
 
-  const episodeData = JSON.parse(cleanedJson);
+  let episodeData = JSON.parse(cleanedJson);
 
-  // Auto-normalize scene card immutability & phonetics before validation
-  if (Array.isArray(episodeData.scenes)) {
-    episodeData.scenes.forEach((scene) => {
-      // 1. Progressive Cards Immutability & Single Reveal Enforcement
-      if (scene.template === 'progressive_cards' && Array.isArray(scene.beats)) {
-        const numBeats = scene.beats.length;
-
-        // If cards exceed beats, merge excess cards into the last reveal card
-        scene.beats.forEach((b) => {
-          if (b.ui_state && Array.isArray(b.ui_state.cards) && b.ui_state.cards.length > numBeats) {
-            const keep = b.ui_state.cards.slice(0, numBeats - 1);
-            const tail = b.ui_state.cards.slice(numBeats - 1);
-            const merged = {
-              ...tail[0],
-              title: tail.map((c) => c.title).join(' & ').slice(0, 50),
-              subtitle: tail.map((c) => c.subtitle).join(' · ').slice(0, 90),
-            };
-            b.ui_state.cards = [...keep, merged];
-          }
-        });
-
-        // Synchronize canonical titles/subtitles from beat 0 and enforce single-card progressive reveal
-        const firstCards = scene.beats[0]?.ui_state?.cards || [];
-        scene.beats.forEach((b, bIdx) => {
-          if (b.ui_state && Array.isArray(b.ui_state.cards)) {
-            b.ui_state.cards = firstCards.map((c, cIdx) => {
-              let state = 'hidden';
-              if (cIdx < bIdx) state = 'muted';
-              else if (cIdx === bIdx) state = 'active_amber';
-              return {
-                title: c.title,
-                subtitle: c.subtitle,
-                state,
-              };
-            });
-          }
-        });
-      }
-
-      // 2. Interactive Quiz 3-Beat & Immutability Normalization
-      if (scene.template === 'interactive_quiz' && Array.isArray(scene.beats)) {
-        // If LLM returned 2 beats (thinking spinner + answer), synthesize the missing scenario intro beat
-        if (scene.beats.length === 2) {
-          const bSpin = scene.beats[0];
-          const bAns = scene.beats[1];
-          const qText = bSpin.ui_state?.question || bAns.ui_state?.question || 'What is the correct market interpretation?';
-          const introBeat = {
-            id: `${bSpin.id || 'b'}_intro`,
-            hindi_tts: 'ध्यान से सोचिए और बताइए कि डाउ थ्योरी और चार्ट विश्लेषण के हिसाब से सही फैसला क्या होगा।',
-            en_subtitle: 'Carefully analyze the market scenario and predict the confirmed technical signal.',
-            pauseAfterMs: 400,
-            ui_state: {
-              badge: bSpin.ui_state?.badge || 'Concept Check',
-              question: qText,
-              showThinkingSpinner: false,
-              answer: null,
-            },
-          };
-          bSpin.ui_state.showThinkingSpinner = true;
-          bSpin.ui_state.answer = null;
-          bSpin.pauseAfterMs = Math.max(bSpin.pauseAfterMs || 0, 3200);
-          bAns.ui_state.showThinkingSpinner = false;
-          scene.beats = [introBeat, bSpin, bAns];
-        }
-
-        let canonicalQuestion = '';
-        scene.beats.forEach((b) => {
-          if (b.ui_state && b.ui_state.question && !canonicalQuestion) {
-            canonicalQuestion = b.ui_state.question;
-          }
-          // Normalize answer if LLM returned an object instead of string
-          if (b.ui_state && b.ui_state.answer && typeof b.ui_state.answer === 'object') {
-            const parts = [];
-            if (b.ui_state.answer.verdict) parts.push(b.ui_state.answer.verdict);
-            if (b.ui_state.answer.explanation) parts.push(b.ui_state.answer.explanation);
-            b.ui_state.answer = parts.length > 0 ? parts.join(' — ') : JSON.stringify(b.ui_state.answer);
-          }
-        });
-        if (canonicalQuestion) {
-          scene.beats.forEach((b) => {
-            if (b.ui_state) {
-              b.ui_state.question = canonicalQuestion;
-            }
-          });
-        }
-        if (scene.beats.length >= 2 && (scene.beats[1].pauseAfterMs ?? 0) < 3000) {
-          scene.beats[1].pauseAfterMs = 3200;
-        }
-      }
-
-      // 3. Tug of War Silhouette Clamping & Defaults
-      if (scene.template === 'tug_of_war' && Array.isArray(scene.beats)) {
-        scene.beats.forEach((b) => {
-          if (b.ui_state) {
-            if (typeof b.ui_state.leftCount === 'number') {
-              b.ui_state.leftCount = Math.min(25, Math.max(0, Math.round(b.ui_state.leftCount)));
-            }
-            if (typeof b.ui_state.rightCount === 'number') {
-              b.ui_state.rightCount = Math.min(25, Math.max(0, Math.round(b.ui_state.rightCount)));
-            }
-            b.ui_state.centerTitle = b.ui_state.centerTitle || 'Tug of War';
-            b.ui_state.centerMetric = b.ui_state.centerMetric || 'Balance';
-            b.ui_state.trend = b.ui_state.trend || 'neutral';
-          }
-        });
-      }
-
-      // 4. Data Visualizer Price Clamping to Preset Bounds
-      if (scene.template === 'data_visualizer' && Array.isArray(scene.beats)) {
-        const PRESET_BOUNDS = {
-          uptrend_then_drop: { min: 115, max: 165 },
-          uptrend_break: { min: 92, max: 152 },
-          head_and_shoulders: { min: 124, max: 182 },
-          random_walk_line: { min: 70, max: 185 },
-        };
-        const preset = scene.beats[0]?.ui_state?.preset;
-        const bounds = PRESET_BOUNDS[preset];
-        if (bounds) {
-          const clampPriceStr = (str) => {
-            if (typeof str !== 'string') return str;
-            return str.replace(/₹\s*(\d+(?:\.\d+)?)/g, (match, p) => {
-              const val = parseFloat(p);
-              if (val < bounds.min) return `₹${bounds.min}`;
-              if (val > bounds.max) return `₹${bounds.max}`;
-              return match;
-            });
-          };
-
-          scene.beats.forEach((b) => {
-            if (b.hindi_tts) b.hindi_tts = clampPriceStr(b.hindi_tts);
-            if (b.en_subtitle) b.en_subtitle = clampPriceStr(b.en_subtitle);
-            if (b.ui_state) {
-              if (Array.isArray(b.ui_state.annotations)) {
-                b.ui_state.annotations.forEach((ann) => {
-                  if (ann.text) ann.text = clampPriceStr(ann.text);
-                  if (typeof ann.value === 'number') {
-                    ann.value = Math.min(bounds.max, Math.max(bounds.min, ann.value));
-                  }
-                });
-              }
-              if (Array.isArray(b.ui_state.sideCards)) {
-                b.ui_state.sideCards.forEach((c) => {
-                  if (c.title) c.title = clampPriceStr(c.title);
-                  if (c.subtitle) c.subtitle = clampPriceStr(c.subtitle);
-                });
-              }
-            }
-          });
-        }
-      }
-
-      // 5. Split Comparison ASCII Arrow Removal
-      if (scene.template === 'split_comparison' && Array.isArray(scene.beats)) {
-        scene.beats.forEach((b) => {
-          ['leftColumn', 'rightColumn'].forEach((col) => {
-            if (b.ui_state?.[col]?.bullets && Array.isArray(b.ui_state[col].bullets)) {
-              b.ui_state[col].bullets = b.ui_state[col].bullets.map((bullet) =>
-                typeof bullet === 'string' ? bullet.replace(/^(-->|->|→)\s*/, '') : bullet
-              );
-            }
-          });
-        });
-      }
-
-      // 6. Summary Thread Heading, Steps Count (6-8), & Beat Expansion
-      if (scene.template === 'summary_thread' && Array.isArray(scene.beats)) {
-        // Ensure steps array length is between 6 and 8
-        scene.beats.forEach((b) => {
-          if (b.ui_state && Array.isArray(b.ui_state.steps)) {
-            while (b.ui_state.steps.length < 6) {
-              b.ui_state.steps.push(
-                `Key Takeaway ${b.ui_state.steps.length + 1}: Always trade the confirmed evidence, not emotional assumptions`
-              );
-            }
-            if (b.ui_state.steps.length > 8) {
-              b.ui_state.steps = b.ui_state.steps.slice(0, 8);
-            }
-          }
-        });
-
-        const totalSteps = scene.beats[0]?.ui_state?.steps?.length || 6;
-
-        // If fewer than 4 beats, expand into standard 4-beat summary progression
-        if (scene.beats.length < 4 && scene.beats.length > 0) {
-          const orig = scene.beats[0];
-          const mid = Math.floor(totalSteps / 2);
-          scene.beats = [
-            {
-              id: `${orig.id || 'sum'}_b0`,
-              hindi_tts: 'आइए आज के पूरे चैप्टर की सभी जरूरी बातों को एक साथ दोहराते हैं।',
-              en_subtitle: "Let's review the cornerstone principles and lessons covered in today's session.",
-              pauseAfterMs: 400,
-              ui_state: {
-                ...orig.ui_state,
-                heading: "Today's thread",
-                activeStepRange: [0, 0],
-              },
-            },
-            {
-              id: `${orig.id || 'sum'}_b1`,
-              hindi_tts: 'चार्ट के प्रकार और सही टाइमफ्रेम का चुनाव ही आपकी शुरुआती बढ़त तय करता है।',
-              en_subtitle: 'Selecting the appropriate chart resolution establishes your foundational market edge.',
-              pauseAfterMs: 400,
-              ui_state: {
-                ...orig.ui_state,
-                heading: "Today's thread",
-                activeStepRange: [1, mid],
-              },
-            },
-            {
-              id: `${orig.id || 'sum'}_b2`,
-              hindi_tts: 'वॉल्यूम और ओपन इंटरेस्ट से ब्रेकआउट की पुष्टि किए बिना कभी ट्रेड में न उतरें।',
-              en_subtitle: 'Never enter positions without volume and open interest confirming the move.',
-              pauseAfterMs: 400,
-              ui_state: {
-                ...orig.ui_state,
-                heading: "Today's thread",
-                activeStepRange: [mid + 1, totalSteps],
-              },
-            },
-            {
-              id: `${orig.id || 'sum'}_b3`,
-              hindi_tts: orig.hindi_tts || 'प्राइस एक्शन और वॉल्यूम का यह संगम आपको अनचाहे नुकसान से बचाएगा।',
-              en_subtitle: orig.en_subtitle || 'Aligning price with volume ensures sustainable trading success.',
-              pauseAfterMs: 600,
-              ui_state: {
-                ...orig.ui_state,
-                heading: "Today's thread",
-                activeStepRange: [1, totalSteps],
-              },
-            },
-          ];
-        } else {
-          const numIntermediate = scene.beats.length - 2;
-          scene.beats.forEach((b, bIdx) => {
-            if (b.ui_state) {
-              b.ui_state.heading = "Today's thread";
-              if (bIdx === 0) {
-                b.ui_state.activeStepRange = [0, 0];
-              } else if (bIdx === scene.beats.length - 1) {
-                b.ui_state.activeStepRange = [1, totalSteps];
-              } else if (
-                !Array.isArray(b.ui_state.activeStepRange) ||
-                b.ui_state.activeStepRange.length !== 2 ||
-                b.ui_state.activeStepRange[1] === 0
-              ) {
-                const stepChunk = Math.ceil(totalSteps / numIntermediate);
-                const start = (bIdx - 1) * stepChunk + 1;
-                const end = Math.min(totalSteps, bIdx * stepChunk);
-                b.ui_state.activeStepRange = [start, end];
-              }
-            }
-          });
-        }
-      }
-
-      // 5. Phonetic TTS Sanitation
-      if (Array.isArray(scene.beats)) {
-        scene.beats.forEach((b) => {
-          if (b.hindi_tts) {
-            b.hindi_tts = b.hindi_tts
-              .replace(/रि[ज़जज़]ल्ट्स|रि[ज़जज़]ल्ट|रि[ज़जज़]िट|रि[ज़जज़]ट/gi, 'नतीजे')
-              .replace(/USFDA|यू\s*एस\s*एफ\s*डी\s*ए/gi, 'दवा रेगुलेटर (FDA)');
-          }
-        });
-      }
-    });
-  }
-
-  // Normalize Chapter Breadcrumb in Meta
-  if (episodeData.meta) {
-    episodeData.meta.chapter = formatChapterBreadcrumb(episodeData.meta.chapter || chapterSlug);
-  }
+  // Pre-normalize and remedy known edge cases before writing
+  episodeData = normalizeAndRemedyEpisode(episodeData, chapterSlug);
 
   const outputPath = path.join(chapterDir, 'episode_raw.json');
   fs.writeFileSync(outputPath, JSON.stringify(episodeData, null, 2), 'utf8');
 
   // Zod Guardrail Validation via scripts/validate_episode.mjs
   console.log(`[VALIDATION] Running Zod guardrails on generated episode payload...`);
+  const relTargetDir = path.relative(rootDir, chapterDir).replace(/\\/g, '/');
   try {
-    execSync(`node "${path.join(__dirname, 'validate_episode.mjs')}" --dir="${chapterDir}"`, {
+    execSync(`node "${path.join(__dirname, 'validate_episode.mjs')}" --dir="${relTargetDir}"`, {
       stdio: 'inherit',
       cwd: rootDir,
     });
@@ -676,7 +744,7 @@ export async function generateEpisode() {
 
     // Re-validate strictly once
     try {
-      execSync(`node "${path.join(__dirname, 'validate_episode.mjs')}" --dir="${chapterDir}"`, {
+      execSync(`node "${path.join(__dirname, 'validate_episode.mjs')}" --dir="${relTargetDir}"`, {
         stdio: 'inherit',
         cwd: rootDir,
       });

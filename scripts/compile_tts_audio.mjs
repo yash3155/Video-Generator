@@ -83,7 +83,10 @@ try {
     : chapterArg
       ? `src/data/chapters/${chapterSlug}`
       : 'src/data';
-  execSync(`node "${path.join(__dirname, 'validate_episode.mjs')}" --dir="${targetValidateDir}"`, {
+  const relValidateDir = path.isAbsolute(targetValidateDir)
+    ? path.relative(rootDir, targetValidateDir).replace(/\\/g, '/')
+    : targetValidateDir.replace(/\\/g, '/');
+  execSync(`node "${path.join(__dirname, 'validate_episode.mjs')}" --dir="${relValidateDir}"`, {
     stdio: 'inherit',
     cwd: rootDir,
   });

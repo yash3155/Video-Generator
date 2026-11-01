@@ -199,6 +199,24 @@ Construct the JSON payload conforming strictly to [`src/data/schema_reference.js
 
 ---
 
+## Mandatory Automated QA & Single-Pass Self-Correction Protocol (Argon Engine)
+
+Whenever **Gemini 4 Argon** generates a new chapter video or updates code templates, it **must autonomously execute the following quality gate** before finishing:
+
+1. **Post-Generation Harness Execution:**
+   Immediately after compiling data or rendering test frames, run:
+   ```bash
+   npm run qa-harness -- --dir=src/data/chapters/<chapter_key>_argon
+   ```
+
+2. **Automated Verification Gates:**
+   - **Pre-Render Schema & Price Invariants**: Runs `validate_episode.mjs` to enforce Zod schema adherence, preset landmarks, and UI rules.
+   - **Compiled Audio & Telemetry Integrity**: Verifies all beats have valid non-empty audio files in `public/audio/` and duration > 0.
+   - **Render Sanity Check**: Ensures output MP4 exists and file size > 1MB.
+   - **Guarded Single-Pass Auto-Correction**: Fixes known phonetic anomalies and syntax issues, terminating immediately if defects persist to prevent infinite loops.
+
+---
+
 ## Technical Reference & File Map
 
 - **Templates**: [`src/templates/`](src/templates/) (`ChatStory`, `DataVisualizer`, `TugOfWar`, `ProgressiveCards`, `SplitComparison`, `InteractiveQuiz`, `SummaryThread`).
