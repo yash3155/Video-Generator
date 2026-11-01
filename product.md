@@ -146,15 +146,16 @@ The project uses modular persona profiles defined in `src/data/personas.json`:
 - **Candle-Synced Annotations:** Annotations specify a `candleIndex` and remain hidden until that specific candle is revealed on the timeline.
 - **Stacked Side Cards (30% right column):** Stacks up to 5 side cards. Older cards transition to `muted` (light gray border/text); the active beat's card highlights with colored borders and soft box-shadows.
 
-### 6.2.1. Deterministic Chart Preset Price Table
+### 6.2.1. Deterministic Chart Preset Price Table (`PRESET_LANDMARKS`)
 Whenever an episode payload involving financial stock charts (`data_visualizer`) is generated, the narration dialogue (`chat_story`), chart callouts (`data_visualizer`), and quiz scenarios (`interactive_quiz`) must strictly adhere to the exact candle prices and price bounds of the chosen preset. Referencing prices outside these preset ranges violates the physical candle chart and fails automated Zod validation immediately (`process.exit(1)`):
 
-| Preset Name | Valid Price Range | Default Ticker | Key Deterministic Price Levels & Profile |
+| Preset Name | Valid Price Range | Default Ticker | Key Deterministic Price Levels & Profile (`PRESET_LANDMARKS`) |
 | :--- | :--- | :--- | :--- |
-| `uptrend_then_drop` | **₹115 – ₹165** | Kesar Paints Ltd | Starts ~₹120 on Jan 02, climbs to ₹152 on candle 16, peaks at **₹158** on candle 18–23, drops to **₹141** on candle 27 pullback. |
-| `uptrend_break` | **₹92 – ₹152** | Index / Nifty | Climbs from ₹98 to **₹148** on candle 16, establishes support at **₹140**, breaks support on candles 18–21, drops to **₹134**. |
-| `head_and_shoulders`| **₹124 – ₹182** | Auto Sector Ltd | Left Shoulder **₹158** (idx 4), Trough 1 **₹142** (idx 7), Head **₹175** (idx 12), Trough 2 **₹142** (idx 16), Right Shoulder **₹156** (idx 20), Neckline **₹142** breaks on candle 25, dropping to ₹128. |
-| `random_walk_line` | **₹70 – ₹185** | General Stock | Deterministic random walk baseline oscillating between ₹70 and ₹185. |
+| `uptrend_then_drop` | **₹115 – ₹165** (Candles: ₹119 – ₹160) | Kesar Paints Ltd | Climbs from ₹120 to a peak of **₹158** (candles 18–23), then gaps down on heavy volume to close at **₹141** (candle 27). **NEVER use ₹165** as a candle price (165 is only the empty Y-axis top border). |
+| `uptrend_break` | **₹92 – ₹152** (Candles: ₹97 – ₹149) | Index / Nifty | Climbs along a green trendline from ₹98 to **₹148** (candle 16), breaks support at **₹140** (candles 18–21), and drops to **₹135** (candle 27). For a healthy uptrend without breakdown, stop at `progressStep: 2`. |
+| `bull_breakout` | **₹115 – ₹175** (Candles: ₹119 – ₹169) | Breakout Stock / Nifty | Pure bullish rally: consolidates below **₹148** resistance, breaks out at **₹150** on 3x volume (candle 18), and rallies cleanly to **₹166–₹168** (candle 27). Use this for bullish breakouts, weekly uptrends, and volume confirmation. |
+| `head_and_shoulders`| **₹124 – ₹182** (Candles: ₹133 – ₹175) | Auto Sector Ltd | Left Shoulder at **₹158** (candle 4), Head at **₹175** (candle 12), Right Shoulder at **₹156** (candle 20), Neckline at **₹142** (breaks at candle 25 and drops to **₹134**). |
+| `random_walk_line` | **₹70 – ₹185** (Points: 100 – 165) | General Stock | Line telemetry series climbing from 100 to 165 across T+1 to T+100. |
 
 ### 6.3. `tug_of_war` (Market Depth & Supply/Demand Imbalance)
 - **Layout:** 3-column force arena rendered directly on the dot-grid canvas.
@@ -187,7 +188,7 @@ Whenever an episode payload involving financial stock charts (`data_visualizer`)
 
 ### 6.7. `summary_thread` (The Whole Picture)
 - **Header:** Monospace badge (`CHAPTER 1 · THE WHOLE PICTURE`) and immutable heading (`"Today's thread"`).
-- **Active Step Range Support:** Supports `activeStepRange: [startStep, endStep]` to highlight multiple sequential steps simultaneously (e.g., `[1, 3]`, `[4, 6]`, `[7, 8]`) without skipping intermediate step numbers. Active steps render with solid amber `#F59E0B` badges; previous steps remain completed `#FEF3C7`/`#B45309`.
+- **Active Step Range & 2-Step Lock:** Supports `activeStepRange: [startStep, endStep]` highlighting up to 2 sequential steps simultaneously (e.g., `[1, 2]`, `[3, 4]`, `[5, 6]`, `[7, 8]`) so voiceover pacing matches UI highlight pills. Beat 0 starts at `[0, 0]` (intro), and the final takeaway beat sets `[1, 8]`. Active steps render with solid amber `#F59E0B` badges; previous steps remain completed `#FEF3C7`/`#B45309`.
 - **6 to 8 Steps Invariant:** The numbered list must contain between 6 and 8 steps (`steps.length >= 6 && steps.length <= 8`) walking through the full lesson arc.
 - **Takeaway Banner Entrance:** On the final beat (`activeStepRange: [1, 8]`), all steps render in completed status and the amber `bottomTakeaway` banner animates in below the list.
 

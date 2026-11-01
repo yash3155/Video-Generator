@@ -26,21 +26,61 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
     activeStepIndex: 1,
   };
 
-  const headerBadge = uiState.headerBadge || 'CHAPTER 1 · THE WHOLE PICTURE';
+  const headerBadge = uiState.headerBadge || 'CHAPTER SUMMARY · THE WHOLE PICTURE';
   const steps = uiState.steps || [];
+  const totalStepsCount = steps.length || 8;
+  const totalBeats = allBeatsInScene.length;
 
-  // Determine active step range [start, end]
-  const range = uiState.activeStepRange;
-  const startStep = range ? range[0] : (uiState.activeStepIndex || 1);
-  const endStep = range ? range[1] : (uiState.activeStepIndex || 1);
+  const isFinalBeat = totalBeats > 1 && beatIndexInScene === totalBeats - 1;
+  const isFirstBeat = beatIndexInScene === 0;
 
-  // Show bottom takeaway box ONLY on the final takeaway beat of the recap scene
-  const isFinalBeat =
-    allBeatsInScene.length > 0 &&
-    beatIndexInScene === allBeatsInScene.length - 1;
+  // Determine active step range [startStep, endStep] (1-based)
+  let startStep = 1;
+  let endStep = 2;
 
-  const showTakeaway =
-    Boolean(uiState.bottomTakeaway) && (isFinalBeat || startStep > steps.length);
+  const rawRange = uiState.activeStepRange;
+  if (isFirstBeat && rawRange && rawRange[0] === 0 && rawRange[1] === 0) {
+    // Dedicated intro beat: all steps muted
+    startStep = 0;
+    endStep = 0;
+  } else if (isFinalBeat) {
+    // Final takeaway beat: all steps completed
+    startStep = 1;
+    endStep = totalStepsCount;
+  } else if (totalBeats >= 4 && beatIndexInScene > 0 && !isFinalBeat) {
+    // Deterministically partition steps across the body beats [1 .. totalBeats - 2]
+    // so no step is EVER skipped and 4 steps never light up when there are enough beats!
+    const bodyBeatsCount = totalBeats - 2; // excluding Beat 0 (intro) and Final Beat (takeaway)
+    const bodyBeatIdx = beatIndexInScene - 1; // 0-indexed body beat
+
+    // Check if the rawRange in JSON is already a valid 1-or-2 step 1-based range
+    const isValidNarrowRange =
+      rawRange &&
+      rawRange[0] >= 1 &&
+      rawRange[1] >= rawRange[0] &&
+      rawRange[1] - rawRange[0] <= 2 &&
+      rawRange[1] <= totalStepsCount;
+
+    if (isValidNarrowRange && bodyBeatsCount >= 3) {
+      startStep = rawRange![0];
+      endStep = rawRange![1];
+    } else {
+      const stepsPerBodyBeat = totalStepsCount / Math.max(1, bodyBeatsCount);
+      startStep = Math.floor(bodyBeatIdx * stepsPerBodyBeat) + 1;
+      endStep =
+        bodyBeatIdx === bodyBeatsCount - 1
+          ? totalStepsCount
+          : Math.min(
+              totalStepsCount,
+              Math.floor((bodyBeatIdx + 1) * stepsPerBodyBeat)
+            );
+    }
+  } else if (rawRange) {
+    startStep = rawRange[0];
+    endStep = rawRange[1];
+  }
+
+  const showTakeaway = Boolean(uiState.bottomTakeaway) && isFinalBeat;
 
   const takeawayEntrance = spring({
     frame: beatFrame,
@@ -56,20 +96,26 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
           {headerBadge}
         </span>
         <h2 className="text-3xl font-black text-[#1E1E1E] mt-1.5 tracking-tight">
-          {uiState.heading}
+          {uiState.heading || "Today's thread"}
         </h2>
       </div>
 
-      {/* Clean, Left-Aligned Vertical List (No Card Borders) */}
+      {/* Clean, Left-Aligned Vertical List */}
       <div className="flex-1 flex flex-col justify-center space-y-2 my-auto">
         {steps.map((stepText, idx) => {
           const stepNumber = idx + 1;
+          // Strip any leading "1. " or "2. " if the LLM duplicated step numbers inside stepText
+          const cleanStepText = String(stepText).replace(/^\d+\.\s*/, '');
 
-          // On final beat, all steps are completed
-          const isCompletedAll = isFinalBeat || startStep > steps.length;
+          const isCompletedAll = isFinalBeat;
           const isIntro = startStep === 0 && endStep === 0;
-          const isActive = !isIntro && !isCompletedAll && stepNumber >= startStep && stepNumber <= endStep;
-          const isPassed = !isIntro && (isCompletedAll || stepNumber < startStep);
+          const isActive =
+            !isIntro &&
+            !isCompletedAll &&
+            stepNumber >= startStep &&
+            stepNumber <= endStep;
+          const isPassed =
+            !isIntro && (isCompletedAll || stepNumber < startStep);
 
           return (
             <div
@@ -82,7 +128,6 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
                     : 'opacity-40'
               }`}
             >
-              {/* Step Number Circle */}
               <div
                 className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs font-mono shrink-0 transition-colors ${
                   isActive
@@ -95,7 +140,6 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
                 {stepNumber}
               </div>
 
-              {/* Step Text */}
               <p
                 className={`text-base tracking-tight leading-snug break-words ${
                   isActive
@@ -105,14 +149,14 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
                       : 'text-[#6B7280] font-normal'
                 }`}
               >
-                {stepText}
+                {cleanStepText}
               </p>
             </div>
           );
         })}
       </div>
 
-      {/* Bottom Takeaway Box: Hidden during steps 1 to 8, only enters on final beat */}
+      {/* Bottom Takeaway Box */}
       {showTakeaway && (
         <div
           style={{

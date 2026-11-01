@@ -2,10 +2,10 @@ import 'dotenv/config';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execSync } from 'node:child_process';
 import { EdgeTTS } from 'node-edge-tts';
 import { parseFile } from 'music-metadata';
 import { GoogleGenAI } from '@google/genai';
-import { validateEpisodeData } from './validate_episode.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -77,13 +77,19 @@ if (!fs.existsSync(rawPath)) {
 const episode = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
 
 // Guardrail: Validate schema before running any TTS synthesis
-const validationResult = validateEpisodeData(episode);
-if (!validationResult.valid) {
-  console.error(`\n========================================`);
-  console.error(`[VALIDATION FAILED] Cannot compile audio. Raw episode has ${validationResult.errors.length} schema error(s):`);
-  validationResult.errors.forEach((err, idx) => {
-    console.error(`  ${idx + 1}. ${err}`);
+try {
+  const targetValidateDir = dirArg
+    ? dirArg.split('=')[1]
+    : chapterArg
+      ? `src/data/chapters/${chapterSlug}`
+      : 'src/data';
+  execSync(`node "${path.join(__dirname, 'validate_episode.mjs')}" --dir="${targetValidateDir}"`, {
+    stdio: 'inherit',
+    cwd: rootDir,
   });
+} catch (err) {
+  console.error(`\n========================================`);
+  console.error(`[VALIDATION FAILED] Cannot compile audio. Pre-validation checks failed.`);
   console.error(`========================================\n`);
   process.exit(1);
 }

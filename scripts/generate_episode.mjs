@@ -2,9 +2,8 @@ import 'dotenv/config';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { spawn } from 'node:child_process';
+import { spawn, execSync } from 'node:child_process';
 import { GoogleGenAI } from '@google/genai';
-import { validateEpisodeData } from './validate_episode.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -660,72 +659,36 @@ export async function generateEpisode() {
     episodeData.meta.chapter = formatChapterBreadcrumb(episodeData.meta.chapter || chapterSlug);
   }
 
-  // Zod Guardrail Validation
+  const outputPath = path.join(chapterDir, 'episode_raw.json');
+  fs.writeFileSync(outputPath, JSON.stringify(episodeData, null, 2), 'utf8');
+
+  // Zod Guardrail Validation via scripts/validate_episode.mjs
   console.log(`[VALIDATION] Running Zod guardrails on generated episode payload...`);
-  let validation = validateEpisodeData(episodeData);
-
-  if (!validation.valid) {
-    console.warn(`\n⚠️ Initial validation detected ${validation.errors.length} schema error(s). Applying automated self-correction...`);
-    validation.errors.forEach((err, idx) => console.warn(`  ${idx + 1}. ${err}`));
-
-    // Apply self-correction remedies
-    if (Array.isArray(episodeData.scenes)) {
-      episodeData.scenes.forEach((scene) => {
-        // Fallback for tug_of_war fields
-        if (scene.template === 'tug_of_war') {
-          scene.beats?.forEach((b) => {
-            if (b.ui_state) {
-              b.ui_state.centerTitle = b.ui_state.centerTitle || 'Tug of War';
-              b.ui_state.centerMetric = b.ui_state.centerMetric || 'Balance';
-              b.ui_state.trend = b.ui_state.trend || 'neutral';
-              if (typeof b.ui_state.leftCount === 'number') {
-                b.ui_state.leftCount = Math.min(25, Math.max(0, Math.round(b.ui_state.leftCount)));
-              }
-              if (typeof b.ui_state.rightCount === 'number') {
-                b.ui_state.rightCount = Math.min(25, Math.max(0, Math.round(b.ui_state.rightCount)));
-              }
-            }
-          });
-        }
-        // Fallback for summary_thread activeStepRange
-        if (scene.template === 'summary_thread' && Array.isArray(scene.beats)) {
-          const totalSteps = scene.beats[0]?.ui_state?.steps?.length || 6;
-          const numIntermediate = Math.max(1, scene.beats.length - 2);
-          scene.beats.forEach((b, bIdx) => {
-            if (b.ui_state) {
-              b.ui_state.heading = "Today's thread";
-              if (bIdx === 0) {
-                b.ui_state.activeStepRange = [0, 0];
-              } else if (bIdx === scene.beats.length - 1) {
-                b.ui_state.activeStepRange = [1, totalSteps];
-              } else {
-                const stepChunk = Math.ceil(totalSteps / numIntermediate);
-                const start = (bIdx - 1) * stepChunk + 1;
-                const end = Math.min(totalSteps, bIdx * stepChunk);
-                b.ui_state.activeStepRange = [start, end];
-              }
-            }
-          });
-        }
-      });
-    }
+  try {
+    execSync(`node "${path.join(__dirname, 'validate_episode.mjs')}" --dir="${chapterDir}"`, {
+      stdio: 'inherit',
+      cwd: rootDir,
+    });
+  } catch (err) {
+    console.warn(`\n⚠️ Initial validation detected issues. Applying automated self-correction...`);
+    episodeData = normalizeAndRemedyEpisode(episodeData, chapterSlug);
+    fs.writeFileSync(outputPath, JSON.stringify(episodeData, null, 2), 'utf8');
 
     // Re-validate strictly once
-    validation = validateEpisodeData(episodeData);
-    if (validation.valid) {
+    try {
+      execSync(`node "${path.join(__dirname, 'validate_episode.mjs')}" --dir="${chapterDir}"`, {
+        stdio: 'inherit',
+        cwd: rootDir,
+      });
       console.log(`✅ Single-pass automated self-correction succeeded!\n`);
-    } else {
-      console.error(`[VALIDATION FAILED] Generated JSON still has ${validation.errors.length} schema errors after self-correction:`);
-      validation.errors.forEach((err, idx) => console.error(`  ${idx + 1}. ${err}`));
+    } catch (reErr) {
+      console.error(`[VALIDATION FAILED] Validation still failed after self-correction.`);
       const errorDumpPath = path.join(chapterDir, 'episode_generation_error.json');
       fs.writeFileSync(errorDumpPath, JSON.stringify(episodeData, null, 2), 'utf8');
       console.error(`[DUMP] Raw output saved to: ${errorDumpPath}`);
       throw new Error('Episode validation failed.');
     }
   }
-
-  const outputPath = path.join(chapterDir, 'episode_raw.json');
-  fs.writeFileSync(outputPath, JSON.stringify(episodeData, null, 2), 'utf8');
 
   console.log(`\n========================================`);
   console.log(`[SUCCESS] Episode successfully generated & validated!`);

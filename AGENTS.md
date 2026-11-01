@@ -85,7 +85,7 @@ Identify the domain of the book and load the corresponding persona configuration
 
 | Domain | Novice Persona | Mentor Persona | Context / Analogy Environment | Presets Available |
 | :--- | :--- | :--- | :--- | :--- |
-| **Finance / Trading** | **Raju** (Retail Trader, Amber) | **Sharma ji** (Chartist Mentor, Teal) | Indian NSE Market, Nifty, fictional Indian stocks in ₹ (e.g. Kesar Paints) | `uptrend_then_drop`, `uptrend_break`, `head_and_shoulders`, `random_walk_line` |
+| **Finance / Trading** | **Raju** (Retail Trader, Amber) | **Sharma ji** (Chartist Mentor, Teal) | Indian NSE Market, Nifty, fictional Indian stocks in ₹ (e.g. Kesar Paints) | `uptrend_then_drop`, `uptrend_break`, `bull_breakout`, `head_and_shoulders`, `random_walk_line` |
 | **Coding / Systems** | **Aarav** (Junior Dev, Amber) | **Vikram** (Staff Architect, Blue) | High-traffic Indian fintech/e-commerce outage, latency spikes, DB bottlenecks | `latency_spike`, `throughput_scaling`, `memory_leak_curve`, `load_balancer_flow` |
 | **Psychology / Habits** | **Kabir** (Young Pro, Amber) | **Dr. Meera** (Psychologist, Purple) | Everyday workplace stress, career choices, habits, cognitive biases | `habit_compounding`, `dopamine_spike_drop`, `decision_fatigue_curve`, `expectation_vs_reality` |
 
@@ -93,15 +93,16 @@ Always preserve the domain's `keepEnglishTerms` phonetically in Devanagari or En
 
 ---
 
-### Mandatory Deterministic Chart Preset Price Table
+### Mandatory Deterministic Chart Preset Price Table (`PRESET_LANDMARKS`)
 Whenever Gemini 4 Argon generates an episode payload involving financial stock charts (`data_visualizer`), it MUST use the exact candle prices and price bounds of the chosen preset across all story dialogue (`chat_story`), chart callouts (`data_visualizer`), and quiz scenarios (`interactive_quiz`). Referencing prices outside these preset ranges violates the physical candle chart and fails automated Zod validation immediately (`process.exit(1)`):
 
-| Preset Name | Valid Price Range | Default Ticker | Key Deterministic Price Levels & Profile |
+| Preset Name | Valid Price Range | Default Ticker | Key Deterministic Price Levels & Profile (`PRESET_LANDMARKS`) |
 | :--- | :--- | :--- | :--- |
-| `uptrend_then_drop` | **₹115 – ₹165** | Kesar Paints Ltd | Starts ~₹120 on Jan 02, climbs to ₹152 on candle 16, peaks at **₹158** on candle 18–23, drops to **₹141** on candle 27 pullback. |
-| `uptrend_break` | **₹92 – ₹152** | Index / Nifty | Climbs from ₹98 to **₹148** on candle 16, establishes support at **₹140**, breaks support on candles 18–21, drops to **₹134**. |
-| `head_and_shoulders`| **₹124 – ₹182** | Auto Sector Ltd | Left Shoulder **₹158** (idx 4), Trough 1 **₹142** (idx 7), Head **₹175** (idx 12), Trough 2 **₹142** (idx 16), Right Shoulder **₹156** (idx 20), Neckline **₹142** breaks on candle 25, dropping to ₹128. |
-| `random_walk_line` | **₹70 – ₹185** | General Stock | Deterministic random walk baseline oscillating between ₹70 and ₹185. |
+| `uptrend_then_drop` | **₹115 – ₹165** (Candles: ₹119 – ₹160) | Kesar Paints Ltd | Climbs from ₹120 to a peak of **₹158** (candles 18–23), then gaps down on heavy volume to close at **₹141** (candle 27). **NEVER use ₹165** as a candle price (165 is only the empty Y-axis top border). |
+| `uptrend_break` | **₹92 – ₹152** (Candles: ₹97 – ₹149) | Index / Nifty | Climbs along a green trendline from ₹98 to **₹148** (candle 16), breaks support at **₹140** (candles 18–21), and drops to **₹135** (candle 27). For a healthy uptrend without breakdown, stop at `progressStep: 2`. |
+| `bull_breakout` | **₹115 – ₹175** (Candles: ₹119 – ₹169) | Breakout Stock / Nifty | Pure bullish rally: consolidates below **₹148** resistance, breaks out at **₹150** on 3x volume (candle 18), and rallies cleanly to **₹166–₹168** (candle 27). Use this for bullish breakouts, weekly uptrends, and volume confirmation. |
+| `head_and_shoulders`| **₹124 – ₹182** (Candles: ₹133 – ₹175) | Auto Sector Ltd | Left Shoulder at **₹158** (candle 4), Head at **₹175** (candle 12), Right Shoulder at **₹156** (candle 20), Neckline at **₹142** (breaks at candle 25 and drops to **₹134**). |
+| `random_walk_line` | **₹70 – ₹185** (Points: 100 – 165) | General Stock | Line telemetry series climbing from 100 to 165 across T+1 to T+100. |
 
 ---
 
@@ -155,7 +156,7 @@ Construct the JSON payload conforming strictly to [`src/data/schema_reference.js
     - Beat 1: Thinking pause (`showThinkingSpinner: true`, `answer: null`, `pauseAfterMs >= 3000`).
     - Beat 2: Answer reveal (`showThinkingSpinner: false`, `answer: non-empty string`).
     - `ui_state.question` must be a self-contained scenario + question (minimum 18 words) and stay 100% identical across all 3 beats.
-  - **Summary Thread Completeness Lock**: Must contain at least 4 beats (`scene.beats.length >= 4`). Beat 0 has `activeStepRange: [0, 0]`. Intermediate beats sequentially cover steps from 1 to `steps.length` without skipping the final step before the takeaway beat. `ui_state.heading` must strictly be `"Today's thread"`. Steps array must contain between 6 and 8 steps (`steps.length >= 6 && steps.length <= 8`).
+  - **Summary Thread Completeness & 2-Step Lock**: Must contain between 6 and 8 steps (`steps.length >= 6 && steps.length <= 8`). For 8 steps, requires at least 5 beats (Beat 0 `[0,0]` intro, 2-step body beats `[1,2], [3,4], [5,6], [7,8]`, and final takeaway `[1,8]`). Body beats may highlight at most 2 steps per beat (`r[1] - r[0] <= 1`) so voiceover pacing aligns cleanly with the active pills. Heading must strictly be `"Today's thread"`.
   - **Breadcrumb & Chapter Formatting**: `meta.chapter` must strictly match `/^CHAPTER \d+ · PART \d+$/` or `/^APPENDIX/i`. Underscores or `_ARGON` are strictly prohibited.
 - **Tug of War Silhouette Limits**: Keep `leftCount` and `rightCount` between 0 and 25 to render a clean, crisp 5-column grid of user silhouettes directly on the white dot-grid canvas without outer tint boxes.
 - **Pacing**: `pauseAfterMs: 400` for normal beats, `4000` for quiz thinking pauses, and `600` for chapter takeaways.
