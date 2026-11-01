@@ -59,6 +59,7 @@ export type CardState =
   | 'active_green'
   | 'active_amber'
   | 'active_purple'
+  | 'active_teal'
   | 'muted'
   | 'default'
   | 'hidden';

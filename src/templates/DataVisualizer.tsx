@@ -1,6 +1,6 @@
 import React from 'react';
 import { interpolate, spring, useVideoConfig } from 'remotion';
-import { Scene, Beat, DataVisualizerUI, SideCard } from '../types';
+import { Scene, Beat, DataVisualizerUI, SideCard, CardState } from '../types';
 import { getPresetData } from './chartPresets';
 
 interface DataVisualizerProps {
@@ -66,9 +66,9 @@ const sideCardStyles: Record<
   },
 };
 
-function normalizeSideCardState(rawState?: string, idx = 0): string {
+function normalizeSideCardState(rawState?: string, idx = 0): CardState {
   if (!rawState) return 'active_amber';
-  if (sideCardStyles[rawState]) return rawState;
+  if (sideCardStyles[rawState]) return rawState as CardState;
   const s = rawState.toLowerCase();
   if (s === 'warning' || s === 'amber') return 'active_amber';
   if (s === 'danger' || s === 'error' || s === 'red') return 'active_red';
@@ -77,7 +77,7 @@ function normalizeSideCardState(rawState?: string, idx = 0): string {
   if (s === 'purple') return 'active_purple';
   if (s === 'visible' || s === 'inactive') return 'muted';
   if (s === 'active') {
-    const cycle = ['active_blue', 'active_teal', 'active_amber', 'active_purple'];
+    const cycle: CardState[] = ['active_blue', 'active_teal', 'active_amber', 'active_purple'];
     return cycle[idx % cycle.length];
   }
   return 'default';
