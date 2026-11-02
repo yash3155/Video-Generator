@@ -310,7 +310,7 @@ async function callGeminiArgonViaProxy(promptText, model = 'gemini-4-argon', tem
       'Content-Type': 'application/json',
       Authorization: 'Bearer none',
     },
-    signal: AbortSignal.timeout(240000), // 240s: Allow full deep-reasoning and JSON synthesis
+    signal: AbortSignal.timeout(360000), // 360s: Allow full deep-reasoning and JSON synthesis
     body: JSON.stringify({
       model: model,
       messages: [
