@@ -93,16 +93,20 @@ Always preserve the domain's `keepEnglishTerms` phonetically in Devanagari or En
 
 ---
 
-### Mandatory Deterministic Chart Preset Price Table (`PRESET_LANDMARKS`)
-Whenever Gemini 4 Argon generates an episode payload involving financial stock charts (`data_visualizer`), it MUST use the exact candle prices and price bounds of the chosen preset across all story dialogue (`chat_story`), chart callouts (`data_visualizer`), and quiz scenarios (`interactive_quiz`). Referencing prices outside these preset ranges violates the physical candle chart and fails automated Zod validation immediately (`process.exit(1)`):
+### Mandatory Chart Presets & Dynamic Auto-Scaling (`getDynamicPresetData`)
+The chart visualizer engine (`DataVisualizer.tsx` and `chartPresets.ts`) automatically extracts all `₹<number>` prices mentioned across the scene's beats (dialogue, subtitles, side cards, annotations) and rescales the preset's candlesticks/line points and Y-axis bounds dynamically.
 
-| Preset Name | Valid Price Range | Default Ticker | Key Deterministic Price Levels & Profile (`PRESET_LANDMARKS`) |
-| :--- | :--- | :--- | :--- |
-| `uptrend_then_drop` | **₹115 – ₹165** (Candles: ₹119 – ₹160) | Kesar Paints Ltd | Climbs from ₹120 to a peak of **₹158** (candles 18–23), then gaps down on heavy volume to close at **₹141** (candle 27). **NEVER use ₹165** as a candle price (165 is only the empty Y-axis top border). |
-| `uptrend_break` | **₹92 – ₹152** (Candles: ₹97 – ₹149) | Index / Nifty | Climbs along a green trendline from ₹98 to **₹148** (candle 16), breaks support at **₹140** (candles 18–21), and drops to **₹135** (candle 27). For a healthy uptrend without breakdown, stop at `progressStep: 2`. |
-| `bull_breakout` | **₹115 – ₹175** (Candles: ₹119 – ₹169) | Breakout Stock / Nifty | Pure bullish rally: consolidates below **₹148** resistance, breaks out at **₹150** on 3x volume (candle 18), and rallies cleanly to **₹166–₹168** (candle 27). Use this for bullish breakouts, weekly uptrends, and volume confirmation. |
-| `head_and_shoulders`| **₹124 – ₹182** (Candles: ₹133 – ₹175) | Auto Sector Ltd | Left Shoulder at **₹158** (candle 4), Head at **₹175** (candle 12), Right Shoulder at **₹156** (candle 20), Neckline at **₹142** (breaks at candle 25 and drops to **₹134**). |
-| `random_walk_line` | **₹70 – ₹185** (Points: 100 – 165) | General Stock | Line telemetry series climbing from 100 to 165 across T+1 to T+100. |
+- **Dynamic Preset Auto-Scaling:** Do NOT hardcode candle bounds or clamp prices to fixed ranges. The chart engine dynamically reads scene prices and rescales candlesticks and Y-axis bounds.
+- **Currency & H&S Isolation:** `yAxisUnit` is strictly locked to `'₹'` to prevent non-currency strings (like RSI, pts, or formulas) from corrupting chart ticks or OHLC tags. The `head_and_shoulders` pattern geometry (shoulder/head pills, neckline) is only rendered when the scene title explicitly matches `/head\s*(?:&|and)\s*shoulders/i`.
+- **Directional Consistency:** Scene prices must make logical sense for the chart pattern (e.g. buying in a breakdown or selling at a breakout must match the narrative flow; a drop must have `dropPrice < buyPrice`).
+
+| Preset Name | Typical Profile & Directional Landmark |
+| :--- | :--- |
+| `uptrend_then_drop` | Climbs along an uptrend to peak candle, then breakdowns on heavy volume to close lower. Ideal for bull traps and distribution. |
+| `uptrend_break` | Climbs along support trendline, tests support, and breaks down. For healthy uptrend without breakdown, stop at `progressStep: 2`. |
+| `bull_breakout` | Consolidates below resistance, breaks out cleanly on heavy volume, and rallies to higher highs. Ideal for bullish continuations and volume expansion. |
+| `head_and_shoulders` | Left shoulder peak, highest head peak, right shoulder lower peak, and neckline breakdown. Used strictly for Head & Shoulders scenes. |
+| `random_walk_line` / `telemetry_line` | Continuous telemetry line series for general trend telemetry and indicators. |
 
 ---
 
@@ -142,11 +146,11 @@ Construct the JSON payload conforming strictly to [`src/data/schema_reference.js
 - **Beat Granularity**: Exactly 1 spoken sentence per beat (5–12 seconds).
 - **Progressive UI**: Each beat modifies or reveals parts of `ui_state` (`progressStep`, active card, active bullet, etc.).
 - **Bilingual Rule & Vocabulary**:
-  - `hindi_tts`: Natural, warm, conversational Hinglish in Devanagari script. Avoid stiff translated English words—use `नियम` or `बातें` instead of `lenses`, `सिद्धांत` instead of `tenets`, `नतीजे` instead of `रिजल्ट`, and `भारी ट्रेन` instead of `freight train`. Use natural phonetic acronyms like `दवा रेगुलेटर (FDA)`, `एफ डी ए`, `आई पी ओ`, `ओ एच एल सी`.
+  - `hindi_tts`: 100% Devanagari Hindi audio. Must contain zero raw Latin English sentences or phrases. Common technical acronyms (SMA, EMA, RSI, MACD, OI, OBV, COT, etc.) are permitted and phonetically sanitized in speech synthesis. Avoid stiff translated English words—use `नियम` or `बातें` instead of `lenses`, `सिद्धांत` instead of `tenets`, `नतीजे` instead of `रिजल्ट`, and `भारी ट्रेन` instead of `freight train`. Use natural phonetic acronyms like `दवा रेगुलेटर (FDA)`, `एफ डी ए`, `आई पी ओ`, `ओ एच एल सी`.
   - `en_subtitle`: Clean, concise English translation under 16 words per beat.
 - **Strict English UI Text**: Every field inside `ui_state` (including `interactive_quiz.answer`, card titles, subtitles, annotations, badges, and bullets) MUST be 100% English. Devanagari script is strictly prohibited in `ui_state` and enforced by Zod regex validation (`/[\u0900-\u097F]/`).
 - **Template Invariants & Layout Rules**:
-  - **Data Visualizer**: Bottom X-axis is strictly reserved for clean dates/months (`Jan`, `Feb`, `Mar`, `Apr`). Never print pattern names (`Head`, `Shoulder`, `Breakdown`) on the X-axis. On `head_and_shoulders`, highlight peaks with amber circles and labels (`LEFT SHOULDER`, `HEAD (₹175)`, `RIGHT SHOULDER`) only after candle count reaches each peak (`>= 4`, `>= 12`, `>= 20`), and reveal the neckline (starting from trough 1 at index 7) only after reaching the second trough. Trendlines must be clipped to currently visible candles.
+  - **Data Visualizer**: Bottom X-axis is strictly reserved for clean dates/months (`Jan`, `Feb`, `Mar`, `Apr`). Never print pattern names (`Head`, `Shoulder`, `Breakdown`) on the X-axis. Currency `yAxisUnit` is strictly locked to `'₹'`. The `head_and_shoulders` geometry (peaks, neckline) is only rendered when the scene title explicitly matches `/head\s*(?:&|and)\s*shoulders/i`. Trendlines must be clipped to currently visible candles. Dynamic auto-scaling extracts scene prices to rescale candles and bounds.
   - **Dynamic Bounding Box Collision Engine**: `DataVisualizer.tsx` executes a 3-pass defensive collision-resolution loop over all active annotations. If two pills overlap horizontally (`dx < w1 + w2 + 12px`) and vertically (`dy < h + 10px`), the overlapping pill is automatically shifted by `±32px` (staggered downward for bottom callouts, upward for top callouts) and the SVG pointer line is dynamically redrawn to the new shifted anchor.
   - **Strict Y-Axis Margin Guard**: All chart annotations, peak pills, and neckline indicators are strictly bounded within `[padTop - 15, svgH - padBottom - 28]`. No chart element may ever render outside the active canvas or overlap volume/metric bars.
   - **Progressive Cards**: In grid layout, hidden cards render as invisible cell placeholders so visible cards never jump. Reveal at most 1 new card per beat (`cards.length <= beats.length`). Card copy must stay strictly immutable within a scene. Section header pill anchored directly inside card container wrapper (`mb-4`).
@@ -156,7 +160,14 @@ Construct the JSON payload conforming strictly to [`src/data/schema_reference.js
     - Beat 1: Thinking pause (`showThinkingSpinner: true`, `answer: null`, `pauseAfterMs >= 3000`).
     - Beat 2: Answer reveal (`showThinkingSpinner: false`, `answer: non-empty string`).
     - `ui_state.question` must be a self-contained scenario + question (minimum 18 words) and stay 100% identical across all 3 beats.
-  - **Summary Thread Completeness & 2-Step Lock**: Must contain between 6 and 8 steps (`steps.length >= 6 && steps.length <= 8`). For 8 steps, requires at least 5 beats (Beat 0 `[0,0]` intro, 2-step body beats `[1,2], [3,4], [5,6], [7,8]`, and final takeaway `[1,8]`). Body beats may highlight at most 2 steps per beat (`r[1] - r[0] <= 1`) so voiceover pacing aligns cleanly with the active pills. Heading must strictly be `"Today's thread"`.
+  - **Summary Thread Completeness & 6-Beat Rule**: Every recap thread must feature exactly 8 steps (`steps.length === 8`) and 6 beats:
+    - Beat 0: Intro (`activeStepRange: [0, 0]`)
+    - Beat 1: Steps 1 & 2 (`activeStepRange: [1, 2]`)
+    - Beat 2: Steps 3 & 4 (`activeStepRange: [3, 4]`)
+    - Beat 3: Steps 5 & 6 (`activeStepRange: [5, 6]`)
+    - Beat 4: Steps 7 & 8 (`activeStepRange: [7, 8]`)
+    - Beat 5: Final Takeaway (`activeStepRange: [1, 8]`)
+    Each body pair beat has natural Devanagari Hindi narration explaining the pair without synthetic English injection. Heading must strictly be `"Today's thread"`.
   - **Breadcrumb & Chapter Formatting**: `meta.chapter` must strictly match `/^CHAPTER \d+ · PART \d+$/` or `/^APPENDIX/i`. Underscores or `_ARGON` are strictly prohibited.
 - **Tug of War Silhouette Limits**: Keep `leftCount` and `rightCount` between 0 and 25 to render a clean, crisp 5-column grid of user silhouettes directly on the white dot-grid canvas without outer tint boxes.
 - **Pacing**: `pauseAfterMs: 400` for normal beats, `4000` for quiz thinking pauses, and `600` for chapter takeaways.

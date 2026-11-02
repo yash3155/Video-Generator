@@ -1,7 +1,8 @@
+// src/templates/DataVisualizer.tsx
 import React from 'react';
 import { interpolate, spring, useVideoConfig } from 'remotion';
 import { Scene, Beat, DataVisualizerUI, SideCard, CardState } from '../types';
-import { getPresetData } from './chartPresets';
+import { getDynamicPresetData } from './chartPresets';
 
 interface DataVisualizerProps {
   scene: Scene;
@@ -84,6 +85,7 @@ function normalizeSideCardState(rawState?: string, idx = 0): CardState {
 }
 
 export const DataVisualizer: React.FC<DataVisualizerProps> = ({
+  scene,
   beat,
   beatIndexInScene = 0,
   beatFrame = 0,
@@ -96,7 +98,27 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
     preset: 'uptrend_then_drop',
   };
 
-  const presetData = getPresetData(uiState.preset);
+  // Extract all ₹<number> prices mentioned across all beats of this scene so the chart
+  // automatically scales its candles and Y-axis to match the spoken narrative!
+  const scenePrices: number[] = [];
+  const beatsForPrices = allBeatsInScene.length > 0 ? allBeatsInScene : [beat];
+  beatsForPrices.forEach((b) => {
+    const ui = (b.ui_state as DataVisualizerUI) || {};
+    const textPool = [
+      b.en_subtitle || '',
+      b.hindi_tts || '',
+      ...(ui.annotations || []).map((a) => a.text || ''),
+      ...(ui.sideCards || []).map((c) => `${c.title} ${c.subtitle}`),
+    ].join(' ');
+    for (const m of textPool.matchAll(/₹\s*(\d+(?:,\d+)?(?:\.\d+)?)/g)) {
+      const val = parseFloat(m[1].replace(/,/g, ''));
+      if (!isNaN(val) && val >= 20) {
+        scenePrices.push(val);
+      }
+    }
+  });
+
+  const presetData = getDynamicPresetData(uiState.preset, scenePrices);
   const totalSteps = uiState.totalSteps || 3;
   const currentStep =
     uiState.progressStep !== undefined ? uiState.progressStep : totalSteps;
@@ -109,9 +131,15 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
     }
   }
 
-  // Sanitize yAxisUnit so "pts", "points", or "you" never corrupt numbers into "pts148" or "you118"
-  const rawUnit = (uiState.yAxisUnit ?? presetData.unit ?? '₹').trim();
-  const yUnit = /^(pts|points|you|index|none)$/i.test(rawUnit) ? '₹' : rawUnit;
+  // Hard-lock yUnit to '₹' so strings like "RSI", "pts", or formulas NEVER corrupt Y-axis labels or OHLC!
+  const yUnit = '₹';
+
+  // Only show LEFT SHOULDER / HEAD / RIGHT SHOULDER badges if the scene is actually teaching Head & Shoulders!
+  const isActualHeadAndShoulders =
+    uiState.preset === 'head_and_shoulders' &&
+    /head\s*(?:&|and)\s*shoulders/i.test(
+      `${scene?.title || ''} ${uiState.chartTitle || ''} ${uiState.chartSubtitle || ''}`
+    );
 
   // Chart layout dimensions
   const svgW = 1100;
@@ -151,18 +179,18 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
   const animatedCandleCount =
     beatIndexInScene === 0
       ? Math.round(
-          interpolate(beatFrame, [0, revealDuration], [1, currentCandleTarget], {
-            extrapolateRight: 'clamp',
-          })
-        )
+        interpolate(beatFrame, [0, revealDuration], [1, currentCandleTarget], {
+          extrapolateRight: 'clamp',
+        })
+      )
       : Math.round(
-          interpolate(
-            beatFrame,
-            [0, revealDuration],
-            [prevCandleTarget, currentCandleTarget],
-            { extrapolateRight: 'clamp' }
-          )
-        );
+        interpolate(
+          beatFrame,
+          [0, revealDuration],
+          [prevCandleTarget, currentCandleTarget],
+          { extrapolateRight: 'clamp' }
+        )
+      );
 
   const visibleCandles = allCandles.slice(0, animatedCandleCount);
   const slotW = totalCandles > 0 ? plotW / totalCandles : 1;
@@ -223,7 +251,6 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
 
   const displaySideCards = accumulatedSideCards.slice(-5);
 
-  // Track placed annotation bounding boxes to prevent pill-to-pill & pointer-line collisions
   const placedPills: Array<{
     x: number;
     y: number;
@@ -237,19 +264,19 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
     <div className="w-full h-full flex items-center justify-between gap-8 relative z-10">
       {/* LEFT 68%: Deterministic SVG Chart Canvas */}
       <div className="w-[68%] h-full flex flex-col justify-between bg-[#FCFCFA] rounded-2xl border border-[#ECEAE3] p-4 shadow-sm relative overflow-hidden">
-        {/* Top Header with live ticker & OHLC readout */}
-        <div className="flex items-center justify-between px-3 pt-1 border-b border-[#F0ECE1] pb-2.5">
-          <div className="flex items-center space-x-3">
-            <h2 className="text-xl font-bold text-[#1E1E1E] tracking-tight">
+        {/* Top Header with live ticker & OHLC readout (Protected against wrapping) */}
+        <div className="flex items-center justify-between gap-3 px-3 pt-1 border-b border-[#F0ECE1] pb-2.5">
+          <div className="flex items-center space-x-3 min-w-0 flex-1 overflow-hidden">
+            <h2 className="text-xl font-bold text-[#1E1E1E] tracking-tight truncate">
               {uiState.chartTitle}
             </h2>
-            <span className="text-xs font-mono font-bold text-[#8B7355] uppercase tracking-wider bg-[#F3EFE6] px-2.5 py-0.5 rounded-md border border-[#E5DFD3]">
+            <span className="text-xs font-mono font-bold text-[#8B7355] uppercase tracking-wider bg-[#F3EFE6] px-2.5 py-0.5 rounded-md border border-[#E5DFD3] truncate max-w-[260px] shrink-0">
               {uiState.chartSubtitle || 'DAILY · FICTIONAL'}
             </span>
           </div>
 
           {presetData.candlesticks && latestCandle && (
-            <div className="flex items-center space-x-3 font-mono text-xs">
+            <div className="flex items-center space-x-3 font-mono text-xs shrink-0 whitespace-nowrap">
               <span className="text-[#8B7355]">
                 O <strong className="text-[#1E1E1E]">{latestCandle.open}</strong>
               </span>
@@ -380,8 +407,8 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   );
                 })}
 
-                {/* 2. Head and Shoulders On-Chart Geometry */}
-                {uiState.preset === 'head_and_shoulders' && (
+                {/* 2. Head and Shoulders On-Chart Geometry (ONLY when scene is actually about H&S!) */}
+                {isActualHeadAndShoulders && (
                   <g>
                     {visibleCandles.length >= 4 && allCandles[4] && (() => {
                       const cx = padLeft + 4 * slotW + slotW / 2;
@@ -403,9 +430,9 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                       return (
                         <g>
                           <circle cx={cx} cy={cy} r={18} stroke="#D97706" strokeWidth={2.5} fill="none" />
-                          <rect x={cx - 42} y={cy - 40} width={84} height={20} rx={10} fill="#FFFBEB" stroke="#D97706" strokeWidth={1.5} />
+                          <rect x={cx - 46} y={cy - 40} width={92} height={20} rx={10} fill="#FFFBEB" stroke="#D97706" strokeWidth={1.5} />
                           <text x={cx} y={cy - 26} textAnchor="middle" fill="#92400E" fontSize="10" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
-                            HEAD ({yUnit}175)
+                            HEAD ({yUnit}{allCandles[12].high})
                           </text>
                         </g>
                       );
@@ -426,11 +453,12 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                     })()}
 
                     {visibleCandles.length >= 17 && (() => {
-                      const yNeckline = getYPos(142);
+                      const neckPrice = presetData.necklinePrice || allCandles[7]?.low || 142;
+                      const yNeckline = getYPos(neckPrice);
                       const xTrough1 = padLeft + 7 * slotW + slotW / 2;
                       const xEnd = padLeft + plotW;
 
-                      const neckPillW = 110;
+                      const neckPillW = 114;
                       const neckPillH = 20;
                       const neckPillX = xEnd - neckPillW - 8;
                       const neckPillY = yNeckline - neckPillH - 6;
@@ -443,7 +471,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                         const breakSpan = allCandles.slice(Math.max(0, 25 - 6), visibleCandles.length);
                         const localLowestYBreak = Math.max(...breakSpan.map((c) => getYPos(c.low)));
                         const breakPillH = 22;
-                        const breakPillW = 104;
+                        const breakPillW = 108;
                         const breakPillY = Math.min(svgH - 72, localLowestYBreak + 18);
                         const breakPillX = Math.min(padLeft + plotW - breakPillW - 8, Math.max(padLeft + 10, xBreak - breakPillW / 2));
 
@@ -477,7 +505,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                               fontFamily="JetBrains Mono, monospace"
                               fontWeight="bold"
                             >
-                              BREAK · {yUnit}142
+                              BREAK · {yUnit}{neckPrice}
                             </text>
                           </g>
                         );
@@ -513,7 +541,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                             fontFamily="JetBrains Mono, monospace"
                             fontWeight="bold"
                           >
-                            neckline · {yUnit}142
+                            neckline · {yUnit}{neckPrice}
                           </text>
 
                           {breakdownRender}
@@ -538,13 +566,13 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                     <rect
                       x={padLeft + plotW + 4}
                       y={latestCloseY - 12}
-                      width="64"
+                      width="68"
                       height="24"
                       rx="12"
                       fill={livePriceColor}
                     />
                     <text
-                      x={padLeft + plotW + 36}
+                      x={padLeft + plotW + 38}
                       y={latestCloseY + 4}
                       textAnchor="middle"
                       fill="#FFFFFF"
@@ -597,7 +625,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                     );
                   }
                   if (ov.type === 'horizontal_level' && ov.priceLevel) {
-                    if (uiState.preset === 'head_and_shoulders') return null;
+                    if (isActualHeadAndShoulders) return null;
 
                     const yPos = getYPos(ov.priceLevel);
                     const strokeCol = ov.color === 'red' ? '#DC2626' : '#F59E0B';
@@ -647,15 +675,15 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   const animPtsCount =
                     beatIndexInScene === 0
                       ? Math.round(
-                          interpolate(beatFrame, [0, revealDuration], [2, ptTarget], {
-                            extrapolateRight: 'clamp',
-                          })
-                        )
+                        interpolate(beatFrame, [0, revealDuration], [2, ptTarget], {
+                          extrapolateRight: 'clamp',
+                        })
+                      )
                       : Math.round(
-                          interpolate(beatFrame, [0, revealDuration], [prevPtTarget, ptTarget], {
-                            extrapolateRight: 'clamp',
-                          })
-                        );
+                        interpolate(beatFrame, [0, revealDuration], [prevPtTarget, ptTarget], {
+                          extrapolateRight: 'clamp',
+                        })
+                      );
                   const visiblePts = allPts.slice(0, animPtsCount);
                   const ptSlotW = plotW / (totalPts - 1 || 1);
 
@@ -804,13 +832,13 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                           <rect
                             x={padLeft + plotW + 4}
                             y={latestPt.y - 12}
-                            width="64"
+                            width="68"
                             height="24"
                             rx="12"
                             fill={lineStroke}
                           />
                           <text
-                            x={padLeft + plotW + 36}
+                            x={padLeft + plotW + 38}
                             y={latestPt.y + 4}
                             textAnchor="middle"
                             fill="#FFFFFF"
@@ -832,13 +860,12 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
             {uiState.annotations &&
               uiState.annotations.map((ann, idx) => {
                 if (
-                  uiState.preset === 'head_and_shoulders' &&
+                  isActualHeadAndShoulders &&
                   /neckline/i.test(ann.text)
                 ) {
                   return null;
                 }
 
-                // Works for both candlestick charts and point/line charts!
                 const seriesLength =
                   allCandles.length > 0
                     ? allCandles.length
@@ -853,7 +880,29 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                     : plotW / Math.max(1, seriesLength - 1);
 
                 let targetIdx = ann.candleIndex;
-                if (targetIdx === undefined && ann.value !== undefined && allCandles.length > 0) {
+
+                // If annotation text mentions a specific ₹ price, snap to the closest visible candle matching that price!
+                const pillPriceMatch = (ann.text || '').match(/₹\s*(\d+(?:,\d+)?(?:\.\d+)?)/);
+                if (pillPriceMatch && allCandles.length > 0) {
+                  const targetPrice = parseFloat(pillPriceMatch[1].replace(/,/g, ''));
+                  if (!isNaN(targetPrice) && targetPrice >= 20) {
+                    let bestIdx = 0;
+                    let bestDiff = Infinity;
+                    const searchPool = allCandles.slice(0, Math.max(1, visibleLength));
+                    searchPool.forEach((c, cIdx) => {
+                      const diff = Math.min(
+                        Math.abs(c.close - targetPrice),
+                        Math.abs(c.high - targetPrice),
+                        Math.abs(c.low - targetPrice)
+                      );
+                      if (diff < bestDiff) {
+                        bestDiff = diff;
+                        bestIdx = cIdx;
+                      }
+                    });
+                    targetIdx = bestIdx;
+                  }
+                } else if (targetIdx === undefined && ann.value !== undefined && allCandles.length > 0) {
                   const nearestIdx = allCandles.findIndex(
                     (c) =>
                       Math.abs(c.close - ann.value!) <= 2 ||
@@ -864,7 +913,6 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   }
                 }
 
-                // Scale targetIdx if LLM used a 0..30 candle index on a longer/shorter points array
                 if (
                   targetIdx !== undefined &&
                   allCandles.length === 0 &&
@@ -924,7 +972,6 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   Math.max(padLeft + 10, anchorX - pillW / 2)
                 );
 
-                // If another pill is already placed nearby, shift pillX away from its anchorX so vertical pointer lines never cross another pill!
                 placedPills.forEach((prev) => {
                   if (prev.isBottom === isBottom) {
                     const xOverlap =
@@ -998,7 +1045,6 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   pillY = anchorY;
                 }
 
-                // Multi-pill vertical staggering: if bounding box still intersects any previously placed pill, push it clear!
                 placedPills.forEach((prev) => {
                   const horizOverlap =
                     pillX < prev.x + prev.w + 8 && pillX + pillW + 8 > prev.x;

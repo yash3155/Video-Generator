@@ -1,19 +1,13 @@
-/**
- * Phonetic Sanitizer for Hindi TTS (Edge-TTS & Gemini TTS)
- * Converts currencies, percentages, number ranges, symbols, and English
- * financial/technical acronyms into natural Devanagari phonetic pronunciations.
- */
+// src/utils/sanitize.ts
 export function sanitizeForHindiTTS(text: string): string {
   if (!text) return '';
   let sanitized = text;
 
-  // 1. Strip commas inside numbers FIRST (e.g. ₹2,160 -> ₹2160, 21,800 -> 21800)
-  // Prevents ₹2,160 from becoming "2 रुपये, 160"!
+  // 1. Strip commas inside numbers FIRST (e.g. ₹2,160 -> ₹2160)
   sanitized = sanitized.replace(/(\d),(\d)/g, '$1$2');
   sanitized = sanitized.replace(/(\d),(\d)/g, '$1$2');
 
   // 2. Convert numeric ranges BEFORE negative sign rule (e.g. 15-20% -> 15 से 20 परसेंट)
-  // Prevents "15-20%" from being spoken as "15 माइनस 20 परसेंट"!
   sanitized = sanitized.replace(/(\d+)\s*[-–—]\s*(\d+)\s*%/g, '$1 से $2 परसेंट');
   sanitized = sanitized.replace(/(\d+)\s*[-–—]\s*(\d+)/g, '$1 से $2');
 
@@ -23,11 +17,16 @@ export function sanitizeForHindiTTS(text: string): string {
   sanitized = sanitized.replace(/रि[ज़जज़]िट/gi, 'नतीजे');
   sanitized = sanitized.replace(/रि[ज़जज़]ट/gi, 'नतीजे');
 
-  // 4. Fix slurred English loanwords in Devanagari
+  // 4. Fix slurred English loanwords & technical terms in Devanagari
   sanitized = sanitized.replace(/एकसपायरी/g, 'एक्सपायरी');
   sanitized = sanitized.replace(/वॉल्क|वाल्क/g, 'वॉक');
   sanitized = sanitized.replace(/सेल्[फ़फ][\s-]*अ[\s-]*फुलफिलिंग/g, 'सेल्फ-फुलफिलिंग');
   sanitized = sanitized.replace(/लेवरेज्ड/g, 'लीवरेज्ड');
+  sanitized = sanitized.replace(/व्हिपसॉ/g, 'विप-सॉ');
+  sanitized = sanitized.replace(/ब्लोफ/g, 'ब्लो-ऑफ');
+  sanitized = sanitized.replace(/ओआई/g, 'ओपन इंटरेस्ट');
+  sanitized = sanitized.replace(/ईएमए/g, 'ई एम ए');
+  sanitized = sanitized.replace(/एसएमए/g, 'एस एम ए');
 
   // 5. Smooth out awkward regulatory & English clusters
   sanitized = sanitized.replace(/दवा रेगुलेटर\s*\(?FDA\)?/gi, 'दवा रेगुलेटर');
@@ -35,13 +34,18 @@ export function sanitizeForHindiTTS(text: string): string {
   sanitized = sanitized.replace(/\bFDA\b/gi, 'एफ डी ए');
   sanitized = sanitized.replace(/यू\s*एस\s*एफ\s*डी\s*ए/g, 'एफ डी ए');
 
-  // 6. Currency & Mathematical Symbols (handles decimals & negative numbers only when preceded by space/start)
+  // 6. Stochastic & Williams % symbols BEFORE generic % rule
+  sanitized = sanitized.replace(/%K/gi, 'परसेंट के');
+  sanitized = sanitized.replace(/%D/gi, 'परसेंट डी');
+  sanitized = sanitized.replace(/%R/gi, 'परसेंट आर');
+
+  // 7. Currency & Mathematical Symbols
   sanitized = sanitized.replace(/₹\s*(\d+(?:\.\d+)?)/g, '$1 रुपये');
   sanitized = sanitized.replace(/(\d+(?:\.\d+)?)%/g, '$1 परसेंट');
   sanitized = sanitized.replace(/(^|\s)\+(\d+(?:\.\d+)?)/g, '$1प्लस $2');
   sanitized = sanitized.replace(/(^|\s)-(\d+(?:\.\d+)?)/g, '$1माइनस $2');
 
-  // 7. Finance & Regulatory Acronyms
+  // 8. Finance & Technical Analysis Acronyms
   sanitized = sanitized.replace(/[()]/g, '');
   sanitized = sanitized.replace(/\bETF\b/gi, 'ई टी एफ');
   sanitized = sanitized.replace(/\bETFs\b/gi, 'ई टी एफ');
@@ -56,13 +60,27 @@ export function sanitizeForHindiTTS(text: string): string {
   sanitized = sanitized.replace(/\bRSI\b/gi, 'आर एस आई');
   sanitized = sanitized.replace(/\bMACD\b/gi, 'मैक डी');
   sanitized = sanitized.replace(/\bEMA\b/gi, 'ई एम ए');
+  sanitized = sanitized.replace(/\bEMAs\b/gi, 'ई एम ए');
+  sanitized = sanitized.replace(/\bSMA\b/gi, 'एस एम ए');
+  sanitized = sanitized.replace(/\bSMAs\b/gi, 'एस एम ए');
+  sanitized = sanitized.replace(/\bOI\b/gi, 'ओपन इंटरेस्ट');
+  sanitized = sanitized.replace(/\bOBV\b/gi, 'ओ बी वी');
+  sanitized = sanitized.replace(/\bVPT\b/gi, 'वी पी टी');
+  sanitized = sanitized.replace(/\bCOT\b/gi, 'सी ओ टी');
+  sanitized = sanitized.replace(/\bPCR\b/gi, 'पी सी आर');
+  sanitized = sanitized.replace(/\bROC\b/gi, 'आर ओ सी');
+  sanitized = sanitized.replace(/\bCCI\b/gi, 'सी सी आई');
+  sanitized = sanitized.replace(/\bKAMA\b/gi, 'कामा');
+  sanitized = sanitized.replace(/\bATR\b/gi, 'ए टी आर');
+  sanitized = sanitized.replace(/\bADX\b/gi, 'ए डी एक्स');
+  sanitized = sanitized.replace(/\bSAR\b/gi, 'एस ए आर');
   sanitized = sanitized.replace(/\bCMT\b/gi, 'सी एम टी');
   sanitized = sanitized.replace(/\bQ1\b/gi, 'क्यू वन');
   sanitized = sanitized.replace(/\bQ2\b/gi, 'क्यू टू');
   sanitized = sanitized.replace(/\bQ3\b/gi, 'क्यू थ्री');
   sanitized = sanitized.replace(/\bQ4\b/gi, 'क्यू फोर');
 
-  // 8. Tech & Systems Acronyms
+  // 9. Tech & Systems Acronyms
   sanitized = sanitized.replace(/\bAPI\b/gi, 'ए पी आई');
   sanitized = sanitized.replace(/\bSQL\b/gi, 'सीक्वल');
   sanitized = sanitized.replace(/\bCPU\b/gi, 'सी पी यू');

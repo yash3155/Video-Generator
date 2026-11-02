@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import 'dotenv/config';
+import { normalizeAndRemedyEpisode } from './generate_episode.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,6 +45,7 @@ Options:
 // 1. Detect Model Engine: Argon vs Standard Flash
 const isArgon = /argon/i.test(fullInput);
 const isForce = rawArgs.includes('--force');
+const isReRender = rawArgs.includes('--re-render') || rawArgs.includes('--force-render');
 const isDryRun = rawArgs.includes('--dry-run');
 const skipRender = rawArgs.includes('--skip-render');
 const skipTTS = rawArgs.includes('--skip-tts');
@@ -202,9 +204,17 @@ for (let i = 0; i < chapterKeys.length; i++) {
   const rawEpisodePath = path.join(dataDir, 'episode_raw.json');
   const compiledEpisodePath = path.join(dataDir, 'episode_compiled.json');
 
-  // Script Generation
+  // Script Generation / Normalization
   if (fs.existsSync(rawEpisodePath) && !isForce) {
-    console.log(`ℹ️ Existing 'episode_raw.json' found at: ${rawEpisodePath}`);
+    console.log(`ℹ️ Existing 'episode_raw.json' found at: ${rawEpisodePath}. Applying normalization & remedies...`);
+    try {
+      let raw = JSON.parse(fs.readFileSync(rawEpisodePath, 'utf8'));
+      raw = normalizeAndRemedyEpisode(raw, chapterSlug || path.basename(dataDir));
+      fs.writeFileSync(rawEpisodePath, JSON.stringify(raw, null, 2), 'utf8');
+      console.log(`✅ Normalized existing payload for ${chapterKey}.`);
+    } catch (normErr) {
+      console.warn(`⚠️ Warning: normalization failed for ${chapterKey}:`, normErr.message);
+    }
   } else {
     console.log(`🤖 Generating episode payload with model ${targetModel}...`);
     const genCommand = `"${process.execPath}" --max-http-header-size=65536 scripts/generate_episode.mjs --dir="${dataDir}" --model=${targetModel} --temperature=0.2 --curriculum="${curriculumDirective.replace(/"/g, '\\"')}"`;
@@ -242,8 +252,8 @@ for (let i = 0; i < chapterKeys.length; i++) {
     continue;
   }
 
-  // If video already exists and is valid, skip unless force is requested
-  if (fs.existsSync(outputVideo) && fs.statSync(outputVideo).size > 1024 * 1024 && !isForce) {
+  // If video already exists and is valid, skip unless force or re-render is requested
+  if (fs.existsSync(outputVideo) && fs.statSync(outputVideo).size > 1024 * 1024 && !isForce && !isReRender) {
     console.log(`✅ Video already rendered and verified at: ${outputVideo}. Skipping to next.`);
     continue;
   }

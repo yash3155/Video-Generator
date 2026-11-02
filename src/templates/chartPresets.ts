@@ -1,3 +1,4 @@
+// src/templates/chartPresets.ts
 export interface CandlestickPoint {
   open: number;
   high: number;
@@ -22,85 +23,8 @@ export interface PresetChartData {
   maxY: number;
   candlesticks?: CandlestickPoint[];
   points?: TelemetryPoint[];
+  necklinePrice?: number;
 }
-
-/**
- * Exact landmark prices for every preset so scripts/validate_episode.mjs
- * and Argon prompts stay 100% synchronized with the rendered candles.
- */
-export const PRESET_LANDMARKS: Record<
-  string,
-  {
-    minY: number;
-    maxY: number;
-    startPrice: number;
-    peakPrice: number;
-    peakCandleIndex: number;
-    endPrice: number;
-    endCandleIndex: number;
-    supportOrNecklinePrice?: number;
-    description: string;
-  }
-> = {
-  uptrend_then_drop: {
-    minY: 115,
-    maxY: 165,
-    startPrice: 120,
-    peakPrice: 158,
-    peakCandleIndex: 21,
-    endPrice: 141,
-    endCandleIndex: 27,
-    description:
-      'Climbs from ₹120 to a peak of ₹158 (candles 18–23), then gaps down on heavy volume to close at ₹141 (candle 27). NEVER use ₹165 as a candle price (165 is only the empty Y-axis top border).',
-  },
-  uptrend_break: {
-    minY: 92,
-    maxY: 152,
-    startPrice: 98,
-    peakPrice: 148,
-    peakCandleIndex: 16,
-    supportOrNecklinePrice: 140,
-    endPrice: 135,
-    endCandleIndex: 27,
-    description:
-      'Climbs along a green trendline from ₹98 to ₹148 (candle 16), breaks support at ₹140 (candle 18–21), and drops to ₹135 (candle 27). For a healthy uptrend without the breakdown, stop at progressStep: 2.',
-  },
-  bull_breakout: {
-    minY: 115,
-    maxY: 175,
-    startPrice: 120,
-    peakPrice: 168,
-    peakCandleIndex: 27,
-    supportOrNecklinePrice: 148,
-    endPrice: 166,
-    endCandleIndex: 27,
-    description:
-      'Pure bullish rally: consolidates below ₹148 resistance, breaks out at ₹150 on 3x volume (candle 18), and rallies cleanly to ₹166–₹168 (candle 27). Use this for bullish breakouts, weekly uptrends, and volume confirmation.',
-  },
-  head_and_shoulders: {
-    minY: 124,
-    maxY: 182,
-    startPrice: 136,
-    peakPrice: 175,
-    peakCandleIndex: 12,
-    supportOrNecklinePrice: 142,
-    endPrice: 134,
-    endCandleIndex: 27,
-    description:
-      'Left Shoulder at ₹158 (candle 4), Head at ₹175 (candle 12), Right Shoulder at ₹156 (candle 20), Neckline at ₹142 breaks at candle 25 and drops to ₹134.',
-  },
-  random_walk_line: {
-    minY: 70,
-    maxY: 185,
-    startPrice: 100,
-    peakPrice: 168,
-    peakCandleIndex: 27,
-    endPrice: 165,
-    endCandleIndex: 27,
-    description:
-      'Line telemetry series climbing from 100 to 165 across T+1 to T+100.',
-  },
-};
 
 const UPTREND_THEN_DROP_CANDLES: CandlestickPoint[] = [
   { open: 120, high: 123, low: 119, close: 122, volume: 65, label: 'Jan 02' },
@@ -192,7 +116,7 @@ const BULL_BREAKOUT_CANDLES: CandlestickPoint[] = [
   { open: 164, high: 167, low: 162, close: 166, volume: 200, label: 'Mar 31' },
   { open: 166, high: 168, low: 164, close: 167, volume: 210 },
   { open: 167, high: 169, low: 165, close: 168, volume: 215 },
-  { open: 168, high: 169, low: 165, close: 166, volume: 185 },
+  { open: 168, high: 169, low: 165, close: 168, volume: 185 },
 ];
 
 const HEAD_AND_SHOULDERS_CANDLES: CandlestickPoint[] = [
@@ -200,28 +124,28 @@ const HEAD_AND_SHOULDERS_CANDLES: CandlestickPoint[] = [
   { open: 140, high: 146, low: 139, close: 145, volume: 105 },
   { open: 145, high: 151, low: 144, close: 150, volume: 120 },
   { open: 150, high: 155, low: 149, close: 154, volume: 140 },
-  { open: 154, high: 158, low: 152, close: 156, volume: 165, label: 'Jan 19' }, // Left Shoulder Peak (idx 4, high 158)
+  { open: 154, high: 158, low: 152, close: 156, volume: 165, label: 'Jan 19' },
   { open: 156, high: 156, low: 148, close: 149, volume: 110 },
   { open: 149, high: 150, low: 143, close: 144, volume: 95 },
-  { open: 144, high: 145, low: 142, close: 143, volume: 85 }, // Trough 1 (idx 7, low 142)
+  { open: 144, high: 145, low: 142, close: 143, volume: 85 },
   { open: 143, high: 151, low: 142, close: 150, volume: 115, label: 'Feb 02' },
   { open: 150, high: 158, low: 149, close: 157, volume: 130 },
   { open: 157, high: 165, low: 156, close: 164, volume: 145 },
   { open: 164, high: 171, low: 163, close: 170, volume: 155 },
-  { open: 170, high: 175, low: 168, close: 172, volume: 135, label: 'Feb 16' }, // Head Peak (idx 12, high 175)
+  { open: 170, high: 175, low: 168, close: 172, volume: 135, label: 'Feb 16' },
   { open: 172, high: 173, low: 162, close: 163, volume: 150 },
   { open: 163, high: 164, low: 154, close: 155, volume: 140 },
   { open: 155, high: 156, low: 147, close: 148, volume: 125 },
-  { open: 148, high: 149, low: 142, close: 143, volume: 100, label: 'Mar 01' }, // Trough 2 (idx 16-17, low 142)
+  { open: 148, high: 149, low: 142, close: 143, volume: 100, label: 'Mar 01' },
   { open: 143, high: 148, low: 142, close: 147, volume: 80 },
   { open: 147, high: 152, low: 146, close: 151, volume: 75 },
   { open: 151, high: 155, low: 150, close: 154, volume: 70 },
-  { open: 154, high: 156, low: 151, close: 152, volume: 65, label: 'Mar 15' }, // Right Shoulder Peak (idx 20, high 156)
+  { open: 154, high: 156, low: 151, close: 152, volume: 65, label: 'Mar 15' },
   { open: 152, high: 153, low: 147, close: 148, volume: 95 },
   { open: 148, high: 149, low: 144, close: 145, volume: 110 },
   { open: 145, high: 146, low: 142, close: 143, volume: 125 },
   { open: 143, high: 144, low: 138, close: 139, volume: 215, label: 'Mar 31' },
-  { open: 139, high: 140, low: 135, close: 136, volume: 235 }, // Breakdown (idx 25, low 135)
+  { open: 139, high: 140, low: 135, close: 136, volume: 235 },
   { open: 136, high: 138, low: 134, close: 135, volume: 190 },
   { open: 135, high: 136, low: 133, close: 134, volume: 175 },
 ];
@@ -272,6 +196,7 @@ export function getPresetData(presetName?: string): PresetChartData {
         minY: 124,
         maxY: 182,
         candlesticks: HEAD_AND_SHOULDERS_CANDLES,
+        necklinePrice: 142,
       };
     case 'random_walk_line':
     case 'telemetry_line':
@@ -292,4 +217,125 @@ export function getPresetData(presetName?: string): PresetChartData {
         candlesticks: UPTREND_THEN_DROP_CANDLES,
       };
   }
+}
+
+/**
+ * GENERIC AUTO-SCALING ENGINE:
+ * Reads any ₹ prices mentioned in the scene's beats and dynamically rescales
+ * the preset's candlesticks/points + Y-axis bounds so the chart 100% matches
+ * whatever numbers the voiceover or cards say!
+ */
+export function getDynamicPresetData(
+  presetName: string | undefined,
+  mentionedPrices: number[]
+): PresetChartData {
+  const base = getPresetData(presetName);
+
+  // Filter out tiny numbers (like ₹0.05 or ₹1 increments) and deduplicate
+  const validPrices = [...new Set(mentionedPrices.filter((p) => p >= 20 && p <= 100000))].sort(
+    (a, b) => a - b
+  );
+
+  if (validPrices.length === 0) {
+    return base;
+  }
+
+  // 1. Line Chart Auto-Scaling
+  if (base.points && base.points.length > 0) {
+    const baseMin = Math.min(...base.points.map((p) => p.value));
+    const baseMax = Math.max(...base.points.map((p) => p.value));
+    const targetLow = validPrices[0];
+    const targetHigh =
+      validPrices.length > 1 ? validPrices[validPrices.length - 1] : Math.round(targetLow * 1.25);
+
+    const scale =
+      validPrices.length > 1 && baseMax !== baseMin
+        ? (targetHigh - targetLow) / (baseMax - baseMin)
+        : targetLow / 121;
+
+    const scaledPoints = base.points.map((pt) => {
+      const newVal =
+        validPrices.length > 1
+          ? Math.round((targetLow + (pt.value - baseMin) * scale) * 10) / 10
+          : Math.round(pt.value * scale * 10) / 10;
+      return { ...pt, value: newVal };
+    });
+
+    const allVals = scaledPoints.map((p) => p.value);
+    const minVal = Math.min(...allVals);
+    const maxVal = Math.max(...allVals);
+    const pad = Math.max(5, Math.round((maxVal - minVal) * 0.15));
+
+    return {
+      ...base,
+      minY: Math.floor(minVal - pad),
+      maxY: Math.ceil(maxVal + pad),
+      points: scaledPoints,
+    };
+  }
+
+  // 2. Candlestick Chart Auto-Scaling
+  if (!base.candlesticks || base.candlesticks.length === 0) {
+    return base;
+  }
+
+  const isBullPreset = presetName === 'bull_breakout' || presetName === 'support_bounce';
+  const basePeakClose = Math.max(...base.candlesticks.map((c) => c.close));
+  const baseEndClose = base.candlesticks[base.candlesticks.length - 1].close;
+  const baseBreakoutClose = isBullPreset ? 148 : basePeakClose;
+
+  let transformFn: (val: number) => number;
+
+  if (validPrices.length === 1) {
+    const targetPrice = validPrices[0];
+    const anchorBase = isBullPreset ? baseBreakoutClose : basePeakClose;
+    const ratio = targetPrice / anchorBase;
+    transformFn = (val: number) => Math.round(val * ratio);
+  } else {
+    const targetHigh = validPrices[validPrices.length - 1];
+    const targetLow = validPrices[0];
+
+    if (isBullPreset) {
+      const baseSpan = basePeakClose - baseBreakoutClose || 20;
+      const targetSpan = targetHigh - targetLow || Math.round(targetLow * 0.12);
+      const scale = Math.max(0.2, Math.min(25, targetSpan / baseSpan));
+      transformFn = (val: number) =>
+        Math.round(targetLow + (val - baseBreakoutClose) * scale);
+    } else {
+      const baseSpan = basePeakClose - baseEndClose || 17;
+      const targetSpan = targetHigh - targetLow || Math.round(targetHigh * 0.1);
+      const scale = Math.max(0.2, Math.min(25, targetSpan / baseSpan));
+      transformFn = (val: number) =>
+        Math.round(targetLow + (val - baseEndClose) * scale);
+    }
+  }
+
+  const scaledCandles = base.candlesticks.map((c) => {
+    const open = transformFn(c.open);
+    const close = transformFn(c.close);
+    const high = Math.max(open, close, transformFn(c.high));
+    const low = Math.min(open, close, transformFn(c.low));
+    return {
+      ...c,
+      open,
+      high,
+      low,
+      close,
+    };
+  });
+
+  const allHighs = scaledCandles.map((c) => c.high);
+  const allLows = scaledCandles.map((c) => c.low);
+  const minLow = Math.min(...allLows);
+  const maxHigh = Math.max(...allHighs);
+  const span = Math.max(10, maxHigh - minLow);
+  const pad = Math.max(4, Math.round(span * 0.12));
+
+  return {
+    ...base,
+    minY: Math.floor(minLow - pad),
+    maxY: Math.ceil(maxHigh + pad),
+    candlesticks: scaledCandles,
+    necklinePrice: base.necklinePrice ? transformFn(base.necklinePrice) : undefined,
+  };
 }

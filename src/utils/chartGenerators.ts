@@ -1,3 +1,4 @@
+// src/templates/chartGenerators.ts
 export interface Candlestick {
   open: number;
   high: number;
@@ -27,10 +28,6 @@ export interface ChartPresetResult {
   necklineY?: number;
 }
 
-/**
- * Seeded pseudo-random number generator (Mulberry32)
- * Guarantees 100% deterministic, flicker-free rendering across Remotion frames.
- */
 export function createSeededRandom(seed: number = 42) {
   let s = seed;
   return function () {
@@ -42,44 +39,19 @@ export function createSeededRandom(seed: number = 42) {
   };
 }
 
-// ----------------------------------------------------
-// 1. FINANCE GENERATORS
-// ----------------------------------------------------
-
-/**
- * Uptrend then drop:
- * 40 daily OHLC candles forming realistic zig-zag waves (higher-highs & higher-lows)
- * from 120 up to 158, followed by a -7% gap-down drop on massive volume and a drift to 130.
- */
 export function generateUptrendThenDrop(): ChartPresetResult {
   const rand = createSeededRandom(101);
   const candlesticks: Candlestick[] = [];
 
-  // Wave structure targets (price targets for swings):
-  // Wave 1: 120 -> 132 (up), then pullback to 127
-  // Wave 2: 127 -> 144 (up), then pullback to 139
-  // Wave 3: 139 -> 154 (up), then pullback to 149
-  // Wave 4: 149 -> 158 (peak anticipation)
-  // Day 28: Result Day Gap Down: open 154, close 141 (Result day, massive volume)
-  // Drift down: 141 -> 130 over remaining candles
   const targetPrices = [
-    // Wave 1 up (days 1-5)
     120, 122.5, 126, 129, 132,
-    // Pullback 1 (days 6-8)
     130.5, 128.5, 127,
-    // Wave 2 up (days 9-14)
     130, 133.5, 137, 140, 142.5, 144,
-    // Pullback 2 (days 15-17)
     142, 140.5, 139,
-    // Wave 3 up (days 18-23)
     142, 145, 148.5, 151, 153, 154,
-    // Pullback 3 (days 24-25)
     151.5, 149,
-    // Climactic push to 158 (days 26-27)
     153.5, 158,
-    // Day 28: Result Day gap down & selloff (-7%)
     141,
-    // Post-result drift down (days 29-38)
     139.5, 138, 139, 136.5, 135, 133.5, 134, 132, 130.5, 130,
   ];
 
@@ -97,7 +69,7 @@ export function generateUptrendThenDrop(): ChartPresetResult {
 
   let prevClose = 119;
   for (let i = 0; i < targetPrices.length; i++) {
-    const isResultDay = i === 27; // target 141
+    const isResultDay = i === 27;
     const targetClose = targetPrices[i];
 
     let open: number;
@@ -105,9 +77,9 @@ export function generateUptrendThenDrop(): ChartPresetResult {
     let volume: number;
 
     if (isResultDay) {
-      open = 153.5; // Gap down from 158
+      open = 153.5;
       close = 141.0;
-      volume = 245; // Huge volume spike
+      volume = 245;
     } else {
       const openOffset = (rand() - 0.5) * 1.2;
       open = Number((prevClose + openOffset).toFixed(1));
@@ -118,12 +90,8 @@ export function generateUptrendThenDrop(): ChartPresetResult {
       );
     }
 
-    const high = Number(
-      (Math.max(open, close) + 0.6 + rand() * 1.5).toFixed(1)
-    );
-    const low = Number(
-      (Math.min(open, close) - 0.6 - rand() * 1.4).toFixed(1)
-    );
+    const high = Number((Math.max(open, close) + 0.6 + rand() * 1.5).toFixed(1));
+    const low = Number((Math.min(open, close) - 0.6 - rand() * 1.4).toFixed(1));
 
     candlesticks.push({
       open,
@@ -147,27 +115,16 @@ export function generateUptrendThenDrop(): ChartPresetResult {
   };
 }
 
-/**
- * Uptrend Break:
- * Ascending channel with 3 distinct swing waves touching a rising trendline,
- * followed by a decisive break below the trendline.
- */
 export function generateUptrendBreak(): ChartPresetResult {
   const rand = createSeededRandom(202);
   const candlesticks: Candlestick[] = [];
 
   const targetPrices = [
-    // Swing 1 up & pullback
     100, 103, 107, 110, 107.5, 105, 104,
-    // Swing 2 up & pullback
     107, 111, 116, 120, 117, 114, 113,
-    // Swing 3 up & pullback
     116, 121, 127, 132, 129, 125, 124,
-    // Push toward 136
     128, 132, 136, 134,
-    // Decisive Trendline Breakdown
     122,
-    // Follow-through selloff
     119, 116, 114, 111, 110,
   ];
 
@@ -182,7 +139,7 @@ export function generateUptrendBreak(): ChartPresetResult {
 
   let prevClose = 98;
   for (let i = 0; i < targetPrices.length; i++) {
-    const isBreakdown = i === 25; // index 25 is breakdown to 122
+    const isBreakdown = i === 25;
     const targetClose = targetPrices[i];
 
     let open: number;
@@ -201,12 +158,8 @@ export function generateUptrendBreak(): ChartPresetResult {
       volume = Math.round(isUp ? 40 + i * 2.2 + rand() * 12 : 32 + rand() * 10);
     }
 
-    const high = Number(
-      (Math.max(open, close) + 0.5 + rand() * 1.3).toFixed(1)
-    );
-    const low = Number(
-      (Math.min(open, close) - 0.5 - rand() * 1.2).toFixed(1)
-    );
+    const high = Number((Math.max(open, close) + 0.5 + rand() * 1.3).toFixed(1));
+    const low = Number((Math.min(open, close) - 0.5 - rand() * 1.2).toFixed(1));
 
     candlesticks.push({
       open,
@@ -237,29 +190,78 @@ export function generateUptrendBreak(): ChartPresetResult {
 }
 
 /**
- * Head and Shoulders:
- * Left shoulder peak (160), neckline pullback (142),
- * Head peak (175), neckline pullback (142),
- * Right shoulder peak (158), and breakdown below 142 neckline to 112.
+ * Bull Breakout:
+ * Consolidates below ₹148 resistance, breaks out on 3x volume at ₹150,
+ * and rallies cleanly to ₹168 without crashing.
  */
+export function generateBullBreakout(): ChartPresetResult {
+  const rand = createSeededRandom(255);
+  const candlesticks: Candlestick[] = [];
+
+  const targetPrices = [
+    120, 123, 126, 125, 130, 134, 133, 138, 142, 140,
+    145, 147, 144, 147, 146, 148,
+    153, 157, 159, 156, 161, 163, 160, 164, 166, 167, 168, 168,
+  ];
+
+  const dateLabels = [
+    'Jan 05', '', '', '', 'Jan 19', '', '', '', 'Feb 02', '',
+    '', '', 'Feb 16', '', '', '',
+    'Mar 01', '', '', '', 'Mar 15', '', '', '', 'Mar 31', '', '', '',
+  ];
+
+  let prevClose = 119;
+  for (let i = 0; i < targetPrices.length; i++) {
+    const targetClose = targetPrices[i];
+    const openOffset = (rand() - 0.5) * 0.8;
+    const open = Number((prevClose + openOffset).toFixed(1));
+    const close = targetClose;
+    const isUp = close >= open;
+    const isBreakoutZone = i >= 16;
+    const volume = Math.round(
+      isBreakoutZone
+        ? isUp
+          ? 195 + rand() * 45
+          : 75 + rand() * 15
+        : 60 + rand() * 35
+    );
+
+    const high = Number((Math.max(open, close) + 0.6 + rand() * 1.2).toFixed(1));
+    const low = Number((Math.min(open, close) - 0.5 - rand() * 1.0).toFixed(1));
+
+    candlesticks.push({
+      open,
+      high,
+      low,
+      close,
+      volume,
+      label: dateLabels[i] || '',
+    });
+
+    prevClose = close;
+  }
+
+  return {
+    type: 'candlestick',
+    candlesticks,
+    minY: 115,
+    maxY: 175,
+    unit: '₹',
+    ticker: 'KESAR PAINTS LTD',
+  };
+}
+
 export function generateHeadAndShoulders(): ChartPresetResult {
   const rand = createSeededRandom(303);
   const candlesticks: Candlestick[] = [];
 
   const targets = [
-    // Base to Left shoulder (days 1-5)
     135, 142, 150, 157, 160,
-    // Pullback to neckline (days 6-8)
     153, 146, 142,
-    // Neckline to Head (days 9-14)
     146, 155, 164, 171, 175, 174,
-    // Pullback to neckline (days 15-18)
     166, 157, 148, 142,
-    // Neckline to Right shoulder (days 19-22)
     147, 153, 158, 155,
-    // Drift to neckline (days 23-25)
     150, 145, 142,
-    // Breakdown below neckline (days 26-32)
     134, 128, 124, 120, 117, 114, 112,
   ];
 
@@ -319,9 +321,6 @@ export function generateHeadAndShoulders(): ChartPresetResult {
   };
 }
 
-/**
- * Random walk line: 120-step simulated coin-toss line oscillating between 92 and 103.
- */
 export function generateRandomWalkLine(): ChartPresetResult {
   const rand = createSeededRandom(404);
   const points: TelemetryPoint[] = [];
@@ -346,10 +345,6 @@ export function generateRandomWalkLine(): ChartPresetResult {
     unit: '₹',
   };
 }
-
-// ----------------------------------------------------
-// 2. CODING / SYSTEM DESIGN GENERATORS
-// ----------------------------------------------------
 
 export function generateLatencySpike(): ChartPresetResult {
   const rand = createSeededRandom(505);
@@ -462,10 +457,6 @@ export function generateLoadBalancerFlow(): ChartPresetResult {
     unit: 'req/s',
   };
 }
-
-// ----------------------------------------------------
-// 3. PSYCHOLOGY / BEHAVIORAL GENERATORS
-// ----------------------------------------------------
 
 export function generateHabitCompounding(): ChartPresetResult {
   const points: TelemetryPoint[] = [];
@@ -625,16 +616,15 @@ export function generateExpectationVsReality(): ChartPresetResult {
   };
 }
 
-// ----------------------------------------------------
-// UNIFIED PRESET RESOLVER
-// ----------------------------------------------------
-
 export function getDeterministicPresetData(presetName: string): ChartPresetResult {
   switch (presetName) {
     case 'uptrend_then_drop':
       return generateUptrendThenDrop();
     case 'uptrend_break':
       return generateUptrendBreak();
+    case 'bull_breakout':
+    case 'support_bounce':
+      return generateBullBreakout();
     case 'head_and_shoulders':
       return generateHeadAndShoulders();
     case 'random_walk_line':

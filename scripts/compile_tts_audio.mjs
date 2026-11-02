@@ -1,3 +1,4 @@
+// scripts/compile_tts_audio.mjs
 import 'dotenv/config';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -39,7 +40,6 @@ if (dirArg) {
   chapterDir = path.resolve(rootDir, 'src', 'data', 'chapters', chapterSlug);
 }
 
-// Target Paths (Isolated chapter folder or root fallback)
 const rawPath = chapterDir
   ? path.join(chapterDir, 'episode_raw.json')
   : path.join(rootDir, 'src', 'data', 'episode_raw.json');
@@ -90,14 +90,13 @@ try {
     stdio: 'inherit',
     cwd: rootDir,
   });
-} catch (err) {
+} catch {
   console.error(`\n========================================`);
   console.error(`[VALIDATION FAILED] Cannot compile audio. Pre-validation checks failed.`);
   console.error(`========================================\n`);
   process.exit(1);
 }
 
-// Initialize Edge TTS
 const edgeTts = new EdgeTTS({
   voice: 'hi-IN-MadhurNeural',
   lang: 'hi-IN',
@@ -105,7 +104,6 @@ const edgeTts = new EdgeTTS({
   rate: '+2%',
 });
 
-// Initialize Gemini Client with Gemini 4 Argon & proxy routing support
 const geminiApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
 const targetModel = process.env.GEMINI_MODEL || 'gemini-4-argon';
 const geminiBaseUrl = process.env.GEMINI_BASE_URL || process.env.GOOGLE_GEMINI_BASE_URL;
@@ -135,8 +133,8 @@ function createWavHeader(dataLength, sampleRate = 24000, numChannels = 1, bitsPe
   header.writeUInt32LE(36 + dataLength, 4);
   header.write('WAVE', 8);
   header.write('fmt ', 12);
-  header.writeUInt32LE(16, 16); // Subchunk1Size
-  header.writeUInt16LE(1, 20); // PCM format
+  header.writeUInt32LE(16, 16);
+  header.writeUInt16LE(1, 20);
   header.writeUInt16LE(numChannels, 22);
   header.writeUInt32LE(sampleRate, 24);
   header.writeUInt32LE(byteRate, 28);
@@ -152,13 +150,11 @@ export function sanitizeForHindiTTS(text) {
   if (!text) return '';
   let sanitized = text;
 
-  // 1. Strip commas inside numbers FIRST (e.g. ₹2,160 -> ₹2160, 21,800 -> 21800)
-  // Prevents ₹2,160 from becoming "2 रुपये, 160"!
+  // 1. Strip commas inside numbers FIRST (e.g. ₹2,160 -> ₹2160)
   sanitized = sanitized.replace(/(\d),(\d)/g, '$1$2');
   sanitized = sanitized.replace(/(\d),(\d)/g, '$1$2');
 
   // 2. Convert numeric ranges BEFORE negative sign rule (e.g. 15-20% -> 15 से 20 परसेंट)
-  // Prevents "15-20%" from being spoken as "15 माइनस 20 परसेंट"!
   sanitized = sanitized.replace(/(\d+)\s*[-–—]\s*(\d+)\s*%/g, '$1 से $2 परसेंट');
   sanitized = sanitized.replace(/(\d+)\s*[-–—]\s*(\d+)/g, '$1 से $2');
 
@@ -168,11 +164,16 @@ export function sanitizeForHindiTTS(text) {
   sanitized = sanitized.replace(/रि[ज़जज़]िट/gi, 'नतीजे');
   sanitized = sanitized.replace(/रि[ज़जज़]ट/gi, 'नतीजे');
 
-  // 4. Fix slurred English loanwords in Devanagari (Expiry, Walk, Self-fulfilling, Leverage)
+  // 4. Fix slurred English loanwords & technical terms in Devanagari
   sanitized = sanitized.replace(/एकसपायरी/g, 'एक्सपायरी');
   sanitized = sanitized.replace(/वॉल्क|वाल्क/g, 'वॉक');
   sanitized = sanitized.replace(/सेल्[फ़फ][\s-]*अ[\s-]*फुलफिलिंग/g, 'सेल्फ-फुलफिलिंग');
   sanitized = sanitized.replace(/लेवरेज्ड/g, 'लीवरेज्ड');
+  sanitized = sanitized.replace(/व्हिपसॉ/g, 'विप-सॉ');
+  sanitized = sanitized.replace(/ब्लोफ/g, 'ब्लो-ऑफ');
+  sanitized = sanitized.replace(/ओआई/g, 'ओपन इंटरेस्ट');
+  sanitized = sanitized.replace(/ईएमए/g, 'ई एम ए');
+  sanitized = sanitized.replace(/एसएमए/g, 'एस एम ए');
 
   // 5. Smooth out awkward regulatory & English clusters
   sanitized = sanitized.replace(/दवा रेगुलेटर\s*\(?FDA\)?/gi, 'दवा रेगुलेटर');
@@ -180,13 +181,18 @@ export function sanitizeForHindiTTS(text) {
   sanitized = sanitized.replace(/\bFDA\b/gi, 'एफ डी ए');
   sanitized = sanitized.replace(/यू\s*एस\s*एफ\s*डी\s*ए/g, 'एफ डी ए');
 
-  // 6. Currency & Mathematical Symbols (handles decimals & negative numbers only when preceded by space/start)
+  // 6. Stochastic & Williams % symbols BEFORE generic % rule
+  sanitized = sanitized.replace(/%K/gi, 'परसेंट के');
+  sanitized = sanitized.replace(/%D/gi, 'परसेंट डी');
+  sanitized = sanitized.replace(/%R/gi, 'परसेंट आर');
+
+  // 7. Currency & Mathematical Symbols
   sanitized = sanitized.replace(/₹\s*(\d+(?:\.\d+)?)/g, '$1 रुपये');
   sanitized = sanitized.replace(/(\d+(?:\.\d+)?)%/g, '$1 परसेंट');
   sanitized = sanitized.replace(/(^|\s)\+(\d+(?:\.\d+)?)/g, '$1प्लस $2');
   sanitized = sanitized.replace(/(^|\s)-(\d+(?:\.\d+)?)/g, '$1माइनस $2');
 
-  // 7. Finance & Regulatory Acronyms
+  // 8. Finance & Technical Analysis Acronyms
   sanitized = sanitized.replace(/[()]/g, '');
   sanitized = sanitized.replace(/\bETF\b/gi, 'ई टी एफ');
   sanitized = sanitized.replace(/\bETFs\b/gi, 'ई टी एफ');
@@ -201,13 +207,27 @@ export function sanitizeForHindiTTS(text) {
   sanitized = sanitized.replace(/\bRSI\b/gi, 'आर एस आई');
   sanitized = sanitized.replace(/\bMACD\b/gi, 'मैक डी');
   sanitized = sanitized.replace(/\bEMA\b/gi, 'ई एम ए');
+  sanitized = sanitized.replace(/\bEMAs\b/gi, 'ई एम ए');
+  sanitized = sanitized.replace(/\bSMA\b/gi, 'एस एम ए');
+  sanitized = sanitized.replace(/\bSMAs\b/gi, 'एस एम ए');
+  sanitized = sanitized.replace(/\bOI\b/gi, 'ओपन इंटरेस्ट');
+  sanitized = sanitized.replace(/\bOBV\b/gi, 'ओ बी वी');
+  sanitized = sanitized.replace(/\bVPT\b/gi, 'वी पी टी');
+  sanitized = sanitized.replace(/\bCOT\b/gi, 'सी ओ टी');
+  sanitized = sanitized.replace(/\bPCR\b/gi, 'पी सी आर');
+  sanitized = sanitized.replace(/\bROC\b/gi, 'आर ओ सी');
+  sanitized = sanitized.replace(/\bCCI\b/gi, 'सी सी आई');
+  sanitized = sanitized.replace(/\bKAMA\b/gi, 'कामा');
+  sanitized = sanitized.replace(/\bATR\b/gi, 'ए टी आर');
+  sanitized = sanitized.replace(/\bADX\b/gi, 'ए डी एक्स');
+  sanitized = sanitized.replace(/\bSAR\b/gi, 'एस ए आर');
   sanitized = sanitized.replace(/\bCMT\b/gi, 'सी एम टी');
   sanitized = sanitized.replace(/\bQ1\b/gi, 'क्यू वन');
   sanitized = sanitized.replace(/\bQ2\b/gi, 'क्यू टू');
   sanitized = sanitized.replace(/\bQ3\b/gi, 'क्यू थ्री');
   sanitized = sanitized.replace(/\bQ4\b/gi, 'क्यू फोर');
 
-  // Tech & Systems Acronyms
+  // 9. Tech & Systems Acronyms
   sanitized = sanitized.replace(/\bAPI\b/gi, 'ए पी आई');
   sanitized = sanitized.replace(/\bSQL\b/gi, 'सीक्वल');
   sanitized = sanitized.replace(/\bCPU\b/gi, 'सी पी यू');
@@ -236,16 +256,15 @@ async function synthesizeEdge(beat, maxRetries = 4) {
         console.log(`  -> [Edge-TTS] Synthesizing beat "${beat.id}": "${spokenText.slice(0, 40)}..."`);
         await edgeTts.ttsPromise(spokenText, filePath);
 
-        // Verify valid file was written
         if (fs.existsSync(filePath) && fs.statSync(filePath).size > 1000) {
-          break; // Success!
+          break;
         } else {
           throw new Error('Generated audio file is 0 bytes or corrupt.');
         }
       } catch (err) {
         attempt++;
         if (fs.existsSync(filePath) && fs.statSync(filePath).size < 1000) {
-          try { fs.unlinkSync(filePath); } catch {}
+          try { fs.unlinkSync(filePath); } catch { }
         }
         if (attempt >= maxRetries) throw err;
         const waitMs = attempt * 2500;
@@ -253,17 +272,15 @@ async function synthesizeEdge(beat, maxRetries = 4) {
         await sleep(waitMs);
       }
     }
-    // Polite pacing delay to prevent Edge-TTS socket disconnects
     await sleep(450);
   } else {
     console.log(`  -> [Edge-TTS] Using cached "${fileName}"`);
   }
 
-  // Mirror to isolated chapter directory if configured
   if (localAudioDir && fs.existsSync(filePath)) {
     try {
       fs.copyFileSync(filePath, path.join(localAudioDir, fileName));
-    } catch {}
+    } catch { }
   }
 
   const meta = await parseFile(filePath);
@@ -338,16 +355,13 @@ async function synthesizeGemini(beat) {
 
   fs.writeFileSync(filePath, fullWavBuffer);
 
-  // Mirror to isolated chapter directory if configured
   if (localAudioDir) {
     try {
       fs.copyFileSync(filePath, path.join(localAudioDir, fileName));
-    } catch {}
+    } catch { }
   }
 
   const durationSec = pcmBuffer.length / (24000 * 2);
-
-  // Rate limiting delay
   console.log(`  -> [Gemini-TTS] Waiting 4s rate-limit pause...`);
   await sleep(4000);
 
@@ -386,7 +400,6 @@ async function run() {
       beat.audioFile = audioResult.audioFile;
       beat.audioDurationSec = parseFloat(audioResult.durationSec.toFixed(2));
 
-      // Calibrated Pacing: Natural mentor delivery without rushed pauses
       const intendedPauseMs = beat.pauseAfterMs ?? 260;
       const pauseMs =
         intendedPauseMs >= 3000 ? 3200 : intendedPauseMs >= 600 ? 450 : 260;
@@ -417,4 +430,3 @@ run().catch((err) => {
   console.error('[FATAL] Audio compilation failed:', err);
   process.exit(1);
 });
-
