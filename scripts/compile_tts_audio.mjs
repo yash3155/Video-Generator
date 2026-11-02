@@ -194,6 +194,27 @@ export function sanitizeForHindiTTS(text) {
 
   // 8. Finance & Technical Analysis Acronyms
   sanitized = sanitized.replace(/[()]/g, '');
+  sanitized = sanitized.replace(/जहूठ/g, 'झूठ');
+  sanitized = sanitized.replace(/\bTRIN\b/gi, 'ट्रिन');
+  sanitized = sanitized.replace(/\bAD Line\b/gi, 'ए डी लाइन');
+  sanitized = sanitized.replace(/\bA-D\b/gi, 'ए डी');
+  sanitized = sanitized.replace(/\bMTM\b/gi, 'एम टी एम');
+  sanitized = sanitized.replace(/\bOTC\b/gi, 'ओ टी सी');
+  sanitized = sanitized.replace(/\bCCP\b/gi, 'सी सी पी');
+  sanitized = sanitized.replace(/\bCCPs\b/gi, 'सी सी पी');
+  sanitized = sanitized.replace(/\bCDS\b/gi, 'सी डी एस');
+  sanitized = sanitized.replace(/\bCDO\b/gi, 'सी डी ओ');
+  sanitized = sanitized.replace(/\bVaR\b/g, 'वी ए आर');
+  sanitized = sanitized.replace(/\bLIBOR\b/gi, 'लाइबोर');
+  sanitized = sanitized.replace(/\bSOFR\b/gi, 'सोफर');
+  sanitized = sanitized.replace(/\bOIS\b/gi, 'ओ आई एस');
+  sanitized = sanitized.replace(/\bFRA\b/gi, 'एफ आर ए');
+  sanitized = sanitized.replace(/\bFRAs\b/gi, 'एफ आर ए');
+  sanitized = sanitized.replace(/\bBSM\b/gi, 'बी एस एम');
+  sanitized = sanitized.replace(/\bCBOE\b/gi, 'सी बी ओ ई');
+  sanitized = sanitized.replace(/\bOCC\b/gi, 'ओ सी सी');
+  sanitized = sanitized.replace(/\bISDA\b/gi, 'इस्डा');
+  sanitized = sanitized.replace(/\bCSA\b/gi, 'सी एस ए');
   sanitized = sanitized.replace(/\bETF\b/gi, 'ई टी एफ');
   sanitized = sanitized.replace(/\bETFs\b/gi, 'ई टी एफ');
   sanitized = sanitized.replace(/\bIPO\b/gi, 'आई पी ओ');

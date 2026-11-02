@@ -40,8 +40,17 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
     ? 50 - indicatorSpring * 26
     : 50 + indicatorSpring * 26;
 
-  const leftCount = Math.min(25, Math.max(0, uiState.leftCount));
-  const rightCount = Math.min(25, Math.max(0, uiState.rightCount));
+  const rawLeft = Math.max(0, Number(uiState.leftCount) || 0);
+  const rawRight = Math.max(0, Number(uiState.rightCount) || 0);
+  const totalRaw = rawLeft + rawRight || 1;
+  const leftCount =
+    rawLeft > 25 || rawRight > 25
+      ? Math.max(1, Math.round((rawLeft / totalRaw) * 24))
+      : Math.min(25, rawLeft);
+  const rightCount =
+    rawLeft > 25 || rawRight > 25
+      ? Math.max(1, Math.round((rawRight / totalRaw) * 24))
+      : Math.min(25, rawRight);
 
   // Auto-scale centerMetric font size so multi-word strings ("Crowd Belief") never wrap or collide with the icon
   const metricText = String(uiState.centerMetric || '');

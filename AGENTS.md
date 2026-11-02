@@ -70,13 +70,17 @@ flowchart TD
 
 ---
 
-### Step 1: Query NotebookLM MCP
-1. Execute `list_notebooks` to identify the notebook matching the requested book or topic.
-2. Call `retrieve_relevant_chunks` with specific search queries covering the target chapter/part to extract:
-   - Primary thesis and cornerstone principles.
-   - Concrete analogies, numbers, formulas, and examples.
+### Step 1: Query Gemini Notebook (NotebookLM) — Strict Single Source of Truth
+1. The **Gemini Notebook (`nlm`) is the STRICT SINGLE SOURCE OF TRUTH** for all educational content.
+2. **Never search the web or chat** for book concepts, examples, formulas, or numbers.
+3. If no matching notebook exists for the requested book or topic, **HALT IMMEDIATELY AND ASK THE USER FIRST**. Do not improvise or use web search.
+4. Execute `nlm notebook list` to identify the notebook matching the requested book (e.g. `Fundamentals of Futures and Options Markets` or `Murphy technical analysis`).
+5. Query the book source via `nlm query notebook <notebook_id> "<curriculum_directive>" -s <source_id> --new-conversation --json` to extract:
+   - Primary thesis, core principles, and exact author definitions.
+   - Concrete analogies, numbers, formulas, and real-world Business Snapshots / case studies (e.g., Lehman 31:1 leverage, Kidder Peabody, Metallgesellschaft, Orange County).
    - Common misconceptions, counterarguments, and the author's rebuttal.
    - Key terminology and actionable takeaways.
+6. The extracted context is saved to `src/data/chapters/<slug>/notebook_context.txt` and passed directly into `generate_episode.mjs` via `--notes`. Gemini 4 Argon must strictly synthesize only what is present in this authoritative text.
 
 ---
 

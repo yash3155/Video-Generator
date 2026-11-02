@@ -42,7 +42,8 @@ Options:
   process.exit(0);
 }
 
-// 1. Detect Model Engine: Argon vs Standard Flash
+// 1. Detect Book & Model Engine
+const isHull = /hull/i.test(fullInput);
 const isArgon = /argon/i.test(fullInput);
 const isForce = rawArgs.includes('--force');
 const isReRender = rawArgs.includes('--re-render') || rawArgs.includes('--force-render');
@@ -52,10 +53,49 @@ const skipTTS = rawArgs.includes('--skip-tts');
 const ttsModeArg = rawArgs.find((a) => a.startsWith('--tts='));
 const ttsMode = ttsModeArg ? ttsModeArg.split('=')[1] : 'edge';
 
-// 2. Extract Chapter Key or Chapter Range (e.g. ch04 or ch02_part1 or "Chapter 4, 5, 6")
+// 2. Extract Chapter Key or Chapter Range (e.g. ch04 or ch02_part1 or "Chapter 4, 5, 6" or "hull ch1 to ch2")
 function resolveChapterKeys(input) {
   const clean = input.toLowerCase();
 
+  // If HULL course
+  if (isHull) {
+    const hullCurriculum = path.join(rootDir, 'Hull_40_Video_Master_Curriculum.txt');
+    const content = fs.existsSync(hullCurriculum) ? fs.readFileSync(hullCurriculum, 'utf8') : '';
+
+    // Pattern H1: Direct part matches like hull_ch01_part1 or ch01_part1 when hull is present
+    const directPartMatches = [...clean.matchAll(/(?:hull_)?ch(\d+)[_.-]*(?:part|p)\s*0?(\d+)/gi)];
+    if (directPartMatches.length > 0 && !clean.includes(' to ') && !clean.includes(' - ')) {
+      return directPartMatches.map((m) => `hull_ch${m[1].padStart(2, '0')}_part${m[2]}`);
+    }
+
+    // Pattern H2: Chapter range like "hull ch1 to ch2" or "hull chapter 1 to 3"
+    const rangeMatch = clean.match(/(?:chapter|ch)?\s*0?(\d+)\s*(?:to|-)\s*(?:chapter|ch)?\s*0?(\d+)/i);
+    let chapterNums = [];
+    if (rangeMatch && !clean.includes('part') && !clean.includes(' p')) {
+      const start = parseInt(rangeMatch[1], 10);
+      const end = parseInt(rangeMatch[2], 10);
+      for (let n = start; n <= end; n++) {
+        chapterNums.push(String(n).padStart(2, '0'));
+      }
+    } else {
+      const chapterMatches = [...clean.matchAll(/(?:chapter|ch)\s*0?(\d+)/gi)];
+      chapterNums = chapterMatches.map((m) => m[1].padStart(2, '0'));
+    }
+
+    chapterNums = [...new Set(chapterNums)];
+    const allKeys = [];
+    for (const cNum of chapterNums) {
+      const regex = new RegExp(`out[\\/\\\\](hull_ch${cNum}_part\\d+)\\.mp4`, 'gi');
+      let match;
+      while ((match = regex.exec(content)) !== null) {
+        if (!allKeys.includes(match[1])) allKeys.push(match[1]);
+      }
+    }
+    if (allKeys.length > 0) return allKeys;
+    return [];
+  }
+
+  // Murphy course (default)
   // Pattern A: Appendix range
   if (/appendix/i.test(clean)) {
     if (/ab|[1-2]/i.test(clean)) return ['appendix_ab'];
@@ -130,12 +170,14 @@ if (chapterKeys.length === 0) {
 }
 
 // -------------------------------------------------------------------
-// 1. Curriculum Extraction from 41-Video Master Curriculum.txt
+// 1. Curriculum Extraction
 // -------------------------------------------------------------------
-const curriculumCandidates = [
-  '41-Video Master Curriculum.txt',
-  '41-Video Master Curriculum_2.txt',
-];
+const curriculumCandidates = isHull
+  ? ['Hull_40_Video_Master_Curriculum.txt']
+  : [
+      '41-Video Master Curriculum.txt',
+      '41-Video Master Curriculum_2.txt',
+    ];
 const curriculumFile = curriculumCandidates.find((f) =>
   fs.existsSync(path.join(rootDir, f))
 );
@@ -146,6 +188,103 @@ if (!curriculumFile) {
 }
 
 const curriculumContent = fs.readFileSync(path.join(rootDir, curriculumFile), 'utf8');
+
+// -------------------------------------------------------------------
+// 1.5. Gemini Notebook Extraction (NotebookLM Single Source of Truth)
+// -------------------------------------------------------------------
+function ensureNotebookContext(isHullBook, key, directive, targetDir) {
+  const contextFilePath = path.join(targetDir, 'notebook_context.txt');
+  if (fs.existsSync(contextFilePath) && fs.statSync(contextFilePath).size > 200 && !isForce) {
+    console.log(`📖 [NOTEBOOK-LM] Using verified notebook context from: ${contextFilePath}`);
+    return contextFilePath;
+  }
+
+  console.log(`\n📚 [NOTEBOOK-LM] Querying Gemini Notebook for ${key}...`);
+  console.log(`   Rule: Gemini Notebook is the STRICT SINGLE SOURCE OF TRUTH (No web/chat fabrication).`);
+
+  // 1. List notebooks
+  let notebooks = [];
+  try {
+    const listOut = execSync('nlm notebook list', { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
+    notebooks = JSON.parse(listOut);
+  } catch (err) {
+    console.error(`❌ Failed to list Gemini Notebooks via 'nlm notebook list':`, err.message);
+    throw new Error('Could not access Gemini NotebookLM via nlm CLI.');
+  }
+
+  // 2. Identify target notebook
+  const targetNotebook = isHullBook
+    ? notebooks.find((n) => /futures|options|hull/i.test(n.title))
+    : notebooks.find((n) => /murphy|technical\s*analysis/i.test(n.title));
+
+  if (!targetNotebook) {
+    console.error(`\n❌ [FATAL] No matching Gemini Notebook found for ${isHullBook ? 'John C. Hull (Futures & Options)' : 'John Murphy (Technical Analysis)'}!`);
+    console.error(`   Available notebooks in your account:`);
+    notebooks.forEach((n) => console.error(`   - "${n.title}" (${n.id})`));
+    console.error(`   As per your strict directive, we will NOT search the web or chat.`);
+    console.error(`   Please add the book to Gemini NotebookLM first.\n`);
+    process.exit(1);
+  }
+
+  console.log(`   Connected to Notebook: "${targetNotebook.title}" (${targetNotebook.id})`);
+
+  // 3. Find target book source
+  let sourceId = '';
+  try {
+    const srcOut = execSync(`nlm source list ${targetNotebook.id}`, { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
+    const sources = JSON.parse(srcOut);
+    const bookSrc = isHullBook
+      ? sources.find((s) => /fundamentals.*future.*option|hull/i.test(s.title))
+      : sources.find((s) => /murphy.*technical/i.test(s.title));
+    if (bookSrc) {
+      sourceId = bookSrc.id;
+      console.log(`   Source PDF: "${bookSrc.title}" (${bookSrc.id})`);
+    } else if (sources.length > 0) {
+      sourceId = sources[0].id;
+      console.log(`   Primary Source: "${sources[0].title}" (${sources[0].id})`);
+    }
+  } catch (err) {
+    console.warn(`   ⚠️ Warning listing sources, querying entire notebook:`, err.message);
+  }
+
+  // 4. Query NotebookLM
+  const sourceFlag = sourceId ? `-s ${sourceId}` : '';
+  const queryPrompt = `Extract all core concepts, definitions, formulas, real-world Business Snapshots and case studies, numerical data, and author analogies for: ${directive}`;
+  console.log(`   Extracting authoritative content from book...`);
+
+  try {
+    const queryCmd = `nlm query notebook ${targetNotebook.id} "${queryPrompt.replace(/"/g, '\\"')}" ${sourceFlag} --new-conversation --json`;
+    const resRaw = execSync(queryCmd, {
+      encoding: 'utf8',
+      maxBuffer: 15 * 1024 * 1024,
+      timeout: 240000,
+      stdio: ['pipe', 'pipe', 'inherit'],
+    });
+
+    let contextContent = '';
+    try {
+      const resJson = JSON.parse(resRaw);
+      contextContent = resJson.answer || resRaw;
+      if (resJson.citations && typeof resJson.citations === 'object') {
+        contextContent += '\n\n### Direct Citations from Book Sources:\n';
+        const citationsList = Array.isArray(resJson.citations) ? resJson.citations : Object.values(resJson.citations);
+        citationsList.forEach((c) => {
+          if (typeof c === 'string') contextContent += `- ${c}\n`;
+          else if (c?.cited_text) contextContent += `- "${c.cited_text}"\n`;
+        });
+      }
+    } catch {
+      contextContent = resRaw;
+    }
+
+    fs.writeFileSync(contextFilePath, contextContent, 'utf8');
+    console.log(`✅ [NOTEBOOK-LM] Extracted ${contextContent.length} chars of authoritative text to: ${contextFilePath}\n`);
+    return contextFilePath;
+  } catch (queryErr) {
+    console.error(`❌ NotebookLM query failed:`, queryErr.message);
+    throw new Error(`Failed to extract context from Gemini Notebook for ${key}`);
+  }
+}
 
 // -------------------------------------------------------------------
 // 2. Batch Execution Loop for Each Chapter Part
@@ -169,8 +308,12 @@ for (let i = 0; i < chapterKeys.length; i++) {
   console.log(`▶ Processing [${i + 1}/${chapterKeys.length}]: ${chapterKey}`);
   console.log(`------------------------------------------------------`);
 
-  const regex = new RegExp(`"(Create a video[^\"]*?${chapterKey}\\.mp4[.]?)"`, 'i');
-  const curriculumMatch = curriculumContent.match(regex);
+  const regex = new RegExp(`"(Create a video[^\"]*?${chapterKey}\\.mp4[^\"]*?)"`, 'i');
+  let curriculumMatch = curriculumContent.match(regex);
+  if (!curriculumMatch) {
+    const fallbackRegex = new RegExp(`out[\\/\\\\]${chapterKey}\\.mp4:\\s*["']?([^"\\r\\n]+)["']?`, 'i');
+    curriculumMatch = curriculumContent.match(fallbackRegex);
+  }
 
   if (!curriculumMatch) {
     console.error(`⚠️ Could not locate curriculum directive for '${chapterKey}'. Skipping.`);
@@ -216,8 +359,13 @@ for (let i = 0; i < chapterKeys.length; i++) {
       console.warn(`⚠️ Warning: normalization failed for ${chapterKey}:`, normErr.message);
     }
   } else {
+    // 1. Extract Authoritative Context from Gemini Notebook (Single Source of Truth)
+    const contextFilePath = ensureNotebookContext(isHull, chapterKey, curriculumDirective, dataDir);
+    const notesArg = contextFilePath ? `--notes="${contextFilePath}"` : '';
+
     console.log(`🤖 Generating episode payload with model ${targetModel}...`);
-    const genCommand = `"${process.execPath}" --max-http-header-size=65536 scripts/generate_episode.mjs --dir="${dataDir}" --model=${targetModel} --temperature=0.2 --curriculum="${curriculumDirective.replace(/"/g, '\\"')}"`;
+    const topicArg = isHull ? '--topic="FUTURES & OPTIONS · JOHN C. HULL"' : '';
+    const genCommand = `"${process.execPath}" --max-http-header-size=65536 scripts/generate_episode.mjs --dir="${dataDir}" --model=${targetModel} --temperature=0.2 ${topicArg} ${notesArg} --curriculum="${curriculumDirective.replace(/"/g, '\\"')}"`;
     try {
       execSync(genCommand, { stdio: 'inherit', cwd: rootDir });
     } catch (err) {

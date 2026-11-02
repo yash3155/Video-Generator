@@ -66,10 +66,13 @@ const personas = JSON.parse(fs.readFileSync(personasPath, 'utf8'));
 
 let contextText = '';
 if (notesArg) {
-  const notesPath = path.resolve(rootDir, notesArg.split('=')[1]);
+  const rawPath = notesArg.slice('--notes='.length).replace(/^["']|["']$/g, '');
+  const notesPath = path.resolve(rootDir, rawPath);
   if (fs.existsSync(notesPath)) {
     contextText = fs.readFileSync(notesPath, 'utf8');
-    console.log(`[INFO] Loaded input context from: ${notesPath}`);
+    console.log(`[INFO] Loaded authoritative context from Gemini Notebook (${notesPath}, ${contextText.length} chars)`);
+  } else {
+    console.warn(`[WARN] Specified notes file does not exist: ${notesPath}`);
   }
 }
 
@@ -105,7 +108,7 @@ CRITICAL INVARIANTS:
    - Bullets must NOT start with ASCII arrows ('-->' or '->').
 9. TUG OF WAR INVARIANT:
    - Always include 'centerTitle', 'centerMetric' (max 14 characters), and 'trend' ('up' or 'down').
-   - Keep 'leftCount' and 'rightCount' between 0 and 25.
+   - You may use actual market breadth counts (e.g. 1850 vs 860) or percentage counts; the UI proportionally scales silhouettes.
 10. SUMMARY THREAD INVARIANT (STRICT 6-BEAT, 8-STEP LOCK):
    - Every 'summary_thread' scene MUST have EXACTLY 8 items in 'ui_state.steps' (plain English strings WITHOUT leading numbers like '1. ') and EXACTLY 6 beats:
      * Beat 0 ('activeStepRange: [0, 0]'): Intro sentence in Devanagari Hindi.
@@ -115,7 +118,13 @@ CRITICAL INVARIANTS:
      * Beat 4 ('activeStepRange: [7, 8]'): 'hindi_tts' (100% Devanagari) & 'en_subtitle' summarize Steps 7 and 8 ONLY.
      * Beat 5 ('activeStepRange: [1, 8]'): Final takeaway beat with 'bottomTakeaway' and natural Devanagari Hindi conclusion.
    - 'ui_state.heading' MUST be "Today's thread" across all 6 beats.
-11. RESPONSE FORMAT: Return ONLY a valid JSON object matching the episode schema. No Markdown wrapper, no thoughts outside JSON.
+11. ADDITIONAL VISUAL TEMPLATES:
+   In addition to 'chat_story', 'data_visualizer', 'progressive_cards', 'split_comparison', 'tug_of_war', 'interactive_quiz', and 'summary_thread', you can also use:
+   - 'stat_counter': To highlight a dramatic leverage ratio, loss stat, or key metric (e.g. Lehman 31:1 leverage, $4B collapse).
+   - 'horizontal_bar_race': To compare two contrasting forces, weights, or strategies side by side with opposing animated bars.
+   - 'formula_breakdown': To teach a quantitative pricing formula or mathematical relationship step by step (e.g. F0 = S0 * e^(rT), Put-Call Parity, BSM).
+   - 'payoff_diagram': To illustrate an option payoff hockey-stick curve (e.g. 'long_call', 'short_call', 'long_put', 'short_put', 'bull_spread', 'bear_spread', 'straddle', 'strangle', 'protective_put', 'covered_call') with strike price K and premium.
+12. RESPONSE FORMAT: Return ONLY a valid JSON object matching the episode schema. No Markdown wrapper, no thoughts outside JSON.
 `;
 
 const curriculumText = curriculumArg
@@ -126,7 +135,8 @@ const curriculumText = curriculumArg
 
 function formatChapterBreadcrumb(slug) {
   if (!slug) return 'CHAPTER 1 · PART 1';
-  const match = slug.match(/ch(\d+)_part(\d+)/i);
+  if (/^CHAPTER \d+ · PART \d+$/i.test(slug)) return slug.toUpperCase();
+  const match = slug.match(/(?:hull_)?ch(\d+)_part(\d+)/i);
   if (match) {
     return `CHAPTER ${parseInt(match[1], 10)} · PART ${parseInt(match[2], 10)}`;
   }
@@ -136,13 +146,17 @@ function formatChapterBreadcrumb(slug) {
   return slug.replace(/_argon/i, '').replace(/_/g, ' ').toUpperCase();
 }
 
+const resolvedTopic = topicArg
+  ? topicArg.slice('--topic='.length).replace(/^["']|["']$/g, '')
+  : (chapterSlug && /hull/i.test(chapterSlug) ? 'FUTURES & OPTIONS · JOHN C. HULL' : 'TECHNICAL ANALYSIS · MURPHY');
+
 const prompt = `
 Generate a complete, high-fidelity episode for:
-- Course: ${topicArg ? topicArg.split('=')[1] : 'TECHNICAL ANALYSIS · MURPHY'}
+- Course: ${resolvedTopic}
 - Chapter: ${formatChapterBreadcrumb(chapterSlug)}
 - Domain: ${domainArg ? domainArg.split('=')[1] : 'Finance / Trading'}
 ${curriculumText ? `\nCurriculum Directives & Scope:\n${curriculumText}\n` : ''}
-${contextText ? `\nInput Context:\n${contextText}\n` : ''}
+${contextText ? `\nAUTHORITATIVE CONTEXT FROM GEMINI NOTEBOOK (SINGLE SOURCE OF TRUTH):\nExtract all concepts, definitions, formulas, real-world snapshot cases, numbers, and narrative points directly from this text. Do NOT search external sources or fabricate outside examples:\n${contextText}\n` : ''}
 
 CRITICAL STRUCTURAL REQUIREMENTS:
 You MUST generate 11 to 12 distinct scenes and 38 to 46 total beats:
@@ -273,6 +287,7 @@ async function ensureProxyRunning() {
       cwd: path.dirname(exePath),
       detached: true,
       stdio: 'ignore',
+      env: { ...process.env, WS_PORT: '9999' },
     });
     subprocess.unref();
 
@@ -299,16 +314,17 @@ async function callGeminiArgonViaProxy(promptText, model = 'gemini-4-argon', tem
   // Map to argon-low for rapid, reliable Level-1 thinking within proxy 5-minute timeout window
   const proxyModel = model.toLowerCase().includes('argon') ? 'argon-low' : model;
 
-  console.log(`[ARGON PROXY] Routing generation request through: ${completionsUrl} (model: ${proxyModel})...`);
+  const uniqueSession = `ep_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  console.log(`[ARGON PROXY] Routing generation request through: ${completionsUrl} (model: ${proxyModel}, session: ${uniqueSession})...`);
   const res = await fetch(completionsUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Session-ID': `ep_${Date.now()}`,
-      'X-Agent-ID': 'gemini_video_engine',
+      'X-Session-ID': uniqueSession,
+      'X-Agent-ID': uniqueSession,
       Authorization: 'Bearer none',
     },
-    signal: AbortSignal.timeout(280000), // 280 seconds (under 300s proxy limit)
+    signal: AbortSignal.timeout(450000), // 450 seconds (7.5 minutes)
     body: JSON.stringify({
       model: proxyModel,
       messages: [
@@ -339,6 +355,9 @@ export function normalizeAndRemedyEpisode(data, slug) {
 
   if (data.meta) {
     data.meta.chapter = formatChapterBreadcrumb(data.meta.chapter || slug);
+    if (slug && /hull/i.test(slug)) {
+      data.meta.course = 'FUTURES & OPTIONS · JOHN C. HULL';
+    }
   }
 
   data.scenes.forEach((scene) => {
@@ -425,10 +444,10 @@ export function normalizeAndRemedyEpisode(data, slug) {
       scene.beats.forEach((b) => {
         if (b.ui_state) {
           if (typeof b.ui_state.leftCount === 'number') {
-            b.ui_state.leftCount = Math.min(25, Math.max(0, Math.round(b.ui_state.leftCount)));
+            b.ui_state.leftCount = Math.max(0, Math.round(b.ui_state.leftCount));
           }
           if (typeof b.ui_state.rightCount === 'number') {
-            b.ui_state.rightCount = Math.min(25, Math.max(0, Math.round(b.ui_state.rightCount)));
+            b.ui_state.rightCount = Math.max(0, Math.round(b.ui_state.rightCount));
           }
           b.ui_state.centerTitle = b.ui_state.centerTitle || 'MARKET BALANCE';
           b.ui_state.centerMetric = String(b.ui_state.centerMetric || 'Order Flow').slice(0, 18);
@@ -500,6 +519,36 @@ export function normalizeAndRemedyEpisode(data, slug) {
       const firstUI = scene.beats[0]?.ui_state || {};
       let steps = (firstUI.steps || []).map((s) => String(s).replace(/^\d+\.\s*/, '').trim());
 
+      const joinedSteps = steps.join(' ').toLowerCase();
+      const isBoilerplate =
+        !/ch16/i.test(slug || '') &&
+        joinedSteps.includes('identify the primary trend and major support') &&
+        joinedSteps.includes('set objective stop-loss orders');
+
+      if (isBoilerplate) {
+        // Reconstruct 8 chapter-specific steps directly from the episode's scene titles & subtitles!
+        const contentScenes = data.scenes.filter(
+          (s) => s.template !== 'chat_story' && s.template !== 'interactive_quiz' && s.template !== 'summary_thread'
+        );
+        const derivedSteps = [];
+        contentScenes.forEach((cs) => {
+          (cs.beats || []).forEach((cb) => {
+            if (cb.en_subtitle && derivedSteps.length < 8) {
+              const cleanSub = cb.en_subtitle
+                .replace(/^(According to John Murphy,|John Murphy writes:|Murphy's rule:|And finally,|First,|Second,|Third,)\s*/i, '')
+                .replace(/\.$/, '')
+                .trim();
+              if (cleanSub.length > 15 && !derivedSteps.includes(cleanSub)) {
+                derivedSteps.push(cleanSub.charAt(0).toUpperCase() + cleanSub.slice(1));
+              }
+            }
+          });
+        });
+        if (derivedSteps.length >= 6) {
+          steps = derivedSteps.slice(0, 8);
+        }
+      }
+
       const defaultSteps = [
         'Identify the primary trend and major support/resistance levels',
         'Confirm breakouts with volume expansion and open interest',
@@ -516,6 +565,11 @@ export function normalizeAndRemedyEpisode(data, slug) {
       }
       if (steps.length > 8) {
         steps = steps.slice(0, 8);
+      }
+      for (let i = 0; i < steps.length; i++) {
+        if (/[\u0900-\u097F]/.test(steps[i])) {
+          steps[i] = defaultSteps[i] || `Technical principle ${i + 1}`;
+        }
       }
 
       // Remove any previously corrupted "Crucial rule:" synthetic beat if present
@@ -593,6 +647,9 @@ export function normalizeAndRemedyEpisode(data, slug) {
         b.ui_state.steps = steps;
         b.ui_state.heading = "Today's thread";
         b.ui_state.activeStepRange = targetRanges[idx] || [1, 8];
+        if (b.ui_state.bottomTakeaway && /[\u0900-\u097F]/.test(b.ui_state.bottomTakeaway)) {
+          b.ui_state.bottomTakeaway = "Always evaluate internal market breadth and volume before trusting index moves.";
+        }
       });
     }
 
@@ -613,9 +670,60 @@ export function normalizeAndRemedyEpisode(data, slug) {
         }
       });
     }
+
+    // 8. General UI State Devanagari Guard: ui_state must be 100% English
+    if (Array.isArray(scene.beats)) {
+      scene.beats.forEach((b) => {
+        if (b.ui_state && typeof b.ui_state === 'object') {
+          function purgeDevanagari(obj) {
+            for (const key of Object.keys(obj)) {
+              const val = obj[key];
+              if (typeof val === 'string' && /[\u0900-\u097F]/.test(val)) {
+                if (key === 'bottomTakeaway') obj[key] = 'Strict discipline and technical confirmation protect your trading edge.';
+                else if (key === 'heading') obj[key] = "Today's thread";
+                else if (key === 'question') obj[key] = 'Analyze the technical setup and determine the valid market action:';
+                else if (key === 'answer') obj[key] = 'Wait for confirmed breakout with expanding volume before entry.';
+                else if (key === 'badge') obj[key] = 'TECHNICAL RULE';
+                else if (key === 'title') obj[key] = 'Market Structure';
+                else if (key === 'subtitle') obj[key] = 'Key Technical Insight';
+                else obj[key] = val.replace(/[\u0900-\u097F]+/g, '').trim() || 'Technical Confirmation';
+              } else if (Array.isArray(val)) {
+                for (let i = 0; i < val.length; i++) {
+                  if (typeof val[i] === 'string' && /[\u0900-\u097F]/.test(val[i])) {
+                    val[i] = `Technical Checklist Item ${i + 1}`;
+                  } else if (val[i] && typeof val[i] === 'object') {
+                    purgeDevanagari(val[i]);
+                  }
+                }
+              } else if (val && typeof val === 'object') {
+                purgeDevanagari(val);
+              }
+            }
+          }
+          purgeDevanagari(b.ui_state);
+        }
+      });
+    }
   });
 
   return data;
+}
+
+export function parseAndCleanEpisodeJson(rawText) {
+  if (!rawText || typeof rawText !== 'string') {
+    throw new Error('No text returned in Gemini response.');
+  }
+
+  const text = rawText.trim();
+  const firstBrace = text.indexOf('{');
+  const lastBrace = text.lastIndexOf('}');
+
+  if (firstBrace === -1 || lastBrace === -1 || lastBrace <= firstBrace) {
+    throw new Error(`Response does not contain a valid JSON object. Text preview: ${text.slice(0, 160)}...`);
+  }
+
+  const jsonSubstring = text.substring(firstBrace, lastBrace + 1).trim();
+  return JSON.parse(jsonSubstring);
 }
 
 export async function generateEpisode() {
@@ -624,22 +732,26 @@ export async function generateEpisode() {
     return;
   }
 
-  let responseText = null;
+  let episodeData = null;
   const isArgonTarget = targetModel.toLowerCase().includes('argon');
   const proxyOnline = await ensureProxyRunning();
 
   if (proxyOnline && (isArgonTarget || !process.env.GEMINI_API_KEY)) {
     console.log(`[GENERATOR] Using active free-gemini-api proxy with model ${targetModel}...`);
-    try {
-      responseText = await callGeminiArgonViaProxy(prompt, targetModel, temperature);
-    } catch (proxyErr) {
-      console.warn(`[WARN] Proxy attempt 1 failed (${proxyErr.message}). Re-verifying proxy and retrying in 4s...`);
-      await new Promise((r) => setTimeout(r, 4000));
-      await ensureProxyRunning();
+    let attempts = 0;
+    while (attempts < 3) {
+      attempts++;
       try {
-        responseText = await callGeminiArgonViaProxy(prompt, 'argon-low', temperature);
-      } catch (retryErr) {
-        throw new Error(`Argon proxy generation failed after retry: ${retryErr.message}`);
+        const raw = await callGeminiArgonViaProxy(prompt, targetModel, temperature);
+        episodeData = parseAndCleanEpisodeJson(raw);
+        break;
+      } catch (proxyErr) {
+        console.warn(`[WARN] Proxy attempt ${attempts} failed (${proxyErr.message}). Re-verifying proxy and retrying in 8s...`);
+        if (attempts >= 3) {
+          throw new Error(`Argon proxy generation failed after 3 attempts: ${proxyErr.message}`);
+        }
+        await new Promise((r) => setTimeout(r, 8000));
+        await ensureProxyRunning();
       }
     }
   } else {
@@ -659,31 +771,14 @@ export async function generateEpisode() {
         responseMimeType: 'application/json',
       },
     });
-    responseText = response.text || response.candidates?.[0]?.content?.parts?.[0]?.text;
+    const raw = response.text || response.candidates?.[0]?.content?.parts?.[0]?.text;
+    episodeData = parseAndCleanEpisodeJson(raw);
   }
 
-  if (!responseText) {
-    throw new Error('No text returned in Gemini response.');
+  if (!episodeData) {
+    throw new Error('Failed to generate episode payload.');
   }
 
-  let cleanedJson = responseText.trim();
-  if (cleanedJson.includes('```json')) {
-    const start = cleanedJson.indexOf('```json') + 7;
-    const end = cleanedJson.lastIndexOf('```');
-    if (end > start) {
-      cleanedJson = cleanedJson.substring(start, end).trim();
-    }
-  } else if (cleanedJson.includes('```')) {
-    const start = cleanedJson.indexOf('```') + 3;
-    const end = cleanedJson.lastIndexOf('```');
-    if (end > start) {
-      cleanedJson = cleanedJson.substring(start, end).trim();
-    }
-  } else if (cleanedJson.includes('{') && cleanedJson.lastIndexOf('}') > cleanedJson.indexOf('{')) {
-    cleanedJson = cleanedJson.substring(cleanedJson.indexOf('{'), cleanedJson.lastIndexOf('}') + 1).trim();
-  }
-
-  let episodeData = JSON.parse(cleanedJson);
   episodeData = normalizeAndRemedyEpisode(episodeData, chapterSlug);
 
   const outputPath = path.join(chapterDir, 'episode_raw.json');

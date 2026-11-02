@@ -135,6 +135,16 @@ export function validateEpisodeData(episode) {
       if (steps.length < 6 || steps.length > 8) {
         errors.push(`${sPrefix}: summary_thread must have between 6 and 8 steps (found ${steps.length}).`);
       }
+      const joinedSteps = steps.join(' ').toLowerCase();
+      if (
+        !/CHAPTER 16/i.test(episode.meta?.chapter || '') &&
+        joinedSteps.includes('identify the primary trend and major support') &&
+        joinedSteps.includes('set objective stop-loss orders')
+      ) {
+        errors.push(
+          `${sPrefix}: summary_thread steps contain generic boilerplate from schema_reference.json instead of chapter-specific steps!`
+        );
+      }
       if (beats.length < 5) {
         errors.push(`${sPrefix}: summary_thread MUST have at least 5 beats. Found ${beats.length}.`);
       }

@@ -7,6 +7,10 @@ import { ProgressiveCards } from './ProgressiveCards';
 import { SplitComparison } from './SplitComparison';
 import { InteractiveQuiz } from './InteractiveQuiz';
 import { SummaryThread } from './SummaryThread';
+import { StatCounter } from './StatCounter';
+import { HorizontalBarRace } from './HorizontalBarRace';
+import { FormulaBreakdown } from './FormulaBreakdown';
+import { PayoffDiagram } from './PayoffDiagram';
 
 export interface TemplateRendererProps {
   scene: Scene;
@@ -34,6 +38,14 @@ export const TemplateRenderer: React.FC<TemplateRendererProps> = (props) => {
       return <InteractiveQuiz {...props} />;
     case 'summary_thread':
       return <SummaryThread {...props} />;
+    case 'stat_counter':
+      return <StatCounter {...props} />;
+    case 'horizontal_bar_race':
+      return <HorizontalBarRace {...props} />;
+    case 'formula_breakdown':
+      return <FormulaBreakdown {...props} />;
+    case 'payoff_diagram':
+      return <PayoffDiagram {...props} />;
     default:
       return <ChatStory {...props} />;
   }
@@ -47,4 +59,8 @@ export {
   SplitComparison,
   InteractiveQuiz,
   SummaryThread,
+  StatCounter,
+  HorizontalBarRace,
+  FormulaBreakdown,
+  PayoffDiagram,
 };

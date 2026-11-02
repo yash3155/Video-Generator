@@ -7,7 +7,11 @@ export type TemplateType =
   | 'progressive_cards'
   | 'split_comparison'
   | 'interactive_quiz'
-  | 'summary_thread';
+  | 'summary_thread'
+  | 'stat_counter'
+  | 'horizontal_bar_race'
+  | 'formula_breakdown'
+  | 'payoff_diagram';
 
 export interface Meta {
   domain: DomainType | string;
@@ -160,6 +164,66 @@ export interface SummaryThreadUI {
   bottomTakeaway?: string;
 }
 
+// 8. Stat Counter UI Types
+export interface StatCounterUI {
+  sectionTag?: string;
+  topLabel: string;
+  numericValue: number;
+  prefix?: string;
+  suffix?: string;
+  subtext?: string;
+  bottomPill?: string;
+}
+
+// 9. Horizontal Bar Race UI Types
+export interface HorizontalBarRaceUI {
+  sectionTag?: string;
+  title: string;
+  leftHeader: string;
+  leftValueText: string;
+  leftWeight: number;
+  rightHeader: string;
+  rightValueText: string;
+  rightWeight: number;
+  bottomNote?: string;
+}
+
+// 10. Formula Breakdown UI Types
+export interface FormulaBreakdownUI {
+  badge?: string;
+  formulaTitle: string;
+  formulaSubtitle?: string;
+  leftTerm: { label: string; value: string };
+  operator: string;
+  rightTerm: { label: string; value: string };
+  equalsSign?: string;
+  resultTerm: { label: string; value: string };
+  bullets?: string[];
+}
+
+// 11. Payoff Diagram UI Types
+export interface PayoffDiagramUI {
+  chartTitle: string;
+  chartSubtitle?: string;
+  strategyType:
+    | 'long_call'
+    | 'short_call'
+    | 'long_put'
+    | 'short_put'
+    | 'bull_spread'
+    | 'bear_spread'
+    | 'straddle'
+    | 'strangle'
+    | 'protective_put'
+    | 'covered_call';
+  strikePrice: number;
+  premium: number;
+  secondStrike?: number;
+  secondPremium?: number;
+  spotPrice?: number;
+  sideCards?: SideCard[];
+}
+
 export type UIState =
   | ChatStoryUI
   | DataVisualizerUI
@@ -168,6 +232,10 @@ export type UIState =
   | SplitComparisonUI
   | InteractiveQuizUI
   | SummaryThreadUI
+  | StatCounterUI
+  | HorizontalBarRaceUI
+  | FormulaBreakdownUI
+  | PayoffDiagramUI
   | any;
 
 export interface Beat {
