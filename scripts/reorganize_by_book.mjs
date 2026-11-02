@@ -106,3 +106,4 @@ console.log(`   - Hull Chapters:   ${hullChapterCount} moved to src/data/chapter
 console.log(`   - Murphy Videos:   moved to out/chapters/murphy_technical_analysis/`);
 console.log(`   - Hull Videos:     moved to out/chapters/hull_derivatives/`);
 console.log('======================================================\n');
+

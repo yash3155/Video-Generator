@@ -17,3 +17,15 @@ export const resolveOutputVideoPath: (
   videoKey: string,
   rootDir?: string
 ) => string = mjsUtils.resolveOutputVideoPath;
+
+export const resolveAudioDirectory: (
+  chapterKey: string,
+  courseId?: string | null,
+  rootDir?: string
+) => string = mjsUtils.resolveAudioDirectory;
+
+export const resolveQaReportDirectory: (
+  chapterKey: string,
+  courseId?: string | null,
+  rootDir?: string
+) => string = mjsUtils.resolveQaReportDirectory;

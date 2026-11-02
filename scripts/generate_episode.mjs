@@ -23,7 +23,7 @@ const curriculumArg = args.find((a) => a.startsWith('--curriculum='));
 const promptArg = args.find((a) => a.startsWith('--prompt='));
 const dryRun = args.includes('--dry-run');
 
-let chapterSlug = 'ch01_argon_v1';
+let chapterSlug = 'ch01_part1';
 let chapterDir = null;
 
 if (chapterArg) {

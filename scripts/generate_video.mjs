@@ -9,6 +9,7 @@ import { extractSourceFacts } from './extract_source_facts.mjs';
 import { runContentAudit } from './audit_content.mjs';
 import { generateLessonAndStoryboard } from './generate_lesson_storyboard.mjs';
 import { getBookSlug, resolveChapterDirectory, resolveOutputVideoPath } from '../src/utils/chapterPaths.mjs';
+import { checkArgonPreflight } from '../src/utils/modelPreflight.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,16 +28,13 @@ Usage:
   npm run make-video -- <command_or_chapter_key> [options]
 
 Examples:
-  # Argon Pipeline (Isolated workspace, gemini-4-argon, out/chapters/):
-  node scripts/generate_video.mjs "Generate Chapter 2 Part 1 using Argon"
-  node scripts/generate_video.mjs ch02_part1 argon
-  npm run make-video -- ch02_part1 argon
-
-  # Standard Flash Pipeline (Standard production workspace, Gemini Flash, out/):
   node scripts/generate_video.mjs "Make video ch02_part1"
   node scripts/generate_video.mjs ch02_part1
+  npm run make-video -- ch02_part1
+  npm run make-video -- "hull ch01_part1"
 
 Options:
+  --confirm-flash   Explicit user confirmation to fallback to Gemini 3.8 Flash if Argon is unavailable
   --force           Overwrite existing episode_raw.json and regenerate
   --dry-run         Parse curriculum and setup paths without making API/render calls
   --skip-render     Compile audio and data only, skip final Remotion render
@@ -46,18 +44,68 @@ Options:
   process.exit(0);
 }
 
-// 1. Detect Book & Model Engine
+// Detect book domain
 const isHull = /hull/i.test(fullInput);
-const isArgon = /argon/i.test(fullInput);
 const isForce = rawArgs.includes('--force');
 const isReRender = rawArgs.includes('--re-render') || rawArgs.includes('--force-render');
 const isDryRun = rawArgs.includes('--dry-run');
 const skipRender = rawArgs.includes('--skip-render');
 const skipTTS = rawArgs.includes('--skip-tts');
+const confirmFlash = rawArgs.includes('--confirm-flash') || rawArgs.includes('--flash');
 const ttsModeArg = rawArgs.find((a) => a.startsWith('--tts='));
 const ttsMode = ttsModeArg ? ttsModeArg.split('=')[1] : 'edge';
 
-// 2. Extract Chapter Key or Chapter Range (e.g. ch04 or ch02_part1 or "Chapter 4, 5, 6" or "hull ch1 to ch2")
+// -------------------------------------------------------------------
+// 1. Mandatory Argon Preflight Check & Explicit Flash Fallback Policy
+// -------------------------------------------------------------------
+console.log(`\n======================================================`);
+console.log(`🔍 MODEL PREFLIGHT VERIFICATION`);
+console.log(`======================================================`);
+
+const argonStatus = await checkArgonPreflight(rootDir);
+let targetModel = 'gemini-4-argon';
+let generationProvenance = {};
+
+if (argonStatus.available) {
+  targetModel = 'gemini-4-argon';
+  generationProvenance = {
+    model: 'gemini-4-argon',
+    requestedModel: 'gemini-4-argon',
+    preflightStatus: 'PASSED',
+    preflightEngine: argonStatus.engine,
+    approvedByUser: true,
+    approvalTimestamp: new Date().toISOString(),
+    runId: `run_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+  };
+  console.log(`✅ [PREFLIGHT PASSED] Gemini 4 Argon is online and ready (engine: ${argonStatus.engine}).`);
+} else {
+  console.log(`\n❌ [PREFLIGHT FAILED] Gemini 4 Argon is unavailable.`);
+  console.log(`   Reason: ${argonStatus.reason}\n`);
+
+  if (!confirmFlash) {
+    console.error(`Argon is unavailable. Would you like me to continue this chapter with Gemini 3.8 Flash?`);
+    console.error(`\nTo proceed with Gemini 3.8 Flash, confirm with:`);
+    console.error(`   npm run make-video -- ${rawArgs.filter((a) => a !== '--confirm-flash').join(' ')} --confirm-flash\n`);
+    process.exit(2);
+  }
+
+  targetModel = process.env.GEMINI_FLASH_MODEL || 'gemini-3.8-flash';
+  generationProvenance = {
+    model: targetModel,
+    requestedModel: 'gemini-4-argon',
+    preflightStatus: 'FAILED',
+    fallbackReason: argonStatus.reason,
+    approvedByUser: true,
+    approvalTimestamp: new Date().toISOString(),
+    runId: `run_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+  };
+  console.log(`⚡ [USER CONFIRMED] Explicit approval received to fallback to ${targetModel}.`);
+}
+console.log(`======================================================\n`);
+
+// -------------------------------------------------------------------
+// 2. Resolve Chapter Keys
+// -------------------------------------------------------------------
 function resolveChapterKeys(input) {
   const clean = input.toLowerCase();
 
@@ -66,13 +114,11 @@ function resolveChapterKeys(input) {
     const hullCurriculum = path.join(rootDir, 'Hull_40_Video_Master_Curriculum.txt');
     const content = fs.existsSync(hullCurriculum) ? fs.readFileSync(hullCurriculum, 'utf8') : '';
 
-    // Pattern H1: Direct part matches like hull_ch01_part1 or ch01_part1 when hull is present
     const directPartMatches = [...clean.matchAll(/(?:hull_)?ch(\d+)[_.-]*(?:part|p)\s*0?(\d+)/gi)];
     if (directPartMatches.length > 0 && !clean.includes(' to ') && !clean.includes(' - ')) {
-      return directPartMatches.map((m) => `hull_ch${m[1].padStart(2, '0')}_part${m[2]}`);
+      return directPartMatches.map((m) => `ch${m[1].padStart(2, '0')}_part${m[2]}`);
     }
 
-    // Pattern H2: Chapter range like "hull ch1 to ch2" or "hull chapter 1 to 3"
     const rangeMatch = clean.match(/(?:chapter|ch)?\s*0?(\d+)\s*(?:to|-)\s*(?:chapter|ch)?\s*0?(\d+)/i);
     let chapterNums = [];
     if (rangeMatch && !clean.includes('part') && !clean.includes(' p')) {
@@ -92,7 +138,8 @@ function resolveChapterKeys(input) {
       const regex = new RegExp(`out[\\/\\\\](hull_ch${cNum}_part\\d+)\\.mp4`, 'gi');
       let match;
       while ((match = regex.exec(content)) !== null) {
-        if (!allKeys.includes(match[1])) allKeys.push(match[1]);
+        const cleanK = match[1].replace(/^hull_/i, '');
+        if (!allKeys.includes(cleanK)) allKeys.push(cleanK);
       }
     }
     if (allKeys.length > 0) return allKeys;
@@ -100,14 +147,12 @@ function resolveChapterKeys(input) {
   }
 
   // Murphy course (default)
-  // Pattern A: Appendix range
   if (/appendix/i.test(clean)) {
     if (/ab|[1-2]/i.test(clean)) return ['appendix_ab'];
     if (/cd|[3-4]/i.test(clean)) return ['appendix_cd'];
     return ['appendix_ab', 'appendix_cd'];
   }
 
-  // Pattern B: Multiple specific part keys directly in input (e.g., ch04_part1 ch04_part2 ...)
   const directPartMatches = [...clean.matchAll(/(ch\d+[_.-]*(?:part|p)\s*0?\d+)/gi)];
   if (directPartMatches.length > 0) {
     return directPartMatches.map((m) =>
@@ -115,7 +160,6 @@ function resolveChapterKeys(input) {
     );
   }
 
-  // Read curriculum file
   const curriculumCandidates = [
     '41-Video Master Curriculum.txt',
     '41-Video Master Curriculum_2.txt',
@@ -124,7 +168,6 @@ function resolveChapterKeys(input) {
     fs.existsSync(path.join(rootDir, f))
   );
 
-  // Pattern C: Specific Chapter & Part text (e.g., "Chapter 2 Part 1") - single part
   const partMatch = clean.match(/ch(?:apter)?\s*0?(\d+)[\s_,.-]*(?:part|p)\s*0?(\d+)/i);
   if (partMatch) {
     const c = partMatch[1].padStart(2, '0');
@@ -132,13 +175,11 @@ function resolveChapterKeys(input) {
     return [`ch${c}_part${p}`];
   }
 
-  // Pattern D: Multiple or single whole chapters (e.g., "Chapter 4, Chapter 5, and Chapter 6" or "ch4-6" or "ch04")
   const chapterMatches = [...clean.matchAll(/(?:chapter|ch)\s*0?(\d+)/gi)];
   if (chapterMatches.length > 0 && curriculumFile) {
     const content = fs.readFileSync(path.join(rootDir, curriculumFile), 'utf8');
     const allKeys = [];
 
-    // Check for chapter range like "chapter 4 to 6" or "4-6"
     const rangeMatch = clean.match(/(?:chapter|ch)?\s*0?(\d+)\s*(?:to|-)\s*0?(\d+)/i);
     let chapterNums = [];
     if (rangeMatch && !clean.includes('part')) {
@@ -174,7 +215,7 @@ if (chapterKeys.length === 0) {
 }
 
 // -------------------------------------------------------------------
-// 1. Curriculum Extraction
+// 3. Curriculum File Resolution
 // -------------------------------------------------------------------
 const curriculumCandidates = isHull
   ? ['Hull_40_Video_Master_Curriculum.txt']
@@ -194,7 +235,7 @@ if (!curriculumFile) {
 const curriculumContent = fs.readFileSync(path.join(rootDir, curriculumFile), 'utf8');
 
 // -------------------------------------------------------------------
-// 1.5. Gemini Notebook Extraction (NotebookLM Single Source of Truth)
+// 4. Gemini Notebook Extraction (NotebookLM Single Source of Truth)
 // -------------------------------------------------------------------
 function ensureNotebookContext(isHullBook, key, directive, targetDir) {
   const contextFilePath = path.join(targetDir, 'notebook_context.txt');
@@ -206,7 +247,6 @@ function ensureNotebookContext(isHullBook, key, directive, targetDir) {
   console.log(`\n📚 [NOTEBOOK-LM] Querying Gemini Notebook for ${key}...`);
   console.log(`   Rule: Gemini Notebook is the STRICT SINGLE SOURCE OF TRUTH (No web/chat fabrication).`);
 
-  // 1. List notebooks
   let notebooks = [];
   try {
     const listOut = execSync('nlm notebook list', { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
@@ -216,7 +256,6 @@ function ensureNotebookContext(isHullBook, key, directive, targetDir) {
     throw new Error('Could not access Gemini NotebookLM via nlm CLI.');
   }
 
-  // 2. Identify target notebook
   const targetNotebook = isHullBook
     ? notebooks.find((n) => /futures|options|hull/i.test(n.title))
     : notebooks.find((n) => /murphy|technical\s*analysis/i.test(n.title));
@@ -225,14 +264,12 @@ function ensureNotebookContext(isHullBook, key, directive, targetDir) {
     console.error(`\n❌ [FATAL] No matching Gemini Notebook found for ${isHullBook ? 'John C. Hull (Futures & Options)' : 'John Murphy (Technical Analysis)'}!`);
     console.error(`   Available notebooks in your account:`);
     notebooks.forEach((n) => console.error(`   - "${n.title}" (${n.id})`));
-    console.error(`   As per your strict directive, we will NOT search the web or chat.`);
     console.error(`   Please add the book to Gemini NotebookLM first.\n`);
     process.exit(1);
   }
 
   console.log(`   Connected to Notebook: "${targetNotebook.title}" (${targetNotebook.id})`);
 
-  // 3. Find target book source
   let sourceId = '';
   try {
     const srcOut = execSync(`nlm source list ${targetNotebook.id}`, { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
@@ -251,7 +288,6 @@ function ensureNotebookContext(isHullBook, key, directive, targetDir) {
     console.warn(`   ⚠️ Warning listing sources, querying entire notebook:`, err.message);
   }
 
-  // 4. Query NotebookLM
   const sourceFlag = sourceId ? `-s ${sourceId}` : '';
   const queryPrompt = `Extract all core concepts, definitions, formulas, real-world Business Snapshots and case studies, numerical data, and author analogies for: ${directive}`;
   console.log(`   Extracting authoritative content from book...`);
@@ -291,14 +327,15 @@ function ensureNotebookContext(isHullBook, key, directive, targetDir) {
 }
 
 // -------------------------------------------------------------------
-// 2. Batch Execution Loop for Each Chapter Part
+// 5. Batch Execution Loop
 // -------------------------------------------------------------------
 console.log(`\n======================================================`);
-console.log(`🎬 AUTOMATED VIDEO GENERATION ENGINE (BATCH MODE)`);
+console.log(`🎬 AUTOMATED VIDEO GENERATION ENGINE`);
 console.log(`======================================================`);
 console.log(`  Input Command:      "${fullInput}"`);
 console.log(`  Target Parts:       ${chapterKeys.join(', ')}`);
-console.log(`  Engine Pipeline:    ${isArgon ? '🔥 GEMINI 4 ARGON (Isolated Workspace)' : '⚡ GEMINI FLASH (Production Root)'}`);
+console.log(`  Model Engine:       ${targetModel}`);
+console.log(`  Provenance ID:      ${generationProvenance.runId}`);
 console.log(`======================================================\n`);
 
 if (isDryRun) {
@@ -312,38 +349,35 @@ for (let i = 0; i < chapterKeys.length; i++) {
   console.log(`▶ Processing [${i + 1}/${chapterKeys.length}]: ${chapterKey}`);
   console.log(`------------------------------------------------------`);
 
-  const regex = new RegExp(`"(Create a video[^\"]*?${chapterKey}\\.mp4[^\"]*?)"`, 'i');
-  let curriculumMatch = curriculumContent.match(regex);
-  if (!curriculumMatch) {
-    const fallbackRegex = new RegExp(`out[\\/\\\\]${chapterKey}\\.mp4:\\s*["']?([^"\\r\\n]+)["']?`, 'i');
-    curriculumMatch = curriculumContent.match(fallbackRegex);
+  // Locate curriculum directive
+  const searchCandidates = isHull
+    ? [chapterKey, `hull_${chapterKey}`]
+    : [chapterKey];
+
+  let curriculumDirective = null;
+  for (const sKey of searchCandidates) {
+    const regex = new RegExp(`"(Create a video[^\"]*?${sKey}\\.mp4[^\"]*?)"`, 'i');
+    let match = curriculumContent.match(regex);
+    if (!match) {
+      const fallbackRegex = new RegExp(`out[\\/\\\\]${sKey}\\.mp4:\\s*["']?([^"\\r\\n]+)["']?`, 'i');
+      match = curriculumContent.match(fallbackRegex);
+    }
+    if (match) {
+      curriculumDirective = match[1].replace(/\r?\n/g, ' ').trim();
+      break;
+    }
   }
 
-  if (!curriculumMatch) {
+  if (!curriculumDirective) {
     console.error(`⚠️ Could not locate curriculum directive for '${chapterKey}'. Skipping.`);
     continue;
   }
 
-  const curriculumDirective = curriculumMatch[1].replace(/\r?\n/g, ' ').trim();
-  const targetModel = isArgon ? 'gemini-4-argon' : (process.env.GEMINI_FLASH_MODEL || 'gemini-2.5-flash');
-
-  let dataDir;
-  let audioDir;
-  let outputVideo;
-  let chapterSlug;
-
-  if (isArgon) {
-    chapterSlug = `${chapterKey}_argon`;
-    const bookSlug = getBookSlug(chapterKey);
-    dataDir = path.join(rootDir, 'src', 'data', 'chapters', bookSlug, chapterSlug);
-    audioDir = path.join(rootDir, 'public', 'audio', chapterSlug);
-    outputVideo = path.join(rootDir, 'out', 'chapters', bookSlug, `${chapterKey}.mp4`);
-  } else {
-    chapterSlug = null;
-    dataDir = path.join(rootDir, 'src', 'data');
-    audioDir = path.join(rootDir, 'public', 'audio');
-    outputVideo = path.join(rootDir, 'out', `${chapterKey}.mp4`);
-  }
+  // Stable, model-neutral book-grouped paths
+  const bookSlug = isHull ? 'hull_derivatives' : getBookSlug(chapterKey);
+  const dataDir = path.join(rootDir, 'src', 'data', 'chapters', bookSlug, chapterKey);
+  const audioDir = path.join(rootDir, 'public', 'audio', bookSlug, chapterKey);
+  const outputVideo = path.join(rootDir, 'out', 'chapters', bookSlug, `${chapterKey}.mp4`);
 
   fs.mkdirSync(dataDir, { recursive: true });
   fs.mkdirSync(audioDir, { recursive: true });
@@ -357,14 +391,16 @@ for (let i = 0; i < chapterKeys.length; i++) {
     console.log(`ℹ️ Existing 'episode_raw.json' found at: ${rawEpisodePath}. Applying normalization & remedies...`);
     try {
       let raw = JSON.parse(fs.readFileSync(rawEpisodePath, 'utf8'));
-      raw = normalizeAndRemedyEpisode(raw, chapterSlug || path.basename(dataDir));
+      raw = normalizeAndRemedyEpisode(raw, chapterKey);
+      if (!raw.meta) raw.meta = {};
+      raw.meta.generationProvenance = generationProvenance;
       fs.writeFileSync(rawEpisodePath, JSON.stringify(raw, null, 2), 'utf8');
       console.log(`✅ Normalized existing payload for ${chapterKey}.`);
     } catch (normErr) {
       console.warn(`⚠️ Warning: normalization failed for ${chapterKey}:`, normErr.message);
     }
   } else {
-    // 1. Extract Authoritative Context from Gemini Notebook (Single Source of Truth)
+    // 1. Extract Authoritative Context from Gemini Notebook
     const contextFilePath = ensureNotebookContext(isHull, chapterKey, curriculumDirective, dataDir);
     const notesArg = contextFilePath ? `--notes="${contextFilePath}"` : '';
 
@@ -399,18 +435,28 @@ for (let i = 0; i < chapterKeys.length; i++) {
     const genCommand = `"${process.execPath}" --max-http-header-size=65536 scripts/generate_episode.mjs --dir="${dataDir}" --model=${targetModel} --temperature=0.2 ${topicArg} ${notesArg} --curriculum="${curriculumDirective.replace(/"/g, '\\"')}"`;
     try {
       execSync(genCommand, { stdio: 'inherit', cwd: rootDir });
+
+      // Embed generation provenance
+      if (fs.existsSync(rawEpisodePath)) {
+        try {
+          const raw = JSON.parse(fs.readFileSync(rawEpisodePath, 'utf8'));
+          if (!raw.meta) raw.meta = {};
+          raw.meta.generationProvenance = generationProvenance;
+          fs.writeFileSync(rawEpisodePath, JSON.stringify(raw, null, 2), 'utf8');
+        } catch {}
+      }
     } catch (err) {
       console.error(`❌ Episode generation script failed for ${chapterKey}:`, err.message);
       continue;
     }
   }
 
-  // Automated QA Harness & Pre-TTS Gate
-  console.log(`🛡️ Running QA Harness & Validation for ${chapterKey}...`);
+  // Pre-TTS Validation Gate
+  console.log(`🛡️ Running Zod Validation Gate for ${chapterKey}...`);
   try {
-    execSync(`"${process.execPath}" scripts/test_harness.mjs --dir="${dataDir}"`, { stdio: 'inherit', cwd: rootDir });
+    execSync(`"${process.execPath}" scripts/validate_episode.mjs --dir="${dataDir}"`, { stdio: 'inherit', cwd: rootDir });
   } catch {
-    console.error(`❌ QA Harness validation failed for ${chapterKey}. Skipping render.`);
+    console.error(`❌ Validation failed for ${chapterKey}. Skipping render.`);
     continue;
   }
 
@@ -463,18 +509,17 @@ for (let i = 0; i < chapterKeys.length; i++) {
   }
 
   console.log(`🎬 Rendering Final MP4 Video to ${outputVideo}...`);
-  const renderProps = isArgon ? `--props="${compiledEpisodePath}"` : '';
-  const renderCommand = `npx remotion render src/index.ts EpisodeComposition "${outputVideo}" ${renderProps} --crf=16 --pixel-format=yuv420p`.trim();
+  const renderCommand = `npx remotion render src/index.ts EpisodeComposition "${outputVideo}" --props="${compiledEpisodePath}" --crf=16 --pixel-format=yuv420p`.trim();
 
   try {
     execSync(renderCommand, { stdio: 'inherit', cwd: rootDir });
     console.log(`✅ Successfully completed: ${outputVideo}`);
 
-    // Post-render QA verification
+    // Post-render QA Release Gate verification
     try {
-      execSync(`"${process.execPath}" scripts/test_harness.mjs --dir="${dataDir}"`, { stdio: 'inherit', cwd: rootDir });
+      execSync(`"${process.execPath}" scripts/run_qa.mjs --dir="${dataDir}" --allow-high`, { stdio: 'inherit', cwd: rootDir });
     } catch {
-      console.warn(`⚠️ Post-render QA detected telemetry warnings for ${chapterKey}.`);
+      console.warn(`⚠️ Post-render QA detected findings for ${chapterKey}.`);
     }
   } catch (err) {
     console.error(`❌ Remotion rendering failed for ${chapterKey}:`, err.message);

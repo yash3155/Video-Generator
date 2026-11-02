@@ -1,407 +1,338 @@
-# AGENTS.md — Autonomous NotebookLM-to-Video Engine Protocol
+# AGENTS.md — Autonomous Course-to-Video Engine Operating Protocol
 
-This document serves as the permanent system instructions for the Antigravity Agent. Whenever the user requests the generation of an educational video from a book chapter, topic, or NotebookLM notebook, execute the following autonomous workflow end-to-end.
+This document serves as the permanent system instructions for the Antigravity Agent. Whenever generating, compiling, validating, or rendering educational video lessons, execute this autonomous workflow end-to-end.
 
 ---
 
-## Direct Curriculum Command Dispatcher: Argon vs. Flash Routing
+## 1. Purpose and Non-Negotiable Principles
 
-Whenever the user issues a command to generate or make a video directly (e.g. `"Generate Chapter 2 Part 1 using Argon"`, `"Make video ch02_part1 using argon"`, or `"Make video ch02_part1"`), inspect the prompt for the word **"argon"** (case-insensitive):
+The engine converts authoritative book sources into animated, narration-synchronized, broadcast-grade educational videos using Remotion. Every lesson is governed by four non-negotiable principles:
+
+1. **Source Grounding & Anti-Fabrication Invariant**:
+   The original uploaded book source is the authoritative foundation of author teachings. Gemini NotebookLM (`nlm`) serves as the source-extraction assistant. The structured fact ledger ([`source_facts.json`](src/schemas/sourceFactsSchema.ts)) is the sole approved production input for lesson design. The agent must never hallucinate formulas, numbers, citations, or concepts, nor replace missing domain knowledge with generic boilerplate.
+2. **Domain Decoupling & Config-Driven Visuals**:
+   The shared rendering engine is completely domain-agnostic. Visual templates, formatting, units, themes, personas, and pedagogical rules are defined in course configuration ([`src/courses/<course_id>.json`](src/courses/murphy_technical_analysis.json)) and the visual template registry ([`src/templates/registry/templateRegistry.ts`](src/templates/registry/templateRegistry.ts)). Domain-specific behavior (e.g., technical analysis candlesticks or options payoff math) is isolated in optional domain modules ([`src/domain/finance/`](src/domain/finance/financialCalculators.ts)).
+3. **Structured Cue Synchronization**:
+   Visual state progression is driven by structured narration cues (`visualCues`) anchored to measured audio timestamps—never by parsing spoken text for symbols/numbers or arbitrary percentage interpolation.
+4. **Single Unified Quality Release Gate**:
+   A video is never released merely because an MP4 container exists. Deployment requires passing the domain-independent Phase 2C Release Gate ([`node scripts/run_qa.mjs`](scripts/run_qa.mjs)).
+
+---
+
+## 2. Stable Course & Chapter Workspaces and Artifact Ownership
+
+All chapter production data is strictly partitioned into isolated, book-grouped workspaces. Shared root production paths are strictly deprecated and reserved for non-production test fixtures.
+
+```mermaid
+flowchart LR
+    COURSE["Course Workspace\nsrc/data/chapters/<course_id>/<chapter_id>/"] --> ARTIFACTS["Phase 1 & 2 Artifacts\n• source_facts.json\n• content_audit.json\n• lesson_plan.json\n• storyboard.json\n• episode_raw.json\n• episode_compiled.json"]
+    COURSE --> AUDIO["Public Audio\npublic/audio/<course_id>/<chapter_id>/"]
+    COURSE --> MIRROR["Local Mirrored Audio\n.../<chapter_id>/audio/"]
+    COURSE --> VIDEO["Render Target\nout/chapters/<course_id>/<chapter_id>.mp4"]
+    COURSE --> QA["QA Reports\nreports/qa/<course_id>/<chapter_id>/"]
+```
+
+### Stable Model-Neutral Path Conventions
+Model names (`argon`, `flash`) must **never** appear in folder names, chapter IDs, audio paths, video filenames, UI breadcrumbs, or QA paths. The canonical paths are:
+
+- **Workspace Data Directory**: `src/data/chapters/<course_id>/<chapter_id>/`
+- **Public Audio Assets**: `public/audio/<course_id>/<chapter_id>/`
+- **Mirrored Audio Directory**: `src/data/chapters/<course_id>/<chapter_id>/audio/`
+- **Rendered MP4 Video**: `out/chapters/<course_id>/<chapter_id>.mp4`
+- **QA Release Gate Reports**: `reports/qa/<course_id>/<chapter_id>/qa_report.json` and `qa_report.html`
+
+### Required Chapter Artifacts (Zero Legacy Exemptions)
+Inside every chapter directory `src/data/chapters/<course_id>/<chapter_id>/`, the engine strictly maintains 6 core artifacts:
+
+| Artifact | Schema Reference | Responsibility & Invariants |
+| :--- | :--- | :--- |
+| **`source_facts.json`** | [`SourceFactsSchema`](src/schemas/sourceFactsSchema.ts) | Structured extraction preserving claims, definitions, formulas, variables, units, citations, and source IDs. |
+| **`content_audit.json`** | [`ContentAuditSchema`](src/schemas/contentAuditSchema.ts) | Pre-generation gate checking coverage, prerequisites, numerical examples, formulas, and domain rules. Status: `PASS`, `CONDITIONAL_PASS`, or `FAIL`. |
+| **`lesson_plan.json`** | [`LessonPlanSchema`](src/schemas/lessonPlanSchema.ts) | Pedagogical blueprint, learning outcomes, misconception rebuttals, and active recall scenario grounded in `sourceFactIds`. |
+| **`storyboard.json`** | [`StoryboardSchema`](src/schemas/storyboardSchema.ts) | Scene-by-scene sequence mapping visual template kinds and beat outlines to approved `sourceFactIds`. |
+| **`episode_raw.json`** | [`EpisodeDataSchema`](src/data/schema_reference.json) | High-fidelity episode payload with `scenes`, `beats`, `ui_state`, and typed `visual` specifications. |
+| **`episode_compiled.json`** | [`EpisodeDataSchema`](src/data/schema_reference.json) | Compiled production payload with measured `audioDurationSec`, `durationInFrames`, `audioFile`, and aligned cues. |
+
+---
+
+## 3. Model Preflight and Explicit Flash Fallback Approval
+
+The primary generation model is **Gemini 4 Argon** (`gemini-4-argon`), utilizing the authenticated local web-session proxy or cookie session. The engine operates under a strict, non-negotiable model fallback policy.
 
 ```mermaid
 flowchart TD
-    CMD["User Command\n(e.g. 'Make video ch02_part1 [using argon]')"] --> CHK{"Contains 'argon'?"}
+    START["Trigger Video Generation\n(npm run make-video -- <chapter>)"] --> PREFLIGHT{"Argon Preflight Check\n(src/utils/modelPreflight.mjs)"}
     
-    CHK -->|YES| ARGON["🔥 Argon Pipeline\n• Target: gemini-4-argon via proxy\n• Data: src/data/chapters/<key>_argon/\n• Audio: public/audio/<key>_argon/\n• Target Video: out/chapters/<key>.mp4"]
+    PREFLIGHT -->|PASSED| ARGON["Use Gemini 4 Argon\n• Model: gemini-4-argon\n• Record Provenance"]
     
-    CHK -->|NO| FLASH["⚡ Flash Pipeline\n• Target: Gemini 3.8 Flash\n• Data: src/data/\n• Audio: public/audio/\n• Target Video: out/<key>.mp4"]
+    PREFLIGHT -->|FAILED| CONFIRM{"User Passed\n--confirm-flash?"}
     
-    ARGON --> EXTRACT["1. Extract Curriculum Directive\n(41-Video Master Curriculum.txt)"]
-    FLASH --> EXTRACT
+    CONFIRM -->|NO| HALT["HALT GENERATION IMMEDIATELY\nPrompt User Verbatim:\n'Argon is unavailable. Would you like me to continue this chapter with Gemini 3.8 Flash?'\n(Exit Code 2)"]
     
-    EXTRACT --> GEN["2. Generate & Validate Payload\n(Zod check + single-pass auto-fix)"]
-    GEN --> TTS["3. Synthesize Hinglish TTS & Mirror Audio"]
-    TTS --> RENDER["4. Remotion MP4 Render"]
+    CONFIRM -->|YES| FLASH["Use Gemini 3.8 Flash\n• Model: gemini-3.8-flash\n• Record Provenance with Fallback Reason"]
+    
+    ARGON --> EXEC["Proceed to Source Extraction & Generation"]
+    FLASH --> EXEC
 ```
 
-### Route A: IF "argon" IS PRESENT (Full Automated Argon Pipeline)
-When triggered (e.g. `"Generate Chapter 2 Part 1 using Argon"` or `npm run make-video -- ch02_part1 argon`):
-1. **Curriculum Extraction**:
-   - Read `41-Video Master Curriculum.txt` in the root directory.
-   - Locate the exact STEP 4 command string matching the requested chapter/part (e.g. `ch02_part1.mp4`).
-2. **Isolated Workspace Initialization**:
-   - Create brand-new isolated directories grouped by book (`murphy_technical_analysis` or `hull_derivatives`):
-     - Data: `src/data/chapters/<book_slug>/<chapter_key>_argon/`
-     - Audio: `public/audio/<chapter_key>_argon/` (mirrored in `src/data/chapters/<book_slug>/<chapter_key>_argon/audio/`)
-     - Final Render Target: `out/chapters/<book_slug>/<chapter_key>.mp4`
-   - **Strict Isolation**: Never modify or overwrite base production files (`src/data/episode_raw.json` or `src/data/episode_compiled.json`).
-3. **Argon Generation via Proxy (`free-gemini-api`)**:
-   - Route script generation request through **Gemini 4 Argon** (`gemini-4-argon`) utilizing the local `free-gemini-api` proxy setup (`https://github.com/kodelyx/free-gemini-api.git`) at `http://127.0.0.1:8001/v1/chat/completions`.
-   - The proxy connects directly to the user's authenticated web session on `gemini.google.com` via the companion Chrome extension (`free-gemini-api/gemini-extension`), allowing genuine Gemini 4 Argon generation without paid Google AI Studio API keys.
-   - Enforce strict JSON schema compliance (`src/data/schema_reference.json`) with low temperature (`0.2`), valid visual template typing, zero Devanagari in UI states, and correct phonetic mapping (`नतीजे` instead of `रिज़ल्ट`).
-4. **Single-Pass Automated Self-Correction Loop**:
-   - Run `node scripts/validate_episode.mjs --dir=src/data/chapters/<chapter_key>_argon`.
-   - If any Zod validation error or visual coordinate collision is detected, automatically apply code remedies (phonetic sanitizer, required fields, margin bounds) and re-validate **strictly once** to prevent infinite loops.
-5. **Compile & Render**:
-   - Compile Hinglish TTS audio into the isolated directory: `node scripts/compile_tts_audio.mjs --dir=src/data/chapters/<chapter_key>_argon --force`.
-   - Render the final MP4 video using Remotion: `npx remotion render src/index.ts EpisodeComposition out/chapters/<chapter_key>.mp4 --props=src/data/chapters/<chapter_key>_argon/episode_compiled.json`.
-
-### Route B: OTHERWISE (Standard Gemini 3.8 Flash Pipeline)
-When triggered without the word "argon" (e.g. `"Make video ch02_part1"` or `npm run make-video -- ch02_part1`):
-1. Locate curriculum entry in `41-Video Master Curriculum.txt`.
-2. Target standard production workspace:
-   - Data: `src/data/episode_raw.json` & `src/data/episode_compiled.json`
-   - Audio: `public/audio/`
-   - Target Video: `out/<chapter_key>.mp4`
-3. Generate with default Gemini Flash model configuration.
-4. Validate, compile audio, and render to `out/<chapter_key>.mp4`.
-
----
-
-## Autonomous 5-Step Protocol
-
-```mermaid
-flowchart TD
-    S1["1. Query NotebookLM MCP\n(list_notebooks & retrieve_relevant_chunks)"] --> S2["2. Select Domain Persona\n(src/data/personas.json)"]
-    S2 --> S3["3. Design 12-Slide Story Arc\n(Novice mistake -> Mental models -> Quiz -> Recap)"]
-    S3 --> S4["4. Compile src/data/episode_raw.json\n& Validate via Zod (npm run validate)"]
-    S4 --> S5["5. Synthesize Audio & Render\n(npm run compile-audio & remotion render)"]
-```
-
----
-
-### Step 1: Query Gemini Notebook (NotebookLM) & Build Source-Grounded Lesson Architecture
-1. The **Gemini Notebook (`nlm`) is the STRICT SINGLE SOURCE OF TRUTH** for all educational content.
-2. **Never search the web or chat** for book concepts, examples, formulas, or numbers.
-3. If no matching notebook exists for the requested book or topic, **HALT IMMEDIATELY AND ASK THE USER FIRST**. Do not improvise or use web search.
-4. Execute `nlm notebook list` to identify the notebook matching the requested book (e.g. `Fundamentals of Futures and Options Markets` or `Murphy technical analysis`).
-5. Query the book source via `nlm query notebook <notebook_id> "<curriculum_directive>" -s <source_id> --new-conversation --json`.
-6. **Phase 1 Source-Grounded Lesson Architecture (All Chapters — Existing and Future, No Legacy Exemptions)**:
-   Inside every `src/data/chapters/<chapter_slug>/` workspace, the engine strictly requires and maintains 4 source artifacts:
-   - **`source_facts.json`**: Structured facts conforming to `SourceFactsSchema` preserving notebook ID, source ID, retrieval timestamp, claims, definitions, formulas (with variables, symbols, units), numerical details, and book citations. Replaces unstructured text. Never fabricate citations or numbers.
-   - **`content_audit.json`**: Audit report conforming to `ContentAuditSchema` evaluating:
-     * Source coverage & missing definitions
-     * Prerequisites
-     * Numerical examples (strikes, spot, premiums, leverage, quantities)
-     * Formula variables, units, signs (+/- long/short, debit/credit)
-     * Contract sizes & market multipliers
-     * Underlying market assumptions
-     * Payoff vs Profit distinction (ensuring payoff $\max(S-K,0)$ is never conflated with profit $\text{Payoff} - \text{Premium}$)
-     * Zero generic boilerplate
-     * Status: `PASS`, `CONDITIONAL_PASS`, or `FAIL`. **Unresolved CRITICAL findings trigger FAIL and block both episode generation and Remotion rendering immediately.**
-   - **`lesson_plan.json`**: Core pedagogical flow, prerequisites, learning outcomes, grounded fact IDs, misconceptions with author rebuttals, and active recall quiz scenario.
-   - **`storyboard.json`**: 12-scene sequence where every scene and beat outline explicitly references approved `sourceFactIds`.
-7. **Anti-Generic Boilerplate Invariant**:
-   The generator must NEVER replace missing chapter-specific content with generic finance or technical-analysis recap text. Report gaps and request repair instead.
-
----
-
-### Step 2: Select Domain Persona (`src/data/personas.json`)
-Identify the domain of the book and load the corresponding persona configuration:
-
-| Domain | Novice Persona | Mentor Persona | Context / Analogy Environment | Presets Available |
-| :--- | :--- | :--- | :--- | :--- |
-| **Finance / Trading** | **Raju** (Retail Trader, Amber) | **Sharma ji** (Chartist Mentor, Teal) | Indian NSE Market, Nifty, fictional Indian stocks in ₹ (e.g. Kesar Paints) | `uptrend_then_drop`, `uptrend_break`, `bull_breakout`, `head_and_shoulders`, `random_walk_line` |
-| **Coding / Systems** | **Aarav** (Junior Dev, Amber) | **Vikram** (Staff Architect, Blue) | High-traffic Indian fintech/e-commerce outage, latency spikes, DB bottlenecks | `latency_spike`, `throughput_scaling`, `memory_leak_curve`, `load_balancer_flow` |
-| **Psychology / Habits** | **Kabir** (Young Pro, Amber) | **Dr. Meera** (Psychologist, Purple) | Everyday workplace stress, career choices, habits, cognitive biases | `habit_compounding`, `dopamine_spike_drop`, `decision_fatigue_curve`, `expectation_vs_reality` |
-
-Always preserve the domain's `keepEnglishTerms` phonetically in Devanagari or English (e.g. `margin`, `latency`, `bias`) and format numbers as digits (`₹152`, `200ms`, `30%`).
-
----
-
-### Phase 2A Generic, Data-Driven Visual Engine & Template Registry
-
-The video engine operates on a **generic, data-driven visual contract** decoupled from finance-specific assumptions:
-
-1. **Course Configuration (`src/courses/<course_id>.json`)**:
-   Defines the course ID, book title, subject/domain, allowed templates, allowed units & formatters, visual theme, and persona. Adding a new book requires **zero TypeScript renderer code edits**.
-
-2. **Structured Visual Specifications (`visual`)**:
-   Chart values, formulas, and diagrams are supplied via typed `visual` specifications on each beat—never derived by regex-scraping narration or subtitles for `₹` or numbers:
-   ```ts
-   visual: {
-     kind: 'chart' | 'formula' | 'diagram' | 'comparison' | 'timeline' | 'process' | 'cards' | 'conversation' | 'quiz' | 'summary',
-     data: ChartSpec | FormulaSpec | DiagramSpec | unknown,
-     semantics: {
-       teachingObjective: string,
-       sourceFactIds: string[],
-       importantValues?: string[],
-       relationships?: string[]
-     }
+### Operational Rules for Model Selection
+1. **Mandatory Preflight Check**:
+   Before initiating source fact extraction, script synthesis, TTS generation, or rendering, the engine executes `checkArgonPreflight()`.
+2. **Never Silently Downgrade**:
+   If Argon is unavailable, offline, or misconfigured, the engine **must halt immediately** before generating any content. It must never silently downgrade, switch models, or infer user intent.
+3. **Exact Fallback Question**:
+   The engine halts and outputs verbatim:
+   ```text
+   Argon is unavailable. Would you like me to continue this chapter with Gemini 3.8 Flash?
+   ```
+4. **Explicit User Approval**:
+   Gemini 3.8 Flash is only invoked after the user explicitly confirms (e.g. re-running with the `--confirm-flash` flag).
+5. **Generation Provenance Metadata**:
+   Every generated episode and lesson plan records provenance metadata:
+   ```json
+   "generationProvenance": {
+     "model": "gemini-4-argon",
+     "requestedModel": "gemini-4-argon",
+     "preflightStatus": "PASSED",
+     "approvedByUser": true,
+     "approvalTimestamp": "2026-11-03T01:45:00.000Z",
+     "runId": "run_1762115100_a8f3b"
    }
    ```
 
-3. **Visual Template Registry (`src/templates/registry/templateRegistry.ts`)**:
-   Defines available templates, accepted data schemas, valid animation targets, required data types, and fallbacks. The generator chooses only templates whitelisted by the selected course configuration.
-
-4. **Generic Formula Engine (`FormulaBreakdown.tsx`)**:
-   Accepts structured expressions, variables with symbols/units/values, and step-by-step substitution cards. Supports physics ($F = m \cdot a$), arithmetic, business metrics, and finance.
-
-5. **Generic Diagram & Timeline Engine (`DiagramFlow.tsx`)**:
-   Renders node-edge graphs, chronological timelines (BCE/CE milestones), biological cycles, and software architectures with animated transitions.
-
-6. **Isolated Finance Domain Module (`src/domain/finance/`)**:
-   Candlestick presets, rupee currency formatting, payoff diagrams, and financial directional validation are isolated in `src/domain/finance/` as an optional extension. The common renderer operates with zero currency or finance coupling when that module is absent.
-
-7. **Universal Backward Compatibility (`src/adapters/legacyVisualAdapter.ts`)**:
-   All pre-existing chapter episodes continue to render cleanly via the adapter without data mutation.
-
 ---
 
-### Phase 2B Generic Narration, Timing, and Visual Synchronization
-
-1. **Structured Visual Cues (`visualCues`)**:
-   Every visual change is driven by structured narration cues on the beat:
-   ```ts
-   visualCues: [
-     { atMs: number, action: 'reveal' | 'highlight' | 'draw' | 'emphasize' | 'subtitle', target: string, payload?: unknown }
-   ]
-   ```
-   Validated against `TEMPLATE_REGISTRY[template].animationTargets` and narration audio bounds.
-
-2. **Authoritative Audio Generation & Invalidation**:
-   - Audio compiler calculates deterministic SHA-256 `narrationHash` of normalized `hindi_tts`.
-   - On hash mismatch, stale disk audio is cleanly invalidated and regenerated.
-   - Measures exact audio duration using `music-metadata`.
-   - Preserves exact authored pauses (`beat.pauseAfterMs ?? 260`) without arbitrary remapping.
-   - Frame duration is calculated as `Math.max(15, Math.ceil((totalMs / 1000) * FPS))`.
-
-3. **Phrase-Level Subtitle Alignment**:
-   - Subtitles are segmented into `subtitlePhrases` with `startMs` and `endMs` boundaries.
-   - `SceneLayout.tsx` highlights the active English phrase during narration, falling back gracefully to sentence-level display when alignment is absent.
-
-4. **Cue-Driven Visual Engines**:
-   - `FormulaBreakdown`: advances `activeStepIndex` and highlights variables on cue timestamps.
-   - `DataVisualizer`: advances series points/candles and reveals annotations on cue events, removing fixed 70% beat interpolation.
-   - `DiagramFlow`: updates `activeNodeIds`, `activeEdgeIds`, and timeline steps on cues.
-   - `ProgressiveCards`: highlights active learning points and reveals cards at cue timestamps.
-   - `InteractiveQuiz`: transitions question, thinking pause, and praise-driven answer reveal on cue timestamps.
-   - `SummaryThread`: steps through recap ranges dynamically driven by cues.
-
----
-
-### Step 3: Design the 12-Slide Pedagogical Story Arc
-Every generated video must strictly follow this 12-slide pedagogical rhythm:
-
-1. **Slide 1 — Hook Part 1 (`chat_story`)**:
-   - The Novice reads news/metrics and makes a confident, intuitive, but flawed assumption (e.g., "Good results announced, this share will fly!").
-2. **Slide 2 — Hook Part 2 (`data_visualizer`)**:
-   - The market/system does the exact opposite (e.g., share drops 7% on record profit). Ends with a 4000ms pause: *"सोचिए, ऐसा क्यों हुआ?"* ("Think: why did this happen?").
-3. **Slide 3 — The Roadmap (`progressive_cards`)**:
-   - Mentor introduces a 4–5 point breakdown of the chapter's core principles.
-4. **Slides 4–9 — Deep Dive into Mental Models**:
-   - Use high-impact templates alternating dynamically:
-     - `data_visualizer`: Progressive chart/telemetry curve showing data divergence.
-     - `tug_of_war`: Balance of forces (Buyers vs. Sellers, Requests vs. Worker Threads, Impulse vs. Willpower).
-     - `progressive_cards`: Step-by-step premises or checklist.
-     - `split_comparison`: Side-by-side contrast (e.g., Fundamental vs. Technical, Monolith vs. Microservices, System 1 vs. System 2) including author's rebuttal to common criticisms.
-5. **Slide 10 — Active Recall Quiz (`interactive_quiz`)**:
-   - A real-world scenario question testing the core premise.
-   - Features a 4000ms thinking spinner (`"PAUSE AND THINK"`), followed by an answer praising the viewer (*"अगर आपने ऐसा सोचा, तो शाबाश!"*).
-6. **Slide 11 — Application Dialogue (`chat_story`)**:
-   - 3-bubble practical dialogue between Novice and Mentor applying the lesson to tomorrow's work/trading.
-7. **Slide 12 — The Whole Picture (`summary_thread`)**:
-   - Top header badge `CHAPTER X · THE WHOLE PICTURE`.
-   - Heading `"Today's thread"`.
-   - 8-step sequential numbered recap with the final step highlighted in orange `#F59E0B`.
-   - Bottom takeaway principle box + 1-sentence teaser for the next chapter.
-
----
-
-### Step 4: Compile & Validate Isolated Chapter Payload (`src/data/chapters/<book>/<slug>/`)
-Construct the JSON payload conforming strictly to [`src/data/schema_reference.json`](src/data/schema_reference.json).
-**Isolated Chapter Requirement:** Every new chapter generation MUST be placed into a dedicated, book-grouped isolated folder (`src/data/chapters/<book_slug>/<chapter_slug>/episode_raw.json`) rather than overwriting base production files.
-- **Model Engine**: Powered by **Gemini 4 Argon** (`gemini-4-argon`) via direct Google GenAI or [`free-gemini-api`](https://github.com/kodelyx/free-gemini-api.git) proxy routing (`GEMINI_BASE_URL`). Enforce temperature between `0.2` and `0.3` for strict schema compliance.
-- **Structure**: 10–13 scenes, 35–55 total beats.
-- **Beat Granularity**: Exactly 1 spoken sentence per beat (5–12 seconds).
-- **Progressive UI**: Each beat modifies or reveals parts of `ui_state` (`progressStep`, active card, active bullet, etc.).
-- **Bilingual Rule & Vocabulary**:
-  - `hindi_tts`: 100% Devanagari Hindi audio. Must contain zero raw Latin English sentences or phrases. Common technical acronyms (SMA, EMA, RSI, MACD, OI, OBV, COT, etc.) are permitted and phonetically sanitized in speech synthesis. Avoid stiff translated English words—use `नियम` or `बातें` instead of `lenses`, `सिद्धांत` instead of `tenets`, `नतीजे` instead of `रिजल्ट`, and `भारी ट्रेन` instead of `freight train`. Use natural phonetic acronyms like `दवा रेगुलेटर (FDA)`, `एफ डी ए`, `आई पी ओ`, `ओ एच एल सी`.
-  - `en_subtitle`: Clean, concise English translation under 16 words per beat.
-- **Strict English UI Text**: Every field inside `ui_state` (including `interactive_quiz.answer`, card titles, subtitles, annotations, badges, and bullets) MUST be 100% English. Devanagari script is strictly prohibited in `ui_state` and enforced by Zod regex validation (`/[\u0900-\u097F]/`).
-- **Template Invariants & Layout Rules**:
-  - **Data Visualizer**: Bottom X-axis is strictly reserved for clean dates/months (`Jan`, `Feb`, `Mar`, `Apr`). Never print pattern names (`Head`, `Shoulder`, `Breakdown`) on the X-axis. Currency `yAxisUnit` is strictly locked to `'₹'`. The `head_and_shoulders` geometry (peaks, neckline) is only rendered when the scene title explicitly matches `/head\s*(?:&|and)\s*shoulders/i`. Trendlines must be clipped to currently visible candles. Dynamic auto-scaling extracts scene prices to rescale candles and bounds.
-  - **Dynamic Bounding Box Collision Engine**: `DataVisualizer.tsx` executes a 3-pass defensive collision-resolution loop over all active annotations. If two pills overlap horizontally (`dx < w1 + w2 + 12px`) and vertically (`dy < h + 10px`), the overlapping pill is automatically shifted by `±32px` (staggered downward for bottom callouts, upward for top callouts) and the SVG pointer line is dynamically redrawn to the new shifted anchor.
-  - **Strict Y-Axis Margin Guard**: All chart annotations, peak pills, and neckline indicators are strictly bounded within `[padTop - 15, svgH - padBottom - 28]`. No chart element may ever render outside the active canvas or overlap volume/metric bars.
-  - **Progressive Cards**: In grid layout, hidden cards render as invisible cell placeholders so visible cards never jump. Reveal at most 1 new card per beat (`cards.length <= beats.length`). Card copy must stay strictly immutable within a scene. Section header pill anchored directly inside card container wrapper (`mb-4`).
-  - **Split Comparison**: Beat 1 hides the right column and VS badge when `rightColumn.active: false` and `bullets: []`. Beat 2 animates in the right column and VS badge. Bullets must NEVER start with ASCII arrows (`-->` or `->`).
-  - **Interactive Quiz 3-Beat Lock**: Scene must contain exactly 3 beats:
-    - Beat 0: Scenario introduction (`showThinkingSpinner: false`, `answer: null`).
-    - Beat 1: Thinking pause (`showThinkingSpinner: true`, `answer: null`, `pauseAfterMs >= 3000`).
-    - Beat 2: Answer reveal (`showThinkingSpinner: false`, `answer: non-empty string`).
-    - `ui_state.question` must be a self-contained scenario + question (minimum 18 words) and stay 100% identical across all 3 beats.
-  - **Summary Thread Completeness & 6-Beat Rule**: Every recap thread must feature exactly 8 steps (`steps.length === 8`) and 6 beats:
-    - Beat 0: Intro (`activeStepRange: [0, 0]`)
-    - Beat 1: Steps 1 & 2 (`activeStepRange: [1, 2]`)
-    - Beat 2: Steps 3 & 4 (`activeStepRange: [3, 4]`)
-    - Beat 3: Steps 5 & 6 (`activeStepRange: [5, 6]`)
-    - Beat 4: Steps 7 & 8 (`activeStepRange: [7, 8]`)
-    - Beat 5: Final Takeaway (`activeStepRange: [1, 8]`)
-    Each body pair beat has natural Devanagari Hindi narration explaining the pair without synthetic English injection. Heading must strictly be `"Today's thread"`.
-  - **Breadcrumb & Chapter Formatting**: `meta.chapter` must strictly match `/^CHAPTER \d+ · PART \d+$/` or `/^APPENDIX/i`. Underscores or `_ARGON` are strictly prohibited.
-- **Tug of War Silhouette Limits**: Keep `leftCount` and `rightCount` between 0 and 25 to render a clean, crisp 5-column grid of user silhouettes directly on the white dot-grid canvas without outer tint boxes.
-- **Pacing**: `pauseAfterMs: 400` for normal beats, `4000` for quiz thinking pauses, and `600` for chapter takeaways.
-- **Schema Validation & Bulletproof Guardrails**:
-  - Immediately run the Zod validator against the isolated chapter:
-    ```bash
-    node scripts/validate_episode.mjs --chapter=<slug>
-    # or
-    node scripts/validate_episode.mjs --dir=src/data/chapters/<slug>
-    ```
-  - Prohibits forbidden TTS phonetic slurs (`रिज़ल्ट`, `रिजल्ट`, `रिज़िट`, `रिजट`) in `hindi_tts` and enforces `नतीजे`.
-  - Prohibits awkward regulatory clusters (`USFDA`, `यू एस एफ डी ए`) and enforces `दवा रेगुलेटर (FDA)`.
-  - Missing required fields, unauthorized Devanagari in UI text, or layout violations immediately fail with `process.exit(1)`.
-- **Automated Self-Correction Loop (Strictly Single-Pass Guard)**:
-  - If visual inspection or Zod validation detects a mistake or collision, the agent automatically applies code remediation and re-renders **strictly a maximum of one time per generation**.
-  - If minor issues persist after the single pass, the agent halts and surfaces the report for user confirmation, strictly preventing infinite build loops.
-
----
-
-### Step 5: Synthesize Audio & Render Isolated Chapter
-1. Run the audio compiler targeting the isolated chapter (`compile_tts_audio` automatically runs Zod validation as a prerequisite):
-   ```bash
-   node scripts/compile_tts_audio.mjs --chapter=<slug> --force
-   # Or with explicit directory:
-   node scripts/compile_tts_audio.mjs --dir=src/data/chapters/<slug> --force
-   # To route through Gemini TTS:
-   node scripts/compile_tts_audio.mjs --chapter=<slug> --tts=gemini --force
-   ```
-   *Audio Assets*: Audio clips are cleanly generated under `public/audio/<slug>/` and mirrored into `src/data/chapters/<slug>/audio/` without colliding with root audio.
-   *The compiler automatically applies `sanitizeForHindiTTS(text)` to pronounce currencies (`₹152` -> `152 रुपये`), percentages (`7%` -> `7 परसेंट`), mathematical signs, and domain acronyms (`API`, `P99`, `CPU`, `RSI`, `NSE`) accurately without speech artifacts.*
-2. Verify that `src/data/chapters/<slug>/episode_compiled.json` has populated `audioFile`, `audioDurationSec`, and `durationInFrames` for all beats.
-3. Render the video with custom chapter props:
-   ```bash
-   npx remotion render src/index.ts EpisodeComposition out/<slug>.mp4 --props=src/data/chapters/<slug>/episode_compiled.json
-   ```
-   Or preview interactively:
-   ```bash
-   npm run preview
-   ```
-
----
-
-## Phase 2C Generic Render QA & Release Gate Protocol
-
-A video must **never be released merely because an MP4 exists**. Every generated or modified chapter must pass through the domain-independent Release Gate before deployment:
+## 4. Source Extraction and Content-Audit Gate
 
 ```mermaid
 flowchart TD
-    MP4["Rendered / Compiled Chapter\n(src/data/chapters/<slug>)"] --> QA["🛡️ Phase 2C Release Gate\n(node scripts/run_qa.mjs)"]
-    
-    QA --> P1["1. Source Traceability\n(source_facts + audit status)"]
-    QA --> P2["2. Schema Validity\n(Zod schema check)"]
-    QA --> P3["3. Audio & Cue Timing\n(hash match + valid targets)"]
-    QA --> P4["4. Subtitle Alignment\n(phrase boundaries)"]
-    QA --> P5["5. Layout & Text Bounds\n(word counts + card limits)"]
-    QA --> P6["6. Duration Drift\n(|compiled - authored| < 500ms)"]
-    QA --> P7["7. MP4 Stream Inspection\n(1920x1080@30fps + AAC track)"]
-    QA --> P8["8. Modular Domain Checks\n(conditional finance rules)"]
-    QA --> P9["9. Key-Frame Cue Screenshots\n(beat starts + cue triggers)"]
-    
-    P1 & P2 & P3 & P4 & P5 & P6 & P7 & P8 & P9 --> GATE{"Evaluate Severities"}
-    
-    GATE -->|Blockers > 0| FAIL["❌ RELEASE GATE: FAIL\n(Release blocked)"]
-    GATE -->|High > 0 without --allow-high| FAIL
-    GATE -->|High > 0 with --allow-high| COND["⚠️ CONDITIONAL PASS\n(Report for review)"]
-    GATE -->|Only Medium / Low| PASS["✅ RELEASE GATE: PASS\n(Ready for release)"]
+    NOTEBOOK["1. Gemini NotebookLM\n(nlm query notebook <id>)"] --> FACTS["2. Extract Structured Facts\n(scripts/extract_source_facts.mjs)"]
+    FACTS --> AUDIT["3. Run Content Audit\n(scripts/audit_content.mjs)"]
+    AUDIT --> EVAL{"Audit Status?"}
+    EVAL -->|FAIL| BLOCK["🛑 BLOCK GENERATION\nUnresolved CRITICAL findings\n(Exit Code 1)"]
+    EVAL -->|PASS / CONDITIONAL_PASS| LESSON["4. Proceed to Lesson & Storyboard Design"]
 ```
 
-### 1. The 9 Validation Pillars
-1. **Source-Fact Traceability & Coverage**:
-   - Confirms `source_facts.json`, `content_audit.json`, `lesson_plan.json`, and `storyboard.json` exist.
-   - Ensures content audit status is not `FAIL` (zero critical findings).
-   - Validates that every beat's `sourceFactIds` cite registered facts in `source_facts.json`.
-2. **Template & Visual Schema Validity**:
-   - Verifies the entire episode against Zod schemas and structural template rules.
-3. **Audio Integrity, Hash Freshness, & Cue Timing**:
-   - Audio existence and minimum size check (> 1000 bytes).
-   - Narration SHA-256 hash check (`narrationHash === hashNarration(hindi_tts)`).
-   - Cue target validity verified against `TEMPLATE_REGISTRY[template].animationTargets`.
-   - Cue timestamp bounds check (`cue.atMs <= audioDurationMs + pauseMs`).
-4. **Subtitle Phrase Alignment Availability & Monotonicity**:
-   - Phrase alignment array presence (`subtitlePhrases`).
-   - Monotonic phrase boundaries (`endMs >= startMs`).
-5. **Visual Layout & Text Constraints**:
-   - Subtitle length guard: $\le 16$ words per beat to prevent line overflow.
-   - Interactive quiz question scenario guard: $\ge 18$ words for clear pedagogical context.
-   - Formula expression length: warns when expression exceeds 45 characters.
-   - Data visualizer sideCards limit: maximum 4 sideCards to prevent vertical clipping.
-6. **Scene & Final Video Duration Drift**:
-   - Measures drift between authored audio ($t_{\text{audio}} + t_{\text{pause}}$) and compiled frames ($\sum \text{frames} / 30$).
-   - $|\text{drift}| > 1000\text{ms}$ flagged as `HIGH`; $|\text{drift}| > 500\text{ms}$ flagged as `MEDIUM`.
-7. **Video / Audio Streams & MP4 Integrity**:
-   - Uses `music-metadata` container parsing on output MP4.
-   - Enforces minimum file size (> 1 MB), H.264 video track with exact 1920x1080 display resolution at 30 fps, and active AAC audio track.
-8. **Modular Domain Checks**:
-   - Base release gate runs unconditionally for all courses.
-   - Domain-specific checks (e.g. `finance`) trigger only when `domainModules` includes that domain (e.g. rupee `₹` y-axis unit lock, directional consistency, payoff vs profit, and H&S geometry constraints).
-   - Domain validators are registered in `src/qa/domainValidators.mjs`.
-9. **Key-Frame Cue Still Screenshots**:
-   - Remotion screenshot engine (`src/qa/screenshotEngine.mjs`) calculates target frames for beat starts, key cue triggers, and scene completion.
-   - Captures high-resolution stills for visual inspection into `reports/qa/screenshots/<chapter_slug>/`.
-
-### 2. 4-Tier Severity Levels
-- **`BLOCKER`**: Release gate strictly fails. Video cannot be published or deployed.
-- **`HIGH`**: Serious issue. Fails release gate unless explicitly approved with `--allow-high`.
-- **`MEDIUM`**: Quality guideline warning reported in detail for review (does not halt release).
-- **`LOW`**: Informational note (e.g. pending MP4 render or test fixture preview).
-
-### 3. Release Gate Commands & Outputs
-- **Inspect Single Chapter**:
-  ```bash
-  node scripts/run_qa.mjs --dir=src/data/chapters/<chapter_slug>
-  # or via npm:
-  npm run qa -- --chapter=<chapter_slug>
-  ```
-- **Capture Cue Screenshots**:
-  ```bash
-  node scripts/run_qa.mjs --dir=src/data/chapters/<chapter_slug> --screenshots
-  ```
-- **Full Batch Inspection Across All Chapters**:
-  ```bash
-  npm run qa:all
-  # or with high-severity override:
-  node scripts/run_qa.mjs --all --allow-high
-  ```
-- **Reports Generated**:
-  - Structured JSON Report: `reports/qa/<chapter_slug>_qa.json`
-  - Interactive HTML Dashboard: `reports/qa/<chapter_slug>_qa.html`
-  - Markdown Batch Audit Summary: `reports/phase2c_all_chapters_qa_report.md`
+1. **NotebookLM Extraction**:
+   - The engine queries the authorized notebook using `nlm query notebook <notebook_id> "<directive>" -s <source_id> --new-conversation --json`.
+   - Results are saved to `<chapter_dir>/notebook_context.txt`.
+2. **Fact Ledger Formulation**:
+   - Run `node scripts/extract_source_facts.mjs --dir=src/data/chapters/<course_id>/<chapter_id>`.
+   - Populates structured claims, variables, numerical details, and citations into `source_facts.json`.
+3. **Content Audit Check**:
+   - Run `node scripts/audit_content.mjs --dir=src/data/chapters/<course_id>/<chapter_id>`.
+   - Inspects source coverage, prerequisites, missing definitions, formula variables, units, numerical consistency, and signs (+/- long/short).
+   - If findings include any **CRITICAL** severity defect, audit status is `FAIL`. Generation and rendering are **strictly blocked**.
 
 ---
 
-## Mandatory Automated QA & Single-Pass Self-Correction Protocol (Argon Engine)
+## 5. Lesson and Storyboard Approval Gate
 
-Whenever **Gemini 4 Argon** generates a new chapter video or updates code templates, it **must autonomously execute the following quality gate** before finishing:
+Once `source_facts.json` passes audit, the lesson plan and storyboard are synthesized strictly from approved facts:
 
-1. **Post-Generation Harness Execution:**
-   Immediately after compiling data or rendering test frames, run:
-   ```bash
-   npm run qa-harness -- --dir=src/data/chapters/<chapter_key>_argon
-   ```
-
-2. **Automated Verification Gates:**
-   - **Pre-Render Schema & Price Invariants**: Runs `validate_episode.mjs` to enforce Zod schema adherence, preset landmarks, and UI rules.
-   - **Compiled Audio & Telemetry Integrity**: Verifies all beats have valid non-empty audio files in `public/audio/` and duration > 0.
-   - **Render Sanity Check**: Ensures output MP4 exists and file size > 1MB.
-   - **Guarded Single-Pass Auto-Correction**: Fixes known phonetic anomalies and syntax issues, terminating immediately if defects persist to prevent infinite loops.
+1. **Lesson Plan Generation**:
+   - Run `node scripts/generate_lesson_storyboard.mjs --dir=src/data/chapters/<course_id>/<chapter_id>`.
+   - Structures prerequisites, pedagogical sequence, core principles, misconceptions, and real-world active recall scenarios.
+   - Every claim is tied to an explicit `sourceFactId`.
+2. **Storyboard Formulation**:
+   - Builds scene outlines, beat progressions, and visual template assignments.
+   - Enforces visual variety: dynamic alternation between charts, cards, comparisons, diagrams, formulas, and quizzes.
+3. **Lesson Architecture Validation Gate**:
+   - Run `npm run validate:lesson` or `node scripts/validate_lesson_architecture.mjs`.
+   - Checks that all 4 Phase 1 artifacts exist, are valid JSON, conform to Zod schemas, and have zero dangling `sourceFactIds`.
 
 ---
 
-## Technical Reference & File Map
+## 6. Generic Visual, Audio, Alignment, and Synchronization Contract
 
-- **Templates**: [`src/templates/`](src/templates/) (`ChatStory`, `DataVisualizer`, `TugOfWar`, `ProgressiveCards`, `SplitComparison`, `InteractiveQuiz`, `SummaryThread`).
-- **Layout & Design**: [`src/components/SceneLayout.tsx`](src/components/SceneLayout.tsx) (1920x1080, #F7F6F2, dot-grid card, progress pills).
-- **TTS Compiler**: [`scripts/compile_tts_audio.mjs`](scripts/compile_tts_audio.mjs) (Edge-TTS + Gemini TTS compiler supporting `--dir` and `--chapter`).
-- **Episode Generator**: [`scripts/generate_episode.mjs`](scripts/generate_episode.mjs) (Gemini 4 Argon automated episode architect).
-- **Presets**: [`src/templates/chartPresets.ts`](src/templates/chartPresets.ts) (12 deterministic SVG presets).
-- **Personas**: [`src/data/personas.json`](src/data/personas.json).
-- **QA Release Gate Engine**: [`src/qa/qaEngine.mjs`](src/qa/qaEngine.mjs) & [`scripts/run_qa.mjs`](scripts/run_qa.mjs).
-- **QA Domain Validators**: [`src/qa/domainValidators.mjs`](src/qa/domainValidators.mjs) (modular domain quality checks).
-- **QA Report Generator**: [`src/qa/reportGenerator.mjs`](src/qa/reportGenerator.mjs) (HTML dashboard + JSON scorecard).
-- **QA Screenshot Engine**: [`src/qa/screenshotEngine.mjs`](src/qa/screenshotEngine.mjs) (Remotion keyframe cue screenshot generator).
-- **Chapter Path & Book Resolver**: [`src/utils/chapterPaths.mjs`](src/utils/chapterPaths.mjs) (book-grouped workspace and video resolution).
-- **Isolated Chapters**: `src/data/chapters/<book_slug>/<chapter_slug>/` (Raw JSON, compiled JSON, and mirrored audio grouped by book: `murphy_technical_analysis/` and `hull_derivatives/`).
-- **Rendered Videos**: `out/chapters/<book_slug>/<chapter_key>.mp4` (Organized uniformly by book).
-- **Root Timeline**: [`src/data/episode_compiled.json`](src/data/episode_compiled.json).
+### 6.1 Generic Course Configuration & Template Registry
+- Adding a new book or subject requires only a course configuration ([`src/courses/<course_id>.json`](src/courses/murphy_technical_analysis.json)) specifying theme colors, typography, allowed templates, and persona rules.
+- **Zero TypeScript renderer code changes are permitted** when adding a new book.
+- Visual components query [`TEMPLATE_REGISTRY`](src/templates/registry/templateRegistry.ts) for valid template targets and data schemas.
 
+### 6.2 Structured Visual Specifications
+Visual changes are driven by explicit beat-level `visual` data—never derived by scraping narration text:
+```ts
+visual: {
+  kind: 'chart' | 'formula' | 'diagram' | 'comparison' | 'timeline' | 'process' | 'cards' | 'conversation' | 'quiz' | 'summary',
+  data: unknown,
+  semantics: {
+    teachingObjective: string,
+    sourceFactIds: string[],
+    importantValues?: string[],
+    relationships?: string[]
+  }
+}
+```
+
+### 6.3 Narration Visual Cues
+Every visual state transition is synchronized via structured cues:
+```ts
+visualCues: [
+  {
+    atMs: number,
+    action: 'reveal' | 'highlight' | 'draw' | 'emphasize' | 'subtitle',
+    target: string,
+    payload?: unknown
+  }
+]
+```
+Validated against template capabilities and measured narration audio duration.
+
+### 6.4 Authoritative Audio Generation & Timing
+- Run `node scripts/compile_tts_audio.mjs --dir=src/data/chapters/<course_id>/<chapter_id> --force`.
+- Audio compiler computes deterministic SHA-256 hash (`narrationHash`) of sanitized `hindi_tts`. Stale audio is invalidated and regenerated.
+- Measures exact audio duration using `music-metadata`.
+- Exact beat duration is calculated from measured audio duration plus authored pause:
+  $$\text{durationInFrames} = \max\left(15, \left\lceil \frac{\text{audioDurationSec} \cdot 1000 + \text{pauseAfterMs}}{1000} \cdot \text{FPS} \right\rceil\right)$$
+- Audio assets are output to `public/audio/<course_id>/<chapter_id>/` and mirrored to `src/data/chapters/<course_id>/<chapter_id>/audio/`.
+
+### 6.5 Phrase-Level Subtitle Alignment
+- Audio compiler segments subtitles into `subtitlePhrases` with `startMs` and `endMs` timestamps.
+- Video layout highlights the active phrase during playback, falling back safely to sentence-level display when alignment is absent.
+
+---
+
+## 7. Rendering and Generic QA Release Gate
+
+### 7.1 Video Rendering via Remotion
+Videos are rendered into isolated course directories:
+```bash
+npx remotion render src/index.ts EpisodeComposition out/chapters/<course_id>/<chapter_id>.mp4 --props=src/data/chapters/<course_id>/<chapter_id>/episode_compiled.json --crf=16 --pixel-format=yuv420p
+```
+
+### 7.2 Release Gate Verification (`scripts/run_qa.mjs`)
+The release gate inspects data, timing, media, layout, and video container integrity:
+```bash
+node scripts/run_qa.mjs --dir=src/data/chapters/<course_id>/<chapter_id>
+# Or across all chapters:
+npm run qa:all -- --allow-high
+```
+
+### Severity Classification & Release Decision
+- **`BLOCKER`**: Release must fail immediately. Rendering/deployment prohibited. (Missing audio, corrupt container, schema errors, duration mismatch > 10s, critical audit failures).
+- **`HIGH`**: Release fails unless `--allow-high` is explicitly supplied. (Unresolved duration drift > 1s, domain rule violations, subtitle missing words).
+- **`MEDIUM`**: Reported for pedagogical review. Does not block release. (Subtitle word count > 16 words, missing phrase-level alignment fallback).
+- **`LOW`**: Informational telemetry. (Pending video render, styling suggestions).
+
+Reports and screenshot cues are written to `reports/qa/<course_id>/<chapter_id>/`.
+
+---
+
+## 8. State Machine, Invalidation, Repair, and Human-Review Rules
+
+Every chapter progresses through a formal, model-neutral state machine:
+
+```mermaid
+stateDiagram-v2
+    [*] --> SOURCE_READY: nlm extract
+    SOURCE_READY --> AUDITED: runContentAudit()
+    AUDITED --> LESSON_DESIGNED: generateLessonPlan()
+    LESSON_DESIGNED --> STORYBOARDED: generateStoryboard()
+    STORYBOARDED --> APPROVED_FOR_PRODUCTION: validate_lesson
+    APPROVED_FOR_PRODUCTION --> AUDIO_ALIGNED: compile_tts_audio
+    AUDIO_ALIGNED --> RENDERED: remotion render
+    RENDERED --> QA_PASSED: run_qa.mjs
+    QA_PASSED --> RELEASED: deploy
+```
+
+### Invalidation Triggers
+- **Source Facts Invalidation**: Editing `source_facts.json` resets state to `SOURCE_READY`, invalidating `lesson_plan.json`, `storyboard.json`, and all downstream payloads.
+- **Narration Text Invalidation**: Modifying `hindi_tts` invalidates cached audio via SHA-256 hash mismatch, requiring re-synthesis and frame re-calculation.
+- **Timing Invalidation**: Duration drift $|\text{compiledFrames} - \text{measuredFrames}| > 15 \text{ frames}$ (500ms) triggers automated frame recalculation.
+
+### Single-Pass Self-Correction Guard
+- If Zod validation or layout collision occurs during generation, the agent applies code remediation and re-validates **strictly once**.
+- If errors persist after one pass, the agent halts and surfaces the failure report to the user, strictly preventing infinite loops.
+
+---
+
+## 9. Operational Modes with Verified Commands
+
+All commands operate on model-neutral paths:
+
+### 1. Full Autonomous Video Generation
+```bash
+# Generate video for Murphy chapter:
+npm run make-video -- ch01_part1
+
+# Generate video for Hull chapter:
+npm run make-video -- "hull ch01_part1"
+
+# Generate with explicit Flash approval if Argon is unavailable:
+npm run make-video -- ch01_part1 --confirm-flash
+
+# Force overwrite existing data:
+npm run make-video -- ch02_part1 --force
+```
+
+### 2. Validation & Quality Assurance
+```bash
+# Validate lesson architecture across all chapters:
+npm run validate:lesson
+
+# Validate specific chapter episode schema:
+node scripts/validate_episode.mjs --dir=src/data/chapters/murphy_technical_analysis/ch01_part1
+
+# Run QA Release Gate on a specific chapter:
+node scripts/run_qa.mjs --dir=src/data/chapters/murphy_technical_analysis/ch01_part1
+
+# Run QA Release Gate across all 36 chapters:
+npm run qa:all -- --allow-high
+```
+
+### 3. Audio Compilation & Synthesis
+```bash
+# Compile audio for specific chapter:
+node scripts/compile_tts_audio.mjs --dir=src/data/chapters/murphy_technical_analysis/ch01_part1 --force
+
+# Compile using Gemini TTS:
+node scripts/compile_tts_audio.mjs --dir=src/data/chapters/murphy_technical_analysis/ch01_part1 --tts=gemini --force
+```
+
+### 4. Interactive Studio & Manual Render
+```bash
+# Launch interactive Remotion preview studio:
+npm run preview
+
+# Render chapter video with explicit props:
+npx remotion render src/index.ts EpisodeComposition out/chapters/murphy_technical_analysis/ch01_part1.mp4 --props=src/data/chapters/murphy_technical_analysis/ch01_part1/episode_compiled.json
+```
+
+---
+
+## 10. Repository File Map
+
+Every path links to an authoritative, verified file in the workspace:
+
+### Engine Core & Path Resolvers
+- [`src/utils/chapterPaths.mjs`](src/utils/chapterPaths.mjs): Path resolution for chapter workspaces, audio assets, videos, and QA reports.
+- [`src/utils/chapterPaths.ts`](src/utils/chapterPaths.ts): TypeScript type bindings for path resolvers.
+- [`src/utils/modelPreflight.mjs`](src/utils/modelPreflight.mjs): Mandatory Argon connectivity and session preflight check.
+
+### Schemas & Course Configurations
+- [`src/schemas/sourceFactsSchema.ts`](src/schemas/sourceFactsSchema.ts): Source fact extraction schema.
+- [`src/schemas/contentAuditSchema.ts`](src/schemas/contentAuditSchema.ts): Content audit validation schema.
+- [`src/schemas/lessonPlanSchema.ts`](src/schemas/lessonPlanSchema.ts): Pedagogical lesson plan schema.
+- [`src/schemas/storyboardSchema.ts`](src/schemas/storyboardSchema.ts): Storyboard sequence schema.
+- [`src/data/schema_reference.json`](src/data/schema_reference.json): Complete Remotion episode schema definition.
+- [`src/courses/murphy_technical_analysis.json`](src/courses/murphy_technical_analysis.json): Technical analysis course configuration.
+- [`src/courses/hull_derivatives.json`](src/courses/hull_derivatives.json): Futures & options course configuration.
+
+### Template Registry & Domain Extensions
+- [`src/templates/registry/templateRegistry.ts`](src/templates/registry/templateRegistry.ts): Universal registry of visual templates and animation targets.
+- [`src/domain/finance/financialCalculators.ts`](src/domain/finance/financialCalculators.ts): Isolated financial calculators and domain rules.
+
+### QA Release Gate
+- [`src/qa/qaEngine.mjs`](src/qa/qaEngine.mjs): Domain-independent release gate evaluation engine.
+- [`src/qa/qaTypes.ts`](src/qa/qaTypes.ts): QA report and findings type definitions.
+- [`scripts/run_qa.mjs`](scripts/run_qa.mjs): CLI runner for release gate audits.
+
+### Orchestration Scripts
+- [`scripts/generate_video.mjs`](scripts/generate_video.mjs): End-to-end curriculum dispatcher with preflight check and Flash fallback.
+- [`scripts/extract_source_facts.mjs`](scripts/extract_source_facts.mjs): Extracts facts from NotebookLM into `source_facts.json`.
+- [`scripts/audit_content.mjs`](scripts/audit_content.mjs): Validates source facts and emits `content_audit.json`.
+- [`scripts/generate_lesson_storyboard.mjs`](scripts/generate_lesson_storyboard.mjs): Generates `lesson_plan.json` and `storyboard.json`.
+- [`scripts/compile_tts_audio.mjs`](scripts/compile_tts_audio.mjs): Authoritative audio compiler with hash validation and phrase alignment.
+- [`scripts/validate_episode.mjs`](scripts/validate_episode.mjs): Zod schema validator for episode payloads.
+- [`scripts/validate_lesson_architecture.mjs`](scripts/validate_lesson_architecture.mjs): Validates Phase 1 artifacts across all chapters.

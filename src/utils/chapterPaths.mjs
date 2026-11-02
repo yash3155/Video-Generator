@@ -3,17 +3,17 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 /**
- * Determines the book folder slug for a given chapter key/slug or metadata.
+ * Determines the book/course folder slug for a given chapter key/slug or metadata.
  * Defaults to 'murphy_technical_analysis' for non-hull chapters and 'hull_derivatives' for hull chapters.
  */
-export function getBookSlug(chapterSlug, meta = {}) {
-  const courseStr = String(meta.course || meta.book || '').toLowerCase();
+export function getBookSlug(chapterSlug = '', meta = {}) {
+  const courseStr = String(meta?.course || meta?.book || meta?.courseId || '').toLowerCase();
   const slugStr = String(chapterSlug || '').toLowerCase();
 
   if (courseStr.includes('hull') || slugStr.startsWith('hull_') || slugStr.includes('hull')) {
     return 'hull_derivatives';
   }
-  if (courseStr.includes('murphy') || slugStr.startsWith('ch') || slugStr.startsWith('appendix') || slugStr.includes('test_run')) {
+  if (courseStr.includes('murphy') || slugStr.includes('murphy')) {
     return 'murphy_technical_analysis';
   }
   if (courseStr.includes('mechanic') || slugStr.includes('physic')) {
@@ -23,6 +23,13 @@ export function getBookSlug(chapterSlug, meta = {}) {
     return 'world_history';
   }
 
+  // If path contains course directory name
+  if (slugStr.includes('murphy_technical_analysis')) return 'murphy_technical_analysis';
+  if (slugStr.includes('hull_derivatives')) return 'hull_derivatives';
+  if (slugStr.includes('classical_mechanics')) return 'classical_mechanics';
+  if (slugStr.includes('world_history')) return 'world_history';
+
+  // Default to murphy for standard technical analysis chapter tags
   return 'murphy_technical_analysis';
 }
 
@@ -46,7 +53,7 @@ export function getAllChapterDirectories(chaptersRoot = path.join(process.cwd(),
     if (fs.existsSync(raw)) {
       results.push(full);
     } else {
-      // Subdirectory is a book directory (e.g. murphy_technical_analysis or hull_derivatives)
+      // Subdirectory is a course directory (e.g. murphy_technical_analysis or hull_derivatives)
       try {
         const subDirs = fs
           .readdirSync(full, { withFileTypes: true })
@@ -69,11 +76,6 @@ export function getAllChapterDirectories(chaptersRoot = path.join(process.cwd(),
 
 /**
  * Resolves a chapter directory given a slug, key, relative path, or absolute path.
- * Searches:
- * 1. Exact existing path
- * 2. chaptersRoot/<book>/<slug>
- * 3. chaptersRoot/<slug>
- * 4. Case-insensitive search across all book directories
  */
 export function resolveChapterDirectory(targetSlugOrPath, rootDir = process.cwd()) {
   if (!targetSlugOrPath) return null;
@@ -92,35 +94,35 @@ export function resolveChapterDirectory(targetSlugOrPath, rootDir = process.cwd(
     }
   }
 
-  const cleanSlug = path.basename(targetSlugOrPath).replace(/\.json$/i, '');
+  const rawClean = path.basename(targetSlugOrPath).replace(/\.json$/i, '');
+  const cleanSlug = rawClean.replace(/_argon$/i, '');
   const chaptersRoot = path.join(rootDir, 'src', 'data', 'chapters');
 
   if (!fs.existsSync(chaptersRoot)) return null;
 
   const candidateSlugs = [
     cleanSlug,
-    `${cleanSlug}_argon`,
-    cleanSlug.replace(/_argon$/i, ''),
+    rawClean,
+    cleanSlug.replace(/^hull_/i, ''),
   ];
 
-  const bookSlug = getBookSlug(cleanSlug);
-  const possibleBooks = [bookSlug, 'murphy_technical_analysis', 'hull_derivatives'];
+  // If path or slug specified a course
+  const bookSlug = getBookSlug(targetSlugOrPath);
+  const possibleBooks = [
+    bookSlug,
+    'murphy_technical_analysis',
+    'hull_derivatives',
+    'classical_mechanics',
+    'world_history',
+  ];
 
-  // Check in specific book directories first
+  // Check in specific course directories first
   for (const book of possibleBooks) {
     for (const c of candidateSlugs) {
       const p = path.join(chaptersRoot, book, c);
       if (fs.existsSync(p) && fs.existsSync(path.join(p, 'episode_raw.json'))) {
         return p;
       }
-    }
-  }
-
-  // Check top-level chaptersRoot
-  for (const c of candidateSlugs) {
-    const p = path.join(chaptersRoot, c);
-    if (fs.existsSync(p) && fs.existsSync(path.join(p, 'episode_raw.json'))) {
-      return p;
     }
   }
 
@@ -144,11 +146,30 @@ export function resolveOutputVideoPath(videoKey, rootDir = process.cwd()) {
 
   const candidatePaths = [
     path.join(outDir, 'chapters', bookSlug, `${cleanKey}.mp4`),
-    path.join(outDir, bookSlug, `${cleanKey}.mp4`),
+    path.join(outDir, 'chapters', bookSlug, `${cleanKey.replace(/^hull_/i, '')}.mp4`),
+    path.join(outDir, 'chapters', 'hull_derivatives', `${cleanKey.replace(/^hull_/i, '')}.mp4`),
+    path.join(outDir, 'chapters', 'murphy_technical_analysis', `${cleanKey}.mp4`),
     path.join(outDir, 'chapters', `${cleanKey}.mp4`),
     path.join(outDir, `${cleanKey}.mp4`),
-    path.join(outDir, 'videos', bookSlug, `${cleanKey}.mp4`),
   ];
 
   return candidatePaths.find((p) => fs.existsSync(p)) || candidatePaths[0];
+}
+
+/**
+ * Resolves the stable audio directory: public/audio/<course_id>/<chapter_id>/
+ */
+export function resolveAudioDirectory(chapterKey, courseId = null, rootDir = process.cwd()) {
+  const cleanKey = path.basename(chapterKey).replace(/_argon$/i, '').replace(/^hull_/i, '');
+  const courseSlug = courseId || getBookSlug(chapterKey);
+  return path.join(rootDir, 'public', 'audio', courseSlug, cleanKey);
+}
+
+/**
+ * Resolves the stable QA report directory: reports/qa/<course_id>/<chapter_id>/
+ */
+export function resolveQaReportDirectory(chapterKey, courseId = null, rootDir = process.cwd()) {
+  const cleanKey = path.basename(chapterKey).replace(/_argon$/i, '').replace(/^hull_/i, '');
+  const courseSlug = courseId || getBookSlug(chapterKey);
+  return path.join(rootDir, 'reports', 'qa', courseSlug, cleanKey);
 }

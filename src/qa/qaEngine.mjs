@@ -573,8 +573,12 @@ export async function runQaEngine(options) {
   // 9. Screenshot Engine Execution (if requested)
   // -----------------------------------------------------------------
   let screenshots = [];
+  const qaCourseSlug = isFixture ? 'fixtures' : (bookSlug || getBookSlug(resolvedDir || chapterSlug, meta));
+  const reportsDir = path.join(rootDir, 'reports', 'qa', qaCourseSlug, chapterSlug);
+  fs.mkdirSync(reportsDir, { recursive: true });
+
   if (takeScreenshots) {
-    const screenshotDir = path.join(rootDir, 'reports', 'qa', 'screenshots', chapterSlug);
+    const screenshotDir = path.join(reportsDir, 'screenshots');
     screenshots = captureScreenshots({
       episode: activeEpisode,
       propsPath: fs.existsSync(compiledPath) ? compiledPath : rawPath,
@@ -647,12 +651,20 @@ export async function runQaEngine(options) {
   };
 
   // Generate Reports
-  const reportsDir = path.join(rootDir, 'reports', 'qa');
-  const jsonPath = path.join(reportsDir, `${chapterSlug}_qa.json`);
-  const htmlPath = path.join(reportsDir, `${chapterSlug}_qa.html`);
+  const jsonPath = path.join(reportsDir, 'qa_report.json');
+  const htmlPath = path.join(reportsDir, 'qa_report.html');
 
   generateJsonReport(report, jsonPath);
   generateHtmlReport(report, htmlPath);
+
+  // Write top-level report copy for fixtures
+  if (isFixture) {
+    const rootReportsDir = path.join(rootDir, 'reports', 'qa');
+    try {
+      fs.copyFileSync(jsonPath, path.join(rootReportsDir, `${chapterSlug}_qa.json`));
+      fs.copyFileSync(htmlPath, path.join(rootReportsDir, `${chapterSlug}_qa.html`));
+    } catch {}
+  }
 
   return {
     report,

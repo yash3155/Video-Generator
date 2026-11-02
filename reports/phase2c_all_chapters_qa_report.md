@@ -1,9 +1,9 @@
 # Phase 2C — Generic Render QA & Release Gate Batch Audit Report
 
-**Audit Date:** 2026-11-02T20:04:30.206Z
+**Audit Date:** 2026-11-02T20:20:05.976Z
 **Total Workspaces Audited:** 36
-**Status:** PASS: 0 | CONDITIONAL_PASS: 28 | FAIL: 8
-**Total Defect Counts:** Blockers: 20 | High: 47 | Medium: 1585
+**Status:** PASS: 0 | CONDITIONAL_PASS: 29 | FAIL: 7
+**Total Defect Counts:** Blockers: 60 | High: 47 | Medium: 1585
 
 ---
 
@@ -11,48 +11,48 @@
 
 | Chapter Workspace | Status | Blockers | High | Medium | Key Findings & Suggested Repair |
 | :--- | :--- | :---: | :---: | :---: | :--- |
-| `hull_ch01_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 46 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `hull_ch01_part2_argon` | **CONDITIONAL_PASS** | 0 | 1 | 41 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `appendix_ab_argon` | **CONDITIONAL_PASS** | 0 | 1 | 40 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `appendix_cd_argon` | **CONDITIONAL_PASS** | 0 | 1 | 35 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch01_part1_argon` | **FAIL** | 1 | 1 | 42 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch01_part2_argon` | **FAIL** | 1 | 1 | 42 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch02_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 34 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch02_part2_argon` | **CONDITIONAL_PASS** | 0 | 0 | 40 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch03_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 48 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch04_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 47 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch04_part2_argon` | **FAIL** | 3 | 4 | 47 | Scene 7 ("The fan principle", template: data_visualizer) Beat 0: Do not use "head_and_shoulders" preset on a non-H&S scene ("The fan princip |
-| `ch04_part3_argon` | **FAIL** | 5 | 4 | 41 | Scene 8 ("The Island Reversal Trap", template: data_visualizer) Beat 0: Do not use "head_and_shoulders" preset on a non-H&S scene ("The Isla |
-| `ch05_part1_argon` | **FAIL** | 2 | 1 | 47 | Scene 11 ("The Whole Picture", template: summary_thread) -> Beat 3 (b34_b3): hindi_tts contains raw Latin English words (Neckline, closing,  |
-| `ch05_part2_argon` | **FAIL** | 5 | 4 | 51 | Scene 4 ("Triple Tops and Triple Bottoms", template: data_visualizer) Beat 0: Do not use "head_and_shoulders" preset on a non-H&S scene ("Tr |
-| `ch06_part1_argon` | **FAIL** | 2 | 1 | 51 | Scene 11 ("The Whole Picture", template: summary_thread) -> Beat 3 (b34_b3): hindi_tts contains raw Latin English words (Flat, upper, horizo |
-| `ch06_part2_argon` | **FAIL** | 1 | 1 | 39 | Scene 11 ("The whole picture", template: summary_thread) -> Beat 4 (b34_b4): hindi_tts contains raw Latin English words (Agreement, validate |
-| `ch07_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 37 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch07_part2_argon` | **CONDITIONAL_PASS** | 0 | 1 | 40 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch08_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 45 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch09_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 41 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch09_part2_argon` | **CONDITIONAL_PASS** | 0 | 1 | 37 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch10_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 54 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch10_part2_argon` | **CONDITIONAL_PASS** | 0 | 1 | 46 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch11_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 53 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch12_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 46 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch13_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 47 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch13_part2_argon` | **CONDITIONAL_PASS** | 0 | 1 | 40 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch14_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 43 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch15_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 40 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch16_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 56 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch16_part2_argon` | **CONDITIONAL_PASS** | 0 | 1 | 59 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch17_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 38 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch17_part2_argon` | **CONDITIONAL_PASS** | 0 | 1 | 45 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch18_part1_argon` | **CONDITIONAL_PASS** | 0 | 1 | 42 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
-| `ch19_part1_argon` | **CONDITIONAL_PASS** | 0 | 4 | 43 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch01_part1` | **CONDITIONAL_PASS** | 0 | 1 | 46 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch01_part2` | **CONDITIONAL_PASS** | 0 | 1 | 41 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `appendix_ab` | **CONDITIONAL_PASS** | 0 | 1 | 40 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `appendix_cd` | **CONDITIONAL_PASS** | 0 | 1 | 35 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch01_part1` | **FAIL** | 42 | 1 | 42 | Audio file for beat b01 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b01.mp3). ➔ Repair: Re-synthesize audio for this cha |
+| `ch01_part2` | **CONDITIONAL_PASS** | 0 | 1 | 42 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch02_part1` | **CONDITIONAL_PASS** | 0 | 1 | 34 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch02_part2` | **CONDITIONAL_PASS** | 0 | 0 | 40 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch03_part1` | **CONDITIONAL_PASS** | 0 | 1 | 48 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch04_part1` | **CONDITIONAL_PASS** | 0 | 1 | 47 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch04_part2` | **FAIL** | 3 | 4 | 47 | Scene 7 ("The fan principle", template: data_visualizer) Beat 0: Do not use "head_and_shoulders" preset on a non-H&S scene ("The fan princip |
+| `ch04_part3` | **FAIL** | 5 | 4 | 41 | Scene 8 ("The Island Reversal Trap", template: data_visualizer) Beat 0: Do not use "head_and_shoulders" preset on a non-H&S scene ("The Isla |
+| `ch05_part1` | **FAIL** | 2 | 1 | 47 | Scene 11 ("The Whole Picture", template: summary_thread) -> Beat 3 (b34_b3): hindi_tts contains raw Latin English words (Neckline, closing,  |
+| `ch05_part2` | **FAIL** | 5 | 4 | 51 | Scene 4 ("Triple Tops and Triple Bottoms", template: data_visualizer) Beat 0: Do not use "head_and_shoulders" preset on a non-H&S scene ("Tr |
+| `ch06_part1` | **FAIL** | 2 | 1 | 51 | Scene 11 ("The Whole Picture", template: summary_thread) -> Beat 3 (b34_b3): hindi_tts contains raw Latin English words (Flat, upper, horizo |
+| `ch06_part2` | **FAIL** | 1 | 1 | 39 | Scene 11 ("The whole picture", template: summary_thread) -> Beat 4 (b34_b4): hindi_tts contains raw Latin English words (Agreement, validate |
+| `ch07_part1` | **CONDITIONAL_PASS** | 0 | 1 | 37 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch07_part2` | **CONDITIONAL_PASS** | 0 | 1 | 40 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch08_part1` | **CONDITIONAL_PASS** | 0 | 1 | 45 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch09_part1` | **CONDITIONAL_PASS** | 0 | 1 | 41 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch09_part2` | **CONDITIONAL_PASS** | 0 | 1 | 37 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch10_part1` | **CONDITIONAL_PASS** | 0 | 1 | 54 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch10_part2` | **CONDITIONAL_PASS** | 0 | 1 | 46 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch11_part1` | **CONDITIONAL_PASS** | 0 | 1 | 53 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch12_part1` | **CONDITIONAL_PASS** | 0 | 1 | 46 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch13_part1` | **CONDITIONAL_PASS** | 0 | 1 | 47 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch13_part2` | **CONDITIONAL_PASS** | 0 | 1 | 40 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch14_part1` | **CONDITIONAL_PASS** | 0 | 1 | 43 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch15_part1` | **CONDITIONAL_PASS** | 0 | 1 | 40 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch16_part1` | **CONDITIONAL_PASS** | 0 | 1 | 56 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch16_part2` | **CONDITIONAL_PASS** | 0 | 1 | 59 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch17_part1` | **CONDITIONAL_PASS** | 0 | 1 | 38 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch17_part2` | **CONDITIONAL_PASS** | 0 | 1 | 45 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch18_part1` | **CONDITIONAL_PASS** | 0 | 1 | 42 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
+| `ch19_part1` | **CONDITIONAL_PASS** | 0 | 4 | 43 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
 | `test_run` | **CONDITIONAL_PASS** | 0 | 1 | 42 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). ➔ Repair: Re-run compile_tts_audio.mjs with phrase segment |
 
 ---
 
 ## Detailed Chapter Defect Breakdown
 
-### `hull_ch01_part1_argon` — CONDITIONAL_PASS
+### `ch01_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -103,7 +103,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b41 | Beat b41 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -6260ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `hull_ch01_part2_argon` — CONDITIONAL_PASS
+### `ch01_part2` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -149,7 +149,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b41 | Beat b41 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -6223ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `appendix_ab_argon` — CONDITIONAL_PASS
+### `appendix_ab` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -194,7 +194,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b40 | Beat b40 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -6137ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `appendix_cd_argon` — CONDITIONAL_PASS
+### `appendix_cd` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -234,7 +234,96 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b35 | Beat b35 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -4850ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch01_part1_argon` — FAIL
+### `ch01_part1` — FAIL
+| Severity | Category | Location | Finding | Cause | Suggested Repair |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **BLOCKER** | audio_timing | Scene 0 Beat b01 | Audio file for beat b01 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b01.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 0 Beat b02 | Audio file for beat b02 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b02.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 0 Beat b02 | Beat b02 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 1 Beat b04 | Audio file for beat b04 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b04.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 1 Beat b04 | Beat b04 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 1 Beat b05 | Audio file for beat b05 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b05.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 1 Beat b05 | Beat b05 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 1 Beat b06 | Audio file for beat b06 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b06.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 1 Beat b06 | Beat b06 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 2 Beat b07 | Audio file for beat b07 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b07.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 2 Beat b07 | Beat b07 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 2 Beat b08 | Audio file for beat b08 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b08.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 2 Beat b08 | Beat b08 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 2 Beat b08b | Audio file for beat b08b is missing or empty (audio/murphy_technical_analysis/ch01_part1/b08b.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 2 Beat b08b | Beat b08b has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 2 Beat b09 | Audio file for beat b09 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b09.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 2 Beat b09 | Beat b09 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 3 Beat b10 | Audio file for beat b10 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b10.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 3 Beat b10 | Beat b10 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 3 Beat b11 | Audio file for beat b11 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b11.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 3 Beat b11 | Beat b11 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 3 Beat b12 | Audio file for beat b12 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b12.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 3 Beat b12 | Beat b12 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 4 Beat b13 | Audio file for beat b13 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b13.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 4 Beat b13 | Beat b13 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 4 Beat b14 | Audio file for beat b14 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b14.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 4 Beat b14 | Beat b14 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 4 Beat b15 | Audio file for beat b15 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b15.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 4 Beat b15 | Beat b15 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 5 Beat b16 | Audio file for beat b16 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b16.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 5 Beat b16 | Beat b16 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 5 Beat b17 | Audio file for beat b17 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b17.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 5 Beat b17 | Beat b17 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 5 Beat b18 | Audio file for beat b18 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b18.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 5 Beat b18 | Beat b18 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 6 Beat b19 | Audio file for beat b19 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b19.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 6 Beat b19 | Beat b19 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 6 Beat b20 | Audio file for beat b20 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b20.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 6 Beat b20 | Beat b20 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 6 Beat b21 | Audio file for beat b21 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b21.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 6 Beat b21 | Beat b21 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 7 Beat b22 | Audio file for beat b22 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b22.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 7 Beat b22 | Beat b22 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 7 Beat b23 | Audio file for beat b23 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b23.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 7 Beat b23 | Beat b23 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 7 Beat b24 | Audio file for beat b24 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b24.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 7 Beat b24 | Beat b24 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 8 Beat b25 | Audio file for beat b25 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b25.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 8 Beat b25 | Beat b25 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 8 Beat b26 | Audio file for beat b26 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b26.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 8 Beat b26 | Beat b26 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 8 Beat b26b | Audio file for beat b26b is missing or empty (audio/murphy_technical_analysis/ch01_part1/b26b.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 8 Beat b26b | Beat b26b has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 8 Beat b27 | Audio file for beat b27 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b27.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 8 Beat b27 | Beat b27 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 9 Beat b28 | Audio file for beat b28 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b28.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 9 Beat b28 | Beat b28 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 9 Beat b29 | Audio file for beat b29 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b29.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 9 Beat b29 | Beat b29 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 9 Beat b30 | Audio file for beat b30 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b30.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 9 Beat b30 | Beat b30 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 10 Beat b31 | Audio file for beat b31 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b31.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 10 Beat b31 | Beat b31 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 10 Beat b32 | Audio file for beat b32 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b32.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 10 Beat b32 | Beat b32 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 10 Beat b33 | Audio file for beat b33 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b33.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 10 Beat b33 | Beat b33 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 11 Beat b34 | Audio file for beat b34 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b34.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 11 Beat b34 | Beat b34 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 11 Beat b34b | Audio file for beat b34b is missing or empty (audio/murphy_technical_analysis/ch01_part1/b34b.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 11 Beat b34b | Beat b34b has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 12 Beat b35 | Audio file for beat b35 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b35.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 12 Beat b35 | Beat b35 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 12 Beat b36 | Audio file for beat b36 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b36.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 12 Beat b36 | Beat b36 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 12 Beat b36b | Audio file for beat b36b is missing or empty (audio/murphy_technical_analysis/ch01_part1/b36b.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 12 Beat b36b | Beat b36b has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 12 Beat b37 | Audio file for beat b37 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b37.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 12 Beat b37 | Beat b37 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 12 Beat b37b | Audio file for beat b37b is missing or empty (audio/murphy_technical_analysis/ch01_part1/b37b.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 12 Beat b37b | Beat b37b has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **BLOCKER** | audio_timing | Scene 12 Beat b38 | Audio file for beat b38 is missing or empty (audio/murphy_technical_analysis/ch01_part1/b38.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
+| **MEDIUM** | subtitle_alignment | Scene 12 Beat b38 | Beat b38 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
+| **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5723ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
+
+### `ch01_part2` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -247,7 +336,6 @@
 | **MEDIUM** | subtitle_alignment | Scene 2 Beat b08b | Beat b08b has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **MEDIUM** | subtitle_alignment | Scene 2 Beat b09 | Beat b09 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **MEDIUM** | subtitle_alignment | Scene 3 Beat b10 | Beat b10 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **BLOCKER** | audio_timing | Scene 3 Beat b11 | Audio file for beat b11 is missing or empty (audio/b11.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
 | **MEDIUM** | subtitle_alignment | Scene 3 Beat b11 | Beat b11 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **MEDIUM** | subtitle_alignment | Scene 3 Beat b12 | Beat b12 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **MEDIUM** | subtitle_alignment | Scene 4 Beat b13 | Beat b13 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -282,55 +370,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 12 Beat b38 | Beat b38 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5723ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch01_part2_argon` — FAIL
-| Severity | Category | Location | Finding | Cause | Suggested Repair |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 0 Beat b02 | Beat b02 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 1 Beat b04 | Beat b04 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 1 Beat b05 | Beat b05 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 1 Beat b06 | Beat b06 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 2 Beat b07 | Beat b07 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 2 Beat b08 | Beat b08 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 2 Beat b08b | Beat b08b has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 2 Beat b09 | Beat b09 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 3 Beat b10 | Beat b10 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **BLOCKER** | audio_timing | Scene 3 Beat b11 | Audio file for beat b11 is missing or empty (audio/b11.mp3). | Audio file not found on disk or size < 1000 bytes. | Re-synthesize audio for this chapter. |
-| **MEDIUM** | subtitle_alignment | Scene 3 Beat b11 | Beat b11 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 3 Beat b12 | Beat b12 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 4 Beat b13 | Beat b13 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 4 Beat b14 | Beat b14 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 4 Beat b15 | Beat b15 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 5 Beat b16 | Beat b16 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 5 Beat b17 | Beat b17 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 5 Beat b18 | Beat b18 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 6 Beat b19 | Beat b19 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 6 Beat b20 | Beat b20 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 6 Beat b21 | Beat b21 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 7 Beat b22 | Beat b22 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 7 Beat b23 | Beat b23 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 7 Beat b24 | Beat b24 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 8 Beat b25 | Beat b25 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 8 Beat b26 | Beat b26 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 8 Beat b26b | Beat b26b has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 8 Beat b27 | Beat b27 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 9 Beat b28 | Beat b28 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 9 Beat b29 | Beat b29 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 9 Beat b30 | Beat b30 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 10 Beat b31 | Beat b31 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 10 Beat b32 | Beat b32 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 10 Beat b33 | Beat b33 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 11 Beat b34 | Beat b34 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 11 Beat b34b | Beat b34b has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 12 Beat b35 | Beat b35 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 12 Beat b36 | Beat b36 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 12 Beat b36b | Beat b36b has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 12 Beat b37 | Beat b37 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 12 Beat b37b | Beat b37b has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **MEDIUM** | subtitle_alignment | Scene 12 Beat b38 | Beat b38 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
-| **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5723ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
-
-### `ch02_part1_argon` — CONDITIONAL_PASS
+### `ch02_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -369,7 +409,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b30 | Beat b30 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5600ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch02_part2_argon` — CONDITIONAL_PASS
+### `ch02_part2` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -413,7 +453,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b36 | Beat b36 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **MEDIUM** | duration_drift | Workspace | Duration drift is -790ms (> 0.5s). | Frame rounding drift. | Check authored pauses and FPS calculations. |
 
-### `ch03_part1_argon` — CONDITIONAL_PASS
+### `ch03_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -466,7 +506,7 @@
 | **MEDIUM** | visual_layout | Scene 11 Beat b37 | Subtitle has 17 words (guideline is <= 16 words per beat). | Long subtitle risks multi-line visual overflow in layout. | Condense subtitle to 14-16 words. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5437ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch04_part1_argon` — CONDITIONAL_PASS
+### `ch04_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -518,7 +558,7 @@
 | **MEDIUM** | domain_rules | Scene 3 Beat b11 | Finance chart yAxisUnit is "pts" instead of "₹". | Indian market context requires standard ₹ currency symbol. | Set yAxisUnit to "₹". |
 | **MEDIUM** | domain_rules | Scene 3 Beat b12 | Finance chart yAxisUnit is "pts" instead of "₹". | Indian market context requires standard ₹ currency symbol. | Set yAxisUnit to "₹". |
 
-### `ch04_part2_argon` — FAIL
+### `ch04_part2` — FAIL
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **BLOCKER** | schema_validity | Workspace | Scene 7 ("The fan principle", template: data_visualizer) Beat 0: Do not use "head_and_shoulders" preset on a non-H&S scene ("The fan principle Kesar Paints Ltd daily · fan line 1 & 2 flatten out · reversal pattern"). Use a directional preset instead. | Zod or invariant schema rule violation. | Resolve reported schema invariant in episode_raw.json. |
@@ -576,7 +616,7 @@
 | **HIGH** | domain_rules | Scene 7 Beat b24 | Do not use "head_and_shoulders" preset on a non-H&S scene ("The fan principle Kesar Paints Ltd daily · fan line 1 & 2 flatten out · reversal pattern"). Use a directional preset instead. | Head & Shoulders pattern used in scene not titled for Head & Shoulders. | Rename scene to include "Head and Shoulders" or change chart preset. |
 | **HIGH** | domain_rules | Scene 7 Beat b25 | Do not use "head_and_shoulders" preset on a non-H&S scene ("The fan principle Kesar Paints Ltd daily · fan line 1 & 2 flatten out · reversal pattern"). Use a directional preset instead. | Head & Shoulders pattern used in scene not titled for Head & Shoulders. | Rename scene to include "Head and Shoulders" or change chart preset. |
 
-### `ch04_part3_argon` — FAIL
+### `ch04_part3` — FAIL
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **BLOCKER** | schema_validity | Workspace | Scene 8 ("The Island Reversal Trap", template: data_visualizer) Beat 0: Do not use "head_and_shoulders" preset on a non-H&S scene ("The Island Reversal Trap Island Reversal Pattern isolated trading cluster above two gaps"). Use a directional preset instead. | Zod or invariant schema rule violation. | Resolve reported schema invariant in episode_raw.json. |
@@ -630,7 +670,7 @@
 | **HIGH** | domain_rules | Scene 8 Beat b26 | Do not use "head_and_shoulders" preset on a non-H&S scene ("The Island Reversal Trap Island Reversal Pattern isolated trading cluster above two gaps"). Use a directional preset instead. | Head & Shoulders pattern used in scene not titled for Head & Shoulders. | Rename scene to include "Head and Shoulders" or change chart preset. |
 | **HIGH** | domain_rules | Scene 8 Beat b27 | Do not use "head_and_shoulders" preset on a non-H&S scene ("The Island Reversal Trap Island Reversal Pattern isolated trading cluster above two gaps"). Use a directional preset instead. | Head & Shoulders pattern used in scene not titled for Head & Shoulders. | Rename scene to include "Head and Shoulders" or change chart preset. |
 
-### `ch05_part1_argon` — FAIL
+### `ch05_part1` — FAIL
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **BLOCKER** | schema_validity | Workspace | Scene 11 ("The Whole Picture", template: summary_thread) -> Beat 3 (b34_b3): hindi_tts contains raw Latin English words (Neckline, closing, violation, required). Write hindi_tts in 100% Devanagari script! | Zod or invariant schema rule violation. | Resolve reported schema invariant in episode_raw.json. |
@@ -684,7 +724,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b37 | Beat b37 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5873ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch05_part2_argon` — FAIL
+### `ch05_part2` — FAIL
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **BLOCKER** | schema_validity | Workspace | Scene 4 ("Triple Tops and Triple Bottoms", template: data_visualizer) Beat 0: Do not use "head_and_shoulders" preset on a non-H&S scene ("Triple Tops and Triple Bottoms Triple Top Pattern three tests of horizontal resistance · reversal pattern"). Use a directional preset instead. | Zod or invariant schema rule violation. | Resolve reported schema invariant in episode_raw.json. |
@@ -748,7 +788,7 @@
 | **HIGH** | domain_rules | Scene 4 Beat b14 | Do not use "head_and_shoulders" preset on a non-H&S scene ("Triple Tops and Triple Bottoms Triple Top Pattern three tests of horizontal resistance · reversal pattern"). Use a directional preset instead. | Head & Shoulders pattern used in scene not titled for Head & Shoulders. | Rename scene to include "Head and Shoulders" or change chart preset. |
 | **HIGH** | domain_rules | Scene 4 Beat b15 | Do not use "head_and_shoulders" preset on a non-H&S scene ("Triple Tops and Triple Bottoms Triple Top Pattern three tests of horizontal resistance · reversal pattern"). Use a directional preset instead. | Head & Shoulders pattern used in scene not titled for Head & Shoulders. | Rename scene to include "Head and Shoulders" or change chart preset. |
 
-### `ch06_part1_argon` — FAIL
+### `ch06_part1` — FAIL
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **BLOCKER** | schema_validity | Workspace | Scene 11 ("The Whole Picture", template: summary_thread) -> Beat 3 (b34_b3): hindi_tts contains raw Latin English words (Flat, upper, horizontal, resistance). Write hindi_tts in 100% Devanagari script! | Zod or invariant schema rule violation. | Resolve reported schema invariant in episode_raw.json. |
@@ -806,7 +846,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b37 | Beat b37 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5973ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch06_part2_argon` — FAIL
+### `ch06_part2` — FAIL
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **BLOCKER** | schema_validity | Workspace | Scene 11 ("The whole picture", template: summary_thread) -> Beat 4 (b34_b4): hindi_tts contains raw Latin English words (Agreement, validates, trends, divergence). Write hindi_tts in 100% Devanagari script! | Zod or invariant schema rule violation. | Resolve reported schema invariant in episode_raw.json. |
@@ -851,7 +891,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b38 | Beat b38 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5783ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch07_part1_argon` — CONDITIONAL_PASS
+### `ch07_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -893,7 +933,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b33 | Beat b33 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5157ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch07_part2_argon` — CONDITIONAL_PASS
+### `ch07_part2` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -938,7 +978,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b33 | Beat b33 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5170ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch08_part1_argon` — CONDITIONAL_PASS
+### `ch08_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -988,7 +1028,7 @@
 | **MEDIUM** | visual_layout | Scene 11 Beat b35 | Subtitle has 17 words (guideline is <= 16 words per beat). | Long subtitle risks multi-line visual overflow in layout. | Condense subtitle to 14-16 words. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5493ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch09_part1_argon` — CONDITIONAL_PASS
+### `ch09_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1034,7 +1074,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b32 | Beat b32 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5043ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch09_part2_argon` — CONDITIONAL_PASS
+### `ch09_part2` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1076,7 +1116,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b32 | Beat b32 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5023ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch10_part1_argon` — CONDITIONAL_PASS
+### `ch10_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1135,7 +1175,7 @@
 | **MEDIUM** | visual_layout | Scene 11 Beat b35 | Subtitle has 18 words (guideline is <= 16 words per beat). | Long subtitle risks multi-line visual overflow in layout. | Condense subtitle to 14-16 words. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5377ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch10_part2_argon` — CONDITIONAL_PASS
+### `ch10_part2` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1186,7 +1226,7 @@
 | **MEDIUM** | visual_layout | Scene 11 Beat b33 | Subtitle has 20 words (guideline is <= 16 words per beat). | Long subtitle risks multi-line visual overflow in layout. | Condense subtitle to 14-16 words. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5050ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch11_part1_argon` — CONDITIONAL_PASS
+### `ch11_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1244,7 +1284,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b39 | Beat b39 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5613ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch12_part1_argon` — CONDITIONAL_PASS
+### `ch12_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1295,7 +1335,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b40 | Beat b40 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -6617ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch13_part1_argon` — CONDITIONAL_PASS
+### `ch13_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1347,7 +1387,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b39 | Beat b39 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -6280ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch13_part2_argon` — CONDITIONAL_PASS
+### `ch13_part2` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1392,7 +1432,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b37 | Beat b37 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5450ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch14_part1_argon` — CONDITIONAL_PASS
+### `ch14_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1440,7 +1480,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b40 | Beat b40 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -6300ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch15_part1_argon` — CONDITIONAL_PASS
+### `ch15_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1485,7 +1525,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b39 | Beat b39 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -6243ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch16_part1_argon` — CONDITIONAL_PASS
+### `ch16_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1546,7 +1586,7 @@
 | **MEDIUM** | visual_layout | Scene 11 Beat b39 | Subtitle has 18 words (guideline is <= 16 words per beat). | Long subtitle risks multi-line visual overflow in layout. | Condense subtitle to 14-16 words. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -6630ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch16_part2_argon` — CONDITIONAL_PASS
+### `ch16_part2` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1610,7 +1650,7 @@
 | **MEDIUM** | visual_layout | Scene 11 Beat b39 | Subtitle has 18 words (guideline is <= 16 words per beat). | Long subtitle risks multi-line visual overflow in layout. | Condense subtitle to 14-16 words. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -6500ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch17_part1_argon` — CONDITIONAL_PASS
+### `ch17_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1653,7 +1693,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b38 | Beat b38 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5827ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch17_part2_argon` — CONDITIONAL_PASS
+### `ch17_part2` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1703,7 +1743,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b40 | Beat b40 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -6130ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch18_part1_argon` — CONDITIONAL_PASS
+### `ch18_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
@@ -1750,7 +1790,7 @@
 | **MEDIUM** | subtitle_alignment | Scene 11 Beat b40 | Beat b40 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |
 | **HIGH** | duration_drift | Workspace | Duration drift between audio and video frames is -5170ms (> 1.0s). | Sum of compiled beat frames diverges from audio duration + authored pause. | Recompile audio to sync frame counts strictly to measured durations. |
 
-### `ch19_part1_argon` — CONDITIONAL_PASS
+### `ch19_part1` — CONDITIONAL_PASS
 | Severity | Category | Location | Finding | Cause | Suggested Repair |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **MEDIUM** | subtitle_alignment | Scene 0 Beat b01 | Beat b01 has no phrase-level subtitle alignment (falling back to sentence-level). | Subtitle alignment data was not generated. | Re-run compile_tts_audio.mjs with phrase segmentation enabled. |

@@ -8,7 +8,7 @@ import { execSync } from 'node:child_process';
 import { EdgeTTS } from 'node-edge-tts';
 import { parseFile } from 'music-metadata';
 import { GoogleGenAI } from '@google/genai';
-import { resolveChapterDirectory } from '../src/utils/chapterPaths.mjs';
+import { resolveChapterDirectory, getBookSlug } from '../src/utils/chapterPaths.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,8 +51,16 @@ const compiledPath = chapterDir
   ? path.join(chapterDir, 'episode_compiled.json')
   : path.join(rootDir, 'src', 'data', 'episode_compiled.json');
 
+let rawMeta = {};
+if (fs.existsSync(rawPath)) {
+  try {
+    rawMeta = JSON.parse(fs.readFileSync(rawPath, 'utf8')).meta || {};
+  } catch {}
+}
+const courseSlug = getBookSlug(chapterDir || chapterSlug, rawMeta);
+
 const audioDir = chapterSlug
-  ? path.join(rootDir, 'public', 'audio', chapterSlug)
+  ? path.join(rootDir, 'public', 'audio', courseSlug, chapterSlug)
   : path.join(rootDir, 'public', 'audio');
 
 const localAudioDir = chapterDir ? path.join(chapterDir, 'audio') : null;
@@ -376,7 +384,7 @@ async function synthesizeEdge(beat, maxRetries = 4, targetHash = null, isHashMat
   const meta = await parseFile(filePath);
   const durationSec = meta.format.duration || 2.0;
   const relativeAudioPath = chapterSlug
-    ? `audio/${chapterSlug}/${fileName}`
+    ? `audio/${courseSlug}/${chapterSlug}/${fileName}`
     : `audio/${fileName}`;
 
   return {
@@ -389,7 +397,7 @@ async function synthesizeGemini(beat, targetHash = null, isHashMatch = false) {
   const fileName = `${beat.id}.wav`;
   const filePath = path.join(audioDir, fileName);
   const relativeAudioPath = chapterSlug
-    ? `audio/${chapterSlug}/${fileName}`
+    ? `audio/${courseSlug}/${chapterSlug}/${fileName}`
     : `audio/${fileName}`;
 
   const isValidExisting = fs.existsSync(filePath) && fs.statSync(filePath).size > 1000;
