@@ -14,11 +14,20 @@ import {
   validateFinancialDirectionalConsistency,
   validateHeadAndShouldersEligibility,
 } from '../src/domain/finance/financeValidation.mjs';
+import { resolveChapterDirectory } from '../src/utils/chapterPaths.mjs';
 
 const args = process.argv.slice(2);
 const dirArg = args.find((a) => a.startsWith('--dir='));
-const targetDir = dirArg ? dirArg.split('=')[1] : 'src/data';
-const rawPath = path.join(process.cwd(), targetDir, 'episode_raw.json');
+const chapterArg = args.find((a) => a.startsWith('--chapter='));
+let targetDir = 'src/data';
+if (dirArg) {
+  targetDir = dirArg.split('=')[1];
+} else if (chapterArg) {
+  const chap = chapterArg.split('=')[1];
+  const found = resolveChapterDirectory(chap, process.cwd());
+  targetDir = found ? path.relative(process.cwd(), found) : `src/data/chapters/${chap}`;
+}
+const rawPath = path.isAbsolute(targetDir) ? path.join(targetDir, 'episode_raw.json') : path.join(process.cwd(), targetDir, 'episode_raw.json');
 
 const devanagariRegex = /[\u0900-\u097F]/;
 const forbiddenHindiRegex = /रि[ज़जज़]ल्ट|रि[ज़जज़]िट|रि[ज़जज़]ट|एकसपायरी|वॉल्क|वाल्क|\bUSFDA\b/i;

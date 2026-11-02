@@ -9,6 +9,7 @@ import {
   StoryboardSchema,
 } from '../src/schemas/sourceLessonSchemas.mjs';
 import { runContentAudit } from './audit_content.mjs';
+import { getAllChapterDirectories } from '../src/utils/chapterPaths.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -402,24 +403,20 @@ export function migrateChapterToPhase1(targetDir, options = {}) {
 // -------------------------------------------------------------------
 export function migrateAllChapters(options = {}) {
   const chaptersRoot = path.join(rootDir, 'src', 'data', 'chapters');
-  const dirs = fs
-    .readdirSync(chaptersRoot, { withFileTypes: true })
-    .filter((d) => d.isDirectory())
-    .map((d) => d.name)
-    .sort();
+  const chapterDirs = getAllChapterDirectories(chaptersRoot);
 
   console.log(`\n======================================================`);
   console.log(`🚀 BATCH MIGRATION: APPLYING PHASE 1 ARTIFACTS EVERYWHERE`);
-  console.log(`   Found ${dirs.length} target chapters in src/data/chapters/`);
+  console.log(`   Found ${chapterDirs.length} target chapters across books`);
   console.log(`======================================================\n`);
 
   let successCount = 0;
   let skippedCount = 0;
 
-  for (let i = 0; i < dirs.length; i++) {
-    const slug = dirs[i];
-    const chapDir = path.join(chaptersRoot, slug);
-    console.log(`[${i + 1}/${dirs.length}] Processing ${slug}...`);
+  for (let i = 0; i < chapterDirs.length; i++) {
+    const chapDir = chapterDirs[i];
+    const slug = path.basename(chapDir);
+    console.log(`[${i + 1}/${chapterDirs.length}] Processing ${slug}...`);
     try {
       const res = migrateChapterToPhase1(chapDir, options);
       if (res) {

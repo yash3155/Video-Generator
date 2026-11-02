@@ -6,6 +6,7 @@ import { execSync } from 'node:child_process';
 import 'dotenv/config';
 import { GoogleGenAI } from '@google/genai';
 import { SourceFactsSchema } from '../src/schemas/sourceLessonSchemas.mjs';
+import { resolveChapterDirectory } from '../src/utils/chapterPaths.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -157,7 +158,8 @@ Return ONLY a valid JSON object adhering to this exact structure:
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename)) {
   const dirArg = process.argv.find((a) => a.startsWith('--dir='));
   const force = process.argv.includes('--force');
-  const target = dirArg ? dirArg.split('=')[1] : 'src/data/chapters/hull_ch01_part1_argon';
+  const rawTarget = dirArg ? dirArg.split('=')[1] : 'hull_ch01_part1_argon';
+  const target = resolveChapterDirectory(rawTarget, rootDir) || rawTarget;
   extractSourceFacts(target, { force })
     .then(() => console.log('Extraction complete.'))
     .catch((err) => {

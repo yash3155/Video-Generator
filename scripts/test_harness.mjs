@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { normalizeAndRemedyEpisode } from './generate_episode.mjs';
+import { getAllChapterDirectories, resolveChapterDirectory } from '../src/utils/chapterPaths.mjs';
 
 const args = process.argv.slice(2);
 
@@ -13,12 +14,14 @@ function resolveTargetDirectory() {
   const chapterArg = args.find((a) => a.startsWith('--chapter='));
   if (chapterArg) {
     const chap = chapterArg.split('=')[1].replace(/"/g, '').trim();
-    return chap.includes('/') || chap.includes('\\') ? chap : `src/data/chapters/${chap}`;
+    return resolveChapterDirectory(chap, process.cwd()) || `src/data/chapters/${chap}`;
   }
 
   const posArg = args.find((a) => !a.startsWith('--'));
   if (posArg) {
     const clean = posArg.trim();
+    const resolved = resolveChapterDirectory(clean, process.cwd());
+    if (resolved) return resolved;
     if (fs.existsSync(clean)) return clean;
     if (fs.existsSync(path.join(process.cwd(), clean))) return clean;
     return `src/data/chapters/${clean}`;
@@ -26,21 +29,19 @@ function resolveTargetDirectory() {
 
   const chaptersRoot = path.join(process.cwd(), 'src', 'data', 'chapters');
   if (fs.existsSync(chaptersRoot)) {
-    const dirs = fs
-      .readdirSync(chaptersRoot, { withFileTypes: true })
-      .filter((d) => d.isDirectory())
+    const allDirs = getAllChapterDirectories(chaptersRoot);
+    const sorted = allDirs
       .map((d) => {
-        const full = path.join(chaptersRoot, d.name);
-        const raw = path.join(full, 'episode_raw.json');
+        const raw = path.join(d, 'episode_raw.json');
         return {
-          path: `src/data/chapters/${d.name}`,
+          path: path.relative(process.cwd(), d).replace(/\\/g, '/'),
           mtime: fs.existsSync(raw) ? fs.statSync(raw).mtimeMs : 0,
         };
       })
       .filter((d) => d.mtime > 0)
       .sort((a, b) => b.mtime - a.mtime);
 
-    if (dirs.length > 0) return dirs[0].path;
+    if (sorted.length > 0) return sorted[0].path;
   }
 
   if (fs.existsSync(path.join(process.cwd(), 'src', 'data', 'episode_raw.json'))) {

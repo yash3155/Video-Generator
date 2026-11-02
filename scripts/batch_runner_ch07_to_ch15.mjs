@@ -63,9 +63,10 @@ console.log(`======================================================\n`);
 for (let idx = 0; idx < TARGET_QUEUE.length; idx++) {
   const key = TARGET_QUEUE[idx];
   const slug = `${key}_argon`;
-  const dataDir = path.join(rootDir, 'src', 'data', 'chapters', slug);
+  const bookSlug = key.startsWith('hull_') ? 'hull_derivatives' : 'murphy_technical_analysis';
+  const dataDir = path.join(rootDir, 'src', 'data', 'chapters', bookSlug, slug);
   const audioDir = path.join(rootDir, 'public', 'audio', slug);
-  const outputVideo = path.join(rootDir, 'out', 'chapters', `${key}.mp4`);
+  const outputVideo = path.join(rootDir, 'out', 'chapters', bookSlug, `${key}.mp4`);
   const rawPath = path.join(dataDir, 'episode_raw.json');
   const compiledPath = path.join(dataDir, 'episode_compiled.json');
 

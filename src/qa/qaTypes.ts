@@ -92,3 +92,4 @@ export interface DomainValidator {
   domain: string;
   validate(context: DomainValidationContext): QAFinding[];
 }
+

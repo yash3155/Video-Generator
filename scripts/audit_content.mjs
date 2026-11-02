@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SourceFactsSchema, ContentAuditSchema } from '../src/schemas/sourceLessonSchemas.mjs';
+import { resolveChapterDirectory } from '../src/utils/chapterPaths.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -381,11 +382,12 @@ export function runContentAudit(chapterDir) {
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename)) {
   const dirArg = process.argv.find((a) => a.startsWith('--dir='));
   const chapterArg = process.argv.find((a) => a.startsWith('--chapter='));
-  const target = dirArg
+  const rawTarget = dirArg
     ? dirArg.split('=')[1]
     : chapterArg
-      ? `src/data/chapters/${chapterArg.split('=')[1]}`
-      : 'src/data/chapters/hull_ch01_part1_argon';
+      ? chapterArg.split('=')[1]
+      : 'hull_ch01_part1_argon';
+  const target = resolveChapterDirectory(rawTarget, rootDir) || rawTarget;
 
   console.log(`\n======================================================`);
   console.log(`🧐 EXECUTING SOURCE & CONTENT AUDIT`);

@@ -30,10 +30,10 @@ When triggered (e.g. `"Generate Chapter 2 Part 1 using Argon"` or `npm run make-
    - Read `41-Video Master Curriculum.txt` in the root directory.
    - Locate the exact STEP 4 command string matching the requested chapter/part (e.g. `ch02_part1.mp4`).
 2. **Isolated Workspace Initialization**:
-   - Create brand-new isolated directories:
-     - Data: `src/data/chapters/<chapter_key>_argon/`
-     - Audio: `public/audio/<chapter_key>_argon/` (mirrored in `src/data/chapters/<chapter_key>_argon/audio/`)
-     - Final Render Target: `out/chapters/<chapter_key>.mp4`
+   - Create brand-new isolated directories grouped by book (`murphy_technical_analysis` or `hull_derivatives`):
+     - Data: `src/data/chapters/<book_slug>/<chapter_key>_argon/`
+     - Audio: `public/audio/<chapter_key>_argon/` (mirrored in `src/data/chapters/<book_slug>/<chapter_key>_argon/audio/`)
+     - Final Render Target: `out/chapters/<book_slug>/<chapter_key>.mp4`
    - **Strict Isolation**: Never modify or overwrite base production files (`src/data/episode_raw.json` or `src/data/episode_compiled.json`).
 3. **Argon Generation via Proxy (`free-gemini-api`)**:
    - Route script generation request through **Gemini 4 Argon** (`gemini-4-argon`) utilizing the local `free-gemini-api` proxy setup (`https://github.com/kodelyx/free-gemini-api.git`) at `http://127.0.0.1:8001/v1/chat/completions`.
@@ -208,9 +208,9 @@ Every generated video must strictly follow this 12-slide pedagogical rhythm:
 
 ---
 
-### Step 4: Compile & Validate Isolated Chapter Payload (`src/data/chapters/<slug>/`)
+### Step 4: Compile & Validate Isolated Chapter Payload (`src/data/chapters/<book>/<slug>/`)
 Construct the JSON payload conforming strictly to [`src/data/schema_reference.json`](src/data/schema_reference.json).
-**Isolated Chapter Requirement:** Every new chapter generation MUST be placed into a dedicated, isolated folder (`src/data/chapters/<chapter_slug>/episode_raw.json`) rather than overwriting base production files.
+**Isolated Chapter Requirement:** Every new chapter generation MUST be placed into a dedicated, book-grouped isolated folder (`src/data/chapters/<book_slug>/<chapter_slug>/episode_raw.json`) rather than overwriting base production files.
 - **Model Engine**: Powered by **Gemini 4 Argon** (`gemini-4-argon`) via direct Google GenAI or [`free-gemini-api`](https://github.com/kodelyx/free-gemini-api.git) proxy routing (`GEMINI_BASE_URL`). Enforce temperature between `0.2` and `0.3` for strict schema compliance.
 - **Structure**: 10–13 scenes, 35–55 total beats.
 - **Beat Granularity**: Exactly 1 spoken sentence per beat (5–12 seconds).
@@ -400,6 +400,8 @@ Whenever **Gemini 4 Argon** generates a new chapter video or updates code templa
 - **QA Domain Validators**: [`src/qa/domainValidators.mjs`](src/qa/domainValidators.mjs) (modular domain quality checks).
 - **QA Report Generator**: [`src/qa/reportGenerator.mjs`](src/qa/reportGenerator.mjs) (HTML dashboard + JSON scorecard).
 - **QA Screenshot Engine**: [`src/qa/screenshotEngine.mjs`](src/qa/screenshotEngine.mjs) (Remotion keyframe cue screenshot generator).
-- **Isolated Chapters**: `src/data/chapters/<slug>/` (Raw JSON, compiled JSON, and mirrored audio).
+- **Chapter Path & Book Resolver**: [`src/utils/chapterPaths.mjs`](src/utils/chapterPaths.mjs) (book-grouped workspace and video resolution).
+- **Isolated Chapters**: `src/data/chapters/<book_slug>/<chapter_slug>/` (Raw JSON, compiled JSON, and mirrored audio grouped by book: `murphy_technical_analysis/` and `hull_derivatives/`).
+- **Rendered Videos**: `out/chapters/<book_slug>/<chapter_key>.mp4` (Organized uniformly by book).
 - **Root Timeline**: [`src/data/episode_compiled.json`](src/data/episode_compiled.json).
 

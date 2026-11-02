@@ -136,3 +136,4 @@ export function captureScreenshots(options) {
 
   return captured;
 }
+

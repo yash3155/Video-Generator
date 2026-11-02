@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { runQaEngine } from '../src/qa/qaEngine.mjs';
+import { getAllChapterDirectories, resolveChapterDirectory } from '../src/utils/chapterPaths.mjs';
 
 const args = process.argv.slice(2);
 const rootDir = process.cwd();
@@ -77,15 +78,11 @@ async function runAll() {
     process.exit(1);
   }
 
-  const entries = fs
-    .readdirSync(chaptersRoot, { withFileTypes: true })
-    .filter((d) => d.isDirectory())
-    .map((d) => d.name)
-    .sort();
+  const chapterDirs = getAllChapterDirectories(chaptersRoot);
 
   console.log(`\n======================================================`);
   console.log(`🛡️ QA RELEASE GATE BATCH AUDIT ACROSS ALL CHAPTERS`);
-  console.log(`📁 Scanning ${entries.length} chapter workspaces...`);
+  console.log(`📁 Scanning ${chapterDirs.length} chapter workspaces across books...`);
   console.log(`======================================================\n`);
 
   const results = [];
@@ -96,13 +93,13 @@ async function runAll() {
   let totalConditional = 0;
   let totalFail = 0;
 
-  for (let i = 0; i < entries.length; i++) {
-    const slug = entries[i];
-    const chapterDir = path.join(chaptersRoot, slug);
+  for (let i = 0; i < chapterDirs.length; i++) {
+    const chapterDir = chapterDirs[i];
+    const slug = path.basename(chapterDir);
     const rawPath = path.join(chapterDir, 'episode_raw.json');
     if (!fs.existsSync(rawPath)) continue;
 
-    process.stdout.write(`[${i + 1}/${entries.length}] Auditing ${slug}... `);
+    process.stdout.write(`[${i + 1}/${chapterDirs.length}] Auditing ${slug}... `);
 
     try {
       const { report } = await runQaEngine({
@@ -226,7 +223,8 @@ async function main() {
     if (rep.status === 'FAIL') process.exit(1);
   } else if (chapterArg) {
     const chap = chapterArg.split('=')[1].replace(/"/g, '').trim();
-    const target = path.join('src', 'data', 'chapters', chap);
+    const resolved = resolveChapterDirectory(chap, rootDir);
+    const target = resolved || path.join('src', 'data', 'chapters', chap);
     const rep = await runSingle(target);
     if (rep.status === 'FAIL') process.exit(1);
   } else {
@@ -240,3 +238,4 @@ main().catch((err) => {
   console.error('[FATAL] QA Release Gate runner failed:', err);
   process.exit(1);
 });
+

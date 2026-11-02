@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getAllChapterDirectories } from '../src/utils/chapterPaths.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,16 +16,12 @@ if (!fs.existsSync(reportDir)) {
   fs.mkdirSync(reportDir, { recursive: true });
 }
 
-const entries = fs
-  .readdirSync(chaptersRoot, { withFileTypes: true })
-  .filter((e) => e.isDirectory())
-  .map((e) => e.name)
-  .sort();
+const chapterDirs = getAllChapterDirectories(chaptersRoot);
 
 const chapterData = [];
 
-for (const slug of entries) {
-  const chapDir = path.join(chaptersRoot, slug);
+for (const chapDir of chapterDirs) {
+  const slug = path.basename(chapDir);
   const factsPath = path.join(chapDir, 'source_facts.json');
   const auditPath = path.join(chapDir, 'content_audit.json');
   const lessonPath = path.join(chapDir, 'lesson_plan.json');

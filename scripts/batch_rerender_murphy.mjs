@@ -65,7 +65,7 @@ if (onlyKeys && onlyKeys.length > 0) {
   }
 }
 
-const progressFile = path.join(rootDir, 'out', 'chapters', 'rerender_progress.json');
+const progressFile = path.join(rootDir, 'out', 'chapters', 'murphy_technical_analysis', 'rerender_progress.json');
 fs.mkdirSync(path.dirname(progressFile), { recursive: true });
 let completedLog = {};
 if (fs.existsSync(progressFile)) {
@@ -90,7 +90,10 @@ for (let i = 0; i < targetKeys.length; i++) {
   console.log(`\n[${i + 1}/${targetKeys.length}] 🚀 Processing: ${key}...`);
 
   // 1. Resolve props file
-  let propsFile = path.join(rootDir, 'src', 'data', 'chapters', `${key}_argon`, 'episode_compiled.json');
+  let propsFile = path.join(rootDir, 'src', 'data', 'chapters', 'murphy_technical_analysis', `${key}_argon`, 'episode_compiled.json');
+  if (!fs.existsSync(propsFile)) {
+    propsFile = path.join(rootDir, 'src', 'data', 'chapters', `${key}_argon`, 'episode_compiled.json');
+  }
   if (!fs.existsSync(propsFile)) {
     const fallback = path.join(rootDir, 'src', 'data', 'episode_compiled.json');
     if (fs.existsSync(fallback)) propsFile = fallback;
@@ -102,7 +105,7 @@ for (let i = 0; i < targetKeys.length; i++) {
     continue;
   }
 
-  const outVideo = path.join(rootDir, 'out', 'chapters', `${key}.mp4`);
+  const outVideo = path.join(rootDir, 'out', 'chapters', 'murphy_technical_analysis', `${key}.mp4`);
 
   // 2. Render Remotion video
   const renderCmd = `npx remotion render src/index.ts EpisodeComposition "${outVideo}" --props="${propsFile}" --crf=16 --pixel-format=yuv420p`;

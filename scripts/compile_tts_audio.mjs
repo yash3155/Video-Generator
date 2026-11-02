@@ -8,6 +8,7 @@ import { execSync } from 'node:child_process';
 import { EdgeTTS } from 'node-edge-tts';
 import { parseFile } from 'music-metadata';
 import { GoogleGenAI } from '@google/genai';
+import { resolveChapterDirectory } from '../src/utils/chapterPaths.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,7 +39,8 @@ if (dirArg) {
   chapterSlug = path.basename(chapterDir);
 } else if (chapterArg) {
   chapterSlug = chapterArg.split('=')[1];
-  chapterDir = path.resolve(rootDir, 'src', 'data', 'chapters', chapterSlug);
+  const foundDir = resolveChapterDirectory(chapterSlug, rootDir);
+  chapterDir = foundDir || path.resolve(rootDir, 'src', 'data', 'chapters', chapterSlug);
 }
 
 const rawPath = chapterDir

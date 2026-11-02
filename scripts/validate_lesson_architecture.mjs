@@ -8,6 +8,7 @@ import {
   LessonPlanSchema,
   StoryboardSchema,
 } from '../src/schemas/sourceLessonSchemas.mjs';
+import { getAllChapterDirectories, resolveChapterDirectory } from '../src/utils/chapterPaths.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -112,24 +113,20 @@ export function validateAllExistingChapters() {
     return [];
   }
 
-  const entries = fs
-    .readdirSync(chaptersRoot, { withFileTypes: true })
-    .filter((e) => e.isDirectory())
-    .map((e) => e.name)
-    .sort();
+  const chapterDirs = getAllChapterDirectories(chaptersRoot);
 
   const allReports = [];
   console.log(`\n======================================================`);
   console.log(`🔎 VALIDATING LESSON ARCHITECTURE ACROSS ALL CHAPTERS`);
-  console.log(`   Found ${entries.length} chapter directories in src/data/chapters/`);
+  console.log(`   Found ${chapterDirs.length} chapter directories across books`);
   console.log(`======================================================\n`);
 
   let passingCount = 0;
   let missingArtifactsCount = 0;
   let schemaErrorsCount = 0;
 
-  for (const slug of entries) {
-    const chapDir = path.join(chaptersRoot, slug);
+  for (const chapDir of chapterDirs) {
+    const slug = path.basename(chapDir);
     const rep = validateChapterLessonArchitecture(chapDir);
     allReports.push(rep);
 
@@ -159,7 +156,7 @@ export function validateAllExistingChapters() {
 
   console.log(`\n======================================================`);
   console.log(`📊 HONEST SUMMARY REPORT:`);
-  console.log(`   Total Chapters Scanned: ${entries.length}`);
+  console.log(`   Total Chapters Scanned: ${chapterDirs.length}`);
   console.log(`   Phase 1 Fully Validated: ${passingCount}`);
   console.log(`   Legacy Chapters (Missing Phase 1 Artifacts): ${missingArtifactsCount}`);
   console.log(`   Chapters with Schema Errors/Unresolved Audits: ${schemaErrorsCount}`);
@@ -177,9 +174,10 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename
   if (runAll) {
     validateAllExistingChapters();
   } else {
-    const target = dirArg
+    const rawTarget = dirArg
       ? dirArg.split('=')[1]
-      : `src/data/chapters/${chapterArg.split('=')[1]}`;
+      : chapterArg.split('=')[1];
+    const target = resolveChapterDirectory(rawTarget, rootDir) || rawTarget;
     const result = validateChapterLessonArchitecture(target);
     console.log(JSON.stringify(result, null, 2));
   }

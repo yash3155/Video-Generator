@@ -8,6 +8,7 @@ import { normalizeAndRemedyEpisode } from './generate_episode.mjs';
 import { extractSourceFacts } from './extract_source_facts.mjs';
 import { runContentAudit } from './audit_content.mjs';
 import { generateLessonAndStoryboard } from './generate_lesson_storyboard.mjs';
+import { getBookSlug, resolveChapterDirectory, resolveOutputVideoPath } from '../src/utils/chapterPaths.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -333,9 +334,10 @@ for (let i = 0; i < chapterKeys.length; i++) {
 
   if (isArgon) {
     chapterSlug = `${chapterKey}_argon`;
-    dataDir = path.join(rootDir, 'src', 'data', 'chapters', chapterSlug);
+    const bookSlug = getBookSlug(chapterKey);
+    dataDir = path.join(rootDir, 'src', 'data', 'chapters', bookSlug, chapterSlug);
     audioDir = path.join(rootDir, 'public', 'audio', chapterSlug);
-    outputVideo = path.join(rootDir, 'out', 'chapters', `${chapterKey}.mp4`);
+    outputVideo = path.join(rootDir, 'out', 'chapters', bookSlug, `${chapterKey}.mp4`);
   } else {
     chapterSlug = null;
     dataDir = path.join(rootDir, 'src', 'data');

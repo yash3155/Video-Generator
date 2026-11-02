@@ -8,6 +8,7 @@ import { TEMPLATE_REGISTRY } from '../schemas/templateRegistrySchema.mjs';
 import { runDomainValidators } from './domainValidators.mjs';
 import { captureScreenshots } from './screenshotEngine.mjs';
 import { generateJsonReport, generateHtmlReport } from './reportGenerator.mjs';
+import { getBookSlug } from '../utils/chapterPaths.mjs';
 
 /**
  * Runs the comprehensive QA Release Gate on a target workspace.
@@ -449,7 +450,11 @@ export async function runQaEngine(options) {
   let mp4SizeBytes = 0;
   let mp4Metadata = null;
 
+  const bookSlug = getBookSlug(chapterSlug, meta);
   const candidateMp4Paths = [
+    path.join(rootDir, 'out', 'chapters', bookSlug, `${chapterSlug}.mp4`),
+    path.join(rootDir, 'out', 'chapters', bookSlug, `${path.basename(resolvedDir)}.mp4`),
+    path.join(rootDir, 'out', bookSlug, `${chapterSlug}.mp4`),
     path.join(rootDir, 'out', 'chapters', `${chapterSlug}.mp4`),
     path.join(rootDir, 'out', `${chapterSlug}.mp4`),
     path.join(rootDir, 'out', 'chapters', `${path.basename(resolvedDir)}.mp4`),

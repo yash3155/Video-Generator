@@ -331,3 +331,4 @@ export function generateHtmlReport(report, outputPath) {
   fs.writeFileSync(outputPath, html, 'utf8');
   return outputPath;
 }
+

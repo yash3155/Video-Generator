@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { CourseConfigSchema } from '../src/schemas/courseConfigSchema.mjs';
 import { VisualSpecSchema } from '../src/schemas/visualSpecSchema.mjs';
 import { validateEpisodeData } from './validate_episode.mjs';
+import { resolveChapterDirectory } from '../src/utils/chapterPaths.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -65,8 +66,9 @@ fixtureFiles.forEach((file) => {
 
 // 3. Verify Backward Compatibility on an existing Argon chapter
 console.log(`\n🔄 [3/3] Validating Backward Compatibility with existing chapters...`);
+const ch02Dir = resolveChapterDirectory('ch02_part1_argon', rootDir);
 const ch02Raw = JSON.parse(
-  fs.readFileSync(path.join(rootDir, 'src', 'data', 'chapters', 'ch02_part1_argon', 'episode_raw.json'), 'utf8')
+  fs.readFileSync(path.join(ch02Dir, 'episode_raw.json'), 'utf8')
 );
 const legacyResult = validateEpisodeData(ch02Raw);
 if (legacyResult.valid) {
