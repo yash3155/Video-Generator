@@ -21,37 +21,51 @@ export const FormulaBreakdown: React.FC<FormulaBreakdownProps> = ({
   const visualData = beat.visual?.data as FormulaSpec | undefined;
   const legacyUI = (beat.ui_state || {}) as any;
 
+  const rawExpression =
+    legacyUI.expression ||
+    legacyUI.formula ||
+    (legacyUI.resultTerm && legacyUI.leftTerm && legacyUI.rightTerm
+      ? `${legacyUI.resultTerm.value} = ${legacyUI.leftTerm.value} ${legacyUI.operator || '+'} ${legacyUI.rightTerm.value}`
+      : 'F = m · a');
+
+  const rawVariables: FormulaVariable[] =
+    legacyUI.variables ||
+    (Array.isArray(legacyUI.terms)
+      ? legacyUI.terms.map((t: any) => ({
+          symbol: t.symbol || t.name || 'x',
+          label: t.name || t.label || t.symbol || 'Term',
+          description: t.meaning || t.description,
+          value: t.value,
+          unit: t.unit,
+        }))
+      : [
+          ...(legacyUI.leftTerm
+            ? [{ symbol: legacyUI.leftTerm.value, label: legacyUI.leftTerm.label }]
+            : [{ symbol: 'm', label: 'Mass', unit: 'kg' }]),
+          ...(legacyUI.rightTerm
+            ? [{ symbol: legacyUI.rightTerm.value, label: legacyUI.rightTerm.label }]
+            : [{ symbol: 'a', label: 'Acceleration', unit: 'm/s²' }]),
+          ...(legacyUI.resultTerm
+            ? [{ symbol: legacyUI.resultTerm.value, label: legacyUI.resultTerm.label }]
+            : [{ symbol: 'F', label: 'Net Force', unit: 'N' }]),
+        ]);
+
+  const rawSteps: FormulaStep[] =
+    legacyUI.steps || [
+      {
+        stepIndex: 1,
+        label: legacyUI.resultNote || 'Fundamental Equation',
+        equation: rawExpression,
+      },
+    ];
+
   const formulaSpec: FormulaSpec = visualData || {
     title: legacyUI.formulaTitle || scene.title || 'Quantitative Mechanics',
     subtitle: legacyUI.formulaSubtitle,
     badge: legacyUI.badge || scene.badge || 'EQUATION MECHANICS',
-    expression:
-      legacyUI.expression ||
-      (legacyUI.resultTerm && legacyUI.leftTerm && legacyUI.rightTerm
-        ? `${legacyUI.resultTerm.value} = ${legacyUI.leftTerm.value} ${legacyUI.operator || '+'} ${legacyUI.rightTerm.value}`
-        : 'F = m · a'),
-    variables: legacyUI.variables || [
-      ...(legacyUI.leftTerm
-        ? [{ symbol: legacyUI.leftTerm.value, label: legacyUI.leftTerm.label }]
-        : [{ symbol: 'm', label: 'Mass', unit: 'kg' }]),
-      ...(legacyUI.rightTerm
-        ? [{ symbol: legacyUI.rightTerm.value, label: legacyUI.rightTerm.label }]
-        : [{ symbol: 'a', label: 'Acceleration', unit: 'm/s²' }]),
-      ...(legacyUI.resultTerm
-        ? [{ symbol: legacyUI.resultTerm.value, label: legacyUI.resultTerm.label }]
-        : [{ symbol: 'F', label: 'Net Force', unit: 'N' }]),
-    ],
-    steps: legacyUI.steps || [
-      {
-        stepIndex: 1,
-        label: 'Fundamental Equation',
-        equation:
-          legacyUI.expression ||
-          (legacyUI.resultTerm && legacyUI.leftTerm && legacyUI.rightTerm
-            ? `${legacyUI.resultTerm.value} = ${legacyUI.leftTerm.value} ${legacyUI.operator || '+'} ${legacyUI.rightTerm.value}`
-            : 'F = m · a'),
-      },
-    ],
+    expression: rawExpression,
+    variables: rawVariables,
+    steps: rawSteps,
     activeStepIndex: legacyUI.activeStepIndex || 1,
   };
 

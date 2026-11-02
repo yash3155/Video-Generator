@@ -1,6 +1,6 @@
 import React from 'react';
 import { interpolate, spring, useVideoConfig } from 'remotion';
-import { Scene, Beat, StatCounterUI } from '../types';
+import { Scene, Beat } from '../types';
 
 interface StatCounterProps {
   scene: Scene;
@@ -17,19 +17,23 @@ export const StatCounter: React.FC<StatCounterProps> = ({
   beatFrame = 0,
 }) => {
   const { fps } = useVideoConfig();
-  const ui: StatCounterUI = beat.ui_state || {
-    topLabel: scene.title || 'Key Metric',
-    numericValue: 100,
-    prefix: '',
-    suffix: '',
-  };
+  const rawUI = (beat.ui_state || {}) as any;
+  const rawStatVal = rawUI.numericValue !== undefined ? rawUI.numericValue : rawUI.statValue;
+  const cleanedValStr = typeof rawStatVal === 'string' ? rawStatVal.replace(/,/g, '').trim() : String(rawStatVal || '');
+  const numericCandidate = parseFloat(cleanedValStr);
+  const targetVal = !isNaN(numericCandidate) ? numericCandidate : 100;
+
+  const topLabel = rawUI.topLabel || rawUI.statLabel || rawUI.label || scene.title || 'Key Metric';
+  const prefix = rawUI.prefix || '';
+  const suffix = rawUI.suffix || rawUI.statUnit || rawUI.unit || '';
+  const subtext = rawUI.subtext || rawUI.contextNote || rawUI.changeText || rawUI.description || '';
+  const bottomPill = rawUI.bottomPill || (rawUI.contextNote && rawUI.changeText ? rawUI.changeText : rawUI.note || '');
 
   const countProgress = interpolate(beatFrame, [0, 28], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
 
-  const targetVal = Number(ui.numericValue) || 0;
   const isDecimal = !Number.isInteger(targetVal);
   const currentVal = isDecimal
     ? (targetVal * countProgress).toFixed(1)
@@ -50,34 +54,34 @@ export const StatCounter: React.FC<StatCounterProps> = ({
         }}
         className="max-w-4xl w-full flex flex-col items-start justify-center my-auto bg-[#FCFCFA] border border-[#ECEAE3] rounded-3xl p-12 shadow-sm"
       >
-        {(ui.sectionTag || scene.badge) && (
+        {(rawUI.sectionTag || scene.badge) && (
           <div className="flex items-center space-x-3 mb-4">
             <div className="w-6 h-0.5 bg-[#B45309]" />
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8B7355]">
-              {ui.sectionTag || scene.badge}
+              {rawUI.sectionTag || scene.badge}
             </span>
           </div>
         )}
 
         <p className="text-2xl font-medium text-[#525252] mb-3 leading-snug">
-          {ui.topLabel}
+          {topLabel}
         </p>
 
         <div className="text-8xl font-black tracking-tight text-[#B45309] font-mono leading-none py-2">
-          {ui.prefix || ''}
+          {prefix}
           {currentVal}
-          {ui.suffix ? ` ${ui.suffix}` : ''}
+          {suffix ? ` ${suffix}` : ''}
         </div>
 
-        {ui.subtext && (
+        {subtext && (
           <p className="text-xl font-semibold text-[#1E1E1E] mt-5 leading-relaxed">
-            {ui.subtext}
+            {subtext}
           </p>
         )}
 
-        {ui.bottomPill && (
+        {bottomPill && (
           <div className="mt-6 inline-flex items-center px-4 py-2 rounded-xl bg-[#FFFBEB] border border-[#FCD34D] text-sm font-mono font-bold text-[#92400E]">
-            {ui.bottomPill}
+            {bottomPill}
           </div>
         )}
       </div>
