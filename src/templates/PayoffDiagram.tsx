@@ -16,12 +16,11 @@ export const PayoffDiagram: React.FC<PayoffDiagramProps> = ({
   beatDuration = 180,
 }) => {
   const { fps } = useVideoConfig();
-  const ui: PayoffDiagramUI = beat.ui_state || {
-    chartTitle: scene.title || 'Option Payoff Profile',
-    strategyType: 'long_call',
-    strikePrice: 500,
-    premium: 25,
-  };
+  const ui: PayoffDiagramUI = beat.ui_state || ({} as any);
+
+  const strategyType = ui.strategyType || 'long_call';
+  const chartTitle = ui.chartTitle || scene.title || 'Option Payoff Profile';
+  const chartSubtitle = ui.chartSubtitle || strategyType.replace(/_/g, ' ').toUpperCase();
 
   const K1 = Number(ui.strikePrice) || 500;
   const P1 = Number(ui.premium) || Math.round(K1 * 0.05);
@@ -33,7 +32,7 @@ export const PayoffDiagram: React.FC<PayoffDiagramProps> = ({
   const steps = 60;
 
   const computePayoff = (S: number): number => {
-    switch (ui.strategyType) {
+    switch (strategyType) {
       case 'long_call':
         return Math.max(S - K1, 0) - P1;
       case 'short_call':
@@ -123,10 +122,10 @@ export const PayoffDiagram: React.FC<PayoffDiagramProps> = ({
         <div className="flex items-center justify-between px-3 pt-1 border-b border-[#F0ECE1] pb-2.5">
           <div className="flex items-center space-x-3">
             <h2 className="text-xl font-bold text-[#1E1E1E] tracking-tight truncate">
-              {ui.chartTitle}
+              {chartTitle}
             </h2>
             <span className="text-xs font-mono font-bold text-[#8B7355] uppercase tracking-wider bg-[#F3EFE6] px-2.5 py-0.5 rounded-md border border-[#E5DFD3]">
-              {ui.chartSubtitle || ui.strategyType.replace(/_/g, ' ').toUpperCase()}
+              {chartSubtitle}
             </span>
           </div>
           <span className="font-mono text-xs font-bold text-[#8B7355]">

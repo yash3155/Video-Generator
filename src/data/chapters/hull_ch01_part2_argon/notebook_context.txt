@@ -1,0 +1,193 @@
+### Chapter 1, Part 2: Core Concepts, Formulas, Data & Case Studies
+
+---
+
+### 1. Call & Put Options Basics
+
+#### Core Concepts & Definitions
+* **Option**: A contract giving the holder the **right**, but not the obligation, to buy or sell an asset by a specified date for a specified price [1, 2].
+* **Call Option**: Gives the holder the right to **buy** an asset by a certain date for a certain price [1].
+* **Put Option**: Gives the holder the right to **sell** an asset by a certain date for a certain price [1].
+* **Strike Price / Exercise Price**: The fixed price per unit specified in the option contract at which the asset can be bought or sold [1].
+* **Expiration / Maturity Date**: The date on which the option contract expires [1].
+* **American Option**: Can be exercised at **any time** up to and including its expiration date [1, 3].
+* **European Option**: Can be exercised **only on the maturity date** itself [1, 3].
+* **Option Premium**: The upfront price paid by the buyer (holder) to the seller (writer) to acquire the option contract [4].
+* **The Four Option Positions**:
+  1. **Long Call** (Buyer of call) [5]
+  2. **Short Call** (Seller/Writer of call) [5, 6]
+  3. **Long Put** (Buyer of put) [6]
+  4. **Short Put** (Seller/Writer of put) [6]
+* **Contract Standard**: In the U.S., one exchange-traded stock option contract covers **100 shares** [7].
+
+#### Pricing Relationships
+* Call option prices **decrease** as the strike price increases [8].
+* Put option prices **increase** as the strike price increases [8].
+* Both call and put options become **more valuable** as their time to maturity increases [8].
+
+#### Numerical Examples (Google / Alphabet Stock)
+* **Long Call Trade Example** (Stock price: **\$532.20 / \$532.34**) [9]:
+  * **Trade**: Buy 1 Dec Call contract with a **\$550 strike price** at the offer price of **\$29.00** per share [8, 10].
+  * **Upfront Cost**: \\(29.00 \times 100 = \mathbf{\$2,900}\\) [7].
+  * **Payoff if Stock Rises to \$650**: Gross payoff = \\(100 \times (\$650 - \$550) = \mathbf{\$10,000}\\) [11]. Net profit = \\(\$10,000 - \$2,900 = \mathbf{\$7,100}\\) [11].
+  * **Payoff if Stock \\(\le\\) \\(550\\)**: Option expires worthless; total loss is capped at the upfront cost of **\\(-\$2,900\\)** [11].
+* **Short Put Trade Example** (Stock price: **\$532.20 / \$532.34**) [9]:
+  * **Trade**: Sell 1 Sept Put contract with a **\$525 strike price** at the bid price of **\$22.40** per share [12].
+  * **Upfront Cash Inflow**: \\(100 \times \$22.40 = \mathbf{\$2,240}\\) [12].
+  * **Profit if Stock \\(>\\) \\(525\\)**: Option is not exercised; trader keeps maximum profit of **\\(\$2,240\\)** [12].
+  * **Loss if Stock Falls to \\(480\\)**: Trader is forced to buy 100 shares at \\(525\\) when worth \\(480\\). Gross loss = \\(100 \times (\$525 - \$480) = \mathbf{\$4,500}\\) [12]. Net loss = \\(-\$4,500 + \$2,240 = \mathbf{-\$2,260}\\) [12].
+
+---
+
+### 2. The Three Traders: Hedgers, Speculators, Arbitrageurs
+
+#### A. Hedgers
+* **Definition**: Market participants who use futures, forwards, or options to **reduce or eliminate risk** arising from potential price movements in an underlying asset [13, 14].
+* **Author Analogy (Forwards vs. Options)**:
+  * Forward and futures contracts **neutralize risk** by locking in a fixed price [14, 15].
+  * Options act as **insurance**—protecting against adverse price movements while allowing upside participation on favorable moves (in exchange for an upfront premium) [15].
+* **Forward Hedging Numerical Case Study (ImportCo & ExportCo, May 13, 2015)**:
+  * **ImportCo** must pay **£10 million** in 3 months (August 13) [16]. 3-month forward offer rate = **1.5742 USD/GBP** [16, 17].
+    * *Strategy*: Buys £10M forward \\(\rightarrow\\) locks in total liability at **\$15,742,000** [17].
+  * **ExportCo** will receive **£30 million** in 3 months [17, 18]. 3-month forward bid rate = **1.5736 USD/GBP** [17, 18].
+    * *Strategy*: Sells £30M forward \\(\rightarrow\\) locks in total revenue at **\$47,208,000** [18].
+  * *Trade-off Note*: Hedging eliminates risk, but unhedged outcomes could be better if exchange rates move favorably (e.g., if spot falls to 1.5000, ImportCo would have paid only \$15M unhedged) [15, 19].
+* **Options Hedging Example (Stock Portfolio Insurance)**:
+  * Investor owns **1,000 shares** at **\$28/share** (\$28,000 total) [20].
+  * *Strategy*: Buys **10 July Put contracts** with a **\$27.50 strike price** at **\$1.00/option** [20]. Total cost = \\(10 \times 100 \times \$1 = \mathbf{\$1,000}\\) [20, 21].
+  * *Outcome*: Guarantees a minimum share price value of \$27.50 (\$27,500 total, or **\$26,500 net** of option cost) while retaining full gain if share price rises [21, 22].
+
+#### B. Speculators
+* **Definition**: Market participants who intentionally take market positions to **bet on the future direction** of an asset price [13, 23].
+* **Futures Speculation Example (£250,000 Bullish Bet)**:
+  * Current spot rate = **1.5470 USD/GBP**; April futures price = **1.5410 USD/GBP** [24, 25].
+  * *Spot Market Purchase*: Buy £250,000 upfront \\(\rightarrow\\) requires **\$386,750 outlay** [24, 26].
+    * If April spot = 1.6000: Profit = \\((1.6000 - 1.5470) \times 250,000 = \mathbf{\$13,250}\\) [25].
+    * If April spot = 1.5000: Loss = \\((1.5470 - 1.5000) \times 250,000 = \mathbf{-\$11,750}\\) [25, 26].
+  * *Futures Purchase*: Buy 4 April CME futures contracts (£62,500 each) \\(\rightarrow\\) requires only **\$20,000 initial margin deposit** [24, 27].
+    * If April spot = 1.6000: Profit = \\((1.6000 - 1.5410) \times 250,000 = \mathbf{\$14,750}\\) [25].
+    * If April spot = 1.5000: Loss = \\((1.5410 - 1.5000) \times 250,000 = \mathbf{-\$10,250}\\) [25, 26].
+* **Options Speculation Example (\$2,000 Capital Allocation)**:
+  * Stock price = **\$20**; 2-month Call option (\$22.50 strike) = **\$1.00** [27, 28].
+  * *Strategy 1 (Buy 100 Shares)*: Investment = \$2,000 [27].
+    * Stock rises to \$27: Profit = \\(100 \times (\$27 - \$20) = \mathbf{\$700}\\) [27, 29].
+    * Stock falls to \$15: Loss = \\(100 \times (\$20 - \$15) = \mathbf{-\$500}\\) [30].
+  * *Strategy 2 (Buy 2,000 Call Options / 20 Contracts)*: Investment = \$2,000 [27, 31].
+    * Stock rises to \$27: Gross payoff = \\(2,000 \times (\$27 - \$22.50) = \$9,000\\). Net profit = \\(\$9,000 - \$2,000 = \mathbf{\$7,000}\\) (**10x higher** than buying shares) [29, 30].
+    * Stock falls to \$15: Calls expire worthless \\(\rightarrow\\) Net loss = **-\$2,000** (100% loss of initial capital) [30].
+
+#### C. Arbitrageurs
+* **Definition**: Market participants who enter into simultaneous transactions in two or more markets to **lock in a riskless profit** from price discrepancies [13, 32].
+* **Example 1.3 (Dually Listed Stock Arbitrage)**:
+  * New York stock price = **\$152.00 / share** [33, 34].
+  * London stock price = **£100.00 / share** [33, 34].
+  * Exchange rate = **\$1.5500 per £1** [33, 34].
+  * *Execution*: Simultaneously buy 100 shares in New York (\$15,200) and sell 100 shares in London (£10,000 \\(\times\\) 1.5500 = \$15,500) [33, 34].
+  * *Riskless Profit Formula*:
+    \\[\text{Profit} = 100 \times [(\$1.55 \times 100) - \$152] = \mathbf{\$300}\\] [34, 35].
+  * *Market Equilibrium*: Arbitrage buying in NY pushes the USD price up, while selling in London pushes the GBP price down, closing the gap rapidly [35, 36].
+
+---
+
+### 3. Leverage in Futures vs. Options
+
+| Feature | Futures Leverage | Options Leverage |
+| :--- | :--- | :--- |
+| **Outlay Mechanism** | Small initial margin deposit (e.g., \$20,000 on a \$386,750 exposure) [24, 28]. | Upfront option premium paid (e.g., \$2,000 on 2,000 shares worth \$40,000) [27, 31]. |
+| **Payoff Profile** | **Symmetric**: Both gains and losses are magnified proportionally to position size [28, 32]. | **Asymmetric**: Gains are magnified, but losses are capped [30, 32, 37]. |
+| **Maximum Loss Potential** | Uncapped / large loss potential exceeding initial margin [32]. | Strictly limited to the upfront premium paid [30, 32]. |
+
+---
+
+### 4. Business Snapshot 1.3: Hedge Fund "2-and-20" Strategies
+
+* **Industry Context**: Hedge funds manage over **\$2 trillion globally** for institutional and high-net-worth investors, operating outside typical mutual fund regulatory limits on daily liquidity and leverage [38, 39].
+* **Fee Structure ("2 and 20")**:
+  * **2% Management Fee**: 2% per year of total assets under management (AUM) [39].
+  * **20% Performance Fee**: 20% of net profits generated [39].
+* **Key Trading Strategies**:
+  1. **Long/Short Equities**: Long undervalued stocks paired with short overvalued stocks to minimize general market direction exposure [40].
+  2. **Convertible Arbitrage**: Long undervalued convertible bonds paired with a short position in the underlying stock [40].
+  3. **Distressed Securities**: Purchase debt/equity of companies nearing or in bankruptcy [40].
+  4. **Emerging Markets**: Invest in corporate/sovereign securities of developing nations [40].
+  5. **Global Macro**: Carry out directional trades anticipating global macroeconomic shifts [41].
+  6. **Merger Arbitrage**: Trade target/acquirer stock post-announcement to profit if the acquisition closes [41].
+* **Manager Derivatives Workflow**:
+  1. Evaluate portfolio risk exposures [42].
+  2. Separate acceptable risks from unacceptable risks [42].
+  3. Implement tailored derivative strategies to hedge unacceptable risks [42].
+
+---
+
+### 5. Business Snapshot 1.4: Jérôme Kerviel’s €4.9B SocGen Rogue Trade
+
+* **Key Details & Data**:
+  * **Trader**: Jérôme Kerviel (joined compliance in 2000; promoted to junior trader on Delta One products team in 2005) [43, 44].
+  * **Institution**: Société Générale (SocGen) [43, 45].
+  * **Total Loss**: **€4.9 Billion** (unwound over 3 days in January 2008) [45, 46].
+  * **Position Scale**: Built unauthorized, unhedged positions of **tens of billions of euros** [46].
+* **Trading Mechanics & Fraud**:
+  * **Official Mandate**: Arbitrage equity index futures (e.g., German DAX, French CAC 40, Euro Stoxx 50) against underlying stock baskets [44].
+  * **Modus Operandi**: Exploited intimate knowledge of back-office compliance systems from his former compliance role to create **fictitious offsetting trades** [43, 46]. This masked massive, unhedged directional market bets [46].
+* **Historical Rogue Trader Analogies**:
+  * **Nick Leeson (Barings Bank, 1995)**: Mandated to arbitrage Nikkei 225 futures between Singapore and Osaka; secretly took directional futures/options bets, lost **\$1 Billion**, and collapsed the 200-year-old bank [47].
+  * **John Rusnak (Allied Irish Bank, 2002)**: Lost **\$700 Million** through unauthorized foreign exchange trading [47, 48].
+* **Risk Management Lessons**:
+  * Establish unambiguous, non-negotiable risk limits for traders [45, 48].
+  * Independently monitor daily trading activities to enforce strict compliance [45, 48].
+  * Maintain independent risk management authority that cannot be bypassed or overridden by trading desks [45, 49].
+
+---
+
+🎬 Would you like me to generate a complete visual script or outline for your video based on these extracted concepts?
+
+### Direct Citations from Book Sources:
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a
+- f8901e7b-90e2-4ac7-b8cb-492198f9ac7a

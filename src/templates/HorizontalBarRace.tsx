@@ -14,15 +14,13 @@ export const HorizontalBarRace: React.FC<HorizontalBarRaceProps> = ({
   beatFrame = 0,
 }) => {
   const { fps } = useVideoConfig();
-  const ui: HorizontalBarRaceUI = beat.ui_state || {
-    title: scene.title || 'Side by Side Comparison',
-    leftHeader: 'Strategy A',
-    leftValueText: '100',
-    leftWeight: 80,
-    rightHeader: 'Strategy B',
-    rightValueText: '25',
-    rightWeight: 20,
-  };
+  const ui: HorizontalBarRaceUI = beat.ui_state || ({} as any);
+
+  const title = ui.title || scene.title || 'Side by Side Comparison';
+  const leftHeader = ui.leftHeader || 'Side A';
+  const rightHeader = ui.rightHeader || 'Side B';
+  const leftValueText = ui.leftValueText || String(ui.leftWeight || 50);
+  const rightValueText = ui.rightValueText || String(ui.rightWeight || 50);
 
   const progress = spring({
     frame: beatFrame,
@@ -50,7 +48,7 @@ export const HorizontalBarRace: React.FC<HorizontalBarRaceProps> = ({
             </span>
           </div>
           <h2 className="text-3xl font-extrabold text-[#1E1E1E] tracking-tight">
-            {ui.title}
+            {title}
           </h2>
         </div>
 
@@ -59,10 +57,10 @@ export const HorizontalBarRace: React.FC<HorizontalBarRaceProps> = ({
           {/* Column Labels */}
           <div className="grid grid-cols-2 gap-0 w-full mb-3">
             <div className="text-right pr-6 text-base font-bold text-[#525252]">
-              {ui.leftHeader}
+              {leftHeader}
             </div>
             <div className="text-left pl-6 text-base font-bold text-[#525252]">
-              {ui.rightHeader}
+              {rightHeader}
             </div>
           </div>
 
@@ -74,7 +72,7 @@ export const HorizontalBarRace: React.FC<HorizontalBarRaceProps> = ({
             {/* Left Side (Grows Leftward from Center) */}
             <div className="flex items-center justify-end pr-1">
               <span className="text-3xl font-black font-mono text-[#15803D] mr-4 whitespace-nowrap">
-                {ui.leftValueText}
+                {leftValueText}
               </span>
               <div
                 style={{ width: `${leftWidthPct * 0.55}%` }}
@@ -89,7 +87,7 @@ export const HorizontalBarRace: React.FC<HorizontalBarRaceProps> = ({
                 className="h-12 bg-[#D97706] rounded-r-lg shadow-xs transition-all"
               />
               <span className="text-3xl font-black font-mono text-[#B45309] ml-4 whitespace-nowrap">
-                {ui.rightValueText}
+                {rightValueText}
               </span>
             </div>
           </div>
