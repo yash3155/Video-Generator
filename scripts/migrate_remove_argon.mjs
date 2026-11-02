@@ -311,3 +311,4 @@ console.log(`   - Compiled Beats Updated: ${stats.compiledBeatsUpdated}`);
 console.log(`   - Videos Relocated:       ${stats.videosRelocated}`);
 console.log(`   - Migration Report:       ${migrationReportPath}`);
 console.log(`======================================================\n`);
+

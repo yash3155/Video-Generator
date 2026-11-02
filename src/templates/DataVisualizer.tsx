@@ -169,12 +169,201 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
       };
     }
   } else {
-    // Pure structured preset lookup without narration text scraping
+    // Pure structured preset lookup with dynamic domain-neutral auto-scaling
     const presetName = uiState.preset || 'uptrend_then_drop';
-    const fallbackPreset =
+    const rawFallbackPreset =
       FINANCE_CHART_PRESETS[presetName] || FINANCE_CHART_PRESETS.uptrend_then_drop;
-    yUnit = uiState.yAxisUnit || fallbackPreset.unit || '₹';
-    presetData = fallbackPreset;
+    yUnit = uiState.yAxisUnit || rawFallbackPreset.unit || '₹';
+
+    // Check if annotations, side cards, or overlays in this scene specify target prices outside preset bounds
+    const targetPrices: number[] = [];
+    const beatsToScan = allBeatsInScene.length > 0 ? allBeatsInScene : [beat];
+    for (const b of beatsToScan) {
+      const u = b.ui_state;
+      if (!u) continue;
+      if (Array.isArray(u.annotations)) {
+        for (const a of u.annotations) {
+          if (a.value !== undefined && !isNaN(Number(a.value))) {
+            targetPrices.push(Number(a.value));
+          } else if (a.text) {
+            const m = a.text.match(/(?:₹|\$|€|£)?\s*(\d+(?:\.\d+)?)/);
+            if (m && !isNaN(Number(m[1]))) {
+              targetPrices.push(Number(m[1]));
+            }
+          }
+        }
+      }
+      if (Array.isArray(u.sideCards)) {
+        for (const sc of u.sideCards) {
+          const text = `${sc.title} ${sc.subtitle}`;
+          const matches = text.matchAll(/(?:₹|\$|€|£|at|to)\s*(\d+(?:\.\d+)?)/gi);
+          for (const m of matches) {
+            if (m[1] && !isNaN(Number(m[1]))) {
+              targetPrices.push(Number(m[1]));
+            }
+          }
+        }
+      }
+      if (Array.isArray(u.overlays)) {
+        for (const ov of u.overlays) {
+          if (ov.priceLevel !== undefined && !isNaN(Number(ov.priceLevel))) {
+            targetPrices.push(Number(ov.priceLevel));
+          }
+        }
+      }
+    }
+
+    const origMinY = rawFallbackPreset.minY;
+    const origMaxY = rawFallbackPreset.maxY;
+    const maxTarget = targetPrices.length > 0 ? Math.max(...targetPrices) : undefined;
+    const minTarget = targetPrices.length > 0 ? Math.min(...targetPrices) : undefined;
+
+    // If targets are outside the preset's native bounds, dynamically rescale the preset
+    const needsRescale =
+      maxTarget !== undefined &&
+      minTarget !== undefined &&
+      (maxTarget > origMaxY * 1.15 || minTarget < origMinY * 0.85);
+
+    if (needsRescale && rawFallbackPreset.candlesticks && rawFallbackPreset.candlesticks.length > 0) {
+      const rawCandles = rawFallbackPreset.candlesticks;
+      // Step 2 boundary / peak detection:
+      // If scene uses progressStep (e.g. 2 of 3), the visible peak is at ~2/3 of candles (index ~18)
+      const step2CandleIdx = Math.max(0, Math.min(rawCandles.length - 1, Math.round((2 / 3) * rawCandles.length) - 1));
+      let peakIdx = 0;
+      let highestHigh = -Infinity;
+      rawCandles.forEach((c, idx) => {
+        if (c.high > highestHigh) {
+          highestHigh = c.high;
+          peakIdx = idx;
+        }
+      });
+
+      // If step 2 boundary is close to peak, use step 2 candle for crisp live-price alignment at step 2
+      const effectivePeakIdx = Math.abs(peakIdx - step2CandleIdx) <= 3 ? step2CandleIdx : peakIdx;
+      const lastIdx = rawCandles.length - 1;
+
+      const origPeakVal = rawCandles[effectivePeakIdx].close;
+      const origLastVal = rawCandles[lastIdx].close;
+
+      let scaleFactor = 1;
+      let refOrig = origLastVal;
+      let refTarget = minTarget;
+
+      if (Math.abs(origPeakVal - origLastVal) > 1 && maxTarget !== minTarget) {
+        scaleFactor = (maxTarget - minTarget) / (origPeakVal - origLastVal);
+        refOrig = origLastVal;
+        refTarget = minTarget;
+      } else {
+        scaleFactor = maxTarget / (origPeakVal || 1);
+        refOrig = 0;
+        refTarget = 0;
+      }
+
+      const isJuneToSep = /june\s*(?:to|-)\s*september/i.test(`${chartTitle} ${chartSubtitle || ''}`);
+      const monthMap: Record<string, string> = {
+        'Jan 02': 'Jun 02',
+        'Jan 16': 'Jun 16',
+        'Feb 01': 'Jul 01',
+        'Feb 15': 'Jul 15',
+        'Mar 01': 'Aug 01',
+        'Mar 15': 'Aug 15',
+        'Mar 31': 'Sep 15',
+      };
+
+      const scaledCandles = rawCandles.map((c, i) => {
+        let open = Math.round(refTarget + (c.open - refOrig) * scaleFactor);
+        let high = Math.round(refTarget + (c.high - refOrig) * scaleFactor);
+        let low = Math.round(refTarget + (c.low - refOrig) * scaleFactor);
+        let close = Math.round(refTarget + (c.close - refOrig) * scaleFactor);
+
+        // Snap exact key candles if applicable
+        if (i === effectivePeakIdx) {
+          close = maxTarget;
+          high = Math.max(high, close + 2);
+        } else if (i === lastIdx && maxTarget !== minTarget) {
+          close = minTarget;
+          low = Math.min(low, close - 3);
+        }
+
+        const label = isJuneToSep && c.label && monthMap[c.label] ? monthMap[c.label] : c.label;
+
+        return {
+          ...c,
+          open,
+          high: Math.max(high, open, close),
+          low: Math.min(low, open, close),
+          close,
+          label,
+        };
+      });
+
+      const candleLows = scaledCandles.map((c) => c.low);
+      const candleHighs = scaledCandles.map((c) => c.high);
+      const scaledMin = Math.min(...candleLows);
+      const scaledMax = Math.max(...candleHighs);
+
+      const newMinY = Math.floor(scaledMin / 10) * 10 - 10;
+      const newMaxY = Math.ceil(scaledMax / 10) * 10 + 10;
+
+      presetData = {
+        ...rawFallbackPreset,
+        minY: newMinY,
+        maxY: newMaxY,
+        candlesticks: scaledCandles,
+      };
+    } else if (needsRescale && rawFallbackPreset.points && rawFallbackPreset.points.length > 0) {
+      const rawPoints = rawFallbackPreset.points;
+      let peakIdx = 0;
+      let highestVal = -Infinity;
+      rawPoints.forEach((p, idx) => {
+        if (p.value > highestVal) {
+          highestVal = p.value;
+          peakIdx = idx;
+        }
+      });
+      const lastIdx = rawPoints.length - 1;
+      const origPeakVal = rawPoints[peakIdx].value;
+      const origLastVal = rawPoints[lastIdx].value;
+
+      let scaleFactor = 1;
+      let refOrig = origLastVal;
+      let refTarget = minTarget;
+
+      if (Math.abs(origPeakVal - origLastVal) > 1 && maxTarget !== minTarget) {
+        scaleFactor = (maxTarget - minTarget) / (origPeakVal - origLastVal);
+        refOrig = origLastVal;
+        refTarget = minTarget;
+      } else {
+        scaleFactor = maxTarget / (origPeakVal || 1);
+        refOrig = 0;
+        refTarget = 0;
+      }
+
+      const scaledPoints = rawPoints.map((p, i) => {
+        let val = Math.round(refTarget + (p.value - refOrig) * scaleFactor);
+        if (i === peakIdx) val = maxTarget;
+        else if (i === lastIdx && maxTarget !== minTarget) val = minTarget;
+        return {
+          ...p,
+          value: val,
+        };
+      });
+
+      const ptVals = scaledPoints.map((p) => p.value);
+      const scaledMin = Math.min(...ptVals);
+      const scaledMax = Math.max(...ptVals);
+      const newMinY = Math.floor(scaledMin / 10) * 10 - 10;
+      const newMaxY = Math.ceil(scaledMax / 10) * 10 + 10;
+
+      presetData = {
+        ...rawFallbackPreset,
+        minY: newMinY,
+        maxY: newMaxY,
+        points: scaledPoints,
+      };
+    } else {
+      presetData = rawFallbackPreset;
+    }
   }
 
   const totalSteps = uiState.totalSteps || 3;
@@ -977,20 +1166,29 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
 
                 let targetIdx = ann.candleIndex;
 
-                // Use explicit ann.value or ann.candleIndex for coordinate positioning
-                if (targetIdx === undefined && ann.value !== undefined && allCandles.length > 0) {
-                  const targetPrice = Number(ann.value);
-                  if (!isNaN(targetPrice)) {
+                // Use explicit ann.value, parsed price from text, or ann.candleIndex for coordinate positioning
+                if (targetIdx === undefined && (ann.value !== undefined || ann.text) && allCandles.length > 0) {
+                  let targetPrice = ann.value !== undefined ? Number(ann.value) : undefined;
+                  if ((targetPrice === undefined || isNaN(targetPrice)) && ann.text) {
+                    const match = ann.text.match(/(?:₹|\$|€|£)?\s*(\d+(?:\.\d+)?)/);
+                    if (match && !isNaN(Number(match[1]))) {
+                      targetPrice = Number(match[1]);
+                    }
+                  }
+
+                  if (targetPrice !== undefined && !isNaN(targetPrice)) {
                     let bestIdx = 0;
                     let bestDiff = Infinity;
                     const searchPool = allCandles.slice(0, Math.max(1, visibleLength));
+                    const isDropOrCrash =
+                      ann.color === 'red' || /crash|drop|spot|unhedged|fall|plunge/i.test(ann.text);
                     searchPool.forEach((c, cIdx) => {
                       const diff = Math.min(
-                        Math.abs(c.close - targetPrice),
-                        Math.abs(c.high - targetPrice),
-                        Math.abs(c.low - targetPrice)
+                        Math.abs(c.close - targetPrice!),
+                        Math.abs(c.high - targetPrice!),
+                        Math.abs(c.low - targetPrice!)
                       );
-                      if (diff < bestDiff) {
+                      if (isDropOrCrash ? diff <= bestDiff : diff < bestDiff) {
                         bestDiff = diff;
                         bestIdx = cIdx;
                       }

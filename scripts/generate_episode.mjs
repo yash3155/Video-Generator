@@ -465,7 +465,7 @@ export function normalizeAndRemedyEpisode(data, slug) {
         const ui = b.ui_state;
         if (!ui) return;
 
-        ui.yAxisUnit = '₹';
+        ui.yAxisUnit = ui.yAxisUnit || '₹';
 
         if (ui.preset === 'head_and_shoulders' && !isActualHeadAndShoulders) {
           ui.preset = 'uptrend_then_drop';
@@ -497,6 +497,19 @@ export function normalizeAndRemedyEpisode(data, slug) {
           )
         ) {
           ui.progressStep = 3;
+        }
+
+        // Align callout candle coordinates with progress milestones
+        if (Array.isArray(ui.annotations)) {
+          ui.annotations.forEach((ann) => {
+            if (ann.candleIndex === undefined) {
+              if (ann.color === 'red' || /crash|drop|loss|trough|bottom|fall|spot/i.test(ann.text)) {
+                if (preset === 'uptrend_then_drop') ann.candleIndex = 27;
+              } else if (ann.color === 'amber' || /entry|locked|peak|high|buy|short/i.test(ann.text)) {
+                if (preset === 'uptrend_then_drop') ann.candleIndex = 18;
+              }
+            }
+          });
         }
       });
     }
