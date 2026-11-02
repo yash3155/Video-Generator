@@ -5,6 +5,9 @@ import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import 'dotenv/config';
 import { normalizeAndRemedyEpisode } from './generate_episode.mjs';
+import { extractSourceFacts } from './extract_source_facts.mjs';
+import { runContentAudit } from './audit_content.mjs';
+import { generateLessonAndStoryboard } from './generate_lesson_storyboard.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -363,6 +366,32 @@ for (let i = 0; i < chapterKeys.length; i++) {
     const contextFilePath = ensureNotebookContext(isHull, chapterKey, curriculumDirective, dataDir);
     const notesArg = contextFilePath ? `--notes="${contextFilePath}"` : '';
 
+    // Phase 1: Source Facts Extraction & Content Audit Gate
+    console.log(`📋 [PHASE 1] Extracting & Auditing Structured Source Facts for ${chapterKey}...`);
+    try {
+      await extractSourceFacts(dataDir, { force: isForce });
+      const audit = runContentAudit(dataDir);
+      if (audit.status === 'FAIL') {
+        console.error(`\n❌ [AUDIT GATE FAILED] Episode generation blocked for ${chapterKey}:`);
+        console.error(`   ${audit.blockingReason}`);
+        audit.findings
+          .filter((f) => f.severity === 'CRITICAL')
+          .forEach((f, idx) => {
+            console.error(`   ${idx + 1}. [${f.code}] (${f.category}): ${f.message}`);
+            if (f.suggestedRemedy) console.error(`      Remedy: ${f.suggestedRemedy}`);
+          });
+        console.error(`   Halting generation as per Phase 1 contract. Please repair source facts.\n`);
+        continue;
+      }
+      console.log(`✅ [AUDIT GATE PASSED] Content audit status: ${audit.status}`);
+
+      // Generate Lesson Plan & Storyboard grounded strictly in verified source facts
+      await generateLessonAndStoryboard(dataDir, { force: isForce });
+    } catch (phase1Err) {
+      console.error(`❌ Phase 1 Source/Lesson architecture error for ${chapterKey}:`, phase1Err.message);
+      continue;
+    }
+
     console.log(`🤖 Generating episode payload with model ${targetModel}...`);
     const topicArg = isHull ? '--topic="FUTURES & OPTIONS · JOHN C. HULL"' : '';
     const genCommand = `"${process.execPath}" --max-http-header-size=65536 scripts/generate_episode.mjs --dir="${dataDir}" --model=${targetModel} --temperature=0.2 ${topicArg} ${notesArg} --curriculum="${curriculumDirective.replace(/"/g, '\\"')}"`;
@@ -409,6 +438,25 @@ for (let i = 0; i < chapterKeys.length; i++) {
   // Video Rendering via Remotion
   if (skipRender) {
     console.log(`⏭️ [--skip-render] Skipping video rendering for ${chapterKey}.`);
+    continue;
+  }
+
+  // Phase 1 Render Gate: Block rendering when unresolved CRITICAL findings exist
+  const auditPath = path.join(dataDir, 'content_audit.json');
+  if (fs.existsSync(auditPath)) {
+    try {
+      const auditData = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
+      if (auditData.status === 'FAIL') {
+        console.error(`🛑 RENDER BLOCKED: Content audit for ${chapterKey} has status FAIL.`);
+        console.error(`   ${auditData.blockingReason || 'Unresolved critical findings present.'}`);
+        continue;
+      }
+    } catch (e) {
+      console.error(`🛑 RENDER BLOCKED: Invalid content_audit.json for ${chapterKey}:`, e.message);
+      continue;
+    }
+  } else {
+    console.error(`🛑 RENDER BLOCKED: No content_audit.json found in ${dataDir}. Phase 1 compliance required.`);
     continue;
   }
 

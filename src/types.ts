@@ -276,3 +276,188 @@ export interface DomainPersona {
   visualizerPresets: string[];
   keepEnglishTerms: string[];
 }
+
+// ===================================================================
+// Phase 1 Source-Grounded Lesson Architecture Types
+// ===================================================================
+
+export interface SourceCitation {
+  book: string;
+  chapter?: string;
+  section?: string;
+  page?: number | string;
+  excerpt?: string;
+  provenance?: 'notebooklm_query' | 'historical_episode_extraction' | 'verified_book_excerpt';
+}
+
+export interface FormulaVariable {
+  symbol: string;
+  definition: string;
+  unit?: string;
+}
+
+export interface FormulaDetails {
+  name: string;
+  latex?: string;
+  variables: FormulaVariable[];
+  assumptions?: string[];
+}
+
+export interface NumericalDetails {
+  values: Record<string, number | string>;
+  units?: string;
+  contractSize?: number | string;
+  context: string;
+}
+
+export interface PayoffVsProfit {
+  distinctionType: 'payoff' | 'profit' | 'both' | 'not_applicable';
+  formulaPayoff?: string;
+  formulaProfit?: string;
+  premiumConsidered?: boolean;
+  explanation?: string;
+}
+
+export interface SourceFactItem {
+  id: string; // e.g. "fact-01"
+  category:
+    | 'definition'
+    | 'claim'
+    | 'formula'
+    | 'numerical_example'
+    | 'case_study'
+    | 'assumption'
+    | 'market_rule';
+  topic: string;
+  statement: string;
+  sourceCitation: SourceCitation;
+  formulaDetails?: FormulaDetails;
+  numericalDetails?: NumericalDetails;
+  payoffVsProfit?: PayoffVsProfit;
+  tags?: string[];
+}
+
+export interface SourceFacts {
+  schemaVersion: '1.0.0';
+  chapterSlug: string;
+  notebookId: string;
+  sourceId: string;
+  retrievalTimestamp: string;
+  bookTitle: string;
+  facts: SourceFactItem[];
+  generalAssumptions: string[];
+  rawExcerpts?: string[];
+}
+
+export interface AuditFinding {
+  code: string;
+  severity: 'CRITICAL' | 'WARNING' | 'INFO';
+  category:
+    | 'source_coverage'
+    | 'missing_definitions'
+    | 'prerequisites'
+    | 'numerical_examples'
+    | 'formula_variables'
+    | 'units'
+    | 'signs'
+    | 'contract_sizes'
+    | 'assumptions'
+    | 'payoff_vs_profit'
+    | 'generic_filler';
+  message: string;
+  targetFactId?: string;
+  targetSceneIndex?: number;
+  suggestedRemedy?: string;
+}
+
+export interface ContentAudit {
+  schemaVersion: '1.0.0';
+  chapterSlug: string;
+  auditTimestamp: string;
+  status: 'PASS' | 'CONDITIONAL_PASS' | 'FAIL';
+  summary: {
+    totalFacts: number;
+    criticalCount: number;
+    warningCount: number;
+    infoCount: number;
+    coveragePercentage: number;
+  };
+  checklist: {
+    sourceCoverageValid: boolean;
+    missingDefinitionsResolved: boolean;
+    prerequisitesIdentified: boolean;
+    numericalExamplesGrounded: boolean;
+    formulaVariablesDefined: boolean;
+    unitsSpecified: boolean;
+    signsConsistent: boolean;
+    contractSizesStated: boolean;
+    assumptionsExplicit: boolean;
+    payoffVsProfitDistinguished: boolean;
+    zeroGenericFiller: boolean;
+  };
+  findings: AuditFinding[];
+  blockingReason?: string | null;
+}
+
+export interface LessonPlanSection {
+  sectionIndex: number;
+  title: string;
+  pedagogicalObjective: string;
+  groundedFactIds: string[];
+  keyPoints: string[];
+  formulaUsed?: string;
+  numericalApplication?: string;
+}
+
+export interface LessonPlan {
+  schemaVersion: '1.0.0';
+  chapterSlug: string;
+  title: string;
+  targetAudiencePersona: string;
+  prerequisites: string[];
+  learningOutcomes: string[];
+  sections: LessonPlanSection[];
+  misconceptions: Array<{
+    misconception: string;
+    factId: string;
+    authorRebuttal: string;
+  }>;
+  activeRecallQuiz: {
+    scenario: string;
+    testedFactIds: string[];
+    question: string;
+    correctAnswer: string;
+    explanation: string;
+  };
+  coreTakeaways: string[];
+}
+
+export interface StoryboardBeatOutline {
+  beatIndex: number;
+  textOutline: string;
+  sourceFactIds: string[];
+  speaker?: string;
+  visualNote?: string;
+}
+
+export interface StoryboardScene {
+  sceneIndex: number;
+  title: string;
+  template: TemplateType;
+  concept: string;
+  sourceFactIds: string[];
+  beatOutlines: StoryboardBeatOutline[];
+  takeaways?: string[];
+}
+
+export interface Storyboard {
+  schemaVersion: '1.0.0';
+  chapterSlug: string;
+  course: string;
+  chapterTitle: string;
+  approvedFactIds: string[];
+  scenes: StoryboardScene[];
+  summarySteps: string[];
+  bottomTakeaway: string;
+}
+

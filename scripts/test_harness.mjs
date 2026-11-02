@@ -87,6 +87,32 @@ try {
   defectLogs.push('Zod schema, directional logic, or UI invariant violation detected.');
 }
 
+// 1.5 Phase 1 Lesson Architecture & Source Audit Inspection (Mandatory for all chapters)
+const isChapterWorkspace = relTargetDir.includes('src/data/chapters');
+if (isChapterWorkspace) {
+  console.log(`📋 [1.5/3] Inspecting Phase 1 source facts & lesson architecture...`);
+  try {
+    const lessonArchValidation = execSync(
+      `"${process.execPath}" scripts/validate_lesson_architecture.mjs --dir="${relTargetDir}"`,
+      { encoding: 'utf8', cwd: rootDir }
+    );
+    const rep = JSON.parse(lessonArchValidation);
+    if (!rep.sourceFacts.present || !rep.contentAudit.present || !rep.lessonPlan.present || !rep.storyboard.present) {
+      hasDefects = true;
+      defectLogs.push(`Missing Phase 1 artifacts: All chapters require source_facts.json, content_audit.json, lesson_plan.json, and storyboard.json.`);
+    }
+    if (!rep.allValid) {
+      if (rep.contentAudit.status === 'FAIL') {
+        hasDefects = true;
+        defectLogs.push(`Phase 1 Content Audit FAIL: Unresolved critical source/lesson findings.`);
+      }
+    }
+  } catch (archErr) {
+    hasDefects = true;
+    defectLogs.push(`Phase 1 lesson architecture validation error: ${archErr.message}`);
+  }
+}
+
 // 2. Structural & Telemetry Inspection
 console.log(`🔍 [2/3] Inspecting episode telemetry, UI invariants, and compiled audio...`);
 try {

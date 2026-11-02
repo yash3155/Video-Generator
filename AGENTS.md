@@ -70,17 +70,29 @@ flowchart TD
 
 ---
 
-### Step 1: Query Gemini Notebook (NotebookLM) — Strict Single Source of Truth
+### Step 1: Query Gemini Notebook (NotebookLM) & Build Source-Grounded Lesson Architecture
 1. The **Gemini Notebook (`nlm`) is the STRICT SINGLE SOURCE OF TRUTH** for all educational content.
 2. **Never search the web or chat** for book concepts, examples, formulas, or numbers.
 3. If no matching notebook exists for the requested book or topic, **HALT IMMEDIATELY AND ASK THE USER FIRST**. Do not improvise or use web search.
 4. Execute `nlm notebook list` to identify the notebook matching the requested book (e.g. `Fundamentals of Futures and Options Markets` or `Murphy technical analysis`).
-5. Query the book source via `nlm query notebook <notebook_id> "<curriculum_directive>" -s <source_id> --new-conversation --json` to extract:
-   - Primary thesis, core principles, and exact author definitions.
-   - Concrete analogies, numbers, formulas, and real-world Business Snapshots / case studies (e.g., Lehman 31:1 leverage, Kidder Peabody, Metallgesellschaft, Orange County).
-   - Common misconceptions, counterarguments, and the author's rebuttal.
-   - Key terminology and actionable takeaways.
-6. The extracted context is saved to `src/data/chapters/<slug>/notebook_context.txt` and passed directly into `generate_episode.mjs` via `--notes`. Gemini 4 Argon must strictly synthesize only what is present in this authoritative text.
+5. Query the book source via `nlm query notebook <notebook_id> "<curriculum_directive>" -s <source_id> --new-conversation --json`.
+6. **Phase 1 Source-Grounded Lesson Architecture (All Chapters — Existing and Future, No Legacy Exemptions)**:
+   Inside every `src/data/chapters/<chapter_slug>/` workspace, the engine strictly requires and maintains 4 source artifacts:
+   - **`source_facts.json`**: Structured facts conforming to `SourceFactsSchema` preserving notebook ID, source ID, retrieval timestamp, claims, definitions, formulas (with variables, symbols, units), numerical details, and book citations. Replaces unstructured text. Never fabricate citations or numbers.
+   - **`content_audit.json`**: Audit report conforming to `ContentAuditSchema` evaluating:
+     * Source coverage & missing definitions
+     * Prerequisites
+     * Numerical examples (strikes, spot, premiums, leverage, quantities)
+     * Formula variables, units, signs (+/- long/short, debit/credit)
+     * Contract sizes & market multipliers
+     * Underlying market assumptions
+     * Payoff vs Profit distinction (ensuring payoff $\max(S-K,0)$ is never conflated with profit $\text{Payoff} - \text{Premium}$)
+     * Zero generic boilerplate
+     * Status: `PASS`, `CONDITIONAL_PASS`, or `FAIL`. **Unresolved CRITICAL findings trigger FAIL and block both episode generation and Remotion rendering immediately.**
+   - **`lesson_plan.json`**: Core pedagogical flow, prerequisites, learning outcomes, grounded fact IDs, misconceptions with author rebuttals, and active recall quiz scenario.
+   - **`storyboard.json`**: 12-scene sequence where every scene and beat outline explicitly references approved `sourceFactIds`.
+7. **Anti-Generic Boilerplate Invariant**:
+   The generator must NEVER replace missing chapter-specific content with generic finance or technical-analysis recap text. Report gaps and request repair instead.
 
 ---
 

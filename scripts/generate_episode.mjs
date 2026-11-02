@@ -519,13 +519,24 @@ export function normalizeAndRemedyEpisode(data, slug) {
       const firstUI = scene.beats[0]?.ui_state || {};
       let steps = (firstUI.steps || []).map((s) => String(s).replace(/^\d+\.\s*/, '').trim());
 
+      // Check if storyboard.json is in directory to pull authoritative steps
+      const possibleSbPath = path.join(rootDir, 'src', 'data', 'chapters', slug || '', 'storyboard.json');
+      if (fs.existsSync(possibleSbPath)) {
+        try {
+          const sb = JSON.parse(fs.readFileSync(possibleSbPath, 'utf8'));
+          if (Array.isArray(sb.summarySteps) && sb.summarySteps.length >= 6) {
+            steps = sb.summarySteps.slice(0, 8);
+          }
+        } catch {}
+      }
+
       const joinedSteps = steps.join(' ').toLowerCase();
       const isBoilerplate =
         !/ch16/i.test(slug || '') &&
         joinedSteps.includes('identify the primary trend and major support') &&
         joinedSteps.includes('set objective stop-loss orders');
 
-      if (isBoilerplate) {
+      if (isBoilerplate || steps.length < 6) {
         // Reconstruct 8 chapter-specific steps directly from the episode's scene titles & subtitles!
         const contentScenes = data.scenes.filter(
           (s) => s.template !== 'chat_story' && s.template !== 'interactive_quiz' && s.template !== 'summary_thread'
@@ -535,7 +546,7 @@ export function normalizeAndRemedyEpisode(data, slug) {
           (cs.beats || []).forEach((cb) => {
             if (cb.en_subtitle && derivedSteps.length < 8) {
               const cleanSub = cb.en_subtitle
-                .replace(/^(According to John Murphy,|John Murphy writes:|Murphy's rule:|And finally,|First,|Second,|Third,)\s*/i, '')
+                .replace(/^(According to John Murphy,|According to John Hull,|John Murphy writes:|Hull writes:|Murphy's rule:|Hull's rule:|And finally,|First,|Second,|Third,)\s*/i, '')
                 .replace(/\.$/, '')
                 .trim();
               if (cleanSub.length > 15 && !derivedSteps.includes(cleanSub)) {
@@ -544,32 +555,25 @@ export function normalizeAndRemedyEpisode(data, slug) {
             }
           });
         });
+
+        // Add scene titles if still under 8
+        if (derivedSteps.length < 8) {
+          contentScenes.forEach((cs) => {
+            if (cs.title && derivedSteps.length < 8 && !derivedSteps.includes(cs.title)) {
+              derivedSteps.push(cs.title);
+            }
+          });
+        }
+
         if (derivedSteps.length >= 6) {
           steps = derivedSteps.slice(0, 8);
+        } else {
+          console.error(`❌ [CONTENT GAP] Chapter ${slug} lacks chapter-specific summary steps (${derivedSteps.length} found). Do not replace with generic filler. Please repair storyboard.json.`);
         }
       }
 
-      const defaultSteps = [
-        'Identify the primary trend and major support/resistance levels',
-        'Confirm breakouts with volume expansion and open interest',
-        'Use moving averages to ride trends and filter intraday noise',
-        'Monitor momentum oscillators for divergence and exhaustion',
-        'Align signals across daily, weekly, and monthly timeframes',
-        'Set objective stop-loss orders before entering any trade',
-        'Risk a fixed small percentage of capital on every position',
-        'Let winning trades run until clear trend reversal appears',
-      ];
-
-      while (steps.length < 8) {
-        steps.push(defaultSteps[steps.length]);
-      }
       if (steps.length > 8) {
         steps = steps.slice(0, 8);
-      }
-      for (let i = 0; i < steps.length; i++) {
-        if (/[\u0900-\u097F]/.test(steps[i])) {
-          steps[i] = defaultSteps[i] || `Technical principle ${i + 1}`;
-        }
       }
 
       // Remove any previously corrupted "Crucial rule:" synthetic beat if present
