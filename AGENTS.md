@@ -280,6 +280,96 @@ Construct the JSON payload conforming strictly to [`src/data/schema_reference.js
 
 ---
 
+## Phase 2C Generic Render QA & Release Gate Protocol
+
+A video must **never be released merely because an MP4 exists**. Every generated or modified chapter must pass through the domain-independent Release Gate before deployment:
+
+```mermaid
+flowchart TD
+    MP4["Rendered / Compiled Chapter\n(src/data/chapters/<slug>)"] --> QA["🛡️ Phase 2C Release Gate\n(node scripts/run_qa.mjs)"]
+    
+    QA --> P1["1. Source Traceability\n(source_facts + audit status)"]
+    QA --> P2["2. Schema Validity\n(Zod schema check)"]
+    QA --> P3["3. Audio & Cue Timing\n(hash match + valid targets)"]
+    QA --> P4["4. Subtitle Alignment\n(phrase boundaries)"]
+    QA --> P5["5. Layout & Text Bounds\n(word counts + card limits)"]
+    QA --> P6["6. Duration Drift\n(|compiled - authored| < 500ms)"]
+    QA --> P7["7. MP4 Stream Inspection\n(1920x1080@30fps + AAC track)"]
+    QA --> P8["8. Modular Domain Checks\n(conditional finance rules)"]
+    QA --> P9["9. Key-Frame Cue Screenshots\n(beat starts + cue triggers)"]
+    
+    P1 & P2 & P3 & P4 & P5 & P6 & P7 & P8 & P9 --> GATE{"Evaluate Severities"}
+    
+    GATE -->|Blockers > 0| FAIL["❌ RELEASE GATE: FAIL\n(Release blocked)"]
+    GATE -->|High > 0 without --allow-high| FAIL
+    GATE -->|High > 0 with --allow-high| COND["⚠️ CONDITIONAL PASS\n(Report for review)"]
+    GATE -->|Only Medium / Low| PASS["✅ RELEASE GATE: PASS\n(Ready for release)"]
+```
+
+### 1. The 9 Validation Pillars
+1. **Source-Fact Traceability & Coverage**:
+   - Confirms `source_facts.json`, `content_audit.json`, `lesson_plan.json`, and `storyboard.json` exist.
+   - Ensures content audit status is not `FAIL` (zero critical findings).
+   - Validates that every beat's `sourceFactIds` cite registered facts in `source_facts.json`.
+2. **Template & Visual Schema Validity**:
+   - Verifies the entire episode against Zod schemas and structural template rules.
+3. **Audio Integrity, Hash Freshness, & Cue Timing**:
+   - Audio existence and minimum size check (> 1000 bytes).
+   - Narration SHA-256 hash check (`narrationHash === hashNarration(hindi_tts)`).
+   - Cue target validity verified against `TEMPLATE_REGISTRY[template].animationTargets`.
+   - Cue timestamp bounds check (`cue.atMs <= audioDurationMs + pauseMs`).
+4. **Subtitle Phrase Alignment Availability & Monotonicity**:
+   - Phrase alignment array presence (`subtitlePhrases`).
+   - Monotonic phrase boundaries (`endMs >= startMs`).
+5. **Visual Layout & Text Constraints**:
+   - Subtitle length guard: $\le 16$ words per beat to prevent line overflow.
+   - Interactive quiz question scenario guard: $\ge 18$ words for clear pedagogical context.
+   - Formula expression length: warns when expression exceeds 45 characters.
+   - Data visualizer sideCards limit: maximum 4 sideCards to prevent vertical clipping.
+6. **Scene & Final Video Duration Drift**:
+   - Measures drift between authored audio ($t_{\text{audio}} + t_{\text{pause}}$) and compiled frames ($\sum \text{frames} / 30$).
+   - $|\text{drift}| > 1000\text{ms}$ flagged as `HIGH`; $|\text{drift}| > 500\text{ms}$ flagged as `MEDIUM`.
+7. **Video / Audio Streams & MP4 Integrity**:
+   - Uses `music-metadata` container parsing on output MP4.
+   - Enforces minimum file size (> 1 MB), H.264 video track with exact 1920x1080 display resolution at 30 fps, and active AAC audio track.
+8. **Modular Domain Checks**:
+   - Base release gate runs unconditionally for all courses.
+   - Domain-specific checks (e.g. `finance`) trigger only when `domainModules` includes that domain (e.g. rupee `₹` y-axis unit lock, directional consistency, payoff vs profit, and H&S geometry constraints).
+   - Domain validators are registered in `src/qa/domainValidators.mjs`.
+9. **Key-Frame Cue Still Screenshots**:
+   - Remotion screenshot engine (`src/qa/screenshotEngine.mjs`) calculates target frames for beat starts, key cue triggers, and scene completion.
+   - Captures high-resolution stills for visual inspection into `reports/qa/screenshots/<chapter_slug>/`.
+
+### 2. 4-Tier Severity Levels
+- **`BLOCKER`**: Release gate strictly fails. Video cannot be published or deployed.
+- **`HIGH`**: Serious issue. Fails release gate unless explicitly approved with `--allow-high`.
+- **`MEDIUM`**: Quality guideline warning reported in detail for review (does not halt release).
+- **`LOW`**: Informational note (e.g. pending MP4 render or test fixture preview).
+
+### 3. Release Gate Commands & Outputs
+- **Inspect Single Chapter**:
+  ```bash
+  node scripts/run_qa.mjs --dir=src/data/chapters/<chapter_slug>
+  # or via npm:
+  npm run qa -- --chapter=<chapter_slug>
+  ```
+- **Capture Cue Screenshots**:
+  ```bash
+  node scripts/run_qa.mjs --dir=src/data/chapters/<chapter_slug> --screenshots
+  ```
+- **Full Batch Inspection Across All Chapters**:
+  ```bash
+  npm run qa:all
+  # or with high-severity override:
+  node scripts/run_qa.mjs --all --allow-high
+  ```
+- **Reports Generated**:
+  - Structured JSON Report: `reports/qa/<chapter_slug>_qa.json`
+  - Interactive HTML Dashboard: `reports/qa/<chapter_slug>_qa.html`
+  - Markdown Batch Audit Summary: `reports/phase2c_all_chapters_qa_report.md`
+
+---
+
 ## Mandatory Automated QA & Single-Pass Self-Correction Protocol (Argon Engine)
 
 Whenever **Gemini 4 Argon** generates a new chapter video or updates code templates, it **must autonomously execute the following quality gate** before finishing:
@@ -306,6 +396,10 @@ Whenever **Gemini 4 Argon** generates a new chapter video or updates code templa
 - **Episode Generator**: [`scripts/generate_episode.mjs`](scripts/generate_episode.mjs) (Gemini 4 Argon automated episode architect).
 - **Presets**: [`src/templates/chartPresets.ts`](src/templates/chartPresets.ts) (12 deterministic SVG presets).
 - **Personas**: [`src/data/personas.json`](src/data/personas.json).
+- **QA Release Gate Engine**: [`src/qa/qaEngine.mjs`](src/qa/qaEngine.mjs) & [`scripts/run_qa.mjs`](scripts/run_qa.mjs).
+- **QA Domain Validators**: [`src/qa/domainValidators.mjs`](src/qa/domainValidators.mjs) (modular domain quality checks).
+- **QA Report Generator**: [`src/qa/reportGenerator.mjs`](src/qa/reportGenerator.mjs) (HTML dashboard + JSON scorecard).
+- **QA Screenshot Engine**: [`src/qa/screenshotEngine.mjs`](src/qa/screenshotEngine.mjs) (Remotion keyframe cue screenshot generator).
 - **Isolated Chapters**: `src/data/chapters/<slug>/` (Raw JSON, compiled JSON, and mirrored audio).
 - **Root Timeline**: [`src/data/episode_compiled.json`](src/data/episode_compiled.json).
 
