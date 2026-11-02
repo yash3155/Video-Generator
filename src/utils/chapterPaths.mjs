@@ -10,6 +10,9 @@ export function getBookSlug(chapterSlug = '', meta = {}) {
   const courseStr = String(meta?.course || meta?.book || meta?.courseId || '').toLowerCase();
   const slugStr = String(chapterSlug || '').toLowerCase();
 
+  if (courseStr.includes('hull_derivatives_en') || courseStr.includes('hull_en') || slugStr.includes('hull_derivatives_en') || slugStr.startsWith('hull_en_') || slugStr.includes('hull_en')) {
+    return 'hull_derivatives_en';
+  }
   if (courseStr.includes('hull') || slugStr.startsWith('hull_') || slugStr.includes('hull')) {
     return 'hull_derivatives';
   }

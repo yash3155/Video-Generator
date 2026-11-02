@@ -44,8 +44,9 @@ Options:
   process.exit(0);
 }
 
-// Detect book domain
+// Detect book domain & language
 const isHull = /hull/i.test(fullInput);
+const isEnglish = /_en|\ben\b|english/i.test(fullInput);
 const isForce = rawArgs.includes('--force');
 const isReRender = rawArgs.includes('--re-render') || rawArgs.includes('--force-render');
 const isDryRun = rawArgs.includes('--dry-run');
@@ -111,7 +112,9 @@ function resolveChapterKeys(input) {
 
   // If HULL course
   if (isHull) {
-    const hullCurriculum = path.join(rootDir, 'Hull_40_Video_Master_Curriculum.txt');
+    const hullCurriculum = isEnglish
+      ? path.join(rootDir, 'Hull_40_Video_Master_Curriculum_EN.txt')
+      : path.join(rootDir, 'Hull_40_Video_Master_Curriculum.txt');
     const content = fs.existsSync(hullCurriculum) ? fs.readFileSync(hullCurriculum, 'utf8') : '';
 
     const directPartMatches = [...clean.matchAll(/(?:hull_)?ch(\d+)[_.-]*(?:part|p)\s*0?(\d+)/gi)];
@@ -217,12 +220,14 @@ if (chapterKeys.length === 0) {
 // -------------------------------------------------------------------
 // 3. Curriculum File Resolution
 // -------------------------------------------------------------------
-const curriculumCandidates = isHull
-  ? ['Hull_40_Video_Master_Curriculum.txt']
-  : [
-      '41-Video Master Curriculum.txt',
-      '41-Video Master Curriculum_2.txt',
-    ];
+const curriculumCandidates = isEnglish
+  ? ['Hull_40_Video_Master_Curriculum_EN.txt']
+  : (isHull
+    ? ['Hull_40_Video_Master_Curriculum.txt']
+    : [
+        '41-Video Master Curriculum.txt',
+        '41-Video Master Curriculum_2.txt',
+      ]);
 const curriculumFile = curriculumCandidates.find((f) =>
   fs.existsSync(path.join(rootDir, f))
 );
@@ -374,7 +379,7 @@ for (let i = 0; i < chapterKeys.length; i++) {
   }
 
   // Stable, model-neutral book-grouped paths
-  const bookSlug = isHull ? 'hull_derivatives' : getBookSlug(chapterKey);
+  const bookSlug = isEnglish ? 'hull_derivatives_en' : (isHull ? 'hull_derivatives' : getBookSlug(chapterKey));
   const dataDir = path.join(rootDir, 'src', 'data', 'chapters', bookSlug, chapterKey);
   const audioDir = path.join(rootDir, 'public', 'audio', bookSlug, chapterKey);
   const outputVideo = path.join(rootDir, 'out', 'chapters', bookSlug, `${chapterKey}.mp4`);

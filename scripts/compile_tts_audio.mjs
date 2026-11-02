@@ -79,11 +79,12 @@ const targetModel = process.env.GEMINI_MODEL || 'gemini-4-argon';
 
 function getEdgeTts() {
   if (!edgeTts) {
+    const isEn = courseSlug.includes('_en') || (rawMeta?.narrationLanguage && String(rawMeta.narrationLanguage).startsWith('en'));
     edgeTts = new EdgeTTS({
-      voice: 'hi-IN-MadhurNeural',
-      lang: 'hi-IN',
+      voice: isEn ? 'en-US-ChristopherNeural' : 'hi-IN-MadhurNeural',
+      lang: isEn ? 'en-US' : 'hi-IN',
       outputFormat: 'audio-24khz-48kbitrate-mono-mp3',
-      rate: '+2%',
+      rate: isEn ? '+0%' : '+2%',
     });
   }
   return edgeTts;
@@ -338,7 +339,10 @@ export function segmentSubtitleIntoPhrases(subtitle, audioDurationSec) {
 async function synthesizeEdge(beat, maxRetries = 4, targetHash = null, isHashMatch = false) {
   const fileName = `${beat.id}.mp3`;
   const filePath = path.join(audioDir, fileName);
-  const spokenText = sanitizeForHindiTTS(beat.hindi_tts);
+  const isEn = courseSlug.includes('_en') || (rawMeta?.narrationLanguage && String(rawMeta.narrationLanguage).startsWith('en'));
+  const spokenText = isEn
+    ? (beat.en_narration || beat.en_subtitle || beat.narration || beat.text || beat.hindi_tts || '')
+    : sanitizeForHindiTTS(beat.hindi_tts);
 
   const isValidExisting = fs.existsSync(filePath) && fs.statSync(filePath).size > 1000;
   const canUseCache = isValidExisting && isHashMatch && !force;
@@ -502,7 +506,11 @@ async function run() {
       beatCount++;
       let audioResult = null;
 
-      const currentHash = hashNarration(beat.hindi_tts);
+      const isEn = courseSlug.includes('_en') || (rawMeta?.narrationLanguage && String(rawMeta.narrationLanguage).startsWith('en'));
+      const textToHash = isEn
+        ? (beat.en_narration || beat.en_subtitle || beat.narration || beat.text || beat.hindi_tts || '')
+        : (beat.hindi_tts || '');
+      const currentHash = hashNarration(textToHash);
       const prevBeat = compiledMap.get(beat.id);
       const isHashMatch = Boolean(prevBeat && prevBeat.narrationHash === currentHash);
 
