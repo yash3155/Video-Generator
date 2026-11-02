@@ -873,17 +873,32 @@ PRODUCTION RULES:
 `;
 
     const aiClient = new GoogleGenAI({ apiKey: geminiApiKey });
-    const flashResponse = await aiClient.models.generateContent({
-      model: 'gemini-3.8-flash',
-      contents: hydrationPrompt,
-      config: {
-        temperature: 0.2,
-        systemInstruction,
-        responseMimeType: 'application/json',
-      },
-    });
+    let rawFlash = null;
+    let flashAttempts = 0;
+    const maxFlashAttempts = 5;
+    while (flashAttempts < maxFlashAttempts) {
+      flashAttempts++;
+      try {
+        const flashResponse = await aiClient.models.generateContent({
+          model: 'gemini-3.8-flash',
+          contents: hydrationPrompt,
+          config: {
+            temperature: 0.2,
+            systemInstruction,
+            responseMimeType: 'application/json',
+          },
+        });
+        rawFlash = flashResponse.text || flashResponse.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (rawFlash) break;
+      } catch (fErr) {
+        console.warn(`⚠️ [Tier 2] Flash attempt ${flashAttempts} failed (${fErr.message}).`);
+        if (flashAttempts >= maxFlashAttempts) throw fErr;
+        const delayMs = Math.min(25000, 3000 * Math.pow(2, flashAttempts - 1));
+        console.log(`   Retrying Tier 2 in ${delayMs / 1000}s...`);
+        await new Promise((r) => setTimeout(r, delayMs));
+      }
+    }
 
-    const rawFlash = flashResponse.text || flashResponse.candidates?.[0]?.content?.parts?.[0]?.text;
     episodeData = parseAndCleanEpisodeJson(rawFlash);
     console.log(`✅ [Tier 2] Full episode schema hydrated by Gemini 3.8 Flash!\n`);
   } else if (proxyOnline && (isArgonTarget || !geminiApiKey)) {

@@ -1,31 +1,40 @@
 {
   "meta": {
     "domain": "finance",
-    "course": "FUTURES & OPTIONS · JOHN C. HULL",
+    "course": "DERIVATIVES & RISK MANAGEMENT · HULL",
     "chapter": "CHAPTER 1 · PART 1",
-    "totalSegments": 12
+    "totalSegments": 12,
+    "generationProvenance": {
+      "model": "gemini-4-argon",
+      "requestedModel": "gemini-4-argon",
+      "preflightStatus": "PASSED",
+      "preflightEngine": "proxy",
+      "approvedByUser": true,
+      "approvalTimestamp": "2026-11-02T22:41:34.242Z",
+      "runId": "run_1793659294243_wnbeio"
+    }
   },
   "scenes": [
     {
       "segmentIndex": 0,
-      "title": "June harvest anxiety",
+      "title": "The Illusion of OTC Safety",
       "template": "chat_story",
-      "badge": "June · price risk",
+      "badge": "Trading Desk · Market Structure",
       "beats": [
         {
           "id": "b01",
-          "hindi_tts": "जून का महीना है, और राजू सितंबर की अपनी फसल के दाम को लेकर परेशान है।",
-          "en_subtitle": "It is June, and Raju is worried about his September harvest price.",
+          "hindi_tts": "राजू सोचता है कि बड़े बैंकों के बीच होने वाले ओटीसी सौदे एक्सचेंज फ्यूचर्स से ज्यादा सुरक्षित हैं।",
+          "en_subtitle": "Raju assumes private OTC trades between giant banks are safer than exchange futures.",
           "pauseAfterMs": 400,
           "ui_state": {
             "stageDirections": [
-              "— June morning: Raju discusses Kesar Agro's corn contract at ₹250 —"
+              "— morning: Raju reviews institutional OTC derivatives desk —"
             ],
             "messages": [
               {
                 "sender": "Raju",
                 "avatar": "R",
-                "text": "Today the spot price is ₹250. What if oversupply crashes it to ₹215 by September?",
+                "text": "OTC forward contracts between giant banks must be tiny and virtually risk-free!",
                 "theme": "amber",
                 "align": "left"
               }
@@ -34,25 +43,25 @@
         },
         {
           "id": "b02",
-          "hindi_tts": "शर्मा जी समझाते हैं कि फूड प्रोसेसर को भी ठीक उल्टा डर सता रहा है।",
-          "en_subtitle": "Sharma ji explains that the food processor faces the exact opposite fear.",
-          "pauseAfterMs": 400,
+          "hindi_tts": "शर्मा जी उसे 15 सितंबर 2008 की याद दिलाते हैं जब लेहमन ब्रदर्स 31 गुना लेवरेज पर ढह गया।",
+          "en_subtitle": "Sharma ji recalls September 15, 2008, when Lehman collapsed at 31 to 1 leverage.",
+          "pauseAfterMs": 450,
           "ui_state": {
             "stageDirections": [
-              "— June morning: Raju discusses Kesar Agro's corn contract at ₹250 —"
+              "— Sharma ji points to the historical Lehman insolvency filing —"
             ],
             "messages": [
               {
                 "sender": "Raju",
                 "avatar": "R",
-                "text": "Today the spot price is ₹250. What if oversupply crashes it to ₹215 by September?",
+                "text": "OTC forward contracts between giant banks must be tiny and virtually risk-free!",
                 "theme": "amber",
                 "align": "left"
               },
               {
                 "sender": "Sharma ji",
                 "avatar": "S",
-                "text": "And the food processor fears scarcity will spike it! Lock in ₹250 today for September delivery.",
+                "text": "Never underestimate counterparty risk. Lehman reached 31:1 leverage in 2007!",
                 "theme": "teal",
                 "align": "right"
               }
@@ -61,34 +70,27 @@
         },
         {
           "id": "b03",
-          "hindi_tts": "अगर आज ही सितंबर के लिए ₹250 का भाव तय कर लें, तो दोनों का रिस्क खत्म हो जाता है।",
-          "en_subtitle": "If they lock in ₹250 today for September, both sides eliminate their risk.",
+          "hindi_tts": "एसेट वैल्यू में सिर्फ तीन से चार परसेंट की गिरावट ने लेहमन की पूरी इक्विटी मिटा दी और दस लाख से ज्यादा कॉन्ट्रैक्ट्स फंस गए।",
+          "en_subtitle": "A mere 3% to 4% asset drop wiped out Lehman equity, freezing over 1M contracts.",
           "pauseAfterMs": 500,
           "ui_state": {
             "stageDirections": [
-              "— June morning: Raju discusses Kesar Agro's corn contract at ₹250 —"
+              "— highlighting counterparty contagion across global OTC desks —"
             ],
             "messages": [
               {
                 "sender": "Raju",
                 "avatar": "R",
-                "text": "Today the spot price is ₹250. What if oversupply crashes it to ₹215 by September?",
+                "text": "OTC forward contracts between giant banks must be tiny and virtually risk-free!",
                 "theme": "amber",
                 "align": "left"
               },
               {
                 "sender": "Sharma ji",
                 "avatar": "S",
-                "text": "And the food processor fears scarcity will spike it! Lock in ₹250 today for September delivery.",
+                "text": "A tiny 3% asset drop wiped Lehman out, freezing over 1,000,000 bilateral OTC contracts!",
                 "theme": "teal",
                 "align": "right"
-              },
-              {
-                "sender": "Raju",
-                "avatar": "R",
-                "text": "Wait, if spot crashes to ₹215 in September, does a ₹250 forward contract really save me?",
-                "theme": "amber",
-                "align": "left"
               }
             ]
           }
@@ -97,166 +99,88 @@
     },
     {
       "segmentIndex": 1,
-      "title": "Spot crash vs locked forward",
-      "template": "data_visualizer",
+      "title": "Lehman Brothers 31:1 Leverage Collapse",
+      "template": "stat_counter",
+      "badge": "Business Snapshot 1.1 · Bankruptcy",
       "beats": [
         {
           "id": "b04",
-          "hindi_tts": "जून में हाज़िर यानी स्पॉट प्राइस ₹250 पर चल रहा है, जहाँ राजू अपना सौदा लॉक करता है।",
-          "en_subtitle": "In June, the spot price is ₹250, where Raju locks in his contract.",
-          "pauseAfterMs": 500,
+          "hindi_tts": "साल 2007 में लेहमन ब्रदर्स 31 अनुपात 1 के भारी लेवरेज रेश्यो पर काम कर रहा था।",
+          "en_subtitle": "In 2007, Lehman Brothers operated at an extreme leverage ratio of 31 to 1.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "chartTitle": "Kesar Agro Commodity",
-            "chartSubtitle": "June to September · spot vs locked delivery",
-            "preset": "uptrend_then_drop",
-            "progressStep": 2,
-            "totalSteps": 3,
-            "yAxisUnit": "₹",
-            "annotations": [
-              {
-                "type": "price_label",
-                "text": "June Locked Price ₹250",
-                "value": 250,
-                "candleIndex": 18,
-                "color": "amber"
-              }
-            ],
-            "sideCards": [
-              {
-                "title": "June agreement",
-                "subtitle": "locked in at ₹250",
-                "state": "active_amber"
-              },
-              {
-                "title": "September spot",
-                "subtitle": "awaiting harvest supply",
-                "state": "muted"
-              }
-            ]
+            "statLabel": "Lehman Peak Leverage Ratio (2007)",
+            "primaryValue": "31 : 1",
+            "deltaText": "$31 Assets for every $1 Equity Capital",
+            "trend": "down",
+            "contextNote": "Unregulated investment banking outside standard capital rules"
           }
         },
         {
           "id": "b05",
-          "hindi_tts": "सितंबर में बंपर पैदावार से बाज़ार में स्पॉट प्राइस गिरकर ₹215 पर आ जाता है।",
-          "en_subtitle": "In September, oversupply crashes the market spot price down to ₹215.",
+          "hindi_tts": "इकतीस गुना लेवरेज पर केवल 3.23 परसेंट की एसेट गिरावट से कंपनी की पूरी पूंजी साफ हो गई।",
+          "en_subtitle": "At 31:1 leverage, an asset decline of just 3.2% erased total equity capital.",
           "pauseAfterMs": 500,
           "ui_state": {
-            "chartTitle": "Kesar Agro Commodity",
-            "chartSubtitle": "June to September · spot vs locked delivery",
-            "preset": "uptrend_then_drop",
-            "progressStep": 3,
-            "totalSteps": 3,
-            "yAxisUnit": "₹",
-            "annotations": [
-              {
-                "type": "price_label",
-                "text": "June Locked Price ₹250",
-                "value": 250,
-                "candleIndex": 18,
-                "color": "amber"
-              },
-              {
-                "type": "callout",
-                "text": "September Spot: ₹215",
-                "value": 215,
-                "candleIndex": 27,
-                "color": "red"
-              }
-            ],
-            "sideCards": [
-              {
-                "title": "June agreement",
-                "subtitle": "locked in at ₹250",
-                "state": "muted"
-              },
-              {
-                "title": "September spot crash",
-                "subtitle": "falls to ₹215 on oversupply",
-                "state": "active_red"
-              }
-            ]
+            "statLabel": "Asset Drop to Trigger Insolvency",
+            "primaryValue": "3.23%",
+            "deltaText": "1 / 31 = Exactly 3.23% loss wipes equity",
+            "trend": "down",
+            "contextNote": "Subprime mortgage declines easily breached this threshold"
           }
         },
         {
           "id": "b06",
-          "hindi_tts": "पर फॉरवर्ड और फ्यूचर्स कॉन्ट्रैक्ट की वजह से सेलर को पूरे ₹250 मिलते हैं, और बायर का भी बजट पक्का रहता है।",
-          "en_subtitle": "Yet the forward or futures contract guarantees ₹250, eliminating uncertainty for both.",
+          "hindi_tts": "15 सितंबर 2008 को लेहमन दिवालिया हुआ और 8,000 पार्टियों के 10 लाख से अधिक ओटीसी ट्रेड्स अदालत में उलझ गए।",
+          "en_subtitle": "On Sept 15, 2008, over 1M OTC trades across 8,000 counterparties entered litigation.",
           "pauseAfterMs": 500,
           "ui_state": {
-            "chartTitle": "Kesar Agro Commodity",
-            "chartSubtitle": "June to September · spot vs locked delivery",
-            "preset": "uptrend_then_drop",
-            "progressStep": 3,
-            "totalSteps": 3,
-            "yAxisUnit": "₹",
-            "annotations": [
-              {
-                "type": "price_label",
-                "text": "Short Delivers at ₹250",
-                "value": 250,
-                "candleIndex": 18,
-                "color": "green"
-              },
-              {
-                "type": "callout",
-                "text": "Unhedged Spot: ₹215",
-                "value": 215,
-                "candleIndex": 27,
-                "color": "red"
-              }
-            ],
-            "sideCards": [
-              {
-                "title": "Short position (Farmer)",
-                "subtitle": "sells at ₹250, avoids ₹215 crash",
-                "state": "active_green"
-              },
-              {
-                "title": "Long position (Processor)",
-                "subtitle": "buys at ₹250, eliminates scarcity risk",
-                "state": "active_blue"
-              }
-            ]
+            "statLabel": "Unsettled OTC Derivatives Contracts",
+            "primaryValue": "> 1,000,000",
+            "deltaText": "Spread across ~8,000 global counterparties",
+            "trend": "down",
+            "contextNote": "Catalyzed global post-crisis Central Counterparty (CCP) mandates"
           }
         }
       ]
     },
     {
       "segmentIndex": 2,
-      "title": "Chapter 1 Part 1 roadmap",
+      "title": "Chapter 1 Part 1 Roadmap",
       "template": "progressive_cards",
+      "badge": "Core Curriculum · Hull Ch 1",
       "beats": [
         {
           "id": "b07",
-          "hindi_tts": "जॉन हल के पहले चैप्टर में सबसे पहले हम समझेंगे एक्सचेंज फ्यूचर्स और ओटीसी फॉरवर्ड्स का अंतर।",
-          "en_subtitle": "First in John Hull's Chapter 1, we compare Exchange Futures and OTC Forwards.",
+          "hindi_tts": "पहला पिलर है: एक्सचेंज ट्रेडेड फ्यूचर्स और प्राइवेट ओटीसी फॉरवर्ड्स के बीच संरचनात्मक फर्क।",
+          "en_subtitle": "Pillar one contrasts exchange futures against private over-the-counter forwards.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Chapter 1 · Part 1 roadmap",
+            "sectionHeader": "Chapter 1 Part 1 Roadmap",
             "layout": "grid",
             "cards": [
               {
-                "icon": "Layers",
-                "title": "Exchange Futures vs OTC Forwards",
-                "subtitle": "standardized clearing vs bilateral contracts",
+                "icon": "Repeat",
+                "title": "Futures vs OTC Forwards",
+                "subtitle": "Standardized CME contracts vs custom private trades",
                 "state": "active_amber"
               },
               {
                 "icon": "DollarSign",
                 "title": "Spot vs Forward FX Quotes",
-                "subtitle": "bank bid-offer spreads and currency hedging",
-                "state": "hidden"
-              },
-              {
-                "icon": "AlertTriangle",
-                "title": "Lehman Brothers 31:1 Collapse",
-                "subtitle": "Snapshot 1.1: extreme leverage and OTC chaos",
+                "subtitle": "Reading bank bid and offer spreads across tenors",
                 "state": "hidden"
               },
               {
                 "icon": "ShieldCheck",
+                "title": "Corporate Currency Hedging",
+                "subtitle": "ImportCo outflow and ExportCo inflow calculations",
+                "state": "hidden"
+              },
+              {
+                "icon": "AlertTriangle",
                 "title": "Systemic Risk & CCP Reforms",
-                "subtitle": "Snapshot 1.2: stopping the default domino",
+                "subtitle": "Lehman 31:1 collapse, SEFs, and central novation",
                 "state": "hidden"
               }
             ]
@@ -264,35 +188,35 @@
         },
         {
           "id": "b08",
-          "hindi_tts": "दूसरा कदम है स्पॉट और फॉरवर्ड फॉरेक्स कोट्स, जहाँ बैंक के बिड और ऑफर रेट्स से हेजिंग होती है।",
-          "en_subtitle": "Second, we examine Spot and Forward FX quotes using bank bid and offer rates.",
+          "hindi_tts": "दूसरा पिलर है: बैंक के स्पॉट और फॉरवर्ड फॉरेन एक्सचेंज कोट्स को बिड और ऑफर स्प्रेड के साथ समझना।",
+          "en_subtitle": "Pillar two examines bank spot and forward FX quotations across maturities.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Chapter 1 · Part 1 roadmap",
+            "sectionHeader": "Chapter 1 Part 1 Roadmap",
             "layout": "grid",
             "cards": [
               {
-                "icon": "Layers",
-                "title": "Exchange Futures vs OTC Forwards",
-                "subtitle": "standardized clearing vs bilateral contracts",
+                "icon": "Repeat",
+                "title": "Futures vs OTC Forwards",
+                "subtitle": "Standardized CME contracts vs custom private trades",
                 "state": "muted"
               },
               {
                 "icon": "DollarSign",
                 "title": "Spot vs Forward FX Quotes",
-                "subtitle": "bank bid-offer spreads and currency hedging",
+                "subtitle": "Reading bank bid and offer spreads across tenors",
                 "state": "active_blue"
               },
               {
-                "icon": "AlertTriangle",
-                "title": "Lehman Brothers 31:1 Collapse",
-                "subtitle": "Snapshot 1.1: extreme leverage and OTC chaos",
+                "icon": "ShieldCheck",
+                "title": "Corporate Currency Hedging",
+                "subtitle": "ImportCo outflow and ExportCo inflow calculations",
                 "state": "hidden"
               },
               {
-                "icon": "ShieldCheck",
+                "icon": "AlertTriangle",
                 "title": "Systemic Risk & CCP Reforms",
-                "subtitle": "Snapshot 1.2: stopping the default domino",
+                "subtitle": "Lehman 31:1 collapse, SEFs, and central novation",
                 "state": "hidden"
               }
             ]
@@ -300,35 +224,35 @@
         },
         {
           "id": "b09",
-          "hindi_tts": "तीसरा हिस्सा है बिज़नेस स्नैपशॉट 1.1, यानी 2008 में लीमन ब्रदर्स का 31 गुना लिवरेज और दिवालियापन।",
-          "en_subtitle": "Third is Business Snapshot 1.1: Lehman Brothers' 31:1 leverage bankruptcy in 2008.",
+          "hindi_tts": "तीसरा पिलर है: इम्पोर्टर और एक्सपोर्टर कंपनियों के लिए सटीक करेंसी हेजिंग का गणित।",
+          "en_subtitle": "Pillar three calculates precise currency hedging formulas for corporate treasurers.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Chapter 1 · Part 1 roadmap",
+            "sectionHeader": "Chapter 1 Part 1 Roadmap",
             "layout": "grid",
             "cards": [
               {
-                "icon": "Layers",
-                "title": "Exchange Futures vs OTC Forwards",
-                "subtitle": "standardized clearing vs bilateral contracts",
+                "icon": "Repeat",
+                "title": "Futures vs OTC Forwards",
+                "subtitle": "Standardized CME contracts vs custom private trades",
                 "state": "muted"
               },
               {
                 "icon": "DollarSign",
                 "title": "Spot vs Forward FX Quotes",
-                "subtitle": "bank bid-offer spreads and currency hedging",
+                "subtitle": "Reading bank bid and offer spreads across tenors",
                 "state": "muted"
               },
               {
-                "icon": "AlertTriangle",
-                "title": "Lehman Brothers 31:1 Collapse",
-                "subtitle": "Snapshot 1.1: extreme leverage and OTC chaos",
+                "icon": "ShieldCheck",
+                "title": "Corporate Currency Hedging",
+                "subtitle": "ImportCo outflow and ExportCo inflow calculations",
                 "state": "active_green"
               },
               {
-                "icon": "ShieldCheck",
+                "icon": "AlertTriangle",
                 "title": "Systemic Risk & CCP Reforms",
-                "subtitle": "Snapshot 1.2: stopping the default domino",
+                "subtitle": "Lehman 31:1 collapse, SEFs, and central novation",
                 "state": "hidden"
               }
             ]
@@ -336,35 +260,35 @@
         },
         {
           "id": "b10",
-          "hindi_tts": "और चौथा है बिज़नेस स्नैपशॉट 1.2, कि कैसे सिस्टमिक रिस्क को रोकने के लिए सीसीपी नियम लागू हुए।",
-          "en_subtitle": "Fourth is Business Snapshot 1.2: how CCP rules were enacted to stop systemic risk.",
-          "pauseAfterMs": 500,
+          "hindi_tts": "चौथा पिलर है: सिस्टमिक रिस्क, लेहमन का सबक, और ट्रेड निपटाने के लिए सेंट्रल काउंटरपार्टी रिफॉर्म्स।",
+          "en_subtitle": "Pillar four evaluates systemic domino risks and post-crisis CCP clearing mandates.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "sectionHeader": "Chapter 1 · Part 1 roadmap",
+            "sectionHeader": "Chapter 1 Part 1 Roadmap",
             "layout": "grid",
             "cards": [
               {
-                "icon": "Layers",
-                "title": "Exchange Futures vs OTC Forwards",
-                "subtitle": "standardized clearing vs bilateral contracts",
+                "icon": "Repeat",
+                "title": "Futures vs OTC Forwards",
+                "subtitle": "Standardized CME contracts vs custom private trades",
                 "state": "muted"
               },
               {
                 "icon": "DollarSign",
                 "title": "Spot vs Forward FX Quotes",
-                "subtitle": "bank bid-offer spreads and currency hedging",
-                "state": "muted"
-              },
-              {
-                "icon": "AlertTriangle",
-                "title": "Lehman Brothers 31:1 Collapse",
-                "subtitle": "Snapshot 1.1: extreme leverage and OTC chaos",
+                "subtitle": "Reading bank bid and offer spreads across tenors",
                 "state": "muted"
               },
               {
                 "icon": "ShieldCheck",
+                "title": "Corporate Currency Hedging",
+                "subtitle": "ImportCo outflow and ExportCo inflow calculations",
+                "state": "muted"
+              },
+              {
+                "icon": "AlertTriangle",
                 "title": "Systemic Risk & CCP Reforms",
-                "subtitle": "Snapshot 1.2: stopping the default domino",
+                "subtitle": "Lehman 31:1 collapse, SEFs, and central novation",
                 "state": "active_purple"
               }
             ]
@@ -374,102 +298,109 @@
     },
     {
       "segmentIndex": 3,
-      "title": "Exchange futures vs OTC forwards",
+      "title": "Origins of Futures & Market Evolution",
       "template": "split_comparison",
+      "badge": "CBOT 1848 · Contract Architecture",
       "beats": [
         {
           "id": "b11",
-          "hindi_tts": "फ्यूचर्स कॉन्ट्रैक्ट सीएमई या यूरोनेक्स्ट जैसे एक्सचेंज पर ट्रेड होते हैं, जहाँ हर नियम स्टैंडर्ड होता है।",
-          "en_subtitle": "Futures contracts trade on organized exchanges like CME Group with standardized terms.",
+          "hindi_tts": "शिकागो बोर्ड ऑफ ट्रेड की शुरुआत 1848 में किसानों और अनाज व्यापारियों के प्राइस रिस्क को लॉक करने के लिए हुई।",
+          "en_subtitle": "CBOT was founded in 1848 to lock in crop prices between farmers and merchants.",
           "pauseAfterMs": 400,
           "ui_state": {
             "showVsBadge": true,
             "leftColumn": {
-              "icon": "Shield",
-              "title": "Exchange-Traded Futures",
-              "subtitle": "CME Group, ICE, Euronext",
+              "icon": "Layers",
+              "title": "Exchange Futures",
+              "subtitle": "Standardized & cleared",
               "theme": "blue",
               "active": true,
               "bullets": [
-                "Standardized contract size, delivery dates, and location",
-                "Long agrees to buy; Short agrees to sell future delivery",
-                "Clearing house eliminates bilateral credit risk"
+                "Founded at CBOT in 1848 for Midwest grain farmers",
+                "Strict contract size and fixed delivery dates",
+                "Electronic central order book matching on exchanges",
+                "Zero bilateral default risk via clearinghouse guarantee"
               ]
             },
             "rightColumn": {
-              "icon": "Briefcase",
-              "title": "OTC Forward Market",
-              "subtitle": "Bilateral interbank & corporate network",
+              "icon": "Handshake",
+              "title": "OTC Forwards",
+              "subtitle": "Private & bilateral",
               "theme": "amber",
               "active": false,
-              "bullets": []
+              "bullets": [
+                "Direct private negotiation between two parties",
+                "Tailored contract size and customized expiry",
+                "Decentralized telephone and electronic quote networks",
+                "Exposed to full counterparty default risk"
+              ]
             }
           }
         },
         {
           "id": "b12",
-          "hindi_tts": "वहीं फॉरवर्ड कॉन्ट्रैक्ट ओवर-द-काउंटर यानी ओटीसी मार्केट में बैंकों और कंपनियों के बीच आपसी समझौते से बनते हैं।",
-          "en_subtitle": "Forward contracts trade in the OTC market directly between banks and corporations.",
+          "hindi_tts": "एक्सचेंज फ्यूचर्स में क्लियरिंगहाउस डिफॉल्ट रिस्क खत्म करता है, जबकि ओटीसी फॉरवर्ड्स में काउंटरपार्टी रिस्क बना रहता है।",
+          "en_subtitle": "Clearinghouses eliminate default in futures, while forwards carry bilateral credit risk.",
           "pauseAfterMs": 400,
           "ui_state": {
             "showVsBadge": true,
             "leftColumn": {
-              "icon": "Shield",
-              "title": "Exchange-Traded Futures",
-              "subtitle": "CME Group, ICE, Euronext",
+              "icon": "Layers",
+              "title": "Exchange Futures",
+              "subtitle": "Standardized & cleared",
               "theme": "blue",
               "active": false,
               "bullets": [
-                "Standardized contract size, delivery dates, and location",
-                "Long agrees to buy; Short agrees to sell future delivery",
-                "Clearing house eliminates bilateral credit risk"
+                "Founded at CBOT in 1848 for Midwest grain farmers",
+                "Strict contract size and fixed delivery dates",
+                "Electronic central order book matching on exchanges",
+                "Zero bilateral default risk via clearinghouse guarantee"
               ]
             },
             "rightColumn": {
-              "icon": "Briefcase",
-              "title": "OTC Forward Market",
-              "subtitle": "Bilateral interbank & corporate network",
+              "icon": "Handshake",
+              "title": "OTC Forwards",
+              "subtitle": "Private & bilateral",
               "theme": "amber",
               "active": true,
               "bullets": [
-                "Non-standardized bilateral agreements between institutions",
-                "Customized sizes and dates tailored for corporate clients",
-                "Direct counterparty default risk unless centrally cleared"
+                "Direct private negotiation between two parties",
+                "Tailored contract size and customized expiry",
+                "Decentralized telephone and electronic quote networks",
+                "Exposed to full counterparty default risk"
               ]
             }
           }
         },
         {
           "id": "b13",
-          "hindi_tts": "दिसंबर 2014 के आंकड़ों में एक्सचेंज मार्केट $65 ट्रिलियन था, जबकि ओटीसी का नोशनल प्रिंसिपल $630 ट्रिलियन और ग्रॉस वैल्यू $21 ट्रिलियन थी।",
-          "en_subtitle": "By Dec 2014, exchange derivatives hit $65T, while OTC notional reached $630T ($21T gross value).",
-          "pauseAfterMs": 500,
+          "hindi_tts": "लॉन्ग पोजीशन भविष्य में एसेट खरीदने का वादा है, जबकि शॉर्ट पोजीशन उसी एसेट को बेचने की प्रतिबद्धता है।",
+          "en_subtitle": "Long obligates buying the asset, while short obligates selling at the future date.",
+          "pauseAfterMs": 450,
           "ui_state": {
             "showVsBadge": true,
             "leftColumn": {
-              "icon": "Shield",
-              "title": "Exchange-Traded Futures",
-              "subtitle": "CME Group, ICE, Euronext",
+              "icon": "TrendingUp",
+              "title": "Long Position",
+              "subtitle": "Buyer obligation",
               "theme": "blue",
               "active": true,
               "bullets": [
-                "Standardized contract size, delivery dates, and location",
-                "Long agrees to buy; Short agrees to sell future delivery",
-                "Clearing house eliminates bilateral credit risk",
-                "Dec 2014 underlying asset size: $65 trillion"
+                "Agrees to buy the underlying asset on delivery date",
+                "Profits if spot price rises above forward price",
+                "Chosen by corporate importers facing foreign currency payables"
               ]
             },
             "rightColumn": {
-              "icon": "Briefcase",
-              "title": "OTC Forward Market",
-              "subtitle": "Bilateral interbank & corporate network",
+              "icon": "TrendingDown",
+              "title": "Short Position",
+              "subtitle": "Seller obligation",
               "theme": "amber",
               "active": true,
               "bullets": [
-                "Non-standardized bilateral agreements between institutions",
-                "Customized sizes and dates tailored for corporate clients",
-                "Direct counterparty default risk unless centrally cleared",
-                "Dec 2014 notional size: $630 trillion ($21 trillion gross value)"
+                "Agrees to sell the underlying asset on delivery date",
+                "Profits if spot price falls below forward price",
+                "Chosen by corporate exporters protecting future currency receivables"
               ]
             }
           }
@@ -478,95 +409,84 @@
     },
     {
       "segmentIndex": 4,
-      "title": "Spot vs forward FX quotes",
-      "template": "progressive_cards",
+      "title": "OTC vs Exchange Market Scale",
+      "template": "horizontal_bar_race",
+      "badge": "BIS Data · Global Notional Principal",
       "beats": [
         {
           "id": "b14",
-          "hindi_tts": "अंतरराष्ट्रीय बैंक करेंसी में दो रेट देते हैं: बिड जिस पर बैंक खरीदता है, और ऑफर जिस पर बैंक बेचता है।",
-          "en_subtitle": "International banks quote two rates: Bid where the bank buys, and Offer where it sells.",
-          "pauseAfterMs": 400,
+          "hindi_tts": "वैश्विक स्तर पर ओटीसी डेरिवेटिव्स मार्केट का आकार 630 ट्रिलियन डॉलर है, जो एक्सचेंजों से दस गुना बड़ा है।",
+          "en_subtitle": "The global OTC market reached $630T notional, roughly ten times exchange volume.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "sectionHeader": "Table 1.1 · USD per GBP quotes (May 13, 2015)",
-            "layout": "stack",
-            "cards": [
+            "title": "Global Derivatives Market Size (Notional Principal)",
+            "subtitle": "Dec 2014 Bank for International Settlements (BIS) Survey",
+            "bars": [
               {
-                "icon": "Repeat",
-                "title": "Spot FX: Bid 1.5746 · Offer 1.5750",
-                "subtitle": "immediate delivery with a tight 0.0004 spread",
-                "state": "active_amber"
+                "label": "Over-the-Counter (OTC) Market",
+                "value": 630,
+                "formattedValue": "$630 Trillion",
+                "color": "amber",
+                "icon": "Building"
               },
               {
-                "icon": "Calendar",
-                "title": "1M & 3M Forward Quotes",
-                "subtitle": "1M: 1.5742 / 1.5747 · 3M: 1.5736 / 1.5742",
-                "state": "hidden"
-              },
-              {
-                "icon": "Clock",
-                "title": "6-Month Forward: 1.5730 / 1.5736",
-                "subtitle": "spread is 0.0006; institutional spreads stay tight",
-                "state": "hidden"
+                "label": "Exchange-Traded Market",
+                "value": 65,
+                "formattedValue": "$65 Trillion",
+                "color": "blue",
+                "icon": "BarChart"
               }
             ]
           }
         },
         {
           "id": "b15",
-          "hindi_tts": "13 मई 2015 की टेबल 1.1 देखें तो 1 महीने का फॉरवर्ड 1.5742 बिड है, और 3 महीने का 1.5736 बिड और 1.5742 ऑफर है।",
-          "en_subtitle": "In Table 1.1, the 3-month forward quotes 1.5736 bid and 1.5742 offer.",
+          "hindi_tts": "कॉर्पोरेशंस अपनी जरूरतों के हिसाब से बड़े कस्टम कॉन्ट्रैक्ट्स सीधे बैंकों के साथ ओटीसी में बनाते हैं।",
+          "en_subtitle": "Corporations prefer OTC for custom notional sizes matching precise cashflows.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Table 1.1 · USD per GBP quotes (May 13, 2015)",
-            "layout": "stack",
-            "cards": [
+            "title": "Why OTC Notional Dominates Global Trading",
+            "subtitle": "Institutional scale, bespoke delivery dates, and custom sizes",
+            "bars": [
               {
-                "icon": "Repeat",
-                "title": "Spot FX: Bid 1.5746 · Offer 1.5750",
-                "subtitle": "immediate delivery with a tight 0.0004 spread",
-                "state": "muted"
+                "label": "OTC Notional Outstanding",
+                "value": 630,
+                "formattedValue": "$630T Bespoke",
+                "color": "amber",
+                "icon": "ShieldAlert"
               },
               {
-                "icon": "Calendar",
-                "title": "1M & 3M Forward Quotes",
-                "subtitle": "1M: 1.5742 / 1.5747 · 3M: 1.5736 / 1.5742",
-                "state": "active_blue"
-              },
-              {
-                "icon": "Clock",
-                "title": "6-Month Forward: 1.5730 / 1.5736",
-                "subtitle": "spread is 0.0006; institutional spreads stay tight",
-                "state": "hidden"
+                "label": "Exchange-Traded Standardized",
+                "value": 65,
+                "formattedValue": "$65T Standard",
+                "color": "blue",
+                "icon": "Sliders"
               }
             ]
           }
         },
         {
           "id": "b16",
-          "hindi_tts": "6 महीने के फॉरवर्ड पर बिड 1.5730 और ऑफर 1.5736 है, यानी बड़े संस्थानों के लिए बिड-ऑफर स्प्रेड महज़ 0.0006 है।",
-          "en_subtitle": "At 6 months, bid is 1.5730 and offer is 1.5736, keeping institutional spreads at 0.0006.",
-          "pauseAfterMs": 500,
+          "hindi_tts": "ओटीसी का ग्रॉस मार्केट वैल्यू 21 ट्रिलियन डॉलर था, जो दिखाता है कि डिफॉल्ट का खतरा कितना गंभीर हो सकता है।",
+          "en_subtitle": "Gross market value of $21T underscores systemic exposure if counterparties default.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "sectionHeader": "Table 1.1 · USD per GBP quotes (May 13, 2015)",
-            "layout": "stack",
-            "cards": [
+            "title": "Gross Market Value (True Replacement Cost)",
+            "subtitle": "Total capital at immediate risk if contracts terminated today",
+            "bars": [
               {
-                "icon": "Repeat",
-                "title": "Spot FX: Bid 1.5746 · Offer 1.5750",
-                "subtitle": "immediate delivery with a tight 0.0004 spread",
-                "state": "muted"
+                "label": "OTC Gross Replacement Value",
+                "value": 21,
+                "formattedValue": "$21 Trillion",
+                "color": "red",
+                "icon": "Zap"
               },
               {
-                "icon": "Calendar",
-                "title": "1M & 3M Forward Quotes",
-                "subtitle": "1M: 1.5742 / 1.5747 · 3M: 1.5736 / 1.5742",
-                "state": "muted"
-              },
-              {
-                "icon": "Clock",
-                "title": "6-Month Forward: 1.5730 / 1.5736",
-                "subtitle": "spread is 0.0006; institutional spreads stay tight",
-                "state": "active_green"
+                "label": "Typical Exchange Margin Buffers",
+                "value": 2,
+                "formattedValue": "~$2 Trillion",
+                "color": "teal",
+                "icon": "Lock"
               }
             ]
           }
@@ -575,261 +495,292 @@
     },
     {
       "segmentIndex": 5,
-      "title": "ImportCo vs ExportCo FX hedging",
-      "template": "split_comparison",
+      "title": "Spot vs Forward FX Quotations",
+      "template": "progressive_cards",
+      "badge": "FX Desk · USD / GBP Quotes",
       "beats": [
         {
           "id": "b17",
-          "hindi_tts": "उदाहरण 1.1 में इम्पोर्ट-को को 3 महीने बाद 10 मिलियन पाउंड चुकाने हैं, इसलिए वह बैंक के ऑफर रेट 1.5742 पर पाउंड खरीदती है।",
-          "en_subtitle": "In Example 1.1, ImportCo owes £10M in 3 months, so it buys GBP at the 1.5742 offer rate.",
-          "pauseAfterMs": 400,
+          "hindi_tts": "स्पॉट कोट तुरंत डिलीवरी के लिए होता है, जहां बैंक 1.5746 पर पाउंड खरीदता है और 1.5750 पर बेचता है।",
+          "en_subtitle": "Spot quotes deliver immediately: bank buys at 1.5746 Bid and sells at 1.5750 Offer.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "showVsBadge": true,
-            "leftColumn": {
-              "icon": "ArrowUpRight",
-              "title": "ImportCo (Payable Hedge)",
-              "subtitle": "Must pay £10M in 3 months",
-              "theme": "blue",
-              "active": true,
-              "bullets": [
-                "Buys £10,000,000 in 3-month forward market",
-                "Pays bank Offer Rate (bank sells GBP) of 1.5742",
-                "Locked-in cost: £10,000,000 × 1.5742 = $15,742,000"
-              ]
-            },
-            "rightColumn": {
-              "icon": "ArrowDownLeft",
-              "title": "ExportCo (Receivable Hedge)",
-              "subtitle": "Expects to receive £30M in 3 months",
-              "theme": "amber",
-              "active": false,
-              "bullets": []
-            }
+            "sectionHeader": "Foreign Exchange Quotations (May 13, 2015)",
+            "layout": "stack",
+            "cards": [
+              {
+                "icon": "Clock",
+                "title": "Spot FX Rate (T+2 Immediate)",
+                "subtitle": "Bid: 1.5746 | Offer: 1.5750 (Spread = 4 pips)",
+                "state": "active_amber"
+              },
+              {
+                "icon": "Repeat",
+                "title": "Bank Spread Mechanics",
+                "subtitle": "Bank buys base currency at Bid, sells at higher Offer",
+                "state": "hidden"
+              },
+              {
+                "icon": "Calendar",
+                "title": "3-Month Forward Rate (T+90)",
+                "subtitle": "Bid: 1.5736 | Offer: 1.5742 (Locked today for delivery)",
+                "state": "hidden"
+              }
+            ]
           }
         },
         {
           "id": "b18",
-          "hindi_tts": "दूसरी तरफ एक्सपोर्ट-को को 3 महीने में 30 मिलियन पाउंड मिलने वाले हैं, तो वह बैंक के बिड रेट 1.5736 पर पाउंड बेच देती है।",
-          "en_subtitle": "Meanwhile, ExportCo will receive £30M in 3 months, so it sells GBP at the 1.5736 bid rate.",
+          "hindi_tts": "बैंक हमेशा कम कीमत पर खरीदता है जिसे बिड कहते हैं, और ज्यादा कीमत पर बेचता है जिसे ऑफर कहते हैं।",
+          "en_subtitle": "The quoting bank buys at the lower Bid and sells at the higher Offer rate.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "showVsBadge": true,
-            "leftColumn": {
-              "icon": "ArrowUpRight",
-              "title": "ImportCo (Payable Hedge)",
-              "subtitle": "Must pay £10M in 3 months",
-              "theme": "blue",
-              "active": false,
-              "bullets": [
-                "Buys £10,000,000 in 3-month forward market",
-                "Pays bank Offer Rate (bank sells GBP) of 1.5742",
-                "Locked-in cost: £10,000,000 × 1.5742 = $15,742,000"
-              ]
-            },
-            "rightColumn": {
-              "icon": "ArrowDownLeft",
-              "title": "ExportCo (Receivable Hedge)",
-              "subtitle": "Expects to receive £30M in 3 months",
-              "theme": "amber",
-              "active": true,
-              "bullets": [
-                "Sells £30,000,000 in 3-month forward market",
-                "Hits bank Bid Rate (bank buys GBP) of 1.5736",
-                "Locked-in revenue: £30,000,000 × 1.5736 = $47,208,000"
-              ]
-            }
+            "sectionHeader": "Foreign Exchange Quotations (May 13, 2015)",
+            "layout": "stack",
+            "cards": [
+              {
+                "icon": "Clock",
+                "title": "Spot FX Rate (T+2 Immediate)",
+                "subtitle": "Bid: 1.5746 | Offer: 1.5750 (Spread = 4 pips)",
+                "state": "muted"
+              },
+              {
+                "icon": "Repeat",
+                "title": "Bank Spread Mechanics",
+                "subtitle": "Bank buys base currency at Bid, sells at higher Offer",
+                "state": "active_blue"
+              },
+              {
+                "icon": "Calendar",
+                "title": "3-Month Forward Rate (T+90)",
+                "subtitle": "Bid: 1.5736 | Offer: 1.5742 (Locked today for delivery)",
+                "state": "hidden"
+              }
+            ]
           }
         },
         {
           "id": "b19",
-          "hindi_tts": "इस तरह इम्पोर्ट-को की लागत $15,742,000 और एक्सपोर्ट-को की आमदनी $47,208,000 आज ही पूरी तरह पक्की हो जाती है।",
-          "en_subtitle": "Thus ImportCo locks in a $15,742,000 cost and ExportCo locks in $47,208,000 in revenue.",
-          "pauseAfterMs": 500,
+          "hindi_tts": "तीन महीने का फॉरवर्ड कोट 1.5736 बिड और 1.5742 ऑफर है, जो आज ही नब्बे दिन बाद का रेट लॉक करता है।",
+          "en_subtitle": "The 3-month forward quote locks 1.5736 Bid and 1.5742 Offer for 90 days out.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "showVsBadge": true,
-            "leftColumn": {
-              "icon": "ArrowUpRight",
-              "title": "ImportCo (Payable Hedge)",
-              "subtitle": "Must pay £10M in 3 months",
-              "theme": "blue",
-              "active": true,
-              "bullets": [
-                "Buys £10,000,000 in 3-month forward market",
-                "Pays bank Offer Rate (bank sells GBP) of 1.5742",
-                "Locked-in cost: £10,000,000 × 1.5742 = $15,742,000"
-              ]
-            },
-            "rightColumn": {
-              "icon": "ArrowDownLeft",
-              "title": "ExportCo (Receivable Hedge)",
-              "subtitle": "Expects to receive £30M in 3 months",
-              "theme": "amber",
-              "active": true,
-              "bullets": [
-                "Sells £30,000,000 in 3-month forward market",
-                "Hits bank Bid Rate (bank buys GBP) of 1.5736",
-                "Locked-in revenue: £30,000,000 × 1.5736 = $47,208,000"
-              ]
-            }
+            "sectionHeader": "Foreign Exchange Quotations (May 13, 2015)",
+            "layout": "stack",
+            "cards": [
+              {
+                "icon": "Clock",
+                "title": "Spot FX Rate (T+2 Immediate)",
+                "subtitle": "Bid: 1.5746 | Offer: 1.5750 (Spread = 4 pips)",
+                "state": "muted"
+              },
+              {
+                "icon": "Repeat",
+                "title": "Bank Spread Mechanics",
+                "subtitle": "Bank buys base currency at Bid, sells at higher Offer",
+                "state": "muted"
+              },
+              {
+                "icon": "Calendar",
+                "title": "3-Month Forward Rate (T+90)",
+                "subtitle": "Bid: 1.5736 | Offer: 1.5742 (Locked today for delivery)",
+                "state": "active_green"
+              }
+            ]
           }
         }
       ]
     },
     {
       "segmentIndex": 6,
-      "title": "Snapshot 1.1: Lehman's 31:1 leverage",
-      "template": "tug_of_war",
+      "title": "ImportCo Outflow Hedging Formula",
+      "template": "formula_breakdown",
+      "badge": "Hull Example 1.1 · Part A",
       "beats": [
         {
           "id": "b20",
-          "hindi_tts": "बिज़नेस स्नैपशॉट 1.1 हमें 15 सितंबर 2008 को हुए अमेरिकी इतिहास के सबसे बड़े दिवालियापन, यानी लीमन ब्रदर्स की कहानी बताता है।",
-          "en_subtitle": "Business Snapshot 1.1 covers Lehman Brothers' September 15, 2008 bankruptcy—the largest in US history.",
+          "hindi_tts": "इम्पोर्टको को तीन महीने में एक करोड़ पाउंड चुकाने हैं, और उसे डर है कि पाउंड महंगा न हो जाए।",
+          "en_subtitle": "ImportCo owes £10M in 3 months and faces risk if the pound appreciates.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "leftLabel": "Total Assets",
-            "leftCount": 31,
-            "rightLabel": "Equity Capital",
-            "rightCount": 1,
-            "centerTitle": "LEHMAN 2007",
-            "centerMetric": "31:1 LEVERAGE",
-            "trend": "down",
-            "bottomPill": {
-              "text": "Exempt from commercial bank capital rules",
-              "color": "amber"
-            }
+            "formulaTitle": "Importer FX Forward Hedging Formula",
+            "formulaLatex": "USD Outflow = Foreign Currency Payable \\times Forward Offer Rate",
+            "steps": [
+              {
+                "label": "Payable Obligation",
+                "explanation": "ImportCo must deliver £10,000,000 to British supplier in 3 months",
+                "value": "£10,000,000",
+                "active": true
+              },
+              {
+                "label": "Applicable Forward Rate",
+                "explanation": "Bank sells GBP to ImportCo at 3-Month Forward Offer rate",
+                "value": "1.5742 USD/GBP",
+                "active": false
+              },
+              {
+                "label": "Locked USD Outflow",
+                "explanation": "Exact dollar amount committed today regardless of spot movement",
+                "value": "$15,742,000",
+                "active": false
+              }
+            ]
           }
         },
         {
           "id": "b21",
-          "hindi_tts": "2007 तक लीमन का लिवरेज रेशियो 31:1 पर पहुँच गया था, यानी कुल एसेट्स के मुकाबले खुद की इक्विटी कैपिटल सिर्फ 3.23% थी।",
-          "en_subtitle": "By 2007, Lehman's leverage ratio hit 31:1, leaving equity capital at just 3.23% of assets.",
+          "hindi_tts": "कंपनी बैंक से तीन महीने का फॉरवर्ड ऑफर रेट 1.5742 पर पाउंड खरीदने का अनुबंध करती है।",
+          "en_subtitle": "The company contracts to buy pounds at the bank's 3-month forward Offer of 1.5742.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "leftLabel": "Total Assets",
-            "leftCount": 31,
-            "rightLabel": "Equity Capital",
-            "rightCount": 1,
-            "centerTitle": "CAPITAL RATIO",
-            "centerMetric": "3.23% EQUITY",
-            "trend": "down",
-            "bottomPill": {
-              "text": "1 / 31 = 3.23% equity buffer against losses",
-              "color": "red"
-            }
+            "formulaTitle": "Importer FX Forward Hedging Formula",
+            "formulaLatex": "USD Outflow = £10,000,000 \\times 1.5742",
+            "steps": [
+              {
+                "label": "Payable Obligation",
+                "explanation": "ImportCo must deliver £10,000,000 to British supplier in 3 months",
+                "value": "£10,000,000",
+                "active": false
+              },
+              {
+                "label": "Applicable Forward Rate",
+                "explanation": "Bank sells GBP to ImportCo at 3-Month Forward Offer rate",
+                "value": "1.5742 USD/GBP",
+                "active": true
+              },
+              {
+                "label": "Locked USD Outflow",
+                "explanation": "Exact dollar amount committed today regardless of spot movement",
+                "value": "$15,742,000",
+                "active": false
+              }
+            ]
           }
         },
         {
           "id": "b22",
-          "hindi_tts": "गणित सीधा था: कुल एसेट वैल्यू में महज़ 3% से 4% की गिरावट लीमन की 100% इक्विटी कैपिटल को पूरी तरह साफ करने के लिए काफी थी।",
-          "en_subtitle": "A mere 3% to 4% drop in total asset value was enough to wipe out 100% of equity capital.",
-          "pauseAfterMs": 500,
+          "hindi_tts": "इसका नतीजा है कि तीन महीने बाद इम्पोर्टको को ठीक 1 करोड़ 57 लाख 42 हजार डॉलर चुकाने होंगे।",
+          "en_subtitle": "ImportCo locks in exactly $15,742,000, eliminating all upside currency risk.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "leftLabel": "Asset Drop",
-            "leftCount": 4,
-            "rightLabel": "Equity Buffer",
-            "rightCount": 3,
-            "centerTitle": "WIPED OUT",
-            "centerMetric": "-4% ASSETS",
-            "trend": "down",
-            "bottomPill": {
-              "text": "3% to 4% asset drop wipes out 100% of equity",
-              "color": "red"
-            }
+            "formulaTitle": "Importer FX Forward Hedging Formula",
+            "formulaLatex": "Locked Cash Outflow = $15,742,000",
+            "steps": [
+              {
+                "label": "Payable Obligation",
+                "explanation": "ImportCo must deliver £10,000,000 to British supplier in 3 months",
+                "value": "£10,000,000",
+                "active": false
+              },
+              {
+                "label": "Applicable Forward Rate",
+                "explanation": "Bank sells GBP to ImportCo at 3-Month Forward Offer rate",
+                "value": "1.5742 USD/GBP",
+                "active": false
+              },
+              {
+                "label": "Locked USD Outflow",
+                "explanation": "Exact dollar amount committed today regardless of spot movement",
+                "value": "$15,742,000",
+                "active": true
+              }
+            ]
           }
         }
       ]
     },
     {
       "segmentIndex": 7,
-      "title": "Inside Lehman's OTC derivatives web",
-      "template": "progressive_cards",
+      "title": "ExportCo Inflow Hedging Formula",
+      "template": "formula_breakdown",
+      "badge": "Hull Example 1.1 · Part B",
       "beats": [
         {
           "id": "b23",
-          "hindi_tts": "सीईओ डिक फुल्ड की आक्रामक सोच थी कि हर दिन एक जंग है, और 2007 में चीफ रिस्क ऑफिसर को एग्जीक्यूटिव कमेटी से हटा दिया गया।",
-          "en_subtitle": "CEO Dick Fuld treated every day as a battle and sidelined the Chief Risk Officer in 2007.",
+          "hindi_tts": "एक्सपोर्टको को तीन महीने में तीन करोड़ पाउंड मिलने हैं, और उसे डर है कि पाउंड गिर न जाए।",
+          "en_subtitle": "ExportCo expects £30M in 3 months and risks loss if the pound depreciates.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Anatomy of the Lehman collapse",
-            "layout": "stack",
-            "cards": [
+            "formulaTitle": "Exporter FX Forward Hedging Formula",
+            "formulaLatex": "USD Inflow = Foreign Currency Receivable \\times Forward Bid Rate",
+            "steps": [
               {
-                "icon": "Flame",
-                "title": "Aggressive Culture & Sidelined Risk",
-                "subtitle": "Dick Fuld's 'battle' culture; CRO removed in 2007",
-                "state": "active_amber"
+                "label": "Receivable Inflow",
+                "explanation": "ExportCo will collect £30,000,000 from UK buyers in 3 months",
+                "value": "£30,000,000",
+                "active": true
               },
               {
-                "icon": "TrendingDown",
-                "title": "Subprime Assets on Short-Term Debt",
-                "subtitle": "unhedged mortgage positions; lenders refused rollovers",
-                "state": "hidden"
+                "label": "Applicable Forward Rate",
+                "explanation": "Bank buys GBP from ExportCo at 3-Month Forward Bid rate",
+                "value": "1.5736 USD/GBP",
+                "active": false
               },
               {
-                "icon": "Share2",
-                "title": "1M+ OTC Trades with 8,000 Counterparties",
-                "subtitle": "re-hypothecated collateral sparked years of lawsuits",
-                "state": "hidden"
+                "label": "Locked USD Cash Realized",
+                "explanation": "Guaranteed dollar cashflow shielded from any sterling depreciation",
+                "value": "$47,208,000",
+                "active": false
               }
             ]
           }
         },
         {
           "id": "b24",
-          "hindi_tts": "लीमन ने शॉर्ट-टर्म कर्ज लेकर सबप्राइम मॉर्गेज में भारी दांव लगाया, और भरोसा टूटते ही लेंडर्स ने लोन रोलओवर करने से मना कर दिया।",
-          "en_subtitle": "Lehman funded huge unhedged subprime positions with short-term debt that lenders refused to roll over.",
+          "hindi_tts": "कंपनी बैंक को 1.5736 के तीन महीने फॉरवर्ड बिड रेट पर पाउंड बेचने का शॉर्ट फॉरवर्ड करती है।",
+          "en_subtitle": "ExportCo shorts forwards at the bank's 3-month forward Bid rate of 1.5736.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Anatomy of the Lehman collapse",
-            "layout": "stack",
-            "cards": [
+            "formulaTitle": "Exporter FX Forward Hedging Formula",
+            "formulaLatex": "USD Inflow = £30,000,000 \\times 1.5736",
+            "steps": [
               {
-                "icon": "Flame",
-                "title": "Aggressive Culture & Sidelined Risk",
-                "subtitle": "Dick Fuld's 'battle' culture; CRO removed in 2007",
-                "state": "muted"
+                "label": "Receivable Inflow",
+                "explanation": "ExportCo will collect £30,000,000 from UK buyers in 3 months",
+                "value": "£30,000,000",
+                "active": false
               },
               {
-                "icon": "TrendingDown",
-                "title": "Subprime Assets on Short-Term Debt",
-                "subtitle": "unhedged mortgage positions; lenders refused rollovers",
-                "state": "active_blue"
+                "label": "Applicable Forward Rate",
+                "explanation": "Bank buys GBP from ExportCo at 3-Month Forward Bid rate",
+                "value": "1.5736 USD/GBP",
+                "active": true
               },
               {
-                "icon": "Share2",
-                "title": "1M+ OTC Trades with 8,000 Counterparties",
-                "subtitle": "re-hypothecated collateral sparked years of lawsuits",
-                "state": "hidden"
+                "label": "Locked USD Cash Realized",
+                "explanation": "Guaranteed dollar cashflow shielded from any sterling depreciation",
+                "value": "$47,208,000",
+                "active": false
               }
             ]
           }
         },
         {
           "id": "b25",
-          "hindi_tts": "लीमन के पास 8,000 काउंटरपार्टियों के साथ 10 लाख से ज़्यादा ओटीसी डेरिवेटिव सौदे थे, जिनके कोलैटरल विवाद सालों तक चले।",
-          "en_subtitle": "Lehman held over 1 million OTC derivative trades across 8,000 counterparties, sparking years of disputes.",
-          "pauseAfterMs": 500,
+          "hindi_tts": "इस तरह एक्सपोर्टको के लिए 4 करोड़ 72 लाख 8 हजार डॉलर की आमदनी पूरी तरह पक्की हो जाती है।",
+          "en_subtitle": "ExportCo guarantees $47,208,000, fully shielded from currency volatility.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "sectionHeader": "Anatomy of the Lehman collapse",
-            "layout": "stack",
-            "cards": [
+            "formulaTitle": "Exporter FX Forward Hedging Formula",
+            "formulaLatex": "Locked Cash Inflow = $47,208,000",
+            "steps": [
               {
-                "icon": "Flame",
-                "title": "Aggressive Culture & Sidelined Risk",
-                "subtitle": "Dick Fuld's 'battle' culture; CRO removed in 2007",
-                "state": "muted"
+                "label": "Receivable Inflow",
+                "explanation": "ExportCo will collect £30,000,000 from UK buyers in 3 months",
+                "value": "£30,000,000",
+                "active": false
               },
               {
-                "icon": "TrendingDown",
-                "title": "Subprime Assets on Short-Term Debt",
-                "subtitle": "unhedged mortgage positions; lenders refused rollovers",
-                "state": "muted"
+                "label": "Applicable Forward Rate",
+                "explanation": "Bank buys GBP from ExportCo at 3-Month Forward Bid rate",
+                "value": "1.5736 USD/GBP",
+                "active": false
               },
               {
-                "icon": "Share2",
-                "title": "1M+ OTC Trades with 8,000 Counterparties",
-                "subtitle": "re-hypothecated collateral sparked years of lawsuits",
-                "state": "active_green"
+                "label": "Locked USD Cash Realized",
+                "explanation": "Guaranteed dollar cashflow shielded from any sterling depreciation",
+                "value": "$47,208,000",
+                "active": true
               }
             ]
           }
@@ -838,40 +789,41 @@
     },
     {
       "segmentIndex": 8,
-      "title": "Snapshot 1.2: Systemic risk & CCP reforms",
+      "title": "Systemic Risk & Post-2008 CCP Reforms",
       "template": "progressive_cards",
+      "badge": "Business Snapshot 1.2 · Regulatory Architecture",
       "beats": [
         {
           "id": "b26",
-          "hindi_tts": "बिज़नेस स्नैपशॉट 1.2 सिस्टमिक रिस्क को समझाता है: जब बैंक ए डिफॉल्ट करता है, तो ओटीसी नुकसान से बैंक बी और फिर बैंक सी भी डूब जाते हैं।",
-          "en_subtitle": "Snapshot 1.2 defines systemic risk: Bank A's default topples Bank B and Bank C like dominoes.",
+          "hindi_tts": "सिस्टमिक रिस्क में बैंक ए का डिफॉल्ट बैंक बी और बैंक सी को डोमिनो की तरह गिरा सकता है।",
+          "en_subtitle": "In systemic contagion, Bank A default cascades into Bank B and C failures.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Snapshot 1.2 · Stopping the domino effect",
+            "sectionHeader": "Tackling Systemic Contagion in OTC Markets",
             "layout": "grid",
             "cards": [
               {
-                "icon": "Activity",
-                "title": "Systemic Domino Effect",
-                "subtitle": "Bank A fails, triggering defaults at Bank B and Bank C",
+                "icon": "Share2",
+                "title": "Bilateral Domino Contagion",
+                "subtitle": "Uncollateralized OTC defaults trigger domino failures across banks",
                 "state": "active_amber"
+              },
+              {
+                "icon": "Monitor",
+                "title": "Swap Execution Facilities",
+                "subtitle": "Mandatory electronic trading platforms for standard contracts",
+                "state": "hidden"
               },
               {
                 "icon": "Shield",
                 "title": "Central Counterparties (CCPs)",
-                "subtitle": "buyer to every seller and seller to every buyer",
-                "state": "hidden"
-              },
-              {
-                "icon": "Server",
-                "title": "Swap Execution Facilities (SEFs)",
-                "subtitle": "mandatory exchange-like platforms for standard OTC trades",
+                "subtitle": "Novates trades to sit between buyer and seller as guarantor",
                 "state": "hidden"
               },
               {
                 "icon": "Database",
-                "title": "Central Trade Repositories",
-                "subtitle": "mandatory reporting of all OTC derivative transactions",
+                "title": "Trade Repositories",
+                "subtitle": "Mandatory centralized data reporting for market regulators",
                 "state": "hidden"
               }
             ]
@@ -879,35 +831,35 @@
         },
         {
           "id": "b27",
-          "hindi_tts": "2008 के बाद पहला बड़ा सुधार था स्टैंडर्ड ओटीसी डेरिवेटिव्स की सेंट्रल काउंटरपार्टी यानी सीसीपी के ज़रिए अनिवार्य क्लियरिंग।",
-          "en_subtitle": "Post-2008 reform 1 mandated clearing standardized OTC derivatives through Central Counterparties (CCPs).",
+          "hindi_tts": "पहला सुधार था स्वैप एक्जीक्यूशन फैसिलिटीज, जहां सभी स्टैंडर्ड ओटीसी डेरिवेटिव्स स्क्रीन पर ट्रेड होते हैं।",
+          "en_subtitle": "Reform one mandated Swap Execution Facilities for transparent electronic trading.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Snapshot 1.2 · Stopping the domino effect",
+            "sectionHeader": "Tackling Systemic Contagion in OTC Markets",
             "layout": "grid",
             "cards": [
               {
-                "icon": "Activity",
-                "title": "Systemic Domino Effect",
-                "subtitle": "Bank A fails, triggering defaults at Bank B and Bank C",
+                "icon": "Share2",
+                "title": "Bilateral Domino Contagion",
+                "subtitle": "Uncollateralized OTC defaults trigger domino failures across banks",
                 "state": "muted"
+              },
+              {
+                "icon": "Monitor",
+                "title": "Swap Execution Facilities",
+                "subtitle": "Mandatory electronic trading platforms for standard contracts",
+                "state": "active_blue"
               },
               {
                 "icon": "Shield",
                 "title": "Central Counterparties (CCPs)",
-                "subtitle": "buyer to every seller and seller to every buyer",
-                "state": "active_blue"
-              },
-              {
-                "icon": "Server",
-                "title": "Swap Execution Facilities (SEFs)",
-                "subtitle": "mandatory exchange-like platforms for standard OTC trades",
+                "subtitle": "Novates trades to sit between buyer and seller as guarantor",
                 "state": "hidden"
               },
               {
                 "icon": "Database",
-                "title": "Central Trade Repositories",
-                "subtitle": "mandatory reporting of all OTC derivative transactions",
+                "title": "Trade Repositories",
+                "subtitle": "Mandatory centralized data reporting for market regulators",
                 "state": "hidden"
               }
             ]
@@ -915,35 +867,35 @@
         },
         {
           "id": "b28",
-          "hindi_tts": "दूसरा नियम बना कि अमेरिका में स्टैंडर्ड ओटीसी सौदे स्वैप एग्जीक्यूशन फैसिलिटी यानी एसईएफ प्लेटफॉर्म पर ही ट्रेड होंगे।",
-          "en_subtitle": "Reform 2 required US financial institutions to execute standardized OTC trades on Swap Execution Facilities.",
+          "hindi_tts": "दूसरा सुधार था सेंट्रल काउंटरपार्टीज, जो खरीदार और विक्रेता के बीच गारंटर बनकर डिफॉल्ट रिस्क सोख लेते हैं।",
+          "en_subtitle": "Reform two introduced CCP novation, absorbing default risk between buyers and sellers.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Snapshot 1.2 · Stopping the domino effect",
+            "sectionHeader": "Tackling Systemic Contagion in OTC Markets",
             "layout": "grid",
             "cards": [
               {
-                "icon": "Activity",
-                "title": "Systemic Domino Effect",
-                "subtitle": "Bank A fails, triggering defaults at Bank B and Bank C",
+                "icon": "Share2",
+                "title": "Bilateral Domino Contagion",
+                "subtitle": "Uncollateralized OTC defaults trigger domino failures across banks",
+                "state": "muted"
+              },
+              {
+                "icon": "Monitor",
+                "title": "Swap Execution Facilities",
+                "subtitle": "Mandatory electronic trading platforms for standard contracts",
                 "state": "muted"
               },
               {
                 "icon": "Shield",
                 "title": "Central Counterparties (CCPs)",
-                "subtitle": "buyer to every seller and seller to every buyer",
-                "state": "muted"
-              },
-              {
-                "icon": "Server",
-                "title": "Swap Execution Facilities (SEFs)",
-                "subtitle": "mandatory exchange-like platforms for standard OTC trades",
+                "subtitle": "Novates trades to sit between buyer and seller as guarantor",
                 "state": "active_green"
               },
               {
                 "icon": "Database",
-                "title": "Central Trade Repositories",
-                "subtitle": "mandatory reporting of all OTC derivative transactions",
+                "title": "Trade Repositories",
+                "subtitle": "Mandatory centralized data reporting for market regulators",
                 "state": "hidden"
               }
             ]
@@ -951,35 +903,35 @@
         },
         {
           "id": "b29",
-          "hindi_tts": "और तीसरा नियम यह कि पारदर्शिता के लिए हर ओटीसी ट्रेड की जानकारी एक सेंट्रल रिपॉजिटरी को देना अनिवार्य कर दिया गया।",
-          "en_subtitle": "Reform 3 mandated reporting all OTC derivative trades to a central trade repository.",
-          "pauseAfterMs": 500,
+          "hindi_tts": "तीसरा सुधार था ट्रेड रिपॉजिटरीज, ताकि रेगुलेटर्स को पूरे बाजार के ओटीसी एक्सपोजर की पारदर्शी जानकारी रहे।",
+          "en_subtitle": "Reform three created Trade Repositories for transparent position reporting.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "sectionHeader": "Snapshot 1.2 · Stopping the domino effect",
+            "sectionHeader": "Tackling Systemic Contagion in OTC Markets",
             "layout": "grid",
             "cards": [
               {
-                "icon": "Activity",
-                "title": "Systemic Domino Effect",
-                "subtitle": "Bank A fails, triggering defaults at Bank B and Bank C",
+                "icon": "Share2",
+                "title": "Bilateral Domino Contagion",
+                "subtitle": "Uncollateralized OTC defaults trigger domino failures across banks",
+                "state": "muted"
+              },
+              {
+                "icon": "Monitor",
+                "title": "Swap Execution Facilities",
+                "subtitle": "Mandatory electronic trading platforms for standard contracts",
                 "state": "muted"
               },
               {
                 "icon": "Shield",
                 "title": "Central Counterparties (CCPs)",
-                "subtitle": "buyer to every seller and seller to every buyer",
-                "state": "muted"
-              },
-              {
-                "icon": "Server",
-                "title": "Swap Execution Facilities (SEFs)",
-                "subtitle": "mandatory exchange-like platforms for standard OTC trades",
+                "subtitle": "Novates trades to sit between buyer and seller as guarantor",
                 "state": "muted"
               },
               {
                 "icon": "Database",
-                "title": "Central Trade Repositories",
-                "subtitle": "mandatory reporting of all OTC derivative transactions",
+                "title": "Trade Repositories",
+                "subtitle": "Mandatory centralized data reporting for market regulators",
                 "state": "active_purple"
               }
             ]
@@ -989,67 +941,68 @@
     },
     {
       "segmentIndex": 9,
-      "title": "Your turn: Forward FX & leverage",
+      "title": "FX Forward Hedging Quiz",
       "template": "interactive_quiz",
+      "badge": "Risk Check · 6-Month Tenor",
       "beats": [
         {
           "id": "b30",
-          "hindi_tts": "अब आपकी बारी। अगर 3 महीने का पाउंड फॉरवर्ड कोट 1.5736 बिड और 1.5742 ऑफर है, तो £10M चुकाने वाली इम्पोर्ट-को किस रेट पर लॉक करेगी?",
-          "en_subtitle": "If 3M GBP forward is 1.5736 / 1.5742, which rate locks in ImportCo's £10M payable?",
+          "hindi_tts": "मान लीजिए एक अमेरिकी कंपनी को छह महीने बाद दो करोड़ पाउंड का भुगतान करना है।",
+          "en_subtitle": "Suppose a U.S. firm must pay £20 million in 6 months given forward quotes.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "badge": "Your turn",
-            "question": "A bank quotes 3-month GBP forward at Bid 1.5736 and Offer 1.5742. ImportCo must pay £10 million in 3 months. Which rate does ImportCo pay, and what is the locked-in USD cost?",
+            "badge": "Risk Check · 6-Month Tenor",
+            "question": "A U.S. corporation must pay £20 million in 6 months, and the 6-month USD/GBP forward quote is Bid 1.5730 and Offer 1.5736. Which position and exact dollar cost locks in the hedge?",
             "showThinkingSpinner": false,
             "answer": null
           }
         },
         {
           "id": "b31",
-          "hindi_tts": "सोचिए, बैंक पाउंड बेच रहा है या खरीद रहा है?",
-          "en_subtitle": "Think: is the bank selling or buying British pounds here?",
+          "hindi_tts": "सोचिए, क्या कंपनी बैंक के बिड रेट पर खरीदेगी या ऑफर रेट पर?",
+          "en_subtitle": "Consider whether the firm buys pounds at the bank's Bid or Offer forward rate.",
           "pauseAfterMs": 3200,
           "ui_state": {
-            "badge": "Your turn",
-            "question": "A bank quotes 3-month GBP forward at Bid 1.5736 and Offer 1.5742. ImportCo must pay £10 million in 3 months. Which rate does ImportCo pay, and what is the locked-in USD cost?",
+            "badge": "Risk Check · 6-Month Tenor",
+            "question": "A U.S. corporation must pay £20 million in 6 months, and the 6-month USD/GBP forward quote is Bid 1.5730 and Offer 1.5736. Which position and exact dollar cost locks in the hedge?",
             "showThinkingSpinner": true,
             "answer": null
           }
         },
         {
           "id": "b32",
-          "hindi_tts": "बिल्कुल सही! इम्पोर्ट-को बैंक के ऑफर रेट 1.5742 पर पाउंड खरीदेगी, जिससे कुल लागत $15,742,000 लॉक हो जाएगी।",
-          "en_subtitle": "Correct! ImportCo buys GBP at the bank's 1.5742 offer rate, locking in $15,742,000.",
+          "hindi_tts": "कंपनी लॉन्ग फॉरवर्ड लेगी ऑफर रेट 1.5736 पर, जिससे कुल लागत 3 करोड़ 14 लाख 72 हजार डॉलर लॉक हो जाएगी।",
+          "en_subtitle": "Long forward at 1.5736 Offer locks in exactly $31,472,000 for £20 million.",
           "pauseAfterMs": 500,
           "ui_state": {
-            "badge": "Your turn",
-            "question": "A bank quotes 3-month GBP forward at Bid 1.5736 and Offer 1.5742. ImportCo must pay £10 million in 3 months. Which rate does ImportCo pay, and what is the locked-in USD cost?",
+            "badge": "Risk Check · 6-Month Tenor",
+            "question": "A U.S. corporation must pay £20 million in 6 months, and the 6-month USD/GBP forward quote is Bid 1.5730 and Offer 1.5736. Which position and exact dollar cost locks in the hedge?",
             "showThinkingSpinner": false,
-            "answer": "ImportCo buys £10M at the bank's Offer Rate of 1.5742, locking in a total cost of $15,742,000 (while an exporter selling GBP gets the 1.5736 Bid Rate)."
+            "answer": "Spot on! Since the firm needs to buy £20 million from the bank in 6 months, it takes a Long Forward position at the bank's Offer rate of 1.5736, locking in an exact payment of $31,472,000."
           }
         }
       ]
     },
     {
       "segmentIndex": 10,
-      "title": "Raju connects the dots",
+      "title": "Applying the Market Structure Checklist",
       "template": "chat_story",
-      "badge": "September · lesson learned",
+      "badge": "Synthesis · Practical Takeaways",
       "beats": [
         {
           "id": "b33",
-          "hindi_tts": "राजू को अब समझ आ गया कि ₹250 पर फ्यूचर्स लॉक करने से ₹215 की गिरावट का डर कैसे खत्म होता है।",
-          "en_subtitle": "Raju now sees how locking in ₹250 eliminates the fear of the ₹215 drop.",
+          "hindi_tts": "राजू समझ गया कि करेंसी खरीदने के लिए ऑफर रेट 1.5742 और बेचने के लिए बिड रेट 1.5736 लगता है।",
+          "en_subtitle": "Raju confirms using the 1.5742 Offer to buy and the 1.5736 Bid to sell pounds.",
           "pauseAfterMs": 400,
           "ui_state": {
             "stageDirections": [
-              "— Raju reviews his ₹250 contract notes with Sharma ji —"
+              "— afternoon: Raju reviews hedged corporate portfolio ledger —"
             ],
             "messages": [
               {
                 "sender": "Raju",
                 "avatar": "R",
-                "text": "Locking in ₹250 saved the farmer from the ₹215 spot crash! And on an exchange, the clearing house guarantees it.",
+                "text": "Got it! Importers buy foreign currency at the bank's Offer, and exporters sell at the Bid.",
                 "theme": "amber",
                 "align": "left"
               }
@@ -1058,25 +1011,25 @@
         },
         {
           "id": "b34",
-          "hindi_tts": "शर्मा जी याद दिलाते हैं कि इसीलिए 2008 के बाद ओटीसी मार्केट में भी सीसीपी और एसईएफ के नियम लाए गए।",
-          "en_subtitle": "Sharma ji reminds him why CCP and SEF rules were brought to the OTC market after 2008.",
-          "pauseAfterMs": 400,
+          "hindi_tts": "साथ ही लेहमन का 31 गुना लेवरेज सिखाता है कि अनकंट्रोल्ड क्रेडिट रिस्क पूरी वित्तीय प्रणाली को जमा सकता है।",
+          "en_subtitle": "Lehman's 31:1 leverage proved uncontrolled credit risk freezes financial systems.",
+          "pauseAfterMs": 450,
           "ui_state": {
             "stageDirections": [
-              "— Raju reviews his ₹250 contract notes with Sharma ji —"
+              "— analyzing systemic counterparty risk and balance sheet leverage —"
             ],
             "messages": [
               {
                 "sender": "Raju",
                 "avatar": "R",
-                "text": "Locking in ₹250 saved the farmer from the ₹215 spot crash! And on an exchange, the clearing house guarantees it.",
+                "text": "Got it! Importers buy foreign currency at the bank's Offer, and exporters sell at the Bid.",
                 "theme": "amber",
                 "align": "left"
               },
               {
                 "sender": "Sharma ji",
                 "avatar": "S",
-                "text": "Exactly! And after Lehman's 31:1 collapse across 8,000 OTC counterparties, regulators mandated CCPs so one default never topples the whole system.",
+                "text": "Exactly. And extreme 31:1 leverage means a tiny 3% asset slide wipes equity completely.",
                 "theme": "teal",
                 "align": "right"
               }
@@ -1085,34 +1038,27 @@
         },
         {
           "id": "b35",
-          "hindi_tts": "अब राजू तैयार है देखने के लिए कि बाज़ार में हेजर्स, स्पेक्युलेटर्स और आर्बिट्राजर्स कैसे काम करते हैं।",
-          "en_subtitle": "Now Raju is ready to see how hedgers, speculators, and arbitrageurs operate.",
+          "hindi_tts": "शर्मा जी समझाते हैं कि आज सेंट्रल काउंटरपार्टीज और डेली मार्जिनिंग की वजह से ओटीसी बाजार ज्यादा सुरक्षित है।",
+          "en_subtitle": "Sharma ji highlights how modern CCP clearing and margin buffers secure OTC markets.",
           "pauseAfterMs": 500,
           "ui_state": {
             "stageDirections": [
-              "— Raju reviews his ₹250 contract notes with Sharma ji —"
+              "— concluding on post-Dodd-Frank and EMIR central clearing mandates —"
             ],
             "messages": [
               {
                 "sender": "Raju",
                 "avatar": "R",
-                "text": "Locking in ₹250 saved the farmer from the ₹215 spot crash! And on an exchange, the clearing house guarantees it.",
+                "text": "Got it! Importers buy foreign currency at the bank's Offer, and exporters sell at the Bid.",
                 "theme": "amber",
                 "align": "left"
               },
               {
                 "sender": "Sharma ji",
                 "avatar": "S",
-                "text": "Exactly! And after Lehman's 31:1 collapse across 8,000 OTC counterparties, regulators mandated CCPs so one default never topples the whole system.",
+                "text": "That is why modern CCP clearing, SEFs, and margin rules are mandatory shields.",
                 "theme": "teal",
                 "align": "right"
-              },
-              {
-                "sender": "Raju",
-                "avatar": "R",
-                "text": "Clear! Whether it is ₹250 corn futures or £10M forward hedges, contract structure and clearing protection matter most.",
-                "theme": "amber",
-                "align": "left"
               }
             ]
           }
@@ -1121,152 +1067,158 @@
     },
     {
       "segmentIndex": 11,
-      "title": "The whole picture",
+      "title": "Chapter 1 Part 1 Summary Thread",
       "template": "summary_thread",
+      "badge": "Core Synthesis · 8 Key Steps",
       "beats": [
         {
           "id": "b36",
-          "hindi_tts": "आइए आज के पूरे अध्याय के आठ मुख्य बिंदुओं को एक साथ पिरोते हैं।",
-          "en_subtitle": "Let us weave together all eight core takeaways from today's episode.",
+          "hindi_tts": "तो आज के पूरे अध्याय का आठ बिंदुओं वाला निचोड़ यह है।",
+          "en_subtitle": "Here is today's eight-point synthesis of derivatives market structure.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · THE WHOLE PICTURE",
+            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
             "heading": "Today's thread",
             "activeStepRange": [
               0,
               0
             ],
             "steps": [
-              "Farmer and processor lock in future delivery prices to eliminate spot risk",
-              "Long agrees to buy; Short agrees to sell at a set future date and price",
-              "Exchange futures are standardized and cleared ($65T market size in Dec 2014)",
-              "OTC forwards are bilateral and customized ($630T notional, $21T gross value)",
-              "Banks quote FX Bid (buy) and Offer (sell) rates across spot and forward horizons",
-              "ImportCo buys £10M at 1.5742 ($15.742M); ExportCo sells £30M at 1.5736 ($47.208M)",
-              "Lehman's 31:1 leverage (3.23% equity) and 1M+ OTC trades sparked its 2008 collapse",
-              "Post-2008 reforms mandated CCP clearing, SEF trading, and trade repositories"
-            ]
+              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
+              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
+              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
+              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
+              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
+              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
+              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
+              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
+            ],
+            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
           }
         },
         {
           "id": "b37",
-          "hindi_tts": "किसान और प्रोसेसर भविष्य का दाम आज ही तय करके रिस्क मिटाते हैं, जहाँ लॉन्ग खरीदने और शॉर्ट बेचने का वादा करता है।",
-          "en_subtitle": "Farmers and processors lock in future prices; Long agrees to buy and Short agrees to sell.",
-          "pauseAfterMs": 400,
+          "hindi_tts": "एक्सचेंज फ्यूचर्स 1848 से मानकीकृत हैं, जबकि ओटीसी फॉरवर्ड्स 630 ट्रिलियन डॉलर के विशाल बाजार का हिस्सा हैं।",
+          "en_subtitle": "Exchange futures are standardized since 1848, while OTC forwards span $630T notional.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · THE WHOLE PICTURE",
+            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
             "heading": "Today's thread",
             "activeStepRange": [
               1,
               2
             ],
             "steps": [
-              "Farmer and processor lock in future delivery prices to eliminate spot risk",
-              "Long agrees to buy; Short agrees to sell at a set future date and price",
-              "Exchange futures are standardized and cleared ($65T market size in Dec 2014)",
-              "OTC forwards are bilateral and customized ($630T notional, $21T gross value)",
-              "Banks quote FX Bid (buy) and Offer (sell) rates across spot and forward horizons",
-              "ImportCo buys £10M at 1.5742 ($15.742M); ExportCo sells £30M at 1.5736 ($47.208M)",
-              "Lehman's 31:1 leverage (3.23% equity) and 1M+ OTC trades sparked its 2008 collapse",
-              "Post-2008 reforms mandated CCP clearing, SEF trading, and trade repositories"
-            ]
+              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
+              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
+              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
+              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
+              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
+              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
+              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
+              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
+            ],
+            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
           }
         },
         {
           "id": "b38",
-          "hindi_tts": "एक्सचेंज फ्यूचर्स स्टैंडर्ड और क्लियरिंग हाउस से सुरक्षित होते हैं, जबकि $630 ट्रिलियन का ओटीसी फॉरवर्ड बाज़ार आपसी समझौतों पर चलता है।",
-          "en_subtitle": "Exchange futures are standardized and cleared, while the $630T OTC market uses bilateral contracts.",
-          "pauseAfterMs": 400,
+          "hindi_tts": "लॉन्ग पोजीशन खरीदने और शॉर्ट बेचने के लिए होती है, और फॉरवर्ड कोट्स भविष्य का रेट आज ही तय कर देते हैं।",
+          "en_subtitle": "Long obligates buying, short obligates selling, and forwards lock future rates today.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · THE WHOLE PICTURE",
+            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
             "heading": "Today's thread",
             "activeStepRange": [
               3,
               4
             ],
             "steps": [
-              "Farmer and processor lock in future delivery prices to eliminate spot risk",
-              "Long agrees to buy; Short agrees to sell at a set future date and price",
-              "Exchange futures are standardized and cleared ($65T market size in Dec 2014)",
-              "OTC forwards are bilateral and customized ($630T notional, $21T gross value)",
-              "Banks quote FX Bid (buy) and Offer (sell) rates across spot and forward horizons",
-              "ImportCo buys £10M at 1.5742 ($15.742M); ExportCo sells £30M at 1.5736 ($47.208M)",
-              "Lehman's 31:1 leverage (3.23% equity) and 1M+ OTC trades sparked its 2008 collapse",
-              "Post-2008 reforms mandated CCP clearing, SEF trading, and trade repositories"
-            ]
+              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
+              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
+              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
+              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
+              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
+              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
+              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
+              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
+            ],
+            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
           }
         },
         {
           "id": "b39",
-          "hindi_tts": "बैंक स्पॉट और फॉरवर्ड में बिड और ऑफर रेट देते हैं, जिनसे इम्पोर्ट-को ने 1.5742 पर और एक्सपोर्ट-को ने 1.5736 पर अपने पाउंड हेज किए।",
-          "en_subtitle": "Banks quote Bid and Offer rates, letting ImportCo hedge at 1.5742 and ExportCo at 1.5736.",
-          "pauseAfterMs": 400,
+          "hindi_tts": "इम्पोर्टको ने ऑफर रेट पर 1.5742 करोड़ डॉलर लॉक किए और एक्सपोर्टको ने बिड रेट पर 4.7208 करोड़ डॉलर पक्के किए।",
+          "en_subtitle": "ImportCo locked $15.742M at Offer, and ExportCo secured $47.208M at Bid.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · THE WHOLE PICTURE",
+            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
             "heading": "Today's thread",
             "activeStepRange": [
               5,
               6
             ],
             "steps": [
-              "Farmer and processor lock in future delivery prices to eliminate spot risk",
-              "Long agrees to buy; Short agrees to sell at a set future date and price",
-              "Exchange futures are standardized and cleared ($65T market size in Dec 2014)",
-              "OTC forwards are bilateral and customized ($630T notional, $21T gross value)",
-              "Banks quote FX Bid (buy) and Offer (sell) rates across spot and forward horizons",
-              "ImportCo buys £10M at 1.5742 ($15.742M); ExportCo sells £30M at 1.5736 ($47.208M)",
-              "Lehman's 31:1 leverage (3.23% equity) and 1M+ OTC trades sparked its 2008 collapse",
-              "Post-2008 reforms mandated CCP clearing, SEF trading, and trade repositories"
-            ]
+              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
+              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
+              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
+              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
+              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
+              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
+              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
+              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
+            ],
+            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
           }
         },
         {
           "id": "b40",
-          "hindi_tts": "लीमन के 31:1 लिवरेज और 10 लाख ओटीसी सौदों के संकट के बाद, सिस्टमिक रिस्क रोकने के लिए सीसीपी क्लियरिंग और एसईएफ अनिवार्य किए गए।",
-          "en_subtitle": "After Lehman's 31:1 leverage collapse, regulators mandated CCP clearing, SEFs, and repositories.",
-          "pauseAfterMs": 400,
+          "hindi_tts": "लेहमन का 31 गुना लेवरेज संकट बना, जिससे निपटने के लिए अब सीसीपी और ट्रेड रिपॉजिटरीज अनिवार्य हैं।",
+          "en_subtitle": "Lehman 31:1 leverage prompted mandatory CCP clearing and trade repositories.",
+          "pauseAfterMs": 450,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · THE WHOLE PICTURE",
+            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
             "heading": "Today's thread",
             "activeStepRange": [
               7,
               8
             ],
             "steps": [
-              "Farmer and processor lock in future delivery prices to eliminate spot risk",
-              "Long agrees to buy; Short agrees to sell at a set future date and price",
-              "Exchange futures are standardized and cleared ($65T market size in Dec 2014)",
-              "OTC forwards are bilateral and customized ($630T notional, $21T gross value)",
-              "Banks quote FX Bid (buy) and Offer (sell) rates across spot and forward horizons",
-              "ImportCo buys £10M at 1.5742 ($15.742M); ExportCo sells £30M at 1.5736 ($47.208M)",
-              "Lehman's 31:1 leverage (3.23% equity) and 1M+ OTC trades sparked its 2008 collapse",
-              "Post-2008 reforms mandated CCP clearing, SEF trading, and trade repositories"
-            ]
+              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
+              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
+              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
+              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
+              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
+              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
+              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
+              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
+            ],
+            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
           }
         },
         {
           "id": "b41",
-          "hindi_tts": "तो आज का निचोड़ यह है: डेरिवेटिव्स कीमत का जोखिम तो ट्रांसफर करते हैं, पर बिना क्लियरिंग और लिवरेज कंट्रोल के वे पूरे सिस्टम को हिला सकते हैं।",
-          "en_subtitle": "Derivatives transfer price risk efficiently, but require clearing and capital discipline to protect the system.",
+          "hindi_tts": "निष्कर्ष यह है कि फॉरवर्ड्स और फ्यूचर्स कीमतों का रिस्क हटाते हैं, और सेंट्रल क्लियरिंग डिफॉल्ट का खतरा रोकती है।",
+          "en_subtitle": "Derivatives remove price uncertainty, while central clearing stops counterparty default chains.",
           "pauseAfterMs": 600,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · THE WHOLE PICTURE",
+            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
             "heading": "Today's thread",
             "activeStepRange": [
               1,
               8
             ],
             "steps": [
-              "Farmer and processor lock in future delivery prices to eliminate spot risk",
-              "Long agrees to buy; Short agrees to sell at a set future date and price",
-              "Exchange futures are standardized and cleared ($65T market size in Dec 2014)",
-              "OTC forwards are bilateral and customized ($630T notional, $21T gross value)",
-              "Banks quote FX Bid (buy) and Offer (sell) rates across spot and forward horizons",
-              "ImportCo buys £10M at 1.5742 ($15.742M); ExportCo sells £30M at 1.5736 ($47.208M)",
-              "Lehman's 31:1 leverage (3.23% equity) and 1M+ OTC trades sparked its 2008 collapse",
-              "Post-2008 reforms mandated CCP clearing, SEF trading, and trade repositories"
+              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
+              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
+              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
+              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
+              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
+              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
+              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
+              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
             ],
-            "bottomTakeaway": "Derivatives transfer price risk, while central clearing prevents systemic collapse."
+            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
           }
         }
       ]

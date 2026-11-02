@@ -94,16 +94,31 @@ Return ONLY a valid JSON object adhering to this exact structure:
 }
 `;
 
-    const response = await aiClient.models.generateContent({
-      model: 'gemini-3.8-flash',
-      contents: prompt,
-      config: {
-        responseMimeType: 'application/json',
-        temperature: 0.1,
-      },
-    });
+    let candidateText = null;
+    let attempts = 0;
+    const maxAttempts = 5;
+    while (attempts < maxAttempts) {
+      attempts++;
+      try {
+        const response = await aiClient.models.generateContent({
+          model: 'gemini-3.8-flash',
+          contents: prompt,
+          config: {
+            responseMimeType: 'application/json',
+            temperature: 0.1,
+          },
+        });
+        candidateText = response.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (candidateText) break;
+      } catch (callErr) {
+        console.warn(`⚠️ [SOURCE-FACTS] API call attempt ${attempts} failed (${callErr.message}).`);
+        if (attempts >= maxAttempts) throw callErr;
+        const delayMs = Math.min(25000, 3000 * Math.pow(2, attempts - 1));
+        console.log(`   Retrying in ${delayMs / 1000}s...`);
+        await new Promise((r) => setTimeout(r, delayMs));
+      }
+    }
 
-    const candidateText = response.candidates?.[0]?.content?.parts?.[0]?.text;
     factsData = JSON.parse(candidateText.trim());
   } else {
     // Deterministic fallback if API key is absent

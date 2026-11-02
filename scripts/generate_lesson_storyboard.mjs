@@ -265,16 +265,32 @@ Return ONLY a JSON object with this shape:
 }
 `;
 
-  const response = await aiClient.models.generateContent({
-    model: 'gemini-3.8-flash',
-    contents: prompt,
-    config: {
-      responseMimeType: 'application/json',
-      temperature: 0.2,
-    },
-  });
+  let parsedText = null;
+  let attempts = 0;
+  const maxAttempts = 5;
+  while (attempts < maxAttempts) {
+    attempts++;
+    try {
+      const response = await aiClient.models.generateContent({
+        model: 'gemini-3.8-flash',
+        contents: prompt,
+        config: {
+          responseMimeType: 'application/json',
+          temperature: 0.2,
+        },
+      });
+      parsedText = response.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (parsedText) break;
+    } catch (callErr) {
+      console.warn(`⚠️ [LESSON-STORYBOARD] API call attempt ${attempts} failed (${callErr.message}).`);
+      if (attempts >= maxAttempts) throw callErr;
+      const delayMs = Math.min(25000, 3000 * Math.pow(2, attempts - 1));
+      console.log(`   Retrying in ${delayMs / 1000}s...`);
+      await new Promise((r) => setTimeout(r, delayMs));
+    }
+  }
 
-  const parsedJson = JSON.parse(response.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '{}');
+  const parsedJson = JSON.parse(parsedText?.trim() || '{}');
 
   const normalizedLP = normalizeLessonPlan(parsedJson.lessonPlan, chapterSlug, factsList);
   const normalizedSB = normalizeStoryboard(parsedJson.storyboard, chapterSlug, sourceFacts.bookTitle, factsList);
