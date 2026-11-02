@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "domain": "finance",
+    "course": "FUTURES & OPTIONS · JOHN C. HULL",
+    "chapter": "CHAPTER 1 · PART 1",
+    "totalSegments": 3
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "September Harvest Lock-In",
+      "template": "data_visualizer",
+      "badge": "COMMODITY FORWARD CONTRACT",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "राजू सितंबर की फसल का भाव आज ही तय करना चाहता है।",
+          "en_subtitle": "Raju wants to lock in his harvest selling price today.",
+          "pauseAfterMs": 400,
+          "visual": {
+            "kind": "chart",
+            "data": {
+              "chartType": "candlestick",
+              "title": "Wheat Forward Price Trajectory",
+              "subtitle": "June to September Lock-in at ₹250",
+              "xAxis": {
+                "label": "Month",
+                "categories": ["Jun", "Jul", "Aug", "Sep"]
+              },
+              "yAxis": {
+                "label": "Price",
+                "unit": "₹",
+                "min": 210,
+                "max": 290
+              },
+              "series": [
+                {
+                  "id": "wheat-futures",
+                  "name": "Wheat Futures",
+                  "type": "candlestick",
+                  "data": [
+                    { "x": "Jun", "y": 248, "open": 245, "high": 252, "low": 242, "close": 248, "label": "Jun 01" },
+                    { "x": "Jul", "y": 250, "open": 248, "high": 255, "low": 246, "close": 250, "label": "Jul 01" },
+                    { "x": "Aug", "y": 258, "open": 250, "high": 262, "low": 249, "close": 258, "label": "Aug 01" },
+                    { "x": "Sep", "y": 272, "open": 258, "high": 276, "low": 255, "close": 272, "label": "Sep 01" }
+                  ]
+                }
+              ],
+              "annotations": [
+                {
+                  "type": "pill",
+                  "text": "Locked Forward Price ₹250",
+                  "x": 1,
+                  "y": 250,
+                  "color": "#0D9488"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate forward contract risk elimination at agreed price",
+              "sourceFactIds": ["fact-02"],
+              "importantValues": ["250"],
+              "relationships": ["Contract locks in future spot delivery"]
+            }
+          },
+          "ui_state": {
+            "chartTitle": "Wheat Forward Price Trajectory",
+            "chartSubtitle": "June to September Lock-in at ₹250",
+            "preset": "uptrend_break",
+            "progressStep": 2,
+            "totalSteps": 3,
+            "yAxisUnit": "₹",
+            "annotations": [
+              {
+                "candleIndex": 1,
+                "value": 250,
+                "text": "Locked Forward Price ₹250",
+                "color": "#0D9488"
+              }
+            ],
+            "sideCards": [
+              {
+                "title": "Forward Hedge",
+                "subtitle": "Contract locked at ₹250 eliminates uncertainty",
+                "state": "active_teal"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

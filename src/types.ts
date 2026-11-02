@@ -11,7 +11,10 @@ export type TemplateType =
   | 'stat_counter'
   | 'horizontal_bar_race'
   | 'formula_breakdown'
-  | 'payoff_diagram';
+  | 'payoff_diagram'
+  | 'diagram_flow'
+  | 'process_flow'
+  | 'timeline';
 
 export interface Meta {
   domain: DomainType | string;
@@ -247,6 +250,7 @@ export interface Beat {
   audioDurationSec?: number;
   durationInFrames?: number;
   ui_state: UIState;
+  visual?: VisualSpec;
 }
 
 export interface Scene {
@@ -292,8 +296,12 @@ export interface SourceCitation {
 
 export interface FormulaVariable {
   symbol: string;
-  definition: string;
+  definition?: string;
+  label?: string;
+  value?: string | number;
   unit?: string;
+  description?: string;
+  color?: string;
 }
 
 export interface FormulaDetails {
@@ -460,4 +468,182 @@ export interface Storyboard {
   summarySteps: string[];
   bottomTakeaway: string;
 }
+
+// ===================================================================
+// Phase 2A: Generic Course Configuration & Structured Visual Engine
+// ===================================================================
+
+export interface CoursePersona {
+  name: string;
+  avatar: string;
+  role: string;
+  theme: string;
+}
+
+export interface CourseVisualTheme {
+  primaryColor: string;
+  accentColor: string;
+  fontFamily?: string;
+  backgroundColor?: string;
+  cardBackground?: string;
+  textColor?: string;
+  mutedColor?: string;
+}
+
+export interface UnitsAndFormats {
+  defaultUnit?: string;
+  allowedUnits?: string[];
+  numberNotation?: 'standard' | 'indian' | 'scientific';
+  decimalPlaces?: number;
+  formatters?: Record<string, string>;
+}
+
+export interface CourseConfig {
+  schemaVersion: '1.0.0';
+  courseId: string;
+  bookTitle: string;
+  subject: string;
+  audience?: string;
+  narrationLanguage?: string;
+  visualTheme: CourseVisualTheme;
+  allowedTemplates: string[];
+  domainModules?: string[];
+  terminologyGlossary?: Record<string, { definition: string; phoneticHint?: string }>;
+  unitsAndFormats?: UnitsAndFormats;
+  visualPreferences?: {
+    gridDot?: boolean;
+    animationSpeed?: 'standard' | 'snappy';
+    cardRounding?: string;
+  };
+  persona?: {
+    novice?: CoursePersona;
+    mentor?: CoursePersona;
+    contextDescription?: string;
+  };
+}
+
+export type VisualKind =
+  | 'chart'
+  | 'formula'
+  | 'diagram'
+  | 'comparison'
+  | 'timeline'
+  | 'process'
+  | 'cards'
+  | 'conversation'
+  | 'quiz'
+  | 'summary';
+
+export interface VisualSemantics {
+  teachingObjective: string;
+  sourceFactIds: string[];
+  importantValues?: string[];
+  relationships?: string[];
+}
+
+export interface ChartAxis {
+  label?: string;
+  unit?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  categories?: string[];
+  formatter?: string;
+}
+
+export interface ChartDataPoint {
+  x: number | string;
+  y: number;
+  open?: number;
+  high?: number;
+  low?: number;
+  close?: number;
+  label?: string;
+}
+
+export interface ChartSeries {
+  id: string;
+  name: string;
+  type?: 'line' | 'bar' | 'area' | 'scatter' | 'candlestick';
+  color?: string;
+  data: ChartDataPoint[];
+}
+
+export interface ChartAnnotation {
+  type: 'label' | 'callout' | 'highlight' | 'threshold' | 'arrow' | 'pill';
+  text: string;
+  x?: number | string;
+  y?: number;
+  color?: string;
+}
+
+export interface ChartSpec {
+  chartType: 'line' | 'bar' | 'area' | 'scatter' | 'candlestick' | 'histogram' | 'timeline' | 'custom';
+  title?: string;
+  subtitle?: string;
+  xAxis?: ChartAxis;
+  yAxis?: ChartAxis;
+  series: ChartSeries[];
+  annotations?: ChartAnnotation[];
+  accessibilityText?: string;
+  domainExtension?: Record<string, unknown>;
+}
+
+export interface FormulaStep {
+  stepIndex: number;
+  label: string;
+  equation: string;
+  substitutions?: Record<string, string | number>;
+  note?: string;
+}
+
+export interface FormulaSpec {
+  title: string;
+  badge?: string;
+  subtitle?: string;
+  expression: string;
+  variables: FormulaVariable[];
+  steps?: FormulaStep[];
+  activeStepIndex?: number;
+}
+
+export interface DiagramNode {
+  id: string;
+  label: string;
+  subtitle?: string;
+  state?: 'default' | 'active' | 'success' | 'warning' | 'error' | 'muted';
+  icon?: string;
+  x?: number;
+  y?: number;
+  group?: string;
+}
+
+export interface DiagramEdge {
+  id?: string;
+  from: string;
+  to: string;
+  label?: string;
+  directional?: boolean;
+  style?: 'solid' | 'dashed';
+  active?: boolean;
+}
+
+export interface DiagramSpec {
+  title?: string;
+  subtitle?: string;
+  badge?: string;
+  layout?: 'linear_horizontal' | 'linear_vertical' | 'grid' | 'timeline' | 'cyclic';
+  nodes: DiagramNode[];
+  edges: DiagramEdge[];
+  activeNodeIds?: string[];
+  activeEdgeIds?: string[];
+  highlights?: string[];
+}
+
+export interface VisualSpec<T = unknown> {
+  kind: VisualKind;
+  data: T;
+  semantics: VisualSemantics;
+}
+
 

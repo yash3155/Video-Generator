@@ -109,20 +109,42 @@ Always preserve the domain's `keepEnglishTerms` phonetically in Devanagari or En
 
 ---
 
-### Mandatory Chart Presets & Dynamic Auto-Scaling (`getDynamicPresetData`)
-The chart visualizer engine (`DataVisualizer.tsx` and `chartPresets.ts`) automatically extracts all `₹<number>` prices mentioned across the scene's beats (dialogue, subtitles, side cards, annotations) and rescales the preset's candlesticks/line points and Y-axis bounds dynamically.
+### Phase 2A Generic, Data-Driven Visual Engine & Template Registry
 
-- **Dynamic Preset Auto-Scaling:** Do NOT hardcode candle bounds or clamp prices to fixed ranges. The chart engine dynamically reads scene prices and rescales candlesticks and Y-axis bounds.
-- **Currency & H&S Isolation:** `yAxisUnit` is strictly locked to `'₹'` to prevent non-currency strings (like RSI, pts, or formulas) from corrupting chart ticks or OHLC tags. The `head_and_shoulders` pattern geometry (shoulder/head pills, neckline) is only rendered when the scene title explicitly matches `/head\s*(?:&|and)\s*shoulders/i`.
-- **Directional Consistency:** Scene prices must make logical sense for the chart pattern (e.g. buying in a breakdown or selling at a breakout must match the narrative flow; a drop must have `dropPrice < buyPrice`).
+The video engine operates on a **generic, data-driven visual contract** decoupled from finance-specific assumptions:
 
-| Preset Name | Typical Profile & Directional Landmark |
-| :--- | :--- |
-| `uptrend_then_drop` | Climbs along an uptrend to peak candle, then breakdowns on heavy volume to close lower. Ideal for bull traps and distribution. |
-| `uptrend_break` | Climbs along support trendline, tests support, and breaks down. For healthy uptrend without breakdown, stop at `progressStep: 2`. |
-| `bull_breakout` | Consolidates below resistance, breaks out cleanly on heavy volume, and rallies to higher highs. Ideal for bullish continuations and volume expansion. |
-| `head_and_shoulders` | Left shoulder peak, highest head peak, right shoulder lower peak, and neckline breakdown. Used strictly for Head & Shoulders scenes. |
-| `random_walk_line` / `telemetry_line` | Continuous telemetry line series for general trend telemetry and indicators. |
+1. **Course Configuration (`src/courses/<course_id>.json`)**:
+   Defines the course ID, book title, subject/domain, allowed templates, allowed units & formatters, visual theme, and persona. Adding a new book requires **zero TypeScript renderer code edits**.
+
+2. **Structured Visual Specifications (`visual`)**:
+   Chart values, formulas, and diagrams are supplied via typed `visual` specifications on each beat—never derived by regex-scraping narration or subtitles for `₹` or numbers:
+   ```ts
+   visual: {
+     kind: 'chart' | 'formula' | 'diagram' | 'comparison' | 'timeline' | 'process' | 'cards' | 'conversation' | 'quiz' | 'summary',
+     data: ChartSpec | FormulaSpec | DiagramSpec | unknown,
+     semantics: {
+       teachingObjective: string,
+       sourceFactIds: string[],
+       importantValues?: string[],
+       relationships?: string[]
+     }
+   }
+   ```
+
+3. **Visual Template Registry (`src/templates/registry/templateRegistry.ts`)**:
+   Defines available templates, accepted data schemas, valid animation targets, required data types, and fallbacks. The generator chooses only templates whitelisted by the selected course configuration.
+
+4. **Generic Formula Engine (`FormulaBreakdown.tsx`)**:
+   Accepts structured expressions, variables with symbols/units/values, and step-by-step substitution cards. Supports physics ($F = m \cdot a$), arithmetic, business metrics, and finance.
+
+5. **Generic Diagram & Timeline Engine (`DiagramFlow.tsx`)**:
+   Renders node-edge graphs, chronological timelines (BCE/CE milestones), biological cycles, and software architectures with animated transitions.
+
+6. **Isolated Finance Domain Module (`src/domain/finance/`)**:
+   Candlestick presets, rupee currency formatting, payoff diagrams, and financial directional validation are isolated in `src/domain/finance/` as an optional extension. The common renderer operates with zero currency or finance coupling when that module is absent.
+
+7. **Universal Backward Compatibility (`src/adapters/legacyVisualAdapter.ts`)**:
+   All pre-existing chapter episodes continue to render cleanly via the adapter without data mutation.
 
 ---
 

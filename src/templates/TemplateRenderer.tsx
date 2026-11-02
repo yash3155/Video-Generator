@@ -11,6 +11,7 @@ import { StatCounter } from './StatCounter';
 import { HorizontalBarRace } from './HorizontalBarRace';
 import { FormulaBreakdown } from './FormulaBreakdown';
 import { PayoffDiagram } from './PayoffDiagram';
+import { DiagramFlow } from './DiagramFlow';
 
 export interface TemplateRendererProps {
   scene: Scene;
@@ -46,6 +47,10 @@ export const TemplateRenderer: React.FC<TemplateRendererProps> = (props) => {
       return <FormulaBreakdown {...props} />;
     case 'payoff_diagram':
       return <PayoffDiagram {...props} />;
+    case 'diagram_flow':
+    case 'process_flow':
+    case 'timeline':
+      return <DiagramFlow {...props} />;
     default:
       return <ChatStory {...props} />;
   }
@@ -63,4 +68,5 @@ export {
   HorizontalBarRace,
   FormulaBreakdown,
   PayoffDiagram,
+  DiagramFlow,
 };

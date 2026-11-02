@@ -1,8 +1,13 @@
 // src/templates/DataVisualizer.tsx
 import React from 'react';
 import { interpolate, spring, useVideoConfig } from 'remotion';
-import { Scene, Beat, DataVisualizerUI, SideCard, CardState } from '../types';
-import { getDynamicPresetData } from './chartPresets';
+import { Scene, Beat, DataVisualizerUI, SideCard, CardState, ChartSpec } from '../types';
+import {
+  FINANCE_CHART_PRESETS,
+  PresetChartData,
+  CandlestickPoint,
+  TelemetryPoint,
+} from '../domain/finance/financePresets';
 
 interface DataVisualizerProps {
   scene: Scene;
@@ -12,6 +17,13 @@ interface DataVisualizerProps {
   beatDuration?: number;
   allBeatsInScene?: Beat[];
 }
+
+const isPrefixUnit = (unit?: string) => (unit ? /^[₹$€£¥]/.test(unit.trim()) : false);
+const formatUnitValue = (val: number | string, unit?: string) => {
+  if (!unit) return `${val}`;
+  const cleanUnit = unit.trim();
+  return isPrefixUnit(cleanUnit) ? `${cleanUnit}${val}` : `${val} ${cleanUnit}`;
+};
 
 const sideCardStyles: Record<
   string,
@@ -98,27 +110,72 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
     preset: 'uptrend_then_drop',
   };
 
-  // Extract all ₹<number> prices mentioned across all beats of this scene so the chart
-  // automatically scales its candles and Y-axis to match the spoken narrative!
-  const scenePrices: number[] = [];
-  const beatsForPrices = allBeatsInScene.length > 0 ? allBeatsInScene : [beat];
-  beatsForPrices.forEach((b) => {
-    const ui = (b.ui_state as DataVisualizerUI) || {};
-    const textPool = [
-      b.en_subtitle || '',
-      b.hindi_tts || '',
-      ...(ui.annotations || []).map((a) => a.text || ''),
-      ...(ui.sideCards || []).map((c) => `${c.title} ${c.subtitle}`),
-    ].join(' ');
-    for (const m of textPool.matchAll(/₹\s*(\d+(?:,\d+)?(?:\.\d+)?)/g)) {
-      const val = parseFloat(m[1].replace(/,/g, ''));
-      if (!isNaN(val) && val >= 20) {
-        scenePrices.push(val);
-      }
-    }
-  });
+  const visualChart: ChartSpec | undefined =
+    beat.visual?.kind === 'chart' ? (beat.visual.data as ChartSpec) : undefined;
 
-  const presetData = getDynamicPresetData(uiState.preset, scenePrices);
+  let presetData: PresetChartData;
+  let yUnit = '';
+  let chartTitle = uiState.chartTitle || scene.title || 'Data Visualizer';
+  let chartSubtitle = uiState.chartSubtitle;
+
+  if (visualChart) {
+    chartTitle = visualChart.title || chartTitle;
+    chartSubtitle = visualChart.subtitle || chartSubtitle;
+    yUnit = visualChart.yAxis?.unit ?? (uiState.yAxisUnit || '');
+
+    const firstSeries = visualChart.series[0];
+    const isCandle = visualChart.chartType === 'candlestick';
+
+    if (isCandle && firstSeries) {
+      const candles: CandlestickPoint[] = firstSeries.data.map((d, idx) => ({
+        open: d.open ?? d.y,
+        high: d.high ?? d.y,
+        low: d.low ?? d.y,
+        close: d.close ?? d.y,
+        volume: 100,
+        label: typeof d.x === 'string' ? d.x : d.label || `P${idx + 1}`,
+      }));
+      const minVal = visualChart.yAxis?.min ?? Math.min(...candles.map((c) => c.low)) * 0.95;
+      const maxVal = visualChart.yAxis?.max ?? Math.max(...candles.map((c) => c.high)) * 1.05;
+      presetData = {
+        type: 'candlestick',
+        unit: yUnit,
+        minY: Math.floor(minVal),
+        maxY: Math.ceil(maxVal),
+        candlesticks: candles,
+      };
+    } else if (firstSeries) {
+      const points: TelemetryPoint[] = firstSeries.data.map((d, idx) => ({
+        value: d.y,
+        xLabel: typeof d.x === 'string' ? d.x : d.label || `${d.x}`,
+      }));
+      const minVal = visualChart.yAxis?.min ?? Math.min(...points.map((p) => p.value)) * 0.95;
+      const maxVal = visualChart.yAxis?.max ?? Math.max(...points.map((p) => p.value)) * 1.05;
+      presetData = {
+        type: 'line',
+        unit: yUnit,
+        minY: Math.floor(minVal),
+        maxY: Math.ceil(maxVal),
+        points,
+      };
+    } else {
+      presetData = {
+        type: 'line',
+        unit: yUnit,
+        minY: 0,
+        maxY: 100,
+        points: [],
+      };
+    }
+  } else {
+    // Pure structured preset lookup without narration text scraping
+    const presetName = uiState.preset || 'uptrend_then_drop';
+    const fallbackPreset =
+      FINANCE_CHART_PRESETS[presetName] || FINANCE_CHART_PRESETS.uptrend_then_drop;
+    yUnit = uiState.yAxisUnit || fallbackPreset.unit || '₹';
+    presetData = fallbackPreset;
+  }
+
   const totalSteps = uiState.totalSteps || 3;
   const currentStep =
     uiState.progressStep !== undefined ? uiState.progressStep : totalSteps;
@@ -131,14 +188,11 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
     }
   }
 
-  // Hard-lock yUnit to '₹' so strings like "RSI", "pts", or formulas NEVER corrupt Y-axis labels or OHLC!
-  const yUnit = '₹';
-
   // Only show LEFT SHOULDER / HEAD / RIGHT SHOULDER badges if the scene is actually teaching Head & Shoulders!
   const isActualHeadAndShoulders =
-    uiState.preset === 'head_and_shoulders' &&
+    (uiState.preset === 'head_and_shoulders' || visualChart?.chartType === 'candlestick') &&
     /head\s*(?:&|and)\s*shoulders/i.test(
-      `${scene?.title || ''} ${uiState.chartTitle || ''} ${uiState.chartSubtitle || ''}`
+      `${scene?.title || ''} ${chartTitle || ''} ${chartSubtitle || ''}`
     );
 
   // Chart layout dimensions
@@ -295,7 +349,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                       : 'text-[#DC2626]'
                   }
                 >
-                  {yUnit}{latestCandle.close}
+                  {formatUnitValue(latestCandle.close, yUnit)}
                 </strong>
               </span>
             </div>
@@ -336,7 +390,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   fontFamily="JetBrains Mono, monospace"
                   fontWeight="600"
                 >
-                  {yUnit}{gl.val}
+                  {formatUnitValue(gl.val, yUnit)}
                 </text>
               </g>
             ))}
@@ -432,7 +486,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                           <circle cx={cx} cy={cy} r={18} stroke="#D97706" strokeWidth={2.5} fill="none" />
                           <rect x={cx - 46} y={cy - 40} width={92} height={20} rx={10} fill="#FFFBEB" stroke="#D97706" strokeWidth={1.5} />
                           <text x={cx} y={cy - 26} textAnchor="middle" fill="#92400E" fontSize="10" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
-                            HEAD ({yUnit}{allCandles[12].high})
+                            HEAD ({formatUnitValue(allCandles[12].high, yUnit)})
                           </text>
                         </g>
                       );
@@ -505,7 +559,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                               fontFamily="JetBrains Mono, monospace"
                               fontWeight="bold"
                             >
-                              BREAK · {yUnit}{neckPrice}
+                              BREAK · {formatUnitValue(neckPrice, yUnit)}
                             </text>
                           </g>
                         );
@@ -541,7 +595,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                             fontFamily="JetBrains Mono, monospace"
                             fontWeight="bold"
                           >
-                            neckline · {yUnit}{neckPrice}
+                            neckline · {formatUnitValue(neckPrice, yUnit)}
                           </text>
 
                           {breakdownRender}
@@ -580,7 +634,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                       fontFamily="JetBrains Mono, monospace"
                       fontWeight="bold"
                     >
-                      {yUnit}{latestCandle.close}
+                      {formatUnitValue(latestCandle.close, yUnit)}
                     </text>
                   </g>
                 )}
@@ -650,7 +704,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                             fontFamily="JetBrains Mono, monospace"
                             fontWeight="bold"
                           >
-                            {ov.label} ({yUnit}{ov.priceLevel})
+                            {ov.label} ({formatUnitValue(ov.priceLevel, yUnit)})
                           </text>
                         )}
                       </g>
@@ -729,7 +783,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                             fontFamily="JetBrains Mono, monospace"
                             fontWeight="bold"
                           >
-                            THRESHOLD SLA ({yUnit}{threshold})
+                            THRESHOLD SLA ({formatUnitValue(threshold ?? '', yUnit)})
                           </text>
                         </g>
                       )}
@@ -846,7 +900,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                             fontFamily="JetBrains Mono, monospace"
                             fontWeight="bold"
                           >
-                            {yUnit}{Math.round(latestPt.point.value)}
+                            {formatUnitValue(Math.round(latestPt.point.value), yUnit)}
                           </text>
                         </g>
                       )}
@@ -881,11 +935,10 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
 
                 let targetIdx = ann.candleIndex;
 
-                // If annotation text mentions a specific ₹ price, snap to the closest visible candle matching that price!
-                const pillPriceMatch = (ann.text || '').match(/₹\s*(\d+(?:,\d+)?(?:\.\d+)?)/);
-                if (pillPriceMatch && allCandles.length > 0) {
-                  const targetPrice = parseFloat(pillPriceMatch[1].replace(/,/g, ''));
-                  if (!isNaN(targetPrice) && targetPrice >= 20) {
+                // Use explicit ann.value or ann.candleIndex for coordinate positioning
+                if (targetIdx === undefined && ann.value !== undefined && allCandles.length > 0) {
+                  const targetPrice = Number(ann.value);
+                  if (!isNaN(targetPrice)) {
                     let bestIdx = 0;
                     let bestDiff = Infinity;
                     const searchPool = allCandles.slice(0, Math.max(1, visibleLength));

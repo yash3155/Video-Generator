@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "domain": "physics",
+    "course": "CLASSICAL MECHANICS · TAYLOR",
+    "chapter": "CHAPTER 1 · NEWTON'S SECOND LAW",
+    "totalSegments": 2
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "Newton's Second Law of Motion",
+      "template": "formula_breakdown",
+      "badge": "FUNDAMENTAL DYNAMICS",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "न्यूटन के दूसरे नियम के अनुसार बल, द्रव्यमान और त्वरण का गुणनफल है।",
+          "en_subtitle": "Net force equals the product of inertial mass and instantaneous acceleration.",
+          "pauseAfterMs": 400,
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Newton's Second Law",
+              "badge": "DYNAMICS MECHANICS",
+              "subtitle": "Force Equation",
+              "expression": "F = m · a",
+              "variables": [
+                { "symbol": "F", "label": "Net Force", "value": "2500", "unit": "N", "description": "Applied vector force" },
+                { "symbol": "m", "label": "Vehicle Mass", "value": "1000", "unit": "kg", "description": "Inertial mass" },
+                { "symbol": "a", "label": "Acceleration", "value": "2.5", "unit": "m/s²", "description": "Rate of velocity change" }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 1,
+                  "label": "General Form",
+                  "equation": "F = m · a",
+                  "note": "Fundamental relationship in inertial reference frame"
+                },
+                {
+                  "stepIndex": 2,
+                  "label": "Numerical Substitution",
+                  "equation": "F = (1000 kg) × (2.5 m/s²)",
+                  "note": "Substituting vehicle mass and desired acceleration"
+                },
+                {
+                  "stepIndex": 3,
+                  "label": "Calculated Result",
+                  "equation": "F = 2500 N",
+                  "note": "Required thrust force in Newtons"
+                }
+              ],
+              "activeStepIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate vector relationship between force, mass, and acceleration",
+              "sourceFactIds": ["fact-phys-01"]
+            }
+          },
+          "ui_state": {
+            "formulaTitle": "Newton's Second Law",
+            "expression": "F = m · a",
+            "variables": [
+              { "symbol": "F", "label": "Net Force", "value": "2500", "unit": "N" },
+              { "symbol": "m", "label": "Vehicle Mass", "value": "1000", "unit": "kg" },
+              { "symbol": "a", "label": "Acceleration", "value": "2.5", "unit": "m/s²" }
+            ],
+            "steps": [
+              { "stepIndex": 1, "label": "General Form", "equation": "F = m · a" },
+              { "stepIndex": 2, "label": "Substitution", "equation": "F = 1000 × 2.5" },
+              { "stepIndex": 3, "label": "Result", "equation": "F = 2500 N" }
+            ],
+            "activeStepIndex": 2
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Constant Acceleration Velocity Curve",
+      "template": "data_visualizer",
+      "badge": "KINEMATICS TELEMETRY",
+      "beats": [
+        {
+          "id": "b02",
+          "hindi_tts": "जैसे-जैसे समय बढ़ता है, गाड़ी की गति एक समान दर से बढ़ती है।",
+          "en_subtitle": "Under constant net force, velocity increases linearly with elapsed time.",
+          "pauseAfterMs": 400,
+          "visual": {
+            "kind": "chart",
+            "data": {
+              "chartType": "line",
+              "title": "Velocity-Time Telemetry",
+              "subtitle": "v(t) = v₀ + a · t (Slope = 2.5 m/s²)",
+              "xAxis": {
+                "label": "Time (seconds)",
+                "unit": "s",
+                "categories": ["0s", "2s", "4s", "6s", "8s", "10s"]
+              },
+              "yAxis": {
+                "label": "Velocity",
+                "unit": "m/s",
+                "min": 0,
+                "max": 30
+              },
+              "series": [
+                {
+                  "id": "velocity-series",
+                  "name": "Instantaneous Velocity",
+                  "type": "line",
+                  "data": [
+                    { "x": "0s", "y": 0, "label": "0s" },
+                    { "x": "2s", "y": 5, "label": "2s" },
+                    { "x": "4s", "y": 10, "label": "4s" },
+                    { "x": "6s", "y": 15, "label": "6s" },
+                    { "x": "8s", "y": 20, "label": "8s" },
+                    { "x": "10s", "y": 25, "label": "10s" }
+                  ]
+                }
+              ],
+              "annotations": [
+                {
+                  "type": "callout",
+                  "text": "Target Cruise Velocity 25 m/s",
+                  "x": 5,
+                  "y": 25,
+                  "color": "#1D4ED8"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Plot linear velocity progression under uniform acceleration",
+              "sourceFactIds": ["fact-phys-02"]
+            }
+          },
+          "ui_state": {
+            "chartTitle": "Velocity-Time Telemetry",
+            "chartSubtitle": "Slope = 2.5 m/s²",
+            "preset": "telemetry_line",
+            "progressStep": 3,
+            "totalSteps": 3,
+            "yAxisUnit": "m/s",
+            "annotations": [
+              {
+                "candleIndex": 5,
+                "value": 25,
+                "text": "Target Cruise Velocity 25 m/s",
+                "color": "#1D4ED8"
+              }
+            ],
+            "sideCards": [
+              {
+                "title": "Uniform Acceleration",
+                "subtitle": "Linear slope confirms constant net force",
+                "state": "active_blue"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

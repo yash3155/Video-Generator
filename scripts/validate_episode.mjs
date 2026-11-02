@@ -1,6 +1,16 @@
 // scripts/validate_episode.mjs
 import fs from 'fs';
 import path from 'path';
+import {
+  VisualSpecSchema,
+  ChartSpecSchema,
+  FormulaSpecSchema,
+  DiagramSpecSchema,
+} from '../src/schemas/visualSpecSchema.mjs';
+import {
+  validateFinancialDirectionalConsistency,
+  validateHeadAndShouldersEligibility,
+} from '../src/domain/finance/financeValidation.mjs';
 
 const args = process.argv.slice(2);
 const dirArg = args.find((a) => a.startsWith('--dir='));
@@ -73,40 +83,81 @@ export function validateEpisodeData(episode) {
         );
       }
 
+      // If structured visual specification is supplied, validate it
+      if (beat.visual) {
+        const vParsed = VisualSpecSchema.safeParse(beat.visual);
+        if (!vParsed.success) {
+          errors.push(
+            `${bPrefix}: Invalid visual spec: ${vParsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join(', ')}`
+          );
+        }
+      }
+
       checkNoDevanagariInUI(beat.ui_state, `${bPrefix}.ui_state`, errors);
     });
 
     if (scene.template === 'data_visualizer') {
-      const sceneTitleCombo = `${scene.title || ''} ${beats[0]?.ui_state?.chartTitle || ''} ${beats[0]?.ui_state?.chartSubtitle || ''}`;
-      const isActualHS = /head\s*(?:&|and)\s*shoulders|neckline/i.test(sceneTitleCombo);
+      const isFinanceDomain =
+        /finance/i.test(episode.meta?.domain || '') ||
+        /hull|murphy|options|futures|trading/i.test(episode.meta?.course || '');
 
       beats.forEach((beat, bIdx) => {
         const ui = beat.ui_state || {};
-        const preset = ui.preset || 'uptrend_then_drop';
+        const preset = ui.preset;
 
-        if (!VALID_PRESETS.includes(preset)) {
-          errors.push(
-            `${sPrefix} Beat ${bIdx}: Unknown chart preset "${preset}". Use one of: ${VALID_PRESETS.join(', ')}`
-          );
-        }
-
-        if (preset === 'head_and_shoulders' && !isActualHS) {
-          errors.push(
-            `${sPrefix} Beat ${bIdx}: Do NOT use "head_and_shoulders" preset on a non-H&S scene ("${scene.title}"). Use "uptrend_then_drop" or "bull_breakout".`
-          );
-        }
-
-        // Generic Directional Sanity Check (e.g., never say "bought at ₹500 and dropped to ₹550")
-        const sub = beat.en_subtitle || '';
-        const dropMatch = sub.match(
-          /(?:bought|entered|chased).*?₹\s*(\d+(?:,\d+)?).*?(?:drop|slump|fell|sink|crash).*?₹\s*(\d+(?:,\d+)?)/i
-        );
-        if (dropMatch) {
-          const buyPrice = Number(dropMatch[1].replace(/,/g, ''));
-          const dropPrice = Number(dropMatch[2].replace(/,/g, ''));
-          if (dropPrice >= buyPrice) {
+        // If no visual spec is given and a preset is specified, check against valid presets
+        if (!beat.visual && preset) {
+          if (!VALID_PRESETS.includes(preset)) {
             errors.push(
-              `${sPrefix} Beat ${bIdx}: Illogical price drop! Cannot buy at ₹${buyPrice} and drop to a higher/equal price ₹${dropPrice}.`
+              `${sPrefix} Beat ${bIdx}: Unknown chart preset "${preset}". Use one of: ${VALID_PRESETS.join(', ')}`
+            );
+          }
+        }
+
+        // Domain-isolated Finance Checks
+        if (isFinanceDomain) {
+          const sceneTitleCombo = `${scene.title || ''} ${beats[0]?.ui_state?.chartTitle || ''} ${beats[0]?.ui_state?.chartSubtitle || ''}`;
+          if (preset) {
+            const hsIssues = validateHeadAndShouldersEligibility(sceneTitleCombo, preset);
+            hsIssues.forEach((iss) => errors.push(`${sPrefix} Beat ${bIdx}: ${iss.message}`));
+          }
+
+          const dirIssues = validateFinancialDirectionalConsistency(beat.en_subtitle || '');
+          dirIssues.forEach((iss) => errors.push(`${sPrefix} Beat ${bIdx}: ${iss.message}`));
+        } else {
+          // In non-finance domain, reject ₹ currency symbols
+          const sub = beat.en_subtitle || '';
+          if (/₹/.test(sub)) {
+            errors.push(
+              `${sPrefix} Beat ${bIdx}: Non-finance domain must not include '₹' currency symbol in subtitles ("${sub}").`
+            );
+          }
+        }
+      });
+    }
+
+    if (scene.template === 'diagram_flow' || scene.template === 'timeline' || scene.template === 'process_flow') {
+      beats.forEach((beat, bIdx) => {
+        const diagramData = beat.visual?.data || beat.ui_state;
+        if (diagramData && typeof diagramData === 'object' && diagramData.nodes) {
+          const dParsed = DiagramSpecSchema.safeParse(diagramData);
+          if (!dParsed.success) {
+            errors.push(
+              `${sPrefix} Beat ${bIdx}: Invalid DiagramSpec: ${dParsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join(', ')}`
+            );
+          }
+        }
+      });
+    }
+
+    if (scene.template === 'formula_breakdown') {
+      beats.forEach((beat, bIdx) => {
+        const formulaData = beat.visual?.data || beat.ui_state;
+        if (formulaData && formulaData.expression && formulaData.variables) {
+          const fParsed = FormulaSpecSchema.safeParse(formulaData);
+          if (!fParsed.success) {
+            errors.push(
+              `${sPrefix} Beat ${bIdx}: Invalid FormulaSpec: ${fParsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join(', ')}`
             );
           }
         }
