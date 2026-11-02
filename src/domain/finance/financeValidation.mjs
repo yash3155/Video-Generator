@@ -57,3 +57,4 @@ export function validateHeadAndShouldersEligibility(sceneTitle, preset) {
   }
   return issues;
 }
+

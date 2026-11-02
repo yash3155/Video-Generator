@@ -2,6 +2,7 @@ import React from 'react';
 import { useVideoConfig, spring } from 'remotion';
 import { Scene, Beat, ProgressiveCardsUI, ProgressiveCardItem } from '../types';
 import { DynamicIcon } from '../components/DynamicIcon';
+import { getLatestCue } from '../utils/cueUtils';
 
 interface ProgressiveCardsProps {
   scene: Scene;
@@ -103,6 +104,13 @@ export const ProgressiveCards: React.FC<ProgressiveCardsProps> = ({
   const isGrid = uiState.layout === 'grid';
   const allCards = uiState.cards || [];
 
+  // Phase 2B: Visual cue-driven active card highlighting
+  const activeCardCue = getLatestCue(beat, 'activeCardIndex', beatFrame, fps);
+  const activeCardIdx =
+    activeCardCue && activeCardCue.payload !== undefined
+      ? Number(activeCardCue.payload)
+      : -1;
+
   return (
     <div className="w-full h-full flex flex-col justify-center relative z-10 px-8 py-2 my-auto">
       <div
@@ -171,10 +179,16 @@ export const ProgressiveCards: React.FC<ProgressiveCardsProps> = ({
             }
 
             // If this card is newly revealed on this beat and state was left as 'default', highlight it automatically
-            const effectiveStateKey =
-              !wasAlreadyVisible && (!card.state || card.state === 'default')
-                ? activeColorCycle[idx % activeColorCycle.length]
-                : resolveCardThemeKey(card.state, idx);
+            const isExplicitlyActive = activeCardIdx >= 0 && idx === activeCardIdx;
+            const isExplicitlyMuted = activeCardIdx >= 0 && idx !== activeCardIdx;
+
+            const effectiveStateKey = isExplicitlyActive
+              ? activeColorCycle[idx % activeColorCycle.length]
+              : isExplicitlyMuted
+                ? 'muted'
+                : !wasAlreadyVisible && (!card.state || card.state === 'default')
+                  ? activeColorCycle[idx % activeColorCycle.length]
+                  : resolveCardThemeKey(card.state, idx);
 
             const colorTheme =
               cardColorMap[effectiveStateKey] || cardColorMap.default;

@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "domain": "systems",
+    "course": "DISTRIBUTED SYSTEMS · KLEPPMANN",
+    "chapter": "CHAPTER 5 · REPLICATION LOGS",
+    "totalSegments": 1
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "Quorum Consistency Scenario",
+      "template": "interactive_quiz",
+      "badge": "ACTIVE RECALL CHECK",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "अगर एक नोड नेटवर्क से कट जाए, तो क्या क्लस्टर राइट रिक्वेस्ट स्वीकार कर सकता है?",
+          "en_subtitle": "If a single replica experiences network partition, can the cluster still accept write operations?",
+          "pauseAfterMs": 400,
+          "visualCues": [
+            { "atMs": 300, "action": "reveal", "target": "questionReveal", "payload": "Quorum Question" }
+          ],
+          "ui_state": {
+            "question": "If a single replica experiences network partition, can the cluster still accept write operations safely?",
+            "showThinkingSpinner": false,
+            "answer": null
+          }
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "सोचिए कि कोरम नियम के अनुसार कितने नोड्स की सहमति ज़रूरी होती है।",
+          "en_subtitle": "Consider whether strict majority quorum (W + R > N) is satisfied without the isolated node.",
+          "pauseAfterMs": 3500,
+          "visualCues": [
+            { "atMs": 200, "action": "reveal", "target": "showThinkingSpinner", "payload": true }
+          ],
+          "ui_state": {
+            "question": "If a single replica experiences network partition, can the cluster still accept write operations safely?",
+            "showThinkingSpinner": true,
+            "answer": null
+          }
+        },
+        {
+          "id": "b03",
+          "hindi_tts": "जी हाँ, जब तक कोरम मेजॉरिटी उपलब्ध है, सिस्टम निरंतर काम करता रहता है।",
+          "en_subtitle": "Yes, as long as majority quorum nodes respond, write operations commit successfully without data loss.",
+          "pauseAfterMs": 600,
+          "visualCues": [
+            { "atMs": 400, "action": "reveal", "target": "answerReveal", "payload": "Yes, majority quorum ensures safe write commits." }
+          ],
+          "ui_state": {
+            "question": "If a single replica experiences network partition, can the cluster still accept write operations safely?",
+            "showThinkingSpinner": false,
+            "answer": "Yes, as long as majority quorum (W + R > N) responds, writes succeed."
+          }
+        }
+      ]
+    }
+  ]
+}

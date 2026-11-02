@@ -2,6 +2,7 @@
 import React from 'react';
 import { interpolate, spring, useVideoConfig } from 'remotion';
 import { Scene, Beat, DataVisualizerUI, SideCard, CardState, ChartSpec } from '../types';
+import { getLatestCue, getActiveCues } from '../utils/cueUtils';
 import {
   FINANCE_CHART_PRESETS,
   PresetChartData,
@@ -145,7 +146,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
         candlesticks: candles,
       };
     } else if (firstSeries) {
-      const points: TelemetryPoint[] = firstSeries.data.map((d, idx) => ({
+      const points: TelemetryPoint[] = firstSeries.data.map((d) => ({
         value: d.y,
         xLabel: typeof d.x === 'string' ? d.x : d.label || `${d.x}`,
       }));
@@ -223,28 +224,52 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
   const allCandles = presetData.candlesticks || [];
   const totalCandles = allCandles.length;
 
+  const revealDuration = Math.max(15, Math.round(beatDuration * 0.7));
   const prevCandleTarget = Math.round((prevStep / totalSteps) * totalCandles);
+
+  // Phase 2B: Visual cue-driven progress step
+  const stepCue = getLatestCue(beat, 'progressStep', beatFrame, fps);
+  const effectiveCurrentStep =
+    stepCue && stepCue.payload !== undefined
+      ? Number(stepCue.payload)
+      : currentStep;
+
   const currentCandleTarget = Math.max(
     1,
-    Math.round((currentStep / totalSteps) * totalCandles)
+    Math.round((effectiveCurrentStep / totalSteps) * totalCandles)
   );
 
-  const revealDuration = Math.max(15, Math.round(beatDuration * 0.7));
-  const animatedCandleCount =
-    beatIndexInScene === 0
-      ? Math.round(
-        interpolate(beatFrame, [0, revealDuration], [1, currentCandleTarget], {
-          extrapolateRight: 'clamp',
-        })
-      )
-      : Math.round(
-        interpolate(
-          beatFrame,
-          [0, revealDuration],
-          [prevCandleTarget, currentCandleTarget],
-          { extrapolateRight: 'clamp' }
-        )
+  let animatedCandleCount: number;
+  if (stepCue) {
+    // Cue-driven: crisp 10-frame transition from cue trigger timestamp
+    const cueFrame = Math.round((stepCue.atMs / 1000) * fps);
+    if (beatFrame < cueFrame) {
+      animatedCandleCount = prevCandleTarget;
+    } else {
+      const progress = Math.min(1, Math.max(0, (beatFrame - cueFrame) / 10));
+      animatedCandleCount = Math.round(
+        prevCandleTarget + (currentCandleTarget - prevCandleTarget) * progress
       );
+    }
+  } else {
+    // Fallback when no visualCues provided (legacy backward compatibility)
+    const revealDuration = Math.max(15, Math.round(beatDuration * 0.7));
+    animatedCandleCount =
+      beatIndexInScene === 0
+        ? Math.round(
+          interpolate(beatFrame, [0, revealDuration], [1, currentCandleTarget], {
+            extrapolateRight: 'clamp',
+          })
+        )
+        : Math.round(
+          interpolate(
+            beatFrame,
+            [0, revealDuration],
+            [prevCandleTarget, currentCandleTarget],
+            { extrapolateRight: 'clamp' }
+          )
+        );
+  }
 
   const visibleCandles = allCandles.slice(0, animatedCandleCount);
   const slotW = totalCandles > 0 ? plotW / totalCandles : 1;
@@ -920,6 +945,23 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                   return null;
                 }
 
+                // Phase 2B: Visual cue-driven annotation reveal
+                const annotationCues = getActiveCues(beat, beatFrame, fps).filter(
+                  (c) => c.target === 'annotationReveal'
+                );
+                const hasExplicitAnnotationCues =
+                  Array.isArray(beat.visualCues) &&
+                  beat.visualCues.some((c) => c.target === 'annotationReveal');
+                if (hasExplicitAnnotationCues) {
+                  const isRevealed = annotationCues.some(
+                    (c) =>
+                      c.payload === ann.text ||
+                      Number(c.payload) === idx ||
+                      c.payload === ann.type
+                  );
+                  if (!isRevealed) return null;
+                }
+
                 const seriesLength =
                   allCandles.length > 0
                     ? allCandles.length
@@ -954,15 +996,6 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
                       }
                     });
                     targetIdx = bestIdx;
-                  }
-                } else if (targetIdx === undefined && ann.value !== undefined && allCandles.length > 0) {
-                  const nearestIdx = allCandles.findIndex(
-                    (c) =>
-                      Math.abs(c.close - ann.value!) <= 2 ||
-                      Math.abs(c.open - ann.value!) <= 2
-                  );
-                  if (nearestIdx >= 0) {
-                    targetIdx = nearestIdx;
                   }
                 }
 

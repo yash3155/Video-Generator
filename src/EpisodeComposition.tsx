@@ -87,7 +87,12 @@ const ScenePlayer: React.FC<ScenePlayerProps> = ({ scene, meta }) => {
 
   return (
     <>
-      <SceneLayout meta={meta} scene={scene} beat={currentBeat}>
+      <SceneLayout
+        meta={meta}
+        scene={scene}
+        beat={currentBeat}
+        beatFrame={beatFrame}
+      >
         <TemplateRenderer
           scene={scene}
           beat={currentBeat}

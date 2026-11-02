@@ -2,6 +2,7 @@
 import React from 'react';
 import { spring, useVideoConfig } from 'remotion';
 import { Scene, Beat, FormulaSpec, FormulaVariable, FormulaStep } from '../types';
+import { getLatestCue, getActiveCues } from '../utils/cueUtils';
 
 interface FormulaBreakdownProps {
   scene: Scene;
@@ -66,7 +67,19 @@ export const FormulaBreakdown: React.FC<FormulaBreakdownProps> = ({
     config: { damping: 14, stiffness: 120 },
   });
 
-  const activeStepIdx = formulaSpec.activeStepIndex || 1;
+  // Phase 2B: Visual cues synchronization
+  const stepCue = getLatestCue(beat, 'activeStepIndex', beatFrame, fps);
+  const activeStepIdx =
+    stepCue && stepCue.payload !== undefined
+      ? Number(stepCue.payload)
+      : formulaSpec.activeStepIndex || 1;
+
+  const activeCues = getActiveCues(beat, beatFrame, fps);
+  const highlightedVars = new Set(
+    activeCues
+      .filter((c) => c.target === 'variableHighlight')
+      .map((c) => String(c.payload))
+  );
 
   return (
     <div className="w-full h-full flex flex-col justify-between items-center relative z-10 px-8 py-4">
@@ -114,6 +127,9 @@ export const FormulaBreakdown: React.FC<FormulaBreakdownProps> = ({
         {/* 2. Structured Variable Definitions Chips */}
         <div className="my-5 w-full flex items-center justify-center flex-wrap gap-3">
           {formulaSpec.variables.map((v: FormulaVariable, idx: number) => {
+            const isVarHighlighted =
+              highlightedVars.has(v.symbol) ||
+              Boolean(v.label && highlightedVars.has(v.label));
             const vSpring = spring({
               frame: beatFrame - 8 - idx * 3,
               fps,
@@ -124,14 +140,24 @@ export const FormulaBreakdown: React.FC<FormulaBreakdownProps> = ({
                 key={v.symbol}
                 style={{
                   opacity: vSpring,
-                  transform: `translateY(${(1 - vSpring) * 8}px)`,
+                  transform: `translateY(${(1 - vSpring) * 8}px) ${isVarHighlighted ? 'scale(1.06)' : 'scale(1)'}`,
                 }}
-                className="flex items-center bg-white border border-[#E2E8F0] rounded-xl px-4 py-2 shadow-2xs space-x-2"
+                className={`flex items-center rounded-xl px-4 py-2 space-x-2 transition-all duration-300 ${
+                  isVarHighlighted
+                    ? 'bg-[#FFFBEB] border-2 border-[#F59E0B] shadow-md ring-2 ring-[#FCD34D]/50'
+                    : 'bg-white border border-[#E2E8F0] shadow-2xs'
+                }`}
               >
-                <span className="font-mono text-lg font-black text-[#1E293B] bg-[#EFF6FF] border border-[#BFDBFE] px-2 py-0.5 rounded-md">
+                <span className={`font-mono text-lg font-black px-2 py-0.5 rounded-md ${
+                  isVarHighlighted
+                    ? 'bg-[#F59E0B] text-white'
+                    : 'text-[#1E293B] bg-[#EFF6FF] border border-[#BFDBFE]'
+                }`}>
                   {v.symbol}
                 </span>
-                <span className="text-sm font-bold text-[#334155]">{v.label}</span>
+                <span className={`text-sm font-bold ${isVarHighlighted ? 'text-[#92400E]' : 'text-[#334155]'}`}>
+                  {v.label}
+                </span>
                 {v.value !== undefined && (
                   <span className="text-sm font-mono font-semibold text-[#B45309]">
                     = {v.value}
@@ -151,8 +177,13 @@ export const FormulaBreakdown: React.FC<FormulaBreakdownProps> = ({
         <div className="w-full flex items-center justify-center space-x-4">
           {(formulaSpec.steps || []).map((step: FormulaStep, sIdx: number) => {
             const isStepActive = step.stepIndex === activeStepIdx;
+            const stepCueForThis = getLatestCue(beat, 'activeStepIndex', beatFrame, fps);
+            const cueFrameOffset =
+              stepCueForThis && Number(stepCueForThis.payload) === step.stepIndex
+                ? Math.round((stepCueForThis.atMs / 1000) * fps)
+                : 12 + sIdx * 4;
             const stepSpring = spring({
-              frame: beatFrame - 12 - sIdx * 4,
+              frame: beatFrame - cueFrameOffset,
               fps,
               config: { damping: 14, stiffness: 120 },
             });

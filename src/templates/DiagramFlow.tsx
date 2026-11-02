@@ -3,6 +3,7 @@ import React from 'react';
 import { spring, useVideoConfig } from 'remotion';
 import { Scene, Beat, DiagramSpec, DiagramNode } from '../types';
 import { DynamicIcon } from '../components/DynamicIcon';
+import { getLatestCue } from '../utils/cueUtils';
 
 interface DiagramFlowProps {
   scene: Scene;
@@ -91,7 +92,26 @@ export const DiagramFlow: React.FC<DiagramFlowProps> = ({
 
   const nodes = diagramSpec.nodes || [];
   const edges = diagramSpec.edges || [];
-  const activeNodeSet = new Set(diagramSpec.activeNodeIds || []);
+
+  // Phase 2B: Visual cue-driven active nodes and edges
+  const nodeCue = getLatestCue(beat, 'activeNodeIds', beatFrame, fps);
+  let effectiveActiveNodes = diagramSpec.activeNodeIds || [];
+  if (nodeCue && nodeCue.payload !== undefined) {
+    effectiveActiveNodes = Array.isArray(nodeCue.payload)
+      ? (nodeCue.payload as string[])
+      : [String(nodeCue.payload)];
+  }
+
+  // Also support 'stepIndex' cue mapping to node index
+  const stepCue = getLatestCue(beat, 'stepIndex', beatFrame, fps);
+  if (stepCue && stepCue.payload !== undefined) {
+    const sIdx = Number(stepCue.payload) - 1;
+    if (nodes[sIdx]) {
+      effectiveActiveNodes = [nodes[sIdx].id];
+    }
+  }
+
+  const activeNodeSet = new Set(effectiveActiveNodes);
   const layout = diagramSpec.layout || 'linear_horizontal';
 
   return (
@@ -316,3 +336,4 @@ const TimelineLayout: React.FC<TimelineLayoutProps> = ({
     </div>
   );
 };
+

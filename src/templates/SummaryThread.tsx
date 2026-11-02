@@ -2,6 +2,7 @@ import React from 'react';
 import { useVideoConfig, spring } from 'remotion';
 import { Scene, Beat, SummaryThreadUI } from '../types';
 import { Sparkles } from 'lucide-react';
+import { getLatestCue } from '../utils/cueUtils';
 
 interface SummaryThreadProps {
   scene: Scene;
@@ -39,7 +40,16 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
   let endStep = 2;
 
   const rawRange = uiState.activeStepRange;
-  if (isFirstBeat && rawRange && rawRange[0] === 0 && rawRange[1] === 0) {
+  // Phase 2B: Visual cue-driven active step range
+  const rangeCue = getLatestCue(beat, 'activeStepRange', beatFrame, fps);
+  if (
+    rangeCue &&
+    Array.isArray(rangeCue.payload) &&
+    rangeCue.payload.length === 2
+  ) {
+    startStep = Number(rangeCue.payload[0]);
+    endStep = Number(rangeCue.payload[1]);
+  } else if (isFirstBeat && rawRange && rawRange[0] === 0 && rawRange[1] === 0) {
     // Dedicated intro beat: all steps muted
     startStep = 0;
     endStep = 0;

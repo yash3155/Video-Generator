@@ -2,6 +2,7 @@
 import 'dotenv/config';
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import { EdgeTTS } from 'node-edge-tts';
@@ -61,63 +62,77 @@ if (localAudioDir && !fs.existsSync(localAudioDir)) {
   fs.mkdirSync(localAudioDir, { recursive: true });
 }
 
-console.log(`[TTS] Compiler started. Target Mode: ${selectedMode.toUpperCase()} | Force overwrite: ${force}`);
-if (chapterSlug) {
-  console.log(`  -> Isolated Chapter: ${chapterSlug}`);
-  console.log(`  -> Source: ${rawPath}`);
-  console.log(`  -> Output: ${compiledPath}`);
-  console.log(`  -> Audio Assets: ${audioDir}`);
-}
-
-if (!fs.existsSync(rawPath)) {
-  console.error(`[ERROR] Raw episode file not found: ${rawPath}`);
-  process.exit(1);
-}
-
-const episode = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
-
-// Guardrail: Validate schema before running any TTS synthesis
-try {
-  const targetValidateDir = dirArg
-    ? dirArg.split('=')[1]
-    : chapterArg
-      ? `src/data/chapters/${chapterSlug}`
-      : 'src/data';
-  const relValidateDir = path.isAbsolute(targetValidateDir)
-    ? path.relative(rootDir, targetValidateDir).replace(/\\/g, '/')
-    : targetValidateDir.replace(/\\/g, '/');
-  execSync(`node "${path.join(__dirname, 'validate_episode.mjs')}" --dir="${relValidateDir}"`, {
-    stdio: 'inherit',
-    cwd: rootDir,
-  });
-} catch {
-  console.error(`\n========================================`);
-  console.error(`[VALIDATION FAILED] Cannot compile audio. Pre-validation checks failed.`);
-  console.error(`========================================\n`);
-  process.exit(1);
-}
-
-const edgeTts = new EdgeTTS({
-  voice: 'hi-IN-MadhurNeural',
-  lang: 'hi-IN',
-  outputFormat: 'audio-24khz-48kbitrate-mono-mp3',
-  rate: '+2%',
-});
-
-const geminiApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
-const targetModel = process.env.GEMINI_MODEL || 'gemini-4-argon';
-const geminiBaseUrl = process.env.GEMINI_BASE_URL || process.env.GOOGLE_GEMINI_BASE_URL;
-const thinkingLevel = process.env.GEMINI_THINKING_LEVEL || 'medium';
-
+let episode = null;
+let edgeTts = null;
 let aiClient = null;
-if (geminiApiKey) {
-  const clientOptions = { apiKey: geminiApiKey };
-  if (geminiBaseUrl) {
-    clientOptions.httpOptions = { baseUrl: geminiBaseUrl };
-    console.log(`  -> [Gemini Config] Routing via proxy base URL: ${geminiBaseUrl}`);
+const targetModel = process.env.GEMINI_MODEL || 'gemini-4-argon';
+
+function getEdgeTts() {
+  if (!edgeTts) {
+    edgeTts = new EdgeTTS({
+      voice: 'hi-IN-MadhurNeural',
+      lang: 'hi-IN',
+      outputFormat: 'audio-24khz-48kbitrate-mono-mp3',
+      rate: '+2%',
+    });
   }
-  console.log(`  -> [Gemini Config] Model Engine: ${targetModel} | Reasoning: ${thinkingLevel}`);
-  aiClient = new GoogleGenAI(clientOptions);
+  return edgeTts;
+}
+
+function initAiClient() {
+  if (aiClient) return aiClient;
+  const geminiApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+  const geminiBaseUrl = process.env.GEMINI_BASE_URL || process.env.GOOGLE_GEMINI_BASE_URL;
+  const thinkingLevel = process.env.GEMINI_THINKING_LEVEL || 'medium';
+
+  if (geminiApiKey) {
+    const clientOptions = { apiKey: geminiApiKey };
+    if (geminiBaseUrl) {
+      clientOptions.httpOptions = { baseUrl: geminiBaseUrl };
+      console.log(`  -> [Gemini Config] Routing via proxy base URL: ${geminiBaseUrl}`);
+    }
+    console.log(`  -> [Gemini Config] Model Engine: ${targetModel} | Reasoning: ${thinkingLevel}`);
+    aiClient = new GoogleGenAI(clientOptions);
+  }
+  return aiClient;
+}
+
+function ensurePreValidation() {
+  console.log(`[TTS] Compiler started. Target Mode: ${selectedMode.toUpperCase()} | Force overwrite: ${force}`);
+  if (chapterSlug) {
+    console.log(`  -> Isolated Chapter: ${chapterSlug}`);
+    console.log(`  -> Source: ${rawPath}`);
+    console.log(`  -> Output: ${compiledPath}`);
+    console.log(`  -> Audio Assets: ${audioDir}`);
+  }
+
+  if (!fs.existsSync(rawPath)) {
+    console.error(`[ERROR] Raw episode file not found: ${rawPath}`);
+    process.exit(1);
+  }
+
+  episode = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
+
+  // Guardrail: Validate schema before running any TTS synthesis
+  try {
+    const targetValidateDir = dirArg
+      ? dirArg.split('=')[1]
+      : chapterArg
+        ? `src/data/chapters/${chapterSlug}`
+        : 'src/data';
+    const relValidateDir = path.isAbsolute(targetValidateDir)
+      ? path.relative(rootDir, targetValidateDir).replace(/\\/g, '/')
+      : targetValidateDir.replace(/\\/g, '/');
+    execSync(`node "${path.join(__dirname, 'validate_episode.mjs')}" --dir="${relValidateDir}"`, {
+      stdio: 'inherit',
+      cwd: rootDir,
+    });
+  } catch {
+    console.error(`\n========================================`);
+    console.error(`[VALIDATION FAILED] Cannot compile audio. Pre-validation checks failed.`);
+    console.error(`========================================\n`);
+    process.exit(1);
+  }
 }
 
 function sleep(ms) {
@@ -263,19 +278,71 @@ export function sanitizeForHindiTTS(text) {
   return sanitized;
 }
 
-async function synthesizeEdge(beat, maxRetries = 4) {
+/**
+ * Computes deterministic SHA-256 hash of normalized narration text.
+ */
+export function hashNarration(text) {
+  const normalized = (text || '').trim().replace(/\s+/g, ' ');
+  return crypto.createHash('sha256').update(normalized, 'utf8').digest('hex').slice(0, 16);
+}
+
+/**
+ * Segments an English subtitle into natural semantic phrases with proportional timing.
+ * Falls back safely to a single sentence-level phrase if text cannot be cleanly split.
+ */
+export function segmentSubtitleIntoPhrases(subtitle, audioDurationSec) {
+  if (!subtitle || typeof subtitle !== 'string') return [];
+  const cleanText = subtitle.trim();
+  if (!cleanText) return [];
+  const totalMs = Math.max(500, Math.round(audioDurationSec * 1000));
+
+  let rawChunks = [];
+  if (/[,;—–]/.test(cleanText)) {
+    rawChunks = cleanText.split(/(?<=[,;—–])\s+/).map((s) => s.trim()).filter(Boolean);
+  }
+  if (rawChunks.length <= 1) {
+    const words = cleanText.split(/\s+/);
+    if (words.length <= 5) {
+      return [{ text: cleanText, startMs: 0, endMs: totalMs }];
+    }
+    const numPhrases = words.length >= 12 ? 3 : 2;
+    const wordsPerPhrase = Math.ceil(words.length / numPhrases);
+    rawChunks = [];
+    for (let i = 0; i < words.length; i += wordsPerPhrase) {
+      rawChunks.push(words.slice(i, i + wordsPerPhrase).join(' '));
+    }
+  }
+
+  const totalChars = rawChunks.reduce((acc, c) => acc + c.length, 0);
+  let currentStart = 0;
+  return rawChunks.map((chunk, idx) => {
+    const proportion = totalChars > 0 ? chunk.length / totalChars : 1 / rawChunks.length;
+    const phraseDuration = Math.round(proportion * totalMs);
+    const startMs = currentStart;
+    const endMs = idx === rawChunks.length - 1 ? totalMs : Math.min(totalMs, currentStart + phraseDuration);
+    currentStart = endMs;
+    return { text: chunk, startMs, endMs };
+  });
+}
+
+async function synthesizeEdge(beat, maxRetries = 4, targetHash = null, isHashMatch = false) {
   const fileName = `${beat.id}.mp3`;
   const filePath = path.join(audioDir, fileName);
   const spokenText = sanitizeForHindiTTS(beat.hindi_tts);
 
   const isValidExisting = fs.existsSync(filePath) && fs.statSync(filePath).size > 1000;
+  const canUseCache = isValidExisting && isHashMatch && !force;
 
-  if (!isValidExisting || force) {
+  if (!canUseCache) {
     let attempt = 0;
     while (attempt < maxRetries) {
       try {
-        console.log(`  -> [Edge-TTS] Synthesizing beat "${beat.id}": "${spokenText.slice(0, 40)}..."`);
-        await edgeTts.ttsPromise(spokenText, filePath);
+        if (!isHashMatch && isValidExisting) {
+          console.log(`  -> [Edge-TTS] Narration changed for beat "${beat.id}". Regenerating audio: "${spokenText.slice(0, 40)}..."`);
+        } else {
+          console.log(`  -> [Edge-TTS] Synthesizing beat "${beat.id}": "${spokenText.slice(0, 40)}..."`);
+        }
+        await getEdgeTts().ttsPromise(spokenText, filePath);
 
         if (fs.existsSync(filePath) && fs.statSync(filePath).size > 1000) {
           break;
@@ -295,7 +362,7 @@ async function synthesizeEdge(beat, maxRetries = 4) {
     }
     await sleep(450);
   } else {
-    console.log(`  -> [Edge-TTS] Using cached "${fileName}"`);
+    console.log(`  -> [Edge-TTS] Using authoritative cached "${fileName}" (hash: ${targetHash})`);
   }
 
   if (localAudioDir && fs.existsSync(filePath)) {
@@ -316,15 +383,18 @@ async function synthesizeEdge(beat, maxRetries = 4) {
   };
 }
 
-async function synthesizeGemini(beat) {
+async function synthesizeGemini(beat, targetHash = null, isHashMatch = false) {
   const fileName = `${beat.id}.wav`;
   const filePath = path.join(audioDir, fileName);
   const relativeAudioPath = chapterSlug
     ? `audio/${chapterSlug}/${fileName}`
     : `audio/${fileName}`;
 
-  if (fs.existsSync(filePath) && !force) {
-    console.log(`  -> [Gemini-TTS] Using cached "${fileName}"`);
+  const isValidExisting = fs.existsSync(filePath) && fs.statSync(filePath).size > 1000;
+  const canUseCache = isValidExisting && isHashMatch && !force;
+
+  if (canUseCache) {
+    console.log(`  -> [Gemini-TTS] Using authoritative cached "${fileName}" (hash: ${targetHash})`);
     const stats = fs.statSync(filePath);
     const pcmBytes = Math.max(0, stats.size - 44);
     const durationSec = pcmBytes / (24000 * 2);
@@ -393,10 +463,27 @@ async function synthesizeGemini(beat) {
 }
 
 async function run() {
+  ensurePreValidation();
+
   const FPS = 30;
   let fallbackToEdge = false;
   let totalDurationFrames = 0;
   let beatCount = 0;
+
+  // Load existing compiled episode if present to check previous narration hashes
+  const compiledMap = new Map();
+  if (fs.existsSync(compiledPath)) {
+    try {
+      const prevCompiled = JSON.parse(fs.readFileSync(compiledPath, 'utf8'));
+      (prevCompiled.scenes || []).forEach((sc) => {
+        (sc.beats || []).forEach((b) => {
+          if (b.id) {
+            compiledMap.set(b.id, b);
+          }
+        });
+      });
+    } catch { }
+  }
 
   for (const scene of episode.scenes) {
     console.log(`\n[Scene ${scene.segmentIndex}] "${scene.title}" (${scene.template})`);
@@ -405,32 +492,54 @@ async function run() {
       beatCount++;
       let audioResult = null;
 
+      const currentHash = hashNarration(beat.hindi_tts);
+      const prevBeat = compiledMap.get(beat.id);
+      const isHashMatch = Boolean(prevBeat && prevBeat.narrationHash === currentHash);
+
       if (selectedMode === 'gemini' && !fallbackToEdge) {
         try {
-          audioResult = await synthesizeGemini(beat);
+          audioResult = await synthesizeGemini(beat, currentHash, isHashMatch);
         } catch (err) {
           console.warn(`[WARN] Gemini TTS failed for beat ${beat.id}: ${err.message}`);
           console.warn(`[FALLBACK] Switching to Edge-TTS for beat ${beat.id} and remaining beats.`);
           fallbackToEdge = true;
-          audioResult = await synthesizeEdge(beat);
+          audioResult = await synthesizeEdge(beat, 4, currentHash, isHashMatch);
         }
       } else {
-        audioResult = await synthesizeEdge(beat);
+        audioResult = await synthesizeEdge(beat, 4, currentHash, isHashMatch);
       }
 
+      beat.narrationHash = currentHash;
       beat.audioFile = audioResult.audioFile;
       beat.audioDurationSec = parseFloat(audioResult.durationSec.toFixed(2));
 
-      const intendedPauseMs = beat.pauseAfterMs ?? 260;
-      const pauseMs =
-        intendedPauseMs >= 3000 ? 3200 : intendedPauseMs >= 600 ? 450 : 260;
+      // Authoritative exact authored pause preservation
+      const pauseMs = beat.pauseAfterMs ?? 260;
       const totalMs = beat.audioDurationSec * 1000 + pauseMs;
       beat.durationInFrames = Math.max(15, Math.ceil((totalMs / 1000) * FPS));
+
+      // Phase 2B: Generate phrase-level subtitle alignment data
+      beat.subtitlePhrases = segmentSubtitleIntoPhrases(
+        beat.en_subtitle,
+        beat.audioDurationSec
+      );
+
+      // Validate cues against measured audio duration
+      if (Array.isArray(beat.visualCues) && beat.visualCues.length > 0) {
+        const audioEndMs = beat.audioDurationSec * 1000;
+        beat.visualCues.forEach((cue) => {
+          if (cue.atMs > audioEndMs + pauseMs) {
+            console.warn(
+              `  [WARN] Visual cue target "${cue.target}" at ${cue.atMs}ms exceeds beat duration (${Math.round(totalMs)}ms).`
+            );
+          }
+        });
+      }
 
       totalDurationFrames += beat.durationInFrames;
 
       console.log(
-        `   Beat ${beat.id}: ${beat.audioDurationSec}s audio + ${pauseMs}ms pause -> ${beat.durationInFrames} frames`
+        `   Beat ${beat.id} [hash:${currentHash}]: ${beat.audioDurationSec}s audio + ${pauseMs}ms pause -> ${beat.durationInFrames} frames (${beat.subtitlePhrases.length} subtitle phrases)`
       );
     }
   }
@@ -447,7 +556,9 @@ async function run() {
   console.log(`========================================\n`);
 }
 
-run().catch((err) => {
-  console.error('[FATAL] Audio compilation failed:', err);
-  process.exit(1);
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename)) {
+  run().catch((err) => {
+    console.error('[FATAL] Audio compilation failed:', err);
+    process.exit(1);
+  });
+}

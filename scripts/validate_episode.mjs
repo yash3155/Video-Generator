@@ -6,7 +6,10 @@ import {
   ChartSpecSchema,
   FormulaSpecSchema,
   DiagramSpecSchema,
+  VisualCueSchema,
+  SubtitlePhraseSchema,
 } from '../src/schemas/visualSpecSchema.mjs';
+import { TEMPLATE_REGISTRY } from '../src/schemas/templateRegistrySchema.mjs';
 import {
   validateFinancialDirectionalConsistency,
   validateHeadAndShouldersEligibility,
@@ -90,6 +93,73 @@ export function validateEpisodeData(episode) {
           errors.push(
             `${bPrefix}: Invalid visual spec: ${vParsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join(', ')}`
           );
+        }
+      }
+
+      // Phase 2B: Validate visual cues against template registry and timing boundaries
+      if (beat.visualCues) {
+        if (!Array.isArray(beat.visualCues)) {
+          errors.push(`${bPrefix}: visualCues must be an array.`);
+        } else {
+          const templateDef = TEMPLATE_REGISTRY[scene.template];
+          const allowedTargets = [
+            ...(templateDef?.animationTargets || []),
+            'subtitle',
+            'general',
+          ];
+
+          beat.visualCues.forEach((cue, cIdx) => {
+            const cParsed = VisualCueSchema.safeParse(cue);
+            if (!cParsed.success) {
+              errors.push(
+                `${bPrefix} cue ${cIdx}: Invalid VisualCue: ${cParsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join(', ')}`
+              );
+            }
+
+            if (templateDef && !allowedTargets.includes(cue.target)) {
+              errors.push(
+                `${bPrefix} cue ${cIdx}: Target "${cue.target}" is not supported by template "${scene.template}". Allowed: ${allowedTargets.join(', ')}`
+              );
+            }
+
+            if (beat.audioDurationSec) {
+              const maxAllowedMs = beat.audioDurationSec * 1000 + (beat.pauseAfterMs ?? 260) + 150;
+              if (cue.atMs > maxAllowedMs) {
+                errors.push(
+                  `${bPrefix} cue ${cIdx}: atMs (${cue.atMs}ms) exceeds measured beat duration (${Math.round(maxAllowedMs)}ms).`
+                );
+              }
+            }
+          });
+
+          for (let i = 1; i < beat.visualCues.length; i++) {
+            if (beat.visualCues[i].atMs < beat.visualCues[i - 1].atMs) {
+              errors.push(
+                `${bPrefix}: visualCues must be sorted in non-decreasing order of atMs (${beat.visualCues[i].atMs}ms appears after ${beat.visualCues[i - 1].atMs}ms).`
+              );
+            }
+          }
+        }
+      }
+
+      // Phase 2B: Validate subtitle phrases if present
+      if (beat.subtitlePhrases) {
+        if (!Array.isArray(beat.subtitlePhrases)) {
+          errors.push(`${bPrefix}: subtitlePhrases must be an array.`);
+        } else {
+          beat.subtitlePhrases.forEach((p, pIdx) => {
+            const pParsed = SubtitlePhraseSchema.safeParse(p);
+            if (!pParsed.success) {
+              errors.push(
+                `${bPrefix} subtitle phrase ${pIdx}: Invalid phrase: ${pParsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join(', ')}`
+              );
+            }
+            if (p.endMs < p.startMs) {
+              errors.push(
+                `${bPrefix} subtitle phrase ${pIdx}: endMs (${p.endMs}) cannot be less than startMs (${p.startMs}).`
+              );
+            }
+          });
         }
       }
 

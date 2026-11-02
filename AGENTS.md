@@ -148,6 +148,38 @@ The video engine operates on a **generic, data-driven visual contract** decouple
 
 ---
 
+### Phase 2B Generic Narration, Timing, and Visual Synchronization
+
+1. **Structured Visual Cues (`visualCues`)**:
+   Every visual change is driven by structured narration cues on the beat:
+   ```ts
+   visualCues: [
+     { atMs: number, action: 'reveal' | 'highlight' | 'draw' | 'emphasize' | 'subtitle', target: string, payload?: unknown }
+   ]
+   ```
+   Validated against `TEMPLATE_REGISTRY[template].animationTargets` and narration audio bounds.
+
+2. **Authoritative Audio Generation & Invalidation**:
+   - Audio compiler calculates deterministic SHA-256 `narrationHash` of normalized `hindi_tts`.
+   - On hash mismatch, stale disk audio is cleanly invalidated and regenerated.
+   - Measures exact audio duration using `music-metadata`.
+   - Preserves exact authored pauses (`beat.pauseAfterMs ?? 260`) without arbitrary remapping.
+   - Frame duration is calculated as `Math.max(15, Math.ceil((totalMs / 1000) * FPS))`.
+
+3. **Phrase-Level Subtitle Alignment**:
+   - Subtitles are segmented into `subtitlePhrases` with `startMs` and `endMs` boundaries.
+   - `SceneLayout.tsx` highlights the active English phrase during narration, falling back gracefully to sentence-level display when alignment is absent.
+
+4. **Cue-Driven Visual Engines**:
+   - `FormulaBreakdown`: advances `activeStepIndex` and highlights variables on cue timestamps.
+   - `DataVisualizer`: advances series points/candles and reveals annotations on cue events, removing fixed 70% beat interpolation.
+   - `DiagramFlow`: updates `activeNodeIds`, `activeEdgeIds`, and timeline steps on cues.
+   - `ProgressiveCards`: highlights active learning points and reveals cards at cue timestamps.
+   - `InteractiveQuiz`: transitions question, thinking pause, and praise-driven answer reveal on cue timestamps.
+   - `SummaryThread`: steps through recap ranges dynamically driven by cues.
+
+---
+
 ### Step 3: Design the 12-Slide Pedagogical Story Arc
 Every generated video must strictly follow this 12-slide pedagogical rhythm:
 

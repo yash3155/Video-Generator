@@ -68,3 +68,4 @@ export function validateHeadAndShouldersEligibility(
   }
   return issues;
 }
+

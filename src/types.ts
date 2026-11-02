@@ -241,9 +241,28 @@ export type UIState =
   | PayoffDiagramUI
   | any;
 
+// ===================================================================
+// Phase 2B Visual Cues & Narration Synchronization Types
+// ===================================================================
+export type CueAction = 'reveal' | 'highlight' | 'draw' | 'emphasize' | 'subtitle';
+
+export interface VisualCue {
+  atMs: number;
+  action: CueAction;
+  target: string;
+  payload?: unknown;
+}
+
+export interface SubtitlePhrase {
+  text: string;
+  startMs: number;
+  endMs: number;
+}
+
 export interface Beat {
   id: string;
   hindi_tts?: string;
+  narrationHash?: string;
   en_subtitle: string;
   pauseAfterMs?: number;
   audioFile?: string;
@@ -251,6 +270,8 @@ export interface Beat {
   durationInFrames?: number;
   ui_state: UIState;
   visual?: VisualSpec;
+  visualCues?: VisualCue[];
+  subtitlePhrases?: SubtitlePhrase[];
 }
 
 export interface Scene {

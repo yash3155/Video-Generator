@@ -2,6 +2,7 @@ import React from 'react';
 import { useVideoConfig, spring } from 'remotion';
 import { Scene, Beat, InteractiveQuizUI } from '../types';
 import { CheckCircle2, HelpCircle } from 'lucide-react';
+import { getLatestCue } from '../utils/cueUtils';
 
 interface InteractiveQuizProps {
   scene: Scene;
@@ -14,7 +15,6 @@ interface InteractiveQuizProps {
 
 export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
   beat,
-  beatIndexInScene = 0,
   beatFrame = 0,
 }) => {
   const { fps } = useVideoConfig();
@@ -24,10 +24,30 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
   };
 
   const badgeText = uiState.badge || 'YOUR TURN';
-  const hasAnswer = Boolean(uiState.answer);
+
+  // Phase 2B: Visual cue-driven quiz state transitions
+  const spinnerCue = getLatestCue(beat, 'showThinkingSpinner', beatFrame, fps);
+  const answerCue = getLatestCue(beat, 'answerReveal', beatFrame, fps);
+
+  const hasAnswerCue = Boolean(answerCue);
+  const hasAnswer =
+    Boolean(uiState.answer) &&
+    (beat.visualCues && beat.visualCues.some((c) => c.target === 'answerReveal')
+      ? hasAnswerCue
+      : Boolean(uiState.answer));
+
+  const showSpinner =
+    !hasAnswer &&
+    (spinnerCue
+      ? Boolean(spinnerCue.payload !== false)
+      : Boolean(uiState.showThinkingSpinner));
+
+  const answerFrameOffset = answerCue
+    ? Math.round((answerCue.atMs / 1000) * fps)
+    : 0;
 
   const answerEntrance = spring({
-    frame: beatFrame,
+    frame: beatFrame - answerFrameOffset,
     fps,
     config: { damping: 14, stiffness: 120 },
   });
@@ -74,11 +94,11 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                 KEY INSIGHT / ANSWER
               </span>
               <p className="text-xl font-bold text-[#14532D] mt-0.5 leading-snug">
-                {uiState.answer}
+                {(answerCue?.payload as string) || uiState.answer}
               </p>
             </div>
           </div>
-        ) : uiState.showThinkingSpinner ? (
+        ) : showSpinner ? (
           /* Animated Thinking Spinner */
           <div className="flex items-center space-x-4 bg-white px-8 py-3.5 rounded-full border border-[#E5E0D5] shadow-sm">
             <svg

@@ -5,6 +5,7 @@ interface SceneLayoutProps {
   meta: Meta;
   scene: Scene;
   beat: Beat;
+  beatFrame?: number;
   children: React.ReactNode;
 }
 
@@ -12,10 +13,14 @@ export const SceneLayout: React.FC<SceneLayoutProps> = ({
   meta,
   scene,
   beat,
+  beatFrame = 0,
   children,
 }) => {
   const totalSegments = meta.totalSegments || 7;
   const currentSegment = scene.segmentIndex;
+  const currentMs = (beatFrame / 30) * 1000;
+  const phrases = beat.subtitlePhrases;
+  const hasPhraseAlignment = Array.isArray(phrases) && phrases.length > 1;
 
   return (
     <div
@@ -78,9 +83,32 @@ export const SceneLayout: React.FC<SceneLayoutProps> = ({
 
       {/* 4. Bottom Subtitle Bar */}
       <footer className="w-full h-10 flex items-center justify-center shrink-0">
-        <p className="text-2xl text-[#2C2C2C] font-medium tracking-tight text-center truncate max-w-[1720px]">
-          {beat.en_subtitle}
-        </p>
+        {hasPhraseAlignment ? (
+          <div className="text-2xl tracking-tight text-center max-w-[1720px] flex items-center justify-center space-x-2 flex-wrap">
+            {phrases.map((phrase, idx) => {
+              const isCurrent = currentMs >= phrase.startMs && currentMs <= phrase.endMs;
+              const isPast = currentMs > phrase.endMs;
+              return (
+                <span
+                  key={idx}
+                  className={`transition-colors duration-200 px-1 py-0.5 rounded ${
+                    isCurrent
+                      ? 'font-bold text-[#1E1E1E] bg-[#FDE68A]/50'
+                      : isPast
+                        ? 'font-medium text-[#4B5563]'
+                        : 'font-normal text-[#9CA3AF]'
+                  }`}
+                >
+                  {phrase.text}
+                </span>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="text-2xl text-[#2C2C2C] font-medium tracking-tight text-center truncate max-w-[1720px]">
+            {beat.en_subtitle}
+          </p>
+        )}
       </footer>
     </div>
   );

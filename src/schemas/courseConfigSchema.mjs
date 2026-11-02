@@ -63,3 +63,4 @@ export const CourseConfigSchema = z.object({
     })
     .optional(),
 });
+

@@ -50,3 +50,4 @@ export function formatStrikePrice(strike: number): string {
 export function formatPremium(premium: number): string {
   return `₹${premium.toFixed(2)}`;
 }
+

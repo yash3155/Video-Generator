@@ -149,3 +149,29 @@ export const VisualSpecSchema = z.object({
   data: z.unknown(),
   semantics: VisualSemanticsSchema,
 });
+
+// ===================================================================
+// 6. Phase 2B Visual Cues & Narration Synchronization Schemas
+// ===================================================================
+export const CueActionEnum = z.enum([
+  'reveal',
+  'highlight',
+  'draw',
+  'emphasize',
+  'subtitle',
+]);
+
+export const VisualCueSchema = z.object({
+  atMs: z.number().nonnegative(),
+  action: CueActionEnum,
+  target: z.string().min(1),
+  payload: z.unknown().optional(),
+});
+
+export const SubtitlePhraseSchema = z.object({
+  text: z.string().min(1),
+  startMs: z.number().nonnegative(),
+  endMs: z.number().nonnegative(),
+});
+
+

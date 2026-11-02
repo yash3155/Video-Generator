@@ -203,3 +203,4 @@ export const FINANCE_CHART_PRESETS: Record<string, PresetChartData> = {
     candlesticks: SUPPORT_BOUNCE_CANDLES,
   },
 };
+
