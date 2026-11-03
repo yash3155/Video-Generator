@@ -892,6 +892,15 @@ PRODUCTION RULES:
         if (rawFlash) break;
       } catch (fErr) {
         console.warn(`⚠️ [Tier 2] Flash attempt ${flashAttempts} failed (${fErr.message}).`);
+        if (proxyOnline) {
+          console.log(`⚡ [Tier 2] Falling back to active Argon proxy for schema expansion...`);
+          try {
+            rawFlash = await callGeminiArgonViaProxy(hydrationPrompt, 'argon-low', 0.2);
+            if (rawFlash) break;
+          } catch (pErr) {
+            console.warn(`⚠️ [Tier 2] Proxy fallback failed: ${pErr.message}`);
+          }
+        }
         if (flashAttempts >= maxFlashAttempts) throw fErr;
         const delayMs = Math.min(25000, 3000 * Math.pow(2, flashAttempts - 1));
         console.log(`   Retrying Tier 2 in ${delayMs / 1000}s...`);

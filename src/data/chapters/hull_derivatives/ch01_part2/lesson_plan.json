@@ -1,83 +1,103 @@
 {
   "schemaVersion": "1.0.0",
   "chapterSlug": "ch01_part2",
-  "title": "FUTURES & OPTIONS · JOHN C. HULL · CHAPTER 1 · PART 2",
+  "title": "Options Mechanics, The Three Trader Archetypes, and Institutional Risk Controls",
   "targetAudiencePersona": "Retail Trader & Student",
   "prerequisites": [
-    "Basic financial market terminology",
-    "Understanding of spot and derivative market roles"
+    "Basic mechanics of spot equity transactions and bid-ask spreads [fact-03, fact-04]",
+    "Fundamental structure of forward and futures contracts and initial margin requirements [fact-05, fact-07]",
+    "Foreign exchange spot rate quotation conventions (USD/GBP) [fact-05, fact-07, fact-09]"
   ],
   "learningOutcomes": [
-    "Understand the core structural mechanics of CHAPTER 1 · PART 2.",
-    "Identify empirical risks, leverage bounds, and balance of forces.",
-    "Execute actionable risk mitigation rules grounded in author principles."
+    "Distinguish between call and put options, European and American exercise styles, and calculate exact gross payoffs versus net profits for long calls and short puts using 100-share CBOE contract specifications [fact-01, fact-02, fact-03, fact-04].",
+    "Contrast how hedgers neutralize price risk entirely using currency forwards versus establishing asymmetric downside portfolio floors while preserving upside gains using protective put options [fact-05, fact-06].",
+    "Quantify the financial leverage, capital efficiency, and asymmetric risk profiles of speculating via CME currency futures and equity call options relative to unleveraged spot positions [fact-07, fact-08].",
+    "Execute multi-market cross-border arbitrage calculations for dual-listed equities and explain how simultaneous buying and selling restores market price equilibrium [fact-09].",
+    "Evaluate institutional hedge fund fee structures ('2-and-20'), core trading strategies, and the operational compliance failures behind major rogue trading losses [fact-10, fact-11]."
   ],
   "sections": [
     {
       "sectionIndex": 0,
-      "title": "The Blind Leverage Trap",
-      "pedagogicalObjective": "Master The Blind Leverage Trap and understand its practical market significance.",
+      "title": "Options Mechanics, Strike/Maturity Pricing Rules, and Payoff vs. Profit",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
       "groundedFactIds": [
-        "fact-01"
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04"
       ],
       "keyPoints": [
-        "The Blind Leverage Trap: Core market principle and structural behavior defined in CHAPTER 1 · PART 2."
+        "Core principle analysis."
       ]
     },
     {
       "sectionIndex": 1,
-      "title": "The Blind Leverage Trap",
-      "pedagogicalObjective": "Master The Blind Leverage Trap and understand its practical market significance.",
+      "title": "Hedging Strategies: Neutralizing FX Risk with Forwards vs. Insuring Portfolios with Puts",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
       "groundedFactIds": [
-        "fact-02"
+        "fact-05",
+        "fact-06"
       ],
       "keyPoints": [
-        "Raju deploys his entire $2,000 into $1 call options."
+        "Core principle analysis."
       ]
     },
     {
       "sectionIndex": 2,
-      "title": "Option Payoff Profile",
-      "pedagogicalObjective": "Master Option Payoff Profile and understand its practical market significance.",
+      "title": "Speculative Leverage and Cross-Border Riskless Arbitrage",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
       "groundedFactIds": [
-        "fact-03"
+        "fact-07",
+        "fact-08",
+        "fact-09"
       ],
       "keyPoints": [
-        "Terminal gross payoff is determined by spot price relative to strike 550, while net profit deducts the initial premium 29. Contract size is 100 shares."
+        "Core principle analysis."
       ]
     },
     {
       "sectionIndex": 3,
-      "title": "Jerome Kerviel's €4.9B SocGen Collapse",
-      "pedagogicalObjective": "Master Jerome Kerviel's €4.9B SocGen Collapse and understand its practical market significance.",
+      "title": "Institutional Hedge Fund Architecture and Rogue Trading Risk Controls",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
       "groundedFactIds": [
-        "fact-04"
+        "fact-10",
+        "fact-11"
       ],
       "keyPoints": [
-        "In January 2008, Societe Generale suffered a staggering €4.9 billion loss."
+        "Core principle analysis."
       ]
     }
   ],
   "misconceptions": [
     {
-      "misconception": "Assuming market indicators or leverage provide guaranteed profit without downside risk.",
-      "factId": "fact-01",
-      "authorRebuttal": "The author emphasizes that risk management and capital preservation take precedence."
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-03",
+      "authorRebuttal": "This confuses gross exercise payoff with net profit. As demonstrated in the Google December $550 call example [fact-03], when the stock rises to $650, exercising 1 contract (100 shares) yields a gross payoff of $10,000, but you must subtract the $2,900 up-front option premium ($29.00 per share) to arrive at the true net profit of $7,100 [fact-01, fact-03]."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-06",
+      "authorRebuttal": "Forward contracts neutralize risk symmetrically by locking in a fixed price—such as ImportCo locking in $15,742,000 at 1.5742 USD/GBP—which eliminates both downside loss and upside gain [fact-05]. In contrast, buying protective put options (such as 10 July $27.50 puts for $1,000 on 1,000 shares at $28) acts as insurance: it establishes a guaranteed net floor of $26,500 while preserving full participation in upside stock surges [fact-06]."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-11",
+      "authorRebuttal": "While true arbitrage locks in riskless profit via simultaneous offsetting transactions [fact-09], an arbitrage mandate does not prevent catastrophic loss if internal controls fail. At Société Générale, Jérôme Kerviel exploited his prior compliance knowledge (2000–2005) on the Delta One equity index arbitrage desk to enter fictitious offsetting trades, masking tens of billions of euros in unhedged directional bets that resulted in a €4.9 billion ($7.2 billion) liquidation loss in January 2008—mirroring Nick Leeson's $1 billion rogue loss at Barings Bank in 1995 [fact-11]."
     }
   ],
   "activeRecallQuiz": {
-    "scenario": "An investor holds 1,000 shares at $28 ($28,000 total) and buys 10 July Put contracts ($27.50 strike, 100 shares each) at $1.00 per option ($1,000 total cost). If the stock plunges to $20 in July, what is the investor's net portfolio value after subtracting the option cost?",
+    "scenario": "A trader with $2,000 in capital is bullish on a stock currently trading at $20 per share. Two-month call options with a $22.50 strike price are available at an option premium of $1.00 per share. Instead of buying 100 shares of stock, the trader deploys the entire $2,000 into buying 2,000 call options (20 contracts). At expiration in two months, the stock price rises to $27.00.",
     "testedFactIds": [
       "fact-01",
-      "fact-02"
+      "fact-08"
     ],
-    "question": "An investor holds 1,000 shares at $28 ($28,000 total) and buys 10 July Put contracts ($27.50 strike, 100 shares each) at $1.00 per option ($1,000 total cost). If the stock plunges to $20 in July, what is the investor's net portfolio value after subtracting the option cost?",
-    "correctAnswer": "Spot on! The 10 Put contracts give the investor the right to sell all 1,000 shares at the $27.50 strike price for $27,500 gross. Subtracting the $1,000 upfront option premium leaves a guaranteed net value of $26,500—saving $6,500 compared to an unhedged portfolio worth only $20,000!",
-    "explanation": "Applying grounded principles prevents catastrophic losses and capital depletion."
+    "question": "What are the trader's gross option payoff, net option profit, and profit multiple compared to the unleveraged 100-share stock strategy, and what would the net loss have been if the stock had fallen to $15.00 instead?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "With 2,000 call options at a $22.50 strike, a stock price of $27.00 at expiration yields $4.50 per option in intrinsic value, or a gross payoff of 2,000 × $4.50 = $9,000. Subtracting the $2,000 initial premium paid produces a net profit of $7,000, which is exactly 10x higher than the $700 profit earned on 100 shares (($27 - $20) × 100). However, if the stock drops to $15.00, all 2,000 call options expire worthless for a $2,000 loss (100% of capital), whereas the 100-share position loses only $500 [fact-08]."
   },
   "coreTakeaways": [
-    "Always evaluate underlying market assumptions before entering positions.",
-    "Separate gross theoretical payoff from real-world net profit.",
-    "Follow disciplined risk and position sizing limits on every trade."
+    "Options grant asymmetric rights without obligation in exchange for an up-front premium: call buyers cap their maximum loss at the premium paid while retaining unlimited upside, whereas put writers collect up-front cash inflow in exchange for contingent downside assignment liability [fact-01, fact-03, fact-04].",
+    "Derivatives serve three distinct participant mandates: hedgers use forwards to fix prices or options to buy downside portfolio insurance [fact-05, fact-06]; speculators use futures margin or option premiums to magnify capital returns [fact-07, fact-08]; and arbitrageurs exploit multi-market price discrepancies to lock in riskless profit and restore equilibrium [fact-09].",
+    "While hedge funds deploy over $2 trillion under '2-and-20' fee structures across specialized arbitrage and directional strategies [fact-10], institutional disasters like Jérôme Kerviel's €4.9 billion loss at Société Générale prove that strict daily verification of offsetting hedges is essential to prevent unauthorized directional speculation [fact-11]."
   ]
 }

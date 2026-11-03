@@ -190,13 +190,19 @@ export async function generateLessonAndStoryboard(targetDir, options = {}) {
     .map((f) => `- [${f.id}] (${f.category}): ${f.statement} (Citation: ${f.sourceCitation?.book || ''})`)
     .join('\n');
 
+  const proxyHealthUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001').replace(/\/v1\/chat\/completions\/?$/, '').replace(/\/+$/, '') + '/health';
+  let proxyAvailable = false;
+  try {
+    const pRes = await fetch(proxyHealthUrl, { signal: AbortSignal.timeout(1000) });
+    if (pRes.ok) proxyAvailable = true;
+  } catch {}
+
   const geminiApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
-  if (!geminiApiKey) {
-    throw new Error('GEMINI_API_KEY is required to generate lesson plan and storyboard.');
+  if (!proxyAvailable && !geminiApiKey) {
+    throw new Error('Neither active Argon proxy nor GEMINI_API_KEY is available to generate lesson plan and storyboard.');
   }
 
   console.log(`🧠 [LESSON-STORYBOARD] Synthesizing lesson plan and storyboard grounded in ${factsList.length} source facts...`);
-  const aiClient = new GoogleGenAI({ apiKey: geminiApiKey });
 
   const prompt = `
 You are the Master Educational Curriculum Architect.
@@ -266,31 +272,64 @@ Return ONLY a JSON object with this shape:
 `;
 
   let parsedText = null;
-  let attempts = 0;
-  const maxAttempts = 5;
-  while (attempts < maxAttempts) {
-    attempts++;
-    try {
-      const response = await aiClient.models.generateContent({
-        model: 'gemini-3.8-flash',
-        contents: prompt,
-        config: {
-          responseMimeType: 'application/json',
-          temperature: 0.2,
-        },
-      });
-      parsedText = response.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (parsedText) break;
-    } catch (callErr) {
-      console.warn(`⚠️ [LESSON-STORYBOARD] API call attempt ${attempts} failed (${callErr.message}).`);
-      if (attempts >= maxAttempts) throw callErr;
-      const delayMs = Math.min(25000, 3000 * Math.pow(2, attempts - 1));
-      console.log(`   Retrying in ${delayMs / 1000}s...`);
-      await new Promise((r) => setTimeout(r, delayMs));
+  if (proxyAvailable) {
+    const completionsUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001').replace(/\/+$/, '') + '/v1/chat/completions';
+    let attempts = 0;
+    while (attempts < 3) {
+      attempts++;
+      try {
+        const res = await fetch(completionsUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'argon-low',
+            messages: [
+              { role: 'system', content: 'You are the Master Educational Curriculum Architect. Return ONLY a valid JSON object matching the requested schema.' },
+              { role: 'user', content: prompt },
+            ],
+            temperature: 0.2,
+          }),
+          signal: AbortSignal.timeout(180000),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          parsedText = data.choices?.[0]?.message?.content;
+          if (parsedText) break;
+        }
+      } catch (err) {
+        console.warn(`⚠️ [LESSON-STORYBOARD] Proxy attempt ${attempts} failed: ${err.message}`);
+        await new Promise((r) => setTimeout(r, 3000));
+      }
+    }
+  } else {
+    const aiClient = new GoogleGenAI({ apiKey: geminiApiKey });
+    let attempts = 0;
+    const maxAttempts = 5;
+    while (attempts < maxAttempts) {
+      attempts++;
+      try {
+        const response = await aiClient.models.generateContent({
+          model: 'gemini-3.8-flash',
+          contents: prompt,
+          config: {
+            responseMimeType: 'application/json',
+            temperature: 0.2,
+          },
+        });
+        parsedText = response.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (parsedText) break;
+      } catch (callErr) {
+        console.warn(`⚠️ [LESSON-STORYBOARD] API call attempt ${attempts} failed (${callErr.message}).`);
+        if (attempts >= maxAttempts) throw callErr;
+        const delayMs = Math.min(25000, 3000 * Math.pow(2, attempts - 1));
+        console.log(`   Retrying in ${delayMs / 1000}s...`);
+        await new Promise((r) => setTimeout(r, delayMs));
+      }
     }
   }
 
-  const parsedJson = JSON.parse(parsedText?.trim() || '{}');
+  const cleanJson = (parsedText || '').replace(/```json/gi, '').replace(/```/g, '').trim();
+  const parsedJson = JSON.parse(cleanJson || '{}');
 
   const normalizedLP = normalizeLessonPlan(parsedJson.lessonPlan, chapterSlug, factsList);
   const normalizedSB = normalizeStoryboard(parsedJson.storyboard, chapterSlug, sourceFacts.bookTitle, factsList);

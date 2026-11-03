@@ -49,15 +49,18 @@ export async function extractSourceFacts(targetDir, options = {}) {
     throw new Error(`Cannot extract source facts: No raw context text or notebook query available in ${dirPath}`);
   }
 
-  // 2. Synthesize structured source_facts.json via Gemini 3.8 Flash
+  // 2. Synthesize structured source_facts.json via Argon Proxy or Gemini Flash
+  const proxyHealthUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001').replace(/\/v1\/chat\/completions\/?$/, '').replace(/\/+$/, '') + '/health';
+  let proxyAvailable = false;
+  try {
+    const pRes = await fetch(proxyHealthUrl, { signal: AbortSignal.timeout(1000) });
+    if (pRes.ok) proxyAvailable = true;
+  } catch {}
+
   const geminiApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
   let factsData = null;
 
-  if (geminiApiKey) {
-    console.log(`🧠 [SOURCE-FACTS] Structuring facts via Gemini 3.8 Flash into strict schema...`);
-    const aiClient = new GoogleGenAI({ apiKey: geminiApiKey });
-
-    const prompt = `
+  const prompt = `
 You are the Chief Academic Source-Auditor.
 Analyze this authoritative textbook text and extract all concrete facts into a strictly validated JSON structure.
 
@@ -93,6 +96,43 @@ Return ONLY a valid JSON object adhering to this exact structure:
   "generalAssumptions": [ ... ]
 }
 `;
+
+  if (proxyAvailable) {
+    console.log(`🧠 [SOURCE-FACTS] Structuring facts via Gemini 4 Argon proxy into strict schema...`);
+    const completionsUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001').replace(/\/+$/, '') + '/v1/chat/completions';
+    let candidateText = null;
+    let attempts = 0;
+    while (attempts < 3) {
+      attempts++;
+      try {
+        const res = await fetch(completionsUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'argon-low',
+            messages: [
+              { role: 'system', content: 'You are the Chief Academic Source-Auditor. Return ONLY a valid JSON object matching the requested schema.' },
+              { role: 'user', content: prompt },
+            ],
+            temperature: 0.1,
+          }),
+          signal: AbortSignal.timeout(180000),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          candidateText = data.choices?.[0]?.message?.content;
+          if (candidateText) break;
+        }
+      } catch (err) {
+        console.warn(`⚠️ [SOURCE-FACTS] Proxy attempt ${attempts} failed: ${err.message}`);
+        await new Promise((r) => setTimeout(r, 3000));
+      }
+    }
+    if (candidateText) {
+      const cleaned = candidateText.replace(/```json/gi, '').replace(/```/g, '').trim();
+      factsData = JSON.parse(cleaned);
+    }
+  } else if (geminiApiKey) {
 
     let candidateText = null;
     let attempts = 0;
