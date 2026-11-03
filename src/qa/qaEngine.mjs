@@ -44,6 +44,10 @@ export async function runQaEngine(options) {
 
   const rawEpisode = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
   const meta = rawEpisode.meta || {};
+  const courseSlug = getBookSlug(resolvedDir, meta);
+  const isEnCourse = courseSlug.includes('_en') ||
+    (meta?.narrationLanguage && String(meta.narrationLanguage).startsWith('en')) ||
+    (meta?.course && /_en\b|english/i.test(meta.course));
   const course = meta.course || 'Unknown Course';
   const chapter = meta.chapter || chapterSlug;
   const domain = meta.domain || (course.toLowerCase().includes('hull') || course.toLowerCase().includes('murphy') ? 'finance' : 'general');
@@ -255,8 +259,12 @@ export async function runQaEngine(options) {
       }
 
       // Hash freshness
-      if (beat.hindi_tts && beat.narrationHash) {
-        const expectedHash = hashNarration(beat.hindi_tts);
+      const textToHash = isEnCourse
+        ? (beat.en_narration || beat.en_subtitle || beat.narration || beat.text || beat.hindi_tts || '')
+        : (beat.hindi_tts || '');
+
+      if (textToHash && beat.narrationHash) {
+        const expectedHash = hashNarration(textToHash);
         if (beat.narrationHash !== expectedHash) {
           findings.push({
             id: `qa_stale_hash_${beat.id}`,
@@ -266,7 +274,7 @@ export async function runQaEngine(options) {
             sceneIndex: sIdx,
             beatId: beat.id,
             target: 'narrationHash',
-            cause: 'hindi_tts was edited without re-compiling audio.',
+            cause: 'Narration text was edited without re-compiling audio.',
             suggestedRepair: 'Re-run compile_tts_audio.mjs to refresh audio.',
           });
         }

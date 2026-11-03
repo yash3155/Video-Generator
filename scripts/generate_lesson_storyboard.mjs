@@ -271,11 +271,33 @@ Return ONLY a JSON object with this shape:
 }
 `;
 
-  let parsedText = null;
+function robustParseJson(raw) {
+  if (!raw) return {};
+  let text = String(raw).trim();
+  const firstBrace = text.indexOf('{');
+  const lastBrace = text.lastIndexOf('}');
+  if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+    text = text.substring(firstBrace, lastBrace + 1);
+  }
+  text = text.replace(/```json/gi, '').replace(/```/g, '').trim();
+  try {
+    return JSON.parse(text);
+  } catch {}
+  // Sanitize trailing commas
+  text = text.replace(/,\s*([}\]])/g, '$1');
+  try {
+    return JSON.parse(text);
+  } catch {}
+  // Clean unescaped newlines in JSON strings
+  text = text.replace(/:\s*"([^"]*)"/g, (m, p1) => ': "' + p1.replace(/\r?\n/g, '\\n') + '"');
+  return JSON.parse(text);
+}
+
+  let parsedJson = null;
   if (proxyAvailable) {
     const completionsUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001').replace(/\/+$/, '') + '/v1/chat/completions';
     let attempts = 0;
-    while (attempts < 3) {
+    while (attempts < 4) {
       attempts++;
       try {
         const res = await fetch(completionsUrl, {
@@ -284,7 +306,7 @@ Return ONLY a JSON object with this shape:
           body: JSON.stringify({
             model: 'argon-low',
             messages: [
-              { role: 'system', content: 'You are the Master Educational Curriculum Architect. Return ONLY a valid JSON object matching the requested schema.' },
+              { role: 'system', content: 'You are the Master Educational Curriculum Architect. Return ONLY a valid JSON object matching the requested schema. No Markdown, no trailing commas, valid JSON only.' },
               { role: 'user', content: prompt },
             ],
             temperature: 0.2,
@@ -293,8 +315,15 @@ Return ONLY a JSON object with this shape:
         });
         if (res.ok) {
           const data = await res.json();
-          parsedText = data.choices?.[0]?.message?.content;
-          if (parsedText) break;
+          const candidate = data.choices?.[0]?.message?.content;
+          if (candidate) {
+            try {
+              parsedJson = robustParseJson(candidate);
+              if (parsedJson && parsedJson.lessonPlan && parsedJson.storyboard) break;
+            } catch (pErr) {
+              console.warn(`⚠️ [LESSON-STORYBOARD] JSON parse failed on attempt ${attempts}: ${pErr.message}. Retrying...`);
+            }
+          }
         }
       } catch (err) {
         console.warn(`⚠️ [LESSON-STORYBOARD] Proxy attempt ${attempts} failed: ${err.message}`);
@@ -316,8 +345,13 @@ Return ONLY a JSON object with this shape:
             temperature: 0.2,
           },
         });
-        parsedText = response.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (parsedText) break;
+        const candidate = response.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (candidate) {
+          try {
+            parsedJson = robustParseJson(candidate);
+            if (parsedJson && parsedJson.lessonPlan && parsedJson.storyboard) break;
+          } catch {}
+        }
       } catch (callErr) {
         console.warn(`⚠️ [LESSON-STORYBOARD] API call attempt ${attempts} failed (${callErr.message}).`);
         if (attempts >= maxAttempts) throw callErr;
@@ -328,8 +362,9 @@ Return ONLY a JSON object with this shape:
     }
   }
 
-  const cleanJson = (parsedText || '').replace(/```json/gi, '').replace(/```/g, '').trim();
-  const parsedJson = JSON.parse(cleanJson || '{}');
+  if (!parsedJson || !parsedJson.lessonPlan || !parsedJson.storyboard) {
+    throw new Error('Failed to generate valid lesson plan and storyboard JSON.');
+  }
 
   const normalizedLP = normalizeLessonPlan(parsedJson.lessonPlan, chapterSlug, factsList);
   const normalizedSB = normalizeStoryboard(parsedJson.storyboard, chapterSlug, sourceFacts.bookTitle, factsList);

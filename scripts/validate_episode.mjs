@@ -83,16 +83,22 @@ export function validateEpisodeData(episode) {
         );
       }
 
-      // Block synthetic English sentences inside hindi_tts
-      const strippedTts = tts.replace(
-        /\b(RSI|MACD|OBV|SMA|EMA|SMAs|EMAs|PCR|COT|CCI|ROC|VPT|KAMA|ETF|ETFs|ATR|ADX|SAR|NSE|BSE|SEBI|FDA|IPO|OHLC)\b/gi,
-        ''
-      );
-      const englishWords = strippedTts.match(/[A-Za-z]{4,}/g) || [];
-      if (englishWords.length >= 3) {
-        errors.push(
-          `${bPrefix}: hindi_tts contains raw Latin English words (${englishWords.slice(0, 4).join(', ')}). Write hindi_tts in 100% Devanagari script!`
+      // Block synthetic English sentences inside hindi_tts (for non-English courses only)
+      const isEnglishCourse =
+        /_en\b|english/i.test(episode.meta?.course || '') ||
+        (episode.meta?.narrationLanguage && String(episode.meta.narrationLanguage).startsWith('en'));
+
+      if (!isEnglishCourse) {
+        const strippedTts = tts.replace(
+          /\b(RSI|MACD|OBV|SMA|EMA|SMAs|EMAs|PCR|COT|CCI|ROC|VPT|KAMA|ETF|ETFs|ATR|ADX|SAR|NSE|BSE|SEBI|FDA|IPO|OHLC)\b/gi,
+          ''
         );
+        const englishWords = strippedTts.match(/[A-Za-z]{4,}/g) || [];
+        if (englishWords.length >= 3) {
+          errors.push(
+            `${bPrefix}: hindi_tts contains raw Latin English words (${englishWords.slice(0, 4).join(', ')}). Write hindi_tts in 100% Devanagari script!`
+          );
+        }
       }
 
       // If structured visual specification is supplied, validate it
