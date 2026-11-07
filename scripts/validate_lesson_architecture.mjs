@@ -7,6 +7,7 @@ import {
   ContentAuditSchema,
   LessonPlanSchema,
   StoryboardSchema,
+  VisualCreativeBriefSchema,
 } from '../src/schemas/sourceLessonSchemas.mjs';
 import { getAllChapterDirectories, resolveChapterDirectory } from '../src/utils/chapterPaths.mjs';
 
@@ -96,12 +97,31 @@ export function validateChapterLessonArchitecture(chapterDir) {
     }
   }
 
+  // 5. visual_creative_brief.json (Adaptive Visual Intelligence)
+  const briefPath = path.join(dirPath, 'visual_creative_brief.json');
+  results.visualCreativeBrief = { present: false, valid: false, errors: [] };
+  if (fs.existsSync(briefPath)) {
+    results.visualCreativeBrief.present = true;
+    try {
+      const raw = JSON.parse(fs.readFileSync(briefPath, 'utf8'));
+      const parsed = VisualCreativeBriefSchema.safeParse(raw);
+      if (parsed.success) {
+        results.visualCreativeBrief.valid = true;
+      } else {
+        results.visualCreativeBrief.errors = parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`);
+      }
+    } catch (err) {
+      results.visualCreativeBrief.errors = [err.message];
+    }
+  }
+
   results.allValid =
     results.sourceFacts.valid &&
     results.contentAudit.valid &&
     results.contentAudit.status !== 'FAIL' &&
     results.lessonPlan.valid &&
-    results.storyboard.valid;
+    results.storyboard.valid &&
+    (!results.visualCreativeBrief.present || results.visualCreativeBrief.valid);
 
   return results;
 }

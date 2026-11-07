@@ -7,7 +7,6 @@ import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import { EdgeTTS } from 'node-edge-tts';
 import { parseFile } from 'music-metadata';
-import { GoogleGenAI } from '@google/genai';
 import { resolveChapterDirectory, getBookSlug } from '../src/utils/chapterPaths.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -90,13 +89,14 @@ function getEdgeTts() {
   return edgeTts;
 }
 
-function initAiClient() {
+async function initAiClient() {
   if (aiClient) return aiClient;
   const geminiApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
   const geminiBaseUrl = process.env.GEMINI_BASE_URL || process.env.GOOGLE_GEMINI_BASE_URL;
   const thinkingLevel = process.env.GEMINI_THINKING_LEVEL || 'medium';
 
   if (geminiApiKey) {
+    const { GoogleGenAI } = await import('@google/genai');
     const clientOptions = { apiKey: geminiApiKey };
     if (geminiBaseUrl) {
       clientOptions.httpOptions = { baseUrl: geminiBaseUrl };
@@ -336,16 +336,18 @@ export function segmentSubtitleIntoPhrases(subtitle, audioDurationSec) {
   });
 }
 
-async function synthesizeEdge(beat, maxRetries = 4, targetHash = null, isHashMatch = false) {
+async function synthesizeEdge(beat, maxRetries = 8, targetHash = null, isHashMatch = false) {
   const fileName = `${beat.id}.mp3`;
   const filePath = path.join(audioDir, fileName);
+  const hashFilePath = path.join(audioDir, `${beat.id}.hash`);
   const isEn = courseSlug.includes('_en') || (rawMeta?.narrationLanguage && String(rawMeta.narrationLanguage).startsWith('en'));
   const spokenText = isEn
     ? (beat.en_narration || beat.en_subtitle || beat.narration || beat.text || beat.hindi_tts || '')
     : sanitizeForHindiTTS(beat.hindi_tts);
 
   const isValidExisting = fs.existsSync(filePath) && fs.statSync(filePath).size > 1000;
-  const canUseCache = isValidExisting && isHashMatch && !force;
+  const hashFileMatch = fs.existsSync(hashFilePath) && fs.readFileSync(hashFilePath, 'utf8').trim() === targetHash;
+  const canUseCache = isValidExisting && (isHashMatch || hashFileMatch) && !force;
 
   if (!canUseCache) {
     let attempt = 0;
@@ -359,6 +361,9 @@ async function synthesizeEdge(beat, maxRetries = 4, targetHash = null, isHashMat
         await getEdgeTts().ttsPromise(spokenText, filePath);
 
         if (fs.existsSync(filePath) && fs.statSync(filePath).size > 1000) {
+          if (targetHash) {
+            try { fs.writeFileSync(hashFilePath, targetHash, 'utf8'); } catch { }
+          }
           break;
         } else {
           throw new Error('Generated audio file is 0 bytes or corrupt.');
@@ -369,12 +374,12 @@ async function synthesizeEdge(beat, maxRetries = 4, targetHash = null, isHashMat
           try { fs.unlinkSync(filePath); } catch { }
         }
         if (attempt >= maxRetries) throw err;
-        const waitMs = attempt * 2500;
+        const waitMs = Math.min(30000, attempt * 4000);
         console.warn(`  [Edge-TTS Rate Limit 429] Waiting ${waitMs}ms before retry ${attempt}/${maxRetries} for beat "${beat.id}"...`);
         await sleep(waitMs);
       }
     }
-    await sleep(450);
+    await sleep(800);
   } else {
     console.log(`  -> [Edge-TTS] Using authoritative cached "${fileName}" (hash: ${targetHash})`);
   }

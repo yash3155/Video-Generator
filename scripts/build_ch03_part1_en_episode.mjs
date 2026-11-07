@@ -1,0 +1,1706 @@
+// scripts/build_ch03_part1_en_episode.mjs
+import fs from 'fs';
+import path from 'path';
+
+const targetDir = 'src/data/chapters/hull_derivatives_en/ch03_part1';
+fs.mkdirSync(targetDir, { recursive: true });
+
+const episodeRaw = {
+  schemaVersion: '1.0.0',
+  meta: {
+    course: 'hull_derivatives_en',
+    chapter: 'CHAPTER 3 · PART 1',
+    chapterTitle: 'Short Hedges vs Long Hedges, Corporate Hedging Arguments, and Basis Risk Mechanics',
+    domain: 'finance',
+    primaryColor: '#0F766E',
+    accentColor: '#F59E0B',
+    narrationLanguage: 'en-US',
+  },
+  scenes: [
+    // Scene 0: Chat Story - The Farmer's Autumn Dilemma
+    {
+      segmentIndex: 0,
+      title: "The Farmer's Autumn Dilemma",
+      template: 'chat_story',
+      badge: 'Commodity Desk · May Inception',
+      beats: [
+        {
+          id: 'b01',
+          hindi_tts: "Marcus, our Midwest grain client expects to harvest one hundred thousand bushels of corn this September. Why should he lock in futures at four-twenty when corn might soar to five dollars?",
+          en_narration: "Marcus, our Midwest grain client expects to harvest one hundred thousand bushels of corn this September. Why should he lock in futures at four-twenty when corn might soar to five dollars?",
+          en_subtitle: "Why lock in corn futures at $4.20 when spot corn might surge higher?",
+          pauseAfterMs: 450,
+          ui_state: {
+            stageDirections: ["— Alex analyzes the farmer's commercial crop exposure —"],
+            messages: [
+              {
+                sender: 'Alex',
+                avatar: 'A',
+                text: "Marcus, our grain client harvests 100,000 bushels of corn in September. September corn futures trade at $4.20. Why lock in $4.20 today if spot prices might soar?",
+                theme: 'amber',
+                align: 'left',
+              },
+            ],
+          },
+          visual: {
+            kind: 'conversation',
+            data: {
+              messages: [
+                {
+                  sender: 'Alex',
+                  avatar: 'A',
+                  text: "Marcus, our grain client harvests 100,000 bushels of corn in September. September corn futures trade at $4.20. Why lock in $4.20 today if spot prices might soar?",
+                  theme: 'amber',
+                  align: 'left',
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Introduce the core producer dilemma between speculative hope and commercial hedging',
+              sourceFactIds: ['fact-01', 'fact-02'],
+            },
+          },
+        },
+        {
+          id: 'b02',
+          hindi_tts: "Because a farmer is in the business of agriculture, Alex, not speculative gambling. If corn plunges to three-fifty, his farm faces bankruptcy. A short hedge neutralizes that price risk.",
+          en_narration: "Because a farmer is in the business of agriculture, Alex, not speculative gambling. If corn plunges to three-fifty, his farm faces bankruptcy. A short hedge neutralizes that price risk.",
+          en_subtitle: "A farmer grows crops; a short hedge prevents devastating price declines.",
+          pauseAfterMs: 450,
+          ui_state: {
+            stageDirections: ['— Marcus explains the risk-neutralization imperative —'],
+            messages: [
+              {
+                sender: 'Alex',
+                avatar: 'A',
+                text: "Marcus, our grain client harvests 100,000 bushels of corn in September. September corn futures trade at $4.20. Why lock in $4.20 today if spot prices might soar?",
+                theme: 'amber',
+                align: 'left',
+              },
+              {
+                sender: 'Marcus',
+                avatar: 'M',
+                text: "Because a farmer produces crops, Alex, not speculative bets. If corn drops to $3.50, his farm goes broke. Selling futures locks in revenue and guarantees survival.",
+                theme: 'teal',
+                align: 'right',
+              },
+            ],
+          },
+          visual: {
+            kind: 'conversation',
+            data: {
+              messages: [
+                {
+                  sender: 'Alex',
+                  avatar: 'A',
+                  text: "Marcus, our grain client harvests 100,000 bushels of corn in September. September corn futures trade at $4.20. Why lock in $4.20 today if spot prices might soar?",
+                  theme: 'amber',
+                  align: 'left',
+                },
+                {
+                  sender: 'Marcus',
+                  avatar: 'M',
+                  text: "Because a farmer produces crops, Alex, not speculative bets. If corn drops to $3.50, his farm goes broke. Selling futures locks in revenue and guarantees survival.",
+                  theme: 'teal',
+                  align: 'right',
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Establish that hedging provides operational certainty rather than maximizing upside',
+              sourceFactIds: ['fact-01', 'fact-02'],
+            },
+          },
+        },
+        {
+          id: 'b03',
+          hindi_tts: "And a food cereal manufacturer faces the exact opposite exposure: if grain spikes, input costs explode, so they execute a long hedge by buying futures!",
+          en_narration: "And a food cereal manufacturer faces the exact opposite exposure: if grain spikes, input costs explode, so they execute a long hedge by buying futures!",
+          en_subtitle: "A cereal processor faces opposite risk, buying futures in a long hedge!",
+          pauseAfterMs: 500,
+          ui_state: {
+            stageDirections: ['— Alex connects producer risk to consumer procurement —'],
+            messages: [
+              {
+                sender: 'Alex',
+                avatar: 'A',
+                text: "Marcus, our grain client harvests 100,000 bushels of corn in September. September corn futures trade at $4.20. Why lock in $4.20 today if spot prices might soar?",
+                theme: 'amber',
+                align: 'left',
+              },
+              {
+                sender: 'Marcus',
+                avatar: 'M',
+                text: "Because a farmer produces crops, Alex, not speculative bets. If corn drops to $3.50, his farm goes broke. Selling futures locks in revenue and guarantees survival.",
+                theme: 'teal',
+                align: 'right',
+              },
+              {
+                sender: 'Alex',
+                avatar: 'A',
+                text: "Understood! And cereal manufacturers face the opposite risk—if grain surges, input costs blow up. They execute a long hedge by buying futures!",
+                theme: 'amber',
+                align: 'left',
+              },
+            ],
+          },
+          visual: {
+            kind: 'conversation',
+            data: {
+              messages: [
+                {
+                  sender: 'Alex',
+                  avatar: 'A',
+                  text: "Marcus, our grain client harvests 100,000 bushels of corn in September. September corn futures trade at $4.20. Why lock in $4.20 today if spot prices might soar?",
+                  theme: 'amber',
+                  align: 'left',
+                },
+                {
+                  sender: 'Marcus',
+                  avatar: 'M',
+                  text: "Because a farmer produces crops, Alex, not speculative bets. If corn drops to $3.50, his farm goes broke. Selling futures locks in revenue and guarantees survival.",
+                  theme: 'teal',
+                  align: 'right',
+                },
+                {
+                  sender: 'Alex',
+                  avatar: 'A',
+                  text: "Understood! And cereal manufacturers face the opposite risk—if grain surges, input costs blow up. They execute a long hedge by buying futures!",
+                  theme: 'amber',
+                  align: 'left',
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Contrast short hedges with long hedges in commercial supply chains',
+              sourceFactIds: ['fact-03'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 1: Progressive Cards - Curriculum Roadmap
+    {
+      segmentIndex: 1,
+      title: 'Curriculum Roadmap',
+      template: 'progressive_cards',
+      badge: 'Chapter 3 · Master Architecture',
+      beats: [
+        {
+          id: 'b04',
+          hindi_tts: "In this master lesson, we examine the mechanics of corporate risk management across three core quantitative pillars.",
+          en_narration: "In this master lesson, we examine the mechanics of corporate risk management across three core quantitative pillars.",
+          en_subtitle: "We examine corporate risk management across three core quantitative pillars.",
+          pauseAfterMs: 400,
+          ui_state: {
+            stepIndex: 0,
+            totalSteps: 3,
+            cards: [
+              {
+                id: 'c1',
+                title: 'Pillar 1: Commercial Position Matching',
+                subtitle: 'Short Hedges vs Long Hedges',
+                details: 'Matching physical balance sheet assets and liabilities to futures short or long contracts.',
+                badge: 'Foundation',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 0,
+              totalSteps: 3,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'Pillar 1: Commercial Position Matching',
+                  subtitle: 'Short Hedges vs Long Hedges',
+                  details: 'Matching physical balance sheet assets and liabilities to futures short or long contracts.',
+                  badge: 'Foundation',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Introduce Pillar 1: Commercial short and long hedge principles',
+              sourceFactIds: ['fact-01', 'fact-02', 'fact-03'],
+            },
+          },
+        },
+        {
+          id: 'b05',
+          hindi_tts: "Second, the corporate finance debate: should companies hedge if shareholders are already diversified, and how bullion banks hedged gold mining companies in Snapshot 3.1.",
+          en_narration: "Second, the corporate finance debate: should companies hedge if shareholders are already diversified, and how bullion banks hedged gold mining companies in Snapshot 3.1.",
+          en_subtitle: "Corporate governance: shareholder diversification vs distress costs and gold leases.",
+          pauseAfterMs: 400,
+          ui_state: {
+            stepIndex: 1,
+            totalSteps: 3,
+            cards: [
+              {
+                id: 'c1',
+                title: 'Pillar 1: Commercial Position Matching',
+                subtitle: 'Short Hedges vs Long Hedges',
+                details: 'Matching physical balance sheet assets and liabilities to futures short or long contracts.',
+                badge: 'Foundation',
+                highlight: false,
+              },
+              {
+                id: 'c2',
+                title: 'Pillar 2: Corporate Hedging Paradox',
+                subtitle: 'Shareholders vs Management & Gold Leases',
+                details: 'Why diversified shareholders question hedging, and how central bank gold leases funded miner hedges.',
+                badge: 'Agency Theory',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 1,
+              totalSteps: 3,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'Pillar 1: Commercial Position Matching',
+                  subtitle: 'Short Hedges vs Long Hedges',
+                  details: 'Matching physical balance sheet assets and liabilities to futures short or long contracts.',
+                  badge: 'Foundation',
+                  highlight: false,
+                },
+                {
+                  id: 'c2',
+                  title: 'Pillar 2: Corporate Hedging Paradox',
+                  subtitle: 'Shareholders vs Management & Gold Leases',
+                  details: 'Why diversified shareholders question hedging, and how central bank gold leases funded miner hedges.',
+                  badge: 'Agency Theory',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Introduce Pillar 2: Corporate hedging theory and Snapshot 3.1 gold leases',
+              sourceFactIds: ['fact-04', 'fact-05', 'fact-06'],
+            },
+          },
+        },
+        {
+          id: 'b06',
+          hindi_tts: "Third, the mathematical core of basis risk: formulating b equals S minus F, proving the net price equation, and mapping strengthening versus weakening basis dynamics.",
+          en_narration: "Third, the mathematical core of basis risk: formulating b equals S minus F, proving the net price equation, and mapping strengthening versus weakening basis dynamics.",
+          en_subtitle: "Basis mechanics: b = S - F, effective price F1 + b2, and basis shifts.",
+          pauseAfterMs: 500,
+          ui_state: {
+            stepIndex: 2,
+            totalSteps: 3,
+            cards: [
+              {
+                id: 'c1',
+                title: 'Pillar 1: Commercial Position Matching',
+                subtitle: 'Short Hedges vs Long Hedges',
+                details: 'Matching physical balance sheet assets and liabilities to futures short or long contracts.',
+                badge: 'Foundation',
+                highlight: false,
+              },
+              {
+                id: 'c2',
+                title: 'Pillar 2: Corporate Hedging Paradox',
+                subtitle: 'Shareholders vs Management & Gold Leases',
+                details: 'Why diversified shareholders question hedging, and how central bank gold leases funded miner hedges.',
+                badge: 'Agency Theory',
+                highlight: false,
+              },
+              {
+                id: 'c3',
+                title: 'Pillar 3: Basis Risk Quantitative Mechanics',
+                subtitle: 'b_t = S_t - F_t & Net Price Theorem',
+                details: 'Proof of P_net = F_1 + b_2, convergence at expiration, and basis shift payoffs.',
+                badge: 'Quantitative Core',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 2,
+              totalSteps: 3,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'Pillar 1: Commercial Position Matching',
+                  subtitle: 'Short Hedges vs Long Hedges',
+                  details: 'Matching physical balance sheet assets and liabilities to futures short or long contracts.',
+                  badge: 'Foundation',
+                  highlight: false,
+                },
+                {
+                  id: 'c2',
+                  title: 'Pillar 2: Corporate Hedging Paradox',
+                  subtitle: 'Shareholders vs Management & Gold Leases',
+                  details: 'Why diversified shareholders question hedging, and how central bank gold leases funded miner hedges.',
+                  badge: 'Agency Theory',
+                  highlight: false,
+                },
+                {
+                  id: 'c3',
+                  title: 'Pillar 3: Basis Risk Quantitative Mechanics',
+                  subtitle: 'b_t = S_t - F_t & Net Price Theorem',
+                  details: 'Proof of P_net = F_1 + b_2, convergence at expiration, and basis shift payoffs.',
+                  badge: 'Quantitative Core',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Introduce Pillar 3: Basis risk equations and quantitative dynamics',
+              sourceFactIds: ['fact-07', 'fact-08', 'fact-09', 'fact-10'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 2: Split Comparison - Short Hedge vs Long Hedge
+    {
+      segmentIndex: 2,
+      title: 'Short Hedge vs Long Hedge',
+      template: 'split_comparison',
+      badge: 'Commercial Position Classification',
+      beats: [
+        {
+          id: 'b07',
+          hindi_tts: "A short hedge is indicated when a company already owns an inventory asset or expects to produce it in the future and faces exposure to falling market prices.",
+          en_narration: "A short hedge is indicated when a company already owns an inventory asset or expects to produce it in the future and faces exposure to falling market prices.",
+          en_subtitle: "Short Hedge: Owns asset or future production, protects against price drops.",
+          pauseAfterMs: 400,
+          ui_state: {
+            leftTitle: 'Short Hedge (Seller)',
+            leftBadge: 'Asset Owner / Producer',
+            leftItems: [
+              'Commercial State: Owns asset or expects future harvest/production.',
+              'Market Risk: Vulnerable to falling market spot prices.',
+              'Futures Action: Sells futures contracts (short position).',
+              'Outcome: Locks in guaranteed minimum selling price.',
+            ],
+            rightTitle: 'Long Hedge (Buyer)',
+            rightBadge: 'Consumer / Manufacturer',
+            rightItems: [],
+            activeSide: 'left',
+          },
+          visual: {
+            kind: 'comparison',
+            data: {
+              leftTitle: 'Short Hedge (Seller)',
+              leftBadge: 'Asset Owner / Producer',
+              leftItems: [
+                'Commercial State: Owns asset or expects future harvest/production.',
+                'Market Risk: Vulnerable to falling market spot prices.',
+                'Futures Action: Sells futures contracts (short position).',
+                'Outcome: Locks in guaranteed minimum selling price.',
+              ],
+              rightTitle: 'Long Hedge (Buyer)',
+              rightBadge: 'Consumer / Manufacturer',
+              rightItems: [],
+              activeSide: 'left',
+            },
+            semantics: {
+              teachingObjective: 'Define short hedge commercial prerequisites and action',
+              sourceFactIds: ['fact-02'],
+            },
+          },
+        },
+        {
+          id: 'b08',
+          hindi_tts: "Conversely, a long hedge is executed when an entity knows it must purchase raw materials in the future, such as an electric utility buying copper or coal, locking in costs.",
+          en_narration: "Conversely, a long hedge is executed when an entity knows it must purchase raw materials in the future, such as an electric utility buying copper or coal, locking in costs.",
+          en_subtitle: "Long Hedge: Commercial procurement, protects against rising input costs.",
+          pauseAfterMs: 400,
+          ui_state: {
+            leftTitle: 'Short Hedge (Seller)',
+            leftBadge: 'Asset Owner / Producer',
+            leftItems: [
+              'Commercial State: Owns asset or expects future harvest/production.',
+              'Market Risk: Vulnerable to falling market spot prices.',
+              'Futures Action: Sells futures contracts (short position).',
+              'Outcome: Locks in guaranteed minimum selling price.',
+            ],
+            rightTitle: 'Long Hedge (Buyer)',
+            rightBadge: 'Consumer / Manufacturer',
+            rightItems: [
+              'Commercial State: Scheduled purchase of raw commodities.',
+              'Market Risk: Vulnerable to rising market spot prices.',
+              'Futures Action: Buys futures contracts (long position).',
+              'Outcome: Locks in maximum guaranteed acquisition cost.',
+            ],
+            activeSide: 'right',
+          },
+          visual: {
+            kind: 'comparison',
+            data: {
+              leftTitle: 'Short Hedge (Seller)',
+              leftBadge: 'Asset Owner / Producer',
+              leftItems: [
+                'Commercial State: Owns asset or expects future harvest/production.',
+                'Market Risk: Vulnerable to falling market spot prices.',
+                'Futures Action: Sells futures contracts (short position).',
+                'Outcome: Locks in guaranteed minimum selling price.',
+              ],
+              rightTitle: 'Long Hedge (Buyer)',
+              rightBadge: 'Consumer / Manufacturer',
+              rightItems: [
+                'Commercial State: Scheduled purchase of raw commodities.',
+                'Market Risk: Vulnerable to rising market spot prices.',
+                'Futures Action: Buys futures contracts (long position).',
+                'Outcome: Locks in maximum guaranteed acquisition cost.',
+              ],
+              activeSide: 'right',
+            },
+            semantics: {
+              teachingObjective: 'Define long hedge commercial prerequisites and action',
+              sourceFactIds: ['fact-03'],
+            },
+          },
+        },
+        {
+          id: 'b09',
+          hindi_tts: "The unifying commercial principle is symmetry: the futures contract profit or loss directly counterbalances the price shock in the physical spot market.",
+          en_narration: "The unifying commercial principle is symmetry: the futures contract profit or loss directly counterbalances the price shock in the physical spot market.",
+          en_subtitle: "Futures PnL offsets physical spot price changes to lock in net cash flow.",
+          pauseAfterMs: 500,
+          ui_state: {
+            leftTitle: 'Short Hedge (Seller)',
+            leftBadge: 'Asset Owner / Producer',
+            leftItems: [
+              'Commercial State: Owns asset or expects future harvest/production.',
+              'Market Risk: Vulnerable to falling market spot prices.',
+              'Futures Action: Sells futures contracts (short position).',
+              'Outcome: Locks in guaranteed minimum selling price.',
+            ],
+            rightTitle: 'Long Hedge (Buyer)',
+            rightBadge: 'Consumer / Manufacturer',
+            rightItems: [
+              'Commercial State: Scheduled purchase of raw commodities.',
+              'Market Risk: Vulnerable to rising market spot prices.',
+              'Futures Action: Buys futures contracts (long position).',
+              'Outcome: Locks in maximum guaranteed acquisition cost.',
+            ],
+            activeSide: 'both',
+          },
+          visual: {
+            kind: 'comparison',
+            data: {
+              leftTitle: 'Short Hedge (Seller)',
+              leftBadge: 'Asset Owner / Producer',
+              leftItems: [
+                'Commercial State: Owns asset or expects future harvest/production.',
+                'Market Risk: Vulnerable to falling market spot prices.',
+                'Futures Action: Sells futures contracts (short position).',
+                'Outcome: Locks in guaranteed minimum selling price.',
+              ],
+              rightTitle: 'Long Hedge (Buyer)',
+              rightBadge: 'Consumer / Manufacturer',
+              rightItems: [
+                'Commercial State: Scheduled purchase of raw commodities.',
+                'Market Risk: Vulnerable to rising market spot prices.',
+                'Futures Action: Buys futures contracts (long position).',
+                'Outcome: Locks in maximum guaranteed acquisition cost.',
+              ],
+              activeSide: 'both',
+            },
+            semantics: {
+              teachingObjective: 'Synthesize the risk offset mechanics of commercial hedging',
+              sourceFactIds: ['fact-01'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 3: Progressive Cards - The Corporate Hedging Paradox
+    {
+      segmentIndex: 3,
+      title: 'The Corporate Hedging Paradox',
+      template: 'progressive_cards',
+      badge: 'Corporate Finance & Agency Theory',
+      beats: [
+        {
+          id: 'b10',
+          hindi_tts: "In corporate finance, John Hull highlights a major controversy: if public shareholders are already well diversified across their stock portfolios, does corporate hedging add value?",
+          en_narration: "In corporate finance, John Hull highlights a major controversy: if public shareholders are already well diversified across their stock portfolios, does corporate hedging add value?",
+          en_subtitle: "If shareholders are well diversified, does corporate hedging actually create value?",
+          pauseAfterMs: 400,
+          ui_state: {
+            stepIndex: 0,
+            totalSteps: 3,
+            cards: [
+              {
+                id: 'c1',
+                title: 'The Shareholder Diversification Argument',
+                subtitle: 'Unsystematic Risk is Free to Diversify',
+                details: 'Investors hold portfolios across thousands of assets. They can diversify away commodity price volatility without paying corporate trading desk fees.',
+                badge: 'Theory Against',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 0,
+              totalSteps: 3,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'The Shareholder Diversification Argument',
+                  subtitle: 'Unsystematic Risk is Free to Diversify',
+                  details: 'Investors hold portfolios across thousands of assets. They can diversify away commodity price volatility without paying corporate trading desk fees.',
+                  badge: 'Theory Against',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Explain why diversified shareholders may view corporate hedging as redundant',
+              sourceFactIds: ['fact-04'],
+            },
+          },
+        },
+        {
+          id: 'b11',
+          hindi_tts: "Management hedges because bankruptcy is not friction-free. Volatile cash flows cause financial distress, debt downgrades, and the underinvestment trap where profitable projects get cancelled.",
+          en_narration: "Management hedges because bankruptcy is not friction-free. Volatile cash flows cause financial distress, debt downgrades, and the underinvestment trap where profitable projects get cancelled.",
+          en_subtitle: "Hedging prevents financial distress, protects debt capacity, and secures capital budgets.",
+          pauseAfterMs: 400,
+          ui_state: {
+            stepIndex: 1,
+            totalSteps: 3,
+            cards: [
+              {
+                id: 'c1',
+                title: 'The Shareholder Diversification Argument',
+                subtitle: 'Unsystematic Risk is Free to Diversify',
+                details: 'Investors hold portfolios across thousands of assets. They can diversify away commodity price volatility without paying corporate trading desk fees.',
+                badge: 'Theory Against',
+                highlight: false,
+              },
+              {
+                id: 'c2',
+                title: 'The Managerial Rationale',
+                subtitle: 'Avoiding Distress & Underinvestment',
+                details: 'Stabilizing cash flows preserves debt ratings, lowers borrowing costs, and guarantees internal funds for high-ROI capital expenditures.',
+                badge: 'Theory For',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 1,
+              totalSteps: 3,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'The Shareholder Diversification Argument',
+                  subtitle: 'Unsystematic Risk is Free to Diversify',
+                  details: 'Investors hold portfolios across thousands of assets. They can diversify away commodity price volatility without paying corporate trading desk fees.',
+                  badge: 'Theory Against',
+                  highlight: false,
+                },
+                {
+                  id: 'c2',
+                  title: 'The Managerial Rationale',
+                  subtitle: 'Avoiding Distress & Underinvestment',
+                  details: 'Stabilizing cash flows preserves debt ratings, lowers borrowing costs, and guarantees internal funds for high-ROI capital expenditures.',
+                  badge: 'Theory For',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Present the corporate finance justification for corporate hedging',
+              sourceFactIds: ['fact-05'],
+            },
+          },
+        },
+        {
+          id: 'b12',
+          hindi_tts: "Furthermore, if competitors remain unhedged during a market decline, the hedged company wins; but if prices rally, unhedged competitors capture windfall profits, creating competitive friction.",
+          en_narration: "Furthermore, if competitors remain unhedged during a market decline, the hedged company wins; but if prices rally, unhedged competitors capture windfall profits, creating competitive friction.",
+          en_subtitle: "Competitive risk: unhedged rivals win during rallies, pressuring hedged firm margins.",
+          pauseAfterMs: 500,
+          ui_state: {
+            stepIndex: 2,
+            totalSteps: 3,
+            cards: [
+              {
+                id: 'c1',
+                title: 'The Shareholder Diversification Argument',
+                subtitle: 'Unsystematic Risk is Free to Diversify',
+                details: 'Investors hold portfolios across thousands of assets. They can diversify away commodity price volatility without paying corporate trading desk fees.',
+                badge: 'Theory Against',
+                highlight: false,
+              },
+              {
+                id: 'c2',
+                title: 'The Managerial Rationale',
+                subtitle: 'Avoiding Distress & Underinvestment',
+                details: 'Stabilizing cash flows preserves debt ratings, lowers borrowing costs, and guarantees internal funds for high-ROI capital expenditures.',
+                badge: 'Theory For',
+                highlight: false,
+              },
+              {
+                id: 'c3',
+                title: 'Competitive & Agency Risk',
+                subtitle: 'Industry Benchmarking Hazards',
+                details: 'If industry rivals do not hedge, a hedged company appears disadvantaged when market variables move favorably.',
+                badge: 'Strategic Risk',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 2,
+              totalSteps: 3,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'The Shareholder Diversification Argument',
+                  subtitle: 'Unsystematic Risk is Free to Diversify',
+                  details: 'Investors hold portfolios across thousands of assets. They can diversify away commodity price volatility without paying corporate trading desk fees.',
+                  badge: 'Theory Against',
+                  highlight: false,
+                },
+                {
+                  id: 'c2',
+                  title: 'The Managerial Rationale',
+                  subtitle: 'Avoiding Distress & Underinvestment',
+                  details: 'Stabilizing cash flows preserves debt ratings, lowers borrowing costs, and guarantees internal funds for high-ROI capital expenditures.',
+                  badge: 'Theory For',
+                  highlight: false,
+                },
+                {
+                  id: 'c3',
+                  title: 'Competitive & Agency Risk',
+                  subtitle: 'Industry Benchmarking Hazards',
+                  details: 'If industry rivals do not hedge, a hedged company appears disadvantaged when market variables move favorably.',
+                  badge: 'Strategic Risk',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Illustrate competitive benchmarking hazards in corporate hedging programs',
+              sourceFactIds: ['fact-04'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 4: Progressive Cards - Business Snapshot 3.1: Gold Mining & Central Bank Leases
+    {
+      segmentIndex: 4,
+      title: 'Business Snapshot 3.1: Gold Mining & Central Bank Leases',
+      template: 'progressive_cards',
+      badge: 'Real-World Case Study · Central Bank Leases',
+      beats: [
+        {
+          id: 'b13',
+          hindi_tts: "In Business Snapshot 3.1, John Hull examines how gold mining corporations historically executed massive multi-year forward sales with Wall Street bullion banks.",
+          en_narration: "In Business Snapshot 3.1, John Hull examines how gold mining corporations historically executed massive multi-year forward sales with Wall Street bullion banks.",
+          en_subtitle: "Gold mining firms locked in multi-year forward sales with bullion dealers.",
+          pauseAfterMs: 400,
+          ui_state: {
+            stepIndex: 0,
+            totalSteps: 3,
+            cards: [
+              {
+                id: 'c1',
+                title: 'Step 1: The Mining Forward Contract',
+                subtitle: 'Locking In Future Extraction Revenue',
+                details: 'Gold producers agreed to sell millions of ounces over 5 to 10 years at fixed forward prices to guarantee cash flow.',
+                badge: 'Mine Forward',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 0,
+              totalSteps: 3,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'Step 1: The Mining Forward Contract',
+                  subtitle: 'Locking In Future Extraction Revenue',
+                  details: 'Gold producers agreed to sell millions of ounces over 5 to 10 years at fixed forward prices to guarantee cash flow.',
+                  badge: 'Mine Forward',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Explain how gold miners entered forward sales to lock in production revenues',
+              sourceFactIds: ['fact-06'],
+            },
+          },
+        },
+        {
+          id: 'b14',
+          hindi_tts: "To hedge their exposure, banks borrowed physical gold from central bank vaults at the gold lease rate, sold it spot, and invested the cash proceeds at risk-free rates.",
+          en_narration: "To hedge their exposure, banks borrowed physical gold from central bank vaults at the gold lease rate, sold it spot, and invested the cash proceeds at risk-free rates.",
+          en_subtitle: "Banks borrowed central bank gold at the lease rate, selling spot for cash.",
+          pauseAfterMs: 400,
+          ui_state: {
+            stepIndex: 1,
+            totalSteps: 3,
+            cards: [
+              {
+                id: 'c1',
+                title: 'Step 1: The Mining Forward Contract',
+                subtitle: 'Locking In Future Extraction Revenue',
+                details: 'Gold producers agreed to sell millions of ounces over 5 to 10 years at fixed forward prices to guarantee cash flow.',
+                badge: 'Mine Forward',
+                highlight: false,
+              },
+              {
+                id: 'c2',
+                title: 'Step 2: Central Bank Gold Leases',
+                subtitle: 'Borrowing Vault Reserves at 1.5% Lease Rate',
+                details: 'Bullion banks borrowed physical gold from central banks, sold it immediately in the spot market, and earned interest on cash.',
+                badge: 'Central Bank Loan',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 1,
+              totalSteps: 3,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'Step 1: The Mining Forward Contract',
+                  subtitle: 'Locking In Future Extraction Revenue',
+                  details: 'Gold producers agreed to sell millions of ounces over 5 to 10 years at fixed forward prices to guarantee cash flow.',
+                  badge: 'Mine Forward',
+                  highlight: false,
+                },
+                {
+                  id: 'c2',
+                  title: 'Step 2: Central Bank Gold Leases',
+                  subtitle: 'Borrowing Vault Reserves at 1.5% Lease Rate',
+                  details: 'Bullion banks borrowed physical gold from central banks, sold it immediately in the spot market, and earned interest on cash.',
+                  badge: 'Central Bank Loan',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Demonstrate central bank gold leasing mechanics and cash reinvestment',
+              sourceFactIds: ['fact-06'],
+            },
+          },
+        },
+        {
+          id: 'b15',
+          hindi_tts: "When gold rallied in the two-thousands, unhedged miners soared while hedged producers were trapped delivering cheap gold, triggering massive shareholder backlash and hedge unwinds.",
+          en_narration: "When gold rallied in the two-thousands, unhedged miners soared while hedged producers were trapped delivering cheap gold, triggering massive shareholder backlash and hedge unwinds.",
+          en_subtitle: "When gold rallied, hedged miners suffered shareholder backlash and closed hedges.",
+          pauseAfterMs: 500,
+          ui_state: {
+            stepIndex: 2,
+            totalSteps: 3,
+            cards: [
+              {
+                id: 'c1',
+                title: 'Step 1: The Mining Forward Contract',
+                subtitle: 'Locking In Future Extraction Revenue',
+                details: 'Gold producers agreed to sell millions of ounces over 5 to 10 years at fixed forward prices to guarantee cash flow.',
+                badge: 'Mine Forward',
+                highlight: false,
+              },
+              {
+                id: 'c2',
+                title: 'Step 2: Central Bank Gold Leases',
+                subtitle: 'Borrowing Vault Reserves at 1.5% Lease Rate',
+                details: 'Bullion banks borrowed physical gold from central banks, sold it immediately in the spot market, and earned interest on cash.',
+                badge: 'Central Bank Loan',
+                highlight: false,
+              },
+              {
+                id: 'c3',
+                title: 'Step 3: The Shareholder Revolt',
+                subtitle: 'Unhedged Producers Crushed Hedged Peers',
+                details: 'Shareholders buying mining stocks wanted pure gold upside. Companies like Barrick Gold were forced to pay billions to unwind forward hedges.',
+                badge: 'Market Lesson',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 2,
+              totalSteps: 3,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'Step 1: The Mining Forward Contract',
+                  subtitle: 'Locking In Future Extraction Revenue',
+                  details: 'Gold producers agreed to sell millions of ounces over 5 to 10 years at fixed forward prices to guarantee cash flow.',
+                  badge: 'Mine Forward',
+                  highlight: false,
+                },
+                {
+                  id: 'c2',
+                  title: 'Step 2: Central Bank Gold Leases',
+                  subtitle: 'Borrowing Vault Reserves at 1.5% Lease Rate',
+                  details: 'Bullion banks borrowed physical gold from central banks, sold it immediately in the spot market, and earned interest on cash.',
+                  badge: 'Central Bank Loan',
+                  highlight: false,
+                },
+                {
+                  id: 'c3',
+                  title: 'Step 3: The Shareholder Revolt',
+                  subtitle: 'Unhedged Producers Crushed Hedged Peers',
+                  details: 'Shareholders buying mining stocks wanted pure gold upside. Companies like Barrick Gold were forced to pay billions to unwind forward hedges.',
+                  badge: 'Market Lesson',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Explain why gold mining shareholders revolted against forward hedging during bull markets',
+              sourceFactIds: ['fact-06'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 5: Formula Breakdown - Basis Mechanics & Convergence
+    {
+      segmentIndex: 5,
+      title: 'Basis Definition & Expiration Convergence',
+      template: 'formula_breakdown',
+      badge: 'Core Quantitative Formula · Basis Mechanics',
+      beats: [
+        {
+          id: 'b16',
+          hindi_tts: "In real-world hedging, basis risk is central. John Hull defines the basis as the spot price of the asset being hedged minus the futures price of the contract used.",
+          en_narration: "In real-world hedging, basis risk is central. John Hull defines the basis as the spot price of the asset being hedged minus the futures price of the contract used.",
+          en_subtitle: "Basis equals spot price of hedged asset minus futures contract price.",
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'Mathematical Definition of Basis',
+            expression: 'b_t = S_t - F_t',
+            latex: 'b_t = S_t - F_t',
+            variables: [
+              { symbol: 'b_t', label: 'Basis at time t', description: 'Difference between spot and futures prices', unit: '$ / unit' },
+              { symbol: 'S_t', label: 'Spot Price', description: 'Current cash market spot price of the asset', unit: '$ / unit' },
+              { symbol: 'F_t', label: 'Futures Price', description: 'Current market futures price for delivery month T', unit: '$ / unit' },
+            ],
+            steps: [
+              { stepIndex: 0, label: 'Definition', equation: 'b_t = S_t - F_t', note: 'Spot price minus futures price at time t' },
+            ],
+            assumptions: ['Underlying commodity grade and delivery specifications are standardized.'],
+            interpretation: 'Basis reflects the net cost of carry and temporary local supply-demand imbalances.',
+          },
+          visual: {
+            kind: 'formula',
+            data: {
+              title: 'Mathematical Definition of Basis',
+              expression: 'b_t = S_t - F_t',
+              variables: [
+                { symbol: 'b_t', label: 'Basis at time t', description: 'Difference between spot and futures prices', unit: '$ / unit' },
+                { symbol: 'S_t', label: 'Spot Price', description: 'Current cash market spot price of the asset', unit: '$ / unit' },
+                { symbol: 'F_t', label: 'Futures Price', description: 'Current market futures price for delivery month T', unit: '$ / unit' },
+              ],
+              steps: [
+                { stepIndex: 0, label: 'Definition', equation: 'b_t = S_t - F_t', note: 'Spot price minus futures price at time t' },
+              ],
+              assumptions: ['Underlying commodity grade and delivery specifications are standardized.'],
+              interpretation: 'Basis reflects the net cost of carry and temporary local supply-demand imbalances.',
+            },
+            semantics: {
+              teachingObjective: 'Introduce formal basis definition b_t = S_t - F_t and variable components',
+              sourceFactIds: ['fact-07'],
+            },
+          },
+        },
+        {
+          id: 'b17',
+          hindi_tts: "If the asset being hedged is identical to the futures contract asset, arbitrage forces the futures price to converge exactly to the spot price at maturity, driving the basis to zero.",
+          en_narration: "If the asset being hedged is identical to the futures contract asset, arbitrage forces the futures price to converge exactly to the spot price at maturity, driving the basis to zero.",
+          en_subtitle: "At contract maturity T, spot equals futures, driving basis to zero.",
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'Mathematical Definition of Basis',
+            expression: 'b_T = S_T - F_T = 0',
+            latex: '\\lim_{t \\to T} |F_t - S_t| = 0 \\implies b_T = 0',
+            variables: [
+              { symbol: 'b_T', label: 'Final Expiration Basis', description: 'Basis at delivery maturity date T', unit: '$ / unit' },
+              { symbol: 'S_T', label: 'Spot Price at Maturity', description: 'Cash market price on expiration date', unit: '$ / unit' },
+              { symbol: 'F_T', label: 'Futures Price at Maturity', description: 'Final settlement futures price', unit: '$ / unit' },
+            ],
+            steps: [
+              { stepIndex: 0, label: 'Time t Basis', equation: 'b_t = S_t - F_t', note: 'Can be positive or negative prior to expiration' },
+              { stepIndex: 1, label: 'Expiration Limit', equation: 'F_T = S_T \\implies b_T = 0', note: 'Arbitrage enforces convergence at maturity' },
+            ],
+            assumptions: ['Standardized delivery and zero delivery frictions at contract maturity.'],
+            interpretation: 'At expiration, basis risk vanishes completely if held to delivery.',
+          },
+          visual: {
+            kind: 'formula',
+            data: {
+              title: 'Mathematical Definition of Basis',
+              expression: 'b_T = S_T - F_T = 0',
+              variables: [
+                { symbol: 'b_T', label: 'Final Expiration Basis', description: 'Basis at delivery maturity date T', unit: '$ / unit' },
+                { symbol: 'S_T', label: 'Spot Price at Maturity', description: 'Cash market price on expiration date', unit: '$ / unit' },
+                { symbol: 'F_T', label: 'Futures Price at Maturity', description: 'Final settlement futures price', unit: '$ / unit' },
+              ],
+              steps: [
+                { stepIndex: 0, label: 'Time t Basis', equation: 'b_t = S_t - F_t', note: 'Can be positive or negative prior to expiration' },
+                { stepIndex: 1, label: 'Expiration Limit', equation: 'F_T = S_T \\implies b_T = 0', note: 'Arbitrage enforces convergence at maturity' },
+              ],
+              assumptions: ['Standardized delivery and zero delivery frictions at contract maturity.'],
+              interpretation: 'At expiration, basis risk vanishes completely if held to delivery.',
+            },
+            semantics: {
+              teachingObjective: 'Demonstrate expiration convergence property b_T = 0',
+              sourceFactIds: ['fact-07'],
+            },
+          },
+        },
+        {
+          id: 'b18',
+          hindi_tts: "However, hedgers almost always close positions before maturity. Unpredictable fluctuations in the basis prior to delivery create what finance terms basis risk.",
+          en_narration: "However, hedgers almost always close positions before maturity. Unpredictable fluctuations in the basis prior to delivery create what finance terms basis risk.",
+          en_subtitle: "Early hedge closeout introduces basis risk because final basis is uncertain.",
+          pauseAfterMs: 500,
+          ui_state: {
+            title: 'Mathematical Definition of Basis',
+            expression: 'b_2 = S_2 - F_2 \\neq 0',
+            latex: 'b_2 = S_2 - F_2 \\quad (t_2 < T)',
+            variables: [
+              { symbol: 'b_2', label: 'Closeout Basis', description: 'Basis when hedge is lifted at time t2', unit: '$ / unit' },
+              { symbol: 'S_2', label: 'Closeout Spot Price', description: 'Physical asset price when hedge is closed', unit: '$ / unit' },
+              { symbol: 'F_2', label: 'Closeout Futures Price', description: 'Futures price when offsetting contract', unit: '$ / unit' },
+            ],
+            steps: [
+              { stepIndex: 0, label: 'Inception Basis', equation: 'b_1 = S_1 - F_1', note: 'Known when hedge is entered at t1' },
+              { stepIndex: 1, label: 'Closeout Basis', equation: 'b_2 = S_2 - F_2', note: 'Random variable at inception; source of basis risk' },
+            ],
+            assumptions: ['Hedge lifted at time t2 prior to delivery month T.'],
+            interpretation: 'Basis risk replaces spot price volatility with basis spread volatility.',
+          },
+          visual: {
+            kind: 'formula',
+            data: {
+              title: 'Mathematical Definition of Basis',
+              expression: 'b_2 = S_2 - F_2 \\neq 0',
+              variables: [
+                { symbol: 'b_2', label: 'Closeout Basis', description: 'Basis when hedge is lifted at time t2', unit: '$ / unit' },
+                { symbol: 'S_2', label: 'Closeout Spot Price', description: 'Physical asset price when hedge is closed', unit: '$ / unit' },
+                { symbol: 'F_2', label: 'Closeout Futures Price', description: 'Futures price when offsetting contract', unit: '$ / unit' },
+              ],
+              steps: [
+                { stepIndex: 0, label: 'Inception Basis', equation: 'b_1 = S_1 - F_1', note: 'Known when hedge is entered at t1' },
+                { stepIndex: 1, label: 'Closeout Basis', equation: 'b_2 = S_2 - F_2', note: 'Random variable at inception; source of basis risk' },
+              ],
+              assumptions: ['Hedge lifted at time t2 prior to delivery month T.'],
+              interpretation: 'Basis risk replaces spot price volatility with basis spread volatility.',
+            },
+            semantics: {
+              teachingObjective: 'Explain why early closeout causes basis uncertainty',
+              sourceFactIds: ['fact-07', 'fact-10'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 6: Formula Breakdown - The Net Price Theorem
+    {
+      segmentIndex: 6,
+      title: 'The Net Price Theorem',
+      template: 'formula_breakdown',
+      badge: 'Mathematical Derivation · Effective Realized Price',
+      beats: [
+        {
+          id: 'b19',
+          hindi_tts: "Let us derive the effective price received by a short hedger. At time two, the seller sells physical goods at spot S two and closes futures with a gain of F one minus F two.",
+          en_narration: "Let us derive the effective price received by a short hedger. At time two, the seller sells physical goods at spot S two and closes futures with a gain of F one minus F two.",
+          en_subtitle: "Effective price equals spot sale revenue S2 plus futures gain F1 - F2.",
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'The Net Price Theorem',
+            expression: 'P_{\\text{net}} = S_2 + (F_1 - F_2)',
+            latex: 'P_{\\text{net}} = S_2 + (F_1 - F_2)',
+            variables: [
+              { symbol: 'P_{\\text{net}}', label: 'Effective Realized Price', description: 'Net cash received per unit of physical commodity', unit: '$ / unit' },
+              { symbol: 'S_2', label: 'Spot Price at Closeout', description: 'Actual cash received in physical market', unit: '$ / unit' },
+              { symbol: 'F_1', label: 'Inception Futures Price', description: 'Price at which futures were shorted at t1', unit: '$ / unit' },
+              { symbol: 'F_2', label: 'Closeout Futures Price', description: 'Price at which futures were bought back at t2', unit: '$ / unit' },
+            ],
+            steps: [
+              { stepIndex: 0, label: 'Physical Cash Flow', equation: 'S_2', note: 'Sale of crop in cash market' },
+              { stepIndex: 1, label: 'Futures Gain / Loss', equation: 'F_1 - F_2', note: 'Short position profit if futures fall' },
+              { stepIndex: 2, label: 'Total Realized Price', equation: 'P_{\\text{net}} = S_2 + (F_1 - F_2)', note: 'Sum of physical and derivative legs' },
+            ],
+            assumptions: ['Contract size matches physical delivery quantity exactly.'],
+            interpretation: 'The hedger combines physical cash flow with financial derivative PnL.',
+          },
+          visual: {
+            kind: 'formula',
+            data: {
+              title: 'The Net Price Theorem',
+              expression: 'P_{\\text{net}} = S_2 + (F_1 - F_2)',
+              variables: [
+                { symbol: 'P_{\\text{net}}', label: 'Effective Realized Price', description: 'Net cash received per unit of physical commodity', unit: '$ / unit' },
+                { symbol: 'S_2', label: 'Spot Price at Closeout', description: 'Actual cash received in physical market', unit: '$ / unit' },
+                { symbol: 'F_1', label: 'Inception Futures Price', description: 'Price at which futures were shorted at t1', unit: '$ / unit' },
+                { symbol: 'F_2', label: 'Closeout Futures Price', description: 'Price at which futures were bought back at t2', unit: '$ / unit' },
+              ],
+              steps: [
+                { stepIndex: 0, label: 'Physical Cash Flow', equation: 'S_2', note: 'Sale of crop in cash market' },
+                { stepIndex: 1, label: 'Futures Gain / Loss', equation: 'F_1 - F_2', note: 'Short position profit if futures fall' },
+                { stepIndex: 2, label: 'Total Realized Price', equation: 'P_{\\text{net}} = S_2 + (F_1 - F_2)', note: 'Sum of physical and derivative legs' },
+              ],
+              assumptions: ['Contract size matches physical delivery quantity exactly.'],
+              interpretation: 'The hedger combines physical cash flow with financial derivative PnL.',
+            },
+            semantics: {
+              teachingObjective: 'Formulate the total realized cash flow of a hedged position',
+              sourceFactIds: ['fact-08'],
+            },
+          },
+        },
+        {
+          id: 'b20',
+          hindi_tts: "Rearranging terms algebraically: S two minus F two is simply the final basis b two. Therefore, the effective price received equals F one plus b two!",
+          en_narration: "Rearranging terms algebraically: S two minus F two is simply the final basis b two. Therefore, the effective price received equals F one plus b two!",
+          en_subtitle: "Rearranging terms yields P_net = F1 + b2: price depends on final basis.",
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'The Net Price Theorem',
+            expression: 'P_{\\text{net}} = F_1 + b_2',
+            latex: 'P_{\\text{net}} = F_1 + (S_2 - F_2) = F_1 + b_2',
+            variables: [
+              { symbol: 'P_{\\text{net}}', label: 'Effective Realized Price', description: 'Final net revenue realized per unit', unit: '$ / unit' },
+              { symbol: 'F_1', label: 'Initial Futures Price', description: 'Locked baseline price from time t1', unit: '$ / unit' },
+              { symbol: 'b_2', label: 'Closeout Basis', description: 'Final basis S2 - F2 at hedge termination', unit: '$ / unit' },
+            ],
+            steps: [
+              { stepIndex: 0, label: 'Original Equation', equation: 'P_{\\text{net}} = S_2 + F_1 - F_2', note: 'Combined cash flow' },
+              { stepIndex: 1, label: 'Regrouping', equation: 'P_{\\text{net}} = F_1 + (S_2 - F_2)', note: 'Grouping spot minus futures terms' },
+              { stepIndex: 2, label: 'Final Theorem', equation: 'P_{\\text{net}} = F_1 + b_2', note: 'Effective price equals initial futures plus closeout basis' },
+            ],
+            assumptions: ['Position closed simultaneously in spot and futures markets.'],
+            interpretation: 'Because F1 is locked at inception, price uncertainty is purely uncertainty about b2.',
+          },
+          visual: {
+            kind: 'formula',
+            data: {
+              title: 'The Net Price Theorem',
+              expression: 'P_{\\text{net}} = F_1 + b_2',
+              variables: [
+                { symbol: 'P_{\\text{net}}', label: 'Effective Realized Price', description: 'Final net revenue realized per unit', unit: '$ / unit' },
+                { symbol: 'F_1', label: 'Initial Futures Price', description: 'Locked baseline price from time t1', unit: '$ / unit' },
+                { symbol: 'b_2', label: 'Closeout Basis', description: 'Final basis S2 - F2 at hedge termination', unit: '$ / unit' },
+              ],
+              steps: [
+                { stepIndex: 0, label: 'Original Equation', equation: 'P_{\\text{net}} = S_2 + F_1 - F_2', note: 'Combined cash flow' },
+                { stepIndex: 1, label: 'Regrouping', equation: 'P_{\\text{net}} = F_1 + (S_2 - F_2)', note: 'Grouping spot minus futures terms' },
+                { stepIndex: 2, label: 'Final Theorem', equation: 'P_{\\text{net}} = F_1 + b_2', note: 'Effective price equals initial futures plus closeout basis' },
+              ],
+              assumptions: ['Position closed simultaneously in spot and futures markets.'],
+              interpretation: 'Because F1 is locked at inception, price uncertainty is purely uncertainty about b2.',
+            },
+            semantics: {
+              teachingObjective: 'Prove the Net Price Theorem P_net = F_1 + b_2',
+              sourceFactIds: ['fact-08'],
+            },
+          },
+        },
+        {
+          id: 'b21',
+          hindi_tts: "This is the profound insight of Chapter 3: hedging does not eliminate risk; it replaces large, volatile spot price risk with substantially smaller, manageable basis risk.",
+          en_narration: "This is the profound insight of Chapter 3: hedging does not eliminate risk; it replaces large, volatile spot price risk with substantially smaller, manageable basis risk.",
+          en_subtitle: "Hedging transforms uncontrollable spot price risk into smaller basis risk.",
+          pauseAfterMs: 500,
+          ui_state: {
+            title: 'The Net Price Theorem',
+            expression: '\\sigma(P_{\\text{net}}) = \\sigma(b_2) \\ll \\sigma(S_2)',
+            latex: '\\text{Var}(P_{\\text{net}}) = \\text{Var}(b_2) \\ll \\text{Var}(S_2)',
+            variables: [
+              { symbol: '\\text{Var}(P_{\\text{net}})', label: 'Net Price Variance', description: 'Variance of realized selling price', unit: '($/unit)^2' },
+              { symbol: '\\text{Var}(b_2)', label: 'Basis Variance', description: 'Variance of the basis spread', unit: '($/unit)^2' },
+              { symbol: '\\text{Var}(S_2)', label: 'Spot Price Variance', description: 'Unhedged volatility of physical spot price', unit: '($/unit)^2' },
+            ],
+            steps: [
+              { stepIndex: 0, label: 'Effective Price', equation: 'P_{\\text{net}} = F_1 + b_2', note: 'F1 is a constant fixed at t1' },
+              { stepIndex: 1, label: 'Variance Property', equation: '\\text{Var}(P_{\\text{net}}) = \\text{Var}(b_2)', note: 'Adding constant F1 does not add variance' },
+              { stepIndex: 2, label: 'Risk Reduction', equation: '\\text{Var}(b_2) \\ll \\text{Var}(S_2)', note: 'Basis variance is dramatically lower than spot variance' },
+            ],
+            assumptions: ['High statistical correlation between spot and futures assets.'],
+            interpretation: 'The economic value of hedging stems from the fact that basis is far less volatile than absolute price.',
+          },
+          visual: {
+            kind: 'formula',
+            data: {
+              title: 'The Net Price Theorem',
+              expression: '\\sigma(P_{\\text{net}}) = \\sigma(b_2) \\ll \\sigma(S_2)',
+              variables: [
+                { symbol: '\\text{Var}(P_{\\text{net}})', label: 'Net Price Variance', description: 'Variance of realized selling price', unit: '($/unit)^2' },
+                { symbol: '\\text{Var}(b_2)', label: 'Basis Variance', description: 'Variance of the basis spread', unit: '($/unit)^2' },
+                { symbol: '\\text{Var}(S_2)', label: 'Spot Price Variance', description: 'Unhedged volatility of physical spot price', unit: '($/unit)^2' },
+              ],
+              steps: [
+                { stepIndex: 0, label: 'Effective Price', equation: 'P_{\\text{net}} = F_1 + b_2', note: 'F1 is a constant fixed at t1' },
+                { stepIndex: 1, label: 'Variance Property', equation: '\\text{Var}(P_{\\text{net}}) = \\text{Var}(b_2)', note: 'Adding constant F1 does not add variance' },
+                { stepIndex: 2, label: 'Risk Reduction', equation: '\\text{Var}(b_2) \\ll \\text{Var}(S_2)', note: 'Basis variance is dramatically lower than spot variance' },
+              ],
+              assumptions: ['High statistical correlation between spot and futures assets.'],
+              interpretation: 'The economic value of hedging stems from the fact that basis is far less volatile than absolute price.',
+            },
+            semantics: {
+              teachingObjective: 'Explain the variance reduction principle of hedging',
+              sourceFactIds: ['fact-10'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 7: Data Visualizer - Strengthening vs Weakening Basis Dynamics
+    {
+      segmentIndex: 7,
+      title: 'Strengthening vs Weakening Basis Dynamics',
+      template: 'data_visualizer',
+      badge: 'Basis Movement Analytics',
+      beats: [
+        {
+          id: 'b22',
+          hindi_tts: "How does basis movement impact traders? When the basis increases—meaning b two is greater than b one—the basis is said to strengthen.",
+          en_narration: "How does basis movement impact traders? When the basis increases—meaning b two is greater than b one—the basis is said to strengthen.",
+          en_subtitle: "Strengthening basis occurs when basis increases (b2 > b1).",
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'Basis State Matrix',
+            mode: 'bars',
+            dataPoints: [
+              { label: 'Initial Basis (b1)', value: -0.10, color: '#64748B' },
+              { label: 'Strengthened Basis (b2)', value: 0.05, color: '#0F766E' },
+              { label: 'Weakened Basis (b2)', value: -0.25, color: '#EF4444' },
+            ],
+            highlightIndex: 1,
+            unit: '$ / bu',
+          },
+          visual: {
+            kind: 'chart',
+            data: {
+              title: 'Basis State Matrix',
+              mode: 'bars',
+              dataPoints: [
+                { label: 'Initial Basis (b1)', value: -0.10, color: '#64748B' },
+                { label: 'Strengthened Basis (b2)', value: 0.05, color: '#0F766E' },
+                { label: 'Weakened Basis (b2)', value: -0.25, color: '#EF4444' },
+              ],
+              highlightIndex: 1,
+              unit: '$ / bu',
+            },
+            semantics: {
+              teachingObjective: 'Define strengthening basis condition b2 > b1',
+              sourceFactIds: ['fact-09'],
+            },
+          },
+        },
+        {
+          id: 'b23',
+          hindi_tts: "A strengthening basis improves the position of a short hedger because they receive F one plus a higher basis. But it harms a long hedger, increasing acquisition costs.",
+          en_narration: "A strengthening basis improves the position of a short hedger because they receive F one plus a higher basis. But it harms a long hedger, increasing acquisition costs.",
+          en_subtitle: "Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.",
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'Hedge Payoff by Basis Shift',
+            mode: 'bars',
+            dataPoints: [
+              { label: 'Short Hedger (Strengthen)', value: 4.25, color: '#0F766E' },
+              { label: 'Short Hedger (Weaken)', value: 3.95, color: '#EF4444' },
+              { label: 'Long Hedger (Weaken Cost)', value: 4.15, color: '#0F766E' },
+              { label: 'Long Hedger (Strengthen Cost)', value: 4.45, color: '#EF4444' },
+            ],
+            highlightIndex: 0,
+            unit: '$ / bu',
+          },
+          visual: {
+            kind: 'chart',
+            data: {
+              title: 'Hedge Payoff by Basis Shift',
+              mode: 'bars',
+              dataPoints: [
+                { label: 'Short Hedger (Strengthen)', value: 4.25, color: '#0F766E' },
+                { label: 'Short Hedger (Weaken)', value: 3.95, color: '#EF4444' },
+                { label: 'Long Hedger (Weaken Cost)', value: 4.15, color: '#0F766E' },
+                { label: 'Long Hedger (Strengthen Cost)', value: 4.45, color: '#EF4444' },
+              ],
+              highlightIndex: 0,
+              unit: '$ / bu',
+            },
+            semantics: {
+              teachingObjective: 'Map asymmetric payoffs for short vs long hedgers under basis shifts',
+              sourceFactIds: ['fact-09'],
+            },
+          },
+        },
+        {
+          id: 'b24',
+          hindi_tts: "Conversely, a weakening basis decreases net revenue for sellers but improves procurement costs for buyers. This matrix governs all commercial basis trading desks.",
+          en_narration: "Conversely, a weakening basis decreases net revenue for sellers but improves procurement costs for buyers. This matrix governs all commercial basis trading desks.",
+          en_subtitle: "Basis trading desks exploit strengthening and weakening spreads across markets.",
+          pauseAfterMs: 500,
+          ui_state: {
+            title: 'Hedge Payoff by Basis Shift',
+            mode: 'bars',
+            dataPoints: [
+              { label: 'Short Hedger (Strengthen)', value: 4.25, color: '#0F766E' },
+              { label: 'Short Hedger (Weaken)', value: 3.95, color: '#EF4444' },
+              { label: 'Long Hedger (Weaken Cost)', value: 4.15, color: '#0F766E' },
+              { label: 'Long Hedger (Strengthen Cost)', value: 4.45, color: '#EF4444' },
+            ],
+            highlightIndex: 2,
+            unit: '$ / bu',
+          },
+          visual: {
+            kind: 'chart',
+            data: {
+              title: 'Hedge Payoff by Basis Shift',
+              mode: 'bars',
+              dataPoints: [
+                { label: 'Short Hedger (Strengthen)', value: 4.25, color: '#0F766E' },
+                { label: 'Short Hedger (Weaken)', value: 3.95, color: '#EF4444' },
+                { label: 'Long Hedger (Weaken Cost)', value: 4.15, color: '#0F766E' },
+                { label: 'Long Hedger (Strengthen Cost)', value: 4.45, color: '#EF4444' },
+              ],
+              highlightIndex: 2,
+              unit: '$ / bu',
+            },
+            semantics: {
+              teachingObjective: 'Summarize commercial basis trading dynamics',
+              sourceFactIds: ['fact-09'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 8: Interactive Quiz - Worked Case: Corn Farmer Short Hedge
+    {
+      segmentIndex: 8,
+      title: 'Active Recall: Corn Farmer Short Hedge',
+      template: 'interactive_quiz',
+      badge: 'HYPOTHETICAL DESK EXAMPLE · CORN HEDGE',
+      beats: [
+        {
+          id: 'b25',
+          hindi_tts: "In May, a farmer shorts corn futures at four-twenty per bushel. In September, spot corn is three-eighty and September futures trade at three-eighty-two. What is the realized price?",
+          en_narration: "In May, a farmer shorts corn futures at four-twenty per bushel. In September, spot corn is three-eighty and September futures trade at three-eighty-two. What is the realized price?",
+          en_subtitle: "Short at $4.20; close at spot $3.80 and futures $3.82. What is realized price?",
+          pauseAfterMs: 400,
+          ui_state: {
+            scenario: 'In May, a grain farmer executes a short hedge at F_1 = $4.20/bu for 100,000 bushels. In September, the farmer sells spot corn at S_2 = $3.80/bu and closes futures at F_2 = $3.82/bu.',
+            question: "Based on the corn farmer's September market prices, what is the final closeout basis and the effective realized price per bushel?",
+            options: [
+              'A) b_2 = +$0.02, Realized Price = $4.22/bu',
+              'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+              'C) b_2 = -$0.38, Realized Price = $3.80/bu',
+              'D) b_2 = $0.00, Realized Price = $4.20/bu',
+            ],
+            correctOptionIndex: 1,
+            answer: 'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+            showThinkingSpinner: false,
+          },
+          visual: {
+            kind: 'quiz',
+            data: {
+              scenario: 'In May, a grain farmer executes a short hedge at F_1 = $4.20/bu for 100,000 bushels. In September, the farmer sells spot corn at S_2 = $3.80/bu and closes futures at F_2 = $3.82/bu.',
+              question: 'What is the final basis b_2 and the effective realized price received per bushel?',
+              options: [
+                'A) b_2 = +$0.02, Realized Price = $4.22/bu',
+                'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+                'C) b_2 = -$0.38, Realized Price = $3.80/bu',
+                'D) b_2 = $0.00, Realized Price = $4.20/bu',
+              ],
+              correctOptionIndex: 1,
+              answer: 'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+              showThinkingSpinner: false,
+            },
+            semantics: {
+              teachingObjective: 'Test calculation of final basis and net realized price',
+              sourceFactIds: ['fact-07', 'fact-08'],
+            },
+          },
+        },
+        {
+          id: 'b26',
+          hindi_tts: "Alex calculates: spot S two is three-eighty, minus futures F two of three-eighty-two, giving a basis of negative two cents. Let us verify the net price formula.",
+          en_narration: "Alex calculates: spot S two is three-eighty, minus futures F two of three-eighty-two, giving a basis of negative two cents. Let us verify the net price formula.",
+          en_subtitle: "b2 = $3.80 - $3.82 = -$0.02. Next, calculate F1 + b2.",
+          pauseAfterMs: 400,
+          ui_state: {
+            scenario: 'In May, a grain farmer executes a short hedge at F_1 = $4.20/bu for 100,000 bushels. In September, the farmer sells spot corn at S_2 = $3.80/bu and closes futures at F_2 = $3.82/bu.',
+            question: "Based on the corn farmer's September market prices, what is the final closeout basis and the effective realized price per bushel?",
+            options: [
+              'A) b_2 = +$0.02, Realized Price = $4.22/bu',
+              'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+              'C) b_2 = -$0.38, Realized Price = $3.80/bu',
+              'D) b_2 = $0.00, Realized Price = $4.20/bu',
+            ],
+            correctOptionIndex: 1,
+            answer: 'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+            showThinkingSpinner: true,
+          },
+          visual: {
+            kind: 'quiz',
+            data: {
+              scenario: 'In May, a grain farmer executes a short hedge at F_1 = $4.20/bu for 100,000 bushels. In September, the farmer sells spot corn at S_2 = $3.80/bu and closes futures at F_2 = $3.82/bu.',
+              question: 'What is the final basis b_2 and the effective realized price received per bushel?',
+              options: [
+                'A) b_2 = +$0.02, Realized Price = $4.22/bu',
+                'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+                'C) b_2 = -$0.38, Realized Price = $3.80/bu',
+                'D) b_2 = $0.00, Realized Price = $4.20/bu',
+              ],
+              correctOptionIndex: 1,
+              answer: 'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+              showThinkingSpinner: true,
+            },
+            semantics: {
+              teachingObjective: 'Guide calculation through intermediate basis step',
+              sourceFactIds: ['fact-07', 'fact-08'],
+            },
+          },
+        },
+        {
+          id: 'b27',
+          hindi_tts: "Option B is correct! Effective price is F one plus b two, which is four-twenty plus negative two cents, equaling four dollars and eighteen cents per bushel.",
+          en_narration: "Option B is correct! Effective price is F one plus b two, which is four-twenty plus negative two cents, equaling four dollars and eighteen cents per bushel.",
+          en_subtitle: "Option B! Net price = $4.20 + (-$0.02) = $4.18/bushel.",
+          pauseAfterMs: 500,
+          ui_state: {
+            scenario: 'In May, a grain farmer executes a short hedge at F_1 = $4.20/bu for 100,000 bushels. In September, the farmer sells spot corn at S_2 = $3.80/bu and closes futures at F_2 = $3.82/bu.',
+            question: "Based on the corn farmer's September market prices, what is the final closeout basis and the effective realized price per bushel?",
+            options: [
+              'A) b_2 = +$0.02, Realized Price = $4.22/bu',
+              'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+              'C) b_2 = -$0.38, Realized Price = $3.80/bu',
+              'D) b_2 = $0.00, Realized Price = $4.20/bu',
+            ],
+            correctOptionIndex: 1,
+            answer: 'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+            showThinkingSpinner: false,
+            feedback: 'Correct! The basis is b2 = $3.80 - $3.82 = -$0.02. Effective realized price = $4.20 + (-$0.02) = $4.18 (spot $3.80 + futures gain $0.38).',
+          },
+          visual: {
+            kind: 'quiz',
+            data: {
+              scenario: 'In May, a grain farmer executes a short hedge at F_1 = $4.20/bu for 100,000 bushels. In September, the farmer sells spot corn at S_2 = $3.80/bu and closes futures at F_2 = $3.82/bu.',
+              question: 'What is the final basis b_2 and the effective realized price received per bushel?',
+              options: [
+                'A) b_2 = +$0.02, Realized Price = $4.22/bu',
+                'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+                'C) b_2 = -$0.38, Realized Price = $3.80/bu',
+                'D) b_2 = $0.00, Realized Price = $4.20/bu',
+              ],
+              correctOptionIndex: 1,
+              answer: 'B) b_2 = -$0.02, Realized Price = $4.18/bu',
+              showThinkingSpinner: false,
+              feedback: 'Correct! The basis is b2 = $3.80 - $3.82 = -$0.02. Effective realized price = $4.20 + (-$0.02) = $4.18 (spot $3.80 + futures gain $0.38).',
+            },
+            semantics: {
+              teachingObjective: 'Validate final answer and explain economic equivalence',
+              sourceFactIds: ['fact-08'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 9: Progressive Summary Thread
+    {
+      segmentIndex: 9,
+      title: 'Executive Summary: 5 Core Principles',
+      template: 'summary_thread',
+      badge: 'Executive Synthesis',
+      beats: [
+        {
+          id: 'b28',
+          hindi_tts: "Let us synthesize Chapter 3 Part 1 into five enduring principles. First: short hedges protect sellers from falling prices, while long hedges protect buyers from price spikes.",
+          en_narration: "Let us synthesize Chapter 3 Part 1 into five enduring principles. First: short hedges protect sellers from falling prices, while long hedges protect buyers from price spikes.",
+          en_subtitle: "Short hedges protect asset sellers; long hedges protect commercial buyers.",
+          pauseAfterMs: 400,
+          ui_state: {
+            activeStepRange: [0, 0],
+            steps: [
+              '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+              '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+              '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+              '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+              '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+              '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+              '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+              '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+            ],
+            compactOverview: false,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [0, 0],
+              steps: [
+                '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+                '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+                '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+                '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+                '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+                '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+                '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+                '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+              ],
+              compactOverview: false,
+            },
+            semantics: {
+              teachingObjective: 'Progressive reveal 1: Commercial position matching rule',
+              sourceFactIds: ['fact-02', 'fact-03'],
+            },
+          },
+        },
+        {
+          id: 'b29',
+          hindi_tts: "Second, corporate hedging: management hedges to protect credit ratings and debt capacity, while diversified shareholders often prefer direct market risk exposure.",
+          en_narration: "Second, corporate hedging: management hedges to protect credit ratings and debt capacity, while diversified shareholders often prefer direct market risk exposure.",
+          en_subtitle: "Corporate hedging protects debt capacity, but diversified shareholders often prefer risk.",
+          pauseAfterMs: 400,
+          ui_state: {
+            activeStepRange: [1, 2],
+            steps: [
+              '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+              '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+              '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+              '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+              '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+              '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+              '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+              '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+            ],
+            compactOverview: false,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [1, 2],
+              steps: [
+                '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+                '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+                '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+                '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+                '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+                '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+                '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+                '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+              ],
+              compactOverview: false,
+            },
+            semantics: {
+              teachingObjective: 'Progressive reveal 2: Corporate governance and Snapshot 3.1 gold leases',
+              sourceFactIds: ['fact-04', 'fact-05', 'fact-06'],
+            },
+          },
+        },
+        {
+          id: 'b30',
+          hindi_tts: "Third: basis is defined as spot minus futures, converging strictly to zero at expiration due to cash-and-carry arbitrage.",
+          en_narration: "Third: basis is defined as spot minus futures, converging strictly to zero at expiration due to cash-and-carry arbitrage.",
+          en_subtitle: "Basis equals spot minus futures (b = S - F), converging to zero at maturity.",
+          pauseAfterMs: 400,
+          ui_state: {
+            activeStepRange: [3, 4],
+            steps: [
+              '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+              '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+              '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+              '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+              '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+              '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+              '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+              '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+            ],
+            compactOverview: false,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [3, 4],
+              steps: [
+                '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+                '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+                '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+                '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+                '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+                '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+                '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+                '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+              ],
+              compactOverview: false,
+            },
+            semantics: {
+              teachingObjective: 'Progressive reveal 3: Basis formula and Net Price Theorem',
+              sourceFactIds: ['fact-07', 'fact-08'],
+            },
+          },
+        },
+        {
+          id: 'b31',
+          hindi_tts: "Fourth: strengthening basis favors short hedgers, while weakening basis favors long hedgers across commodity and financial markets.",
+          en_narration: "Fourth: strengthening basis favors short hedgers, while weakening basis favors long hedgers across commodity and financial markets.",
+          en_subtitle: "Strengthening basis favors short hedgers; weakening basis favors long hedgers.",
+          pauseAfterMs: 400,
+          ui_state: {
+            activeStepRange: [5, 6],
+            steps: [
+              '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+              '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+              '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+              '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+              '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+              '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+              '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+              '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+            ],
+            compactOverview: false,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [5, 6],
+              steps: [
+                '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+                '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+                '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+                '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+                '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+                '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+                '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+                '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+              ],
+              compactOverview: false,
+            },
+            semantics: {
+              teachingObjective: 'Progressive reveal 4: Basis shift dynamics and variance transformation',
+              sourceFactIds: ['fact-09', 'fact-10'],
+            },
+          },
+        },
+        {
+          id: 'b32',
+          hindi_tts: "Seventh and eighth: Hedging replaces volatile price risk with smaller basis risk, targeting cash flow certainty rather than speculative profits.",
+          en_narration: "Seventh and eighth: Hedging replaces volatile price risk with smaller basis risk, targeting cash flow certainty rather than speculative profits.",
+          en_subtitle: "7 & 8: Hedging replaces price risk with basis risk, guaranteeing cash flow certainty.",
+          pauseAfterMs: 400,
+          ui_state: {
+            activeStepRange: [7, 8],
+            steps: [
+              '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+              '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+              '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+              '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+              '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+              '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+              '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+              '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+            ],
+            compactOverview: false,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [7, 8],
+              steps: [
+                '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+                '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+                '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+                '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+                '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+                '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+                '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+                '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+              ],
+              compactOverview: false,
+            },
+            semantics: {
+              teachingObjective: 'Progressive reveal 5: Commercial certainty invariant',
+              sourceFactIds: ['fact-01', 'fact-10'],
+            },
+          },
+        },
+        {
+          id: 'b33',
+          hindi_tts: "Here is your complete Chapter 3 Part 1 executive reference grid. In Part 2, we will master minimum variance hedge ratios and the Metallgesellschaft collapse.",
+          en_narration: "Here is your complete Chapter 3 Part 1 executive reference grid. In Part 2, we will master minimum variance hedge ratios and the Metallgesellschaft collapse.",
+          en_subtitle: "Complete executive summary grid. Next up: minimum variance hedge ratios in Part 2!",
+          pauseAfterMs: 600,
+          ui_state: {
+            activeStepRange: [1, 8],
+            steps: [
+              '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+              '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+              '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+              '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+              '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+              '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+              '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+              '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+            ],
+            compactOverview: true,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [0, 7],
+              steps: [
+                '1. Short vs Long Hedge: Short hedges protect sellers from falling prices; long hedges protect buyers from price spikes.',
+                '2. Corporate Hedging: Stabilizes cash flows and prevents distress, but diversified shareholders often prefer market risk.',
+                '3. Snapshot 3.1: Gold miners hedged through central bank gold loans, but faced revolt during gold rallies.',
+                '4. Basis Formula: Basis equals spot minus futures (b = S - F), converging strictly to zero at contract delivery.',
+                '5. Net Price Theorem: Effective price received or paid simplifies to initial futures plus final basis: P_net = F1 + b2.',
+                '6. Basis Dynamics: Strengthening basis benefits short hedgers; weakening basis benefits long hedgers.',
+                '7. Risk Transformation: Hedging does not eliminate risk; it replaces large price risk with smaller basis risk.',
+                '8. Commercial Objective: Hedging guarantees cash flow certainty, not superior speculative trading profits.',
+              ],
+              compactOverview: true,
+            },
+            semantics: {
+              teachingObjective: 'Final compact 2-column executive overview',
+              sourceFactIds: ['fact-01', 'fact-02', 'fact-04', 'fact-07', 'fact-08', 'fact-10'],
+            },
+          },
+        },
+      ],
+    },
+  ],
+};
+
+fs.writeFileSync(path.join(targetDir, 'episode_raw.json'), JSON.stringify(episodeRaw, null, 2), 'utf8');
+console.log('✅ Created episode_raw.json for ch03_part1 (34 beats, 10 scenes)');

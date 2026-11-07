@@ -10,6 +10,8 @@ import { runContentAudit } from './audit_content.mjs';
 import { generateLessonAndStoryboard } from './generate_lesson_storyboard.mjs';
 import { getBookSlug, resolveChapterDirectory, resolveOutputVideoPath } from '../src/utils/chapterPaths.mjs';
 import { checkArgonPreflight } from '../src/utils/modelPreflight.mjs';
+import { scaffoldEpisode } from '../src/orchestrator/scaffoldingEngine.mjs';
+import { recordExecution } from '../src/orchestrator/executionLedger.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -53,6 +55,7 @@ const isDryRun = rawArgs.includes('--dry-run');
 const skipRender = rawArgs.includes('--skip-render');
 const skipTTS = rawArgs.includes('--skip-tts');
 const confirmFlash = rawArgs.includes('--confirm-flash') || rawArgs.includes('--flash');
+const isLegacyMonolith = rawArgs.includes('--legacy-monolith');
 const ttsModeArg = rawArgs.find((a) => a.startsWith('--tts='));
 const ttsMode = ttsModeArg ? ttsModeArg.split('=')[1] : 'edge';
 
@@ -435,24 +438,66 @@ for (let i = 0; i < chapterKeys.length; i++) {
       continue;
     }
 
-    console.log(`🤖 Generating episode payload with model ${targetModel}...`);
-    const topicArg = isHull ? '--topic="FUTURES & OPTIONS · JOHN C. HULL"' : '';
-    const genCommand = `"${process.execPath}" --max-http-header-size=65536 scripts/generate_episode.mjs --dir="${dataDir}" --model=${targetModel} --temperature=0.2 ${topicArg} ${notesArg} --curriculum="${curriculumDirective.replace(/"/g, '\\"')}"`;
-    try {
-      execSync(genCommand, { stdio: 'inherit', cwd: rootDir });
-
-      // Embed generation provenance
-      if (fs.existsSync(rawEpisodePath)) {
-        try {
-          const raw = JSON.parse(fs.readFileSync(rawEpisodePath, 'utf8'));
-          if (!raw.meta) raw.meta = {};
-          raw.meta.generationProvenance = generationProvenance;
-          fs.writeFileSync(rawEpisodePath, JSON.stringify(raw, null, 2), 'utf8');
-        } catch {}
+    if (!isLegacyMonolith) {
+      console.log(`⚡ [MICROKERNEL] Synthesizing 12-scene Cognitive Micro-Kernel episode deterministically (0 tokens)...`);
+      try {
+        const factsPath = path.join(dataDir, 'source_facts.json');
+        const factsData = fs.existsSync(factsPath) ? JSON.parse(fs.readFileSync(factsPath, 'utf8')) : { facts: [] };
+        
+        const courseConfigPath = path.join(rootDir, 'src', 'courses', `${bookSlug}.json`);
+        const courseConfig = fs.existsSync(courseConfigPath) ? JSON.parse(fs.readFileSync(courseConfigPath, 'utf8')) : {};
+        
+        let episode = scaffoldEpisode({
+          chapterKey,
+          courseSlug: bookSlug,
+          chapterTitle: curriculumDirective,
+          facts: factsData.facts || [],
+          courseConfig
+        });
+        
+        episode = normalizeAndRemedyEpisode(episode, chapterKey);
+        if (!episode.meta) episode.meta = {};
+        episode.meta.generationProvenance = generationProvenance;
+        
+        fs.writeFileSync(rawEpisodePath, JSON.stringify(episode, null, 2), 'utf8');
+        console.log(`✅ [MICROKERNEL] Successfully generated 12-scene episode_raw.json for ${chapterKey} (0 tokens burned).`);
+        
+        recordExecution({
+          runId: generationProvenance.runId,
+          chapterKey,
+          taskId: `scaffold_${chapterKey}`,
+          category: 'EPISODE_SCAFFOLDING',
+          engine: 'deterministic-microkernel',
+          model: 'none',
+          inputTokens: 0,
+          outputTokens: 0,
+          status: 'SUCCESS',
+          savingsVsLegacyTokens: 95000
+        });
+      } catch (scaffoldErr) {
+        console.error(`❌ Microkernel scaffolding failed for ${chapterKey}:`, scaffoldErr.message);
+        continue;
       }
-    } catch (err) {
-      console.error(`❌ Episode generation script failed for ${chapterKey}:`, err.message);
-      continue;
+    } else {
+      console.log(`🤖 Generating episode payload with legacy monolithic model ${targetModel}...`);
+      const topicArg = isHull ? '--topic="FUTURES & OPTIONS · JOHN C. HULL"' : '';
+      const genCommand = `"${process.execPath}" --max-http-header-size=65536 scripts/generate_episode.mjs --dir="${dataDir}" --model=${targetModel} --temperature=0.2 ${topicArg} ${notesArg} --curriculum="${curriculumDirective.replace(/"/g, '\\"')}"`;
+      try {
+        execSync(genCommand, { stdio: 'inherit', cwd: rootDir });
+
+        // Embed generation provenance
+        if (fs.existsSync(rawEpisodePath)) {
+          try {
+            const raw = JSON.parse(fs.readFileSync(rawEpisodePath, 'utf8'));
+            if (!raw.meta) raw.meta = {};
+            raw.meta.generationProvenance = generationProvenance;
+            fs.writeFileSync(rawEpisodePath, JSON.stringify(raw, null, 2), 'utf8');
+          } catch {}
+        }
+      } catch (err) {
+        console.error(`❌ Episode generation script failed for ${chapterKey}:`, err.message);
+        continue;
+      }
     }
   }
 

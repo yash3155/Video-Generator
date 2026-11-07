@@ -4,7 +4,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import 'dotenv/config';
-import { GoogleGenAI } from '@google/genai';
 import { SourceFactsSchema } from '../src/schemas/sourceLessonSchemas.mjs';
 import { resolveChapterDirectory } from '../src/utils/chapterPaths.mjs';
 
@@ -132,36 +131,11 @@ Return ONLY a valid JSON object adhering to this exact structure:
       const cleaned = candidateText.replace(/```json/gi, '').replace(/```/g, '').trim();
       factsData = JSON.parse(cleaned);
     }
-  } else if (geminiApiKey) {
+  }
 
-    let candidateText = null;
-    let attempts = 0;
-    const maxAttempts = 5;
-    while (attempts < maxAttempts) {
-      attempts++;
-      try {
-        const response = await aiClient.models.generateContent({
-          model: 'gemini-3.8-flash',
-          contents: prompt,
-          config: {
-            responseMimeType: 'application/json',
-            temperature: 0.1,
-          },
-        });
-        candidateText = response.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (candidateText) break;
-      } catch (callErr) {
-        console.warn(`⚠️ [SOURCE-FACTS] API call attempt ${attempts} failed (${callErr.message}).`);
-        if (attempts >= maxAttempts) throw callErr;
-        const delayMs = Math.min(25000, 3000 * Math.pow(2, attempts - 1));
-        console.log(`   Retrying in ${delayMs / 1000}s...`);
-        await new Promise((r) => setTimeout(r, delayMs));
-      }
-    }
-
-    factsData = JSON.parse(candidateText.trim());
-  } else {
-    // Deterministic fallback if API key is absent
+  if (!factsData) {
+    console.log(`ℹ️ [SOURCE-FACTS] Structuring facts deterministically from authoritative context...`);
+    // Deterministic fallback (0 tokens, zero API key burn)
     factsData = {
       schemaVersion: '1.0.0',
       chapterSlug,

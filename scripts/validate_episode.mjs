@@ -27,7 +27,9 @@ if (dirArg) {
   const found = resolveChapterDirectory(chap, process.cwd());
   targetDir = found ? path.relative(process.cwd(), found) : `src/data/chapters/${chap}`;
 }
-const rawPath = path.isAbsolute(targetDir) ? path.join(targetDir, 'episode_raw.json') : path.join(process.cwd(), targetDir, 'episode_raw.json');
+const resolvedTarget = path.isAbsolute(targetDir) ? targetDir : path.join(process.cwd(), targetDir);
+const isDirectFile = fs.existsSync(resolvedTarget) && fs.statSync(resolvedTarget).isFile();
+const rawPath = isDirectFile ? resolvedTarget : path.join(resolvedTarget, 'episode_raw.json');
 
 const devanagariRegex = /[\u0900-\u097F]/;
 const forbiddenHindiRegex = /रि[ज़जज़]ल्ट|रि[ज़जज़]िट|रि[ज़जज़]ट|एकसपायरी|वॉल्क|वाल्क|\bUSFDA\b/i;
@@ -236,8 +238,23 @@ export function validateEpisodeData(episode) {
     }
 
     if (scene.template === 'formula_breakdown') {
+      const isPhysicsDomain =
+        /physics/i.test(episode.meta?.domain || '') ||
+        /mechanics|kinematics/i.test(episode.meta?.course || '');
+
       beats.forEach((beat, bIdx) => {
         const formulaData = beat.visual?.data || beat.ui_state;
+        if (!formulaData || !formulaData.expression) {
+          errors.push(`${sPrefix} Beat ${bIdx}: Missing formula expression in formula_breakdown.`);
+        } else {
+          const expr = String(formulaData.expression);
+          if (!isPhysicsDomain && /\bF\s*=\s*m\s*[·*x]?\s*a\b/i.test(expr)) {
+            errors.push(
+              `${sPrefix} Beat ${bIdx}: Unrelated physics placeholder formula ("${expr}") detected in non-physics course!`
+            );
+          }
+        }
+
         if (formulaData && formulaData.expression && formulaData.variables) {
           const fParsed = FormulaSpecSchema.safeParse(formulaData);
           if (!fParsed.success) {
@@ -248,6 +265,21 @@ export function validateEpisodeData(episode) {
         }
       });
     }
+
+    // Check hypothetical example labelling for illustrative scenarios
+    beats.forEach((beat, bIdx) => {
+      const sub = beat.en_subtitle || '';
+      const tts = beat.hindi_tts || '';
+      const text = `${sub} ${tts}`;
+      if (/₹\s*250|250\s*रुपए/i.test(text)) {
+        const badgeCombo = `${scene.badge || ''} ${scene.title || ''} ${beat.ui_state?.badge || ''} ${beat.visual?.data?.badge || ''}`.toLowerCase();
+        if (!/hypothetical|desk example|scenario|retail trap/i.test(badgeCombo)) {
+          errors.push(
+            `${sPrefix} Beat ${bIdx}: Mentions illustrative ₹250 trade but lacks explicit 'HYPOTHETICAL' or 'DESK EXAMPLE' badge in scene/beat metadata.`
+          );
+        }
+      }
+    });
 
     if (scene.template === 'interactive_quiz') {
       if (beats.length !== 3) {
@@ -271,6 +303,14 @@ export function validateEpisodeData(episode) {
       if (steps.length < 6 || steps.length > 8) {
         errors.push(`${sPrefix}: summary_thread must have between 6 and 8 steps (found ${steps.length}).`);
       }
+      steps.forEach((st, sIdx) => {
+        const wordCount = String(st).trim().split(/\s+/).length;
+        if (wordCount > 30) {
+          errors.push(
+            `${sPrefix}: Step ${sIdx + 1} has ${wordCount} words (maximum allowed is 30 words to prevent cognitive overload and summary text walls).`
+          );
+        }
+      });
       const joinedSteps = steps.join(' ').toLowerCase();
       if (
         !/CHAPTER 16/i.test(episode.meta?.chapter || '') &&

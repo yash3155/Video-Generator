@@ -1,0 +1,1639 @@
+// scripts/build_ch02_part2_hindi_episode.mjs
+import fs from 'fs';
+import path from 'path';
+
+const targetDir = 'src/data/chapters/hull_derivatives/ch02_part2';
+fs.mkdirSync(targetDir, { recursive: true });
+
+const episodeRaw = {
+  schemaVersion: '1.0.0',
+  meta: {
+    course: 'FUTURES & OPTIONS · HULL',
+    chapter: 'CHAPTER 2 · PART 2',
+    chapterTitle: 'Operation of Margin Accounts, Marking-to-Market, and Clearing Mechanics',
+    domain: 'finance',
+    primaryColor: '#C86D51',
+    accentColor: '#0D9488',
+    narrationLanguage: 'hi-IN-devanagari',
+  },
+  scenes: [
+    // Scene 0: Chat Story - The Margin Call Shock
+    {
+      segmentIndex: 0,
+      title: 'The Margin Call Shock',
+      template: 'chat_story',
+      badge: 'Trading Desk · Day 1',
+      beats: [
+        {
+          id: 'b01',
+          hindi_tts: 'शर्मा जी! मैंने कल बारह सौ पचास डॉलर पर दो गोल्ड फ्यूचर्स खरीदे थे, और आज गोल्ड गिरकर बारह सौ इकतालीस हो गया! पहले ही दिन अठारह सौ डॉलर का नुकसान हो गया!',
+          en_subtitle: 'I bought two gold futures at $1,250, and gold dropped to $1,241 on day one!',
+          pauseAfterMs: 450,
+          ui_state: {
+            stageDirections: ['— Raju monitors his gold position on trading screen —'],
+            messages: [
+              {
+                sender: 'Raju',
+                avatar: 'R',
+                text: 'Sharma ji! I bought 2 gold futures at $1,250, and gold fell to $1,241! My $12,000 initial margin is down to $10,200. Will I get a margin call?',
+                theme: 'amber',
+                align: 'left',
+              },
+            ],
+          },
+          visual: {
+            kind: 'conversation',
+            data: {
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: 'Sharma ji! I bought 2 gold futures at $1,250, and gold fell to $1,241! My $12,000 initial margin is down to $10,200. Will I get a margin call?',
+                  theme: 'amber',
+                  align: 'left',
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Introduce the initial margin shock and gold futures contract leverage',
+              sourceFactIds: ['fact-01', 'fact-05'],
+            },
+          },
+        },
+        {
+          id: 'b02',
+          hindi_tts: 'शांत हो जाओ, राजू। तुम्हारा मेंटेनेंस मार्जिन प्रति कॉन्ट्रैक्ट पैंतालीस सौ डॉलर है, यानी कुल नौ हजार डॉलर। जब तक बैलेंस नौ हजार से ऊपर है, कोई मार्जिन कॉल नहीं आएगी।',
+          en_subtitle: 'Maintenance margin is $9,000 total. Above $9,000, no margin call is triggered today.',
+          pauseAfterMs: 450,
+          ui_state: {
+            stageDirections: ['— Sharma ji checks exchange margin schedule —'],
+            messages: [
+              {
+                sender: 'Raju',
+                avatar: 'R',
+                text: 'Sharma ji! I bought 2 gold futures at $1,250, and gold fell to $1,241! My $12,000 initial margin is down to $10,200. Will I get a margin call?',
+                theme: 'amber',
+                align: 'left',
+              },
+              {
+                sender: 'Sharma ji',
+                avatar: 'S',
+                text: 'Calm down, Raju. Maintenance margin is $4,500/contract ($9,000 total). At $10,200, you are still safely above the 75% threshold, so no call today.',
+                theme: 'teal',
+                align: 'right',
+              },
+            ],
+          },
+          visual: {
+            kind: 'conversation',
+            data: {
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: 'Sharma ji! I bought 2 gold futures at $1,250, and gold fell to $1,241! My $12,000 initial margin is down to $10,200. Will I get a margin call?',
+                  theme: 'amber',
+                  align: 'left',
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: 'Calm down, Raju. Maintenance margin is $4,500/contract ($9,000 total). At $10,200, you are still safely above the 75% threshold, so no call today.',
+                  theme: 'teal',
+                  align: 'right',
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Explain maintenance margin threshold and the 75% buffer rule',
+              sourceFactIds: ['fact-04'],
+            },
+          },
+        },
+        {
+          id: 'b03',
+          hindi_tts: 'लेकिन याद रखो: अगर बैलेंस नौ हजार से एक डॉलर भी नीचे गया, तो वेरिएशन मार्जिन में पूरा पैसा डालकर बैलेंस वापस बारह हजार डॉलर तक पहुंचाना होगा, सिर्फ नौ हजार तक नहीं!',
+          en_subtitle: 'If balance drops below $9,000, variation margin must restore the full $12,000 level!',
+          pauseAfterMs: 500,
+          ui_state: {
+            stageDirections: ['— Sharma ji highlights the variation margin rule —'],
+            messages: [
+              {
+                sender: 'Raju',
+                avatar: 'R',
+                text: 'Sharma ji! I bought 2 gold futures at $1,250, and gold fell to $1,241! My $12,000 initial margin is down to $10,200. Will I get a margin call?',
+                theme: 'amber',
+                align: 'left',
+              },
+              {
+                sender: 'Sharma ji',
+                avatar: 'S',
+                text: 'Calm down, Raju. Maintenance margin is $4,500/contract ($9,000 total). At $10,200, you are still safely above the 75% threshold, so no call today.',
+                theme: 'teal',
+                align: 'right',
+              },
+              {
+                sender: 'Sharma ji',
+                avatar: 'S',
+                text: 'Golden Rule: If balance drops below $9,000, variation margin requires restoring balance all the way back to $12,000 initial margin, not just $9,000!',
+                theme: 'teal',
+                align: 'right',
+              },
+            ],
+          },
+          visual: {
+            kind: 'conversation',
+            data: {
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: 'Sharma ji! I bought 2 gold futures at $1,250, and gold fell to $1,241! My $12,000 initial margin is down to $10,200. Will I get a margin call?',
+                  theme: 'amber',
+                  align: 'left',
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: 'Calm down, Raju. Maintenance margin is $4,500/contract ($9,000 total). At $10,200, you are still safely above the 75% threshold, so no call today.',
+                  theme: 'teal',
+                  align: 'right',
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: 'Golden Rule: If balance drops below $9,000, variation margin requires restoring balance all the way back to $12,000 initial margin, not just $9,000!',
+                  theme: 'teal',
+                  align: 'right',
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Clarify the variation margin top-up rule requiring full initial margin restoration',
+              sourceFactIds: ['fact-04'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 1: Stat Counter - LTCM's $4 Billion Collapse
+    {
+      segmentIndex: 1,
+      title: "LTCM's $4 Billion Collapse",
+      template: 'stat_counter',
+      badge: 'Historical Warning · 1998 Crisis',
+      beats: [
+        {
+          id: 'b04',
+          hindi_tts: 'मार्जिन की ताकत को कम मत समझो। उन्नीस सौ अट्ठानवे में नोबेल पुरस्कार विजेताओं द्वारा संचालित हेज फंड एल टी सी एम ने पच्चीस गुना से ज्यादा लीवरेज लिया था।',
+          en_narration: 'मार्जिन की ताकत को कम मत समझो। उन्नीस सौ अट्ठानवे में नोबेल पुरस्कार विजेताओं द्वारा संचालित हेज फंड एल टी सी एम ने पच्चीस गुना से ज्यादा लीवरेज लिया था।',
+          en_subtitle: 'In 1998, hedge fund LTCM operated with over 25:1 balance-sheet leverage.',
+          pauseAfterMs: 400,
+          ui_state: {
+            value: 25,
+            prefix: '>',
+            suffix: ':1',
+            label: 'Peak Balance-Sheet Leverage Ratio',
+            subtext: 'Off-balance-sheet derivatives notional exceeded $1,000,000,000,000 ($1 Trillion).',
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              value: 25,
+              prefix: '>',
+              suffix: ':1',
+              label: 'Peak Balance-Sheet Leverage Ratio',
+              subtext: 'Off-balance-sheet derivatives notional exceeded $1,000,000,000,000 ($1 Trillion).',
+            },
+            semantics: {
+              teachingObjective: 'Highlight LTCM extreme leverage metrics',
+              sourceFactIds: ['fact-09'],
+            },
+          },
+        },
+        {
+          id: 'b05',
+          hindi_tts: 'जब रूस ने अपने कर्ज पर डिफॉल्ट किया, तो बाजार में हड़कंप मच गया और क्रेडिट स्प्रेड्स तेजी से फैल गए, जिससे एल टी सी एम पर दोनों तरफ से भारी मार्जिन कॉल्स आ गईं।',
+          en_narration: 'जब रूस ने अपने कर्ज पर डिफॉल्ट किया, तो बाजार में हड़कंप मच गया और क्रेडिट स्प्रेड्स तेजी से फैल गए, जिससे एल टी सी एम पर दोनों तरफ से भारी मार्जिन कॉल्स आ गईं।',
+          en_subtitle: 'Russian debt default widened spreads, triggering simultaneous multi-billion dollar margin calls.',
+          pauseAfterMs: 400,
+          ui_state: {
+            value: 4000,
+            prefix: '$',
+            suffix: 'M',
+            label: 'Total Capital Evaporated in Weeks',
+            subtext: 'Massive collateral drains forced fire-sale liquidation across global markets.',
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              value: 4000,
+              prefix: '$',
+              suffix: 'M',
+              label: 'Total Capital Evaporated in Weeks',
+              subtext: 'Massive collateral drains forced fire-sale liquidation across global markets.',
+            },
+            semantics: {
+              teachingObjective: 'Explain collateral drains during the Russian debt default',
+              sourceFactIds: ['fact-09'],
+            },
+          },
+        },
+        {
+          id: 'b06',
+          hindi_tts: 'सिर्फ चार अरब डॉलर के नुकसान ने पूरे वैश्विक वित्तीय तंत्र को खतरे में डाल दिया, जिसके बाद फेडरल रिजर्व को चौदह बैंकों का बेलआउट पैकेज तैयार करना पड़ा।',
+          en_narration: 'सिर्फ चार अरब डॉलर के नुकसान ने पूरे वैश्विक वित्तीय तंत्र को खतरे में डाल दिया, जिसके बाद फेडरल रिजर्व को चौदह बैंकों का बेलआउट पैकेज तैयार करना पड़ा।',
+          en_subtitle: 'A $4 billion collapse forced the Federal Reserve to orchestrate a 14-bank bailout.',
+          pauseAfterMs: 500,
+          ui_state: {
+            value: 3600,
+            prefix: '$',
+            suffix: 'M',
+            label: 'Federal Reserve Orchestrated Bank Bailout',
+            subtext: 'Fourteen Wall Street banks injected $3.6B equity to prevent systemic collapse.',
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              value: 3600,
+              prefix: '$',
+              suffix: 'M',
+              label: 'Federal Reserve Orchestrated Bank Bailout',
+              subtext: 'Fourteen Wall Street banks injected $3.6B equity to prevent systemic collapse.',
+            },
+            semantics: {
+              teachingObjective: 'Detail the systemic risk and $3.6B rescue package',
+              sourceFactIds: ['fact-09'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 2: Progressive Cards - The 4 Pillars of Margin Accounts
+    {
+      segmentIndex: 2,
+      title: 'The 4 Pillars of Margin Accounts',
+      template: 'progressive_cards',
+      badge: 'Core Exchange Architecture',
+      beats: [
+        {
+          id: 'b07',
+          hindi_tts: 'फ्यूचर्स मार्जिन कोई उधारी या लोन नहीं है; यह एक परफॉर्मेंस बॉन्ड है जो दोनों पक्षों के सौदे को पूरा करने की गारंटी देता है।',
+          en_narration: 'फ्यूचर्स मार्जिन कोई उधारी या लोन नहीं है; यह एक परफॉर्मेंस बॉन्ड है जो दोनों पक्षों के सौदे को पूरा करने की गारंटी देता है।',
+          en_subtitle: 'Futures margin is a performance bond deposit, not borrowed money or a loan.',
+          pauseAfterMs: 400,
+          ui_state: {
+            stepIndex: 0,
+            totalSteps: 4,
+            cards: [
+              {
+                id: 'c1',
+                title: 'Pillar 1: Performance Bond Collateral',
+                subtitle: 'Zero Borrowed Money',
+                details: 'Margin acts as good-faith security deposited with the clearing broker, not a borrowed loan.',
+                badge: 'Bond Deposit',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 0,
+              totalSteps: 4,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'Pillar 1: Performance Bond Collateral',
+                  subtitle: 'Zero Borrowed Money',
+                  details: 'Margin acts as good-faith security deposited with the clearing broker, not a borrowed loan.',
+                  badge: 'Bond Deposit',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Define futures margin as a collateral performance bond',
+              sourceFactIds: ['fact-01'],
+            },
+          },
+        },
+        {
+          id: 'b08',
+          hindi_tts: 'दूसरा नियम: फ्यूचर्स में लॉन्ग और शॉर्ट दोनों पोजीशन पर बिल्कुल समान मार्जिन लगता है, क्योंकि दोनों तरफ डिफॉल्ट का खतरा बराबर होता है।',
+          en_narration: 'दूसरा नियम: फ्यूचर्स में लॉन्ग और शॉर्ट दोनों पोजीशन पर बिल्कुल समान मार्जिन लगता है, क्योंकि दोनों तरफ डिफॉल्ट का खतरा बराबर होता है।',
+          en_subtitle: 'Long and short positions face identical margin requirements set by the clearing house.',
+          pauseAfterMs: 400,
+          ui_state: {
+            stepIndex: 1,
+            totalSteps: 4,
+            cards: [
+              {
+                id: 'c1',
+                title: 'Pillar 1: Performance Bond Collateral',
+                subtitle: 'Zero Borrowed Money',
+                details: 'Margin acts as good-faith security deposited with the clearing broker, not a borrowed loan.',
+                badge: 'Bond Deposit',
+                highlight: false,
+              },
+              {
+                id: 'c2',
+                title: 'Pillar 2: Long / Short Symmetry',
+                subtitle: 'Identical Requirements',
+                details: 'Because shorting futures carries identical default risk to longing, exchanges set identical margin rules.',
+                badge: 'Symmetric Rules',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 1,
+              totalSteps: 4,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'Pillar 1: Performance Bond Collateral',
+                  subtitle: 'Zero Borrowed Money',
+                  details: 'Margin acts as good-faith security deposited with the clearing broker, not a borrowed loan.',
+                  badge: 'Bond Deposit',
+                  highlight: false,
+                },
+                {
+                  id: 'c2',
+                  title: 'Pillar 2: Long / Short Symmetry',
+                  subtitle: 'Identical Requirements',
+                  details: 'Because shorting futures carries identical default risk to longing, exchanges set identical margin rules.',
+                  badge: 'Symmetric Rules',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Explain long/short margin symmetry',
+              sourceFactIds: ['fact-01'],
+            },
+          },
+        },
+        {
+          id: 'b09',
+          hindi_tts: 'तीसरा नियम: डेली मार्किंग टू मार्केट। हर शाम क्लोजिंग प्राइस पर नफा-नुकसान का सेटलमेंट होता है और कॉन्ट्रैक्ट की वैल्यू रीसेट होकर जीरो हो जाती है।',
+          en_narration: 'तीसरा नियम: डेली मार्किंग टू मार्केट। हर शाम क्लोजिंग प्राइस पर नफा-नुकसान का सेटलमेंट होता है और कॉन्ट्रैक्ट की वैल्यू रीसेट होकर जीरो हो जाती है।',
+          en_subtitle: 'Daily settlement adjusts gains/losses each evening, resetting contract value to zero.',
+          pauseAfterMs: 400,
+          ui_state: {
+            stepIndex: 2,
+            totalSteps: 4,
+            cards: [
+              {
+                id: 'c1',
+                title: 'Pillar 1: Performance Bond Collateral',
+                subtitle: 'Zero Borrowed Money',
+                details: 'Margin acts as good-faith security deposited with the clearing broker, not a borrowed loan.',
+                badge: 'Bond Deposit',
+                highlight: false,
+              },
+              {
+                id: 'c2',
+                title: 'Pillar 2: Long / Short Symmetry',
+                subtitle: 'Identical Requirements',
+                details: 'Because shorting futures carries identical default risk to longing, exchanges set identical margin rules.',
+                badge: 'Symmetric Rules',
+                highlight: false,
+              },
+              {
+                id: 'c3',
+                title: 'Pillar 3: Daily Settlement (MTM)',
+                subtitle: 'Nightly Value Reset to Zero',
+                details: 'Gains are credited in cash nightly; losses are debited immediately. Contracts are rewritten daily.',
+                badge: 'Daily MTM',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 2,
+              totalSteps: 4,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'Pillar 1: Performance Bond Collateral',
+                  subtitle: 'Zero Borrowed Money',
+                  details: 'Margin acts as good-faith security deposited with the clearing broker, not a borrowed loan.',
+                  badge: 'Bond Deposit',
+                  highlight: false,
+                },
+                {
+                  id: 'c2',
+                  title: 'Pillar 2: Long / Short Symmetry',
+                  subtitle: 'Identical Requirements',
+                  details: 'Because shorting futures carries identical default risk to longing, exchanges set identical margin rules.',
+                  badge: 'Symmetric Rules',
+                  highlight: false,
+                },
+                {
+                  id: 'c3',
+                  title: 'Pillar 3: Daily Settlement (MTM)',
+                  subtitle: 'Nightly Value Reset to Zero',
+                  details: 'Gains are credited in cash nightly; losses are debited immediately. Contracts are rewritten daily.',
+                  badge: 'Daily MTM',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Explain daily settlement and contract value reset',
+              sourceFactIds: ['fact-03'],
+            },
+          },
+        },
+        {
+          id: 'b10',
+          hindi_tts: 'चौथा नियम: मेंटेनेंस मार्जिन आमतौर पर इनिशियल मार्जिन का पचहत्तर प्रतिशत होता है, जो खाते को निगेटिव होने से बचाता है।',
+          en_narration: 'चौथा नियम: मेंटेनेंस मार्जिन आमतौर पर इनिशियल मार्जिन का पचहत्तर प्रतिशत होता है, जो खाते को निगेटिव होने से बचाता है।',
+          en_subtitle: 'Maintenance margin is roughly 75% of initial margin to prevent negative balances.',
+          pauseAfterMs: 500,
+          ui_state: {
+            stepIndex: 3,
+            totalSteps: 4,
+            cards: [
+              {
+                id: 'c1',
+                title: 'Pillar 1: Performance Bond Collateral',
+                subtitle: 'Zero Borrowed Money',
+                details: 'Margin acts as good-faith security deposited with the clearing broker, not a borrowed loan.',
+                badge: 'Bond Deposit',
+                highlight: false,
+              },
+              {
+                id: 'c2',
+                title: 'Pillar 2: Long / Short Symmetry',
+                subtitle: 'Identical Requirements',
+                details: 'Because shorting futures carries identical default risk to longing, exchanges set identical margin rules.',
+                badge: 'Symmetric Rules',
+                highlight: false,
+              },
+              {
+                id: 'c3',
+                title: 'Pillar 3: Daily Settlement (MTM)',
+                subtitle: 'Nightly Value Reset to Zero',
+                details: 'Gains are credited in cash nightly; losses are debited immediately. Contracts are rewritten daily.',
+                badge: 'Daily MTM',
+                highlight: false,
+              },
+              {
+                id: 'c4',
+                title: 'Pillar 4: 75% Maintenance Threshold',
+                subtitle: 'Variation Margin Buffer',
+                details: 'Dipping below maintenance triggers a margin call requiring immediate top-up to the full initial level.',
+                badge: '75% Threshold',
+                highlight: true,
+              },
+            ],
+          },
+          visual: {
+            kind: 'cards',
+            data: {
+              stepIndex: 3,
+              totalSteps: 4,
+              cards: [
+                {
+                  id: 'c1',
+                  title: 'Pillar 1: Performance Bond Collateral',
+                  subtitle: 'Zero Borrowed Money',
+                  details: 'Margin acts as good-faith security deposited with the clearing broker, not a borrowed loan.',
+                  badge: 'Bond Deposit',
+                  highlight: false,
+                },
+                {
+                  id: 'c2',
+                  title: 'Pillar 2: Long / Short Symmetry',
+                  subtitle: 'Identical Requirements',
+                  details: 'Because shorting futures carries identical default risk to longing, exchanges set identical margin rules.',
+                  badge: 'Symmetric Rules',
+                  highlight: false,
+                },
+                {
+                  id: 'c3',
+                  title: 'Pillar 3: Daily Settlement (MTM)',
+                  subtitle: 'Nightly Value Reset to Zero',
+                  details: 'Gains are credited in cash nightly; losses are debited immediately. Contracts are rewritten daily.',
+                  badge: 'Daily MTM',
+                  highlight: false,
+                },
+                {
+                  id: 'c4',
+                  title: 'Pillar 4: 75% Maintenance Threshold',
+                  subtitle: 'Variation Margin Buffer',
+                  details: 'Dipping below maintenance triggers a margin call requiring immediate top-up to the full initial level.',
+                  badge: '75% Threshold',
+                  highlight: true,
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Establish the 75% maintenance margin buffer rule',
+              sourceFactIds: ['fact-04'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 3: Split Comparison - CCPs vs Bilateral OTC Clearing
+    {
+      segmentIndex: 3,
+      title: 'CCPs vs Bilateral OTC Clearing',
+      template: 'split_comparison',
+      badge: 'Counterparty Risk Architecture',
+      beats: [
+        {
+          id: 'b11',
+          hindi_tts: 'सेंट्रल काउंटरपार्टी यानी सी सी पी में नोवेशन के जरिए एक्सचेंज हर बायर के लिए सेलर और हर सेलर के लिए बायर बन जाता है, जिससे डिफॉल्ट रिस्क खत्म हो जाता है।',
+          en_narration: 'सेंट्रल काउंटरपार्टी यानी सी सी पी में नोवेशन के जरिए एक्सचेंज हर बायर के लिए सेलर और हर सेलर के लिए बायर बन जाता है, जिससे डिफॉल्ट रिस्क खत्म हो जाता है।',
+          en_subtitle: 'CCPs use legal novation to become buyer to every seller and seller to every buyer.',
+          pauseAfterMs: 400,
+          ui_state: {
+            leftTitle: 'CCP Clearing (Exchange)',
+            leftBadge: 'Multilateral Novation',
+            leftPoints: [
+              'Legal Novation: CCP guarantees both sides of every transaction.',
+              'Multilateral Netting: Massive reduction in gross cash flows.',
+              'Default Guaranty Fund: Funded by clearing members to absorb catastrophic defaults.',
+            ],
+            rightTitle: 'Bilateral OTC Clearing',
+            rightBadge: 'Direct Counterparty Risk',
+            rightPoints: [],
+            activeSide: 'left',
+          },
+          visual: {
+            kind: 'comparison',
+            data: {
+              leftTitle: 'CCP Clearing (Exchange)',
+              leftBadge: 'Multilateral Novation',
+              leftPoints: [
+                'Legal Novation: CCP guarantees both sides of every transaction.',
+                'Multilateral Netting: Massive reduction in gross cash flows.',
+                'Default Guaranty Fund: Funded by clearing members to absorb catastrophic defaults.',
+              ],
+              rightTitle: 'Bilateral OTC Clearing',
+              rightBadge: 'Direct Counterparty Risk',
+              rightPoints: [],
+              activeSide: 'left',
+            },
+            semantics: {
+              teachingObjective: 'Explain CCP novation and multilateral netting',
+              sourceFactIds: ['fact-06'],
+            },
+          },
+        },
+        {
+          id: 'b12',
+          hindi_tts: 'इसके विपरीत, पारंपरिक ओवर-द-काउंटर बाजार में दोनों पार्टियां सीधे एक-दूसरे से ट्रेड करती हैं, जहां आईएसडीए मास्टर एग्रीमेंट के तहत द्विपक्षीय क्रेडिट रिस्क बना रहता है।',
+          en_narration: 'इसके विपरीत, पारंपरिक ओवर-द-काउंटर बाजार में दोनों पार्टियां सीधे एक-दूसरे से ट्रेड करती हैं, जहां आईएसडीए मास्टर एग्रीमेंट के तहत द्विपक्षीय क्रेडिट रिस्क बना रहता है।',
+          en_subtitle: 'Bilateral OTC trades rely on ISDA agreements, exposing parties to direct counterparty risk.',
+          pauseAfterMs: 400,
+          ui_state: {
+            leftTitle: 'CCP Clearing (Exchange)',
+            leftBadge: 'Multilateral Novation',
+            leftPoints: [
+              'Legal Novation: CCP guarantees both sides of every transaction.',
+              'Multilateral Netting: Massive reduction in gross cash flows.',
+              'Default Guaranty Fund: Funded by clearing members to absorb catastrophic defaults.',
+            ],
+            rightTitle: 'Bilateral OTC Clearing',
+            rightBadge: 'Direct Counterparty Risk',
+            rightPoints: [
+              'Direct Counterparty Exposure: If party defaults, counterparty absorbs loss.',
+              'ISDA Master Agreement & CSA: Legal framework for bilateral collateral thresholds.',
+              'Independent Credit Ratings: Collateral terms depend on financial health.',
+            ],
+            activeSide: 'right',
+          },
+          visual: {
+            kind: 'comparison',
+            data: {
+              leftTitle: 'CCP Clearing (Exchange)',
+              leftBadge: 'Multilateral Novation',
+              leftPoints: [
+                'Legal Novation: CCP guarantees both sides of every transaction.',
+                'Multilateral Netting: Massive reduction in gross cash flows.',
+                'Default Guaranty Fund: Funded by clearing members to absorb catastrophic defaults.',
+              ],
+              rightTitle: 'Bilateral OTC Clearing',
+              rightBadge: 'Direct Counterparty Risk',
+              rightPoints: [
+                'Direct Counterparty Exposure: If party defaults, counterparty absorbs loss.',
+                'ISDA Master Agreement & CSA: Legal framework for bilateral collateral thresholds.',
+                'Independent Credit Ratings: Collateral terms depend on financial health.',
+              ],
+              activeSide: 'right',
+            },
+            semantics: {
+              teachingObjective: 'Contrast with bilateral OTC ISDA/CSA clearing',
+              sourceFactIds: ['fact-07'],
+            },
+          },
+        },
+        {
+          id: 'b13',
+          hindi_tts: 'दो हजार आठ के वित्तीय संकट के बाद, डॉड-फ्रैंक नियमों ने सभी स्टैंडर्ड ओटीसी डेरिवेटिव्स को अनिवार्य रूप से सी सी पी के जरिए क्लियर करना जरूरी बना दिया।',
+          en_narration: 'दो हजार आठ के वित्तीय संकट के बाद, डॉड-फ्रैंक नियमों ने सभी स्टैंडर्ड ओटीसी डेरिवेटिव्स को अनिवार्य रूप से सी सी पी के जरिए क्लियर करना जरूरी बना दिया।',
+          en_subtitle: 'Post-2008 Dodd-Frank reforms mandated CCP clearing for all standardized OTC derivatives.',
+          pauseAfterMs: 500,
+          ui_state: {
+            leftTitle: 'CCP Clearing (Exchange)',
+            leftBadge: 'Multilateral Novation',
+            leftPoints: [
+              'Legal Novation: CCP guarantees both sides of every transaction.',
+              'Multilateral Netting: Massive reduction in gross cash flows.',
+              'Default Guaranty Fund: Funded by clearing members to absorb catastrophic defaults.',
+            ],
+            rightTitle: 'Bilateral OTC Clearing',
+            rightBadge: 'Direct Counterparty Risk',
+            rightPoints: [
+              'Direct Counterparty Exposure: If party defaults, counterparty absorbs loss.',
+              'ISDA Master Agreement & CSA: Legal framework for bilateral collateral thresholds.',
+              'Post-2008 Mandate: Standardized trades must clear via CCP under Dodd-Frank / EMIR.',
+            ],
+            activeSide: 'both',
+          },
+          visual: {
+            kind: 'comparison',
+            data: {
+              leftTitle: 'CCP Clearing (Exchange)',
+              leftBadge: 'Multilateral Novation',
+              leftPoints: [
+                'Legal Novation: CCP guarantees both sides of every transaction.',
+                'Multilateral Netting: Massive reduction in gross cash flows.',
+                'Default Guaranty Fund: Funded by clearing members to absorb catastrophic defaults.',
+              ],
+              rightTitle: 'Bilateral OTC Clearing',
+              rightBadge: 'Direct Counterparty Risk',
+              rightPoints: [
+                'Direct Counterparty Exposure: If party defaults, counterparty absorbs loss.',
+                'ISDA Master Agreement & CSA: Legal framework for bilateral collateral thresholds.',
+                'Post-2008 Mandate: Standardized trades must clear via CCP under Dodd-Frank / EMIR.',
+              ],
+              activeSide: 'both',
+            },
+            semantics: {
+              teachingObjective: 'Highlight post-2008 regulatory mandates for CCP clearing',
+              sourceFactIds: ['fact-08'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 4: Data Visualizer - 16-Day Gold Margin Account Walkthrough
+    {
+      segmentIndex: 4,
+      title: '16-Day Gold Margin Account Walkthrough',
+      template: 'data_visualizer',
+      badge: 'Hull Table 2.1 Case Study',
+      beats: [
+        {
+          id: 'b14',
+          hindi_tts: 'जॉन हल की किताब का उदाहरण दो दशमलव एक देखिए: निवेशक पांच जून को बारह सौ पचास डॉलर पर दो गोल्ड कॉन्ट्रैक्ट्स खरीदता है और बारह हजार डॉलर इनिशियल मार्जिन जमा करता है।',
+          en_narration: 'जॉन हल की किताब का उदाहरण दो दशमलव एक देखिए: निवेशक पांच जून को बारह सौ पचास डॉलर पर दो गोल्ड कॉन्ट्रैक्ट्स खरीदता है और बारह हजार डॉलर इनिशियल मार्जिन जमा करता है।',
+          en_subtitle: 'Hull Example 2.1: 2 gold contracts at $1,250 with $12,000 initial margin.',
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'Gold Margin Account Balance: Days 1 to 6',
+            mode: 'bars',
+            dataPoints: [
+              { label: 'Day 1 ($1,241)', value: 10200, color: '#0F766E' },
+              { label: 'Day 2 ($1,245)', value: 11000, color: '#0F766E' },
+              { label: 'Day 3 ($1,240)', value: 10000, color: '#0F766E' },
+              { label: 'Day 4 ($1,236)', value: 9240, color: '#F59E0B' },
+              { label: 'Day 5 ($1,229)', value: 7800, color: '#EF4444' },
+              { label: 'Day 6 ($1,232)', value: 8440, color: '#EF4444' },
+            ],
+            highlightIndex: 3,
+            unit: '$',
+          },
+          visual: {
+            kind: 'chart',
+            data: {
+              title: 'Gold Margin Account Balance: Days 1 to 6',
+              mode: 'bars',
+              dataPoints: [
+                { label: 'Day 1 ($1,241)', value: 10200, color: '#0F766E' },
+                { label: 'Day 2 ($1,245)', value: 11000, color: '#0F766E' },
+                { label: 'Day 3 ($1,240)', value: 10000, color: '#0F766E' },
+                { label: 'Day 4 ($1,236)', value: 9240, color: '#F59E0B' },
+                { label: 'Day 5 ($1,229)', value: 7800, color: '#EF4444' },
+                { label: 'Day 6 ($1,232)', value: 8440, color: '#EF4444' },
+              ],
+              highlightIndex: 3,
+              unit: '$',
+            },
+            semantics: {
+              teachingObjective: 'Follow Day 1-6 account progression approaching maintenance threshold',
+              sourceFactIds: ['fact-05'],
+            },
+          },
+        },
+        {
+          id: 'b15',
+          hindi_tts: 'सातवें दिन, गोल्ड गिरकर बारह सौ छब्बीस दशमलव नब्बे हो जाता है, जिससे खाता सात हजार तीन सौ अस्सी डॉलर पर आ जाता है—जो मेंटेनेंस मार्जिन से सोलह सौ बीस डॉलर कम है।',
+          en_narration: 'सातवें दिन, गोल्ड गिरकर बारह सौ छब्बीस दशमलव नब्बे हो जाता है, जिससे खाता सात हजार तीन सौ अस्सी डॉलर पर आ जाता है—जो मेंटेनेंस मार्जिन से सोलह सौ बीस डॉलर कम है।',
+          en_subtitle: 'Day 7 gold drops to $1,226.90, balance dips to $7,380 triggering a margin call.',
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'Day 7 Margin Call Trigger Event',
+            mode: 'bars',
+            dataPoints: [
+              { label: 'Initial Margin', value: 12000, color: '#0F766E' },
+              { label: 'Maintenance Level', value: 9000, color: '#F59E0B' },
+              { label: 'Day 7 Balance', value: 7380, color: '#EF4444' },
+              { label: 'Deficit Below MM', value: 1620, color: '#EF4444' },
+            ],
+            highlightIndex: 2,
+            unit: '$',
+          },
+          visual: {
+            kind: 'chart',
+            data: {
+              title: 'Day 7 Margin Call Trigger Event',
+              mode: 'bars',
+              dataPoints: [
+                { label: 'Initial Margin', value: 12000, color: '#0F766E' },
+                { label: 'Maintenance Level', value: 9000, color: '#F59E0B' },
+                { label: 'Day 7 Balance', value: 7380, color: '#EF4444' },
+                { label: 'Deficit Below MM', value: 1620, color: '#EF4444' },
+              ],
+              highlightIndex: 2,
+              unit: '$',
+            },
+            semantics: {
+              teachingObjective: 'Demonstrate Day 7 balance breach triggering a formal margin call',
+              sourceFactIds: ['fact-04', 'fact-05'],
+            },
+          },
+        },
+        {
+          id: 'b16',
+          hindi_tts: 'ब्रोकर तुरंत मार्जिन कॉल भेजता है: ट्रेडर को सोलह सौ बीस नहीं, बल्कि पूरे छियालीस सौ बीस डॉलर जमा करने होंगे, ताकि बैलेंस वापस बारह हजार डॉलर पर पहुंच सके!',
+          en_narration: 'ब्रोकर तुरंत मार्जिन कॉल भेजता है: ट्रेडर को सोलह सौ बीस नहीं, बल्कि पूरे छियालीस सौ बीस डॉलर जमा करने होंगे, ताकि बैलेंस वापस बारह हजार डॉलर पर पहुंच सके!',
+          en_subtitle: 'Trader must deposit $4,620 variation margin, restoring account to $12,000.',
+          pauseAfterMs: 500,
+          ui_state: {
+            title: 'Variation Margin Restoration: Day 7',
+            mode: 'bars',
+            dataPoints: [
+              { label: 'Day 7 Trough', value: 7380, color: '#EF4444' },
+              { label: 'Variation Margin Added', value: 4620, color: '#10B981' },
+              { label: 'Restored Initial Balance', value: 12000, color: '#0F766E' },
+            ],
+            highlightIndex: 2,
+            unit: '$',
+          },
+          visual: {
+            kind: 'chart',
+            data: {
+              title: 'Variation Margin Restoration: Day 7',
+              mode: 'bars',
+              dataPoints: [
+                { label: 'Day 7 Trough', value: 7380, color: '#EF4444' },
+                { label: 'Variation Margin Added', value: 4620, color: '#10B981' },
+                { label: 'Restored Initial Balance', value: 12000, color: '#0F766E' },
+              ],
+              highlightIndex: 2,
+              unit: '$',
+            },
+            semantics: {
+              teachingObjective: 'Show the $4,620 top-up restoring the full initial margin',
+              sourceFactIds: ['fact-04', 'fact-05'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 5: Formula Breakdown - Variation Margin & Threshold Formula
+    {
+      segmentIndex: 5,
+      title: 'Variation Margin & Threshold Formula',
+      template: 'formula_breakdown',
+      badge: 'Quantitative Margin Mechanics',
+      beats: [
+        {
+          id: 'b17',
+          hindi_tts: 'आइये मार्जिन नियमों के गणित को समझें। मेंटेनेंस मार्जिन सीधे इनिशियल मार्जिन का पचहत्तर प्रतिशत होता है, जो हर पोजीशन के लिए पहले से तय रहता है।',
+          en_narration: 'आइये मार्जिन नियमों के गणित को समझें। मेंटेनेंस मार्जिन सीधे इनिशियल मार्जिन का पचहत्तर प्रतिशत होता है, जो हर पोजीशन के लिए पहले से तय रहता है।',
+          en_subtitle: 'Maintenance margin MM is strictly set at 75% of initial margin IM.',
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'Maintenance Margin Threshold',
+            expression: 'MM = 0.75 \\cdot IM',
+            latex: 'MM = 0.75 \\cdot IM',
+            variables: [
+              { symbol: 'MM', label: 'Maintenance Margin', description: 'Threshold triggering margin call', unit: '$' },
+              { symbol: 'IM', label: 'Initial Margin', description: 'Performance bond required at opening', unit: '$' },
+            ],
+            steps: [
+              { stepIndex: 0, label: 'Threshold Rule', equation: 'MM = 0.75 \\cdot IM', note: 'Exchange clearing house baseline parameter' },
+            ],
+            assumptions: ['Standard exchange margin schedule for gold futures.'],
+            interpretation: 'The 25% buffer absorbs normal day-to-day market volatility.',
+          },
+          visual: {
+            kind: 'formula',
+            data: {
+              title: 'Maintenance Margin Threshold',
+              expression: 'MM = 0.75 \\cdot IM',
+              variables: [
+                { symbol: 'MM', label: 'Maintenance Margin', description: 'Threshold triggering margin call', unit: '$' },
+                { symbol: 'IM', label: 'Initial Margin', description: 'Performance bond required at opening', unit: '$' },
+              ],
+              steps: [
+                { stepIndex: 0, label: 'Threshold Rule', equation: 'MM = 0.75 \\cdot IM', note: 'Exchange clearing house baseline parameter' },
+              ],
+              assumptions: ['Standard exchange margin schedule for gold futures.'],
+              interpretation: 'The 25% buffer absorbs normal day-to-day market volatility.',
+            },
+            semantics: {
+              teachingObjective: 'Formulate maintenance margin threshold equation MM = 0.75 * IM',
+              sourceFactIds: ['fact-04'],
+            },
+          },
+        },
+        {
+          id: 'b18',
+          hindi_tts: 'जब बैलेंस बी टी मेंटेनेंस मार्जिन से नीचे जाता है, तो वेरिएशन मार्जिन का फॉर्मूला इनिशियल मार्जिन माइनस वर्तमान बैलेंस होता है।',
+          en_narration: 'जब बैलेंस बी टी मेंटेनेंस मार्जिन से नीचे जाता है, तो वेरिएशन मार्जिन का फॉर्मूला इनिशियल मार्जिन माइनस वर्तमान बैलेंस होता है।',
+          en_subtitle: 'When balance B_t drops below MM, Variation Margin equals IM minus B_t.',
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'Variation Margin Call Top-Up Formula',
+            expression: 'VM = IM - B_t',
+            latex: 'VM = IM - B_t \\quad (B_t < MM)',
+            variables: [
+              { symbol: 'VM', label: 'Variation Margin', description: 'Cash deposit required by next business day', unit: '$' },
+              { symbol: 'IM', label: 'Initial Margin', description: 'Target balance required by clearing rules', unit: '$' },
+              { symbol: 'B_t', label: 'Current Account Balance', description: 'Balance after daily MTM debit', unit: '$' },
+            ],
+            steps: [
+              { stepIndex: 0, label: 'Condition Check', equation: 'B_t < MM', note: '$7,380 is strictly less than $9,000 threshold' },
+              { stepIndex: 1, label: 'Variation Margin Formula', equation: 'VM = IM - B_t', note: 'Full restoration to initial margin' },
+              { stepIndex: 2, label: 'Numerical Substitution', equation: 'VM = 12000 - 7380 = 4620', note: 'Exact cash wire required' },
+            ],
+            assumptions: ['Payment must be completed in cleared funds by next day open.'],
+            interpretation: 'Requires bringing account all the way back to $12,000, not just $9,000.',
+          },
+          visual: {
+            kind: 'formula',
+            data: {
+              title: 'Variation Margin Call Top-Up Formula',
+              expression: 'VM = IM - B_t',
+              variables: [
+                { symbol: 'VM', label: 'Variation Margin', description: 'Cash deposit required by next business day', unit: '$' },
+                { symbol: 'IM', label: 'Initial Margin', description: 'Target balance required by clearing rules', unit: '$' },
+                { symbol: 'B_t', label: 'Current Account Balance', description: 'Balance after daily MTM debit', unit: '$' },
+              ],
+              steps: [
+                { stepIndex: 0, label: 'Condition Check', equation: 'B_t < MM', note: '$7,380 is strictly less than $9,000 threshold' },
+                { stepIndex: 1, label: 'Variation Margin Formula', equation: 'VM = IM - B_t', note: 'Full restoration to initial margin' },
+                { stepIndex: 2, label: 'Numerical Substitution', equation: 'VM = 12000 - 7380 = 4620', note: 'Exact cash wire required' },
+              ],
+              assumptions: ['Payment must be completed in cleared funds by next day open.'],
+              interpretation: 'Requires bringing account all the way back to $12,000, not just $9,000.',
+            },
+            semantics: {
+              teachingObjective: 'Derive and calculate variation margin formula VM = IM - B_t',
+              sourceFactIds: ['fact-04', 'fact-05'],
+            },
+          },
+        },
+        {
+          id: 'b19',
+          hindi_tts: 'यह नियम इसलिए है ताकि अगर अगले दिन भी बाजार प्रतिकूल चले, तो खाते में नुकसान सहने का पूरा बफर फिर से उपलब्ध रहे।',
+          en_narration: 'यह नियम इसलिए है ताकि अगर अगले दिन भी बाजार प्रतिकूल चले, तो खाते में नुकसान सहने का पूरा बफर फिर से उपलब्ध रहे।',
+          en_subtitle: 'Full restoration ensures a fresh buffer against consecutive adverse market moves.',
+          pauseAfterMs: 500,
+          ui_state: {
+            title: 'Risk Buffer Invariant',
+            expression: '\\Delta B_{t+1} \\le IM - MM',
+            latex: '\\Delta B_{t+1} \\le IM - MM = 0.25 \\cdot IM',
+            variables: [
+              { symbol: '\\Delta B', label: 'Permissible Daily Loss', description: 'Maximum loss before another margin call', unit: '$' },
+              { symbol: 'Buffer', label: 'Safety Cushion', description: 'Initial minus Maintenance margin ($3,000)', unit: '$' },
+            ],
+            steps: [
+              { stepIndex: 0, label: 'Buffer Reset', equation: 'Buffer = IM - MM = 3000', note: 'Guarantees $3,000 absorption capacity' },
+              { stepIndex: 1, label: 'Default Protection', equation: 'Balance \\ge MM', note: 'Clearinghouse maintains zero negative balance exposure' },
+            ],
+            assumptions: ['Trader maintains positive equity above liquidation value.'],
+            interpretation: 'Prevents clearing broker from absorbing trading desk counterparty risk.',
+          },
+          visual: {
+            kind: 'formula',
+            data: {
+              title: 'Risk Buffer Invariant',
+              expression: '\\Delta B_{t+1} \\le IM - MM',
+              variables: [
+                { symbol: '\\Delta B', label: 'Permissible Daily Loss', description: 'Maximum loss before another margin call', unit: '$' },
+                { symbol: 'Buffer', label: 'Safety Cushion', description: 'Initial minus Maintenance margin ($3,000)', unit: '$' },
+              ],
+              steps: [
+                { stepIndex: 0, label: 'Buffer Reset', equation: 'Buffer = IM - MM = 3000', note: 'Guarantees $3,000 absorption capacity' },
+                { stepIndex: 1, label: 'Default Protection', equation: 'Balance \\ge MM', note: 'Clearinghouse maintains zero negative balance exposure' },
+              ],
+              assumptions: ['Trader maintains positive equity above liquidation value.'],
+              interpretation: 'Prevents clearing broker from absorbing trading desk counterparty risk.',
+            },
+            semantics: {
+              teachingObjective: 'Explain economic rationale behind the full initial margin buffer reset',
+              sourceFactIds: ['fact-04'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 6: Tug of War - Collateral Valuation & Haircuts
+    {
+      segmentIndex: 6,
+      title: 'Collateral Valuation & Haircuts',
+      template: 'tug_of_war',
+      badge: 'Non-Cash Collateral Rules',
+      beats: [
+        {
+          id: 'b20',
+          hindi_tts: 'इनिशियल मार्जिन जमा करने के लिए सिर्फ कैश ही नहीं, बल्कि ट्रेजरी बिल्स और शेयर्स भी दिए जा सकते हैं, पर एक्सचेंज उन पर हेयरकट लगाता है।',
+          en_narration: 'इनिशियल मार्जिन जमा करने के लिए सिर्फ कैश ही नहीं, बल्कि ट्रेजरी बिल्स और शेयर्स भी दिए जा सकते हैं, पर एक्सचेंज उन पर हेयरकट लगाता है।',
+          en_subtitle: 'Non-cash securities satisfy initial margins, but clearinghouses apply valuation haircuts.',
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'Collateral Haircut Tug-of-War',
+            leftTitle: 'Treasury Bills (90% Value)',
+            leftScore: 90,
+            leftColor: '#0F766E',
+            rightTitle: 'Equities / Shares (50% Value)',
+            rightScore: 50,
+            rightColor: '#F59E0B',
+            centerLabel: 'Collateral Valuation',
+            advantage: 'left',
+          },
+          visual: {
+            kind: 'comparison',
+            data: {
+              title: 'Collateral Haircut Tug-of-War',
+              leftTitle: 'Treasury Bills (90% Value)',
+              leftScore: 90,
+              leftColor: '#0F766E',
+              rightTitle: 'Equities / Shares (50% Value)',
+              rightScore: 50,
+              rightColor: '#F59E0B',
+              centerLabel: 'Collateral Valuation',
+              advantage: 'left',
+            },
+            semantics: {
+              teachingObjective: 'Introduce non-cash collateral haircuts',
+              sourceFactIds: ['fact-02'],
+            },
+          },
+        },
+        {
+          id: 'b21',
+          hindi_tts: 'ट्रेजरी बिल्स को उनके फेस वैल्यू के नब्बे प्रतिशत पर स्वीकार किया जाता है, यानी सिर्फ दस प्रतिशत हेयरकट, क्योंकि उनकी वैल्यू बेहद स्थिर रहती है।',
+          en_narration: 'ट्रेजरी बिल्स को उनके फेस वैल्यू के नब्बे प्रतिशत पर स्वीकार किया जाता है, यानी सिर्फ दस प्रतिशत हेयरकट, क्योंकि उनकी वैल्यू बेहद स्थिर रहती है।',
+          en_subtitle: 'Treasury bills receive a low 10% haircut, accepted at 90% of face value.',
+          pauseAfterMs: 400,
+          ui_state: {
+            title: 'T-Bills: High Liquidity, Low Risk',
+            leftTitle: 'Treasury Bills (10% Haircut)',
+            leftScore: 90,
+            leftColor: '#0F766E',
+            rightTitle: 'Haircut Discount',
+            rightScore: 10,
+            rightColor: '#64748B',
+            centerLabel: 'T-Bill Valuation: 90%',
+            advantage: 'left',
+          },
+          visual: {
+            kind: 'comparison',
+            data: {
+              title: 'T-Bills: High Liquidity, Low Risk',
+              leftTitle: 'Treasury Bills (10% Haircut)',
+              leftScore: 90,
+              leftColor: '#0F766E',
+              rightTitle: 'Haircut Discount',
+              rightScore: 10,
+              rightColor: '#64748B',
+              centerLabel: 'T-Bill Valuation: 90%',
+              advantage: 'left',
+            },
+            semantics: {
+              teachingObjective: 'Explain Treasury bill 10% haircut valuation',
+              sourceFactIds: ['fact-02'],
+            },
+          },
+        },
+        {
+          id: 'b22',
+          hindi_tts: 'लेकिन इक्विटी शेयर्स पर पचास प्रतिशत हेयरकट लगता है—यानी एक लाख के शेयर्स सिर्फ पचास हजार के मार्जिन के रूप में गिने जाते हैं।',
+          en_narration: 'लेकिन इक्विटी शेयर्स पर पचास प्रतिशत हेयरकट लगता है—यानी एक लाख के शेयर्स सिर्फ पचास हजार के मार्जिन के रूप में गिने जाते हैं।',
+          en_subtitle: 'Equities face a steep 50% haircut due to stock market volatility.',
+          pauseAfterMs: 500,
+          ui_state: {
+            title: 'Equities: High Volatility, Steep Discount',
+            leftTitle: 'Recognized Margin Value',
+            leftScore: 50,
+            leftColor: '#0F766E',
+            rightTitle: 'Haircut Discount (50%)',
+            rightScore: 50,
+            rightColor: '#EF4444',
+            centerLabel: 'Shares Valuation: 50%',
+            advantage: 'tie',
+          },
+          visual: {
+            kind: 'comparison',
+            data: {
+              title: 'Equities: High Volatility, Steep Discount',
+              leftTitle: 'Recognized Margin Value',
+              leftScore: 50,
+              leftColor: '#0F766E',
+              rightTitle: 'Haircut Discount (50%)',
+              rightScore: 50,
+              rightColor: '#EF4444',
+              centerLabel: 'Shares Valuation: 50%',
+              advantage: 'tie',
+            },
+            semantics: {
+              teachingObjective: 'Explain equity 50% haircut due to price volatility',
+              sourceFactIds: ['fact-02'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 7: Interactive Quiz - Active Recall: Variation Margin Calculation
+    {
+      segmentIndex: 7,
+      title: 'Active Recall: Variation Margin Calculation',
+      template: 'interactive_quiz',
+      badge: 'HYPOTHETICAL DESK EXAMPLE · ACTIVE RECALL',
+      beats: [
+        {
+          id: 'b23',
+          hindi_tts: 'अब एक सवाल: एक ट्रेडर के पास दो गोल्ड कॉन्ट्रैक्ट्स हैं। इनिशियल मार्जिन बारह हजार और मेंटेनेंस नौ हजार डॉलर है। अगर बैलेंस गिरकर अठहत्तर सौ डॉलर हो जाए, तो कितना कैश डालना होगा?',
+          en_narration: 'अब एक सवाल: एक ट्रेडर के पास दो गोल्ड कॉन्ट्रैक्ट्स हैं। इनिशियल मार्जिन बारह हजार और मेंटेनेंस नौ हजार डॉलर है। अगर बैलेंस गिरकर अठहत्तर सौ डॉलर हो जाए, तो कितना कैश डालना होगा?',
+          en_subtitle: 'Initial $12k, maintenance $9k, balance $7,800. How much variation margin is required?',
+          pauseAfterMs: 400,
+          ui_state: {
+            scenario: 'An investor holds 2 gold futures contracts with $12,000 initial margin and $9,000 maintenance margin. Adverse price drops push the account balance down to $7,800.',
+            question: 'Based on exchange margin rules, how much cash variation margin must the investor deposit by next business day?',
+            options: [
+              'A) $1,200 (To reach $9,000 maintenance margin)',
+              'B) $4,200 (To restore $12,000 initial margin)',
+              'C) $2,200 (Average of initial and maintenance)',
+              'D) $0 (No deposit needed until balance reaches zero)',
+            ],
+            correctOptionIndex: 1,
+            answer: '$4,200 (To restore $12,000 initial margin)',
+            showThinkingSpinner: false,
+          },
+          visual: {
+            kind: 'quiz',
+            data: {
+              scenario: 'An investor holds 2 gold futures contracts with $12,000 initial margin and $9,000 maintenance margin. Adverse price drops push the account balance down to $7,800.',
+              question: 'Based on exchange margin rules, how much cash variation margin must the investor deposit by next business day?',
+              options: [
+                'A) $1,200 (To reach $9,000 maintenance margin)',
+                'B) $4,200 (To restore $12,000 initial margin)',
+                'C) $2,200 (Average of initial and maintenance)',
+                'D) $0 (No deposit needed until balance reaches zero)',
+              ],
+              correctOptionIndex: 1,
+              answer: '$4,200 (To restore $12,000 initial margin)',
+              showThinkingSpinner: false,
+            },
+            semantics: {
+              teachingObjective: 'Test comprehension of variation margin calculation and the initial margin restoration invariant',
+              sourceFactIds: ['fact-04', 'fact-05'],
+            },
+          },
+        },
+        {
+          id: 'b24',
+          hindi_tts: 'राजू सोचता है: नौ हजार में से अठहत्तर सौ घटाएं तो बारह सौ बनता है। लेकिन क्या हमें मेंटेनेंस तक पहुंचना है या इनिशियल तक? शर्मा जी सही जवाब बताते हैं।',
+          en_narration: 'राजू सोचता है: नौ हजार में से अठहत्तर सौ घटाएं तो बारह सौ बनता है। लेकिन क्या हमें मेंटेनेंस तक पहुंचना है या इनिशियल तक? शर्मा जी सही जवाब बताते हैं।',
+          en_subtitle: 'Raju considers $1,200 vs $4,200. Sharma ji reveals the correct calculation.',
+          pauseAfterMs: 400,
+          ui_state: {
+            scenario: 'An investor holds 2 gold futures contracts with $12,000 initial margin and $9,000 maintenance margin. Adverse price drops push the account balance down to $7,800.',
+            question: 'Based on exchange margin rules, how much cash variation margin must the investor deposit by next business day?',
+            options: [
+              'A) $1,200 (To reach $9,000 maintenance margin)',
+              'B) $4,200 (To restore $12,000 initial margin)',
+              'C) $2,200 (Average of initial and maintenance)',
+              'D) $0 (No deposit needed until balance reaches zero)',
+            ],
+            correctOptionIndex: 1,
+            answer: '$4,200 (To restore $12,000 initial margin)',
+            showThinkingSpinner: true,
+          },
+          visual: {
+            kind: 'quiz',
+            data: {
+              scenario: 'An investor holds 2 gold futures contracts with $12,000 initial margin and $9,000 maintenance margin. Adverse price drops push the account balance down to $7,800.',
+              question: 'Based on exchange margin rules, how much cash variation margin must the investor deposit by next business day?',
+              options: [
+                'A) $1,200 (To reach $9,000 maintenance margin)',
+                'B) $4,200 (To restore $12,000 initial margin)',
+                'C) $2,200 (Average of initial and maintenance)',
+                'D) $0 (No deposit needed until balance reaches zero)',
+              ],
+              correctOptionIndex: 1,
+              answer: '$4,200 (To restore $12,000 initial margin)',
+              showThinkingSpinner: true,
+            },
+            semantics: {
+              teachingObjective: 'Guide active recall reasoning through the common misconception',
+              sourceFactIds: ['fact-04'],
+            },
+          },
+        },
+        {
+          id: 'b25',
+          hindi_tts: 'ऑप्शन बी बिल्कुल सही है! नियम यह है कि मार्जिन कॉल आने पर बैलेंस को सीधे इनिशियल मार्जिन यानी बारह हजार तक ले जाना होता है, इसलिए बारह हजार माइनस अठहत्तर सौ बराबर बयालीस सौ डॉलर!',
+          en_narration: 'ऑप्शन बी बिल्कुल सही है! नियम यह है कि मार्जिन कॉल आने पर बैलेंस को सीधे इनिशियल मार्जिन यानी बारह हजार तक ले जाना होता है, इसलिए बारह हजार माइनस अठहत्तर सौ बराबर बयालीस सौ डॉलर!',
+          en_subtitle: 'Option B! You must deposit $4,200 ($12,000 - $7,800) to restore full initial margin.',
+          pauseAfterMs: 500,
+          ui_state: {
+            scenario: 'An investor holds 2 gold futures contracts with $12,000 initial margin and $9,000 maintenance margin. Adverse price drops push the account balance down to $7,800.',
+            question: 'Based on exchange margin rules, how much cash variation margin must the investor deposit by next business day?',
+            options: [
+              'A) $1,200 (To reach $9,000 maintenance margin)',
+              'B) $4,200 (To restore $12,000 initial margin)',
+              'C) $2,200 (Average of initial and maintenance)',
+              'D) $0 (No deposit needed until balance reaches zero)',
+            ],
+            correctOptionIndex: 1,
+            answer: '$4,200 (To restore $12,000 initial margin)',
+            showThinkingSpinner: false,
+            feedback: 'Correct! John C. Hull emphasizes that variation margin must bring the balance all the way back up to the INITIAL margin ($12,000 - $7,800 = $4,200), not merely maintenance.',
+          },
+          visual: {
+            kind: 'quiz',
+            data: {
+              scenario: 'An investor holds 2 gold futures contracts with $12,000 initial margin and $9,000 maintenance margin. Adverse price drops push the account balance down to $7,800.',
+              question: 'Based on exchange margin rules, how much cash variation margin must the investor deposit by next business day?',
+              options: [
+                'A) $1,200 (To reach $9,000 maintenance margin)',
+                'B) $4,200 (To restore $12,000 initial margin)',
+                'C) $2,200 (Average of initial and maintenance)',
+                'D) $0 (No deposit needed until balance reaches zero)',
+              ],
+              correctOptionIndex: 1,
+              answer: '$4,200 (To restore $12,000 initial margin)',
+              showThinkingSpinner: false,
+              feedback: 'Correct! John C. Hull emphasizes that variation margin must bring the balance all the way back up to the INITIAL margin ($12,000 - $7,800 = $4,200), not merely maintenance.',
+            },
+            semantics: {
+              teachingObjective: 'Reinforce the initial margin restoration rule and conclude the active recall quiz',
+              sourceFactIds: ['fact-04'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 8: Chat Story - Trader's Risk & Margin Checklist
+    {
+      segmentIndex: 8,
+      title: "Trader's Risk & Margin Checklist",
+      template: 'chat_story',
+      badge: 'Trading Desk · Risk Management',
+      beats: [
+        {
+          id: 'b26',
+          hindi_tts: 'शर्मा जी, पेशेवर ट्रेडर ओवरनाइट मार्जिन स्पाइक्स और बड़े गैप डाउन से अपना अकाउंट कैसे बचाते हैं?',
+          en_narration: 'शर्मा जी, पेशेवर ट्रेडर ओवरनाइट मार्जिन स्पाइक्स और बड़े गैप डाउन से अपना अकाउंट कैसे बचाते हैं?',
+          en_subtitle: 'How do professional trading desks protect against overnight margin spikes?',
+          pauseAfterMs: 400,
+          ui_state: {
+            stageDirections: ['— Raju asks about professional risk management rules —'],
+            messages: [
+              {
+                sender: 'Raju',
+                avatar: 'R',
+                text: 'Sharma ji, how do professional proprietary desks protect their capital against sudden overnight gap moves and unexpected margin spikes?',
+                theme: 'amber',
+                align: 'left',
+              },
+            ],
+          },
+          visual: {
+            kind: 'conversation',
+            data: {
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: 'Sharma ji, how do professional proprietary desks protect their capital against sudden overnight gap moves and unexpected margin spikes?',
+                  theme: 'amber',
+                  align: 'left',
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Introduce professional risk management and margin buffer best practices',
+              sourceFactIds: ['fact-01', 'fact-04'],
+            },
+          },
+        },
+        {
+          id: 'b27',
+          hindi_tts: 'तीन सुनहरे नियम याद रखो: पहला, कभी भी अपने खाते में सौ प्रतिशत मार्जिन इस्तेमाल मत करो; हमेशा पचास प्रतिशत कैश बफर रखो। दूसरा, स्टॉप लॉस लगाओ। और तीसरा, लीवरेज को सीमा में रखो।',
+          en_narration: 'तीन सुनहरे नियम याद रखो: पहला, कभी भी अपने खाते में सौ प्रतिशत मार्जिन इस्तेमाल मत करो; हमेशा पचास प्रतिशत कैश बफर रखो। दूसरा, स्टॉप लॉस लगाओ। और तीसरा, लीवरेज को सीमा में रखो।',
+          en_subtitle: 'Three rules: maintain a 50% cash buffer, use strict stop losses, and cap leverage.',
+          pauseAfterMs: 450,
+          ui_state: {
+            stageDirections: ['— Sharma ji outlines three golden margin rules —'],
+            messages: [
+              {
+                sender: 'Raju',
+                avatar: 'R',
+                text: 'Sharma ji, how do professional proprietary desks protect their capital against sudden overnight gap moves and unexpected margin spikes?',
+                theme: 'amber',
+                align: 'left',
+              },
+              {
+                sender: 'Sharma ji',
+                avatar: 'S',
+                text: 'Three golden rules: 1) Never deploy 100% margin—maintain at least a 50% cash cushion; 2) Enforce hard stop losses; 3) Limit leverage to withstand consecutive adverse days.',
+                theme: 'teal',
+                align: 'right',
+              },
+            ],
+          },
+          visual: {
+            kind: 'conversation',
+            data: {
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: 'Sharma ji, how do professional proprietary desks protect their capital against sudden overnight gap moves and unexpected margin spikes?',
+                  theme: 'amber',
+                  align: 'left',
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: 'Three golden rules: 1) Never deploy 100% margin—maintain at least a 50% cash cushion; 2) Enforce hard stop losses; 3) Limit leverage to withstand consecutive adverse days.',
+                  theme: 'teal',
+                  align: 'right',
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Formulate practical risk rules for futures traders',
+              sourceFactIds: ['fact-01', 'fact-04', 'fact-09'],
+            },
+          },
+        },
+        {
+          id: 'b28',
+          hindi_tts: 'अब बात समझ में आ गई! मार्जिन ट्रेडिंग में अनुशासन ही सबसे बड़ा सुरक्षा कवच है।',
+          en_narration: 'अब बात समझ में आ गई! मार्जिन ट्रेडिंग में अनुशासन ही सबसे बड़ा सुरक्षा कवच है।',
+          en_subtitle: 'Understood! Strict margin discipline is the ultimate protection in futures trading.',
+          pauseAfterMs: 500,
+          ui_state: {
+            stageDirections: ['— Raju acknowledges importance of margin discipline —'],
+            messages: [
+              {
+                sender: 'Raju',
+                avatar: 'R',
+                text: 'Sharma ji, how do professional proprietary desks protect their capital against sudden overnight gap moves and unexpected margin spikes?',
+                theme: 'amber',
+                align: 'left',
+              },
+              {
+                sender: 'Sharma ji',
+                avatar: 'S',
+                text: 'Three golden rules: 1) Never deploy 100% margin—maintain at least a 50% cash cushion; 2) Enforce hard stop losses; 3) Limit leverage to withstand consecutive adverse days.',
+                theme: 'teal',
+                align: 'right',
+              },
+              {
+                sender: 'Raju',
+                avatar: 'R',
+                text: 'Understood completely! In futures markets, margin discipline and cash management are what keep a trader in the game.',
+                theme: 'amber',
+                align: 'left',
+              },
+            ],
+          },
+          visual: {
+            kind: 'conversation',
+            data: {
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: 'Sharma ji, how do professional proprietary desks protect their capital against sudden overnight gap moves and unexpected margin spikes?',
+                  theme: 'amber',
+                  align: 'left',
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: 'Three golden rules: 1) Never deploy 100% margin—maintain at least a 50% cash cushion; 2) Enforce hard stop losses; 3) Limit leverage to withstand consecutive adverse days.',
+                  theme: 'teal',
+                  align: 'right',
+                },
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: 'Understood completely! In futures markets, margin discipline and cash management are what keep a trader in the game.',
+                  theme: 'amber',
+                  align: 'left',
+                },
+              ],
+            },
+            semantics: {
+              teachingObjective: 'Conclude dialogue emphasizing disciplined execution',
+              sourceFactIds: ['fact-01'],
+            },
+          },
+        },
+      ],
+    },
+
+    // Scene 9: Summary Thread
+    {
+      segmentIndex: 9,
+      title: "Today's Thread: Chapter 2 Part 2 Summary",
+      template: 'summary_thread',
+      badge: 'Executive Synthesis',
+      beats: [
+        {
+          id: 'b29',
+          hindi_tts: 'आइये चैप्टर दो पार्ट दो के मुख्य नियमों को दोहराते हैं। पहला: मार्जिन अकाउंट्स एक परफॉर्मेंस बॉन्ड हैं, जहां लॉन्ग और शॉर्ट दोनों पर एक समान नियम लागू होते हैं।',
+          en_narration: 'आइये चैप्टर दो पार्ट दो के मुख्य नियमों को दोहराते हैं। पहला: मार्जिन अकाउंट्स एक परफॉर्मेंस बॉन्ड हैं, जहां लॉन्ग और शॉर्ट दोनों पर एक समान नियम लागू होते हैं।',
+          en_subtitle: 'Margin accounts act as performance bonds with symmetric long/short rules.',
+          pauseAfterMs: 400,
+          ui_state: {
+            activeStepRange: [0, 0],
+            steps: [
+              '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+              '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+              '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+              '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+              '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+              '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+              '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+              '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+            ],
+            compactOverview: false,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [0, 0],
+              steps: [
+                '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+                '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+                '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+                '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+                '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+                '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+                '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+                '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+              ],
+              compactOverview: false,
+            },
+            semantics: {
+              teachingObjective: 'Summary rule 1: Performance bond and symmetry',
+              sourceFactIds: ['fact-01'],
+            },
+          },
+        },
+        {
+          id: 'b30',
+          hindi_tts: 'दूसरा: हर शाम डेली मार्किंग टू मार्केट में नफा-नुकसान सेटल होता है और मेंटेनेंस मार्जिन इनिशियल का पचहत्तर प्रतिशत होता है।',
+          en_narration: 'दूसरा: हर शाम डेली मार्किंग टू मार्केट में नफा-नुकसान सेटल होता है और मेंटेनेंस मार्जिन इनिशियल का पचहत्तर प्रतिशत होता है।',
+          en_subtitle: 'Daily MTM settles gains/losses nightly; maintenance margin is roughly 75% of initial.',
+          pauseAfterMs: 400,
+          ui_state: {
+            activeStepRange: [1, 2],
+            steps: [
+              '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+              '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+              '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+              '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+              '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+              '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+              '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+              '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+            ],
+            compactOverview: false,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [1, 2],
+              steps: [
+                '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+                '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+                '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+                '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+                '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+                '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+                '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+                '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+              ],
+              compactOverview: false,
+            },
+            semantics: {
+              teachingObjective: 'Summary rule 2: Daily MTM and maintenance threshold',
+              sourceFactIds: ['fact-03', 'fact-04'],
+            },
+          },
+        },
+        {
+          id: 'b31',
+          hindi_tts: 'तीसरा: मार्जिन कॉल आने पर वेरिएशन मार्जिन जमा करके खाते को वापस पूरे इनिशियल मार्जिन तक पहुंचाना होता है।',
+          en_narration: 'तीसरा: मार्जिन कॉल आने पर वेरिएशन मार्जिन जमा करके खाते को वापस पूरे इनिशियल मार्जिन तक पहुंचाना होता है।',
+          en_subtitle: 'Margin calls require depositing variation margin to restore full initial margin.',
+          pauseAfterMs: 400,
+          ui_state: {
+            activeStepRange: [3, 4],
+            steps: [
+              '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+              '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+              '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+              '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+              '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+              '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+              '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+              '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+            ],
+            compactOverview: false,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [3, 4],
+              steps: [
+                '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+                '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+                '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+                '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+                '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+                '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+                '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+                '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+              ],
+              compactOverview: false,
+            },
+            semantics: {
+              teachingObjective: 'Summary rule 3: Variation margin restoration rule',
+              sourceFactIds: ['fact-04', 'fact-05'],
+            },
+          },
+        },
+        {
+          id: 'b32',
+          hindi_tts: 'चौथा: ट्रेजरी बिल्स पर दस प्रतिशत और शेयर्स पर पचास प्रतिशत का हेयरकट डिस्काउंट लगता है।',
+          en_narration: 'चौथा: ट्रेजरी बिल्स पर दस प्रतिशत और शेयर्स पर पचास प्रतिशत का हेयरकट डिस्काउंट लगता है।',
+          en_subtitle: 'Collateral haircuts: 10% on Treasury bills and 50% on equity shares.',
+          pauseAfterMs: 400,
+          ui_state: {
+            activeStepRange: [5, 6],
+            steps: [
+              '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+              '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+              '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+              '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+              '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+              '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+              '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+              '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+            ],
+            compactOverview: false,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [5, 6],
+              steps: [
+                '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+                '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+                '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+                '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+                '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+                '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+                '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+                '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+              ],
+              compactOverview: false,
+            },
+            semantics: {
+              teachingObjective: 'Summary rule 4: Collateral haircuts',
+              sourceFactIds: ['fact-02'],
+            },
+          },
+        },
+        {
+          id: 'b33',
+          hindi_tts: 'सातवां और आठवां: सी सी पी नोवेशन से काउंटरपार्टी रिस्क खत्म होता है, और एल टी सी एम का पतन सिखाता है कि अत्यधिक लीवरेज मार्जिन कॉल्स में तबाही ला सकता है।',
+          en_narration: 'सातवां और आठवां: सी सी पी नोवेशन से काउंटरपार्टी रिस्क खत्म होता है, और एल टी सी एम का पतन सिखाता है कि अत्यधिक लीवरेज मार्जिन कॉल्स में तबाही ला सकता है।',
+          en_subtitle: '7 & 8: CCPs remove counterparty risk; LTCM proves excessive leverage triggers liquidation.',
+          pauseAfterMs: 400,
+          ui_state: {
+            activeStepRange: [7, 8],
+            steps: [
+              '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+              '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+              '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+              '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+              '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+              '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+              '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+              '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+            ],
+            compactOverview: false,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [7, 8],
+              steps: [
+                '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+                '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+                '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+                '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+                '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+                '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+                '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+                '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+              ],
+              compactOverview: false,
+            },
+            semantics: {
+              teachingObjective: 'Summary rule 5: CCP novation and systemic leverage control',
+              sourceFactIds: ['fact-06', 'fact-09'],
+            },
+          },
+        },
+        {
+          id: 'b34',
+          hindi_tts: 'यह रहा चैप्टर दो पार्ट दो का पूरा समरी ग्रिड। अगले वीडियो में हम चैप्टर तीन हेजिंग स्ट्रैटेजिस शुरू करेंगे।',
+          en_narration: 'यह रहा चैप्टर दो पार्ट दो का पूरा समरी ग्रिड। अगले वीडियो में हम चैप्टर तीन हेजिंग स्ट्रैटेजिस शुरू करेंगे।',
+          en_subtitle: 'Complete executive summary grid. Next up: Chapter 3 Hedging Strategies!',
+          pauseAfterMs: 600,
+          ui_state: {
+            activeStepRange: [1, 8],
+            steps: [
+              '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+              '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+              '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+              '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+              '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+              '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+              '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+              '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+            ],
+            compactOverview: true,
+          },
+          visual: {
+            kind: 'summary',
+            data: {
+              activeStepRange: [1, 8],
+              steps: [
+                '1. Margin Nature: Margin is a performance bond deposit, not a borrowed loan.',
+                '2. Long/Short Symmetry: Identical margin requirements for buy and sell positions.',
+                '3. Daily MTM: Gains/losses settled nightly; contract value resets to zero.',
+                '4. Maintenance Margin: Set at ~75% of initial margin to prevent negative balances.',
+                '5. Variation Margin: Margin calls require full top-up to initial margin in cash.',
+                '6. Collateral Haircuts: T-bills accepted at 90% value; equities face 50% haircut.',
+                '7. CCP Clearing: Legal novation eliminates bilateral counterparty credit risk.',
+                '8. LTCM Lesson: 25:1 leverage triggered fatal $4B collateral liquidation.',
+              ],
+              compactOverview: true,
+            },
+            semantics: {
+              teachingObjective: 'Final compact 2-column executive overview',
+              sourceFactIds: ['fact-01', 'fact-04', 'fact-06', 'fact-09'],
+            },
+          },
+        },
+      ],
+    },
+  ],
+};
+
+fs.writeFileSync(path.join(targetDir, 'episode_raw.json'), JSON.stringify(episodeRaw, null, 2), 'utf8');
+console.log('✅ Created episode_raw.json for ch02_part2 Hindi (34 beats, 10 scenes)');
