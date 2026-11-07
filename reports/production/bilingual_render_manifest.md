@@ -1,6 +1,6 @@
 # Official Bilingual Course Delivery Manifest
 
-**Generated**: 2026-11-07T23:24:07.593Z  
+**Generated**: 2026-11-07T23:27:25.545Z  
 **Governing Standard**: `AGENTS.md` Phase 12 Delivery Contract  
 
 ## 1. Executive Delivery Summary
@@ -37,7 +37,7 @@
 | `appendix_ab` | [`appendix_ab.mp4` (18.2MB)](../../out/chapters/murphy_technical_analysis/appendix_ab.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
 | `appendix_cd` | [`appendix_cd.mp4` (21.3MB)](../../out/chapters/murphy_technical_analysis/appendix_cd.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
 | `ch01_part1` | [`ch01_part1.mp4` (23.2MB)](../../out/chapters/murphy_technical_analysis/ch01_part1.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | PASS | 🎬 Hindi Released (EN Audio Ready) |
-| `ch01_part2` | [`ch01_part2.mp4` (23.3MB)](../../out/chapters/murphy_technical_analysis/ch01_part2.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
+| `ch01_part2` | [`ch01_part2.mp4` (23.3MB)](../../out/chapters/murphy_technical_analysis/ch01_part2.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | PASS | 🎬 Hindi Released (EN Audio Ready) |
 | `ch02_part1` | [`ch02_part1.mp4` (20.1MB)](../../out/chapters/murphy_technical_analysis/ch02_part1.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
 | `ch02_part2` | [`ch02_part2.mp4` (25.4MB)](../../out/chapters/murphy_technical_analysis/ch02_part2.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
 | `ch03_part1` | [`ch03_part1.mp4` (25.8MB)](../../out/chapters/murphy_technical_analysis/ch03_part1.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
