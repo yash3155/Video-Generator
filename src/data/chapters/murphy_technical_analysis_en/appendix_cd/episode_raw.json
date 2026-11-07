@@ -1,0 +1,1105 @@
+{
+  "meta": {
+    "course": "murphy_technical_analysis_en",
+    "chapter": "APPENDIX",
+    "chapterTitle": "appendix_cd",
+    "domain": "finance",
+    "primaryColor": "#B45309",
+    "accentColor": "#2563EB",
+    "narrationLanguage": "en-US"
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "The Backtest Illusion",
+      "template": "chat_story",
+      "badge": "Morning · Trading Desk",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "At 9 AM, Raju jumps up seeing backtest results on his screen.",
+          "en_subtitle": "At 9 AM, Raju jumps up seeing backtest results on his screen.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— 9:15 AM: Raju stares at a 90% win-rate backtest —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Sharma ji! I built a moving average bot with a 90% win rate! It turns ₹150 into ₹1,500!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "en_narration": "At 9 AM, Raju jumps up seeing backtest results on his screen."
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "Sharma ji smiles and asks: Did you account for slippage and expiry rollover?",
+          "en_subtitle": "Sharma ji smiles and asks: Did you account for slippage and expiry rollover?",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji sips his chai calmly —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Sharma ji! I built a moving average bot with a 90% win rate! It turns ₹150 into ₹1,500!",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Slow down, Raju. Did you test out-of-sample data, and how did you stitch your futures contracts?",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "en_narration": "Sharma ji smiles and asks: Did you account for slippage and expiry rollover?"
+        },
+        {
+          "id": "b03",
+          "hindi_tts": "Raju is confused, having only curve-fitted parameters to last month's data.",
+          "en_subtitle": "Raju is confused, having only curve-fitted parameters to last month's data.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— The trap of curve fitting —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Sharma ji! I built a moving average bot with a 90% win rate! It turns ₹150 into ₹1,500!",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Slow down, Raju. Did you test out-of-sample data, and how did you stitch your futures contracts?",
+                "theme": "teal",
+                "align": "right"
+              },
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Stitch contracts? I just bought Kesar Paints futures at ₹150 and assumed smooth data!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "en_narration": "Raju is confused, having only curve-fitted parameters to last month's data."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Curve Fitting Reality",
+      "template": "data_visualizer",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "Raju started trading at ₹150, where his model was perfectly curve-fitted.",
+          "en_subtitle": "Raju started trading at ₹150, where his model was perfectly curve-fitted.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "chartTitle": "Kesar Paints Futures",
+            "chartSubtitle": "System Execution vs Live Market",
+            "preset": "uptrend_then_drop",
+            "progressStep": 2,
+            "totalSteps": 3,
+            "yAxisUnit": "₹",
+            "annotations": [
+              {
+                "type": "price_label",
+                "text": "Raju buys ₹150",
+                "value": 150,
+                "color": "amber"
+              }
+            ],
+            "sideCards": [
+              {
+                "title": "In-Sample Fit",
+                "subtitle": "Paper profit ₹150 entry",
+                "state": "muted"
+              },
+              {
+                "title": "Live Execution",
+                "subtitle": "Awaiting test...",
+                "state": "muted"
+              }
+            ]
+          },
+          "en_narration": "Raju started trading at ₹150, where his model was perfectly curve-fitted."
+        },
+        {
+          "id": "b05",
+          "hindi_tts": "In live market execution, the curve-fitted system abruptly collapsed.",
+          "en_subtitle": "In live market execution, the curve-fitted system abruptly collapsed.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "chartTitle": "Kesar Paints Futures",
+            "chartSubtitle": "System Execution vs Live Market",
+            "preset": "uptrend_then_drop",
+            "progressStep": 3,
+            "totalSteps": 3,
+            "yAxisUnit": "₹",
+            "annotations": [
+              {
+                "type": "price_label",
+                "text": "Raju buys ₹150",
+                "value": 150,
+                "color": "amber"
+              },
+              {
+                "type": "callout",
+                "text": "Live drawdown: -18%",
+                "color": "red"
+              }
+            ],
+            "sideCards": [
+              {
+                "title": "In-Sample Fit",
+                "subtitle": "Optimized delusion",
+                "state": "muted"
+              },
+              {
+                "title": "Live Reality",
+                "subtitle": "Drawdown strikes immediately",
+                "state": "active_red"
+              }
+            ]
+          },
+          "en_narration": "In live market execution, the curve-fitted system abruptly collapsed."
+        },
+        {
+          "id": "b06",
+          "hindi_tts": "Murphy's rule is clear: without objective rules and clean data, a system is an illusion.",
+          "en_subtitle": "Murphy's rule is clear: without objective rules and clean data, a system is an illusion.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "chartTitle": "Kesar Paints Futures",
+            "chartSubtitle": "Murphy Appendix C & D Principle",
+            "preset": "uptrend_then_drop",
+            "progressStep": 3,
+            "totalSteps": 3,
+            "yAxisUnit": "₹",
+            "annotations": [
+              {
+                "type": "callout",
+                "text": "Rule: Test Out-of-Sample",
+                "color": "blue"
+              }
+            ],
+            "sideCards": [
+              {
+                "title": "Objective Plan",
+                "subtitle": "5 rigorous validation steps",
+                "state": "active_blue"
+              },
+              {
+                "title": "Continuous Data",
+                "subtitle": "Splice contracts cleanly",
+                "state": "active_green"
+              }
+            ]
+          },
+          "en_narration": "Murphy's rule is clear: without objective rules and clean data, a system is an illusion."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "The Master Roadmap",
+      "template": "progressive_cards",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "Step one: define the core premise and objective rules of the trading system.",
+          "en_subtitle": "Step one: define the core premise and objective rules of the trading system.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "sectionHeader": "Appendix C & D Architecture",
+            "layout": "stack",
+            "cards": [
+              {
+                "icon": "Settings",
+                "title": "1. 5-Step System Plan",
+                "subtitle": "Concept, parameters, testing, optimization, and walk-forward",
+                "state": "active_amber"
+              },
+              {
+                "icon": "Repeat",
+                "title": "2. Futures Rollover & Splice",
+                "subtitle": "Handling finite expiration dates without artificial gaps",
+                "state": "hidden"
+              },
+              {
+                "icon": "ShieldCheck",
+                "title": "3. Robustness & Money Management",
+                "subtitle": "Preserving capital and testing against random walk realities",
+                "state": "hidden"
+              }
+            ]
+          },
+          "en_narration": "Step one: define the core premise and objective rules of the trading system."
+        },
+        {
+          "id": "b08",
+          "hindi_tts": "Step two: stitch expiring futures contracts to build seamless continuous data.",
+          "en_subtitle": "Step two: stitch expiring futures contracts to build seamless continuous data.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "sectionHeader": "Appendix C & D Architecture",
+            "layout": "stack",
+            "cards": [
+              {
+                "icon": "Settings",
+                "title": "1. 5-Step System Plan",
+                "subtitle": "Concept, parameters, testing, optimization, and walk-forward",
+                "state": "muted"
+              },
+              {
+                "icon": "Repeat",
+                "title": "2. Futures Rollover & Splice",
+                "subtitle": "Handling finite expiration dates without artificial gaps",
+                "state": "active_blue"
+              },
+              {
+                "icon": "ShieldCheck",
+                "title": "3. Robustness & Money Management",
+                "subtitle": "Preserving capital and testing against random walk realities",
+                "state": "hidden"
+              }
+            ]
+          },
+          "en_narration": "Step two: stitch expiring futures contracts to build seamless continuous data."
+        },
+        {
+          "id": "b09",
+          "hindi_tts": "And step three: rigorous out-of-sample testing and ironclad risk management.",
+          "en_subtitle": "And step three: rigorous out-of-sample testing and ironclad risk management.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "sectionHeader": "Appendix C & D Architecture",
+            "layout": "stack",
+            "cards": [
+              {
+                "icon": "Settings",
+                "title": "1. 5-Step System Plan",
+                "subtitle": "Concept, parameters, testing, optimization, and walk-forward",
+                "state": "muted"
+              },
+              {
+                "icon": "Repeat",
+                "title": "2. Futures Rollover & Splice",
+                "subtitle": "Handling finite expiration dates without artificial gaps",
+                "state": "muted"
+              },
+              {
+                "icon": "ShieldCheck",
+                "title": "3. Robustness & Money Management",
+                "subtitle": "Preserving capital and testing against random walk realities",
+                "state": "active_green"
+              }
+            ]
+          },
+          "en_narration": "And step three: rigorous out-of-sample testing and ironclad risk management."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Step 1 & 2: Concept & Parameters",
+      "template": "split_comparison",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "The foundation starts with a clear trading philosophy, like trend following or mean reversion.",
+          "en_subtitle": "The foundation starts with a clear trading philosophy, like trend following or mean reversion.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "showVsBadge": true,
+            "leftColumn": {
+              "icon": "Compass",
+              "title": "Step 1: Concept & Rules",
+              "subtitle": "What edge are you exploiting?",
+              "theme": "amber",
+              "active": true,
+              "bullets": [
+                "Fully objective mathematical logic",
+                "Zero room for emotional hesitation",
+                "Explicit entry, stop-loss, and exit signals"
+              ]
+            },
+            "rightColumn": {
+              "icon": "Sliders",
+              "title": "Step 2: Parameterization",
+              "subtitle": "Variables and indicators",
+              "theme": "blue",
+              "active": false,
+              "bullets": [
+                "Minimal parameters (avoid over-tuning)",
+                "Choosing logical lookback periods"
+              ]
+            }
+          },
+          "en_narration": "The foundation starts with a clear trading philosophy, like trend following or mean reversion."
+        },
+        {
+          "id": "b11",
+          "hindi_tts": "The second step selects parameters, using minimal variables to avoid curve fitting.",
+          "en_subtitle": "The second step selects parameters, using minimal variables to avoid curve fitting.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "showVsBadge": true,
+            "leftColumn": {
+              "icon": "Compass",
+              "title": "Step 1: Concept & Rules",
+              "subtitle": "What edge are you exploiting?",
+              "theme": "amber",
+              "active": false,
+              "bullets": [
+                "Fully objective mathematical logic",
+                "Zero room for emotional hesitation"
+              ]
+            },
+            "rightColumn": {
+              "icon": "Sliders",
+              "title": "Step 2: Parameterization",
+              "subtitle": "Variables and indicators",
+              "theme": "blue",
+              "active": true,
+              "bullets": [
+                "Keep parameters sparse (Occam's razor)",
+                "Broad plateau of profitability over sharp spikes",
+                "Realistic margin and execution cost assumptions"
+              ]
+            }
+          },
+          "en_narration": "The second step selects parameters, using minimal variables to avoid curve fitting."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Step 3 & 4: In-Sample vs Walk-Forward",
+      "template": "tug_of_war",
+      "beats": [
+        {
+          "id": "b12",
+          "hindi_tts": "When testing on historical data, traders often fall into the trap of over-optimization.",
+          "en_subtitle": "When testing on historical data, traders often fall into the trap of over-optimization.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftLabel": "In-Sample Fit",
+            "leftCount": 18,
+            "rightLabel": "Out-of-Sample",
+            "rightCount": 3,
+            "centerTitle": "SYSTEM TESTING",
+            "centerMetric": "92% Fit",
+            "trend": "up",
+            "bottomPill": {
+              "text": "curve-fitting to historical noise",
+              "color": "red"
+            }
+          },
+          "en_narration": "When testing on historical data, traders often fall into the trap of over-optimization."
+        },
+        {
+          "id": "b13",
+          "hindi_tts": "A robust system is one that holds up consistently on unseen out-of-sample data.",
+          "en_subtitle": "A robust system is one that holds up consistently on unseen out-of-sample data.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftLabel": "Curve Fitted",
+            "leftCount": 4,
+            "rightLabel": "Walk-Forward",
+            "rightCount": 16,
+            "centerTitle": "ROBUSTNESS CHECK",
+            "centerMetric": "Real Edge",
+            "trend": "down",
+            "bottomPill": {
+              "text": "true generalizability across regimes",
+              "color": "green"
+            }
+          },
+          "en_narration": "A robust system is one that holds up consistently on unseen out-of-sample data."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Continuous Futures: The Expiration Gap",
+      "template": "data_visualizer",
+      "beats": [
+        {
+          "id": "b14",
+          "hindi_tts": "In futures, the biggest hurdle is finite expiration, as each contract terminates.",
+          "en_subtitle": "In futures, the biggest hurdle is finite expiration, as each contract terminates.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "chartTitle": "Near Month Expiry",
+            "chartSubtitle": "September vs October Contract Discontinuity",
+            "preset": "uptrend_break",
+            "progressStep": 1,
+            "totalSteps": 3,
+            "yAxisUnit": "₹",
+            "annotations": [
+              {
+                "type": "price_label",
+                "text": "Sept Expiry ₹158",
+                "value": 158,
+                "color": "amber"
+              }
+            ],
+            "sideCards": [
+              {
+                "title": "Contract Life",
+                "subtitle": "Expires last Thursday",
+                "state": "muted"
+              },
+              {
+                "title": "Rollover Gap",
+                "subtitle": "New contract basis difference",
+                "state": "muted"
+              }
+            ]
+          },
+          "en_narration": "In futures, the biggest hurdle is finite expiration, as each contract terminates."
+        },
+        {
+          "id": "b15",
+          "hindi_tts": "When rolling to the new contract, an artificial gap distorts moving averages and indicators.",
+          "en_subtitle": "When rolling to the new contract, an artificial gap distorts moving averages and indicators.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "chartTitle": "Near Month Expiry",
+            "chartSubtitle": "Artificial Rollover Distortion",
+            "preset": "uptrend_break",
+            "progressStep": 2,
+            "totalSteps": 3,
+            "yAxisUnit": "₹",
+            "annotations": [
+              {
+                "type": "callout",
+                "text": "Basis Rollover Jump",
+                "color": "red"
+              }
+            ],
+            "sideCards": [
+              {
+                "title": "Contract Life",
+                "subtitle": "September expired",
+                "state": "muted"
+              },
+              {
+                "title": "False Breakout",
+                "subtitle": "Indicator fired bogus signal",
+                "state": "active_red"
+              }
+            ]
+          },
+          "en_narration": "When rolling to the new contract, an artificial gap distorts moving averages and indicators."
+        },
+        {
+          "id": "b16",
+          "hindi_tts": "That is why John Murphy teaches constructing continuous futures for uninterrupted technical analysis.",
+          "en_subtitle": "That is why John Murphy teaches constructing continuous futures for uninterrupted technical analysis.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "chartTitle": "Near Month Expiry",
+            "chartSubtitle": "Long-Term System Requirement",
+            "preset": "uptrend_break",
+            "progressStep": 3,
+            "totalSteps": 3,
+            "yAxisUnit": "₹",
+            "annotations": [
+              {
+                "type": "callout",
+                "text": "Continuous Series Needed",
+                "color": "teal"
+              }
+            ],
+            "sideCards": [
+              {
+                "title": "Raw Data",
+                "subtitle": "Distorted by roll spreads",
+                "state": "muted"
+              },
+              {
+                "title": "Continuous Solution",
+                "subtitle": "Spliced historical series",
+                "state": "active_green"
+              }
+            ]
+          },
+          "en_narration": "That is why John Murphy teaches constructing continuous futures for uninterrupted technical analysis."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "Contract Stitching Methods",
+      "template": "split_comparison",
+      "beats": [
+        {
+          "id": "b17",
+          "hindi_tts": "The first method is the nearest contract, simply linking the prompt contract at expiration.",
+          "en_subtitle": "The first method is the nearest contract, simply linking the prompt contract at expiration.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "showVsBadge": true,
+            "leftColumn": {
+              "icon": "Layers",
+              "title": "Nearest Contract",
+              "subtitle": "Spot-like continuous view",
+              "theme": "amber",
+              "active": true,
+              "bullets": [
+                "Preserves actual historical price levels",
+                "Simple to view for chart support/resistance",
+                "Rollover price jumps create false gaps"
+              ]
+            },
+            "rightColumn": {
+              "icon": "GitMerge",
+              "title": "Back-Adjusted Series",
+              "subtitle": "Calculated continuous stream",
+              "theme": "blue",
+              "active": false,
+              "bullets": [
+                "Eliminates rollover price steps",
+                "Essential for mathematical backtesting"
+              ]
+            }
+          },
+          "en_narration": "The first method is the nearest contract, simply linking the prompt contract at expiration."
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "The second method is back-adjusted contracts, eliminating roll gaps for pure indicator backtesting.",
+          "en_subtitle": "The second method is back-adjusted contracts, eliminating roll gaps for pure indicator backtesting.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "showVsBadge": true,
+            "leftColumn": {
+              "icon": "Layers",
+              "title": "Nearest Contract",
+              "subtitle": "Spot-like continuous view",
+              "theme": "amber",
+              "active": false,
+              "bullets": [
+                "Preserves actual historical price levels",
+                "Rollover price jumps create false gaps"
+              ]
+            },
+            "rightColumn": {
+              "icon": "GitMerge",
+              "title": "Back-Adjusted Series",
+              "subtitle": "Calculated continuous stream",
+              "theme": "blue",
+              "active": true,
+              "bullets": [
+                "Shifting historical prices by roll spread",
+                "Moving averages and oscillators remain smooth",
+                "Distorts absolute historical price levels"
+              ]
+            }
+          },
+          "en_narration": "The second method is back-adjusted contracts, eliminating roll gaps for pure indicator backtesting."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "Perpetual & Constant Forward Contracts",
+      "template": "progressive_cards",
+      "beats": [
+        {
+          "id": "b19",
+          "hindi_tts": "A perpetual continuous contract is constructed via time-weighted averaging of two active contracts.",
+          "en_subtitle": "A perpetual continuous contract is constructed via time-weighted averaging of two active contracts.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "sectionHeader": "Continuous Data Variants",
+            "layout": "stack",
+            "cards": [
+              {
+                "icon": "Activity",
+                "title": "Perpetual Constant Forward",
+                "subtitle": "Constant maturity index (e.g. 30-day fixed forward)",
+                "state": "active_amber"
+              },
+              {
+                "icon": "TrendingUp",
+                "title": "Gann Constant Volume Roll",
+                "subtitle": "Switching when open interest and volume migrate",
+                "state": "hidden"
+              },
+              {
+                "icon": "AlertTriangle",
+                "title": "Negative Price Artifacts",
+                "subtitle": "Back-adjusting large contango shifts historical data below zero",
+                "state": "hidden"
+              }
+            ]
+          },
+          "en_narration": "A perpetual continuous contract is constructed via time-weighted averaging of two active contracts."
+        },
+        {
+          "id": "b20",
+          "hindi_tts": "Another approach rolls only when dominant volume or open interest migrates to the next month.",
+          "en_subtitle": "Another approach rolls only when dominant volume or open interest migrates to the next month.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "sectionHeader": "Continuous Data Variants",
+            "layout": "stack",
+            "cards": [
+              {
+                "icon": "Activity",
+                "title": "Perpetual Constant Forward",
+                "subtitle": "Constant maturity index (e.g. 30-day fixed forward)",
+                "state": "muted"
+              },
+              {
+                "icon": "TrendingUp",
+                "title": "Gann Constant Volume Roll",
+                "subtitle": "Switching when open interest and volume migrate",
+                "state": "active_blue"
+              },
+              {
+                "icon": "AlertTriangle",
+                "title": "Negative Price Artifacts",
+                "subtitle": "Back-adjusting large contango shifts historical data below zero",
+                "state": "hidden"
+              }
+            ]
+          },
+          "en_narration": "Another approach rolls only when dominant volume or open interest migrates to the next month."
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "Beware: in steep contango markets, subtracting spreads can drive historical prices negative.",
+          "en_subtitle": "Beware: in steep contango markets, subtracting spreads can drive historical prices negative.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "sectionHeader": "Continuous Data Variants",
+            "layout": "stack",
+            "cards": [
+              {
+                "icon": "Activity",
+                "title": "Perpetual Constant Forward",
+                "subtitle": "Constant maturity index (e.g. 30-day fixed forward)",
+                "state": "muted"
+              },
+              {
+                "icon": "TrendingUp",
+                "title": "Gann Constant Volume Roll",
+                "subtitle": "Switching when open interest and volume migrate",
+                "state": "muted"
+              },
+              {
+                "icon": "AlertTriangle",
+                "title": "Negative Price Artifacts",
+                "subtitle": "Back-adjusting large contango shifts historical data below zero",
+                "state": "active_green"
+              }
+            ]
+          },
+          "en_narration": "Beware: in steep contango markets, subtracting spreads can drive historical prices negative."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "Step 5: Money Management & Execution",
+      "template": "split_comparison",
+      "beats": [
+        {
+          "id": "b22",
+          "hindi_tts": "No trading system is complete without integrated position sizing and money management.",
+          "en_subtitle": "No trading system is complete without integrated position sizing and money management.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "showVsBadge": true,
+            "leftColumn": {
+              "icon": "DollarSign",
+              "title": "Position Sizing",
+              "subtitle": "Survival preceding profit",
+              "theme": "teal",
+              "active": true,
+              "bullets": [
+                "Maximum 1% to 2% capital risk per trade",
+                "Volatility-based sizing (ATR stops)",
+                "Drawdown tolerance matches psychological threshold"
+              ]
+            },
+            "rightColumn": {
+              "icon": "Zap",
+              "title": "Friction & Slippage",
+              "subtitle": "Real-world trading drag",
+              "theme": "amber",
+              "active": false,
+              "bullets": [
+                "Bid-ask spread losses",
+                "Exchange charges and rollover tax",
+                "Latency in fast moving markets"
+              ]
+            }
+          },
+          "en_narration": "No trading system is complete without integrated position sizing and money management."
+        },
+        {
+          "id": "b23",
+          "hindi_tts": "Deducting slippage and transaction costs in backtests is mandatory, or profits remain on paper.",
+          "en_subtitle": "Deducting slippage and transaction costs in backtests is mandatory, or profits remain on paper.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "showVsBadge": true,
+            "leftColumn": {
+              "icon": "DollarSign",
+              "title": "Position Sizing",
+              "subtitle": "Survival preceding profit",
+              "theme": "teal",
+              "active": false,
+              "bullets": [
+                "Maximum 1% to 2% capital risk per trade",
+                "Volatility-based sizing (ATR stops)"
+              ]
+            },
+            "rightColumn": {
+              "icon": "Zap",
+              "title": "Friction & Slippage",
+              "subtitle": "Real-world trading drag",
+              "theme": "amber",
+              "active": true,
+              "bullets": [
+                "Deduct bid-ask spread on every execution",
+                "Include exchange fees, STT, and margin interest",
+                "Test with conservative worst-case fills"
+              ]
+            }
+          },
+          "en_narration": "Deducting slippage and transaction costs in backtests is mandatory, or profits remain on paper."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall Quiz",
+      "template": "interactive_quiz",
+      "beats": [
+        {
+          "id": "b24",
+          "hindi_tts": "Now your turn: think carefully and choose the correct answer.",
+          "en_subtitle": "Now your turn: think carefully and choose the correct answer.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "badge": "Active Recall · Appendix C & D",
+            "question": "Why should you use a back-adjusted continuous futures contract rather than a simple nearest contract when backtesting a moving average system?",
+            "showThinkingSpinner": false,
+            "answer": null
+          },
+          "en_narration": "Now your turn: think carefully and choose the correct answer."
+        },
+        {
+          "id": "b25",
+          "hindi_tts": "Think... does it remove artificial rollover price jumps or just match spot?",
+          "en_subtitle": "Think... does it remove artificial rollover price jumps or just match spot?",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "badge": "Active Recall · Appendix C & D",
+            "question": "Why should you use a back-adjusted continuous futures contract rather than a simple nearest contract when backtesting a moving average system?",
+            "showThinkingSpinner": true,
+            "answer": null
+          },
+          "en_narration": "Think... does it remove artificial rollover price jumps or just match spot?"
+        },
+        {
+          "id": "b26",
+          "hindi_tts": "Correct answer: Back-adjusting removes rollover gaps, preventing false technical breakout signals.",
+          "en_subtitle": "Correct answer: Back-adjusting removes rollover gaps, preventing false technical breakout signals.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "badge": "Active Recall · Appendix C & D",
+            "question": "Why should you use a back-adjusted continuous futures contract rather than a simple nearest contract when backtesting a moving average system?",
+            "showThinkingSpinner": false,
+            "answer": "Back-adjusting eliminates artificial rollover price jumps between expiring and new contracts, preventing false moving average crossovers and indicator distortion."
+          },
+          "en_narration": "Correct answer: Back-adjusting removes rollover gaps, preventing false technical breakout signals."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Practical Implementation Dialogue",
+      "template": "chat_story",
+      "badge": "Afternoon · Trade Desk Review",
+      "beats": [
+        {
+          "id": "b27",
+          "hindi_tts": "Raju corrected his mistakes and re-ran tests on back-adjusted futures data.",
+          "en_subtitle": "Raju corrected his mistakes and re-ran tests on back-adjusted futures data.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— 3:30 PM: Post-market review —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Sharma ji, once I added slippage and spliced the contracts without gaps, win-rate dropped from 90% to 54%!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "en_narration": "Raju corrected his mistakes and re-ran tests on back-adjusted futures data."
+        },
+        {
+          "id": "b28",
+          "hindi_tts": "Sharma ji commends him: that 54% is real, and with 2:1 risk-to-reward, it prints money sustainably.",
+          "en_subtitle": "Sharma ji commends him: that 54% is real, and with 2:1 risk-to-reward, it prints money sustainably.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "stageDirections": [
+              "— Validated edge over curve-fitted vanity —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Sharma ji, once I added slippage and spliced the contracts without gaps, win-rate dropped from 90% to 54%!",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Congratulations! 54% with a 1:2 risk-reward and robust money management is an authentic institutional edge.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "en_narration": "Sharma ji commends him: that 54% is real, and with 2:1 risk-to-reward, it prints money sustainably."
+        },
+        {
+          "id": "b29",
+          "hindi_tts": "Raju realized that objective discipline and clean continuous data are the true keys to trading longevity.",
+          "en_subtitle": "Raju realized that objective discipline and clean continuous data are the true keys to trading longevity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Ready for live walk-forward execution —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Sharma ji, once I added slippage and spliced the contracts without gaps, win-rate dropped from 90% to 54%!",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Congratulations! 54% with a 1:2 risk-reward and robust money management is an authentic institutional edge.",
+                "theme": "teal",
+                "align": "right"
+              },
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "No more curve-fitting illusions. Real systems test out-of-sample and account for every friction point!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "en_narration": "Raju realized that objective discipline and clean continuous data are the true keys to trading longevity."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "The Whole Picture",
+      "template": "summary_thread",
+      "beats": [
+        {
+          "id": "b30",
+          "hindi_tts": "First: an objective system eliminates emotional second-guessing.",
+          "en_subtitle": "First: an objective system eliminates emotional second-guessing.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "APPENDIX C & D · 8 CORE PILLARS",
+            "heading": "Today's thread",
+            "activeStepIndex": 0,
+            "steps": [
+              "Define objective mathematical concept",
+              "Restrict to minimal robust parameters",
+              "In-sample optimization without overfitting",
+              "Mandatory walk-forward out-of-sample testing",
+              "Account for execution slippage & commissions",
+              "Recognize futures expiration limitations",
+              "Construct back-adjusted continuous data",
+              "Rigorous money management and 1% risk rules"
+            ],
+            "bottomTakeaway": "An edge comes from discipline, clean spliced data, and surviving drawdowns.",
+            "activeStepRange": [
+              0,
+              0
+            ]
+          },
+          "en_narration": "First: an objective system eliminates emotional second-guessing."
+        },
+        {
+          "id": "b31",
+          "hindi_tts": "Steps two and three: minimize parameters and reject curve-fitted optimization.",
+          "en_subtitle": "Steps two and three: minimize parameters and reject curve-fitted optimization.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "APPENDIX C & D · 8 CORE PILLARS",
+            "heading": "Today's thread",
+            "activeStepIndex": 2,
+            "steps": [
+              "Define objective mathematical concept",
+              "Restrict to minimal robust parameters",
+              "In-sample optimization without overfitting",
+              "Mandatory walk-forward out-of-sample testing",
+              "Account for execution slippage & commissions",
+              "Recognize futures expiration limitations",
+              "Construct back-adjusted continuous data",
+              "Rigorous money management and 1% risk rules"
+            ],
+            "bottomTakeaway": "An edge comes from discipline, clean spliced data, and surviving drawdowns.",
+            "activeStepRange": [
+              1,
+              2
+            ]
+          },
+          "en_narration": "Steps two and three: minimize parameters and reject curve-fitted optimization."
+        },
+        {
+          "id": "b32",
+          "hindi_tts": "Steps four and five: validate on out-of-sample data and deduct friction costs.",
+          "en_subtitle": "Steps four and five: validate on out-of-sample data and deduct friction costs.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "APPENDIX C & D · 8 CORE PILLARS",
+            "heading": "Today's thread",
+            "activeStepIndex": 4,
+            "steps": [
+              "Define objective mathematical concept",
+              "Restrict to minimal robust parameters",
+              "In-sample optimization without overfitting",
+              "Mandatory walk-forward out-of-sample testing",
+              "Account for execution slippage & commissions",
+              "Recognize futures expiration limitations",
+              "Construct back-adjusted continuous data",
+              "Rigorous money management and 1% risk rules"
+            ],
+            "bottomTakeaway": "An edge comes from discipline, clean spliced data, and surviving drawdowns.",
+            "activeStepRange": [
+              3,
+              4
+            ]
+          },
+          "en_narration": "Steps four and five: validate on out-of-sample data and deduct friction costs."
+        },
+        {
+          "id": "b33",
+          "hindi_tts": "Steps six and seven: splice futures contracts cleanly to avoid false indicator breaks.",
+          "en_subtitle": "Steps six and seven: splice futures contracts cleanly to avoid false indicator breaks.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "APPENDIX C & D · 8 CORE PILLARS",
+            "heading": "Today's thread",
+            "activeStepIndex": 6,
+            "steps": [
+              "Define objective mathematical concept",
+              "Restrict to minimal robust parameters",
+              "In-sample optimization without overfitting",
+              "Mandatory walk-forward out-of-sample testing",
+              "Account for execution slippage & commissions",
+              "Recognize futures expiration limitations",
+              "Construct back-adjusted continuous data",
+              "Rigorous money management and 1% risk rules"
+            ],
+            "bottomTakeaway": "An edge comes from discipline, clean spliced data, and surviving drawdowns.",
+            "activeStepRange": [
+              5,
+              6
+            ]
+          },
+          "en_narration": "Steps six and seven: splice futures contracts cleanly to avoid false indicator breaks."
+        },
+        {
+          "id": "b34",
+          "hindi_tts": "Eighth: no system survives live markets without ironclad position sizing and risk control.",
+          "en_subtitle": "Eighth: no system survives live markets without ironclad position sizing and risk control.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "APPENDIX C & D · 8 CORE PILLARS",
+            "heading": "Today's thread",
+            "activeStepIndex": 7,
+            "steps": [
+              "Define objective mathematical concept",
+              "Restrict to minimal robust parameters",
+              "In-sample optimization without overfitting",
+              "Mandatory walk-forward out-of-sample testing",
+              "Account for execution slippage & commissions",
+              "Recognize futures expiration limitations",
+              "Construct back-adjusted continuous data",
+              "Rigorous money management and 1% risk rules"
+            ],
+            "bottomTakeaway": "An edge comes from discipline, clean spliced data, and surviving drawdowns.",
+            "activeStepRange": [
+              7,
+              8
+            ]
+          },
+          "en_narration": "Eighth: no system survives live markets without ironclad position sizing and risk control."
+        },
+        {
+          "id": "b35",
+          "hindi_tts": "In summary: disciplined rules, spliced clean data, and capital protection create the winning edge.",
+          "en_subtitle": "In summary: disciplined rules, spliced clean data, and capital protection create the winning edge.",
+          "pauseAfterMs": 600,
+          "ui_state": {
+            "headerBadge": "APPENDIX C & D · COMPLETE SYNTHESIS",
+            "heading": "Today's thread",
+            "activeStepIndex": 7,
+            "steps": [
+              "Define objective mathematical concept",
+              "Restrict to minimal robust parameters",
+              "In-sample optimization without overfitting",
+              "Mandatory walk-forward out-of-sample testing",
+              "Account for execution slippage & commissions",
+              "Recognize futures expiration limitations",
+              "Construct back-adjusted continuous data",
+              "Rigorous money management and 1% risk rules"
+            ],
+            "bottomTakeaway": "An edge comes from discipline, clean spliced data, and surviving drawdowns.",
+            "activeStepRange": [
+              1,
+              8
+            ]
+          },
+          "en_narration": "In summary: disciplined rules, spliced clean data, and capital protection create the winning edge."
+        }
+      ]
+    }
+  ]
+}
