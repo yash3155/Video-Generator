@@ -103,3 +103,4 @@ Post-standardization:
 | `ch17_part2` | Intermarket Analysis: Bonds, Currencies & Commodities | ✅ 7/7 | 🎬 Rendered | ✅ 7/7 | 🎧 Audio Ready | ✅ PASS |
 | `ch18_part1` | Stock Market Indicators & Breadth (Advance-Decline) | ✅ 7/7 | 🎬 Rendered | ✅ 7/7 | 🎧 Audio Ready | ✅ PASS |
 | `ch19_part1` | Comprehensive Technical Checklist & Desk Rules | ✅ 7/7 | 🎬 Rendered | ✅ 7/7 | 🎧 Audio Ready | ✅ PASS |
+

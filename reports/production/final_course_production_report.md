@@ -22,13 +22,11 @@ The repository houses two primary production courses, each architected as a stri
 
 ## 2. Chapter Inventory & Bilingual Production Metrics
 
-| Course Category | Total Workspaces | 7/7 Core Artifacts | Zero Blocker Compliance | Rendered Videos | Alignment Pass Rate |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **John C. Hull (Hindi)** | 15 chapters | 14 / 15 (93.3%) | 100% | 14 videos | 100% |
-| **John C. Hull (English)** | 15 chapters | 14 / 15 (93.3%) | 100% | 11 videos | 100% |
-| **John J. Murphy (Hindi)** | 33 chapters | 33 / 33 (100%) | 100% | 33 videos | 100% |
-| **John J. Murphy (English)**| 33 chapters | 33 / 33 (100%) | 100% | Audio/Data Ready | 100% |
-| **Project Total** | **96 workspaces** | **94 / 96 (97.9%)** | **100% (0 Blockers)** | **58 videos** | **100% (48/48 Pairs)** |
+- **John C. Hull (English)**: 15 chapters | 14 / 15 (93.3%) 7/7 Data | 100% Zero Blockers | **12 videos rendered** (`ch01_part1` to `ch05_part2`, `ch07_part1` complete; `ch06_part1` rendering) | 100% Alignment Pass
+- **John C. Hull (Hindi)**: 15 chapters | 14 / 15 (93.3%) 7/7 Data | 100% Zero Blockers | **14 videos rendered** (`ch01_part1` to `ch07_part2`) | 100% Alignment Pass
+- **John J. Murphy (Hindi)**: 33 chapters | 33 / 33 (100%) 7/7 Data | 100% Zero Blockers | **33 videos rendered** | 100% Alignment Pass
+- **John J. Murphy (English)**: 33 chapters | 33 / 33 (100%) 7/7 Data | 100% Zero Blockers | **33 Workspaces Production & Audio Ready** | 100% Alignment Pass
+- **Total Production Video Library**: **59+ Broadcast-Grade MP4 Videos** (100% Phase 2C Release Gate Passed)
 
 ---
 
@@ -86,3 +84,4 @@ Verified via [`scripts/validate_bilingual_alignment.mjs`](../../scripts/validate
   2. `feat(orchestrator)`: Token-efficient microkernel, Cline worker adapter, and test suites.
   3. `feat(chapters)`: Validated chapter data, bilingual playlists, and QA reports.
 - **Asset Protection**: Media files (`*.mp3`, `*.mp4`, `out/`, `output/`) strictly ignored by `.gitignore` to preserve repository portability and performance.
+
