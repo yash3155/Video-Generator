@@ -90,6 +90,9 @@ export const FormulaSpecSchema = z.object({
   variables: z.array(FormulaVariableSchema),
   steps: z.array(FormulaStepSchema).optional(),
   activeStepIndex: z.number().optional(),
+  purpose: z.string().optional(),
+  assumptions: z.array(z.string()).optional(),
+  interpretation: z.string().optional(),
 });
 
 // ===================================================================
@@ -142,6 +145,7 @@ export const VisualKindEnum = z.enum([
   'conversation',
   'quiz',
   'summary',
+  'composite',
 ]);
 
 export const VisualSpecSchema = z.object({

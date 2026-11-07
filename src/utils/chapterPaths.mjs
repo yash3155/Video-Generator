@@ -10,6 +10,12 @@ export function getBookSlug(chapterSlug = '', meta = {}) {
   const courseStr = String(meta?.course || meta?.book || meta?.courseId || '').toLowerCase();
   const slugStr = String(chapterSlug || '').toLowerCase();
 
+  if (courseStr.includes('hull_derivatives_micro_kernel') || slugStr.includes('hull_derivatives_micro_kernel')) {
+    return 'hull_derivatives_micro_kernel';
+  }
+  if (courseStr.includes('hull_derivatives_flash_comparison') || slugStr.includes('hull_derivatives_flash_comparison')) {
+    return 'hull_derivatives_flash_comparison';
+  }
   if (courseStr.includes('hull_derivatives_en') || courseStr.includes('hull_en') || slugStr.includes('hull_derivatives_en') || slugStr.startsWith('hull_en_') || slugStr.includes('hull_en')) {
     return 'hull_derivatives_en';
   }
@@ -92,7 +98,11 @@ export function resolveChapterDirectory(targetSlugOrPath, rootDir = process.cwd(
     if (fs.statSync(resolved).isFile()) {
       return path.dirname(resolved);
     }
-    if (fs.existsSync(path.join(resolved, 'episode_raw.json'))) {
+    if (
+      fs.existsSync(path.join(resolved, 'episode_raw.json')) ||
+      fs.existsSync(path.join(resolved, 'source_facts.json')) ||
+      fs.existsSync(path.join(resolved, 'notebook_context.txt'))
+    ) {
       return resolved;
     }
   }

@@ -1,7 +1,8 @@
+// src/templates/SummaryThread.tsx
 import React from 'react';
 import { useVideoConfig, spring } from 'remotion';
 import { Scene, Beat, SummaryThreadUI } from '../types';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, CheckCircle2 } from 'lucide-react';
 import { getLatestCue } from '../utils/cueUtils';
 
 interface SummaryThreadProps {
@@ -33,37 +34,28 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
   const totalBeats = allBeatsInScene.length;
 
   const isFinalBeat = totalBeats > 1 && beatIndexInScene === totalBeats - 1;
-  const isFirstBeat = beatIndexInScene === 0;
+  const isIntro = beatIndexInScene === 0;
 
   // Determine active step range [startStep, endStep] (1-based)
   let startStep = 1;
   let endStep = 2;
 
   const rawRange = uiState.activeStepRange;
-  // Phase 2B: Visual cue-driven active step range
   const rangeCue = getLatestCue(beat, 'activeStepRange', beatFrame, fps);
-  if (
-    rangeCue &&
-    Array.isArray(rangeCue.payload) &&
-    rangeCue.payload.length === 2
-  ) {
+
+  if (rangeCue && Array.isArray(rangeCue.payload) && rangeCue.payload.length === 2) {
     startStep = Number(rangeCue.payload[0]);
     endStep = Number(rangeCue.payload[1]);
-  } else if (isFirstBeat && rawRange && rawRange[0] === 0 && rawRange[1] === 0) {
-    // Dedicated intro beat: all steps muted
+  } else if (isIntro && rawRange && rawRange[0] === 0 && rawRange[1] === 0) {
     startStep = 0;
     endStep = 0;
   } else if (isFinalBeat) {
-    // Final takeaway beat: all steps completed
     startStep = 1;
     endStep = totalStepsCount;
   } else if (totalBeats >= 4 && beatIndexInScene > 0 && !isFinalBeat) {
-    // Deterministically partition steps across the body beats [1 .. totalBeats - 2]
-    // so no step is EVER skipped and 4 steps never light up when there are enough beats!
-    const bodyBeatsCount = totalBeats - 2; // excluding Beat 0 (intro) and Final Beat (takeaway)
-    const bodyBeatIdx = beatIndexInScene - 1; // 0-indexed body beat
+    const bodyBeatsCount = totalBeats - 2;
+    const bodyBeatIdx = beatIndexInScene - 1;
 
-    // Check if the rawRange in JSON is already a valid 1-or-2 step 1-based range
     const isValidNarrowRange =
       rawRange &&
       rawRange[0] >= 1 &&
@@ -80,10 +72,7 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
       endStep =
         bodyBeatIdx === bodyBeatsCount - 1
           ? totalStepsCount
-          : Math.min(
-              totalStepsCount,
-              Math.floor((bodyBeatIdx + 1) * stepsPerBodyBeat)
-            );
+          : Math.min(totalStepsCount, Math.floor((bodyBeatIdx + 1) * stepsPerBodyBeat));
     }
   } else if (rawRange) {
     startStep = rawRange[0];
@@ -92,95 +81,160 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
 
   const showTakeaway = Boolean(uiState.bottomTakeaway) && isFinalBeat;
 
-  const takeawayEntrance = spring({
+  const entranceSpring = spring({
     frame: beatFrame,
     fps,
     config: { damping: 14, stiffness: 120 },
   });
 
+  const takeawayEntrance = spring({
+    frame: beatFrame - 6,
+    fps,
+    config: { damping: 14, stiffness: 120 },
+  });
+
+  // Calculate current active items for progressive mode
+  const activeItems = steps
+    .map((text, idx) => ({
+      stepNumber: idx + 1,
+      text: String(text).replace(/^\d+\.\s*/, ''),
+    }))
+    .filter((item) => item.stepNumber >= startStep && item.stepNumber <= endStep);
+
   return (
-    <div className="w-full h-full flex flex-col justify-between relative z-10 max-w-4xl mx-auto px-6 py-2 my-auto">
+    <div className="w-full h-full flex flex-col justify-between relative z-10 max-w-5xl mx-auto px-8 py-5">
       {/* Top Header Section */}
-      <div className="text-left flex flex-col items-start shrink-0 mb-2">
-        <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#FFFBEB] text-[#D97706] border border-[#FCD34D] shadow-xs">
-          {headerBadge}
-        </span>
-        <h2 className="text-3xl font-black text-[#1E1E1E] mt-1.5 tracking-tight">
+      <div
+        style={{
+          opacity: entranceSpring,
+          transform: `translateY(${(1 - entranceSpring) * 10}px)`,
+        }}
+        className="w-full text-left flex flex-col items-start shrink-0 mb-3"
+      >
+        <div className="w-full flex items-center justify-between">
+          <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#FFFBEB] text-[#D97706] border border-[#FCD34D] shadow-xs">
+            {headerBadge}
+          </span>
+          <span className="text-xs font-mono font-semibold text-[#8B7355]">
+            {isFinalBeat
+              ? 'WHOLE CHAPTER SYNTHESIS'
+              : startStep === 0
+              ? 'EXECUTIVE OVERVIEW'
+              : `FOCUS: RULES ${startStep}–${endStep} OF ${totalStepsCount}`}
+          </span>
+        </div>
+        <h2 className="text-3xl font-black text-[#1E1E1E] mt-2 tracking-tight">
           {uiState.heading || "Today's thread"}
         </h2>
       </div>
 
-      {/* Clean, Left-Aligned Vertical List */}
-      <div className="flex-1 flex flex-col justify-center space-y-2 my-auto">
-        {steps.map((stepText, idx) => {
-          const stepNumber = idx + 1;
-          // Strip any leading "1. " or "2. " if the LLM duplicated step numbers inside stepText
-          const cleanStepText = String(stepText).replace(/^\d+\.\s*/, '');
-
-          const isCompletedAll = isFinalBeat;
-          const isIntro = startStep === 0 && endStep === 0;
-          const isActive =
-            !isIntro &&
-            !isCompletedAll &&
-            stepNumber >= startStep &&
-            stepNumber <= endStep;
-          const isPassed =
-            !isIntro && (isCompletedAll || stepNumber < startStep);
-
-          return (
-            <div
-              key={idx}
-              className={`flex items-center space-x-3.5 py-1 px-1 transition-all ${
-                isActive
-                  ? 'opacity-100 font-bold'
-                  : isPassed
-                    ? 'opacity-90'
-                    : 'opacity-40'
-              }`}
-            >
-              <div
-                className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs font-mono shrink-0 transition-colors ${
-                  isActive
-                    ? 'bg-[#F59E0B] text-white shadow-xs'
-                    : isPassed
-                      ? 'bg-[#FEF3C7] text-[#B45309]'
-                      : 'bg-[#F3F4F6] text-[#9CA3AF]'
-                }`}
-              >
-                {stepNumber}
-              </div>
-
-              <p
-                className={`text-base tracking-tight leading-snug break-words ${
-                  isActive
-                    ? 'text-[#92400E] font-bold text-[17px]'
-                    : isPassed
-                      ? 'text-[#262626] font-medium'
-                      : 'text-[#6B7280] font-normal'
-                }`}
-              >
-                {cleanStepText}
+      {/* Mode A: Progressive 2-Item Focus Group (During body beats) */}
+      {!isFinalBeat && (
+        <div className="flex-1 flex flex-col justify-center space-y-4 my-auto w-full">
+          {isIntro ? (
+            <div className="p-8 rounded-3xl bg-white border border-[#E2E8F0] shadow-sm text-center">
+              <span className="text-xs font-mono font-bold text-[#D97706] uppercase tracking-wider block mb-2">
+                Executive Roadmap
+              </span>
+              <p className="text-2xl font-bold text-[#1E293B] max-w-2xl mx-auto leading-relaxed">
+                Reviewing the foundational principles and market mechanisms established in this chapter.
               </p>
+              <div className="mt-6 flex items-center justify-center space-x-2 text-xs font-mono text-[#64748B]">
+                <span>{totalStepsCount} Core Takeaways</span>
+                <span>•</span>
+                <span>Structured Sequence</span>
+              </div>
             </div>
-          );
-        })}
-      </div>
+          ) : (
+            <div className="w-full space-y-4">
+              {activeItems.map((item, idx) => {
+                const cardSpring = spring({
+                  frame: beatFrame - idx * 4,
+                  fps,
+                  config: { damping: 14, stiffness: 120 },
+                });
+                return (
+                  <div
+                    key={item.stepNumber}
+                    style={{
+                      opacity: cardSpring,
+                      transform: `translateY(${(1 - cardSpring) * 12}px)`,
+                    }}
+                    className="w-full p-6 rounded-2xl bg-white border-2 border-[#F59E0B] shadow-md flex items-start space-x-5"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-[#F59E0B] text-white flex items-center justify-center font-mono font-black text-lg shrink-0 shadow-xs">
+                      {item.stepNumber}
+                    </div>
+                    <div className="flex-1 min-w-0 pt-0.5">
+                      <span className="text-xs font-mono font-bold text-[#B45309] uppercase tracking-wider block mb-1">
+                        Core Rule {item.stepNumber}
+                      </span>
+                      <p className="text-xl font-bold text-[#1E293B] leading-relaxed">
+                        {item.text}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Mode B: Compact Whole-Chapter 2-Column Overview (Final beat only) */}
+      {isFinalBeat && (
+        <div
+          style={{
+            opacity: entranceSpring,
+            transform: `scale(${0.98 + entranceSpring * 0.02})`,
+          }}
+          className="flex-1 grid grid-cols-2 gap-3 my-auto w-full content-center"
+        >
+          {steps.map((stepText, idx) => {
+            const stepNumber = idx + 1;
+            const cleanText = String(stepText).replace(/^\d+\.\s*/, '');
+            const itemSpring = spring({
+              frame: beatFrame - idx * 2,
+              fps,
+              config: { damping: 14, stiffness: 120 },
+            });
+
+            return (
+              <div
+                key={idx}
+                style={{
+                  opacity: itemSpring,
+                  transform: `translateY(${(1 - itemSpring) * 6}px)`,
+                }}
+                className="flex items-start space-x-3 p-3 rounded-xl bg-white border border-[#E2E8F0] shadow-2xs"
+              >
+                <div className="w-5 h-5 rounded-md bg-[#FEF3C7] text-[#B45309] flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5">
+                  {stepNumber}
+                </div>
+                <p className="text-xs font-medium text-[#334155] leading-snug line-clamp-2">
+                  {cleanText}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Bottom Takeaway Box */}
       {showTakeaway && (
         <div
           style={{
             opacity: takeawayEntrance,
-            transform: `translateY(${(1 - takeawayEntrance) * 12}px)`,
+            transform: `translateY(${(1 - takeawayEntrance) * 10}px)`,
           }}
-          className="w-full bg-[#FFFDF7] border-2 border-[#F59E0B] rounded-xl p-3.5 flex items-center space-x-3.5 shadow-sm shrink-0 mt-3"
+          className="w-full bg-[#FFFDF7] border-2 border-[#F59E0B] rounded-2xl p-4 flex items-center space-x-4 shadow-sm shrink-0 mt-3"
         >
-          <div className="p-2 bg-[#FEF3C7] rounded-lg text-[#D97706] shrink-0">
-            <Sparkles size={20} />
+          <div className="p-2.5 bg-[#FEF3C7] rounded-xl text-[#D97706] shrink-0">
+            <Sparkles size={22} />
           </div>
           <div className="flex-1 min-w-0">
-            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#B45309] block">
-              TAKEAWAY PRINCIPLE
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#B45309] block">
+              FINAL TAKEAWAY PRINCIPLE
             </span>
             <p className="text-base font-extrabold text-[#78350F] leading-snug break-words">
               {uiState.bottomTakeaway}

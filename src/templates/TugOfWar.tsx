@@ -18,17 +18,15 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
 }) => {
   const { fps } = useVideoConfig();
 
-  const uiState: TugOfWarUI = beat.ui_state || {
-    leftLabel: 'Buyers',
-    leftCount: 20,
-    rightLabel: 'Sellers',
-    rightCount: 2,
-    centerTitle: 'KESAR PAINTS',
-    centerMetric: '₹158',
-    trend: 'up',
-  };
+  const ui = (beat.ui_state || {}) as any;
 
-  const isUp = uiState.trend === 'up';
+  const leftLabel = String(ui.leftLabel || ui.leftTitle || 'Buyers');
+  const rightLabel = String(ui.rightLabel || ui.rightTitle || 'Sellers');
+  const rawLeft = Math.max(0, Number(ui.leftCount ?? ui.leftScore ?? 20) || 0);
+  const rawRight = Math.max(0, Number(ui.rightCount ?? ui.rightScore ?? 2) || 0);
+  const centerTitle = String(ui.centerTitle || ui.centerLabel || 'Market Balance');
+  const trend = String(ui.trend || (ui.advantage === 'left' ? 'up' : ui.advantage === 'right' ? 'down' : 'neutral')).toLowerCase();
+  const isUp = trend === 'up';
 
   const indicatorSpring = spring({
     frame: beatFrame,
@@ -40,8 +38,6 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
     ? 50 - indicatorSpring * 26
     : 50 + indicatorSpring * 26;
 
-  const rawLeft = Math.max(0, Number(uiState.leftCount) || 0);
-  const rawRight = Math.max(0, Number(uiState.rightCount) || 0);
   const totalRaw = rawLeft + rawRight || 1;
   const leftCount =
     rawLeft > 25 || rawRight > 25
@@ -53,7 +49,7 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
       : Math.min(25, rawRight);
 
   // Auto-scale centerMetric font size so multi-word strings ("Crowd Belief") never wrap or collide with the icon
-  const metricText = String(uiState.centerMetric || '');
+  const metricText = String(ui.centerMetric || ui.metric || (isUp ? 'Advantage Left' : 'Advantage Right'));
   const metricFontClass =
     metricText.length > 10
       ? 'text-xl font-extrabold'
@@ -69,10 +65,10 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
           <div>
             <div className="flex items-baseline justify-between mb-2 pb-1 border-b border-[#E5E7EB]">
               <span className="text-3xl font-black tracking-tight text-[#166534]">
-                {uiState.leftLabel}
+                {leftLabel}
               </span>
               <span className="text-4xl font-black font-mono text-[#16A34A]">
-                {uiState.leftCount}
+                {rawLeft}
               </span>
             </div>
             <div className="h-1.5 w-full bg-[#E5E7EB] rounded-full overflow-hidden mt-2">
@@ -81,9 +77,7 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
                 style={{
                   width: `${Math.min(
                     100,
-                    (uiState.leftCount /
-                      (uiState.leftCount + uiState.rightCount || 1)) *
-                      100
+                    (rawLeft / (rawLeft + rawRight || 1)) * 100
                   )}%`,
                 }}
               />
@@ -120,7 +114,7 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
         <div className="w-72 h-full bg-[#FAFAF8] rounded-3xl border-2 border-[#E8E6DF] p-6 flex flex-col items-center justify-between shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
           <div className="text-center w-full">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8B7355] block truncate">
-              {uiState.centerTitle}
+              {centerTitle}
             </span>
             <div className="flex items-center justify-center space-x-2 mt-1.5">
               <span
@@ -192,7 +186,7 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
                 : 'bg-[#FEE2E2] text-[#991B1B] border border-[#FCA5A5]'
             }`}
           >
-            TREND: {uiState.trend.toUpperCase()}
+            TREND: {trend.toUpperCase()}
           </div>
         </div>
 
@@ -201,10 +195,10 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
           <div>
             <div className="flex items-baseline justify-between mb-2 pb-1 border-b border-[#E5E7EB]">
               <span className="text-3xl font-black tracking-tight text-[#991B1B]">
-                {uiState.rightLabel}
+                {rightLabel}
               </span>
               <span className="text-4xl font-black font-mono text-[#DC2626]">
-                {uiState.rightCount}
+                {rawRight}
               </span>
             </div>
             <div className="h-1.5 w-full bg-[#E5E7EB] rounded-full overflow-hidden mt-2">
@@ -213,9 +207,7 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
                 style={{
                   width: `${Math.min(
                     100,
-                    (uiState.rightCount /
-                      (uiState.leftCount + uiState.rightCount || 1)) *
-                      100
+                    (rawRight / (rawLeft + rawRight || 1)) * 100
                   )}%`,
                 }}
               />
@@ -250,18 +242,18 @@ export const TugOfWar: React.FC<TugOfWarProps> = ({
       </div>
 
       {/* Bottom Pill Callout */}
-      {uiState.bottomPill && (
+      {ui.bottomPill && (
         <div className="mt-4">
           <span
             className={`inline-flex items-center px-6 py-2 rounded-full text-base font-semibold tracking-wide shadow-sm border ${
-              uiState.bottomPill.color === 'green' || uiState.bottomPill.color === 'teal'
+              ui.bottomPill.color === 'green' || ui.bottomPill.color === 'teal'
                 ? 'bg-[#F0FDF4] text-[#166534] border-[#86EFAC]'
-                : uiState.bottomPill.color === 'red'
+                : ui.bottomPill.color === 'red'
                   ? 'bg-[#FEF2F2] text-[#991B1B] border-[#FCA5A5]'
                   : 'bg-[#FFFBEB] text-[#92400E] border-[#FCD34D]'
             }`}
           >
-            {uiState.bottomPill.text}
+            {ui.bottomPill.text}
           </span>
         </div>
       )}

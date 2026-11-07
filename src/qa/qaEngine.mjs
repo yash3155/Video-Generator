@@ -391,8 +391,29 @@ export async function runQaEngine(options) {
 
       if (scene.template === 'formula_breakdown') {
         const formulaData = beat.visual?.data || beat.ui_state || {};
-        const exprLen = (formulaData.expression || '').length;
-        if (exprLen > 45) {
+        const expr = String(formulaData.expression || '');
+        const exprLen = expr.length;
+
+        // Check for placeholder physics formula in non-physics courses
+        const isPhysicsDomain =
+          /physics/i.test(domain) ||
+          /mechanics|kinematics/i.test(course);
+
+        if (!isPhysicsDomain && /\bF\s*=\s*m\s*[·*x]?\s*a\b/i.test(expr)) {
+          findings.push({
+            id: `qa_placeholder_formula_${beat.id}`,
+            category: 'pedagogical_alignment',
+            severity: 'BLOCKER',
+            message: `Unrelated placeholder formula "${expr}" (Newton's second law) found in non-physics course.`,
+            sceneIndex: sIdx,
+            beatId: beat.id,
+            target: 'expression',
+            cause: 'Template fallback or ungrounded formula generation.',
+            suggestedRepair: 'Replace with course-grounded formula specification from source facts.',
+          });
+        }
+
+        if (exprLen > 55) {
           findings.push({
             id: `qa_formula_len_${beat.id}`,
             category: 'visual_layout',
@@ -404,6 +425,64 @@ export async function runQaEngine(options) {
             cause: 'Long unformatted formula string.',
             suggestedRepair: 'Split formula into separate definition steps or shorten expression.',
           });
+        }
+      }
+
+      // Check hypothetical scenario badging
+      const sub = beat.en_subtitle || '';
+      const tts = beat.hindi_tts || '';
+      if (/₹\s*250|250\s*रुपए/i.test(`${sub} ${tts}`)) {
+        const badgeCombo = `${scene.badge || ''} ${scene.title || ''} ${beat.ui_state?.badge || ''} ${beat.visual?.data?.badge || ''}`.toLowerCase();
+        if (!/hypothetical|desk example|scenario|retail trap/i.test(badgeCombo)) {
+          findings.push({
+            id: `qa_unlabelled_hypothetical_${beat.id}`,
+            category: 'pedagogical_alignment',
+            severity: 'HIGH',
+            message: `Beat ${beat.id} references illustrative ₹250 trade without explicit 'HYPOTHETICAL' or 'DESK EXAMPLE' badge.`,
+            sceneIndex: sIdx,
+            beatId: beat.id,
+            target: 'badge',
+            cause: 'Illustrative desk scenarios must be clearly distinguished from book source facts.',
+            suggestedRepair: 'Add badge: "HYPOTHETICAL DESK EXAMPLE" to scene or beat ui_state.',
+          });
+        }
+      }
+
+      if (scene.template === 'summary_thread') {
+        const steps = beat.ui_state?.steps || [];
+        steps.forEach((stepText, stIdx) => {
+          const wCount = String(stepText).trim().split(/\s+/).length;
+          if (wCount > 30) {
+            findings.push({
+              id: `qa_summary_step_len_${beat.id}_${stIdx}`,
+              category: 'visual_layout',
+              severity: 'MEDIUM',
+              message: `Summary step ${stIdx + 1} has ${wCount} words (> 30 words guideline).`,
+              sceneIndex: sIdx,
+              beatId: beat.id,
+              target: `ui_state.steps[${stIdx}]`,
+              cause: 'Verbose summary step causes cognitive overload.',
+              suggestedRepair: 'Condense summary step to concise takeaway (< 25 words).',
+            });
+          }
+        });
+
+        // Strict 8-Rule Focus Invariant: Never skip Rule 8 before whole-chapter overview
+        const range = beat.ui_state?.activeStepRange;
+        if (steps.length >= 8 && Array.isArray(range) && range.length === 2) {
+          if (range[0] === 6 && range[1] === 7) {
+            findings.push({
+              id: `qa_summary_skipped_rule_8_${beat.id}`,
+              category: 'pedagogical_alignment',
+              severity: 'HIGH',
+              message: `Beat ${beat.id} has activeStepRange [6, 7], which repeats Step 6 and skips dedicated focus on Rule 8. Must be [7, 8].`,
+              sceneIndex: sIdx,
+              beatId: beat.id,
+              target: 'ui_state.activeStepRange',
+              cause: 'Legacy indexing error where Rule 8 was omitted before compactOverview.',
+              suggestedRepair: 'Update activeStepRange to [7, 8] with narration explicitly reviewing Rule 7 and Rule 8.',
+            });
+          }
         }
       }
 
@@ -420,6 +499,29 @@ export async function runQaEngine(options) {
             target: 'ui_state.sideCards',
             cause: 'Too many sideCards cause clipping against bottom boundary.',
             suggestedRepair: 'Reduce sideCards to at most 4.',
+          });
+        }
+      }
+    }
+
+    // Scene-level validation for summary_thread: mandatory dedicated Rule 8 focus
+    if (scene.template === 'summary_thread' && Array.isArray(scene.beats) && scene.beats.length > 0) {
+      const firstUI = scene.beats[0]?.ui_state || {};
+      const steps = firstUI.steps || [];
+      if (steps.length >= 8) {
+        const hasRule8Focus = scene.beats.some((b) => {
+          const r = b.ui_state?.activeStepRange;
+          return Array.isArray(r) && r[1] === 8 && r[0] >= 6 && !b.ui_state?.compactOverview;
+        });
+        if (!hasRule8Focus) {
+          findings.push({
+            id: `qa_summary_missing_rule_8_scene_${sIdx}`,
+            category: 'pedagogical_alignment',
+            severity: 'HIGH',
+            message: `Summary scene ${sIdx} lacks dedicated progressive focus on Rule 8 before whole-chapter overview.`,
+            sceneIndex: sIdx,
+            cause: 'Summary sequence jumps from Rules 6/7 directly into whole-chapter overview without highlighting Rule 8.',
+            suggestedRepair: 'Add or update Beat 4 with activeStepRange: [7, 8] and narration reviewing Rule 7 and Rule 8.',
           });
         }
       }
@@ -458,7 +560,7 @@ export async function runQaEngine(options) {
   let mp4SizeBytes = 0;
   let mp4Metadata = null;
 
-  const bookSlug = getBookSlug(chapterSlug, meta);
+  const bookSlug = getBookSlug(resolvedDir || chapterSlug, meta);
   const candidateMp4Paths = [
     path.join(rootDir, 'out', 'chapters', bookSlug, `${chapterSlug}.mp4`),
     path.join(rootDir, 'out', 'chapters', bookSlug, `${path.basename(resolvedDir)}.mp4`),

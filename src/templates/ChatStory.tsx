@@ -147,6 +147,49 @@ export const ChatStory: React.FC<ChatStoryProps> = ({
           }
         });
       }
+
+      // 3. Fallback: visual.data.messages
+      const visualMessages = (b.visual?.data as any)?.messages;
+      if (visualMessages && Array.isArray(visualMessages)) {
+        visualMessages.forEach((msg: any) => {
+          const key = `msg:${msg.sender}:${msg.text}`;
+          if (!seenKeys.has(key)) {
+            seenKeys.add(key);
+            accumulatedTimeline.push({
+              item: {
+                type: 'message',
+                sender: msg.sender,
+                avatar: msg.avatar,
+                text: msg.text,
+                theme: msg.theme || (msg.sender === 'Sharma ji' ? 'teal' : 'amber'),
+                align: msg.align || (msg.sender === 'Sharma ji' ? 'right' : 'left'),
+              },
+              isNew: isCurrentBeat,
+            });
+          }
+        });
+      }
+
+      // 4. Fallback: single message in ui_state or visual.data
+      const singleMsg = ui?.message || (b.visual?.data as any)?.message;
+      if (singleMsg) {
+        const sender = ui?.speaker || (ui as any)?.sender || (b.visual?.data as any)?.speaker || 'Raju';
+        const key = `msg:${sender}:${singleMsg}`;
+        if (!seenKeys.has(key)) {
+          seenKeys.add(key);
+          accumulatedTimeline.push({
+            item: {
+              type: 'message',
+              sender,
+              avatar: ui?.avatar || (sender === 'Sharma ji' ? 'S' : 'R'),
+              text: singleMsg,
+              theme: ui?.theme || (sender === 'Sharma ji' ? 'teal' : 'amber'),
+              align: sender === 'Sharma ji' ? 'right' : 'left',
+            },
+            isNew: isCurrentBeat,
+          });
+        }
+      }
     }
   });
 

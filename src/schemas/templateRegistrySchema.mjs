@@ -43,7 +43,7 @@ export const TEMPLATE_REGISTRY = {
     description: 'Structured mathematical, scientific, and financial equations with variable chips and step substitutions.',
     supportedKinds: ['formula'],
     requiredDataTypes: ['formula'],
-    animationTargets: ['activeStepIndex', 'stepEquation', 'variableHighlight', 'term'],
+    animationTargets: ['activeStepIndex', 'stepEquation', 'variableHighlight', 'term', 'substitutionStep', 'termReveal'],
     fallbackTemplateId: 'progressive_cards',
   },
   diagram_flow: {
@@ -115,7 +115,7 @@ export const TEMPLATE_REGISTRY = {
     description: '8-step structured recap sequence with takeaways and teaser.',
     supportedKinds: ['summary'],
     requiredDataTypes: ['steps'],
-    animationTargets: ['activeStepRange', 'activeStepIndex', 'takeawayReveal'],
+    animationTargets: ['activeStepRange', 'activeStepIndex', 'takeawayReveal', 'groupReveal', 'compactOverview'],
     fallbackTemplateId: 'progressive_cards',
   },
   tug_of_war: {
@@ -155,5 +155,14 @@ export const TEMPLATE_REGISTRY = {
     fallbackTemplateId: 'data_visualizer',
     isDomainExtension: true,
     domain: 'finance',
+  },
+  composite_layout: {
+    templateId: 'composite_layout',
+    name: 'Dynamic Composite Layout (Level 2)',
+    description: 'Dynamic multi-component composition supporting horizontal and vertical split arrangements.',
+    supportedKinds: ['chart', 'formula', 'comparison', 'cards', 'conversation', 'diagram'],
+    requiredDataTypes: ['numeric', 'formula', 'cards', 'comparison_columns'],
+    animationTargets: ['splitRatio', 'leftFocus', 'rightFocus'],
+    fallbackTemplateId: 'split_comparison',
   },
 };

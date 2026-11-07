@@ -6,16 +6,20 @@ This document serves as the permanent system instructions for the Antigravity Ag
 
 ## 1. Purpose and Non-Negotiable Principles
 
-The engine converts authoritative book sources into animated, narration-synchronized, broadcast-grade educational videos using Remotion. Every lesson is governed by four non-negotiable principles:
+The engine converts authoritative book sources into animated, narration-synchronized, broadcast-grade educational videos using Remotion. Every lesson is governed by six non-negotiable principles:
 
 1. **Source Grounding & Anti-Fabrication Invariant**:
-   The original uploaded book source is the authoritative foundation of author teachings. Gemini NotebookLM (`nlm`) serves as the source-extraction assistant. The structured fact ledger ([`source_facts.json`](src/schemas/sourceFactsSchema.ts)) is the sole approved production input for lesson design. The agent must never hallucinate formulas, numbers, citations, or concepts, nor replace missing domain knowledge with generic boilerplate.
+   The original uploaded book source is the authoritative foundation of author teachings. Gemini NotebookLM (`nlm`) serves as the source-extraction assistant. The structured fact ledger ([`source_facts.json`](src/schemas/sourceLessonSchemas.mjs)) is the sole approved production input for lesson design. The agent must never hallucinate formulas, numbers, citations, or concepts, nor replace missing domain knowledge with generic boilerplate.
 2. **Domain Decoupling & Config-Driven Visuals**:
-   The shared rendering engine is completely domain-agnostic. Visual templates, formatting, units, themes, personas, and pedagogical rules are defined in course configuration ([`src/courses/<course_id>.json`](src/courses/murphy_technical_analysis.json)) and the visual template registry ([`src/templates/registry/templateRegistry.ts`](src/templates/registry/templateRegistry.ts)). Domain-specific behavior (e.g., technical analysis candlesticks or options payoff math) is isolated in optional domain modules ([`src/domain/finance/`](src/domain/finance/financialCalculators.ts)).
+   The shared rendering engine is completely domain-agnostic. Visual templates, formatting, units, themes, personas, and pedagogical rules are defined in course configuration ([`src/courses/<course_id>.json`](src/courses/hull_derivatives.json)) and the visual template registry ([`src/templates/registry/templateRegistry.ts`](src/templates/registry/templateRegistry.ts)). Domain-specific behavior is isolated in optional domain modules ([`src/domain/finance/`](src/domain/finance/financeValidation.mjs)).
 3. **Structured Cue Synchronization**:
    Visual state progression is driven by structured narration cues (`visualCues`) anchored to measured audio timestamps—never by parsing spoken text for symbols/numbers or arbitrary percentage interpolation.
-4. **Single Unified Quality Release Gate**:
-   A video is never released merely because an MP4 container exists. Deployment requires passing the domain-independent Phase 2C Release Gate ([`node scripts/run_qa.mjs`](scripts/run_qa.mjs)).
+4. **Task-Centric Execution Hierarchy & Quota Preservation**:
+   Execution is organized into a strict task-centric hierarchy: **Deterministic Scripts (0 tokens) $\longrightarrow$ Cached Artifacts (0 tokens) $\longrightarrow$ Cline Worker (free/local inference) $\longrightarrow$ Gemini 4 Argon Proxy (cognitive reasoning) $\longrightarrow$ Antigravity Gemini 3.8 Flash (strictly IDE-internal fallback)**. Calling external Google GenAI SDK scripts with `GEMINI_API_KEY` is strictly prohibited.
+5. **Adaptive Story-to-Visual Intelligence**:
+   Visual consistency is mandatory; repeating identical scene templates across courses is not. Story, concept topology, and subject domain dictate the visual language through a Three-Level Template Architecture (Level 1 Existing, Level 2 Composite Layout, Level 3 Controlled Lifecycle).
+6. **Single Unified Quality Release Gate**:
+   A video is never released merely because an MP4 container exists. Deployment requires passing the domain-independent Phase 2C Release Gate ([`node scripts/run_qa.mjs`](scripts/run_qa.mjs)) with 0 Blockers and 0 Highs.
 
 ---
 
@@ -25,7 +29,7 @@ All chapter production data is strictly partitioned into isolated, book-grouped 
 
 ```mermaid
 flowchart LR
-    COURSE["Course Workspace\nsrc/data/chapters/<course_id>/<chapter_id>/"] --> ARTIFACTS["Phase 1 & 2 Artifacts\n• source_facts.json\n• content_audit.json\n• lesson_plan.json\n• storyboard.json\n• episode_raw.json\n• episode_compiled.json"]
+    COURSE["Course Workspace\nsrc/data/chapters/<course_id>/<chapter_id>/"] --> ARTIFACTS["Phase 1 & 2 Artifacts\n• source_facts.json\n• content_audit.json\n• lesson_plan.json\n• visual_creative_brief.json\n• storyboard.json\n• episode_raw.json\n• episode_compiled.json"]
     COURSE --> AUDIO["Public Audio\npublic/audio/<course_id>/<chapter_id>/"]
     COURSE --> MIRROR["Local Mirrored Audio\n.../<chapter_id>/audio/"]
     COURSE --> VIDEO["Render Target\nout/chapters/<course_id>/<chapter_id>.mp4"]
@@ -42,218 +46,176 @@ Model names (`argon`, `flash`) must **never** appear in folder names, chapter ID
 - **QA Release Gate Reports**: `reports/qa/<course_id>/<chapter_id>/qa_report.json` and `qa_report.html`
 
 ### Required Chapter Artifacts (Zero Legacy Exemptions)
-Inside every chapter directory `src/data/chapters/<course_id>/<chapter_id>/`, the engine strictly maintains 6 core artifacts:
+Inside every chapter directory `src/data/chapters/<course_id>/<chapter_id>/`, the engine strictly maintains 7 core artifacts:
 
 | Artifact | Schema Reference | Responsibility & Invariants |
 | :--- | :--- | :--- |
-| **`source_facts.json`** | [`SourceFactsSchema`](src/schemas/sourceFactsSchema.ts) | Structured extraction preserving claims, definitions, formulas, variables, units, citations, and source IDs. |
-| **`content_audit.json`** | [`ContentAuditSchema`](src/schemas/contentAuditSchema.ts) | Pre-generation gate checking coverage, prerequisites, numerical examples, formulas, and domain rules. Status: `PASS`, `CONDITIONAL_PASS`, or `FAIL`. |
-| **`lesson_plan.json`** | [`LessonPlanSchema`](src/schemas/lessonPlanSchema.ts) | Pedagogical blueprint, learning outcomes, misconception rebuttals, and active recall scenario grounded in `sourceFactIds`. |
-| **`storyboard.json`** | [`StoryboardSchema`](src/schemas/storyboardSchema.ts) | Scene-by-scene sequence mapping visual template kinds and beat outlines to approved `sourceFactIds`. |
+| **`source_facts.json`** | [`SourceFactsSchema`](src/schemas/sourceLessonSchemas.mjs) | Structured extraction preserving claims, definitions, formulas, variables, units, citations, and source IDs. |
+| **`content_audit.json`** | [`ContentAuditSchema`](src/schemas/sourceLessonSchemas.mjs) | Pre-generation gate checking coverage, prerequisites, numerical examples, formulas, and domain rules. Status: `PASS`, `CONDITIONAL_PASS`, or `FAIL`. |
+| **`lesson_plan.json`** | [`LessonPlanSchema`](src/schemas/sourceLessonSchemas.mjs) | Pedagogical blueprint, learning outcomes, misconception rebuttals, and active recall scenario grounded in `sourceFactIds`. |
+| **`visual_creative_brief.json`** | [`VisualCreativeBriefSchema`](src/schemas/sourceLessonSchemas.mjs) | Chapter visual direction: narrative style, visual metaphors, composition strategy, and Level 1/2/3 template selection plan. |
+| **`storyboard.json`** | [`StoryboardSchema`](src/schemas/sourceLessonSchemas.mjs) | Scene-by-scene sequence mapping visual template kinds and beat outlines to approved `sourceFactIds`. |
 | **`episode_raw.json`** | [`EpisodeDataSchema`](src/data/schema_reference.json) | High-fidelity episode payload with `scenes`, `beats`, `ui_state`, and typed `visual` specifications. |
 | **`episode_compiled.json`** | [`EpisodeDataSchema`](src/data/schema_reference.json) | Compiled production payload with measured `audioDurationSec`, `durationInFrames`, `audioFile`, and aligned cues. |
 
 ---
 
-## 3. Model Preflight and Explicit Flash Fallback Approval
-
-The primary generation model is **Gemini 4 Argon** (`gemini-4-argon`), utilizing the authenticated local web-session proxy or cookie session. The engine operates under a strict, non-negotiable model fallback policy.
+## 3. Token-Efficient Microkernel & Multi-Tier Execution Architecture
 
 ```mermaid
 flowchart TD
-    START["Trigger Video Generation\n(npm run make-video -- <chapter>)"] --> PREFLIGHT{"Argon Preflight Check\n(src/utils/modelPreflight.mjs)"}
+    REQ["Trigger / Task Ingestion"] --> TC["Task Classifier\n(src/orchestrator/taskClassifier.mjs)"]
+    TC --> CM["Context Manager\n(src/orchestrator/contextManager.mjs)"]
+    CM --> CACHE{"Cache Check\nArtifact valid?"}
     
-    PREFLIGHT -->|PASSED| ARGON["Use Gemini 4 Argon\n• Model: gemini-4-argon\n• Record Provenance"]
+    CACHE -->|Hit (0 tokens)| REUSE["Reuse Valid Artifact"]
+    CACHE -->|Miss| ROUTER["Execution Router\n(src/orchestrator/executionRouter.mjs)"]
     
-    PREFLIGHT -->|FAILED| CONFIRM{"User Passed\n--confirm-flash?"}
-    
-    CONFIRM -->|NO| HALT["HALT GENERATION IMMEDIATELY\nPrompt User Verbatim:\n'Argon is unavailable. Would you like me to continue this chapter with Gemini 3.8 Flash?'\n(Exit Code 2)"]
-    
-    CONFIRM -->|YES| FLASH["Use Gemini 3.8 Flash\n• Model: gemini-3.8-flash\n• Record Provenance with Fallback Reason"]
-    
-    ARGON --> EXEC["Proceed to Source Extraction & Generation"]
-    FLASH --> EXEC
+    ROUTER -->|Tier 1 (0 tokens)| DET["Deterministic Node.js\n• Scaffolding Engine (0 tokens)\n• Edge-TTS (0 tokens)\n• Zod Validators\n• Remotion & QA"]
+    ROUTER -->|Tier 2 (Free/Local)| CLINE["Cline Execution Worker\n• NVIDIA NIM / OpenRouter Free\n• Mechanical refactor & builders"]
+    ROUTER -->|Tier 3 (Reasoning)| ARGON["Gemini 4 Argon Proxy\n• http://127.0.0.1:8001/v1\n• Low / Medium / High Thinking"]
+    ROUTER -->|Tier 4 (Approved Fallback)| FLASH["Antigravity Gemini 3.8 Flash\n• Strictly IDE Internal Execution\n• Explicit User Approval Required"]
+
+    REUSE --> GATE["Common Quality Gate (Zod + Content Audit + QA)"]
+    DET --> GATE
+    CLINE --> GATE
+    ARGON --> GATE
+    FLASH --> GATE
+    GATE --> LEDGER["Execution Ledger & Telemetry\n(reports/telemetry/execution_ledger.jsonl)"]
 ```
 
-### Operational Rules for Model Selection
-1. **Mandatory Preflight Check**:
-   Before initiating source fact extraction, script synthesis, TTS generation, or rendering, the engine executes `checkArgonPreflight()`.
-2. **Never Silently Downgrade**:
-   If Argon is unavailable, offline, or misconfigured, the engine **must halt immediately** before generating any content. It must never silently downgrade, switch models, or infer user intent.
-3. **Exact Fallback Question**:
-   The engine halts and outputs verbatim:
+### 3.1 Central Task Execution Router & Classification Matrix
+Every task is evaluated by `classifyTask()` ([`src/orchestrator/taskClassifier.mjs`](src/orchestrator/taskClassifier.mjs)) before model invocation:
+
+| Task Category | Complexity | Execution Engine | Token Cost |
+| :--- | :--- | :--- | :---: |
+| **Content Audit / Schema Validation** | Deterministic | Node.js / Zod | **0** |
+| **Episode Scaffolding (12 Scenes)** | Deterministic | `scaffoldingEngine.mjs` | **0** |
+| **Audio Compilation & Cue Timing** | Deterministic | Edge-TTS + `music-metadata` | **0** |
+| **Video Rendering & Phase 2C QA** | Deterministic | Remotion + `run_qa.mjs` | **0** |
+| **Builder Scripts / Mechanical Code** | Mechanical Dev | Cline (NVIDIA NIM / OpenRouter / Ollama) | **Free / Local** |
+| **Visual Diversity Evaluation** | Deterministic | `diversityEngine.mjs` | **0** |
+| **Targeted Dialogue Synthesis (Act 1)** | Micro-Reasoning | Argon Low (Proxy) | ~800–1,200 |
+| **Pedagogical Blueprinting (Act 2 & 5)**| Medium Pedagogy | Argon Medium (Proxy) | ~2,500–3,500 |
+| **Mathematical Proofs & Crisis Math** | Deep Reasoning | Argon High (Proxy) | ~1,200–2,000 |
+
+### 3.2 Cline Execution Adapter Protocol
+Cline operates as a sandboxed **Mechanical Execution Worker**, never the central orchestrator:
+- **Location & Settings**: Managed via `C:\Users\YashAggarwal\.cline` with OpenAI-compatible providers (NVIDIA NIM, OpenRouter `:free` tier, or local Ollama).
+- **Communication Protocol**: Interacts via structured JSON task manifests in `.cline/tasks/` produced by [`contextManager.mjs`](src/orchestrator/contextManager.mjs).
+- **Scope Boundary**: Cline is authorized for writing deterministic builder scripts, unit test scaffolding, documentation sync, and mechanical schema refactoring. Cline is strictly prohibited from altering architecture contracts, modifying QA severity thresholds, or calling external APIs.
+- **Pre-Commit Verification**: All Cline task completions must pass `validate_episode.mjs` or `npm run validate:lesson` before ingestion into production.
+
+### 3.3 Gemini 4 Argon Execution via free-gemini-api
+**Standard developer API keys (`GEMINI_API_KEY`) DO NOT have access to Gemini 4 Argon.**
+Argon access is **exclusively powered by the local `free-gemini-api` proxy engine**:
+- **Repository Location**: `../free-gemini-api`
+- **Core Engine Executable**: `../free-gemini-api/gemini-core-windows-amd64.exe`
+- **REST Endpoint**: `http://127.0.0.1:8001/v1/chat/completions`
+- **Health Check**: `http://127.0.0.1:8001/health`
+- **Thinking Matrix**: `gemini-4-argon` (Low), `gemini-4-argon-thinking-medium` (Medium), `gemini-4-argon-thinking-high` (High).
+
+### 3.4 Unified Fallback Policy & Zero-Leakage Guarantee
+1. **Interactive Single-Chapter Mode**:
+   If the local Argon proxy is offline and direct cookie sessions are missing, the engine **must halt immediately** with exit code 2 and prompt verbatim:
    ```text
    Argon is unavailable. Would you like me to continue this chapter with Gemini 3.8 Flash?
    ```
-4. **Explicit User Approval**:
-   Gemini 3.8 Flash is only invoked after the user explicitly confirms (e.g. re-running with the `--confirm-flash` flag).
-5. **Generation Provenance Metadata**:
-   Every generated episode and lesson plan records provenance metadata:
-   ```json
-   "generationProvenance": {
-     "model": "gemini-4-argon",
-     "requestedModel": "gemini-4-argon",
-     "preflightStatus": "PASSED",
-     "approvedByUser": true,
-     "approvalTimestamp": "2026-11-03T01:45:00.000Z",
-     "runId": "run_1762115100_a8f3b"
-   }
-   ```
+2. **Batch / Unattended Mode**:
+   Gemini 3.8 Flash fallback is only invoked if `--confirm-flash` was explicitly provided at launch. Otherwise, the chapter is cleanly skipped with logged telemetry.
+3. **Absolute Ban on External GenAI SDK Calls**:
+   Gemini 3.8 Flash is executed **strictly within the Antigravity IDE**. Calling `@google/genai` with external API keys in standalone scripts is completely decommissioned.
+
+### 3.5 Deterministic 12-Scene Scaffolding Engine
+Instead of generating 12 scenes in a single 40,000-token prompt, [`scaffoldingEngine.mjs`](src/orchestrator/scaffoldingEngine.mjs) generates the complete Cognitive Micro-Kernel structure deterministically with **0 tokens**:
+- Sets segment indices, template kinds, badge labels, and theme colors.
+- Builds empty beat shells, stage directions, and UI states.
+- Instantiates the strict 8-rule summary sequence (`[0,0]`, `[1,2]`, `[3,4]`, `[5,6]`, `[7,8]`, `compactOverview`).
+- Passes 100% of [`validate_episode.mjs`](scripts/validate_episode.mjs) with zero errors.
+- Argon or Flash is then queried only for targeted dialogue lines (~2,500 tokens total per chapter, a 90% reduction).
+
+### 3.6 Execution Telemetry & Token Ledger
+Every operation is recorded in [`reports/telemetry/execution_ledger.jsonl`](reports/telemetry/execution_ledger.jsonl) with exact tokens used, cost, engine provenance, duration, and verified token savings.
 
 ---
 
-## 4. Source Extraction and Content-Audit Gate
+## 4. Adaptive Story-to-Visual Intelligence & Dynamic Template Engine
+
+### 4.1 Visual Storytelling Principle
+Visual consistency is mandatory; repeating identical scene compositions across every course is not.
+The story determines the visual language:
+- **Technical Analysis**: Dynamic order book DOM, candlestick evolution, trendline bounces.
+- **Options & Derivatives**: Payoff profile curves, strike progression, margin wipeout cascades.
+- **Computer Science**: Call-stack architecture, heap allocation, pointer mutation animations.
+- **Physics / Mechanics**: Free-body diagrams, vector trajectories, energy transfer curves.
+
+### 4.2 Three-Level Template Intelligence
+```mermaid
+flowchart LR
+    STORY["Lesson Story & Concept Topology"] --> EVAL{"Template Intelligence"}
+    EVAL -->|Level 1 (~80%)| L1["Level 1: Existing Template Selection\n(TEMPLATE_REGISTRY + custom data & cues)"]
+    EVAL -->|Level 2 (~15%)| L2["Level 2: Dynamic Composition\n(CompositeLayout.tsx - Split / Stacked Views)"]
+    EVAL -->|Level 3 (~5%)| L3["Level 3: Controlled Template Lifecycle\n(verify_new_template.mjs -> Registry)"]
+```
+
+1. **Level 1 — Existing Template Selection**:
+   The model selects from `TEMPLATE_REGISTRY` based on concept topology with custom data, theme, and narration cues.
+2. **Level 2 — Dynamic Multi-Component Composition (`composite_layout`)**:
+   Enables combining two existing tested Remotion components using [`CompositeLayout.tsx`](src/templates/CompositeLayout.tsx) (e.g. Chart on left + Formula proof on right). Declarative JSON structure; 0 new React files required.
+3. **Level 3 — Controlled New Template Lifecycle**:
+   When a genuine pedagogical capability gap exists, a new template progresses through the 10-step lifecycle:
+   $$\text{PROPOSED} \to \text{DESIGN SPEC} \to \text{CODE GEN} \to \text{SCHEMA VALIDATION} \to \text{REMOTION PREVIEW} \to \text{QA GATE} \to \text{REGISTRY APPROVED}$$
+   Verified via `node scripts/verify_new_template.mjs` before admission.
+
+### 4.3 Visual Diversity & Anti-Repetition Engine (`diversityEngine.mjs`)
+[`diversityEngine.mjs`](src/orchestrator/diversityEngine.mjs) calculates a mathematical diversity score before storyboard approval:
+- **No Consecutive Identical Templates**: Adjacent scenes must not use the same template unless explicitly flagged as `pedagogicalContinuation: true`.
+- **Saturation Cap**: No single template may exceed 30% of total scenes in a chapter part.
+- **Variety Threshold**: Every chapter part must employ at least 5 distinct visual templates.
+
+---
+
+## 5. Course Production Workflow
 
 ```mermaid
 flowchart TD
-    NOTEBOOK["1. Gemini NotebookLM\n(nlm query notebook <id>)"] --> FACTS["2. Extract Structured Facts\n(scripts/extract_source_facts.mjs)"]
-    FACTS --> AUDIT["3. Run Content Audit\n(scripts/audit_content.mjs)"]
-    AUDIT --> EVAL{"Audit Status?"}
-    EVAL -->|FAIL| BLOCK["🛑 BLOCK GENERATION\nUnresolved CRITICAL findings\n(Exit Code 1)"]
-    EVAL -->|PASS / CONDITIONAL_PASS| LESSON["4. Proceed to Lesson & Storyboard Design"]
+    NLM["1. NotebookLM Query\n(nlm query notebook)"] --> FACTS["2. Extract Source Facts\n(source_facts.json)"]
+    FACTS --> AUDIT["3. Content Audit Gate\n(content_audit.json - 0 tokens)"]
+    AUDIT -->|FAIL| BLOCK["🛑 BLOCK GENERATION"]
+    AUDIT -->|PASS| LESSON["4. Pedagogical Lesson Plan\n(lesson_plan.json)"]
+    LESSON --> BRIEF["5. Visual Creative Brief\n(visual_creative_brief.json)"]
+    BRIEF --> STORY["6. Adaptive Storyboard\n(storyboard.json + diversityEngine)"]
+    STORY --> VAL_P1["7. Lesson Architecture Validation\n(validate_lesson_architecture.mjs)"]
+    VAL_P1 --> SCAFFOLD["8. Deterministic Episode Scaffolding\n(scaffoldingEngine.mjs - 0 tokens)"]
+    SCAFFOLD --> MICRO["9. Micro-Cognitive Dialogue Fill\n(Argon / Flash - ~2.5k tokens)"]
+    MICRO --> VAL_EP["10. Zod Pre-TTS Validation\n(validate_episode.mjs)"]
+    VAL_EP --> AUDIO["11. Edge-TTS Audio & Cue Alignment\n(compile_tts_audio.mjs - 0 tokens)"]
+    AUDIO --> RENDER["12. Remotion Video Render\n(npx remotion render)"]
+    RENDER --> QA["13. Phase 2C Release Gate\n(run_qa.mjs - 0 Blockers, 0 Highs)"]
 ```
-
-1. **NotebookLM Extraction**:
-   - The engine queries the authorized notebook using `nlm query notebook <notebook_id> "<directive>" -s <source_id> --new-conversation --json`.
-   - Results are saved to `<chapter_dir>/notebook_context.txt`.
-2. **Fact Ledger Formulation**:
-   - Run `node scripts/extract_source_facts.mjs --dir=src/data/chapters/<course_id>/<chapter_id>`.
-   - Populates structured claims, variables, numerical details, and citations into `source_facts.json`.
-3. **Content Audit Check**:
-   - Run `node scripts/audit_content.mjs --dir=src/data/chapters/<course_id>/<chapter_id>`.
-   - Inspects source coverage, prerequisites, missing definitions, formula variables, units, numerical consistency, and signs (+/- long/short).
-   - If findings include any **CRITICAL** severity defect, audit status is `FAIL`. Generation and rendering are **strictly blocked**.
 
 ---
 
-## 5. Lesson and Storyboard Approval Gate
+## 6. Rendering and Unified QA Release Gate
 
-Once `source_facts.json` passes audit, the lesson plan and storyboard are synthesized strictly from approved facts:
-
-1. **Lesson Plan Generation**:
-   - Run `node scripts/generate_lesson_storyboard.mjs --dir=src/data/chapters/<course_id>/<chapter_id>`.
-   - Structures prerequisites, pedagogical sequence, core principles, misconceptions, and real-world active recall scenarios.
-   - Every claim is tied to an explicit `sourceFactId`.
-2. **Storyboard Formulation**:
-   - Builds scene outlines, beat progressions, and visual template assignments.
-   - Enforces visual variety: dynamic alternation between charts, cards, comparisons, diagrams, formulas, and quizzes.
-3. **Lesson Architecture Validation Gate**:
-   - Run `npm run validate:lesson` or `node scripts/validate_lesson_architecture.mjs`.
-   - Checks that all 4 Phase 1 artifacts exist, are valid JSON, conform to Zod schemas, and have zero dangling `sourceFactIds`.
-
----
-
-## 6. Generic Visual, Audio, Alignment, and Synchronization Contract
-
-### 6.1 Generic Course Configuration & Template Registry
-- Adding a new book or subject requires only a course configuration ([`src/courses/<course_id>.json`](src/courses/murphy_technical_analysis.json)) specifying theme colors, typography, allowed templates, and persona rules.
-- **Zero TypeScript renderer code changes are permitted** when adding a new book.
-- Visual components query [`TEMPLATE_REGISTRY`](src/templates/registry/templateRegistry.ts) for valid template targets and data schemas.
-
-### 6.2 Structured Visual Specifications
-Visual changes are driven by explicit beat-level `visual` data—never derived by scraping narration text:
-```ts
-visual: {
-  kind: 'chart' | 'formula' | 'diagram' | 'comparison' | 'timeline' | 'process' | 'cards' | 'conversation' | 'quiz' | 'summary',
-  data: unknown,
-  semantics: {
-    teachingObjective: string,
-    sourceFactIds: string[],
-    importantValues?: string[],
-    relationships?: string[]
-  }
-}
-```
-
-### 6.3 Narration Visual Cues
-Every visual state transition is synchronized via structured cues:
-```ts
-visualCues: [
-  {
-    atMs: number,
-    action: 'reveal' | 'highlight' | 'draw' | 'emphasize' | 'subtitle',
-    target: string,
-    payload?: unknown
-  }
-]
-```
-Validated against template capabilities and measured narration audio duration.
-
-### 6.4 Authoritative Audio Generation & Timing
-- Run `node scripts/compile_tts_audio.mjs --dir=src/data/chapters/<course_id>/<chapter_id> --force`.
-- Audio compiler computes deterministic SHA-256 hash (`narrationHash`) of sanitized `hindi_tts`. Stale audio is invalidated and regenerated.
-- Measures exact audio duration using `music-metadata`.
-- Exact beat duration is calculated from measured audio duration plus authored pause:
-  $$\text{durationInFrames} = \max\left(15, \left\lceil \frac{\text{audioDurationSec} \cdot 1000 + \text{pauseAfterMs}}{1000} \cdot \text{FPS} \right\rceil\right)$$
-- Audio assets are output to `public/audio/<course_id>/<chapter_id>/` and mirrored to `src/data/chapters/<course_id>/<chapter_id>/audio/`.
-
-### 6.5 Phrase-Level Subtitle Alignment
-- Audio compiler segments subtitles into `subtitlePhrases` with `startMs` and `endMs` timestamps.
-- Video layout highlights the active phrase during playback, falling back safely to sentence-level display when alignment is absent.
-
----
-
-## 7. Rendering and Generic QA Release Gate
-
-### 7.1 Video Rendering via Remotion
-Videos are rendered into isolated course directories:
+### 6.1 Video Rendering via Remotion
 ```bash
 npx remotion render src/index.ts EpisodeComposition out/chapters/<course_id>/<chapter_id>.mp4 --props=src/data/chapters/<course_id>/<chapter_id>/episode_compiled.json --crf=16 --pixel-format=yuv420p
 ```
 
-### 7.2 Release Gate Verification (`scripts/run_qa.mjs`)
-The release gate inspects data, timing, media, layout, and video container integrity:
-```bash
-node scripts/run_qa.mjs --dir=src/data/chapters/<course_id>/<chapter_id>
-# Or across all chapters:
-npm run qa:all -- --allow-high
-```
-
-### Severity Classification & Release Decision
-- **`BLOCKER`**: Release must fail immediately. Rendering/deployment prohibited. (Missing audio, corrupt container, schema errors, duration mismatch > 10s, critical audit failures).
-- **`HIGH`**: Release fails unless `--allow-high` is explicitly supplied. (Unresolved duration drift > 1s, domain rule violations, subtitle missing words).
-- **`MEDIUM`**: Reported for pedagogical review. Does not block release. (Subtitle word count > 16 words, missing phrase-level alignment fallback).
-- **`LOW`**: Informational telemetry. (Pending video render, styling suggestions).
-
-Reports and screenshot cues are written to `reports/qa/<course_id>/<chapter_id>/`.
+### 6.2 Release Gate Protocol (`scripts/run_qa.mjs`)
+Release requires passing the Phase 2C Release Gate:
+- **`BLOCKER`**: Prohibits release. (Missing audio, corrupt container, schema violation, placeholder formula, duration drift $>10\text{s}$, content audit fail).
+- **`HIGH`**: Prohibits release unless `--allow-high` is explicitly granted. (Duration drift $>1.0\text{s}$, unlabelled hypothetical scenario, quiz $<18$ words, cue timing mismatch).
+- **`MEDIUM`**: Telemetry review; non-blocking. (Subtitle $>16$ words, summary step $>30$ words, minor drift $0.5\text{s}–1.0\text{s}$).
 
 ---
 
-## 8. State Machine, Invalidation, Repair, and Human-Review Rules
-
-Every chapter progresses through a formal, model-neutral state machine:
-
-```mermaid
-stateDiagram-v2
-    [*] --> SOURCE_READY: nlm extract
-    SOURCE_READY --> AUDITED: runContentAudit()
-    AUDITED --> LESSON_DESIGNED: generateLessonPlan()
-    LESSON_DESIGNED --> STORYBOARDED: generateStoryboard()
-    STORYBOARDED --> APPROVED_FOR_PRODUCTION: validate_lesson
-    APPROVED_FOR_PRODUCTION --> AUDIO_ALIGNED: compile_tts_audio
-    AUDIO_ALIGNED --> RENDERED: remotion render
-    RENDERED --> QA_PASSED: run_qa.mjs
-    QA_PASSED --> RELEASED: deploy
-```
-
-### Invalidation Triggers
-- **Source Facts Invalidation**: Editing `source_facts.json` resets state to `SOURCE_READY`, invalidating `lesson_plan.json`, `storyboard.json`, and all downstream payloads.
-- **Narration Text Invalidation**: Modifying `hindi_tts` invalidates cached audio via SHA-256 hash mismatch, requiring re-synthesis and frame re-calculation.
-- **Timing Invalidation**: Duration drift $|\text{compiledFrames} - \text{measuredFrames}| > 15 \text{ frames}$ (500ms) triggers automated frame recalculation.
-
-### Single-Pass Self-Correction Guard
-- If Zod validation or layout collision occurs during generation, the agent applies code remediation and re-validates **strictly once**.
-- If errors persist after one pass, the agent halts and surfaces the failure report to the user, strictly preventing infinite loops.
-
----
-
-## 9. Operational Modes with Verified Commands
-
-All commands operate on model-neutral paths:
+## 7. Operational Modes with Verified Commands
 
 ### 1. Full Autonomous Video Generation
 ```bash
-# Generate video for Murphy chapter:
+# Generate video with token-efficient microkernel (default):
 npm run make-video -- ch01_part1
 
 # Generate video for Hull chapter:
@@ -264,75 +226,75 @@ npm run make-video -- ch01_part1 --confirm-flash
 
 # Force overwrite existing data:
 npm run make-video -- ch02_part1 --force
+
+# Use legacy monolithic generator (deprecated):
+npm run make-video -- ch01_part1 --legacy-monolith
 ```
 
 ### 2. Validation & Quality Assurance
 ```bash
-# Validate lesson architecture across all chapters:
+# Validate lesson architecture across all 64 chapters:
 npm run validate:lesson
 
 # Validate specific chapter episode schema:
-node scripts/validate_episode.mjs --dir=src/data/chapters/murphy_technical_analysis/ch01_part1
+node scripts/validate_episode.mjs --dir=src/data/chapters/hull_derivatives/ch01_part1
 
 # Run QA Release Gate on a specific chapter:
-node scripts/run_qa.mjs --dir=src/data/chapters/murphy_technical_analysis/ch01_part1
+node scripts/run_qa.mjs --dir=src/data/chapters/hull_derivatives/ch01_part1
 
-# Run QA Release Gate across all 36 chapters:
+# Run QA Release Gate across all chapters:
 npm run qa:all -- --allow-high
 ```
 
-### 3. Audio Compilation & Synthesis
+### 3. Architecture & Test Suites
 ```bash
-# Compile audio for specific chapter:
-node scripts/compile_tts_audio.mjs --dir=src/data/chapters/murphy_technical_analysis/ch01_part1 --force
+# Run Token-Efficient Microkernel Test Suite:
+node scripts/test_execution_router.mjs
 
-# Compile using Gemini TTS:
-node scripts/compile_tts_audio.mjs --dir=src/data/chapters/murphy_technical_analysis/ch01_part1 --tts=gemini --force
+# Run Adaptive Story-to-Visual Intelligence Test Suite:
+node scripts/test_part13_adaptive_intelligence.mjs
+
+# Verify a newly proposed Level 3 template:
+node scripts/verify_new_template.mjs
 ```
 
-### 4. Interactive Studio & Manual Render
+### 4. Audio Compilation & Synthesis
 ```bash
-# Launch interactive Remotion preview studio:
-npm run preview
-
-# Render chapter video with explicit props:
-npx remotion render src/index.ts EpisodeComposition out/chapters/murphy_technical_analysis/ch01_part1.mp4 --props=src/data/chapters/murphy_technical_analysis/ch01_part1/episode_compiled.json
+# Compile audio using free Edge-TTS (0 tokens, default):
+node scripts/compile_tts_audio.mjs --dir=src/data/chapters/hull_derivatives/ch01_part1 --force
 ```
 
 ---
 
-## 10. Repository File Map
+## 8. Authoritative Repository File Map
 
-Every path links to an authoritative, verified file in the workspace:
+### Orchestration & Microkernel Core
+- [`src/orchestrator/taskClassifier.mjs`](src/orchestrator/taskClassifier.mjs): Evaluates complexity and categorizes tasks into deterministic, Cline, or reasoning tiers.
+- [`src/orchestrator/contextManager.mjs`](src/orchestrator/contextManager.mjs): Slices schemas and facts to eliminate prompt bloat; builds Cline manifests.
+- [`src/orchestrator/scaffoldingEngine.mjs`](src/orchestrator/scaffoldingEngine.mjs): 0-token deterministic 12-scene Cognitive Micro-Kernel episode generator.
+- [`src/orchestrator/executionRouter.mjs`](src/orchestrator/executionRouter.mjs): Hierarchical router enforcing deterministic priority and zero external API leakage.
+- [`src/orchestrator/executionLedger.mjs`](src/orchestrator/executionLedger.mjs): Telemetry logging and quantifiable token savings tracker.
+- [`src/orchestrator/diversityEngine.mjs`](src/orchestrator/diversityEngine.mjs): Visual diversity scoring, anti-repetition guards, and adaptive concept topology recommendations.
 
-### Engine Core & Path Resolvers
-- [`src/utils/chapterPaths.mjs`](src/utils/chapterPaths.mjs): Path resolution for chapter workspaces, audio assets, videos, and QA reports.
-- [`src/utils/chapterPaths.ts`](src/utils/chapterPaths.ts): TypeScript type bindings for path resolvers.
-- [`src/utils/modelPreflight.mjs`](src/utils/modelPreflight.mjs): Mandatory Argon connectivity and session preflight check.
+### Templates & Level 2 Composition
+- [`src/templates/registry/templateRegistry.ts`](src/templates/registry/templateRegistry.ts): Universal visual template registry.
+- [`src/templates/TemplateRenderer.tsx`](src/templates/TemplateRenderer.tsx): Master Remotion template dispatcher.
+- [`src/templates/CompositeLayout.tsx`](src/templates/CompositeLayout.tsx): Level 2 multi-component dynamic composition renderer.
 
 ### Schemas & Course Configurations
-- [`src/schemas/sourceFactsSchema.ts`](src/schemas/sourceFactsSchema.ts): Source fact extraction schema.
-- [`src/schemas/contentAuditSchema.ts`](src/schemas/contentAuditSchema.ts): Content audit validation schema.
-- [`src/schemas/lessonPlanSchema.ts`](src/schemas/lessonPlanSchema.ts): Pedagogical lesson plan schema.
-- [`src/schemas/storyboardSchema.ts`](src/schemas/storyboardSchema.ts): Storyboard sequence schema.
-- [`src/data/schema_reference.json`](src/data/schema_reference.json): Complete Remotion episode schema definition.
-- [`src/courses/murphy_technical_analysis.json`](src/courses/murphy_technical_analysis.json): Technical analysis course configuration.
+- [`src/schemas/sourceLessonSchemas.mjs`](src/schemas/sourceLessonSchemas.mjs): Schemas for `source_facts.json`, `content_audit.json`, `lesson_plan.json`, `visual_creative_brief.json`, and `storyboard.json`.
+- [`src/schemas/templateRegistrySchema.mjs`](src/schemas/templateRegistrySchema.mjs): Definitions for template registry and data types.
+- [`src/schemas/visualSpecSchema.mjs`](src/schemas/visualSpecSchema.mjs): Visual kind schemas and cue specifications.
 - [`src/courses/hull_derivatives.json`](src/courses/hull_derivatives.json): Futures & options course configuration.
+- [`src/courses/murphy_technical_analysis.json`](src/courses/murphy_technical_analysis.json): Technical analysis course configuration.
 
-### Template Registry & Domain Extensions
-- [`src/templates/registry/templateRegistry.ts`](src/templates/registry/templateRegistry.ts): Universal registry of visual templates and animation targets.
-- [`src/domain/finance/financialCalculators.ts`](src/domain/finance/financialCalculators.ts): Isolated financial calculators and domain rules.
-
-### QA Release Gate
-- [`src/qa/qaEngine.mjs`](src/qa/qaEngine.mjs): Domain-independent release gate evaluation engine.
-- [`src/qa/qaTypes.ts`](src/qa/qaTypes.ts): QA report and findings type definitions.
-- [`scripts/run_qa.mjs`](scripts/run_qa.mjs): CLI runner for release gate audits.
-
-### Orchestration Scripts
-- [`scripts/generate_video.mjs`](scripts/generate_video.mjs): End-to-end curriculum dispatcher with preflight check and Flash fallback.
+### Production & Validation Scripts
+- [`scripts/generate_video.mjs`](scripts/generate_video.mjs): Master video generation entrypoint integrating the microkernel router.
 - [`scripts/extract_source_facts.mjs`](scripts/extract_source_facts.mjs): Extracts facts from NotebookLM into `source_facts.json`.
-- [`scripts/audit_content.mjs`](scripts/audit_content.mjs): Validates source facts and emits `content_audit.json`.
-- [`scripts/generate_lesson_storyboard.mjs`](scripts/generate_lesson_storyboard.mjs): Generates `lesson_plan.json` and `storyboard.json`.
-- [`scripts/compile_tts_audio.mjs`](scripts/compile_tts_audio.mjs): Authoritative audio compiler with hash validation and phrase alignment.
+- [`scripts/audit_content.mjs`](scripts/audit_content.mjs): Deterministic content auditor emitting `content_audit.json`.
+- [`scripts/generate_lesson_storyboard.mjs`](scripts/generate_lesson_storyboard.mjs): Generates `lesson_plan.json`, `visual_creative_brief.json`, and `storyboard.json`.
+- [`scripts/compile_tts_audio.mjs`](scripts/compile_tts_audio.mjs): Edge-TTS audio compiler with hash validation and phrase alignment.
 - [`scripts/validate_episode.mjs`](scripts/validate_episode.mjs): Zod schema validator for episode payloads.
 - [`scripts/validate_lesson_architecture.mjs`](scripts/validate_lesson_architecture.mjs): Validates Phase 1 artifacts across all chapters.
+- [`scripts/run_qa.mjs`](scripts/run_qa.mjs): Phase 2C Release Gate QA runner.
+- [`scripts/verify_new_template.mjs`](scripts/verify_new_template.mjs): Level 3 template quality gate validator.

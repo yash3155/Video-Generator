@@ -112,7 +112,11 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
   };
 
   const visualChart: ChartSpec | undefined =
-    beat.visual?.kind === 'chart' ? (beat.visual.data as ChartSpec) : undefined;
+    beat.visual?.kind === 'chart' &&
+    Array.isArray((beat.visual.data as any)?.series) &&
+    (beat.visual.data as any).series.length > 0
+      ? (beat.visual.data as ChartSpec)
+      : undefined;
 
   let presetData: PresetChartData;
   let yUnit = '';
@@ -124,7 +128,7 @@ export const DataVisualizer: React.FC<DataVisualizerProps> = ({
     chartSubtitle = visualChart.subtitle || chartSubtitle;
     yUnit = visualChart.yAxis?.unit ?? (uiState.yAxisUnit || '');
 
-    const firstSeries = visualChart.series[0];
+    const firstSeries = visualChart.series?.[0];
     const isCandle = visualChart.chartType === 'candlestick';
 
     if (isCandle && firstSeries) {

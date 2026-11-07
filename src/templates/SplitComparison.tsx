@@ -151,10 +151,28 @@ export const SplitComparison: React.FC<SplitComparisonProps> = ({
 }) => {
   const { fps } = useVideoConfig();
 
-  const uiState: SplitComparisonUI = beat.ui_state || {
-    showVsBadge: true,
-    leftColumn: { title: 'Left', bullets: [] },
-    rightColumn: { title: 'Right', bullets: [] },
+  const rawState = (beat.ui_state || {}) as any;
+  const leftCol: ComparisonColumn = rawState.leftColumn || {
+    title: rawState.leftTitle || 'Left',
+    subtitle: rawState.leftBadge || '',
+    bullets: rawState.leftPoints || rawState.leftItems || rawState.bullets || [],
+    theme: rawState.leftTheme || 'blue',
+    icon: rawState.leftIcon || 'shield',
+    active: rawState.activeSide ? (rawState.activeSide === 'left' || rawState.activeSide === 'both') : true,
+  };
+  const rightCol: ComparisonColumn = rawState.rightColumn || {
+    title: rawState.rightTitle || 'Right',
+    subtitle: rawState.rightBadge || '',
+    bullets: rawState.rightPoints || rawState.rightItems || [],
+    theme: rawState.rightTheme || 'amber',
+    icon: rawState.rightIcon || 'zap',
+    active: rawState.activeSide ? (rawState.activeSide === 'right' || rawState.activeSide === 'both') : true,
+  };
+
+  const uiState: SplitComparisonUI = {
+    showVsBadge: rawState.showVsBadge ?? true,
+    leftColumn: leftCol,
+    rightColumn: rightCol,
   };
 
   const isFirstBeat = beatIndexInScene === 0;
@@ -162,8 +180,8 @@ export const SplitComparison: React.FC<SplitComparisonProps> = ({
   // If on beat 0 and right column is inactive with empty bullets, hide it completely
   const isRightHidden =
     beatIndexInScene === 0 &&
-    uiState.rightColumn.active === false &&
-    (!uiState.rightColumn.bullets || uiState.rightColumn.bullets.length === 0);
+    uiState.rightColumn?.active === false &&
+    (!uiState.rightColumn?.bullets || uiState.rightColumn.bullets.length === 0);
 
   // Right column animates entrance when it first reveals (on beat 1 if hidden on beat 0)
   const shouldAnimateRight =

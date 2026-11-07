@@ -12,6 +12,7 @@ import { HorizontalBarRace } from './HorizontalBarRace';
 import { FormulaBreakdown } from './FormulaBreakdown';
 import { PayoffDiagram } from './PayoffDiagram';
 import { DiagramFlow } from './DiagramFlow';
+import { CompositeLayout } from './CompositeLayout';
 
 export interface TemplateRendererProps {
   scene: Scene;
@@ -51,6 +52,8 @@ export const TemplateRenderer: React.FC<TemplateRendererProps> = (props) => {
     case 'process_flow':
     case 'timeline':
       return <DiagramFlow {...props} />;
+    case 'composite_layout':
+      return <CompositeLayout {...props} />;
     default:
       return <ChatStory {...props} />;
   }
@@ -69,4 +72,5 @@ export {
   FormulaBreakdown,
   PayoffDiagram,
   DiagramFlow,
+  CompositeLayout,
 };

@@ -193,6 +193,10 @@ export const StoryboardSceneSchema = z.object({
     'horizontal_bar_race',
     'formula_breakdown',
     'payoff_diagram',
+    'diagram_flow',
+    'process_flow',
+    'timeline',
+    'composite_layout',
   ]),
   concept: z.string().min(5),
   sourceFactIds: z.array(z.string().regex(/^fact-/i)).min(1, 'Every scene must trace to source facts'),
@@ -209,5 +213,50 @@ export const StoryboardSchema = z.object({
   scenes: z.array(StoryboardSceneSchema).min(8, 'Storyboard must contain at least 8 scenes'),
   summarySteps: z.array(z.string().min(10)).min(6).max(8),
   bottomTakeaway: z.string().min(15),
+});
+
+// ===================================================================
+// 5. Visual Creative Brief Schema (visual_creative_brief.json)
+// ===================================================================
+export const VisualMetaphorItemSchema = z.object({
+  metaphor: z.string().min(5),
+  targetConcept: z.string().min(3),
+  groundedFactIds: z.array(z.string().regex(/^fact-/i)).min(1),
+  visualExpression: z.string().optional(),
+});
+
+export const TemplateSelectionPlanItemSchema = z.object({
+  sceneIndex: z.number().nonnegative(),
+  conceptTopology: z.string().min(3),
+  template: z.string().min(3),
+  level: z.enum(['LEVEL_1_EXISTING', 'LEVEL_2_COMPOSITE', 'LEVEL_3_NEW_PROPOSAL']).default('LEVEL_1_EXISTING'),
+  compositionProps: z.record(z.any()).optional(),
+  pedagogicalRationale: z.string().optional(),
+});
+
+export const VisualCreativeBriefSchema = z.object({
+  schemaVersion: z.literal('1.0.0').default('1.0.0'),
+  chapterSlug: z.string().min(2),
+  courseId: z.string().min(2),
+  creativeDirection: z.string().min(10),
+  narrativeStyle: z.string().min(5),
+  visualStorytellingApproach: z.string().min(10),
+  visualMetaphors: z.array(VisualMetaphorItemSchema).min(1),
+  sceneCompositionStrategy: z.string().min(10),
+  animationLanguage: z.string().min(5),
+  courseVisualIdentity: z
+    .object({
+      theme: z.string().optional(),
+      primaryColor: z.string().optional(),
+      accentColor: z.string().optional(),
+      typography: z.string().optional(),
+    })
+    .optional(),
+  templateSelectionPlan: z.array(TemplateSelectionPlanItemSchema).min(3),
+  visualDiversityObjectives: z.object({
+    minUniqueTemplates: z.number().default(5),
+    maxConsecutiveSame: z.number().default(1),
+    maxTemplateSaturation: z.number().default(0.3),
+  }),
 });
 

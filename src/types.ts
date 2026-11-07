@@ -14,7 +14,8 @@ export type TemplateType =
   | 'payoff_diagram'
   | 'diagram_flow'
   | 'process_flow'
-  | 'timeline';
+  | 'timeline'
+  | 'composite_layout';
 
 export interface Meta {
   domain: DomainType | string;
@@ -553,7 +554,8 @@ export type VisualKind =
   | 'cards'
   | 'conversation'
   | 'quiz'
-  | 'summary';
+  | 'summary'
+  | 'composite';
 
 export interface VisualSemantics {
   teachingObjective: string;
@@ -626,6 +628,9 @@ export interface FormulaSpec {
   variables: FormulaVariable[];
   steps?: FormulaStep[];
   activeStepIndex?: number;
+  purpose?: string;
+  assumptions?: string[];
+  interpretation?: string;
 }
 
 export interface DiagramNode {
