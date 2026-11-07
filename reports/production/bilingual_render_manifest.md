@@ -1,14 +1,14 @@
 # Official Bilingual Course Delivery Manifest
 
-**Generated**: 2026-11-07T22:31:11.011Z  
+**Generated**: 2026-11-07T23:06:04.667Z  
 **Governing Standard**: `AGENTS.md` Phase 12 Delivery Contract  
 
 ## 1. Executive Delivery Summary
 
 - **Total Configured Course Chapter Pairs**: 48
-- **Complete Back-to-Back Bilingual Video Pairs Delivered**: 11 pairs
+- **Complete Back-to-Back Bilingual Video Pairs Delivered**: 14 pairs
 - **Total Hindi Videos Rendered**: 47 / 48
-- **Total English Videos Rendered**: 11 / 48
+- **Total English Videos Rendered**: 14 / 48
 
 ## 2. John C. Hull — Fundamentals of Futures & Options Markets
 
@@ -24,11 +24,11 @@
 | `ch04_part2` | [`ch04_part2.mp4` (35.1MB)](../../out/chapters/hull_derivatives/ch04_part2.mp4) | N/A | CONDITIONAL_PASS | [`ch04_part2.mp4` (29.4MB)](../../out/chapters/hull_derivatives_en/ch04_part2.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
 | `ch05_part1` | [`ch05_part1.mp4` (33.6MB)](../../out/chapters/hull_derivatives/ch05_part1.mp4) | N/A | CONDITIONAL_PASS | [`ch05_part1.mp4` (28.1MB)](../../out/chapters/hull_derivatives_en/ch05_part1.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
 | `ch05_part2` | [`ch05_part2.mp4` (45.2MB)](../../out/chapters/hull_derivatives/ch05_part2.mp4) | N/A | CONDITIONAL_PASS | [`ch05_part2.mp4` (41.5MB)](../../out/chapters/hull_derivatives_en/ch05_part2.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
-| `ch06_part1` | [`ch06_part1.mp4` (43.9MB)](../../out/chapters/hull_derivatives/ch06_part1.mp4) | N/A | CONDITIONAL_PASS | ⏳ Pending | N/A | CONDITIONAL_PASS | 🎬 Hindi Only |
-| `ch06_part2` | [`ch06_part2.mp4` (44.5MB)](../../out/chapters/hull_derivatives/ch06_part2.mp4) | N/A | CONDITIONAL_PASS | ⏳ Pending | N/A | CONDITIONAL_PASS | 🎬 Hindi Only |
+| `ch06_part1` | [`ch06_part1.mp4` (43.9MB)](../../out/chapters/hull_derivatives/ch06_part1.mp4) | N/A | CONDITIONAL_PASS | [`ch06_part1.mp4` (39.7MB)](../../out/chapters/hull_derivatives_en/ch06_part1.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
+| `ch06_part2` | [`ch06_part2.mp4` (44.5MB)](../../out/chapters/hull_derivatives/ch06_part2.mp4) | N/A | CONDITIONAL_PASS | [`ch06_part2.mp4` (39.9MB)](../../out/chapters/hull_derivatives_en/ch06_part2.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
 | `ch07_part1` | [`ch07_part1.mp4` (43.6MB)](../../out/chapters/hull_derivatives/ch07_part1.mp4) | N/A | CONDITIONAL_PASS | [`ch07_part1.mp4` (40.8MB)](../../out/chapters/hull_derivatives_en/ch07_part1.mp4) | N/A | NO_QA | ✅ Complete Pair |
-| `ch07_part2` | [`ch07_part2.mp4` (37.3MB)](../../out/chapters/hull_derivatives/ch07_part2.mp4) | N/A | CONDITIONAL_PASS | ⏳ Pending | N/A | NO_QA | 🎬 Hindi Only |
-| `ch08_part1` | ⏳ Pending | N/A | NO_QA | ⏳ Pending | N/A | NO_QA | ⏳ Pending Data |
+| `ch07_part2` | [`ch07_part2.mp4` (37.3MB)](../../out/chapters/hull_derivatives/ch07_part2.mp4) | N/A | CONDITIONAL_PASS | [`ch07_part2.mp4` (34.2MB)](../../out/chapters/hull_derivatives_en/ch07_part2.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
+| `ch08_part1` | ⏳ Pending | N/A | CONDITIONAL_PASS | ⏳ Pending | N/A | CONDITIONAL_PASS | ⏳ Pending Data |
 
 ## 3. John J. Murphy — Technical Analysis of the Financial Markets
 
@@ -36,7 +36,7 @@
 | :--- | :--- | :---: | :---: | :--- | :---: | :---: | :---: |
 | `appendix_ab` | [`appendix_ab.mp4` (18.2MB)](../../out/chapters/murphy_technical_analysis/appendix_ab.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
 | `appendix_cd` | [`appendix_cd.mp4` (21.3MB)](../../out/chapters/murphy_technical_analysis/appendix_cd.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
-| `ch01_part1` | [`ch01_part1.mp4` (23.2MB)](../../out/chapters/murphy_technical_analysis/ch01_part1.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
+| `ch01_part1` | [`ch01_part1.mp4` (23.2MB)](../../out/chapters/murphy_technical_analysis/ch01_part1.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | PASS | 🎬 Hindi Released (EN Audio Ready) |
 | `ch01_part2` | [`ch01_part2.mp4` (23.3MB)](../../out/chapters/murphy_technical_analysis/ch01_part2.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
 | `ch02_part1` | [`ch02_part1.mp4` (20.1MB)](../../out/chapters/murphy_technical_analysis/ch02_part1.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
 | `ch02_part2` | [`ch02_part2.mp4` (25.4MB)](../../out/chapters/murphy_technical_analysis/ch02_part2.mp4) | N/A | CONDITIONAL_PASS | 🎧 Production Ready | N/A | NO_QA | 🎬 Hindi Released (EN Audio Ready) |
