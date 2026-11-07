@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch08_part1",
+  "title": "Securitization, ABS CDOs, and the 2007 Credit Meltdown",
+  "courseId": "hull_derivatives",
+  "targetAudience": "Quantitative Finance Students & Professional Risk Managers",
+  "durationTargetMinutes": 9,
+  "learningObjectives": [
+    "Understand the mechanics of the origin-to-distribute model and SPV waterfall distribution.",
+    "Deconstruct credit subordination across Senior (AAA), Mezzanine (BBB), and Equity tranches.",
+    "Analyze the ABS CDO structure and understand how financial alchemy repackaged BBB risk into AAA debt.",
+    "Trace the subprime crisis roots: teaser rates, NINJA loans, and originator-investor agency conflicts.",
+    "Evaluate default correlation breakdown and calculate exact tranche wipeout losses.",
+    "Examine post-crisis reforms under Basel III and Dodd-Frank skin-in-the-game risk retention."
+  ],
+  "pedagogicalPillars": [
+    {
+      "pillarId": "pillar-1",
+      "title": "The Waterfall Architecture",
+      "concept": "Cash flows and losses are distributed in strict hierarchical priority, subordinating lower tranches.",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ]
+    },
+    {
+      "pillarId": "pillar-2",
+      "title": "The ABS CDO Multiplier",
+      "concept": "Repackaging BBB tranches into secondary CDOs magnified sensitivity to housing market default correlations.",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-05"
+      ]
+    },
+    {
+      "pillarId": "pillar-3",
+      "title": "Mathematical Wipeout Dynamics",
+      "concept": "Collateral losses exceed equity cushions rapidly, causing catastrophic total losses in mezzanine and CDO tranches.",
+      "sourceFactIds": [
+        "fact-06"
+      ]
+    },
+    {
+      "pillarId": "pillar-4",
+      "title": "Institutional & Regulatory Redesign",
+      "concept": "Basel III capital buffers and Dodd-Frank 5% skin-in-the-game mandates re-align originators with investors.",
+      "sourceFactIds": [
+        "fact-07",
+        "fact-08"
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "AAA credit rating means an ABS tranche is completely immune to mortgage defaults.",
+      "rebuttal": "AAA indicates minimal risk under normal historical conditions; in an ABS CDO, a modest 10% collateral default rate across underlying pools can wipe out even AAA senior tranches entirely.",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-06"
+      ]
+    },
+    {
+      "misconception": "Diversification across US states protects against mortgage portfolio defaults.",
+      "rebuttal": "Diversification only works when regional risks are uncorrelated; when national home prices fall simultaneously, default correlations jump to 1.0.",
+      "sourceFactIds": [
+        "fact-05"
+      ]
+    }
+  ],
+  "activeRecallChallenge": {
+    "scenario": "An ABS holds $100M in subprime mortgages structured into 80% Senior (AAA), 15% Mezzanine (BBB), and 5% Equity tranches. Nationwide housing defaults cause total collateral losses of 14% on the portfolio ($14M loss). How much loss is absorbed by each tranche?",
+    "question": "What is the net dollar loss suffered by the Mezzanine tranche?",
+    "options": [
+      "$9 Million loss (Equity absorbs first $5M, Mezzanine absorbs remaining $9M out of $15M, Senior takes $0)",
+      "$14 Million loss (Mezzanine absorbs the entire $14M portfolio loss)",
+      "$5 Million loss (Mezzanine loss is capped at $5M)",
+      "$0 loss (The AAA Senior tranche absorbs all losses first)"
+    ],
+    "correctOptionIndex": 0,
+    "detailedExplanation": "Under the bottom-up loss waterfall, the 5% Equity tranche ($5M) absorbs the first $5M of losses and is 100% wiped out. The remaining $9M of loss ($14M - $5M) is absorbed entirely by the 15% Mezzanine tranche ($15M principal), leaving it with $6M residual value (a 60% loss). The 80% Senior tranche takes $0 loss because cumulative losses (14%) did not breach the 20% subordination attachment point.",
+    "sourceFactIds": [
+      "fact-02",
+      "fact-06"
+    ]
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch05_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T16:28:58.112Z",
+  "bookTitle": "Options, Futures, and Other Derivatives (John C. Hull)",
+  "generalAssumptions": [
+    "Market participants face zero transaction costs and identical borrowing and lending risk-free rates.",
+    "Short selling is permitted with full use of short sale proceeds.",
+    "Arbitrageurs act instantaneously to eliminate any pricing divergence from theoretical no-arbitrage bounds."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Investment vs Consumption Assets",
+      "statement": "An investment asset is an asset held solely for investment purposes by a significant number of investors (e.g., stocks, bonds, gold, silver). A consumption asset is held primarily for consumption or industrial utility (e.g., crude oil, copper, corn). Arbitrage determines exact forward prices for investment assets, but only provides upper bounds for consumption assets.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.1 Investment Assets vs Consumption Assets",
+        "page": 104,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "investment_asset",
+        "consumption_asset",
+        "arbitrage_bounds",
+        "asset_classification"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "market_rule",
+      "topic": "Short Selling Mechanics and Dividend Obligations",
+      "statement": "Short selling involves borrowing securities from an existing owner via a broker and selling them in the market. The short seller must pay all dividends and interest distributions to the lender and must maintain margin collateral until replacing the borrowed securities.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.2 Short Selling",
+        "page": 105,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "short_selling",
+        "stock_borrowing",
+        "dividend_remittance",
+        "margin"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "formula",
+      "topic": "No-Arbitrage Forward Price on Investment Assets with No Income",
+      "statement": "For an investment asset providing no income, the theoretical forward price for a contract maturing at time T is F_0 = S_0 * e^(r*T), where S_0 is the spot price and r is the continuous risk-free rate.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.3 Forward Price for an Investment Asset",
+        "page": 107,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Forward Price Formula (No Income)",
+        "latex": "F_0 = S_0 e^{rT}",
+        "variables": [
+          {
+            "symbol": "F_0",
+            "definition": "Theoretical forward contract price today",
+            "unit": "$"
+          },
+          {
+            "symbol": "S_0",
+            "definition": "Current spot price of the underlying asset",
+            "unit": "$"
+          },
+          {
+            "symbol": "r",
+            "definition": "Continuously compounded risk-free rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "T",
+            "definition": "Maturity of the forward contract in years",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "forward_pricing",
+        "no_income",
+        "spot_forward_parity",
+        "continuous_compounding"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "market_rule",
+      "topic": "Cash-and-Carry vs Reverse Cash-and-Carry Arbitrage",
+      "statement": "If F_0 > S_0 * e^(r*T), an arbitrageur executes cash-and-carry: borrow S_0 at rate r, buy spot asset, short forward at F_0, locking profit F_0 - S_0*e^(r*T). If F_0 < S_0 * e^(r*T), an arbitrageur executes reverse cash-and-carry: short spot asset, invest proceeds at rate r, buy forward at F_0.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.3 Forward Price for an Investment Asset",
+        "page": 108,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "arbitrage",
+        "cash_and_carry",
+        "reverse_cash_and_carry",
+        "lock_profit"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "formula",
+      "topic": "Forward Price with Known Discrete Cash Income",
+      "statement": "When an investment asset provides known cash income with present value I during the contract term, the forward price is F_0 = (S_0 - I) * e^(r*T). Income reduces the effective capital tied up in holding the spot asset.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.4 Known Income",
+        "page": 110,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Forward Price with Known Cash Income",
+        "latex": "F_0 = (S_0 - I) e^{rT}",
+        "variables": [
+          {
+            "symbol": "F_0",
+            "definition": "Theoretical forward price",
+            "unit": "$"
+          },
+          {
+            "symbol": "S_0",
+            "definition": "Current spot asset price",
+            "unit": "$"
+          },
+          {
+            "symbol": "I",
+            "definition": "Present value of all cash income during contract term",
+            "unit": "$"
+          },
+          {
+            "symbol": "r",
+            "definition": "Continuously compounded risk-free interest rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "T",
+            "definition": "Time to maturity in years",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "known_income",
+        "dividend_discounting",
+        "forward_pricing",
+        "coupon_income"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "formula",
+      "topic": "Forward Price with Known Continuous Dividend Yield",
+      "statement": "When an asset provides a known continuous dividend yield at annual rate q, the forward price is F_0 = S_0 * e^((r - q)*T). The cost of carry equals (r - q). If dividend yield exceeds risk-free rate (q > r), the forward price trades at a discount to spot.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.5 Known Dividend Yield",
+        "page": 112,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Forward Price with Continuous Dividend Yield",
+        "latex": "F_0 = S_0 e^{(r - q)T}",
+        "variables": [
+          {
+            "symbol": "F_0",
+            "definition": "Theoretical forward price",
+            "unit": "$"
+          },
+          {
+            "symbol": "S_0",
+            "definition": "Spot price of the asset",
+            "unit": "$"
+          },
+          {
+            "symbol": "r",
+            "definition": "Continuous risk-free interest rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "q",
+            "definition": "Continuous dividend yield per annum",
+            "unit": "%"
+          },
+          {
+            "symbol": "T",
+            "definition": "Contract maturity in years",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "dividend_yield",
+        "continuous_yield",
+        "cost_of_carry",
+        "index_forwards"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "case_study",
+      "topic": "Kidder Peabody's Phantom STRIPs Glitch (Snapshot 5.1)",
+      "statement": "Between 1992 and 1994, government bond trader Joseph Jett at Kidder Peabody exploited a computer system valuation error where forward reconstitution of stripped Treasury bonds was booked at full undiscounted future value on trade date. This created $350 million in fictitious accounting profits, concealing a real $210 million trading loss and forcing parent General Electric to liquidate the firm.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "Snapshot 5.1 Kidder Peabody's Fictitious Profits",
+        "page": 109,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "kidder_peabody",
+        "joseph_jett",
+        "phantom_profits",
+        "strips",
+        "accounting_fraud"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "case_study",
+      "topic": "Short Squeezes and Repo Special Rates (Snapshot 5.2)",
+      "statement": "When market participants heavily short a specific Treasury bond, demand to borrow that issue in repo markets skyrockets, driving its repo rate far below general collateral rates (trading 'on special' or even negative). Short sellers face severe borrowing fees or forced delivery liquidations (short squeeze).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "Snapshot 5.2 A Short Squeeze",
+        "page": 106,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "short_squeeze",
+        "repo_special",
+        "borrowing_fee",
+        "treasury_squeeze"
+      ]
+    }
+  ]
+}

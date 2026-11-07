@@ -1,0 +1,259 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch03_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T10:45:21.437Z",
+  "bookTitle": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "generalAssumptions": [
+    "Futures contracts are traded on organized exchanges with daily marking-to-market.",
+    "Bona fide hedgers enjoy lower margin requirements than speculators.",
+    "Physical spot and futures prices converge at contract maturity."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Definition of Hedging",
+      "statement": "Hedgers enter into financial derivative contracts (forwards, futures, or options) to reduce or eliminate financial risk arising from potential adverse price movements in an underlying market variable.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets",
+        "chapter": "3",
+        "section": "3.1",
+        "page": 49,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "hedging",
+        "risk_management",
+        "futures"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "definition",
+      "topic": "Short Hedge Principle",
+      "statement": "A short hedge is appropriate when the hedger already owns an asset (or expects to produce or own it in the future) and expects to sell it at a future date. The hedger takes a short futures position to protect against a potential decline in price.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets",
+        "chapter": "3",
+        "section": "3.1",
+        "page": 49,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "short_hedge",
+        "selling",
+        "farmer",
+        "producer"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "definition",
+      "topic": "Long Hedge Principle",
+      "statement": "A long hedge is appropriate when a company knows it will have to purchase an asset in the future and wants to lock in the price now. The hedger takes a long futures position to protect against a potential rise in price.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets",
+        "chapter": "3",
+        "section": "3.1",
+        "page": 50,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "long_hedge",
+        "purchasing",
+        "utility",
+        "consumer"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "claim",
+      "topic": "Corporate Hedging — Arguments Against",
+      "statement": "Shareholders are typically well diversified across multiple assets and can diversify away unsystematic risk on their own; if corporate management hedges risks that shareholders can diversify, it incurs transaction costs without adding shareholder value. Furthermore, if industry competitors do not hedge, a hedged firm faces competitive exposure when prices move favorably.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets",
+        "chapter": "3",
+        "section": "3.2",
+        "page": 52,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "corporate_finance",
+        "shareholder_diversification",
+        "agency_theory"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "claim",
+      "topic": "Corporate Hedging — Arguments For",
+      "statement": "Corporate hedging stabilizes cash flows, reduces the probability of costly financial distress or bankruptcy, preserves debt capacity, and ensures sufficient internal cash flow to fund valuable capital projects without needing expensive external financing.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets",
+        "chapter": "3",
+        "section": "3.2",
+        "page": 53,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "cash_flow_stabilization",
+        "financial_distress",
+        "underinvestment"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "case_study",
+      "topic": "Business Snapshot 3.1: Hedging by Gold Mining Companies",
+      "statement": "Gold mining companies historically hedged future production by entering into forward sales with banks. Banks hedged by borrowing gold from central banks at the gold lease rate, selling it spot, and investing cash. During sustained gold bull markets, heavily hedged miners suffered severe shareholder backlash because investors bought gold mining shares specifically for unhedged upside exposure to rising gold prices.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets",
+        "chapter": "3",
+        "section": "Business Snapshot 3.1",
+        "page": 55,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "gold_mining",
+        "barrick_gold",
+        "lease_rate",
+        "central_banks"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "formula",
+      "topic": "Mathematical Definition of Basis",
+      "statement": "The basis in a hedging situation is defined as: Basis = Spot price of asset to be hedged minus Futures price of contract used (b_t = S_t - F_t). At expiration T, spot and futures prices converge, so the basis approaches zero (b_T = 0).",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets",
+        "chapter": "3",
+        "section": "3.3",
+        "page": 55,
+        "provenance": "verified_book_excerpt"
+      },
+      "formulaDetails": {
+        "name": "Basis Formula",
+        "latex": "b_t = S_t - F_t",
+        "variables": [
+          {
+            "symbol": "b_t",
+            "definition": "Basis at time t",
+            "unit": "$ / bushel or unit"
+          },
+          {
+            "symbol": "S_t",
+            "definition": "Spot price of the asset at time t",
+            "unit": "$ / unit"
+          },
+          {
+            "symbol": "F_t",
+            "definition": "Futures price of the contract at time t",
+            "unit": "$ / unit"
+          }
+        ],
+        "assumptions": [
+          "Spot and futures asset specifications match or closely correlate."
+        ]
+      },
+      "tags": [
+        "basis",
+        "convergence",
+        "spot_price",
+        "futures_price"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "formula",
+      "topic": "Effective Price Received / Paid with Hedging",
+      "statement": "For a short hedge, the net price realized is S_2 + (F_1 - F_2) = F_1 + (S_2 - F_2) = F_1 + b_2. For a long hedge, the net price paid is S_2 - (F_2 - F_1) = F_1 + (S_2 - F_2) = F_1 + b_2. The ultimate economic outcome is locked into the initial futures price F_1 plus the final basis b_2.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets",
+        "chapter": "3",
+        "section": "3.3",
+        "page": 56,
+        "provenance": "verified_book_excerpt"
+      },
+      "formulaDetails": {
+        "name": "Effective Hedged Price Formula",
+        "latex": "P_{\\text{net}} = F_1 + b_2",
+        "variables": [
+          {
+            "symbol": "P_{\\text{net}}",
+            "definition": "Effective net price received (short) or paid (long)",
+            "unit": "$ / unit"
+          },
+          {
+            "symbol": "F_1",
+            "definition": "Initial futures price locked at hedge inception t_1",
+            "unit": "$ / unit"
+          },
+          {
+            "symbol": "b_2",
+            "definition": "Final basis at hedge closeout t_2 (S_2 - F_2)",
+            "unit": "$ / unit"
+          }
+        ],
+        "assumptions": [
+          "Position is closed prior to physical delivery."
+        ]
+      },
+      "numericalDetails": {
+        "values": {
+          "F1": 4.2,
+          "S2": 3.8,
+          "F2": 3.82,
+          "b2": -0.02,
+          "Pnet": 4.18
+        },
+        "units": "$ / bushel",
+        "contractSize": 5000,
+        "context": "Hull Chapter 3 corn farmer short hedge numerical example."
+      },
+      "tags": [
+        "effective_price",
+        "net_realized",
+        "basis_formula"
+      ]
+    },
+    {
+      "id": "fact-09",
+      "category": "market_rule",
+      "topic": "Strengthening vs Weakening of the Basis",
+      "statement": "Strengthening of the basis means (S_2 - F_2) > (S_1 - F_1) (basis increases); this improves the net selling price for a short hedger and worsens the net purchase cost for a long hedger. Weakening of the basis means (S_2 - F_2) < (S_1 - F_1) (basis decreases); this reduces the net selling price for a short hedger and improves the net purchase cost for a long hedger.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets",
+        "chapter": "3",
+        "section": "3.3",
+        "page": 56,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "strengthening_basis",
+        "weakening_basis",
+        "hedging_outcomes"
+      ]
+    },
+    {
+      "id": "fact-10",
+      "category": "claim",
+      "topic": "Basis Risk Transformation",
+      "statement": "Hedging does not eliminate all uncertainty; it substitutes basis risk (uncertainty about b_2 = S_2 - F_2) for price risk (uncertainty about S_2). Because basis volatility is typically significantly lower than spot price volatility, hedging substantially lowers total exposure.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets",
+        "chapter": "3",
+        "section": "3.3",
+        "page": 57,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "basis_risk",
+        "price_risk",
+        "variance_reduction"
+      ]
+    }
+  ]
+}

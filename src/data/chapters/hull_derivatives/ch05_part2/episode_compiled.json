@@ -1,0 +1,3687 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives",
+    "chapter": "CHAPTER 5 · PART 2",
+    "chapterTitle": "Determination of Forward and Futures Prices: Part 2",
+    "domain": "finance",
+    "primaryColor": "#0F766E",
+    "accentColor": "#F59E0B",
+    "narrationLanguage": "hi-IN-devanagari"
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "The Profit on Paper Dilemma",
+      "template": "chat_story",
+      "badge": "Equity Derivatives Desk",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "शर्मा जी! तीन महीने पहले मैंने पचास डॉलर पर फॉरवर्ड खरीदा था। आज स्पॉट तिरपन डॉलर हो गया। क्या मुझे तीन डॉलर का मुनाफा मिल गया?",
+          "en_subtitle": "Sharma ji, 3 months ago I bought a forward at $50. Today spot is $53. Do I have $3 profit?",
+          "en_narration": "Sharma ji, three months ago I bought a forward contract at fifty dollars. Today spot reached fifty-three dollars. Can I pocket three dollars in profit today?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju reviews his paper trading gains —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji! Spot jumped from $50 to $53. Can I liquidate and pocket $3 right now?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji! Spot jumped from $50 to $53. Can I liquidate and pocket $3 right now?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present misconception that spot minus strike is immediate cash value before maturity",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "67d8d3916821bd0f",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b01.mp3",
+          "audioDurationSec": 12.94,
+          "durationInFrames": 401,
+          "subtitlePhrases": [
+            {
+              "text": "Sharma ji,",
+              "startMs": 0,
+              "endMs": 1454
+            },
+            {
+              "text": "3 months ago I bought a forward at $50. Today spot is $53. Do I have $3 profit?",
+              "startMs": 1454,
+              "endMs": 12940
+            }
+          ]
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "ठहरो राजू! फॉरवर्ड का पेमेंट तो मैच्योरिटी पर होगा। इसलिए उस पचास डॉलर की स्ट्राइक को आज की तारीख में डिस्काउंट करना पड़ेगा।",
+          "en_subtitle": "Hold on Raju! Forward delivery occurs at maturity; delivery strike must be discounted.",
+          "en_narration": "Hold on Raju! Forward settlement happens at maturity. The delivery strike must be discounted back to today's present value.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji explains time value discounting —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji! Spot jumped from $50 to $53. Can I liquidate and pocket $3 right now?",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Not so fast Raju! Delivery strike K is paid at maturity T. Its present value must be discounted by e^(-r*tau).",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji! Spot jumped from $50 to $53. Can I liquidate and pocket $3 right now?",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Not so fast Raju! Delivery strike K is paid at maturity T. Its present value must be discounted by e^(-r*tau).",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Establish that forward strike payment is deferred and requires discounting",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "20716cea59a70122",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b02.mp3",
+          "audioDurationSec": 11.45,
+          "durationInFrames": 356,
+          "subtitlePhrases": [
+            {
+              "text": "Hold on Raju! Forward delivery occurs at maturity;",
+              "startMs": 0,
+              "endMs": 6735
+            },
+            {
+              "text": "delivery strike must be discounted.",
+              "startMs": 6735,
+              "endMs": 11450
+            }
+          ]
+        },
+        {
+          "id": "b03",
+          "hindi_tts": "अगर आज कॉन्ट्रैक्ट बेचना या सेटल करना है, तो हमें फॉरवर्ड कॉन्ट्रैक्ट की सही वैल्यू f निकालनी होगी। चलो इसका फार्मूला देखते हैं।",
+          "en_subtitle": "To value or unwind a forward mid-life, we calculate its true mark-to-market value f.",
+          "en_narration": "To value or unwind an existing forward contract mid-life, we must compute its true mark-to-market value f. Let us examine the exact formula.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "stageDirections": [
+              "— Transitioning to mathematical derivation —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Spot is $53, strike was $50. How much is the contract actually worth today?",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Because the strike payment is deferred, the contract is worth $3.74 today, not $3.00! Let's examine the math.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Spot is $53, strike was $50. How much is the contract actually worth today?",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Because the strike payment is deferred, the contract is worth $3.74 today, not $3.00! Let's examine the math.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Preview numerical result and transition to formula breakdown",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "510f0723f82fadb1",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b03.mp3",
+          "audioDurationSec": 11.26,
+          "durationInFrames": 353,
+          "subtitlePhrases": [
+            {
+              "text": "To value or unwind a forward mid-life,",
+              "startMs": 0,
+              "endMs": 5155
+            },
+            {
+              "text": "we calculate its true mark-to-market value f.",
+              "startMs": 5155,
+              "endMs": 11260
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Valuing Forward Contracts Mid-Life",
+      "template": "formula_breakdown",
+      "badge": "Contract Valuation",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "शुरुआत में फॉरवर्ड कॉन्ट्रैक्ट की वैल्यू जीरो होती है, क्योंकि डिलीवरी प्राइस K को उस वक्त के फॉरवर्ड भाव के बराबर तय किया जाता है।",
+          "en_subtitle": "At inception, forward contract value is zero because delivery strike K equals F_0.",
+          "en_narration": "At inception, the market value of a forward contract is exactly zero, because delivery strike K is set equal to the theoretical forward price.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Forward Contract Mid-Life Value",
+            "expression": "f = S_t - K e^{-r(T - t)}",
+            "variables": [
+              {
+                "symbol": "f",
+                "label": "Contract Value",
+                "description": "Current market value of existing forward contract",
+                "unit": "$"
+              },
+              {
+                "symbol": "S_t",
+                "label": "Current Spot",
+                "description": "Spot price of underlying asset today",
+                "unit": "$"
+              },
+              {
+                "symbol": "K",
+                "label": "Delivery Strike",
+                "description": "Agreed forward purchase price fixed at inception",
+                "unit": "$"
+              },
+              {
+                "symbol": "r",
+                "label": "Risk-Free Rate",
+                "description": "Continuous risk-free interest rate",
+                "unit": "%"
+              },
+              {
+                "symbol": "T - t",
+                "label": "Remaining Time",
+                "description": "Time left until maturity tau",
+                "unit": "years"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Inception Value",
+                "equation": "f_0 = 0",
+                "note": "Delivery strike K is chosen so initial contract value is zero."
+              }
+            ],
+            "assumptions": [
+              "Spot asset can be sold or borrowed freely at continuous rate r."
+            ],
+            "interpretation": "Value f tracks cumulative unrealized mark-to-market gain or loss."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Forward Contract Mid-Life Value",
+              "expression": "f = S_t - K e^{-r(T - t)}",
+              "variables": [
+                {
+                  "symbol": "f",
+                  "label": "Contract Value",
+                  "description": "Current market value of existing forward contract",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "S_t",
+                  "label": "Current Spot",
+                  "description": "Spot price of underlying asset today",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "K",
+                  "label": "Delivery Strike",
+                  "description": "Agreed forward purchase price fixed at inception",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "r",
+                  "label": "Risk-Free Rate",
+                  "description": "Continuous risk-free interest rate",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "T - t",
+                  "label": "Remaining Time",
+                  "description": "Time left until maturity tau",
+                  "unit": "years"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Inception Value",
+                  "equation": "f_0 = 0",
+                  "note": "Delivery strike K is chosen so initial contract value is zero."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present fundamental mid-life forward valuation equation",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "e3cf92d1e653fb6f",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b04.mp3",
+          "audioDurationSec": 9.94,
+          "durationInFrames": 311,
+          "subtitlePhrases": [
+            {
+              "text": "At inception,",
+              "startMs": 0,
+              "endMs": 1595
+            },
+            {
+              "text": "forward contract value is zero because delivery strike K equals F_0.",
+              "startMs": 1595,
+              "endMs": 9940
+            }
+          ]
+        },
+        {
+          "id": "b05",
+          "hindi_tts": "लेकिन समय बीतने के साथ स्पॉट भाव बदलता है। लॉन्ग फॉरवर्ड का मूल्य है: f बराबर S-t माइनस K गुणा e की पावर माइनस r गुणा T माइनस t।",
+          "en_subtitle": "Formula: Long forward value f equals S_t minus K times e to the power minus r(T-t).",
+          "en_narration": "As time elapses, the spot price fluctuates. The value of an existing long forward contract equals S_t minus K times e to the power minus r times remaining time tau.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Spot Minus Discounted Strike",
+            "expression": "f = S_t - K e^{-r\\tau}",
+            "variables": [
+              {
+                "symbol": "S_t",
+                "label": "Spot Asset",
+                "description": "Current value of underlying asset",
+                "unit": "$"
+              },
+              {
+                "symbol": "K e^{-r\\tau}",
+                "label": "PV of Strike",
+                "description": "Present discounted value of strike payment",
+                "unit": "$"
+              },
+              {
+                "symbol": "f",
+                "label": "Net Value",
+                "description": "Mark-to-market position value",
+                "unit": "$"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 1,
+                "label": "Cash Replication",
+                "equation": "f = S_t - K e^{-r\\tau}",
+                "note": "Equivalent to holding spot asset financed by debt equal to PV(K)."
+              }
+            ],
+            "assumptions": [
+              "Risk-free rate r applies continuously over remaining period tau."
+            ],
+            "interpretation": "Because payment K is delayed, the strike is discounted by e^(-r*tau)."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Spot Minus Discounted Strike",
+              "expression": "f = S_t - K e^{-r\\tau}",
+              "variables": [
+                {
+                  "symbol": "S_t",
+                  "label": "Spot Asset",
+                  "description": "Current value of underlying asset",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "K e^{-r\\tau}",
+                  "label": "PV of Strike",
+                  "description": "Present discounted value of strike payment",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "f",
+                  "label": "Net Value",
+                  "description": "Mark-to-market position value",
+                  "unit": "$"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 1,
+                  "label": "Cash Replication",
+                  "equation": "f = S_t - K e^{-r\\tau}",
+                  "note": "Equivalent to holding spot asset financed by debt equal to PV(K)."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Explain financial replication logic of holding spot minus discounted debt",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "767cebdb53c11793",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b05.mp3",
+          "audioDurationSec": 13.1,
+          "durationInFrames": 405,
+          "subtitlePhrases": [
+            {
+              "text": "Formula: Long forward value f equals",
+              "startMs": 0,
+              "endMs": 5822
+            },
+            {
+              "text": "S_t minus K times e to",
+              "startMs": 5822,
+              "endMs": 9380
+            },
+            {
+              "text": "the power minus r(T-t).",
+              "startMs": 9380,
+              "endMs": 13100
+            }
+          ]
+        },
+        {
+          "id": "b06",
+          "hindi_tts": "राजू के केस में: स्पॉट 53 डॉलर, स्ट्राइक 50 डॉलर, ब्याज 6 परसेंट और 3 महीने बाकी। 50 डॉलर का वर्तमान मूल्य 49.26 डॉलर हुआ, तो कॉन्ट्रैक्ट वैल्यू प्लस 3.74 डॉलर निकली!",
+          "en_subtitle": "With spot $53, strike $50 discounted to $49.26 at 6%, contract value is +$3.74.",
+          "en_narration": "In Raju's case, spot is $53, strike is $50, rate is 6%, and 3 months remain. The present value of $50 is $49.26, yielding a contract value of positive $3.74!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Hull Numerical Example",
+            "expression": "f = 53 - 50 e^{-0.015} = +3.74",
+            "variables": [
+              {
+                "symbol": "S_t",
+                "label": "Spot",
+                "description": "Current stock price",
+                "unit": "$53.00"
+              },
+              {
+                "symbol": "PV(K)",
+                "label": "PV of Strike",
+                "description": "50 * e^(-0.06 * 0.25)",
+                "unit": "$49.26"
+              },
+              {
+                "symbol": "f",
+                "label": "Contract Value",
+                "description": "53 - 49.26",
+                "unit": "+$3.74"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 2,
+                "label": "Numerical Proof",
+                "equation": "53 - 49.26 = +3.74",
+                "note": "Raju gains $3.74, higher than naive $3.00 due to interest savings!"
+              }
+            ],
+            "assumptions": [
+              "Stock pays no dividends over the remaining 3 months."
+            ],
+            "interpretation": "Value exceeds spot spread because paying $50 in 3 months saves interest."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Hull Numerical Example",
+              "expression": "f = 53 - 50 e^{-0.015} = +3.74",
+              "variables": [
+                {
+                  "symbol": "S_t",
+                  "label": "Spot",
+                  "description": "Current stock price",
+                  "unit": "$53.00"
+                },
+                {
+                  "symbol": "PV(K)",
+                  "label": "PV of Strike",
+                  "description": "50 * e^(-0.06 * 0.25)",
+                  "unit": "$49.26"
+                },
+                {
+                  "symbol": "f",
+                  "label": "Contract Value",
+                  "description": "53 - 49.26",
+                  "unit": "+$3.74"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 2,
+                  "label": "Numerical Proof",
+                  "equation": "53 - 49.26 = +3.74",
+                  "note": "Raju gains $3.74, higher than naive $3.00 due to interest savings!"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Execute precise Hull numerical proof for mid-life forward valuation",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "c679b5b86cd1ce2a",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b06.mp3",
+          "audioDurationSec": 17.06,
+          "durationInFrames": 527,
+          "subtitlePhrases": [
+            {
+              "text": "With spot $53,",
+              "startMs": 0,
+              "endMs": 3102
+            },
+            {
+              "text": "strike $50 discounted to $49.26 at 6%,",
+              "startMs": 3102,
+              "endMs": 11521
+            },
+            {
+              "text": "contract value is +$3.74.",
+              "startMs": 11521,
+              "endMs": 17060
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "Forward Price vs Contract Value",
+      "template": "split_comparison",
+      "badge": "Core Terminology Distinction",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "डेरिवेटिव्स में नए ट्रेडर्स अक्सर फॉरवर्ड प्राइस F और कॉन्ट्रैक्ट वैल्यू f के बीच भ्रमित हो जाते हैं। इन दोनों में जमीन-आसमान का फर्क है।",
+          "en_subtitle": "Novice traders often confuse Forward Price F with Contract Value f. They are fundamentally different.",
+          "en_narration": "Novice traders frequently confuse Forward Price F with Contract Value f. They represent entirely different economic concepts.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftCard": {
+              "title": "Forward Price (F_t)",
+              "subtitle": "New Agreement Delivery Price",
+              "tag": "Entry Metric",
+              "color": "#0F766E",
+              "points": [
+                "Agreed transaction price for future delivery.",
+                "Set by market so that initial value equals zero (f = 0).",
+                "Changes daily as market expectations and spot prices shift."
+              ]
+            },
+            "rightCard": {
+              "title": "Contract Value (f)",
+              "subtitle": "Existing Position Mark-to-Market",
+              "tag": "Balance Sheet P&L",
+              "color": "#F59E0B",
+              "points": [
+                "The economic dollar worth of an existing contract today.",
+                "Starts at zero at inception (t = 0).",
+                "Can turn heavily positive or negative as spot moves away from strike K."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Forward Price F_t",
+              "rightLabel": "Contract Value f",
+              "contrast": "Delivery price for new contracts vs MTM value of existing commitments"
+            },
+            "semantics": {
+              "teachingObjective": "Contrast delivery price against mark-to-market contract value",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "cba54e6d71c78fb5",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b07.mp3",
+          "audioDurationSec": 11.93,
+          "durationInFrames": 370,
+          "subtitlePhrases": [
+            {
+              "text": "Novice traders often confuse Forward",
+              "startMs": 0,
+              "endMs": 4338
+            },
+            {
+              "text": "Price F with Contract Value",
+              "startMs": 4338,
+              "endMs": 7592
+            },
+            {
+              "text": "f. They are fundamentally different.",
+              "startMs": 7592,
+              "endMs": 11930
+            }
+          ]
+        },
+        {
+          "id": "b08",
+          "hindi_tts": "फॉरवर्ड प्राइस वह भाव है जिस पर नया कॉन्ट्रैक्ट बिना किसी upfront पैसे के तय होता है। यह हर दिन बाजार के साथ बदलता रहता है।",
+          "en_subtitle": "Forward price is the delivery price that gives a new contract zero initial cost.",
+          "en_narration": "The forward price is the delivery price that makes a brand new contract cost zero to enter. It recalibrates continuously as spot prices move.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftCard": {
+              "title": "Forward Price (F_t)",
+              "subtitle": "New Agreement Delivery Price",
+              "tag": "Zero Upfront Cost",
+              "color": "#0F766E",
+              "points": [
+                "Formula: F_t = S_t · e^(r·tau).",
+                "Requires zero initial cash transfer between counterparties.",
+                "Represents current cost of carry from today until maturity."
+              ]
+            },
+            "rightCard": {
+              "title": "Contract Value (f)",
+              "subtitle": "Existing Position Mark-to-Market",
+              "tag": "Balance Sheet P&L",
+              "color": "#F59E0B",
+              "points": [
+                "Formula: f = (F_t - K) · e^(-r·tau).",
+                "Measures the cash needed to close out or transfer the contract today.",
+                "Becomes positive if spot rises above delivery strike K."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Zero Inception Value",
+              "rightLabel": "Accumulated Value f",
+              "contrast": "F_t sets zero cost; f discounts the spread (F_t - K)"
+            },
+            "semantics": {
+              "teachingObjective": "Explain how F_t establishes parity and f measures divergence from locked strike",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "bafcdada3f69e03d",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b08.mp3",
+          "audioDurationSec": 11.86,
+          "durationInFrames": 368,
+          "subtitlePhrases": [
+            {
+              "text": "Forward price is the delivery",
+              "startMs": 0,
+              "endMs": 4409
+            },
+            {
+              "text": "price that gives a new",
+              "startMs": 4409,
+              "endMs": 7754
+            },
+            {
+              "text": "contract zero initial cost.",
+              "startMs": 7754,
+              "endMs": 11860
+            }
+          ]
+        },
+        {
+          "id": "b09",
+          "hindi_tts": "जबकि कॉन्ट्रैक्ट वैल्यू f आपकी पुरानी पोजीशन का आज का नकद मूल्य है: f बराबर F-t माइनस K गुणा e की पावर माइनस r-टाऊ।",
+          "en_subtitle": "Contract value f is the present value of the spread between new forward price and strike K.",
+          "en_narration": "In contrast, contract value f represents the present value of the spread between the current forward price F_t and your locked strike K.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftCard": {
+              "title": "Forward Price (F_t)",
+              "subtitle": "Benchmark Price",
+              "tag": "Today's Quote",
+              "color": "#0F766E",
+              "points": [
+                "New forward price for 3 months: $53 · e^(0.06·0.25) = $53.80.",
+                "Zero value for anyone entering the trade today.",
+                "Pure benchmark for future settlement."
+              ]
+            },
+            "rightCard": {
+              "title": "Contract Value (f)",
+              "subtitle": "Raju's Locked Position",
+              "tag": "Cash Worth = +$3.74",
+              "color": "#F59E0B",
+              "points": [
+                "Spread: ($53.80 - $50.00) = $3.80 at maturity.",
+                "Discounted spread: $3.80 · e^(-0.015) = +$3.74 today.",
+                "Both formula paths yield the exact identical mark-to-market value!"
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Spread: F_t - K",
+              "rightLabel": "Discounted MTM: f",
+              "contrast": "f = (F_t - K) * e^(-r*tau) identical to S_t - K*e^(-r*tau)"
+            },
+            "semantics": {
+              "teachingObjective": "Prove mathematical equivalence of both forward valuation expressions",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "abf8006ee4ca0365",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b09.mp3",
+          "audioDurationSec": 10.13,
+          "durationInFrames": 319,
+          "subtitlePhrases": [
+            {
+              "text": "Contract value f is the present",
+              "startMs": 0,
+              "endMs": 3528
+            },
+            {
+              "text": "value of the spread between new",
+              "startMs": 3528,
+              "endMs": 7056
+            },
+            {
+              "text": "forward price and strike K.",
+              "startMs": 7056,
+              "endMs": 10130
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Stock Index Futures Pricing",
+      "template": "formula_breakdown",
+      "badge": "Index Derivatives",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "अब स्टॉक इंडेक्स फ्यूचर्स को समझें। एसएंडपी 500 या निफ्टी जैसे इंडेक्स किसी एक शेयर के बजाय सैकड़ों शेयर्स का पोर्टफोलियो होते हैं।",
+          "en_subtitle": "Stock indices like the S&P 500 or Nifty represent diversified portfolios paying continuous dividends.",
+          "en_narration": "Now consider stock index futures. Indices like the S&P 500 or Nifty represent diversified baskets of hundreds of stocks paying ongoing dividends.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Stock Index Futures Pricing",
+            "expression": "F_0 = S_0 e^{(r - q)T}",
+            "variables": [
+              {
+                "symbol": "F_0",
+                "label": "Index Futures Price",
+                "description": "Theoretical index futures price",
+                "unit": "points"
+              },
+              {
+                "symbol": "S_0",
+                "label": "Spot Index Level",
+                "description": "Current cash index level",
+                "unit": "points"
+              },
+              {
+                "symbol": "r",
+                "label": "Risk-Free Rate",
+                "description": "Continuous risk-free interest rate",
+                "unit": "%"
+              },
+              {
+                "symbol": "q",
+                "label": "Dividend Yield",
+                "description": "Continuous dividend yield of index portfolio",
+                "unit": "%"
+              },
+              {
+                "symbol": "T",
+                "label": "Maturity",
+                "description": "Time to delivery",
+                "unit": "years"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Index Parity",
+                "equation": "F_0 = S_0 e^{(r - q)T}",
+                "note": "Constituent stock dividends continuous cash inflows modeled by q."
+              }
+            ],
+            "assumptions": [
+              "Broad diversification allows discrete dividends to be modeled as continuous yield."
+            ],
+            "interpretation": "Dividend yield q offsets interest borrowing cost r in the carry formula."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Stock Index Futures Pricing",
+              "expression": "F_0 = S_0 e^{(r - q)T}",
+              "variables": [
+                {
+                  "symbol": "F_0",
+                  "label": "Index Futures Price",
+                  "description": "Theoretical index futures price",
+                  "unit": "points"
+                },
+                {
+                  "symbol": "S_0",
+                  "label": "Spot Index Level",
+                  "description": "Current cash index level",
+                  "unit": "points"
+                },
+                {
+                  "symbol": "r",
+                  "label": "Risk-Free Rate",
+                  "description": "Continuous risk-free interest rate",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "q",
+                  "label": "Dividend Yield",
+                  "description": "Continuous dividend yield of index portfolio",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "T",
+                  "label": "Maturity",
+                  "description": "Time to delivery",
+                  "unit": "years"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Index Parity",
+                  "equation": "F_0 = S_0 e^{(r - q)T}",
+                  "note": "Constituent stock dividends continuous cash inflows modeled by q."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce index futures pricing formula with continuous dividend yield",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "952e5e8263f097ef",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b10.mp3",
+          "audioDurationSec": 11.81,
+          "durationInFrames": 367,
+          "subtitlePhrases": [
+            {
+              "text": "Stock indices like the S&P",
+              "startMs": 0,
+              "endMs": 3102
+            },
+            {
+              "text": "500 or Nifty represent diversified",
+              "startMs": 3102,
+              "endMs": 7158
+            },
+            {
+              "text": "portfolios paying continuous dividends.",
+              "startMs": 7158,
+              "endMs": 11810
+            }
+          ]
+        },
+        {
+          "id": "b11",
+          "hindi_tts": "क्योंकि अलग-अलग कंपनियां साल भर डिविडेंड बांटती हैं, इसलिए इंडेक्स के डिविडेंड को कंटीन्यूअस डिविडेंड यील्ड q माना जाता है।",
+          "en_subtitle": "Because constituent companies pay dividends throughout the year, dividends are modeled as continuous yield q.",
+          "en_narration": "Because constituent companies distribute cash dividends on different dates, index dividends are accurately modeled as a continuous yield q.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Cost of Carry for Stock Indices",
+            "expression": "c = r - q \\implies F_0 = S_0 e^{cT}",
+            "variables": [
+              {
+                "symbol": "c",
+                "label": "Cost of Carry",
+                "description": "Net cost of carrying spot index position",
+                "unit": "%"
+              },
+              {
+                "symbol": "r",
+                "label": "Financing Cost",
+                "description": "Cash borrowing cost",
+                "unit": "%"
+              },
+              {
+                "symbol": "q",
+                "label": "Dividend Yield",
+                "description": "Cash inflow from portfolio",
+                "unit": "%"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 1,
+                "label": "Net Carry Cost",
+                "equation": "c = r - q",
+                "note": "Financing costs are directly offset by dividend receipts."
+              }
+            ],
+            "assumptions": [
+              "Dividends are reinvested continuously at the risk-free rate."
+            ],
+            "interpretation": "If q > r, net cost of carry is negative, causing futures to trade below spot."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Cost of Carry for Stock Indices",
+              "expression": "c = r - q \\implies F_0 = S_0 e^{cT}",
+              "variables": [
+                {
+                  "symbol": "c",
+                  "label": "Cost of Carry",
+                  "description": "Net cost of carrying spot index position",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "r",
+                  "label": "Financing Cost",
+                  "description": "Cash borrowing cost",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "q",
+                  "label": "Dividend Yield",
+                  "description": "Cash inflow from portfolio",
+                  "unit": "%"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 1,
+                  "label": "Net Carry Cost",
+                  "equation": "c = r - q",
+                  "note": "Financing costs are directly offset by dividend receipts."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Define net cost of carry c = r - q for index futures",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "db3c6de09c38ad59",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b11.mp3",
+          "audioDurationSec": 9.77,
+          "durationInFrames": 306,
+          "subtitlePhrases": [
+            {
+              "text": "Because constituent companies pay dividends throughout the year,",
+              "startMs": 0,
+              "endMs": 5790
+            },
+            {
+              "text": "dividends are modeled as continuous yield q.",
+              "startMs": 5790,
+              "endMs": 9770
+            }
+          ]
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "फार्मूला बनता है: F-जीरो बराबर S-जीरो गुणा e की पावर r माइनस q गुणा T। अगर डिविडेंड यील्ड ब्याज से ज्यादा हो, तो फ्यूचर्स स्पॉट से सस्ता बिकेगा!",
+          "en_subtitle": "Formula: F_0 = S_0 * e^((r - q)T). If dividend yield exceeds interest rate, futures trade below spot.",
+          "en_narration": "The pricing formula is F zero equals S zero times e to the power r minus q times T. If dividend yield exceeds the interest rate, futures trade at a discount to spot!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Index Pricing Regimes",
+            "expression": "q > r \\implies F_0 < S_0",
+            "variables": [
+              {
+                "symbol": "q",
+                "label": "Dividend Yield",
+                "description": "Portfolio dividend payout",
+                "unit": "%"
+              },
+              {
+                "symbol": "r",
+                "label": "Risk-Free Rate",
+                "description": "Borrowing rate",
+                "unit": "%"
+              },
+              {
+                "symbol": "F_0",
+                "label": "Futures Price",
+                "description": "Trading below cash index S_0",
+                "unit": "points"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 2,
+                "label": "Discount Condition",
+                "equation": "r - q < 0",
+                "note": "Negative carry makes futures systematically cheaper than cash spot."
+              }
+            ],
+            "assumptions": [
+              "Index portfolio replication has zero tracking error."
+            ],
+            "interpretation": "Common in high-dividend equity indices like the FTSE 100 or Australian ASX 200."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Index Pricing Regimes",
+              "expression": "q > r \\implies F_0 < S_0",
+              "variables": [
+                {
+                  "symbol": "q",
+                  "label": "Dividend Yield",
+                  "description": "Portfolio dividend payout",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "r",
+                  "label": "Risk-Free Rate",
+                  "description": "Borrowing rate",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "F_0",
+                  "label": "Futures Price",
+                  "description": "Trading below cash index S_0",
+                  "unit": "points"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 2,
+                  "label": "Discount Condition",
+                  "equation": "r - q < 0",
+                  "note": "Negative carry makes futures systematically cheaper than cash spot."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate when index futures trade at a discount to cash index",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "09abb58a8906e188",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b12.mp3",
+          "audioDurationSec": 12.34,
+          "durationInFrames": 386,
+          "subtitlePhrases": [
+            {
+              "text": "Formula: F_0 = S_0 * e^((r - q)T). If dividend yield exceeds interest rate,",
+              "startMs": 0,
+              "endMs": 9255
+            },
+            {
+              "text": "futures trade below spot.",
+              "startMs": 9255,
+              "endMs": 12340
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Index Arbitrage & Program Trading",
+      "template": "split_comparison",
+      "badge": "Algorithmic Arbitrage",
+      "beats": [
+        {
+          "id": "b13",
+          "hindi_tts": "जब फ्यूचर्स का बाजार भाव इस फार्मूले से भटकता है, तो संस्थागत ट्रेडर्स इंडेक्स आर्बिट्राज का इस्तेमाल करते हैं।",
+          "en_subtitle": "When index futures market prices deviate from theoretical parity, institutional traders execute index arbitrage.",
+          "en_narration": "Whenever market futures prices diverge from theoretical parity, institutional arbitrageurs deploy high-speed index arbitrage algorithms.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftCard": {
+              "title": "Cash-and-Carry Arbitrage",
+              "subtitle": "When Futures Overvalued (F_market > F_0)",
+              "tag": "Sell Expensive Futures",
+              "color": "#0F766E",
+              "points": [
+                "Borrow cash at risk-free rate r.",
+                "Buy the constituent basket of 500 spot stocks.",
+                "Sell index futures contracts simultaneously.",
+                "Collect stock dividends q and deliver basket at maturity."
+              ]
+            },
+            "rightCard": {
+              "title": "Reverse Cash-and-Carry",
+              "subtitle": "When Futures Undervalued (F_market < F_0)",
+              "tag": "Buy Cheap Futures",
+              "color": "#F59E0B",
+              "points": [
+                "Short sell the constituent basket of 500 spot stocks.",
+                "Invest the short sale proceeds at risk-free rate r.",
+                "Buy index futures contracts simultaneously.",
+                "Pay manufactured dividends and buy back basket at maturity."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Cash-and-Carry (F high)",
+              "rightLabel": "Reverse Carry (F low)",
+              "contrast": "Simultaneous basket trading across NYSE spot and CME futures"
+            },
+            "semantics": {
+              "teachingObjective": "Explain two-way index arbitrage mechanisms",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "fa64d14058bb35ce",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b13.mp3",
+          "audioDurationSec": 9.41,
+          "durationInFrames": 295,
+          "subtitlePhrases": [
+            {
+              "text": "When index futures market prices deviate from theoretical parity,",
+              "startMs": 0,
+              "endMs": 5510
+            },
+            {
+              "text": "institutional traders execute index arbitrage.",
+              "startMs": 5510,
+              "endMs": 9410
+            }
+          ]
+        },
+        {
+          "id": "b14",
+          "hindi_tts": "अगर फ्यूचर्स महंगा हुआ, तो वे कैश उधार लेकर 500 शेयर्स का बास्केट खरीदते हैं और फ्यूचर्स बेच देते हैं। डिविडेंड जोड़कर पक्का मुनाफा लॉक हो जाता है।",
+          "en_subtitle": "If futures trade rich, arbitrageurs borrow cash, buy the 500 stock basket, and sell futures, locking pure carry profit.",
+          "en_narration": "If futures are overvalued, arbitrageurs borrow cash, buy the underlying five hundred stock basket, and sell futures, locking in riskless carry profit.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftCard": {
+              "title": "Program Trading Execution",
+              "subtitle": "Direct Computerized Routing",
+              "tag": "Sub-Second Latency",
+              "color": "#0F766E",
+              "points": [
+                "Computers monitor basis: Basis = Spot - Futures.",
+                "Instantly split orders across all 500 stock order books.",
+                "Locks in the riskless spread between futures and index basket.",
+                "Drives the futures price back down toward parity."
+              ]
+            },
+            "rightCard": {
+              "title": "Reverse Carry Execution",
+              "subtitle": "Institutional Shorting",
+              "tag": "Index Undervaluation",
+              "color": "#F59E0B",
+              "points": [
+                "Index fund managers swap physical stock holdings into cheap futures.",
+                "Invest proceeds in Treasury bills earning rate r.",
+                "Captures excess yield without adding market beta risk.",
+                "Drives the futures price back up toward parity."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Program Trading",
+              "rightLabel": "Parity Enforcement",
+              "contrast": "Computer algorithms force futures and spot index into tight lockstep"
+            },
+            "semantics": {
+              "teachingObjective": "Detail program trading execution and market parity restoration",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "b9195e341cb729dc",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b14.mp3",
+          "audioDurationSec": 13.78,
+          "durationInFrames": 426,
+          "subtitlePhrases": [
+            {
+              "text": "If futures trade rich,",
+              "startMs": 0,
+              "endMs": 2636
+            },
+            {
+              "text": "arbitrageurs borrow cash,",
+              "startMs": 2636,
+              "endMs": 5632
+            },
+            {
+              "text": "buy the 500 stock basket,",
+              "startMs": 5632,
+              "endMs": 8628
+            },
+            {
+              "text": "and sell futures,",
+              "startMs": 8628,
+              "endMs": 10665
+            },
+            {
+              "text": "locking pure carry profit.",
+              "startMs": 10665,
+              "endMs": 13780
+            }
+          ]
+        },
+        {
+          "id": "b15",
+          "hindi_tts": "और अगर फ्यूचर्स सस्ता हुआ, तो 500 शेयर्स को शॉर्ट करके फ्यूचर्स खरीद लिया जाता है। इसे प्रोग्राम ट्रेडिंग कहते हैं, जो सेकंडों में एग्जीक्यूट होती है।",
+          "en_subtitle": "If futures trade cheap, computers short the stock basket and buy futures in seconds via program trading.",
+          "en_narration": "And if futures trade cheap, computers short the stock basket and buy futures within seconds. This automated workflow is called program trading.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftCard": {
+              "title": "Normal Market Efficiency",
+              "subtitle": "Tight Parity Bands",
+              "tag": "Arbitrage Band < 0.2%",
+              "color": "#0F766E",
+              "points": [
+                "Arbitrage keeps futures within 0.1% to 0.2% of fair value.",
+                "Requires instantaneous order execution on both exchanges.",
+                "Assumes continuous liquidity in all constituent stocks."
+              ]
+            },
+            "rightCard": {
+              "title": "Execution Vulnerability",
+              "subtitle": "The Dependency on Order Flow",
+              "tag": "System Bottleneck Risk",
+              "color": "#F59E0B",
+              "points": [
+                "If exchange order routing queues delay stock trades, arbitrage breaks.",
+                "Cash index prices become stale if individual stocks halt trading.",
+                "Sets the stage for massive systemic crashes when liquidity evaporates."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Efficient Arbitrage",
+              "rightLabel": "Routing Bottlenecks",
+              "contrast": "Parity relies on instant two-way order execution without system latency"
+            },
+            "semantics": {
+              "teachingObjective": "Highlight reliance on order routing latency and introduce crisis vulnerabilities",
+              "sourceFactIds": [
+                "fact-04",
+                "fact-05"
+              ]
+            }
+          },
+          "narrationHash": "8311ace51c6a71ef",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b15.mp3",
+          "audioDurationSec": 13.3,
+          "durationInFrames": 414,
+          "subtitlePhrases": [
+            {
+              "text": "If futures trade cheap,",
+              "startMs": 0,
+              "endMs": 2970
+            },
+            {
+              "text": "computers short the stock basket and buy futures in seconds via program trading.",
+              "startMs": 2970,
+              "endMs": 13300
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "October 1987 Crash & Order Bottlenecks",
+      "template": "progressive_cards",
+      "badge": "Historical Case Study · Snapshot 5.4",
+      "beats": [
+        {
+          "id": "b16",
+          "hindi_tts": "19 अक्टूबर 1987 के ब्लैक मंडे को डॉव जोन्स 22.6 परसेंट क्रैश हो गया। इतिहास का सबसे बड़ा एक दिवसीय गिरावट!",
+          "en_subtitle": "On Black Monday, October 19, 1987, the Dow Jones plunged 22.6%—the largest one-day drop in history.",
+          "en_narration": "On Black Monday, October 19, 1987, the Dow Jones Industrial Average plunged 22.6 percent, recording the largest single-day market crash in history.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Snapshot 5.4 · The October 1987 Crash",
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "1. The Black Monday Plunge",
+                "subtitle": "October 19, 1987 · Dow Drops 22.6%",
+                "description": "The Dow plummeted 508 points in a single session. Institutional portfolio insurance programs began dumping massive quantities of S&P 500 futures contracts automatically as spot prices fell.",
+                "stat": "-22.6%",
+                "statLabel": "Single-Day Dow Collapse",
+                "badge": "Market Crash"
+              },
+              {
+                "title": "2. The Futures Discount Chasm",
+                "subtitle": "Severe Unprecedented Backwardation",
+                "description": "Portfolio insurance selling overwhelmed CME floor market makers. S&P 500 futures traded at discounts of up to 40 index points below reported cash index levels.",
+                "stat": "-40 pts",
+                "statLabel": "Futures Discount to Cash",
+                "badge": "Parity Breakdown"
+              },
+              {
+                "title": "3. NYSE DOT System Congestion",
+                "subtitle": "Order Transmission Delays > 2 Hours",
+                "description": "Arbitrageurs attempted to buy cheap futures and sell spot stocks, but the NYSE Designated Order Turnaround (DOT) system jammed with 100M+ unexecuted sell orders. Stock quotes became stale.",
+                "stat": ">2 Hours",
+                "statLabel": "Order Execution Lag",
+                "badge": "Infrastructure Failure"
+              },
+              {
+                "title": "4. Regulatory Market Reforms",
+                "subtitle": "Circuit Breakers & Rule 80A",
+                "description": "Regulators instituted market-wide trading halts (circuit breakers) and NYSE Rule 80A collars to prevent runaway automated selling cascades during severe market dislocations.",
+                "stat": "Level 1/2/3",
+                "statLabel": "Modern Circuit Breakers",
+                "badge": "Regulatory Legacy"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Present Black Monday 1987 market crash trigger",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          },
+          "narrationHash": "9268038956268771",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b16.mp3",
+          "audioDurationSec": 11.69,
+          "durationInFrames": 363,
+          "subtitlePhrases": [
+            {
+              "text": "On Black Monday,",
+              "startMs": 0,
+              "endMs": 1948
+            },
+            {
+              "text": "October 19,",
+              "startMs": 1948,
+              "endMs": 3287
+            },
+            {
+              "text": "1987,",
+              "startMs": 3287,
+              "endMs": 3896
+            },
+            {
+              "text": "the Dow Jones plunged 22.6%—the largest one-day drop in history.",
+              "startMs": 3896,
+              "endMs": 11690
+            }
+          ]
+        },
+        {
+          "id": "b17",
+          "hindi_tts": "संस्थागत पोर्टफोलियो इंश्योरेंस स्ट्रैटेजीज ने भारी मात्रा में एसएंडपी फ्यूचर्स बेचना शुरू किया। फ्यूचर्स कैश इंडेक्स से 40 पॉइंट नीचे क्रैश हो गए।",
+          "en_subtitle": "Portfolio insurance strategies dumped futures, driving S&P 500 futures to a massive 40-point discount below cash index.",
+          "en_narration": "Portfolio insurance algorithms dumped massive volumes of S&P 500 futures, causing futures contracts to crash to an unprecedented 40-point discount below cash index quotes.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Snapshot 5.4 · The October 1987 Crash",
+            "activeCardIndex": 1,
+            "cards": [
+              {
+                "title": "1. The Black Monday Plunge",
+                "subtitle": "October 19, 1987 · Dow Drops 22.6%",
+                "description": "The Dow plummeted 508 points in a single session. Institutional portfolio insurance programs began dumping massive quantities of S&P 500 futures contracts automatically as spot prices fell.",
+                "stat": "-22.6%",
+                "statLabel": "Single-Day Dow Collapse",
+                "badge": "Market Crash"
+              },
+              {
+                "title": "2. The Futures Discount Chasm",
+                "subtitle": "Severe Unprecedented Backwardation",
+                "description": "Portfolio insurance selling overwhelmed CME floor market makers. S&P 500 futures traded at discounts of up to 40 index points below reported cash index levels.",
+                "stat": "-40 pts",
+                "statLabel": "Futures Discount to Cash",
+                "badge": "Parity Breakdown"
+              },
+              {
+                "title": "3. NYSE DOT System Congestion",
+                "subtitle": "Order Transmission Delays > 2 Hours",
+                "description": "Arbitrageurs attempted to buy cheap futures and sell spot stocks, but the NYSE Designated Order Turnaround (DOT) system jammed with 100M+ unexecuted sell orders. Stock quotes became stale.",
+                "stat": ">2 Hours",
+                "statLabel": "Order Execution Lag",
+                "badge": "Infrastructure Failure"
+              },
+              {
+                "title": "4. Regulatory Market Reforms",
+                "subtitle": "Circuit Breakers & Rule 80A",
+                "description": "Regulators instituted market-wide trading halts (circuit breakers) and NYSE Rule 80A collars to prevent runaway automated selling cascades during severe market dislocations.",
+                "stat": "Level 1/2/3",
+                "statLabel": "Modern Circuit Breakers",
+                "badge": "Regulatory Legacy"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Explain portfolio insurance feedback loop and massive backwardation",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          },
+          "narrationHash": "2248dacd012669a7",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b17.mp3",
+          "audioDurationSec": 12.55,
+          "durationInFrames": 389,
+          "subtitlePhrases": [
+            {
+              "text": "Portfolio insurance strategies dumped futures,",
+              "startMs": 0,
+              "endMs": 4892
+            },
+            {
+              "text": "driving S&P 500 futures to a massive 40-point discount below cash index.",
+              "startMs": 4892,
+              "endMs": 12550
+            }
+          ]
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "आर्बिट्राजर्स सस्ता फ्यूचर्स खरीदकर शेयर बेचना चाहते थे, लेकिन न्यूयॉर्क स्टॉक एक्सचेंज का डीओटी सिस्टम जाम हो गया। ऑर्डर 2 घंटे लटक गए और आर्बिट्राज टूट गया!",
+          "en_subtitle": "Arbitrageurs tried to buy cheap futures and short stocks, but NYSE's DOT system jammed for over 2 hours, breaking arbitrage.",
+          "en_narration": "Arbitrageurs attempted to buy cheap futures and sell spot stocks, but the New York Stock Exchange's DOT routing system jammed for over two hours. Arbitrage broke down completely!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Snapshot 5.4 · The October 1987 Crash",
+            "activeCardIndex": 2,
+            "cards": [
+              {
+                "title": "1. The Black Monday Plunge",
+                "subtitle": "October 19, 1987 · Dow Drops 22.6%",
+                "description": "The Dow plummeted 508 points in a single session. Institutional portfolio insurance programs began dumping massive quantities of S&P 500 futures contracts automatically as spot prices fell.",
+                "stat": "-22.6%",
+                "statLabel": "Single-Day Dow Collapse",
+                "badge": "Market Crash"
+              },
+              {
+                "title": "2. The Futures Discount Chasm",
+                "subtitle": "Severe Unprecedented Backwardation",
+                "description": "Portfolio insurance selling overwhelmed CME floor market makers. S&P 500 futures traded at discounts of up to 40 index points below reported cash index levels.",
+                "stat": "-40 pts",
+                "statLabel": "Futures Discount to Cash",
+                "badge": "Parity Breakdown"
+              },
+              {
+                "title": "3. NYSE DOT System Congestion",
+                "subtitle": "Order Transmission Delays > 2 Hours",
+                "description": "Arbitrageurs attempted to buy cheap futures and sell spot stocks, but the NYSE Designated Order Turnaround (DOT) system jammed with 100M+ unexecuted sell orders. Stock quotes became stale.",
+                "stat": ">2 Hours",
+                "statLabel": "Order Execution Lag",
+                "badge": "Infrastructure Failure"
+              },
+              {
+                "title": "4. Regulatory Market Reforms",
+                "subtitle": "Circuit Breakers & Rule 80A",
+                "description": "Regulators instituted market-wide trading halts (circuit breakers) and NYSE Rule 80A collars to prevent runaway automated selling cascades during severe market dislocations.",
+                "stat": "Level 1/2/3",
+                "statLabel": "Modern Circuit Breakers",
+                "badge": "Regulatory Legacy"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 2,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Show how technological bottleneck in order routing decoupled futures from cash index",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          },
+          "narrationHash": "82b2d3af37aff233",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b18.mp3",
+          "audioDurationSec": 13.54,
+          "durationInFrames": 419,
+          "subtitlePhrases": [
+            {
+              "text": "Arbitrageurs tried to buy cheap futures and short stocks,",
+              "startMs": 0,
+              "endMs": 6326
+            },
+            {
+              "text": "but NYSE's DOT system jammed for over 2 hours,",
+              "startMs": 6326,
+              "endMs": 11431
+            },
+            {
+              "text": "breaking arbitrage.",
+              "startMs": 11431,
+              "endMs": 13540
+            }
+          ]
+        },
+        {
+          "id": "b19",
+          "hindi_tts": "इस हादसे के बाद बाजारों में सर्किट ब्रेकर्स और रूल 80-ए बनाए गए, ताकि अनियंत्रित एल्गोरिदम से मार्केट फ्रीज न हो।",
+          "en_subtitle": "In response, regulators introduced circuit breakers and Rule 80A collars to halt unconstrained automated cascades.",
+          "en_narration": "In response, global exchanges introduced market-wide circuit breakers and Rule 80A collar restrictions to prevent unconstrained algorithmic panics.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Snapshot 5.4 · The October 1987 Crash",
+            "activeCardIndex": 3,
+            "cards": [
+              {
+                "title": "1. The Black Monday Plunge",
+                "subtitle": "October 19, 1987 · Dow Drops 22.6%",
+                "description": "The Dow plummeted 508 points in a single session. Institutional portfolio insurance programs began dumping massive quantities of S&P 500 futures contracts automatically as spot prices fell.",
+                "stat": "-22.6%",
+                "statLabel": "Single-Day Dow Collapse",
+                "badge": "Market Crash"
+              },
+              {
+                "title": "2. The Futures Discount Chasm",
+                "subtitle": "Severe Unprecedented Backwardation",
+                "description": "Portfolio insurance selling overwhelmed CME floor market makers. S&P 500 futures traded at discounts of up to 40 index points below reported cash index levels.",
+                "stat": "-40 pts",
+                "statLabel": "Futures Discount to Cash",
+                "badge": "Parity Breakdown"
+              },
+              {
+                "title": "3. NYSE DOT System Congestion",
+                "subtitle": "Order Transmission Delays > 2 Hours",
+                "description": "Arbitrageurs attempted to buy cheap futures and sell spot stocks, but the NYSE Designated Order Turnaround (DOT) system jammed with 100M+ unexecuted sell orders. Stock quotes became stale.",
+                "stat": ">2 Hours",
+                "statLabel": "Order Execution Lag",
+                "badge": "Infrastructure Failure"
+              },
+              {
+                "title": "4. Regulatory Market Reforms",
+                "subtitle": "Circuit Breakers & Rule 80A",
+                "description": "Regulators instituted market-wide trading halts (circuit breakers) and NYSE Rule 80A collars to prevent runaway automated selling cascades during severe market dislocations.",
+                "stat": "Level 1/2/3",
+                "statLabel": "Modern Circuit Breakers",
+                "badge": "Regulatory Legacy"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 3,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Highlight regulatory reforms including modern circuit breakers",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          },
+          "narrationHash": "43517f6b71a69a49",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b19.mp3",
+          "audioDurationSec": 9.65,
+          "durationInFrames": 305,
+          "subtitlePhrases": [
+            {
+              "text": "In response,",
+              "startMs": 0,
+              "endMs": 1025
+            },
+            {
+              "text": "regulators introduced circuit breakers and Rule 80A collars to halt unconstrained automated cascades.",
+              "startMs": 1025,
+              "endMs": 9650
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "Currency Forwards & Interest Rate Parity",
+      "template": "formula_breakdown",
+      "badge": "Foreign Exchange Markets",
+      "beats": [
+        {
+          "id": "b20",
+          "hindi_tts": "अब फॉरेक्स मार्केट्स में आएं। विदेशी मुद्रा एक ऐसा इन्वेस्टमेंट एसेट है जो विदेशी ब्याज दर r-f के बराबर डिविडेंड यील्ड देता है।",
+          "en_subtitle": "In foreign exchange, foreign currency acts as an investment asset paying continuous dividend yield r_f.",
+          "en_narration": "Now consider foreign exchange markets. A foreign currency acts like an investment asset that yields a continuous dividend equal to foreign risk-free interest rate r_f.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Covered Interest Rate Parity",
+            "expression": "F_0 = S_0 e^{(r - r_f)T}",
+            "variables": [
+              {
+                "symbol": "F_0",
+                "label": "Forward FX Rate",
+                "description": "Forward exchange rate (domestic per foreign)",
+                "unit": "rate"
+              },
+              {
+                "symbol": "S_0",
+                "label": "Spot FX Rate",
+                "description": "Spot exchange rate (domestic per foreign)",
+                "unit": "rate"
+              },
+              {
+                "symbol": "r",
+                "label": "Domestic Rate",
+                "description": "Domestic continuous risk-free rate",
+                "unit": "%"
+              },
+              {
+                "symbol": "r_f",
+                "label": "Foreign Rate",
+                "description": "Foreign continuous risk-free rate (yield)",
+                "unit": "%"
+              },
+              {
+                "symbol": "T",
+                "label": "Maturity",
+                "description": "Time to delivery",
+                "unit": "years"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "FX Parity",
+                "equation": "F_0 = S_0 e^{(r - r_f)T}",
+                "note": "Foreign interest rate r_f acts exactly like a continuous dividend yield q."
+              }
+            ],
+            "assumptions": [
+              "Zero capital controls and instantaneous currency conversion."
+            ],
+            "interpretation": "Forward currency rate directly compensates for international interest rate differentials."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Covered Interest Rate Parity",
+              "expression": "F_0 = S_0 e^{(r - r_f)T}",
+              "variables": [
+                {
+                  "symbol": "F_0",
+                  "label": "Forward FX Rate",
+                  "description": "Forward exchange rate (domestic per foreign)",
+                  "unit": "rate"
+                },
+                {
+                  "symbol": "S_0",
+                  "label": "Spot FX Rate",
+                  "description": "Spot exchange rate (domestic per foreign)",
+                  "unit": "rate"
+                },
+                {
+                  "symbol": "r",
+                  "label": "Domestic Rate",
+                  "description": "Domestic continuous risk-free rate",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "r_f",
+                  "label": "Foreign Rate",
+                  "description": "Foreign continuous risk-free rate (yield)",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "T",
+                  "label": "Maturity",
+                  "description": "Time to delivery",
+                  "unit": "years"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "FX Parity",
+                  "equation": "F_0 = S_0 e^{(r - r_f)T}",
+                  "note": "Foreign interest rate r_f acts exactly like a continuous dividend yield q."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Derive Covered Interest Rate Parity formula where foreign interest rate replaces dividend yield",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "57d8ffdcedf337f8",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b20.mp3",
+          "audioDurationSec": 11.59,
+          "durationInFrames": 360,
+          "subtitlePhrases": [
+            {
+              "text": "In foreign exchange,",
+              "startMs": 0,
+              "endMs": 2273
+            },
+            {
+              "text": "foreign currency acts as an investment asset paying continuous dividend yield r_f.",
+              "startMs": 2273,
+              "endMs": 11590
+            }
+          ]
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "कवर्ड इंटरेस्ट रेट पैरिटी के अनुसार: फॉरवर्ड एक्सचेंज रेट F-जीरो बराबर S-जीरो गुणा e की पावर घरेलू ब्याज दर r माइनस विदेशी ब्याज दर r-f गुणा T।",
+          "en_subtitle": "Under Covered Interest Rate Parity: Forward rate F_0 = S_0 * e^((r - r_f)T).",
+          "en_narration": "Under Covered Interest Rate Parity, the forward exchange rate F zero equals spot exchange rate S zero times e to the power domestic rate r minus foreign rate r_f times T.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Foreign Currency Premium / Discount",
+            "expression": "r_f > r \\implies F_0 < S_0",
+            "variables": [
+              {
+                "symbol": "r_f",
+                "label": "Foreign Rate",
+                "description": "Higher foreign interest rate",
+                "unit": "%"
+              },
+              {
+                "symbol": "r",
+                "label": "Domestic Rate",
+                "description": "Lower domestic interest rate",
+                "unit": "%"
+              },
+              {
+                "symbol": "F_0 < S_0",
+                "label": "Forward Discount",
+                "description": "Foreign currency depreciates in forward market",
+                "unit": "discount"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 1,
+                "label": "Forward Discount",
+                "equation": "r - r_f < 0",
+                "note": "The currency with the higher interest rate trades at a forward discount."
+              }
+            ],
+            "assumptions": [
+              "No-arbitrage condition holds strictly across international money markets."
+            ],
+            "interpretation": "Prevents investors from borrowing in low-rate currency and capturing higher foreign yields risklessly."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Foreign Currency Premium / Discount",
+              "expression": "r_f > r \\implies F_0 < S_0",
+              "variables": [
+                {
+                  "symbol": "r_f",
+                  "label": "Foreign Rate",
+                  "description": "Higher foreign interest rate",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "r",
+                  "label": "Domestic Rate",
+                  "description": "Lower domestic interest rate",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "F_0 < S_0",
+                  "label": "Forward Discount",
+                  "description": "Foreign currency depreciates in forward market",
+                  "unit": "discount"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 1,
+                  "label": "Forward Discount",
+                  "equation": "r - r_f < 0",
+                  "note": "The currency with the higher interest rate trades at a forward discount."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Explain why currencies with high interest rates trade at a forward discount",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "c042f861c90be2a0",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b21.mp3",
+          "audioDurationSec": 11.54,
+          "durationInFrames": 359,
+          "subtitlePhrases": [
+            {
+              "text": "Under Covered Interest Rate Parity:",
+              "startMs": 0,
+              "endMs": 5458
+            },
+            {
+              "text": "Forward rate F_0 = S_0",
+              "startMs": 5458,
+              "endMs": 8889
+            },
+            {
+              "text": "* e^((r - r_f)T).",
+              "startMs": 8889,
+              "endMs": 11540
+            }
+          ]
+        },
+        {
+          "id": "b22",
+          "hindi_tts": "अगर विदेशी ब्याज दर घरेलू दर से ऊंची है, तो विदेशी मुद्रा फॉरवर्ड में सस्ती बिकेगी, ताकि कोई फ्री में ब्याज का फायदा न उठा सके।",
+          "en_subtitle": "If foreign interest rates are higher than domestic rates, the foreign currency must trade at a forward discount.",
+          "en_narration": "If foreign interest rates exceed domestic rates, the foreign currency must trade at a forward discount to eliminate riskless cross-border carry arbitrage.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Covered Return Equivalence",
+            "expression": "e^{rT} = \\frac{F_0}{S_0} e^{r_f T}",
+            "variables": [
+              {
+                "symbol": "e^{rT}",
+                "label": "Domestic Return",
+                "description": "Dollar growth of $1 invested at home",
+                "unit": "growth"
+              },
+              {
+                "symbol": "F_0 / S_0",
+                "label": "FX Conversion",
+                "description": "Forward exchange rate locked today",
+                "unit": "ratio"
+              },
+              {
+                "symbol": "e^{r_f T}",
+                "label": "Foreign Growth",
+                "description": "Foreign interest accumulation",
+                "unit": "growth"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 2,
+                "label": "Equal Returns",
+                "equation": "1 + r = (F_0/S_0)(1 + r_f)",
+                "note": "Covered foreign investment must exactly match the domestic risk-free return."
+              }
+            ],
+            "assumptions": [
+              "Credit risk of both sovereign governments is equal and negligible."
+            ],
+            "interpretation": "Covered interest arbitrage guarantees this return identity holds to within a fraction of a basis point."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Covered Return Equivalence",
+              "expression": "e^{rT} = \\frac{F_0}{S_0} e^{r_f T}",
+              "variables": [
+                {
+                  "symbol": "e^{rT}",
+                  "label": "Domestic Return",
+                  "description": "Dollar growth of $1 invested at home",
+                  "unit": "growth"
+                },
+                {
+                  "symbol": "F_0 / S_0",
+                  "label": "FX Conversion",
+                  "description": "Forward exchange rate locked today",
+                  "unit": "ratio"
+                },
+                {
+                  "symbol": "e^{r_f T}",
+                  "label": "Foreign Growth",
+                  "description": "Foreign interest accumulation",
+                  "unit": "growth"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 2,
+                  "label": "Equal Returns",
+                  "equation": "1 + r = (F_0/S_0)(1 + r_f)",
+                  "note": "Covered foreign investment must exactly match the domestic risk-free return."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Show no-arbitrage return equivalence between domestic and covered foreign deposits",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "295fe0eaea7e53af",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b22.mp3",
+          "audioDurationSec": 10.22,
+          "durationInFrames": 322,
+          "subtitlePhrases": [
+            {
+              "text": "If foreign interest rates are higher than domestic rates,",
+              "startMs": 0,
+              "endMs": 5248
+            },
+            {
+              "text": "the foreign currency must trade at a forward discount.",
+              "startMs": 5248,
+              "endMs": 10220
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "Covered Interest Arbitrage on USD/GBP",
+      "template": "progressive_cards",
+      "badge": "FX Numerical Proof · Hull Section 5.10",
+      "beats": [
+        {
+          "id": "b23",
+          "hindi_tts": "मान लीजिए स्पॉट पाउंड 1.50 डॉलर है। अमेरिकी ब्याज दर 5 परसेंट और ब्रिटिश ब्याज दर 7 परसेंट है।",
+          "en_subtitle": "Suppose spot USD/GBP is 1.5000. US interest rate is 5% and UK interest rate is 7% for 1 year.",
+          "en_narration": "Suppose spot USD/GBP is 1.5000. The US risk-free interest rate is 5 percent and the UK interest rate is 7 percent for a one-year term.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Covered Interest Arbitrage Step-by-Step",
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "1. Market Parameters & Theoretical Parity",
+                "subtitle": "Spot USD/GBP = 1.5000 · r_US = 5% · r_UK = 7%",
+                "description": "Theoretical parity: F_0 = 1.5000 · e^((0.05 - 0.07)·1) = 1.5000 · e^(-0.02) = 1.4703 USD per GBP. But market quotes 1-year forward at 1.4900!",
+                "stat": "1.4703",
+                "statLabel": "Theoretical Forward Rate",
+                "badge": "Parity Target"
+              },
+              {
+                "title": "2. Borrow USD & Convert Spot to GBP",
+                "subtitle": "Borrow $1,500 at 5% · Convert to 1,000 GBP",
+                "description": "Arbitrageur borrows $1,500 at 5% US interest (owing $1,576.91 at maturity). Converts $1,500 at spot 1.5000 to receive exactly 1,000 GBP.",
+                "stat": "£1,000",
+                "statLabel": "Spot GBP Acquired",
+                "badge": "Execution Leg 1"
+              },
+              {
+                "title": "3. Deposit in UK & Sell Forward at 1.4900",
+                "subtitle": "Deposit 1,000 GBP at 7% UK Interest",
+                "description": "1,000 GBP grows to 1,000 · e^(0.07) = 1,072.51 GBP in 1 year. Simultaneously sells 1,072.51 GBP forward at the overpriced quote of 1.4900.",
+                "stat": "$1,598.04",
+                "statLabel": "Locked USD Forward Proceeds",
+                "badge": "Execution Leg 2"
+              },
+              {
+                "title": "4. Net Riskless Arbitrage Profit Captured",
+                "subtitle": "Pay Off $1,576.91 Debt from $1,598.04 Inflow",
+                "description": "At year-end, delivery delivers $1,598.04 cash. Repays $1,576.91 debt. Net riskless profit: $21.13 per 1,000 GBP borrowed with zero capital risk!",
+                "stat": "+$21.13",
+                "statLabel": "Net Profit / 1,000 GBP",
+                "badge": "Riskless Arbitrage"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Present market inputs and compute theoretical forward FX rate",
+              "sourceFactIds": [
+                "fact-06",
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "378a12f3139fdb19",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b23.mp3",
+          "audioDurationSec": 11.06,
+          "durationInFrames": 344,
+          "subtitlePhrases": [
+            {
+              "text": "Suppose spot USD/GBP is 1.5000. US interest",
+              "startMs": 0,
+              "endMs": 5226
+            },
+            {
+              "text": "rate is 5% and UK interest rate",
+              "startMs": 5226,
+              "endMs": 8994
+            },
+            {
+              "text": "is 7% for 1 year.",
+              "startMs": 8994,
+              "endMs": 11060
+            }
+          ]
+        },
+        {
+          "id": "b24",
+          "hindi_tts": "थ्योरेटिकल फॉरवर्ड रेट 1.4703 डॉलर होना चाहिए। लेकिन अगर बाजार में 1 साल का फॉरवर्ड 1.4900 डॉलर पर कोट हो रहा है, तो पाउंड ओवरवैल्यूड है!",
+          "en_subtitle": "Theoretical forward rate is 1.4703. If market quotes 1.4900, forward GBP is overpriced!",
+          "en_narration": "The theoretical forward rate is 1.4703. If the market quotes one-year forward GBP at 1.4900, the forward pound is significantly overpriced!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Covered Interest Arbitrage Step-by-Step",
+            "activeCardIndex": 1,
+            "cards": [
+              {
+                "title": "1. Market Parameters & Theoretical Parity",
+                "subtitle": "Spot USD/GBP = 1.5000 · r_US = 5% · r_UK = 7%",
+                "description": "Theoretical parity: F_0 = 1.5000 · e^((0.05 - 0.07)·1) = 1.5000 · e^(-0.02) = 1.4703 USD per GBP. But market quotes 1-year forward at 1.4900!",
+                "stat": "1.4703",
+                "statLabel": "Theoretical Forward Rate",
+                "badge": "Parity Target"
+              },
+              {
+                "title": "2. Borrow USD & Convert Spot to GBP",
+                "subtitle": "Borrow $1,500 at 5% · Convert to 1,000 GBP",
+                "description": "Arbitrageur borrows $1,500 at 5% US interest (owing $1,576.91 at maturity). Converts $1,500 at spot 1.5000 to receive exactly 1,000 GBP.",
+                "stat": "£1,000",
+                "statLabel": "Spot GBP Acquired",
+                "badge": "Execution Leg 1"
+              },
+              {
+                "title": "3. Deposit in UK & Sell Forward at 1.4900",
+                "subtitle": "Deposit 1,000 GBP at 7% UK Interest",
+                "description": "1,000 GBP grows to 1,000 · e^(0.07) = 1,072.51 GBP in 1 year. Simultaneously sells 1,072.51 GBP forward at the overpriced quote of 1.4900.",
+                "stat": "$1,598.04",
+                "statLabel": "Locked USD Forward Proceeds",
+                "badge": "Execution Leg 2"
+              },
+              {
+                "title": "4. Net Riskless Arbitrage Profit Captured",
+                "subtitle": "Pay Off $1,576.91 Debt from $1,598.04 Inflow",
+                "description": "At year-end, delivery delivers $1,598.04 cash. Repays $1,576.91 debt. Net riskless profit: $21.13 per 1,000 GBP borrowed with zero capital risk!",
+                "stat": "+$21.13",
+                "statLabel": "Net Profit / 1,000 GBP",
+                "badge": "Riskless Arbitrage"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Show Leg 1: Borrow domestic USD and convert to foreign currency spot",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "459e51195135c9d2",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b24.mp3",
+          "audioDurationSec": 15.84,
+          "durationInFrames": 488,
+          "subtitlePhrases": [
+            {
+              "text": "Theoretical forward rate is 1.4703. If market quotes 1.4900,",
+              "startMs": 0,
+              "endMs": 11051
+            },
+            {
+              "text": "forward GBP is overpriced!",
+              "startMs": 11051,
+              "endMs": 15840
+            }
+          ]
+        },
+        {
+          "id": "b25",
+          "hindi_tts": "ट्रेडर 1,500 डॉलर 5 परसेंट पर उधार लेता है, स्पॉट में 1,000 पाउंड खरीदता है, यूके में 7 परसेंट पर जमा करता है, और 1.4900 पर फॉरवर्ड बेच देता है।",
+          "en_subtitle": "Arbitrageur borrows $1,500 at 5%, buys 1,000 GBP spot, deposits at 7% in UK, and sells forward at 1.4900.",
+          "en_narration": "The arbitrageur borrows $1,500 at 5 percent, buys 1,000 GBP spot, deposits at 7 percent in the UK, and locks in a forward sale at 1.4900.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Covered Interest Arbitrage Step-by-Step",
+            "activeCardIndex": 2,
+            "cards": [
+              {
+                "title": "1. Market Parameters & Theoretical Parity",
+                "subtitle": "Spot USD/GBP = 1.5000 · r_US = 5% · r_UK = 7%",
+                "description": "Theoretical parity: F_0 = 1.5000 · e^((0.05 - 0.07)·1) = 1.5000 · e^(-0.02) = 1.4703 USD per GBP. But market quotes 1-year forward at 1.4900!",
+                "stat": "1.4703",
+                "statLabel": "Theoretical Forward Rate",
+                "badge": "Parity Target"
+              },
+              {
+                "title": "2. Borrow USD & Convert Spot to GBP",
+                "subtitle": "Borrow $1,500 at 5% · Convert to 1,000 GBP",
+                "description": "Arbitrageur borrows $1,500 at 5% US interest (owing $1,576.91 at maturity). Converts $1,500 at spot 1.5000 to receive exactly 1,000 GBP.",
+                "stat": "£1,000",
+                "statLabel": "Spot GBP Acquired",
+                "badge": "Execution Leg 1"
+              },
+              {
+                "title": "3. Deposit in UK & Sell Forward at 1.4900",
+                "subtitle": "Deposit 1,000 GBP at 7% UK Interest",
+                "description": "1,000 GBP grows to 1,000 · e^(0.07) = 1,072.51 GBP in 1 year. Simultaneously sells 1,072.51 GBP forward at the overpriced quote of 1.4900.",
+                "stat": "$1,598.04",
+                "statLabel": "Locked USD Forward Proceeds",
+                "badge": "Execution Leg 2"
+              },
+              {
+                "title": "4. Net Riskless Arbitrage Profit Captured",
+                "subtitle": "Pay Off $1,576.91 Debt from $1,598.04 Inflow",
+                "description": "At year-end, delivery delivers $1,598.04 cash. Repays $1,576.91 debt. Net riskless profit: $21.13 per 1,000 GBP borrowed with zero capital risk!",
+                "stat": "+$21.13",
+                "statLabel": "Net Profit / 1,000 GBP",
+                "badge": "Riskless Arbitrage"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 2,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Show Leg 2: UK deposit and forward lock-in calculation",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "bdb2d2759be8aa4f",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b25.mp3",
+          "audioDurationSec": 14.81,
+          "durationInFrames": 457,
+          "subtitlePhrases": [
+            {
+              "text": "Arbitrageur borrows $1,500 at 5%,",
+              "startMs": 0,
+              "endMs": 4791
+            },
+            {
+              "text": "buys 1,000 GBP spot,",
+              "startMs": 4791,
+              "endMs": 7695
+            },
+            {
+              "text": "deposits at 7% in UK,",
+              "startMs": 7695,
+              "endMs": 10744
+            },
+            {
+              "text": "and sells forward at 1.4900.",
+              "startMs": 10744,
+              "endMs": 14810
+            }
+          ]
+        },
+        {
+          "id": "b26",
+          "hindi_tts": "एक साल बाद 1,576.91 डॉलर का लोन चुकाने के बाद भी 21.13 डॉलर का बिना रिस्क का शुद्ध मुनाफा मिलता है! यही आर्बिट्राज मार्केट को पैरिटी पर रखता है।",
+          "en_subtitle": "After repaying $1,576.91 loan, the trader pockets $21.13 riskless profit per 1,000 GBP, driving quotes back to parity.",
+          "en_narration": "After repaying the $1,576.91 loan at year-end, the trader pockets $21.13 in riskless profit per 1,000 GBP. This relentless arbitrage restores parity.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Covered Interest Arbitrage Step-by-Step",
+            "activeCardIndex": 3,
+            "cards": [
+              {
+                "title": "1. Market Parameters & Theoretical Parity",
+                "subtitle": "Spot USD/GBP = 1.5000 · r_US = 5% · r_UK = 7%",
+                "description": "Theoretical parity: F_0 = 1.5000 · e^((0.05 - 0.07)·1) = 1.5000 · e^(-0.02) = 1.4703 USD per GBP. But market quotes 1-year forward at 1.4900!",
+                "stat": "1.4703",
+                "statLabel": "Theoretical Forward Rate",
+                "badge": "Parity Target"
+              },
+              {
+                "title": "2. Borrow USD & Convert Spot to GBP",
+                "subtitle": "Borrow $1,500 at 5% · Convert to 1,000 GBP",
+                "description": "Arbitrageur borrows $1,500 at 5% US interest (owing $1,576.91 at maturity). Converts $1,500 at spot 1.5000 to receive exactly 1,000 GBP.",
+                "stat": "£1,000",
+                "statLabel": "Spot GBP Acquired",
+                "badge": "Execution Leg 1"
+              },
+              {
+                "title": "3. Deposit in UK & Sell Forward at 1.4900",
+                "subtitle": "Deposit 1,000 GBP at 7% UK Interest",
+                "description": "1,000 GBP grows to 1,000 · e^(0.07) = 1,072.51 GBP in 1 year. Simultaneously sells 1,072.51 GBP forward at the overpriced quote of 1.4900.",
+                "stat": "$1,598.04",
+                "statLabel": "Locked USD Forward Proceeds",
+                "badge": "Execution Leg 2"
+              },
+              {
+                "title": "4. Net Riskless Arbitrage Profit Captured",
+                "subtitle": "Pay Off $1,576.91 Debt from $1,598.04 Inflow",
+                "description": "At year-end, delivery delivers $1,598.04 cash. Repays $1,576.91 debt. Net riskless profit: $21.13 per 1,000 GBP borrowed with zero capital risk!",
+                "stat": "+$21.13",
+                "statLabel": "Net Profit / 1,000 GBP",
+                "badge": "Riskless Arbitrage"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 3,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Prove riskless profit payout and demonstrate parity restoration mechanism",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "7d99cba85d01e318",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b26.mp3",
+          "audioDurationSec": 16.75,
+          "durationInFrames": 518,
+          "subtitlePhrases": [
+            {
+              "text": "After repaying $1,576.91 loan,",
+              "startMs": 0,
+              "endMs": 4332
+            },
+            {
+              "text": "the trader pockets $21.13 riskless profit per 1,000 GBP,",
+              "startMs": 4332,
+              "endMs": 12418
+            },
+            {
+              "text": "driving quotes back to parity.",
+              "startMs": 12418,
+              "endMs": 16750
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "Commodities: Storage Cost & Convenience Yield",
+      "template": "formula_breakdown",
+      "badge": "Commodity Pricing",
+      "beats": [
+        {
+          "id": "b27",
+          "hindi_tts": "कमोडिटीज में दो नए फैक्टर्स जुड़ते हैं: पहला, फिजिकल स्टोरेज और इंश्योरेंस की लागत u, और दूसरा, फिजिकल माल हाथ में रखने का फायदा यानी कन्वीनियंस यील्ड y।",
+          "en_subtitle": "In commodities, two critical factors emerge: physical storage costs u and convenience yield y.",
+          "en_narration": "Commodities introduce two critical physical factors: storage and insurance cost u, and convenience yield y—the operational benefit of holding physical inventory.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Master Commodity Pricing Equation",
+            "expression": "F_0 = S_0 e^{(r + u - y)T}",
+            "variables": [
+              {
+                "symbol": "F_0",
+                "label": "Futures Price",
+                "description": "Theoretical commodity futures price",
+                "unit": "$"
+              },
+              {
+                "symbol": "S_0",
+                "label": "Spot Price",
+                "description": "Spot commodity price today",
+                "unit": "$"
+              },
+              {
+                "symbol": "r",
+                "label": "Risk-Free Rate",
+                "description": "Financing interest rate",
+                "unit": "%"
+              },
+              {
+                "symbol": "u",
+                "label": "Storage Cost",
+                "description": "Storage and insurance as percentage of spot",
+                "unit": "%"
+              },
+              {
+                "symbol": "y",
+                "label": "Convenience Yield",
+                "description": "Operational benefit of physical ownership",
+                "unit": "%"
+              },
+              {
+                "symbol": "T",
+                "label": "Maturity",
+                "description": "Contract maturity",
+                "unit": "years"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Commodity Parity",
+                "equation": "F_0 = S_0 e^{(r + u - y)T}",
+                "note": "Storage u adds to carry; convenience yield y subtracts from carry."
+              }
+            ],
+            "assumptions": [
+              "Storage costs are proportional to spot price and paid continuously."
+            ],
+            "interpretation": "Reflects the full net cost of carrying physical inventory over time."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Master Commodity Pricing Equation",
+              "expression": "F_0 = S_0 e^{(r + u - y)T}",
+              "variables": [
+                {
+                  "symbol": "F_0",
+                  "label": "Futures Price",
+                  "description": "Theoretical commodity futures price",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "S_0",
+                  "label": "Spot Price",
+                  "description": "Spot commodity price today",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "r",
+                  "label": "Risk-Free Rate",
+                  "description": "Financing interest rate",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "u",
+                  "label": "Storage Cost",
+                  "description": "Storage and insurance as percentage of spot",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "y",
+                  "label": "Convenience Yield",
+                  "description": "Operational benefit of physical ownership",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "T",
+                  "label": "Maturity",
+                  "description": "Contract maturity",
+                  "unit": "years"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Commodity Parity",
+                  "equation": "F_0 = S_0 e^{(r + u - y)T}",
+                  "note": "Storage u adds to carry; convenience yield y subtracts from carry."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Formulate master commodity pricing equation with storage costs and convenience yield",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "5179b431c0557c5a",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b27.mp3",
+          "audioDurationSec": 12.46,
+          "durationInFrames": 386,
+          "subtitlePhrases": [
+            {
+              "text": "In commodities,",
+              "startMs": 0,
+              "endMs": 2010
+            },
+            {
+              "text": "two critical factors emerge: physical storage costs u and convenience yield y.",
+              "startMs": 2010,
+              "endMs": 12460
+            }
+          ]
+        },
+        {
+          "id": "b28",
+          "hindi_tts": "सोने-चांदी जैसे इन्वेस्टमेंट कमोडिटीज में कन्वीनियंस यील्ड लगभग जीरो होती है। इसलिए उनका फ्यूचर्स हमेशा स्पॉट प्लस ब्याज प्लस स्टोरेज खर्च पर ट्रेड करता है।",
+          "en_subtitle": "For investment commodities like gold, convenience yield is zero. Futures always trade above spot.",
+          "en_narration": "For investment commodities like gold or silver, convenience yield is negligible. Futures prices strictly reflect spot compounded by interest and storage fees.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Investment Commodities (Gold / Silver)",
+            "expression": "F_0 = S_0 e^{(r + u)T}",
+            "variables": [
+              {
+                "symbol": "F_0",
+                "label": "Futures Price",
+                "description": "Always above spot price",
+                "unit": "$"
+              },
+              {
+                "symbol": "S_0",
+                "label": "Spot Gold",
+                "description": "Bullion spot price",
+                "unit": "$"
+              },
+              {
+                "symbol": "r + u",
+                "label": "Total Carry",
+                "description": "Financing rate plus vault storage fees",
+                "unit": "%"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 1,
+                "label": "Investment Commodity Rule",
+                "equation": "y \\approx 0 \\implies F_0 = S_0 e^{(r + u)T}",
+                "note": "Two-way arbitrage holds strictly because investors can sell physical gold bullion."
+              }
+            ],
+            "assumptions": [
+              "Gold and silver bullion have negligible industrial consumption urgency."
+            ],
+            "interpretation": "Gold futures curves are perpetually in contango, trading at a premium to spot."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Investment Commodities (Gold / Silver)",
+              "expression": "F_0 = S_0 e^{(r + u)T}",
+              "variables": [
+                {
+                  "symbol": "F_0",
+                  "label": "Futures Price",
+                  "description": "Always above spot price",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "S_0",
+                  "label": "Spot Gold",
+                  "description": "Bullion spot price",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "r + u",
+                  "label": "Total Carry",
+                  "description": "Financing rate plus vault storage fees",
+                  "unit": "%"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 1,
+                  "label": "Investment Commodity Rule",
+                  "equation": "y \\approx 0 \\implies F_0 = S_0 e^{(r + u)T}",
+                  "note": "Two-way arbitrage holds strictly because investors can sell physical gold bullion."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Show that investment commodities obey strict two-way carrying equality",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "3e94ad0834014276",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b28.mp3",
+          "audioDurationSec": 13.78,
+          "durationInFrames": 426,
+          "subtitlePhrases": [
+            {
+              "text": "For investment commodities like gold,",
+              "startMs": 0,
+              "endMs": 5311
+            },
+            {
+              "text": "convenience yield is zero. Futures always trade above spot.",
+              "startMs": 5311,
+              "endMs": 13780
+            }
+          ]
+        },
+        {
+          "id": "b29",
+          "hindi_tts": "लेकिन कच्चा तेल या तांबा जैसी कंजम्पशन कमोडिटीज में जब रिफाइनरीज को माल की भारी किल्लत होती है, तो कन्वीनियंस यील्ड y स्टोरेज और ब्याज से भी बड़ी हो जाती है!",
+          "en_subtitle": "For consumption commodities like crude oil, severe physical shortages drive convenience yield y above carry costs.",
+          "en_narration": "However, for consumption commodities like crude oil or copper, sudden physical supply shortages cause convenience yield y to dramatically exceed carrying costs!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Consumption Commodities (Backwardation)",
+            "expression": "y > r + u \\implies F_0 < S_0",
+            "variables": [
+              {
+                "symbol": "y",
+                "label": "Convenience Yield",
+                "description": "Extremely high during supply shortages",
+                "unit": "%"
+              },
+              {
+                "symbol": "r + u",
+                "label": "Carrying Cost",
+                "description": "Financing plus storage",
+                "unit": "%"
+              },
+              {
+                "symbol": "F_0 < S_0",
+                "label": "Backwardation",
+                "description": "Futures trade at deep discount to spot",
+                "unit": "discount"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 2,
+                "label": "Inverted Curve",
+                "equation": "r + u - y < 0",
+                "note": "Net carrying cost turns negative, creating inverted futures curves."
+              }
+            ],
+            "assumptions": [
+              "Industrial refiners cannot lend or short scarce raw material inventory."
+            ],
+            "interpretation": "Spot trades at a massive premium because physical barrels are needed today."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Consumption Commodities (Backwardation)",
+              "expression": "y > r + u \\implies F_0 < S_0",
+              "variables": [
+                {
+                  "symbol": "y",
+                  "label": "Convenience Yield",
+                  "description": "Extremely high during supply shortages",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "r + u",
+                  "label": "Carrying Cost",
+                  "description": "Financing plus storage",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "F_0 < S_0",
+                  "label": "Backwardation",
+                  "description": "Futures trade at deep discount to spot",
+                  "unit": "discount"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 2,
+                  "label": "Inverted Curve",
+                  "equation": "r + u - y < 0",
+                  "note": "Net carrying cost turns negative, creating inverted futures curves."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Explain how high convenience yield produces inverted backwardated futures curves",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "6774f7b451d2d32f",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b29.mp3",
+          "audioDurationSec": 12.79,
+          "durationInFrames": 399,
+          "subtitlePhrases": [
+            {
+              "text": "For consumption commodities like crude oil,",
+              "startMs": 0,
+              "endMs": 4867
+            },
+            {
+              "text": "severe physical shortages drive convenience yield y above carry costs.",
+              "startMs": 4867,
+              "endMs": 12790
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Contango vs Backwardation",
+      "template": "split_comparison",
+      "badge": "Commodity Market Regimes",
+      "beats": [
+        {
+          "id": "b30",
+          "hindi_tts": "यह हमें कमोडिटी बाजारों की दो सबसे प्रसिद्ध अवस्थाओं पर लाता है: कॉन्टैंगो और बैकवर्डेशन।",
+          "en_subtitle": "This brings us to the two fundamental commodity market structures: Contango and Backwardation.",
+          "en_narration": "This brings us to the two fundamental term structures of commodity markets: Contango and Backwardation.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftCard": {
+              "title": "Contango (Normal Carry)",
+              "subtitle": "Futures Trade Above Spot (F_0 > S_0)",
+              "tag": "Abundant Inventories",
+              "color": "#0F766E",
+              "points": [
+                "Total carry cost exceeds convenience yield (r + u > y).",
+                "Full supply and overflowing storage tanks.",
+                "Futures price curves slope upward over time.",
+                "Storage operators make steady returns buying spot and selling futures."
+              ]
+            },
+            "rightCard": {
+              "title": "Backwardation (Inverted Market)",
+              "subtitle": "Futures Trade Below Spot (F_0 < S_0)",
+              "tag": "Severe Shortages",
+              "color": "#F59E0B",
+              "points": [
+                "Convenience yield exceeds carry cost (y > r + u).",
+                "Physical inventory is scarce; users demand immediate spot delivery.",
+                "Futures price curves slope downward over time.",
+                "Reverse cash-and-carry fails because refiners will not sell physical stock!"
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Contango: F_0 > S_0",
+              "rightLabel": "Backwardation: F_0 < S_0",
+              "contrast": "Upward sloping carry curve vs downward sloping convenience shortage curve"
+            },
+            "semantics": {
+              "teachingObjective": "Contrast contango and backwardation market structures",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "35236459267b710e",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b30.mp3",
+          "audioDurationSec": 7.54,
+          "durationInFrames": 239,
+          "subtitlePhrases": [
+            {
+              "text": "This brings us to the",
+              "startMs": 0,
+              "endMs": 1721
+            },
+            {
+              "text": "two fundamental commodity market structures:",
+              "startMs": 1721,
+              "endMs": 5327
+            },
+            {
+              "text": "Contango and Backwardation.",
+              "startMs": 5327,
+              "endMs": 7540
+            }
+          ]
+        },
+        {
+          "id": "b31",
+          "hindi_tts": "कॉन्टैंगो में जब बाजार में माल प्रचुर मात्रा में होता है, तो फ्यूचर्स भाव स्पॉट से ऊपर रहता है ताकि स्टोरेज और ब्याज का खर्च निकल सके।",
+          "en_subtitle": "In contango, abundant physical supply keeps futures prices above spot to compensate for storage and financing.",
+          "en_narration": "In contango, abundant inventory keeps futures prices above spot, compensating commercial storage operators for financing and warehousing.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftCard": {
+              "title": "Contango Economics",
+              "subtitle": "Full Carrying Charge Market",
+              "tag": "F_0 = S_0 · e^(r + u)T",
+              "color": "#0F766E",
+              "points": [
+                "Arbitrage cap: F_0 cannot exceed S_0 · e^(r+u)T.",
+                "If futures trade higher, cash-and-carry buying spot floods storage.",
+                "Normal state for gold, silver, and well-supplied crude oil.",
+                "Negative roll yield for long futures holders."
+              ]
+            },
+            "rightCard": {
+              "title": "Backwardation Economics",
+              "subtitle": "Shortage Driven Supply Squeeze",
+              "tag": "F_0 < S_0",
+              "color": "#F59E0B",
+              "points": [
+                "No lower arbitrage bound exists for consumption commodities.",
+                "Manufacturers cannot lend or short scarce raw materials.",
+                "Generates positive roll yield for long futures investors.",
+                "Classic indicator of acute supply shocks and geopolitical risk."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Contango Bounds",
+              "rightLabel": "Backwardation Persistence",
+              "contrast": "Upper bound strictly enforced by arbitrage; lower bound unconstrained"
+            },
+            "semantics": {
+              "teachingObjective": "Explain asymmetry of arbitrage bounds between contango and backwardation",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "ba45759484737cba",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b31.mp3",
+          "audioDurationSec": 10.75,
+          "durationInFrames": 335,
+          "subtitlePhrases": [
+            {
+              "text": "In contango,",
+              "startMs": 0,
+              "endMs": 1183
+            },
+            {
+              "text": "abundant physical supply keeps futures prices above spot to compensate for storage and financing.",
+              "startMs": 1183,
+              "endMs": 10750
+            }
+          ]
+        },
+        {
+          "id": "b32",
+          "hindi_tts": "लेकिन जब युद्ध या सप्लाई संकट से माल की किल्लत होती है, तो बैकवर्डेशन आता है। फ्यूचर्स स्पॉट से सस्ता हो जाता है क्योंकि फिजिकल माल रखने वाला उसे बेचना नहीं चाहता।",
+          "en_subtitle": "During supply shocks, backwardation takes over: futures trade below spot because manufacturers refuse to part with physical inventory.",
+          "en_narration": "During acute supply shocks, backwardation takes over. Futures trade at deep discounts because manufacturers refuse to surrender scarce physical stock.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftCard": {
+              "title": "Contango Roll Yield",
+              "subtitle": "Headwind for Long Investors",
+              "tag": "Negative Roll",
+              "color": "#0F766E",
+              "points": [
+                "Long futures roll downward toward lower spot at expiration.",
+                "Can produce massive drag on commodity ETF returns.",
+                "Seen during supertanker storage gluts."
+              ]
+            },
+            "rightCard": {
+              "title": "Backwardation Roll Yield",
+              "subtitle": "Tailwind for Long Investors",
+              "tag": "Positive Roll",
+              "color": "#F59E0B",
+              "points": [
+                "Long futures roll upward toward higher spot at expiration.",
+                "Provides substantial returns to long commodity positions.",
+                "Reflects the premium the market pays holders for releasing inventory."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Negative Roll Drag",
+              "rightLabel": "Positive Roll Yield",
+              "contrast": "Contango erodes long ETF returns; backwardation enhances them"
+            },
+            "semantics": {
+              "teachingObjective": "Detail roll yield implications for institutional commodity investors",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "c9e25d64dd01ad6c",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b32.mp3",
+          "audioDurationSec": 13.97,
+          "durationInFrames": 435,
+          "subtitlePhrases": [
+            {
+              "text": "During supply shocks,",
+              "startMs": 0,
+              "endMs": 2206
+            },
+            {
+              "text": "backwardation takes over: futures trade below spot because manufacturers refuse to part with physical inventory.",
+              "startMs": 2206,
+              "endMs": 13970
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Active Recall: Valuing a Mid-Life Forward",
+      "template": "interactive_quiz",
+      "badge": "Knowledge Verification",
+      "beats": [
+        {
+          "id": "b33",
+          "hindi_tts": "राजू के लिए आज का चैलेंज सवाल: एक शेयर पर 50 डॉलर की स्ट्राइक वाला फॉरवर्ड है, 3 महीने बाकी हैं, रिस्क-फ्री रेट 6 परसेंट है और आज स्पॉट 53 डॉलर है।",
+          "en_subtitle": "Challenge for Raju: Long forward has $50 strike, 3 months left, risk-free rate 6%, spot $53. What is its mid-life value?",
+          "en_narration": "Here is an active challenge for Raju: A long forward contract has a $50 delivery strike, 3 months remaining, 6% risk-free rate, and spot is $53. What is the contract value?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "question": "A long forward has strike $50, 3 months left, risk-free rate 6%, spot $53. What is its mid-life value?",
+            "options": [
+              "A) $3.00 (Simple spot minus delivery strike)",
+              "B) +$3.74 (Spot minus discounted strike: 53 - 49.26)",
+              "C) $0.00 (Forward contracts always maintain zero value)",
+              "D) -$2.50 (Loss due to carrying financing charge)"
+            ],
+            "selectedOption": null,
+            "isCorrect": null,
+            "answer": "B) +$3.74",
+            "showThinkingSpinner": false,
+            "feedback": "Raju computes the mark-to-market value: f = S_t - K*e^(-r*tau)..."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "A long forward has strike $50, 3 months left, risk-free rate 6%, spot $53. What is its mid-life value?",
+              "options": [
+                "A) $3.00 (Simple spot minus delivery strike)",
+                "B) +$3.74 (Spot minus discounted strike: 53 - 49.26)",
+                "C) $0.00 (Forward contracts always maintain zero value)",
+                "D) -$2.50 (Loss due to carrying financing charge)"
+              ],
+              "selectedOption": null,
+              "isCorrect": null,
+              "answer": "B) +$3.74",
+              "showThinkingSpinner": false
+            },
+            "semantics": {
+              "teachingObjective": "Present active recall forward valuation problem",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "01070a4ce5f2ccff",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b33.mp3",
+          "audioDurationSec": 13.15,
+          "durationInFrames": 407,
+          "subtitlePhrases": [
+            {
+              "text": "Challenge for Raju: Long forward has $50 strike,",
+              "startMs": 0,
+              "endMs": 5395
+            },
+            {
+              "text": "3 months left,",
+              "startMs": 5395,
+              "endMs": 6969
+            },
+            {
+              "text": "risk-free rate 6%,",
+              "startMs": 6969,
+              "endMs": 8992
+            },
+            {
+              "text": "spot $53. What is its mid-life value?",
+              "startMs": 8992,
+              "endMs": 13150
+            }
+          ]
+        },
+        {
+          "id": "b34",
+          "hindi_tts": "राजू ने फार्मूला लगाया: 50 डॉलर का 3 महीने का डिस्काउंटेड भाव 49.26 डॉलर हुआ। 53 में से 49.26 घटाया, तो आंसर निकला प्लस 3.74 डॉलर!",
+          "en_subtitle": "Raju calculates: $50 discounted for 3 months at 6% is $49.26. Subtracting from $53 yields +$3.74!",
+          "en_narration": "Raju applies the formula: Discounting $50 at 6% for 3 months gives $49.26. Subtracting from $53 spot yields plus $3.74!",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "question": "A long forward has strike $50, 3 months left, risk-free rate 6%, spot $53. What is its mid-life value?",
+            "options": [
+              "A) $3.00 (Simple spot minus delivery strike)",
+              "B) +$3.74 (Spot minus discounted strike: 53 - 49.26)",
+              "C) $0.00 (Forward contracts always maintain zero value)",
+              "D) -$2.50 (Loss due to carrying financing charge)"
+            ],
+            "selectedOption": 1,
+            "isCorrect": true,
+            "answer": "B) +$3.74",
+            "showThinkingSpinner": true,
+            "feedback": "Raju evaluates: f = 53 - 50 * e^(-0.06 * 0.25) = 53 - 49.26 = +$3.74."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "A long forward has strike $50, 3 months left, risk-free rate 6%, spot $53. What is its mid-life value?",
+              "options": [
+                "A) $3.00 (Simple spot minus delivery strike)",
+                "B) +$3.74 (Spot minus discounted strike: 53 - 49.26)",
+                "C) $0.00 (Forward contracts always maintain zero value)",
+                "D) -$2.50 (Loss due to carrying financing charge)"
+              ],
+              "selectedOption": 1,
+              "isCorrect": true,
+              "answer": "B) +$3.74",
+              "showThinkingSpinner": true
+            },
+            "semantics": {
+              "teachingObjective": "Show thinking pause and selection of correct answer Option B",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "9917c9f9ab3edb8d",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b34.mp3",
+          "audioDurationSec": 15.74,
+          "durationInFrames": 569,
+          "subtitlePhrases": [
+            {
+              "text": "Raju calculates: $50 discounted for 3",
+              "startMs": 0,
+              "endMs": 6130
+            },
+            {
+              "text": "months at 6% is $49.26. Subtracting",
+              "startMs": 6130,
+              "endMs": 11929
+            },
+            {
+              "text": "from $53 yields +$3.74!",
+              "startMs": 11929,
+              "endMs": 15740
+            }
+          ]
+        },
+        {
+          "id": "b35",
+          "hindi_tts": "शाबाश राजू! बिल्कुल सही। ऑप्शन B सही उत्तर है। चूंकि 50 डॉलर मैच्योरिटी पर चुकाने हैं, इसलिए आज कॉन्ट्रैक्ट की वैल्यू 3.74 डॉलर है!",
+          "en_subtitle": "Brilliant Raju! Option B is correct. Because the $50 payment is deferred, the contract is worth $3.74 today.",
+          "en_narration": "Brilliant Raju! Option B is correct. Because the $50 payment is deferred until maturity, the contract is worth $3.74 today, not $3.00!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "question": "A long forward has strike $50, 3 months left, risk-free rate 6%, spot $53. What is its mid-life value?",
+            "options": [
+              "A) $3.00 (Simple spot minus delivery strike)",
+              "B) +$3.74 (Spot minus discounted strike: 53 - 49.26)",
+              "C) $0.00 (Forward contracts always maintain zero value)",
+              "D) -$2.50 (Loss due to carrying financing charge)"
+            ],
+            "selectedOption": 1,
+            "isCorrect": true,
+            "answer": "B) +$3.74",
+            "showThinkingSpinner": false,
+            "feedback": "Correct! The deferred delivery payment provides an interest benefit, raising contract value from $3.00 to $3.74."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "A long forward has strike $50, 3 months left, risk-free rate 6%, spot $53. What is its mid-life value?",
+              "options": [
+                "A) $3.00 (Simple spot minus delivery strike)",
+                "B) +$3.74 (Spot minus discounted strike: 53 - 49.26)",
+                "C) $0.00 (Forward contracts always maintain zero value)",
+                "D) -$2.50 (Loss due to carrying financing charge)"
+              ],
+              "selectedOption": 1,
+              "isCorrect": true,
+              "answer": "B) +$3.74",
+              "showThinkingSpinner": false
+            },
+            "semantics": {
+              "teachingObjective": "Validate active recall solution and explain deferred payment value accretion",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "b65ab28b4898b88b",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b35.mp3",
+          "audioDurationSec": 15.67,
+          "durationInFrames": 486,
+          "subtitlePhrases": [
+            {
+              "text": "Brilliant Raju! Option B is correct. Because the $50 payment is deferred,",
+              "startMs": 0,
+              "endMs": 10691
+            },
+            {
+              "text": "the contract is worth $3.74 today.",
+              "startMs": 10691,
+              "endMs": 15670
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "Raju Masters Complete Forward Pricing",
+      "template": "chat_story",
+      "badge": "Desk Debrief",
+      "beats": [
+        {
+          "id": "b36",
+          "hindi_tts": "शर्मा जी! अब समझ आया कि चाहे शेयर हो, इंडेक्स, विदेशी मुद्रा या कमोडिटी—सबका फॉरवर्ड भाव सिर्फ कॉस्ट ऑफ कैरी और कन्वीनियंस यील्ड का खेल है!",
+          "en_subtitle": "Sharma ji, I see that across stocks, indices, FX, and commodities, forward prices reflect cost of carry and convenience yield!",
+          "en_narration": "Sharma ji, I now see the grand architecture! Across stocks, indices, currencies, and commodities, forward prices reflect cost of carry and convenience yield!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju connects all forward pricing models —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji! Stocks, stock indices, currencies, and commodities all follow the same cost of carry math adjusted for yields!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji! Stocks, stock indices, currencies, and commodities all follow the same cost of carry math adjusted for yields!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Raju synthesizes all Chapter 5 forward pricing models",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "9489778bf8a471f7",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b36.mp3",
+          "audioDurationSec": 12.7,
+          "durationInFrames": 393,
+          "subtitlePhrases": [
+            {
+              "text": "Sharma ji,",
+              "startMs": 0,
+              "endMs": 1050
+            },
+            {
+              "text": "I see that across stocks,",
+              "startMs": 1050,
+              "endMs": 3674
+            },
+            {
+              "text": "indices,",
+              "startMs": 3674,
+              "endMs": 4514
+            },
+            {
+              "text": "FX,",
+              "startMs": 4514,
+              "endMs": 4829
+            },
+            {
+              "text": "and commodities,",
+              "startMs": 4829,
+              "endMs": 6508
+            },
+            {
+              "text": "forward prices reflect cost of carry and convenience yield!",
+              "startMs": 6508,
+              "endMs": 12700
+            }
+          ]
+        },
+        {
+          "id": "b37",
+          "hindi_tts": "बिल्कुल राजू! इंडेक्स में डिविडेंड घटाते हैं, फॉरेक्स में विदेशी ब्याज घटाते हैं, और कमोडिटी में स्टोरेज जोड़कर कन्वीनियंस यील्ड घटाते हैं।",
+          "en_subtitle": "Exactly Raju! In indices we subtract dividends, in FX foreign interest, and in commodities we add storage and subtract convenience yield.",
+          "en_narration": "Exactly Raju! In stock indices we subtract dividends, in currencies foreign interest, and in commodities we add storage and subtract convenience yield.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji reinforces unified cost of carry framework —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji! Stocks, stock indices, currencies, and commodities all follow the same cost of carry math adjusted for yields!",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Spot on! The unified rule is F_0 = S_0·e^(cT). Cost of carry c is r, r - q, r - r_f, or r + u - y depending on asset cash flows.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji! Stocks, stock indices, currencies, and commodities all follow the same cost of carry math adjusted for yields!",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Spot on! The unified rule is F_0 = S_0·e^(cT). Cost of carry c is r, r - q, r - r_f, or r + u - y depending on asset cash flows.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Sharma ji encapsulates unified cost of carry rule c across all asset classes",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "6c2b93811bb6790a",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b37.mp3",
+          "audioDurationSec": 11.98,
+          "durationInFrames": 372,
+          "subtitlePhrases": [
+            {
+              "text": "Exactly Raju! In indices we subtract dividends,",
+              "startMs": 0,
+              "endMs": 4171
+            },
+            {
+              "text": "in FX foreign interest,",
+              "startMs": 4171,
+              "endMs": 6212
+            },
+            {
+              "text": "and in commodities we add storage and subtract convenience yield.",
+              "startMs": 6212,
+              "endMs": 11980
+            }
+          ]
+        },
+        {
+          "id": "b38",
+          "hindi_tts": "और सबसे जरूरी बात: 1987 के क्रैश से याद रखना कि जब एक्सचेंज के सिस्टम जाम होते हैं, तो थ्योरेटिकल आर्बिट्राज भी काम नहीं करता!",
+          "en_subtitle": "And remember the 1987 crash: when exchange order routing systems jam, theoretical arbitrage breaks down.",
+          "en_narration": "And most importantly, remember the 1987 crash: when exchange order routing infrastructure fails, theoretical arbitrage breaks down.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "stageDirections": [
+              "— Final desk takeaway on infrastructure risk —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Never forget: Mathematical arbitrage assumes instant liquidity. In crashes, technological bottlenecks break parity.",
+                "theme": "teal",
+                "align": "right"
+              },
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Understood! Risk management requires both mathematical rigor and respect for market infrastructure limitations.",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Never forget: Mathematical arbitrage assumes instant liquidity. In crashes, technological bottlenecks break parity.",
+                  "theme": "teal",
+                  "align": "right"
+                },
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Understood! Risk management requires both mathematical rigor and respect for market infrastructure limitations.",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Cement key operational and liquidity lessons before summary matrix",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "5f782a6b418e60c7",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b38.mp3",
+          "audioDurationSec": 11.33,
+          "durationInFrames": 355,
+          "subtitlePhrases": [
+            {
+              "text": "And remember the 1987 crash: when exchange order routing systems jam,",
+              "startMs": 0,
+              "endMs": 7590
+            },
+            {
+              "text": "theoretical arbitrage breaks down.",
+              "startMs": 7590,
+              "endMs": 11330
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 12,
+      "title": "The Whole Picture: 8 Core Forward Pricing Laws",
+      "template": "summary_thread",
+      "badge": "Master Chapter Synthesis",
+      "beats": [
+        {
+          "id": "b39",
+          "hindi_tts": "पूरा चैप्टर एक नजर में: फॉरवर्ड और फ्यूचर्स प्राइसिंग के 8 बुनियादी नियम!",
+          "en_subtitle": "The complete chapter at a glance: The 8 fundamental laws of forward and futures pricing!",
+          "en_narration": "The complete chapter at a glance: The eight fundamental laws of forward and futures pricing!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "EXECUTIVE SUMMARY",
+            "heading": "The 8 Core Forward Pricing Laws",
+            "activeStepIndex": 0,
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "steps": [
+              "1. Mid-Life Contract Value: Long forward value f = S_t - K·e^(-r·tau) discounts the delivery strike.",
+              "2. Contract Value vs Price: Forward price F_t enters at zero cost; contract value f tracks mark-to-market P&L.",
+              "3. Stock Index Futures: Continuous dividend yield q reduces carry: F_0 = S_0·e^((r - q)T).",
+              "4. Index Arbitrage: Program trading enforces cash-and-carry bounds across CME futures and NYSE baskets.",
+              "5. 1987 Crash Breakdown: Portfolio insurance cascades jammed NYSE DOT order printers, decoupling futures from spot.",
+              "6. Covered Interest Parity: Foreign interest rates act as continuous dividends: F_0 = S_0·e^((r - r_f)T).",
+              "7. Covered FX Arbitrage: Any forward currency divergence allows instant riskless borrowing and foreign conversion.",
+              "8. Convenience Yield Dynamics: In commodity shortages, high convenience yield y produces backwardation: F_0 < S_0."
+            ],
+            "bottomTakeaway": "Forward and futures prices reflect the net cost of carry across all asset classes.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                0,
+                0
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Present executive roadmap overview of 8 core rules",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "d2430c14cf080de5",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b39.mp3",
+          "audioDurationSec": 6.26,
+          "durationInFrames": 200,
+          "subtitlePhrases": [
+            {
+              "text": "The complete chapter at a",
+              "startMs": 0,
+              "endMs": 1820
+            },
+            {
+              "text": "glance: The 8 fundamental laws",
+              "startMs": 1820,
+              "endMs": 4004
+            },
+            {
+              "text": "of forward and futures pricing!",
+              "startMs": 4004,
+              "endMs": 6260
+            }
+          ]
+        },
+        {
+          "id": "b40",
+          "hindi_tts": "पहला और दूसरा नियम: मैच्योरिटी से पहले लॉन्ग फॉरवर्ड की वैल्यू f बराबर S-t माइनस K गुणा e की पावर माइनस r-टाऊ होती है। फॉरवर्ड प्राइस नए ट्रेड के लिए 0 वैल्यू सेट करता है, जबकि f पुरानी पोजीशन का नफा-नुकसान नापता है।",
+          "en_subtitle": "Rules 1 & 2: Mid-life contract value f = S_t - K*e^(-r*tau). Forward price F_t enters at zero cost while f tracks cumulative P&L.",
+          "en_narration": "First and second: Mid-life long contract value f equals S_t minus K times e to the power minus r times tau. The forward price enters at zero cost, while f tracks cumulative mark-to-market P&L.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 1 & 2 · VALUATION & SPREADS",
+            "heading": "Mid-Life Contract Valuation & Delivery Discounting",
+            "activeStepIndex": 1,
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "steps": [
+              "1. Mid-Life Contract Value: Long forward value f = S_t - K·e^(-r·tau) discounts the delivery strike.",
+              "2. Contract Value vs Price: Forward price F_t enters at zero cost; contract value f tracks mark-to-market P&L.",
+              "3. Stock Index Futures: Continuous dividend yield q reduces carry: F_0 = S_0·e^((r - q)T).",
+              "4. Index Arbitrage: Program trading enforces cash-and-carry bounds across CME futures and NYSE baskets.",
+              "5. 1987 Crash Breakdown: Portfolio insurance cascades jammed NYSE DOT order printers, decoupling futures from spot.",
+              "6. Covered Interest Parity: Foreign interest rates act as continuous dividends: F_0 = S_0·e^((r - r_f)T).",
+              "7. Covered FX Arbitrage: Any forward currency divergence allows instant riskless borrowing and foreign conversion.",
+              "8. Convenience Yield Dynamics: In commodity shortages, high convenience yield y produces backwardation: F_0 < S_0."
+            ],
+            "bottomTakeaway": "Locked delivery strike K must be discounted by e^(-r*tau) to determine mark-to-market value f today.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                1,
+                2
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 1 and 2: Contract valuation and delivery price discounting",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "edfa59f4573d9fdd",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b40.mp3",
+          "audioDurationSec": 19.2,
+          "durationInFrames": 588,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 1 & 2: Mid-life contract value f",
+              "startMs": 0,
+              "endMs": 5745
+            },
+            {
+              "text": "= S_t - K*e^(-r*tau). Forward price F_t enters",
+              "startMs": 5745,
+              "endMs": 12699
+            },
+            {
+              "text": "at zero cost while f tracks cumulative P&L.",
+              "startMs": 12699,
+              "endMs": 19200
+            }
+          ]
+        },
+        {
+          "id": "b41",
+          "hindi_tts": "तीसरा और चौथा नियम: स्टॉक इंडेक्स फ्यूचर्स में डिविडेंड यील्ड q ब्याज खर्च को घटाती है: F-0 बराबर S-0 गुणा e की पावर r माइनस q गुणा T। और प्रोग्राम ट्रेडिंग कैश-एंड-कैरी के जरिए दोनों बाजारों को बांधकर रखती है।",
+          "en_subtitle": "Rules 3 & 4: Index dividend yield q reduces carry: F_0 = S_0*e^((r-q)T). Program trading enforces cash-and-carry bounds.",
+          "en_narration": "Third and fourth: Stock index continuous dividend yield q offsets financing costs in F_0 = S_0*e^((r-q)T). Program trading enforces strict cash-and-carry bounds between futures and cash baskets.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 3 & 4 · INDICES & ARBITRAGE",
+            "heading": "Index Pricing & Program Trading Arbitrage",
+            "activeStepIndex": 3,
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "steps": [
+              "1. Mid-Life Contract Value: Long forward value f = S_t - K·e^(-r·tau) discounts the delivery strike.",
+              "2. Contract Value vs Price: Forward price F_t enters at zero cost; contract value f tracks mark-to-market P&L.",
+              "3. Stock Index Futures: Continuous dividend yield q reduces carry: F_0 = S_0·e^((r - q)T).",
+              "4. Index Arbitrage: Program trading enforces cash-and-carry bounds across CME futures and NYSE baskets.",
+              "5. 1987 Crash Breakdown: Portfolio insurance cascades jammed NYSE DOT order printers, decoupling futures from spot.",
+              "6. Covered Interest Parity: Foreign interest rates act as continuous dividends: F_0 = S_0·e^((r - r_f)T).",
+              "7. Covered FX Arbitrage: Any forward currency divergence allows instant riskless borrowing and foreign conversion.",
+              "8. Convenience Yield Dynamics: In commodity shortages, high convenience yield y produces backwardation: F_0 < S_0."
+            ],
+            "bottomTakeaway": "Index dividend yields reduce carrying costs, and automated program trading enforces market parity.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                3,
+                4
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 3 and 4: Index continuous dividend yields and program trading",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "e1fc7526c32be952",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b41.mp3",
+          "audioDurationSec": 18.22,
+          "durationInFrames": 559,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 3 & 4: Index dividend",
+              "startMs": 0,
+              "endMs": 4169
+            },
+            {
+              "text": "yield q reduces carry: F_0 =",
+              "startMs": 4169,
+              "endMs": 8492
+            },
+            {
+              "text": "S_0*e^((r-q)T). Program trading enforces cash-and-carry bounds.",
+              "startMs": 8492,
+              "endMs": 18220
+            }
+          ]
+        },
+        {
+          "id": "b42",
+          "hindi_tts": "पांचवां और छठा नियम: 1987 के क्रैश में एक्सचेंज के डीओटी सिस्टम में जाम लगने से आर्बिट्राज टूट गया था। और फॉरेक्स में विदेशी ब्याज दर डिविडेंड का काम करती है: F-0 बराबर S-0 गुणा e की पावर r माइनस r-f गुणा T।",
+          "en_subtitle": "Rules 5 & 6: 1987 crash broke arbitrage due to NYSE DOT routing bottlenecks. In FX, foreign interest acts as dividend yield.",
+          "en_narration": "Fifth and sixth: In the 1987 crash, NYSE DOT order congestion broke arbitrage between CME and NYSE. In currencies, foreign interest rates act as continuous dividends in Covered Interest Rate Parity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 5 & 6 · CRISES & CURRENCY PARITY",
+            "heading": "1987 Infrastructure Breakdown & Covered Interest Parity",
+            "activeStepIndex": 5,
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "steps": [
+              "1. Mid-Life Contract Value: Long forward value f = S_t - K·e^(-r·tau) discounts the delivery strike.",
+              "2. Contract Value vs Price: Forward price F_t enters at zero cost; contract value f tracks mark-to-market P&L.",
+              "3. Stock Index Futures: Continuous dividend yield q reduces carry: F_0 = S_0·e^((r - q)T).",
+              "4. Index Arbitrage: Program trading enforces cash-and-carry bounds across CME futures and NYSE baskets.",
+              "5. 1987 Crash Breakdown: Portfolio insurance cascades jammed NYSE DOT order printers, decoupling futures from spot.",
+              "6. Covered Interest Parity: Foreign interest rates act as continuous dividends: F_0 = S_0·e^((r - r_f)T).",
+              "7. Covered FX Arbitrage: Any forward currency divergence allows instant riskless borrowing and foreign conversion.",
+              "8. Convenience Yield Dynamics: In commodity shortages, high convenience yield y produces backwardation: F_0 < S_0."
+            ],
+            "bottomTakeaway": "System bottlenecks break theoretical arbitrage; foreign interest rates act as currency dividends.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                5,
+                6
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 5 and 6: 1987 crash bottlenecks and covered interest rate parity",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "5c3e2fa28fa19c37",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b42.mp3",
+          "audioDurationSec": 19.37,
+          "durationInFrames": 594,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 5 & 6: 1987 crash broke arbitrage due to NYSE DOT routing bottlenecks. In FX,",
+              "startMs": 0,
+              "endMs": 13071
+            },
+            {
+              "text": "foreign interest acts as dividend yield.",
+              "startMs": 13071,
+              "endMs": 19370
+            }
+          ]
+        },
+        {
+          "id": "b43",
+          "hindi_tts": "सातवां और आठवां नियम: कवर्ड ब्याज आर्बिट्राज बिना रिस्क का मुनाफा लॉक करके फॉरेक्स को पैरिटी पर रखता है। और आठवां सबसे जरूरी नियम: कमोडिटीज में किल्लत के समय हाई कन्वीनियंस यील्ड y फ्यूचर्स को स्पॉट से नीचे गिराकर बैकवर्डेशन पैदा कर देती है!",
+          "en_subtitle": "Rules 7 & 8: Covered FX arbitrage locks riskless profit. Rule 8: High convenience yield y creates backwardation in commodity shortages!",
+          "en_narration": "Seventh and eighth: Covered interest arbitrage locks in riskless profit whenever forward exchange rates diverge. And rule eight: During physical commodity shortages, high convenience yield y drives futures below spot into deep backwardation!",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "headerBadge": "RULES 7 & 8 · FX ARBITRAGE & CONVENIENCE YIELD",
+            "heading": "Covered Arbitrage & Commodity Convenience Yield",
+            "activeStepIndex": 7,
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "steps": [
+              "1. Mid-Life Contract Value: Long forward value f = S_t - K·e^(-r·tau) discounts the delivery strike.",
+              "2. Contract Value vs Price: Forward price F_t enters at zero cost; contract value f tracks mark-to-market P&L.",
+              "3. Stock Index Futures: Continuous dividend yield q reduces carry: F_0 = S_0·e^((r - q)T).",
+              "4. Index Arbitrage: Program trading enforces cash-and-carry bounds across CME futures and NYSE baskets.",
+              "5. 1987 Crash Breakdown: Portfolio insurance cascades jammed NYSE DOT order printers, decoupling futures from spot.",
+              "6. Covered Interest Parity: Foreign interest rates act as continuous dividends: F_0 = S_0·e^((r - r_f)T).",
+              "7. Covered FX Arbitrage: Any forward currency divergence allows instant riskless borrowing and foreign conversion.",
+              "8. Convenience Yield Dynamics: In commodity shortages, high convenience yield y produces backwardation: F_0 < S_0."
+            ],
+            "bottomTakeaway": "Relentless covered arbitrage enforces parity; convenience yields drive commodity backwardation during shortages.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                7,
+                8
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Strict dedicated focus on Rules 7 & 8: Covered arbitrage and Rule 8 convenience yield dynamics",
+              "sourceFactIds": [
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "a622c26ec2914341",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b43.mp3",
+          "audioDurationSec": 20.04,
+          "durationInFrames": 615,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 7 & 8: Covered FX arbitrage",
+              "startMs": 0,
+              "endMs": 4972
+            },
+            {
+              "text": "locks riskless profit. Rule 8: High convenience",
+              "startMs": 4972,
+              "endMs": 12054
+            },
+            {
+              "text": "yield y creates backwardation in commodity shortages!",
+              "startMs": 12054,
+              "endMs": 20040
+            }
+          ]
+        },
+        {
+          "id": "b44",
+          "hindi_tts": "यह है फॉरवर्ड और फ्यूचर्स प्राइसिंग का पूरा मास्टर फ्रेमवर्क! कॉस्ट ऑफ कैरी और कन्वीनियंस यील्ड की समझ ही सफल डेरिवेटिव ट्रेडिंग की नींव है।",
+          "en_subtitle": "Complete master summary: Diligent mastery of cost of carry and convenience yield is the foundation of derivatives.",
+          "en_narration": "That is the complete master pricing framework! Diligent mastery of cost of carry and convenience yield is the bedrock of quantitative derivative trading.",
+          "pauseAfterMs": 600,
+          "ui_state": {
+            "headerBadge": "CHAPTER 5 · PART 2 · COMPLETE OVERVIEW",
+            "heading": "Master Forward & Futures Pricing Architecture",
+            "activeStepIndex": 0,
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "steps": [
+              "1. Mid-Life Contract Value: Long forward value f = S_t - K·e^(-r·tau) discounts the delivery strike.",
+              "2. Contract Value vs Price: Forward price F_t enters at zero cost; contract value f tracks mark-to-market P&L.",
+              "3. Stock Index Futures: Continuous dividend yield q reduces carry: F_0 = S_0·e^((r - q)T).",
+              "4. Index Arbitrage: Program trading enforces cash-and-carry bounds across CME futures and NYSE baskets.",
+              "5. 1987 Crash Breakdown: Portfolio insurance cascades jammed NYSE DOT order printers, decoupling futures from spot.",
+              "6. Covered Interest Parity: Foreign interest rates act as continuous dividends: F_0 = S_0·e^((r - r_f)T).",
+              "7. Covered FX Arbitrage: Any forward currency divergence allows instant riskless borrowing and foreign conversion.",
+              "8. Convenience Yield Dynamics: In commodity shortages, high convenience yield y produces backwardation: F_0 < S_0."
+            ],
+            "bottomTakeaway": "Forward and futures prices across stocks, indices, currencies, and commodities represent the net cost of carry, adjusted for dividends, foreign interest rates, and physical convenience yields.",
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display complete 2-column whole-chapter reference matrix",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06",
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "4134e726485346fa",
+          "audioFile": "audio/hull_derivatives/ch05_part2/b44.mp3",
+          "audioDurationSec": 11.52,
+          "durationInFrames": 364,
+          "subtitlePhrases": [
+            {
+              "text": "Complete master summary: Diligent mastery of",
+              "startMs": 0,
+              "endMs": 4526
+            },
+            {
+              "text": "cost of carry and convenience yield",
+              "startMs": 4526,
+              "endMs": 8126
+            },
+            {
+              "text": "is the foundation of derivatives.",
+              "startMs": 8126,
+              "endMs": 11520
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

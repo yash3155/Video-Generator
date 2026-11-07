@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch04_part1",
+  "title": "Interest Rates: Types of Rates, Continuous Compounding, and Zero Curve Bootstrapping",
+  "targetAudiencePersona": "Retail Trader & Quantitative Finance Student",
+  "prerequisites": [
+    "Basic understanding of time value of money and present value discounting",
+    "Familiarity with exponential functions and natural logarithms",
+    "Concept of bond coupons and par value"
+  ],
+  "learningOutcomes": [
+    "Distinguish Treasury, LIBOR, Repo, and OIS benchmark interest rates and explain their credit risk profiles.",
+    "Convert between discrete compounding frequencies and continuous compounding using the exact formula R_c = m * ln(1 + R_m / m).",
+    "Price coupon-bearing bonds by treating them as portfolios of zero-coupon cash flows discounted at dedicated zero rates.",
+    "Execute the recursive bootstrap method to extract zero rates sequentially from market bond yields.",
+    "Explain why the 2008 crisis forced derivatives discounting from LIBOR to OIS."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Benchmark Rates & The Risk-Free Hierarchy",
+      "pedagogicalObjective": "Understand Treasury, LIBOR, Repo, and OIS rates and why Treasury yields are artificially depressed.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Treasury bills have regulatory and tax advantages that depress yields below pure risk-free levels.",
+        "Repo rates represent secured collateralized borrowing.",
+        "OIS represents the true modern risk-free benchmark for collateralized derivatives."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Continuous vs Discrete Compounding",
+      "pedagogicalObjective": "Master the mathematical limit as compounding frequency reaches infinity and apply equivalence conversions.",
+      "groundedFactIds": [
+        "fact-02",
+        "fact-03"
+      ],
+      "keyPoints": [
+        "Compounding frequency increases terminal wealth up to the theoretical limit e^(rT).",
+        "Conversion formula: R_c = m * ln(1 + R_m / m).",
+        "A 10% semiannual rate equals 9.758% continuously compounded."
+      ],
+      "formulaUsed": "R_c = m * ln(1 + R_m / m)"
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Zero Rates and Bond Pricing Reality",
+      "pedagogicalObjective": "Demonstrate why discounting coupons at a single YTM is flawed and value bonds using zero rates.",
+      "groundedFactIds": [
+        "fact-04",
+        "fact-05",
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Zero rates represent pure single-payment loans with zero reinvestment risk.",
+        "Bond price is the exact sum of discounted cash flows: P = sum(C_i * e^(-r_i * t_i)) + M * e^(-r_n * t_n).",
+        "Par yield is the coupon rate setting bond price equal to face value 100."
+      ],
+      "formulaUsed": "P = sum(C_i * e^(-r_i * t_i)) + M * e^(-r_n * t_n)"
+    },
+    {
+      "sectionIndex": 3,
+      "title": "The Bootstrap Method for Zero Curve Construction",
+      "pedagogicalObjective": "Sequentially unlock the continuous zero curve from cash rates and par coupon bonds.",
+      "groundedFactIds": [
+        "fact-07"
+      ],
+      "keyPoints": [
+        "Short-term bills directly provide spot zero rates.",
+        "Longer bonds discount earlier cash flows at known zero rates to isolate the final zero rate.",
+        "The bootstrap builds the entire term structure without complex matrix inversion."
+      ]
+    },
+    {
+      "sectionIndex": 4,
+      "title": "The 2008 Crisis and the OIS Revolution",
+      "pedagogicalObjective": "Analyze why the derivatives industry abandoned LIBOR discounting for OIS post-2008.",
+      "groundedFactIds": [
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Pre-2008, LIBOR was used as the universal risk-free rate.",
+        "The Lehman collapse blew out the LIBOR-OIS spread to 364 bps, revealing bank credit risk.",
+        "Daily collateral cash earns the overnight rate, mandating OIS discounting."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Treasury bond yields represent the purest risk-free interest rates for derivatives pricing.",
+      "factId": "fact-01",
+      "authorRebuttal": "Treasury rates are artificially depressed by regulatory capital requirements and tax perks. OIS represents true risk-free institutional funding."
+    },
+    {
+      "misconception": "A 10% semiannual interest rate is equivalent to a 10% continuous interest rate.",
+      "factId": "fact-03",
+      "authorRebuttal": "Intra-year compounding makes 10% semiannual equal 9.758% continuously compounded: R_c = 2 * ln(1.05) = 9.758%."
+    },
+    {
+      "misconception": "A bond's Yield to Maturity represents the guaranteed realized return for the holder.",
+      "factId": "fact-06",
+      "authorRebuttal": "YTM only equals realized return if every single coupon is reinvested at that exact same YTM, which is impossible across real dynamic yield curves."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "Given a 1-year Treasury bond paying a 6% semiannual coupon trading at par 100, and a known 6-month zero rate of 5% (continuously compounded), what is the 1-year continuous zero rate?",
+    "testedFactIds": [
+      "fact-05",
+      "fact-07"
+    ],
+    "question": "What is the 1-year continuously compounded zero rate extracted via the bootstrap method?",
+    "correctAnswer": "5.93% per annum continuously compounded",
+    "explanation": "The 6-month coupon of $3 discounts at 5% to 3 * e^(-0.05 * 0.5) = $2.9259. The remaining $97.0741 is paid at 1 year ($103). Solving 103 * e^(-r_1 * 1.0) = 97.0741 gives r_1 = -ln(97.0741 / 103) = 5.93%."
+  },
+  "coreTakeaways": [
+    "Treasury yields carry regulatory distortions; OIS represents true risk-free institutional discounting.",
+    "Continuous compounding A = P * e^(rT) is the mathematical bedrock of all modern derivatives pricing.",
+    "A coupon bond is a portfolio of zero-coupon payouts, each requiring its own maturity-matched zero rate.",
+    "The bootstrap method sequentially extracts continuous zero rates from market instruments without matrix inversion.",
+    "Post-2008 derivatives valuation strictly mandates OIS discounting to reflect collateral earning the overnight rate."
+  ]
+}

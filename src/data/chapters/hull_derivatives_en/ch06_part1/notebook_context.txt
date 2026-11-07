@@ -1,0 +1,100 @@
+{
+  "answer": "Here is a detailed extraction of the authoritative facts, definitions, formulas, numerical examples, and case studies regarding **John C. Hull Chapter 6 (Interest Rate Futures)** [1]:\n\n---\n\n### 1. Day Count Conventions & Business Snapshot 6.1\n\nDay count conventions determine how interest accrues over time for financial instruments [1, 2]. A day count convention is expressed as \\\\(\\text{X}/\\text{Y}\\\\), where \\\\(\\text{X}\\\\) defines the number of days between two dates and \\\\(\\text{Y}\\\\) defines the total number of days in the reference period [1].\n\n* **Standard Day Count Conventions** [1, 2]:\n  1. **Actual/Actual (in period)**: Used for U.S. Treasury bonds and notes [1]. Interest earned between two dates is calculated as the actual number of days elapsed divided by the actual number of days in the coupon period multiplied by the coupon payment [1].\n  2. **30/360**: Used for U.S. corporate and municipal bonds [1, 2]. It assumes 30 days in each month and 360 days in a year [1, 2].\n  3. **Actual/360**: Used for U.S. Treasury bills and money market instruments [1].\n* **Business Snapshot 6.1 (\"Day Counts Can Be Deceptive\" / \"The Day Count Trap\")** [3]:\n  * Discrepancies in day count conventions across different interest rate markets (e.g., comparing money market rates using Actual/360 with bond yields using Actual/Actual) can create subtle mispricings or valuation traps if not properly normalized when designing cross-market hedging or arbitrage strategies [3].\n\n---\n\n### 2. Treasury Bond Futures\n\nTreasury bond futures are standardized contracts traded on exchanges such as the **Chicago Board of Trade (CBOT) / CME Group** [4-6].\n\n* **Underlying Assets & Deliverable Baskets** [5, 7]:\n  * **U.S. Treasury Bond Futures**: Deliverable asset is any U.S. Treasury bond that has a remaining maturity between **15 and 25 years** (or at least 15 years) on the first day of the delivery month [5].\n  * **10-Year Treasury Note Futures**: Deliverable asset is any U.S. Treasury note with a remaining maturity between **6.5 and 10 years** on the first day of the delivery month [7].\n* **Contract Specifications & Price Quotes** [4, 8, 9]:\n  * **Contract Size / Face Value**: Standard face value is **\\$100,000** [9].\n  * **Quotation Unit**: Quoted in **dollars and thirty-seconds of a dollar (\\$1/32)** per \\$100 face value (e.g., \\\\(100\\text{-}16\\\\) represents \\\\(100 \\frac{16}{32} = \\$100.50\\\\)) [8].\n  * **Tick Size & Value**: Minimum price fluctuation is \\\\(1/64\\\\) of a point (\\\\(0.015625\\\\)), corresponding to **\\$15.625** per \\$100,000 contract [4].\n  * **Delivery Months**: March, June, September, and December [4].\n  * **Delivery Terms**: Physical delivery of deliverable bonds at the seller's option [4, 10].\n\n---\n\n### 3. Conversion Factors (CF)\n\nBecause the exchange allows a wide basket of bonds with different coupons and maturities to be delivered against a single futures contract, the exchange assigns a **Conversion Factor (CF)** to each deliverable bond to standardize pricing [5, 11].\n\n* **Definition**: The Conversion Factor for a bond equals the value of \\$1 face value of the bond on the first day of the delivery month, assuming the rate of interest (yield) for all maturities equals a standardized benchmark rate (traditionally 6% or 8% per annum, compounded semi-annually) [10].\n* **Calculation Rules**:\n  * Round the bond's remaining maturity to the nearest complete 3 months [5, 11].\n  * If the rounded maturity is an exact multiple of 6 months, the coupon payment dates fall on the first day of the delivery month and an exact coupon period [5, 11].\n  * If the rounded maturity includes an extra 3 months, discount the cash flows back 3 months at the benchmark rate and subtract the accrued interest for those 3 months [5, 11].\n\n---\n\n### 4. Clean vs. Dirty / Cash Bond Price\n\nBonds in the spot market are quoted differently from the actual cash amount paid upon transaction settlement [8, 12, 13].\n\n* **Quoted Price (Clean Price)**: The price published on financial quotes, excluding accrued interest [8, 12, 13].\n* **Cash Price (Dirty Price)**: The actual total payment made by the buyer to the seller [12, 13].\n* **Formulas**:\n  \\\\[\\text{Cash Price (Dirty Price)} = \\text{Quoted Price (Clean Price)} + \\text{Accrued Interest}\\\\]\n* **Invoice Price Received on Futures Settlement**:\n  When a short futures position delivers a specific bond, the total cash received by the short party is:\n  \\\\[\\text{Cash Price Received} = (\\text{Futures Settlement Price} \\times \\text{Conversion Factor}) + \\text{Accrued Interest}\\\\]\n\n---\n\n### 5. Cheapest-to-Deliver (CTD) Bond Formula\n\nBecause the short position has the option to deliver any bond in the deliverable basket, they will choose the bond that minimizes the cost of fulfilling the contract [13, 14].\n\n* **Cheapest-to-Deliver (CTD) Cost Formula**:\n  \\\\[\\text{Cost to Deliver} = \\text{Quoted Spot Price of Bond} - (\\text{Futures Quoted Price} \\times \\text{Conversion Factor})\\\\]\n* **Selection Rule**: The **Cheapest-to-Deliver (CTD)** bond is the deliverable bond that minimizes this value (or equivalently, maximizes the implied repo rate earned by buying the bond and shorting the futures) [13, 14].\n\n---\n\n### 6. The Wild Card Play (Business Snapshot 6.2)\n\n**Business Snapshot 6.2 (\"The Wild Card Play\")** describes a strategic option resulting from a timing asymmetry between futures pit trading and the delivery notice deadline [3].\n\n* **Mechanism**:\n  * Pit trading for Treasury bond futures on the exchange originally closed at **2:00 p.m. Chicago time**, establishing the day's official futures settlement price [3].\n  * However, the short position had until **8:00 p.m. Chicago time** on the same day to submit a notice of intention to deliver to the exchange clearing house at that day's 2:00 p.m. settlement price [3].\n* **The Play**:\n  * Over-the-counter (OTC) spot market trading for Treasury bonds continues after 2:00 p.m. [3].\n  * If bond prices fall in the spot OTC market between 2:00 p.m. and 8:00 p.m., the short position can buy the bond at the lower post-2:00 p.m. spot price and immediately issue a delivery notice at the higher 2:00 p.m. futures settlement price [3].\n  * This option to wait and observe post-close spot price drops before committing to deliver is called the **Wild Card Play** [3].\n\n---\n\n💡 **Next Step**: Would you like to create a study guide, flashcard set, or practice quiz on these Treasury bond futures concepts and formulas?",
+  "question": "Extract all authoritative facts, definitions, numerical examples, formulas, tables, and case studies from John C. Hull Chapter 6 Part 1 on: Day Count Conventions (Actual/Actual vs 30/360, Business Snapshot 6.1 The Day Count Trap), Treasury Bond Futures, Conversion Factors, Clean vs Dirty/Cash Bond Price (Cash = Quoted + Accrued Interest), Cheapest-to-Deliver (CTD) Bond formula (Quoted Price - Futures Price * CF), and The Wild Card Play (Business Snapshot 6.2). Include exact numbers, formulas, and citations.",
+  "conversation_id": "c99c18fb-75e0-4b13-9481-8881d15b8b20",
+  "sources_used": [
+    "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "70969d3d-61f3-4031-949b-9431b353da90",
+    "58406c61-acf3-422f-8730-65bbc9cd958c",
+    "648f3133-0e02-4e0b-ae13-3f54f9bbdc23"
+  ],
+  "citations": {
+    "1": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "2": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "3": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "4": "70969d3d-61f3-4031-949b-9431b353da90",
+    "5": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "6": "58406c61-acf3-422f-8730-65bbc9cd958c",
+    "7": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "8": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "9": "648f3133-0e02-4e0b-ae13-3f54f9bbdc23",
+    "10": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "11": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "12": "70969d3d-61f3-4031-949b-9431b353da90",
+    "13": "70969d3d-61f3-4031-949b-9431b353da90",
+    "14": "648f3133-0e02-4e0b-ae13-3f54f9bbdc23"
+  },
+  "references": [
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 1,
+      "cited_text": "Further Questions ......................................................................................134 Chapter 6: Interest Rate Futures...................................................................................136 6.1 Day Count and Quotation Conventions.......................................................136 6.2 Treasury Bond Futures...............................................................................139 6.3 Eurodollar Futures.....................................................................................143"
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 2,
+      "cited_text": "P t rth Future amount resen wo = ------ (1 + Rate)Time where rate is the current short-term rate and time is expressed in years. 536 Part V: Index Options and Futures Assume that the current interest rate is 10%. Then the present worth of AAA's dividend would be: Present worth AAA 1.00 =------ (1 + .10)(35/360) 1.00 =---- (1.10)(-0972) 1.00 1.0093 = 0.9908 The present worth of the dividend is always less than the actual dividend. The present worth of an amount is the amount of money that would have to be invested today at the stated rate (10% in this example) to produce the future amount. That is, 99.08 cents invested at 10% would be worth exactly 1.00 in 35 days."
+    },
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 3,
+      "cited_text": "5.3 The CME Nikkei 225 Futures Contract ........................................................ 119 5.4 Index Arbitrage in October 1987.................................................................. 120 6.1 Day Counts Can Be Deceptive .................................................................... 137 6.2 The Wild Card Play................................................................................... 143 6.3 Asset–Liability Management by Banks......................................................... 152 7.1 Extract from Hypothetical Swap Confirmation............................................... 168"
+    },
+    {
+      "source_id": "70969d3d-61f3-4031-949b-9431b353da90",
+      "citation_number": 4,
+      "cited_text": "Symbol and Exchange TN, CBOT Futures multiplier $1,000 Tick size 0.015625 (1/64) Commission $0.85 Current cost of trading, per contract $8.6625 Delivery Physical Expiry months Quarterly: March, June, September, December Roll pattern Hold first contract until around 25 days before expiry The raw futures contract prices, and back-adjusted prices, are shown in figure 7. Figure 7: Raw and back-adjusted price series for US 10-year bond futures You may find this plot quite startling; the adjusted price series significantly outperforms the raw futures price, and has done so consistently over time. Almost all of this is due to significantly higher levels of carry. One consequence of this high carry, and the length of time we have data for, is that the back-adjusted price is actually negative for the first few years. This is nothing to worry about, as long as we ensure our strategies aren’t sensitive to negative prices. In fact, the current price of crude oil futures did actually go negative in March 2020, in response to the COVID-19 pandemic. Fortunately my trading system code had been written to be robust in the presence of negative numbers and this did not cause any computer glitches!"
+    },
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 5,
+      "cited_text": "per bushel more than No. 2 Yellow. No. 3 Yellow is deliverable for 1.5 cents per bushel less than No. 2 Yellow. The financial assets in futures contracts are generally well defined and unambiguous. For example, there is no need to specify the grade of a Japanese yen. However, there are some interesting features of the Treasury bond and Treasury note futures contracts traded by the CME Group. The underlying asset in the Treasury bond contract is any U.S. Treasury bond that has a maturity between 15 and 25 years on the first day of the"
+    },
+    {
+      "source_id": "58406c61-acf3-422f-8730-65bbc9cd958c",
+      "citation_number": 6,
+      "cited_text": "Call Premium The price of a call option. Call Ratio Backspread Bullish strategy involving selling one or two lower strike calls and buying two or three higher strike calls. Capital Gain The profit realized from buying and selling an asset. Capital Loss The loss taken from buying and selling an asset unprofitably. Chicago Board Options Exchange (CBOE) The largest equity options exchange in the world. Chicago Board of Trade (CBOT) The oldest commodity exchange in the U.S. Known for listings in T-bonds, notes, and a variety of commodities."
+    },
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 7,
+      "cited_text": "delivery month. In the 10-year Treasury note futures contract, the underlying asset is any Treasury note with a maturity between 6.5 and 10 years on the first day of the 1 As mentioned in Chapter 1, the spot price is the price for almost immediate delivery. 2 There are exceptions. As pointed out by J. E. Newsome, G.H.K. Wang, M.E. Boyd, and M. J. Fuller in ‘‘Contract Modifications and the Basis Behavior of Live Cattle Futures,’’ Journal of Futures Markets, 24, 6 (2004), 557–90, the CME gave the buyer some options on how delivery could be made in live cattle futures"
+    },
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 8,
+      "cited_text": "are quoted in dollars and cents; Treasury bond and Treasury note futures prices are quoted in dollars and thirty-seconds of a dollar. Price Limits and Position Limits For most contracts, daily price movement limits are specified by the exchange. If in a day the price moves down from the previous day’s close by an amount equal to the daily price limit, the contract is said to be limit down. If it moves up by the limit, it is said to be limit up. A limit move is a move in either direction equal to the daily price limit. Normally,"
+    },
+    {
+      "source_id": "648f3133-0e02-4e0b-ae13-3f54f9bbdc23",
+      "citation_number": 9,
+      "cited_text": "The price moves in the bond futures depend on the interest rate changes, which in turn are a factor of many things from inflation to investors’ propensity to take risk and the perceived solvency of the issuer. Futu r e s D ata 43The contract value of bond futures is normally 100,000 of the currency in question, although as the pricing is in percentage terms, this need to be divided by 100 to arrive at the most common point value for bond futures of 1,000. As a futures trader, the point value is always more important for you to know than the actual contract value. They may often be the same but when they differ, focus on the point value."
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 10,
+      "cited_text": "However, in some cases, the commodity necessary for delivery is more complicated, as is the case with Treasury bond futures. The futures contract is stated in terms of a nominal 8% interest rate. However, at any time, it is likely that the prevailing interest rate for long-term Treasury bonds will not be 8%. Therefore, the delivery terms of the futures contract allow for delivery of bonds with other interest rates. Notice that the delivery is at the seller's option. Thus, if one is short the futures and doesn't realize that first notice day has passed, he has no problem, for delivery is under his control. It is only those traders holding long futures who may receive a surprise delivery notice."
+    },
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 11,
+      "cited_text": "in 1995. Futures Markets and Central Counterparties 25 delivery month.. In both cases, the exchange has a formula for adjusting the price received according to the coupon and maturity date of the bond delivered. This is discussed in Chapter 6. The Contract Size The contract size specifies the amount of the asset that has to be delivered under one contract. This is an important decision for the exchange. If the contract size is too large, many traders who wish to hedge relatively small exposures or who wish to take"
+    },
+    {
+      "source_id": "70969d3d-61f3-4031-949b-9431b353da90",
+      "citation_number": 12,
+      "cited_text": "Skew −1.37 Lower tail 2.16 Upper tail 1.60 Buy and hold with US 10-year bond futures We originally decided to buy and hold the S&P 500 micro future to benefit from the equity risk premium. We can earn another well-known financial risk premium from taking interest rate risk (also known as duration risk). We can realise this through holding bond futures, of which the US 10-year government bond is one of the most liquid. The relevant information about the contract is shown below: Instrument US 10-year bond future (‘T-note’)"
+    },
+    {
+      "source_id": "70969d3d-61f3-4031-949b-9431b353da90",
+      "citation_number": 13,
+      "cited_text": "They are usually available for: Agricultural commodities Energy markets Metals and crypto They are difficult to obtain for: Bond markets For bond markets we need to know the ‘cheapest to deliver’ bond, get the price of the bond, and also obtain or calculate the conversion factor. All of this is a considerable amount of work. It’s also possible to measure the expected bond carry from the yield curve, but that is also a little complicated and requires you to know or estimate the duration of the bond."
+    },
+    {
+      "source_id": "648f3133-0e02-4e0b-ae13-3f54f9bbdc23",
+      "citation_number": 14,
+      "cited_text": "From about year 2 on the curve we have the bond futures where there is an actual underlying bond to be delivered at expiry. Bond futures are quoted in per cent of par, just as a normal bond. That means of course that as yields move up, bond futures move down and vice versa. Each bond futures contract has certain specifications, such as maturity, coupon, issuer and so on, and in theory there are often several different actual bonds that could be delivered against the contract upon expiry. In reality, however, only one bond will be cheapest to deliver and that is the one that will change hands between those who choose to keep their contracts open to the end. As a trader, you don’t want to keep your contracts open until expiry though, as you would then have to deal with the actual bonds. The most liquid and therefore most interesting bond futures are those on bonds issued by the respective governments of the USA, Germany, the UK, Australia, Canada, and Japan, although other countries’ debt may also be of interest to you should you want to expand in this sector."
+    }
+  ]
+}

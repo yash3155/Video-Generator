@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch06_part2",
+  "title": "Interest Rate Futures: Eurodollar Futures, Convexity, and Duration Hedging",
+  "targetAudiencePersona": "Fixed Income Portfolio Manager & Bank Risk Officer",
+  "prerequisites": [
+    "Treasury bond futures and conversion factor mechanics from Chapter 6 Part 1",
+    "Yield to maturity and continuous compounding from Chapter 4",
+    "Cost of carry forward pricing parity from Chapter 5"
+  ],
+  "learningOutcomes": [
+    "Interpret Eurodollar and SOFR 3-month futures quotes and calculate dollar gains per basis point.",
+    "Calculate the convexity adjustment between interest rate futures and forward borrowing rates.",
+    "Calculate Macaulay duration and modified duration to estimate linear bond price sensitivity.",
+    "Analyze second-order convexity curvature protection against large macro yield shifts.",
+    "Size optimal duration hedges using N* = (P * D_P) / (V_F * D_F) to immunize balance sheets.",
+    "Diagnose commercial bank asset-liability duration gaps and explain insolvency risk (Snapshot 6.3)."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Bank ALM Duration Crisis & Insolvency Mechanics",
+      "pedagogicalObjective": "Demonstrate how unhedged duration gaps destroy bank equity capital during rate hike cycles.",
+      "groundedFactIds": [
+        "fact-07"
+      ],
+      "keyPoints": [
+        "Banks fund long-duration assets (7-yr mortgages) with short-duration liabilities (1-yr deposits).",
+        "A +200 bps yield surge causes a -$140M loss on assets and an $18M gain on liabilities.",
+        "Net equity deficit of -$122M completely wipes out the bank's $100M capital base (Snapshot 6.3)."
+      ],
+      "formulaUsed": "Delta E = -(D_A * A - D_L * L) * Delta y"
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Eurodollar & SOFR 3-Month Futures Architecture",
+      "pedagogicalObjective": "Establish contract specifications, Price = 100 - R quoting, and the $25 per tick invariant.",
+      "groundedFactIds": [
+        "fact-01"
+      ],
+      "keyPoints": [
+        "Contract covers $1,000,000 principal of 3-month deposits referencing short-term rates.",
+        "Price is quoted on an index basis: Price = 100 - R (e.g., 4.5% rate quotes at 95.50).",
+        "Every 1 basis point (0.01%) rate move is worth exactly $25 cash per contract."
+      ],
+      "formulaUsed": "Price = 100 - R"
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Futures vs Forward Rates: The Convexity Adjustment",
+      "pedagogicalObjective": "Derive the convexity adjustment formula and explain why futures rates exceed forward rates.",
+      "groundedFactIds": [
+        "fact-02"
+      ],
+      "keyPoints": [
+        "Daily mark-to-market settlement induces positive correlation with interest rates.",
+        "Futures rates systematically exceed theoretical forward rates for long maturities.",
+        "Subtracting 0.5 * sigma^2 * T1 * T2 yields the true forward borrowing rate."
+      ],
+      "formulaUsed": "Forward Rate = Futures Rate - 0.5 * sigma^2 * T1 * T2"
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Macaulay Duration & Modified Duration",
+      "pedagogicalObjective": "Formulate Macaulay duration as cash flow timing and Modified duration as linear price sensitivity.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Macaulay duration measures weighted average maturity of discounted coupon and principal cash flows.",
+        "Modified duration D* dictates linear price sensitivity: Delta B / B approx -D* * Delta y.",
+        "Negative sign reflects the fundamental inverse relationship between bond prices and interest rates."
+      ],
+      "formulaUsed": "Delta B / B approx -D* * Delta y"
+    },
+    {
+      "sectionIndex": 4,
+      "title": "Convexity Protection & The Master Duration Hedge Ratio",
+      "pedagogicalObjective": "Formulate second-order convexity curvature and derive the optimal hedge ratio N*.",
+      "groundedFactIds": [
+        "fact-05",
+        "fact-06",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Convexity ensures bond prices rise faster on yield drops than they fall on yield hikes.",
+        "Immunize portfolios by shorting N* = (P * D_P) / (V_F * D_F) futures contracts.",
+        "Worked example: Shorting 423 contracts immunizes a $50M portfolio with duration 6.8 years."
+      ],
+      "formulaUsed": "N* = (P * D_P) / (V_F * D_F)"
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Futures interest rates and forward interest rates are always identical for the same maturity.",
+      "factId": "fact-02",
+      "authorRebuttal": "Daily mark-to-market settlement creates covariance between rate levels and reinvestment, causing futures rates to systematically exceed forward rates by the convexity adjustment."
+    },
+    {
+      "misconception": "A bond's maturity in calendar years is the correct measure of its price sensitivity to interest rate shifts.",
+      "factId": "fact-03",
+      "authorRebuttal": "Coupons paid before maturity shorten effective cash flow timing; modified duration—not maturity—measures true interest rate price sensitivity."
+    },
+    {
+      "misconception": "Duration-based hedging insulates bond portfolios against all types of interest rate risks.",
+      "factId": "fact-05",
+      "authorRebuttal": "Standard duration hedging assumes small parallel shifts of the yield curve; non-parallel twists, steepening, and credit basis risk leave residual exposure."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A commercial bank holds a $50M corporate bond portfolio with modified duration 6.8 years. Treasury bond futures have price $98,000 and the cheapest-to-deliver bond has modified duration 8.2 years.",
+    "testedFactIds": [
+      "fact-05",
+      "fact-08"
+    ],
+    "question": "How many futures contracts must the portfolio manager short to immunize the portfolio against parallel yield curve shifts?",
+    "correctAnswer": "423 short futures contracts",
+    "explanation": "Applying N* = (P * D_P) / (V_F * D_F) yields (50,000,000 * 6.8) / (98,000 * 8.2) = 340,000,000 / 803,600 = 423.1 contracts. Shorting 423 contracts immunizes the portfolio."
+  },
+  "coreTakeaways": [
+    "Eurodollar and SOFR 3-month futures quote as 100 - R, with a standard $25 tick value per basis point.",
+    "The convexity adjustment reduces long-dated futures rates to obtain true forward borrowing rates.",
+    "Modified duration provides the first-order linear price loss metric: Delta B / B approx -D* * Delta y.",
+    "Positive convexity acts as embedded curvature protection, dampening price drops and magnifying gains.",
+    "Unhedged bank duration gaps cause catastrophic balance sheet insolvency during sharp rate hiking cycles.",
+    "Shorting N* = (P * D_P) / (V_F * D_F) contracts provides mathematical portfolio immunization."
+  ]
+}

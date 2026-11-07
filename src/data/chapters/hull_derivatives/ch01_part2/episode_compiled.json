@@ -1096,7 +1096,7 @@
       "segmentIndex": 7,
       "title": "Arbitrageurs: Cross-Border Equilibrium",
       "template": "formula_breakdown",
-      "badge": "Example 1.3 · Dual-Listed Stock",
+      "badge": "John C. Hull · Example 1.3",
       "beats": [
         {
           "id": "b23",
@@ -1104,28 +1104,115 @@
           "en_subtitle": "A stock trades at $152 in NY and £100 in London at $1.5500/£ ($155 equivalent).",
           "pauseAfterMs": 450,
           "ui_state": {
-            "formulaTitle": "Cross-Border Dual-Listed Stock Arbitrage (Example 1.3)",
-            "equation": "Profit = N × [ (FX × P_London) - P_NY ]",
-            "leftTerm": {
-              "symbol": "FX × P_London",
-              "label": "London Sale Proceeds in USD",
-              "value": "$1.5500 × £100 = $155.00/sh",
-              "active": true
+            "title": "Cross-Border Dual-Listed Stock Arbitrage",
+            "badge": "John C. Hull · Example 1.3",
+            "subtitle": "Example 1.3 · Dual-Listed Stock in New York and London",
+            "expression": "Profit = N · [(FX · P_{London}) - P_{NY}]",
+            "purpose": "Lock in riskless profit from cross-market price discrepancies across currency borders",
+            "variables": [
+              {
+                "symbol": "P_{London}",
+                "label": "London Price",
+                "value": "£100.00",
+                "unit": "GBP/share",
+                "description": "Stock price quoted on London exchange"
+              },
+              {
+                "symbol": "FX",
+                "label": "Exchange Rate",
+                "value": "1.5500",
+                "unit": "USD/GBP",
+                "description": "Spot exchange rate USD per GBP"
+              },
+              {
+                "symbol": "P_{NY}",
+                "label": "New York Price",
+                "value": "$152.00",
+                "unit": "USD/share",
+                "description": "Stock price quoted on NYSE"
+              },
+              {
+                "symbol": "N",
+                "label": "Share Quantity",
+                "value": "100",
+                "unit": "shares",
+                "description": "Arbitrage transaction volume"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "London USD Equivalent",
+                "equation": "FX · P_{London} = 1.5500 · £100 = $155.00/sh",
+                "note": "London price converted to USD"
+              }
+            ],
+            "activeStepIndex": 0,
+            "assumptions": [
+              "Zero transaction costs",
+              "Instantaneous cross-border order execution"
+            ],
+            "interpretation": "London USD equivalent ($155) exceeds NY price ($152), creating an actionable $3.00/share spread."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Cross-Border Dual-Listed Stock Arbitrage",
+              "badge": "John C. Hull · Example 1.3",
+              "subtitle": "Example 1.3 · Dual-Listed Stock in New York and London",
+              "expression": "Profit = N · [(FX · P_{London}) - P_{NY}]",
+              "purpose": "Lock in riskless profit from cross-market price discrepancies across currency borders",
+              "variables": [
+                {
+                  "symbol": "P_{London}",
+                  "label": "London Price",
+                  "value": "£100.00",
+                  "unit": "GBP/share",
+                  "description": "Stock price quoted on London exchange"
+                },
+                {
+                  "symbol": "FX",
+                  "label": "Exchange Rate",
+                  "value": "1.5500",
+                  "unit": "USD/GBP",
+                  "description": "Spot exchange rate USD per GBP"
+                },
+                {
+                  "symbol": "P_{NY}",
+                  "label": "New York Price",
+                  "value": "$152.00",
+                  "unit": "USD/share",
+                  "description": "Stock price quoted on NYSE"
+                },
+                {
+                  "symbol": "N",
+                  "label": "Share Quantity",
+                  "value": "100",
+                  "unit": "shares",
+                  "description": "Arbitrage transaction volume"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "London USD Equivalent",
+                  "equation": "FX · P_{London} = 1.5500 · £100 = $155.00/sh",
+                  "note": "London price converted to USD"
+                }
+              ],
+              "activeStepIndex": 0,
+              "assumptions": [
+                "Zero transaction costs",
+                "Instantaneous cross-border order execution"
+              ],
+              "interpretation": "London USD equivalent ($155) exceeds NY price ($152), creating an actionable $3.00/share spread."
             },
-            "operator": "−",
-            "rightTerm": {
-              "symbol": "P_NY",
-              "label": "New York Purchase Price",
-              "value": "$152.00/sh",
-              "active": true
-            },
-            "resultTerm": {
-              "symbol": "Spread",
-              "label": "Riskless Spread Per Share",
-              "value": "$3.00 / share",
-              "active": false
-            },
-            "annotation": "Simultaneously buy low in New York ($152) and sell high in London (£100 = $155)"
+            "semantics": {
+              "teachingObjective": "Establish cross-border dual-listed pricing disparity formula",
+              "sourceFactIds": [
+                "fact-09"
+              ]
+            }
           },
           "narrationHash": "dd316a48c9ccd589",
           "audioFile": "audio/hull_derivatives/ch01_part2/b23.mp3",
@@ -1155,28 +1242,139 @@
           "en_subtitle": "Buying 100 shares in NY ($15,200) and selling in London ($15,500) locks in $300 risk-free.",
           "pauseAfterMs": 450,
           "ui_state": {
-            "formulaTitle": "Executing 100-Share Riskless Arbitrage",
-            "equation": "100 × [ ($1.55 × 100) - $152 ] = $300",
-            "leftTerm": {
-              "symbol": "London Cash In",
-              "label": "Sell 100 Shares @ £100",
-              "value": "£10,000 = $15,500",
-              "active": true
+            "title": "Executing 100-Share Riskless Arbitrage",
+            "badge": "John C. Hull · Example 1.3 Execution",
+            "subtitle": "Simultaneous 100-Share Long NY & Short London Execution",
+            "expression": "Profit = 100 · [($1.5500 · 100) - $152.00] = +$300.00",
+            "purpose": "Simultaneous execution eliminates directional market risk across both exchanges",
+            "variables": [
+              {
+                "symbol": "London Sale",
+                "label": "Cash Inflow",
+                "value": "£10,000 = $15,500",
+                "unit": "USD",
+                "description": "Proceeds from selling in London"
+              },
+              {
+                "symbol": "NY Buy",
+                "label": "Cash Outflow",
+                "value": "$15,200",
+                "unit": "USD",
+                "description": "Cost of purchasing in New York"
+              },
+              {
+                "symbol": "Spread",
+                "label": "Per-Share Gain",
+                "value": "$3.00",
+                "unit": "USD/share",
+                "description": "Gross spread captured"
+              },
+              {
+                "symbol": "Net Profit",
+                "label": "Total Cash Gain",
+                "value": "+$300.00",
+                "unit": "USD",
+                "description": "Riskless profit locked in"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "London USD Equivalent",
+                "equation": "FX · P_{London} = 1.5500 · £100 = $155.00/sh",
+                "note": "London price in USD"
+              },
+              {
+                "stepIndex": 1,
+                "label": "Per-Share Spread",
+                "equation": "Spread = $155.00 - $152.00 = $3.00/sh",
+                "note": "Riskless spread per share"
+              },
+              {
+                "stepIndex": 2,
+                "label": "Total Portfolio Gain",
+                "equation": "Profit = 100 · $3.00 = +$300.00",
+                "note": "Immediate risk-free locked profit"
+              }
+            ],
+            "activeStepIndex": 2,
+            "assumptions": [
+              "Simultaneous order execution",
+              "Zero borrowing or exchange settlement delay"
+            ],
+            "interpretation": "Buy 100 shares in NY for $15,200 and sell 100 shares in London for $15,500 to net $300 profit instantly."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Executing 100-Share Riskless Arbitrage",
+              "badge": "John C. Hull · Example 1.3 Execution",
+              "subtitle": "Simultaneous 100-Share Long NY & Short London Execution",
+              "expression": "Profit = 100 · [($1.5500 · 100) - $152.00] = +$300.00",
+              "purpose": "Simultaneous execution eliminates directional market risk across both exchanges",
+              "variables": [
+                {
+                  "symbol": "London Sale",
+                  "label": "Cash Inflow",
+                  "value": "£10,000 = $15,500",
+                  "unit": "USD",
+                  "description": "Proceeds from selling in London"
+                },
+                {
+                  "symbol": "NY Buy",
+                  "label": "Cash Outflow",
+                  "value": "$15,200",
+                  "unit": "USD",
+                  "description": "Cost of purchasing in New York"
+                },
+                {
+                  "symbol": "Spread",
+                  "label": "Per-Share Gain",
+                  "value": "$3.00",
+                  "unit": "USD/share",
+                  "description": "Gross spread captured"
+                },
+                {
+                  "symbol": "Net Profit",
+                  "label": "Total Cash Gain",
+                  "value": "+$300.00",
+                  "unit": "USD",
+                  "description": "Riskless profit locked in"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "London USD Equivalent",
+                  "equation": "FX · P_{London} = 1.5500 · £100 = $155.00/sh",
+                  "note": "London price in USD"
+                },
+                {
+                  "stepIndex": 1,
+                  "label": "Per-Share Spread",
+                  "equation": "Spread = $155.00 - $152.00 = $3.00/sh",
+                  "note": "Riskless spread per share"
+                },
+                {
+                  "stepIndex": 2,
+                  "label": "Total Portfolio Gain",
+                  "equation": "Profit = 100 · $3.00 = +$300.00",
+                  "note": "Immediate risk-free locked profit"
+                }
+              ],
+              "activeStepIndex": 2,
+              "assumptions": [
+                "Simultaneous order execution",
+                "Zero borrowing or exchange settlement delay"
+              ],
+              "interpretation": "Buy 100 shares in NY for $15,200 and sell 100 shares in London for $15,500 to net $300 profit instantly."
             },
-            "operator": "−",
-            "rightTerm": {
-              "symbol": "NY Cash Out",
-              "label": "Buy 100 Shares @ $152",
-              "value": "$15,200",
-              "active": true
-            },
-            "resultTerm": {
-              "symbol": "Net Profit",
-              "label": "Locked Risk-Free Profit",
-              "value": "+$300.00",
-              "active": true
-            },
-            "annotation": "Zero market directional risk: both legs execute simultaneously across venues"
+            "semantics": {
+              "teachingObjective": "Demonstrate worked numerical profit calculation for dual-listed arbitrage",
+              "sourceFactIds": [
+                "fact-09"
+              ]
+            }
           },
           "narrationHash": "56485020c9f878d1",
           "audioFile": "audio/hull_derivatives/ch01_part2/b24.mp3",
@@ -1203,31 +1401,104 @@
         {
           "id": "b25",
           "hindi_tts": "जैसे ही आर्बिट्राजर्स न्यूयॉर्क में खरीदारी करते हैं, वहां डॉलर प्राइस ऊपर जाता है, और लंदन में बिकवाली से पाउंड प्राइस नीचे आता है, जब तक कि यह 300 डॉलर का अंतर अपने आप खत्म नहीं हो जाता।",
-          "en_subtitle": "Buying in NY pushes USD price up and selling in London pushes GBP price down to equilibrium.",
+          "en_subtitle": "Buying in NY and selling in London pushes prices rapidly toward cross-border parity.",
           "pauseAfterMs": 500,
           "ui_state": {
-            "formulaTitle": "Self-Correcting Market Equilibrium",
-            "equation": "P_NY ↑ + P_London ↓ ⇒ Arbitrage Spread → $0",
-            "leftTerm": {
-              "symbol": "NY Demand ↑",
-              "label": "Buying Pressure in NY",
-              "value": "Drives $152 Price Up",
-              "active": false
+            "title": "Self-Correcting Market Equilibrium",
+            "badge": "Law of One Price",
+            "subtitle": "Arbitrage Order Flow Restores Market Efficiency",
+            "expression": "P_{NY} ↑ + P_{London} ↓ ⇒ Arbitrage Spread → $0",
+            "purpose": "Arbitrage order flow naturally restores equilibrium between separated markets",
+            "variables": [
+              {
+                "symbol": "NY Demand ↑",
+                "label": "Buying Pressure in NY",
+                "value": "Bids P_{NY} Up",
+                "unit": "USD",
+                "description": "Arbitrageurs buy in cheaper venue"
+              },
+              {
+                "symbol": "UK Supply ↑",
+                "label": "Selling Pressure in London",
+                "value": "Pushes P_{London} Down",
+                "unit": "GBP",
+                "description": "Arbitrageurs sell in expensive venue"
+              },
+              {
+                "symbol": "Equilibrium",
+                "label": "Final Spread",
+                "value": "$0.00",
+                "unit": "USD",
+                "description": "Window closes rapidly"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Equilibrium Condition",
+                "equation": "P_{NY} = FX · P_{London}",
+                "note": "No further arbitrage profit possible"
+              }
+            ],
+            "activeStepIndex": 0,
+            "assumptions": [
+              "Liquid electronic markets",
+              "Competitive algorithmic participants"
+            ],
+            "interpretation": "Competitive buying in NY and selling in London forces prices to converge, closing the spread."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Self-Correcting Market Equilibrium",
+              "badge": "Law of One Price",
+              "subtitle": "Arbitrage Order Flow Restores Market Efficiency",
+              "expression": "P_{NY} ↑ + P_{London} ↓ ⇒ Arbitrage Spread → $0",
+              "purpose": "Arbitrage order flow naturally restores equilibrium between separated markets",
+              "variables": [
+                {
+                  "symbol": "NY Demand ↑",
+                  "label": "Buying Pressure in NY",
+                  "value": "Bids P_{NY} Up",
+                  "unit": "USD",
+                  "description": "Arbitrageurs buy in cheaper venue"
+                },
+                {
+                  "symbol": "UK Supply ↑",
+                  "label": "Selling Pressure in London",
+                  "value": "Pushes P_{London} Down",
+                  "unit": "GBP",
+                  "description": "Arbitrageurs sell in expensive venue"
+                },
+                {
+                  "symbol": "Equilibrium",
+                  "label": "Final Spread",
+                  "value": "$0.00",
+                  "unit": "USD",
+                  "description": "Window closes rapidly"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Equilibrium Condition",
+                  "equation": "P_{NY} = FX · P_{London}",
+                  "note": "No further arbitrage profit possible"
+                }
+              ],
+              "activeStepIndex": 0,
+              "assumptions": [
+                "Liquid electronic markets",
+                "Competitive algorithmic participants"
+              ],
+              "interpretation": "Competitive buying in NY and selling in London forces prices to converge, closing the spread."
             },
-            "operator": "+",
-            "rightTerm": {
-              "symbol": "UK Supply ↑",
-              "label": "Selling Pressure in London",
-              "value": "Drives £100 Price Down",
-              "active": false
-            },
-            "resultTerm": {
-              "symbol": "Equilibrium",
-              "label": "Law of One Price Restored",
-              "value": "Window Closes Fast",
-              "active": true
-            },
-            "annotation": "Arbitrageurs enforce market efficiency by eliminating price discrepancies"
+            "semantics": {
+              "teachingObjective": "Show how arbitrage restores law of one price across financial markets",
+              "sourceFactIds": [
+                "fact-09"
+              ]
+            }
           },
           "narrationHash": "9e14cd09550c07a2",
           "audioFile": "audio/hull_derivatives/ch01_part2/b25.mp3",
@@ -1235,18 +1506,18 @@
           "durationInFrames": 472,
           "subtitlePhrases": [
             {
-              "text": "Buying in NY pushes USD price",
+              "text": "Buying in NY and selling",
               "startMs": 0,
-              "endMs": 4904
+              "endMs": 4455
             },
             {
-              "text": "up and selling in London pushes",
-              "startMs": 4904,
-              "endMs": 10146
+              "text": "in London pushes prices rapidly",
+              "startMs": 4455,
+              "endMs": 10209
             },
             {
-              "text": "GBP price down to equilibrium.",
-              "startMs": 10146,
+              "text": "toward cross-border parity.",
+              "startMs": 10209,
               "endMs": 15220
             }
           ]
@@ -1478,7 +1749,7 @@
         {
           "id": "b30",
           "hindi_tts": "अब आपकी बारी: एक ट्रेडर 2000 डॉलर पूंजी से 20 डॉलर के 100 शेयर खरीद सकता है या 1 डॉलर प्रीमियम पर 22.50 डॉलर स्ट्राइक के 2000 कॉल ऑप्शन्स। अगर शेयर 27 डॉलर हो जाए या 15 डॉलर गिर जाए, तो नेट नतीजे क्या होंगे?",
-          "en_subtitle": "With $2,000 in 100 shares ($20) vs 2,000 calls ($22.50 strike @ $1), find the P&L at $27 and $15.",
+          "en_subtitle": "Compare $2,000 in stock ($20) versus 2,000 calls ($22.50 strike at $1) at $27 and $15.",
           "pauseAfterMs": 400,
           "ui_state": {
             "badge": "Table 1.5 Calculation Challenge",
@@ -1492,13 +1763,18 @@
           "durationInFrames": 612,
           "subtitlePhrases": [
             {
-              "text": "With $2,000 in 100 shares ($20) vs 2,000 calls ($22.50 strike @ $1),",
+              "text": "Compare $2,000 in stock ($20) versus",
               "startMs": 0,
-              "endMs": 14145
+              "endMs": 8559
             },
             {
-              "text": "find the P&L at $27 and $15.",
-              "startMs": 14145,
+              "text": "2,000 calls ($22.50 strike at $1)",
+              "startMs": 8559,
+              "endMs": 16404
+            },
+            {
+              "text": "at $27 and $15.",
+              "startMs": 16404,
               "endMs": 19970
             }
           ]
@@ -1539,7 +1815,7 @@
         {
           "id": "b32",
           "hindi_tts": "बिल्कुल सही! 27 डॉलर पर हर कॉल ऑप्शन 4.50 डॉलर देता है, यानी 2000 ऑप्शन्स पर 9000 डॉलर ग्रॉस पेऑफ और 2000 डॉलर प्रीमियम घटाकर 7000 डॉलर नेट प्रॉफिट, जो शेयर के 700 डॉलर से 10 गुना ज्यादा है! पर 15 डॉलर पर पूरे 2000 डॉलर डूब जाते हैं।",
-          "en_subtitle": "At $27, options net $7,000 profit (10x the $700 stock gain); at $15, options lose all $2,000.",
+          "en_subtitle": "At $27, calls return $7,000 (10x stock); at $15, the entire $2,000 premium is lost.",
           "pauseAfterMs": 500,
           "ui_state": {
             "badge": "Verified Solution",
@@ -1555,21 +1831,21 @@
             {
               "text": "At $27,",
               "startMs": 0,
-              "endMs": 1885
+              "endMs": 2121
             },
             {
-              "text": "options net $7,000 profit (10x the $700 stock gain);",
-              "startMs": 1885,
-              "endMs": 15890
+              "text": "calls return $7,000 (10x stock);",
+              "startMs": 2121,
+              "endMs": 11817
             },
             {
               "text": "at $15,",
-              "startMs": 15890,
-              "endMs": 17775
+              "startMs": 11817,
+              "endMs": 13938
             },
             {
-              "text": "options lose all $2,000.",
-              "startMs": 17775,
+              "text": "the entire $2,000 premium is lost.",
+              "startMs": 13938,
               "endMs": 24240
             }
           ]
@@ -1741,22 +2017,51 @@
           "pauseAfterMs": 400,
           "ui_state": {
             "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
-            "heading": "Today's thread",
+            "heading": "Today's Thread: Core Principles",
+            "steps": [
+              "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+              "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+              "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+              "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+              "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+              "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+              "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+              "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
+            ],
             "activeStepRange": [
               0,
               0
             ],
-            "steps": [
-              "Call options give the right to buy and put options give the right to sell at a strike price by expiration for an up-front premium; European options exercise only at maturity while American options exercise anytime",
-              "Call option prices fall as strike price rises while put prices rise as strike price rises, and both calls and puts become more valuable as time to maturity increases",
-              "Buying 1 Google Dec $550 call for $2,900 caps loss at $2,900 and nets $7,100 profit at $650, while writing 1 Sept $525 put for $2,240 risks a $2,260 net loss at $480",
-              "Hedgers use forwards to fix exact payments like ImportCo's $15.74M or ExportCo's $47.21M, or buy protective puts ($1,000 cost on a $28,000 portfolio) to lock in a $26,500 floor while keeping upside",
-              "Speculators use futures margin ($20,000 controlling £250,000) with symmetric unlimited risk, or options ($2,000 in $22.50 calls earning $7,000 vs $700 in shares at $27) with capped 100% premium risk",
-              "Arbitrageurs lock in riskless profit across mispriced markets—buying 100 shares in NY at $152 and selling in London at £100 ($1.55/£) for a $300 gain until prices equilibrate",
-              "Hedge funds manage over $2 trillion under a 2% management and 20% performance fee structure across Long/Short, Convertible Arb, Distressed, Emerging Markets, Global Macro, and Merger Arb strategies",
-              "Rogue trading disasters by Jerome Kerviel (€4.9B at SocGen), Nick Leeson ($1B at Barings), and John Rusnak ($700M at AIB) prove that institutions must enforce strict risk limits and verify hedges daily"
-            ],
-            "bottomTakeaway": "Options and futures unlock precise hedging, leveraged speculation, and riskless arbitrage, but long-term survival demands subtracting upfront premiums and enforcing strict daily risk controls."
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
+              "heading": "Today's Thread: Core Principles",
+              "steps": [
+                "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+                "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+                "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+                "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+                "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+                "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+                "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+                "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
+              ],
+              "activeStepRange": [
+                0,
+                0
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-09",
+                "fact-11"
+              ]
+            }
           },
           "narrationHash": "2e65df6e12a83019",
           "audioFile": "audio/hull_derivatives/ch01_part2/b36.mp3",
@@ -1782,22 +2087,51 @@
           "pauseAfterMs": 450,
           "ui_state": {
             "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
-            "heading": "Today's thread",
+            "heading": "Today's Thread: Core Principles",
+            "steps": [
+              "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+              "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+              "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+              "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+              "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+              "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+              "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+              "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
+            ],
             "activeStepRange": [
               1,
               2
             ],
-            "steps": [
-              "Call options give the right to buy and put options give the right to sell at a strike price by expiration for an up-front premium; European options exercise only at maturity while American options exercise anytime",
-              "Call option prices fall as strike price rises while put prices rise as strike price rises, and both calls and puts become more valuable as time to maturity increases",
-              "Buying 1 Google Dec $550 call for $2,900 caps loss at $2,900 and nets $7,100 profit at $650, while writing 1 Sept $525 put for $2,240 risks a $2,260 net loss at $480",
-              "Hedgers use forwards to fix exact payments like ImportCo's $15.74M or ExportCo's $47.21M, or buy protective puts ($1,000 cost on a $28,000 portfolio) to lock in a $26,500 floor while keeping upside",
-              "Speculators use futures margin ($20,000 controlling £250,000) with symmetric unlimited risk, or options ($2,000 in $22.50 calls earning $7,000 vs $700 in shares at $27) with capped 100% premium risk",
-              "Arbitrageurs lock in riskless profit across mispriced markets—buying 100 shares in NY at $152 and selling in London at £100 ($1.55/£) for a $300 gain until prices equilibrate",
-              "Hedge funds manage over $2 trillion under a 2% management and 20% performance fee structure across Long/Short, Convertible Arb, Distressed, Emerging Markets, Global Macro, and Merger Arb strategies",
-              "Rogue trading disasters by Jerome Kerviel (€4.9B at SocGen), Nick Leeson ($1B at Barings), and John Rusnak ($700M at AIB) prove that institutions must enforce strict risk limits and verify hedges daily"
-            ],
-            "bottomTakeaway": "Options and futures unlock precise hedging, leveraged speculation, and riskless arbitrage, but long-term survival demands subtracting upfront premiums and enforcing strict daily risk controls."
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
+              "heading": "Today's Thread: Core Principles",
+              "steps": [
+                "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+                "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+                "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+                "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+                "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+                "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+                "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+                "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
+              ],
+              "activeStepRange": [
+                1,
+                2
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-09",
+                "fact-11"
+              ]
+            }
           },
           "narrationHash": "30d1627854b31270",
           "audioFile": "audio/hull_derivatives/ch01_part2/b37.mp3",
@@ -1828,22 +2162,51 @@
           "pauseAfterMs": 450,
           "ui_state": {
             "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
-            "heading": "Today's thread",
+            "heading": "Today's Thread: Core Principles",
+            "steps": [
+              "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+              "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+              "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+              "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+              "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+              "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+              "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+              "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
+            ],
             "activeStepRange": [
               3,
               4
             ],
-            "steps": [
-              "Call options give the right to buy and put options give the right to sell at a strike price by expiration for an up-front premium; European options exercise only at maturity while American options exercise anytime",
-              "Call option prices fall as strike price rises while put prices rise as strike price rises, and both calls and puts become more valuable as time to maturity increases",
-              "Buying 1 Google Dec $550 call for $2,900 caps loss at $2,900 and nets $7,100 profit at $650, while writing 1 Sept $525 put for $2,240 risks a $2,260 net loss at $480",
-              "Hedgers use forwards to fix exact payments like ImportCo's $15.74M or ExportCo's $47.21M, or buy protective puts ($1,000 cost on a $28,000 portfolio) to lock in a $26,500 floor while keeping upside",
-              "Speculators use futures margin ($20,000 controlling £250,000) with symmetric unlimited risk, or options ($2,000 in $22.50 calls earning $7,000 vs $700 in shares at $27) with capped 100% premium risk",
-              "Arbitrageurs lock in riskless profit across mispriced markets—buying 100 shares in NY at $152 and selling in London at £100 ($1.55/£) for a $300 gain until prices equilibrate",
-              "Hedge funds manage over $2 trillion under a 2% management and 20% performance fee structure across Long/Short, Convertible Arb, Distressed, Emerging Markets, Global Macro, and Merger Arb strategies",
-              "Rogue trading disasters by Jerome Kerviel (€4.9B at SocGen), Nick Leeson ($1B at Barings), and John Rusnak ($700M at AIB) prove that institutions must enforce strict risk limits and verify hedges daily"
-            ],
-            "bottomTakeaway": "Options and futures unlock precise hedging, leveraged speculation, and riskless arbitrage, but long-term survival demands subtracting upfront premiums and enforcing strict daily risk controls."
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
+              "heading": "Today's Thread: Core Principles",
+              "steps": [
+                "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+                "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+                "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+                "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+                "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+                "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+                "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+                "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
+              ],
+              "activeStepRange": [
+                3,
+                4
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-09",
+                "fact-11"
+              ]
+            }
           },
           "narrationHash": "60e6806202dc7900",
           "audioFile": "audio/hull_derivatives/ch01_part2/b38.mp3",
@@ -1869,22 +2232,51 @@
           "pauseAfterMs": 450,
           "ui_state": {
             "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
-            "heading": "Today's thread",
+            "heading": "Today's Thread: Core Principles",
+            "steps": [
+              "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+              "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+              "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+              "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+              "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+              "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+              "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+              "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
+            ],
             "activeStepRange": [
               5,
               6
             ],
-            "steps": [
-              "Call options give the right to buy and put options give the right to sell at a strike price by expiration for an up-front premium; European options exercise only at maturity while American options exercise anytime",
-              "Call option prices fall as strike price rises while put prices rise as strike price rises, and both calls and puts become more valuable as time to maturity increases",
-              "Buying 1 Google Dec $550 call for $2,900 caps loss at $2,900 and nets $7,100 profit at $650, while writing 1 Sept $525 put for $2,240 risks a $2,260 net loss at $480",
-              "Hedgers use forwards to fix exact payments like ImportCo's $15.74M or ExportCo's $47.21M, or buy protective puts ($1,000 cost on a $28,000 portfolio) to lock in a $26,500 floor while keeping upside",
-              "Speculators use futures margin ($20,000 controlling £250,000) with symmetric unlimited risk, or options ($2,000 in $22.50 calls earning $7,000 vs $700 in shares at $27) with capped 100% premium risk",
-              "Arbitrageurs lock in riskless profit across mispriced markets—buying 100 shares in NY at $152 and selling in London at £100 ($1.55/£) for a $300 gain until prices equilibrate",
-              "Hedge funds manage over $2 trillion under a 2% management and 20% performance fee structure across Long/Short, Convertible Arb, Distressed, Emerging Markets, Global Macro, and Merger Arb strategies",
-              "Rogue trading disasters by Jerome Kerviel (€4.9B at SocGen), Nick Leeson ($1B at Barings), and John Rusnak ($700M at AIB) prove that institutions must enforce strict risk limits and verify hedges daily"
-            ],
-            "bottomTakeaway": "Options and futures unlock precise hedging, leveraged speculation, and riskless arbitrage, but long-term survival demands subtracting upfront premiums and enforcing strict daily risk controls."
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
+              "heading": "Today's Thread: Core Principles",
+              "steps": [
+                "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+                "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+                "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+                "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+                "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+                "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+                "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+                "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
+              ],
+              "activeStepRange": [
+                5,
+                6
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-09",
+                "fact-11"
+              ]
+            }
           },
           "narrationHash": "b203ebebf26f17a5",
           "audioFile": "audio/hull_derivatives/ch01_part2/b39.mp3",
@@ -1910,22 +2302,51 @@
           "pauseAfterMs": 450,
           "ui_state": {
             "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
-            "heading": "Today's thread",
+            "heading": "Today's Thread: Core Principles",
+            "steps": [
+              "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+              "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+              "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+              "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+              "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+              "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+              "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+              "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
+            ],
             "activeStepRange": [
               7,
               8
             ],
-            "steps": [
-              "Call options give the right to buy and put options give the right to sell at a strike price by expiration for an up-front premium; European options exercise only at maturity while American options exercise anytime",
-              "Call option prices fall as strike price rises while put prices rise as strike price rises, and both calls and puts become more valuable as time to maturity increases",
-              "Buying 1 Google Dec $550 call for $2,900 caps loss at $2,900 and nets $7,100 profit at $650, while writing 1 Sept $525 put for $2,240 risks a $2,260 net loss at $480",
-              "Hedgers use forwards to fix exact payments like ImportCo's $15.74M or ExportCo's $47.21M, or buy protective puts ($1,000 cost on a $28,000 portfolio) to lock in a $26,500 floor while keeping upside",
-              "Speculators use futures margin ($20,000 controlling £250,000) with symmetric unlimited risk, or options ($2,000 in $22.50 calls earning $7,000 vs $700 in shares at $27) with capped 100% premium risk",
-              "Arbitrageurs lock in riskless profit across mispriced markets—buying 100 shares in NY at $152 and selling in London at £100 ($1.55/£) for a $300 gain until prices equilibrate",
-              "Hedge funds manage over $2 trillion under a 2% management and 20% performance fee structure across Long/Short, Convertible Arb, Distressed, Emerging Markets, Global Macro, and Merger Arb strategies",
-              "Rogue trading disasters by Jerome Kerviel (€4.9B at SocGen), Nick Leeson ($1B at Barings), and John Rusnak ($700M at AIB) prove that institutions must enforce strict risk limits and verify hedges daily"
-            ],
-            "bottomTakeaway": "Options and futures unlock precise hedging, leveraged speculation, and riskless arbitrage, but long-term survival demands subtracting upfront premiums and enforcing strict daily risk controls."
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
+              "heading": "Today's Thread: Core Principles",
+              "steps": [
+                "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+                "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+                "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+                "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+                "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+                "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+                "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+                "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
+              ],
+              "activeStepRange": [
+                7,
+                8
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-09",
+                "fact-11"
+              ]
+            }
           },
           "narrationHash": "067991e259d496e8",
           "audioFile": "audio/hull_derivatives/ch01_part2/b40.mp3",
@@ -1956,22 +2377,51 @@
           "pauseAfterMs": 600,
           "ui_state": {
             "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
-            "heading": "Today's thread",
-            "activeStepRange": [
-              1,
-              8
-            ],
+            "heading": "Master Takeaway: Chapter 1 · Part 2",
             "steps": [
-              "Call options give the right to buy and put options give the right to sell at a strike price by expiration for an up-front premium; European options exercise only at maturity while American options exercise anytime",
-              "Call option prices fall as strike price rises while put prices rise as strike price rises, and both calls and puts become more valuable as time to maturity increases",
-              "Buying 1 Google Dec $550 call for $2,900 caps loss at $2,900 and nets $7,100 profit at $650, while writing 1 Sept $525 put for $2,240 risks a $2,260 net loss at $480",
-              "Hedgers use forwards to fix exact payments like ImportCo's $15.74M or ExportCo's $47.21M, or buy protective puts ($1,000 cost on a $28,000 portfolio) to lock in a $26,500 floor while keeping upside",
-              "Speculators use futures margin ($20,000 controlling £250,000) with symmetric unlimited risk, or options ($2,000 in $22.50 calls earning $7,000 vs $700 in shares at $27) with capped 100% premium risk",
-              "Arbitrageurs lock in riskless profit across mispriced markets—buying 100 shares in NY at $152 and selling in London at £100 ($1.55/£) for a $300 gain until prices equilibrate",
-              "Hedge funds manage over $2 trillion under a 2% management and 20% performance fee structure across Long/Short, Convertible Arb, Distressed, Emerging Markets, Global Macro, and Merger Arb strategies",
-              "Rogue trading disasters by Jerome Kerviel (€4.9B at SocGen), Nick Leeson ($1B at Barings), and John Rusnak ($700M at AIB) prove that institutions must enforce strict risk limits and verify hedges daily"
+              "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+              "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+              "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+              "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+              "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+              "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+              "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+              "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
             ],
-            "bottomTakeaway": "Options and futures unlock precise hedging, leveraged speculation, and riskless arbitrage, but long-term survival demands subtracting upfront premiums and enforcing strict daily risk controls."
+            "activeStepRange": [
+              0,
+              7
+            ],
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 1 · PART 2 · COMPLETE SYNTHESIS",
+              "heading": "Master Takeaway: Chapter 1 · Part 2",
+              "steps": [
+                "Call options give the right to buy; put options give the right to sell at strike price before expiration.",
+                "Calls gain value as strikes fall; puts gain value as strikes rise; both gain value with longer maturity.",
+                "Dec $550 calls cap loss at $2,900; writing Sept $525 puts risks large loss if stock falls below $480.",
+                "Forwards lock exact future cashflows; protective puts establish a firm price floor while preserving upside.",
+                "Futures provide large symmetric leverage with unlimited risk; options cap maximum downside to premium paid.",
+                "Simultaneous cross-market trades capture riskless pricing discrepancies and restore the law of one price.",
+                "Hedge funds charge management and incentive fees to deliver absolute returns across diverse macro strategies.",
+                "Jerome Kerviel €4.9B loss demonstrates that internal controls must strictly enforce unauthorized trade limits."
+              ],
+              "activeStepRange": [
+                0,
+                7
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-09",
+                "fact-11"
+              ]
+            }
           },
           "narrationHash": "e4bd3ecc7e3a02eb",
           "audioFile": "audio/hull_derivatives/ch01_part2/b41.mp3",

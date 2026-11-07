@@ -1,0 +1,1845 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives",
+    "chapter": "CHAPTER 6 · PART 2",
+    "chapterTitle": "Interest Rate Futures: Eurodollar Futures, Convexity, and Duration Hedging",
+    "domain": "finance",
+    "primaryColor": "#0F766E",
+    "accentColor": "#F59E0B",
+    "narrationLanguage": "hi-IN-devanagari",
+    "generationProvenance": {
+      "model": "gemini-4-argon",
+      "requestedModel": "gemini-4-argon",
+      "preflightStatus": "PASSED",
+      "preflightEngine": "direct_cookies",
+      "approvedByUser": true,
+      "approvalTimestamp": "2026-11-04T20:24:23.200Z",
+      "runId": "run_1793823863201_2vul2m"
+    }
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "The Bank Balance Sheet Shock",
+      "template": "chat_story",
+      "badge": "Commercial Bank Treasury Desk",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "शर्मा जी! हमारे बैंक ने 10 साल के सरकारी बॉन्ड्स में 1000 करोड़ रुपये 1.5 परसेंट पर इन्वेस्ट किए थे। अब ब्याज दरें बढ़कर 5 परसेंट हो गईं और बॉन्ड्स की वैल्यू 25 परसेंट गिर गई!",
+          "en_subtitle": "Sharma ji, our bank invested $1B in 10-year bonds at 1.5%. Rates surged to 5% and bond values collapsed 25%!",
+          "en_narration": "Sharma ji, our bank invested one billion dollars in ten-year bonds at 1.5%. Now interest rates jumped to 5%, and bond values crashed by 25%!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju panics as bond portfolio suffers massive unrealized loss —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji! Rates surged from 1.5% to 5.0%! Our $1B long-term bond portfolio crashed 25%! Depositors are withdrawing cash!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji! Rates surged from 1.5% to 5.0%! Our $1B long-term bond portfolio crashed 25%! Depositors are withdrawing cash!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate real-world bank ALM duration mismatch crisis",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "राजू! यही क्लासिक एसेट-लायबिलिटी मिसमैच है! तुम्हारी संपत्तियों की अवधि सात साल थी, जबकि जमाकर्ताओं की देनदारी सिर्फ एक साल की थी। तुमने फ्यूचर्स से ड्यूरेशन हेज क्यों नहीं किया?",
+          "en_subtitle": "Raju, classic ALM mismatch! Asset duration was 7 years while deposits were 1 year. Why wasn't duration hedged?",
+          "en_narration": "Raju, this is the classic Asset-Liability mismatch disaster! Your assets had a seven-year duration while customer deposits had only one year. Why was duration unhedged?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji reveals the fatal duration gap —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Rates surged from 1.5% to 5.0%! Our $1B long-term bond portfolio crashed 25%! Depositors are withdrawing cash!",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Classic ALM disaster! Assets had 7-year duration; deposits had 1-year duration. When rates spiked, equity was wiped out!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Rates surged from 1.5% to 5.0%! Our $1B long-term bond portfolio crashed 25%! Depositors are withdrawing cash!",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Classic ALM disaster! Assets had 7-year duration; deposits had 1-year duration. When rates spiked, equity was wiped out!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Diagnose balance sheet insolvency caused by unhedged duration gap",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b03",
+          "hindi_tts": "अगर बैंक ने यूरोडॉलर या ट्रेजरी फ्यूचर्स में शॉर्ट पोजीशन बनाई होती, तो दरों में बढ़ोतरी से फ्यूचर्स का मुनाफा बॉन्ड्स के नुकसान की पूरी भरपाई कर देता!",
+          "en_subtitle": "Had the bank shorted interest rate futures, futures gains would have offset bond losses completely!",
+          "en_narration": "If your bank had shorted interest rate futures, the futures trading profits during rate hikes would have fully offset your bond portfolio losses!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "stageDirections": [
+              "— The solution: Duration immunization via interest rate futures —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Can interest rate futures really insulate an entire bank balance sheet from rising interest rates?",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Yes! Duration-based hedging provides mathematical immunization against parallel yield curve shocks.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Can interest rate futures really insulate an entire bank balance sheet from rising interest rates?",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Yes! Duration-based hedging provides mathematical immunization against parallel yield curve shocks.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Establish interest rate futures as the vital balance sheet immunization tool",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-07"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Bank ALM Duration Gap: Snapshot 6.3",
+      "template": "split_comparison",
+      "badge": "Balance Sheet Fragility",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "हॉल के स्नैपशॉट 6.3 में एक वास्तविक कमर्शियल बैंक का बैलेंस शीट संकट दिखाया गया है। बैंक के पास 1000 मिलियन डॉलर की लॉन्ग-टर्म संपत्तियां और 900 मिलियन डॉलर की शॉर्ट-टर्म देनदारियां हैं।",
+          "en_subtitle": "Hull Snapshot 6.3 reveals bank balance sheet fragility: $1,000M long assets vs $900M short liabilities.",
+          "en_narration": "Hull Snapshot 6.3 illustrates a real commercial bank balance sheet crisis: the bank holds $1,000 million in long-term assets against $900 million in short-term liabilities.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Bank Assets ($1,000M)",
+            "rightTitle": "Bank Liabilities & Equity ($1,000M)",
+            "leftItems": [
+              "Total Asset Value: $1,000 Million",
+              "Asset Type: 10-Yr Fixed Mortgages & Bonds",
+              "Asset Duration (D_A): 7.0 Years",
+              "Asset Price Sensitivity: High"
+            ],
+            "rightItems": [
+              "Total Liabilities: $900 Million (Deposits)",
+              "Bank Equity Capital: $100 Million",
+              "Liability Duration (D_L): 1.0 Year",
+              "Net Leverage Ratio: 10 : 1"
+            ],
+            "activeFocus": "both"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Bank Assets ($1,000M)",
+              "rightTitle": "Bank Liabilities & Equity ($1,000M)",
+              "leftItems": [
+                "Total Asset Value: $1,000 Million",
+                "Asset Type: 10-Yr Fixed Mortgages & Bonds",
+                "Asset Duration (D_A): 7.0 Years",
+                "Asset Price Sensitivity: High"
+              ],
+              "rightItems": [
+                "Total Liabilities: $900 Million (Deposits)",
+                "Bank Equity Capital: $100 Million",
+                "Liability Duration (D_L): 1.0 Year",
+                "Net Leverage Ratio: 10 : 1"
+              ],
+              "activeFocus": "both"
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate bank asset-liability structure and 7:1 duration mismatch",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b05",
+          "hindi_tts": "जब बाजार में ब्याज दरें 2 परसेंट यानी 200 बेसिस प्वाइंट्स बढ़ती हैं, तो 7 साल की अवधि वाली संपत्तियों में 140 मिलियन डॉलर का भारी नुकसान होता है!",
+          "en_subtitle": "When yields jump 200 bps, 7-year duration assets suffer a massive $140M loss!",
+          "en_narration": "When market yields surge by 200 basis points, the seven-year duration assets suffer a catastrophic $140 million market value decline!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Asset Value Destruction (-$140M)",
+            "rightTitle": "Liability Gain (+$18M)",
+            "leftItems": [
+              "Rate Shock: +2.00% (+200 bps)",
+              "Asset Loss: -D_A * A * Delta y",
+              "Calculation: -7.0 * $1,000M * 0.02",
+              "Total Asset Drop: -$140 Million"
+            ],
+            "rightItems": [
+              "Liability Gain: -D_L * L * Delta y",
+              "Calculation: -1.0 * $900M * (-0.02)",
+              "Liability Value Drop: -$18 Million (Bank Gain)",
+              "Net Balance Sheet Deficit: -$122 Million"
+            ],
+            "activeFocus": "left"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Asset Value Destruction (-$140M)",
+              "rightTitle": "Liability Gain (+$18M)",
+              "leftItems": [
+                "Rate Shock: +2.00% (+200 bps)",
+                "Asset Loss: -D_A * A * Delta y",
+                "Calculation: -7.0 * $1,000M * 0.02",
+                "Total Asset Drop: -$140 Million"
+              ],
+              "rightItems": [
+                "Liability Gain: -D_L * L * Delta y",
+                "Calculation: -1.0 * $900M * (-0.02)",
+                "Liability Value Drop: -$18 Million (Bank Gain)",
+                "Net Balance Sheet Deficit: -$122 Million"
+              ],
+              "activeFocus": "left"
+            },
+            "semantics": {
+              "teachingObjective": "Calculate exact dollar loss on assets vs gain on liabilities under +200 bps rate shock",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b06",
+          "hindi_tts": "देनदारियों से सिर्फ 18 मिलियन का फायदा होता है। नतीजा: नेट इक्विटी में 122 मिलियन डॉलर का घाटा! 100 मिलियन की पूरी बैंक पूंजी खत्म और बैंक दिवालिया हो जाता है!",
+          "en_subtitle": "Liabilities only gain $18M, causing net $122M equity loss, completely wiping out the $100M capital!",
+          "en_narration": "Liabilities only cushion $18 million. The net equity loss is $122 million, completely wiping out the bank's $100 million equity and triggering immediate insolvency!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftTitle": "Total Equity Wipeout",
+            "rightTitle": "Insolvency Mechanics",
+            "leftItems": [
+              "Initial Bank Capital: $100 Million",
+              "Net Loss: -$140M + $18M = -$122 Million",
+              "Ending Bank Capital: -$22 Million (Negative Equity)",
+              "Status: Immediate Technical Insolvency"
+            ],
+            "rightItems": [
+              "Cause: Unhedged Duration Gap",
+              "Formula: Delta E = -(D_A * A - D_L * L) * Delta y",
+              "Duration Gap: 7.0 - (900/1000) * 1.0 = 6.1 Years",
+              "Remedy: Short Interest Rate Futures"
+            ],
+            "activeFocus": "right"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Total Equity Wipeout",
+              "rightTitle": "Insolvency Mechanics",
+              "leftItems": [
+                "Initial Bank Capital: $100 Million",
+                "Net Loss: -$140M + $18M = -$122 Million",
+                "Ending Bank Capital: -$22 Million (Negative Equity)",
+                "Status: Immediate Technical Insolvency"
+              ],
+              "rightItems": [
+                "Cause: Unhedged Duration Gap",
+                "Formula: Delta E = -(D_A * A - D_L * L) * Delta y",
+                "Duration Gap: 7.0 - (900/1000) * 1.0 = 6.1 Years",
+                "Remedy: Short Interest Rate Futures"
+              ],
+              "activeFocus": "right"
+            },
+            "semantics": {
+              "teachingObjective": "Prove negative equity outcome caused by unhedged duration gap",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "Eurodollar & SOFR Futures Specifications",
+      "template": "progressive_cards",
+      "badge": "Short-Term Rate Derivatives",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "शॉर्ट-टर्म ब्याज दरों को हेज करने के लिए दुनिया का सबसे बड़ा और लिक्विड इंस्ट्रूमेंट है 3-महीने का यूरोडॉलर और एसओएफआर फ्यूचर्स कॉन्ट्रैक्ट।",
+          "en_subtitle": "The world benchmark for short-term rate hedging is the 3-month Eurodollar / SOFR futures contract.",
+          "en_narration": "To hedge short-term interest rate risk, the global benchmark is the 3-month Eurodollar and SOFR futures contract traded on the Chicago Mercantile Exchange.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. Notional Principal & Benchmark",
+                "subtitle": "",
+                "state": "active_amber"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. IMM Quote Price Convention",
+                "subtitle": "",
+                "state": "hidden"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Minimum Tick Value",
+                "subtitle": "",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0
+            },
+            "semantics": {
+              "teachingObjective": "Introduce $1M principal scale of Eurodollar and SOFR futures",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b08",
+          "hindi_tts": "इनका भाव '100 माइनस आर' के रूप में कोट होता है। यानी अगर 3 महीने की ब्याज दर 4.50 परसेंट है, तो फ्यूचर्स का भाव 95.50 होगा।",
+          "en_subtitle": "Quoted as 100 minus rate R: A 4.50% interest rate quotes as 95.50 in futures price.",
+          "en_narration": "The price is quoted as 100 minus the annualized rate R. For example, a 3-month rate of 4.50% produces a futures quote of 95.50.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 1,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. Notional Principal & Benchmark",
+                "subtitle": "",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. IMM Quote Price Convention",
+                "subtitle": "",
+                "state": "active_blue"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Minimum Tick Value",
+                "subtitle": "",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1
+            },
+            "semantics": {
+              "teachingObjective": "Explain IMM quoting convention Price = 100 - R",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b09",
+          "hindi_tts": "और इसका टिक साइज याद रखिए: 1 बेसिस प्वाइंट यानी 0.01 परसेंट के उतार-चढ़ाव पर हर कॉन्ट्रैक्ट में ठीक 25 डॉलर का नकद नफा या नुकसान होता है!",
+          "en_subtitle": "Tick value invariant: Every 1 basis point (0.01%) move equals exactly $25 cash per contract!",
+          "en_narration": "Memorize this critical invariant: every 1 basis point or 0.01% interest rate move generates exactly $25 cash profit or loss per contract!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "activeCardIndex": 2,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. Notional Principal & Benchmark",
+                "subtitle": "",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. IMM Quote Price Convention",
+                "subtitle": "",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Minimum Tick Value",
+                "subtitle": "",
+                "state": "active_green"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Establish exact $25 per basis point tick value formula",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "The Convexity Adjustment Formula",
+      "template": "formula_breakdown",
+      "badge": "Hull Section 6.4",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "क्या फ्यूचर्स रेट और फॉरवर्ड रेट हमेशा एक समान होते हैं? बिल्कुल नहीं! डेली मार्क-टू-मार्केट सेटलमेंट के कारण फ्यूचर्स रेट हमेशा फॉरवर्ड रेट से अधिक होते हैं।",
+          "en_subtitle": "Are futures and forward rates identical? No! Daily settlement makes futures rates higher than forward rates.",
+          "en_narration": "Are futures rates and forward rates always identical? Absolutely not! Daily mark-to-market settlement causes futures rates to be systematically higher than forward rates.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "F_{\\text{fwd}} = F_{\\text{fut}} - \\frac{1}{2}\\sigma^2 T_1 T_2",
+            "highlightTokens": [
+              "\\text{Forward}",
+              "\\text{Futures}"
+            ],
+            "stepIndex": 0,
+            "steps": [
+              {
+                "step": "Daily Settlement Covariance",
+                "description": "Futures generate daily cash flow positively correlated with interest rates."
+              },
+              {
+                "step": "Long Maturity Convexity Wedge",
+                "description": "For long maturities (T1 > 2 years), futures rates significantly exceed forward rates."
+              },
+              {
+                "step": "The Downward Convexity Adjustment",
+                "description": "Subtract 0.5 * sigma^2 * T1 * T2 to obtain the true forward borrowing rate."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "F_{\\text{fwd}} = F_{\\text{fut}} - \\frac{1}{2}\\sigma^2 T_1 T_2",
+              "stepIndex": 0
+            },
+            "semantics": {
+              "teachingObjective": "Present the core Convexity Adjustment formula between futures and forward rates",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b11",
+          "hindi_tts": "इस अंतर को कॉन्वेक्सिटी एडजस्टमेंट कहते हैं: फॉरवर्ड रेट बराबर फ्यूचर्स रेट माइनस आधा सिग्मा स्क्वायर गुणा टी वन गुणा टी टू। जहां सिग्मा ब्याज दरों की अस्थिरता है।",
+          "en_subtitle": "Convexity Adjustment: Forward Rate = Futures Rate - 0.5 * sigma^2 * T1 * T2.",
+          "en_narration": "This difference is the convexity adjustment: Forward Rate equals Futures Rate minus one-half sigma squared times T1 times T2, where sigma is annual interest rate volatility.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "F_{\\text{fwd}} = F_{\\text{fut}} - \\frac{1}{2}\\sigma^2 T_1 T_2",
+            "highlightTokens": [
+              "\\frac{1}{2}\\sigma^2 T_1 T_2"
+            ],
+            "stepIndex": 1,
+            "steps": [
+              {
+                "step": "Daily Settlement Covariance",
+                "description": "Futures generate daily cash flow positively correlated with interest rates."
+              },
+              {
+                "step": "Long Maturity Convexity Wedge",
+                "description": "For long maturities (T1 > 2 years), futures rates significantly exceed forward rates."
+              },
+              {
+                "step": "The Downward Convexity Adjustment",
+                "description": "Subtract 0.5 * sigma^2 * T1 * T2 to obtain the true forward borrowing rate."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "F_{\\text{fwd}} = F_{\\text{fut}} - \\frac{1}{2}\\sigma^2 T_1 T_2",
+              "stepIndex": 1
+            },
+            "semantics": {
+              "teachingObjective": "Deconstruct mathematical terms in convexity adjustment formula",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "उदाहरण के लिए: 5 साल की मैच्योरिटी और 1.2 परसेंट वोलेटिलिटी पर कॉन्वेक्सिटी एडजस्टमेंट लगभग 19 बेसिस प्वाइंट्स आता है, जो लॉन्ग-टर्म हेजिंग में बहुत बड़ा अंतर पैदा करता है!",
+          "en_subtitle": "Example: At T1=5.0 and sigma=1.2%, the convexity adjustment is ~19 bps, critical for long-term pricing!",
+          "en_narration": "For example, with a five-year maturity and 1.2% volatility, the convexity adjustment is approximately 19 basis points—a massive discrepancy in long-term debt pricing!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "expression": "F_{\\text{fwd}} = F_{\\text{fut}} - \\frac{1}{2}\\sigma^2 T_1 T_2",
+            "highlightTokens": [
+              "\\text{Forward}"
+            ],
+            "stepIndex": 2,
+            "steps": [
+              {
+                "step": "Daily Settlement Covariance",
+                "description": "Futures generate daily cash flow positively correlated with interest rates."
+              },
+              {
+                "step": "Long Maturity Convexity Wedge",
+                "description": "For long maturities (T1 > 2 years), futures rates significantly exceed forward rates."
+              },
+              {
+                "step": "The Downward Convexity Adjustment",
+                "description": "Subtract 0.5 * sigma^2 * T1 * T2 to obtain the true forward borrowing rate."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "F_{\\text{fwd}} = F_{\\text{fut}} - \\frac{1}{2}\\sigma^2 T_1 T_2",
+              "stepIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Show numerical magnitude of 18.9 bps convexity adjustment on 5-year contracts",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Macaulay Duration: Cash Flow Timing",
+      "template": "formula_breakdown",
+      "badge": "Hull Section 6.5",
+      "beats": [
+        {
+          "id": "b13",
+          "hindi_tts": "बॉन्ड की वास्तविक मैच्योरिटी सिर्फ उसके आखिरी साल से तय नहीं होती। मैकाले ड्यूरेशन यह मापता है कि बॉन्ड के सभी कैश फ्लोज़ औसतन कितने समय बाद वापस मिलेंगे।",
+          "en_subtitle": "Macaulay duration measures the weighted average time until all discounted cash flows are received.",
+          "en_narration": "A bond's true maturity is not just its final redemption date. Macaulay duration measures the weighted-average time until all discounted coupon and principal cash flows are received.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "D = \\frac{\\sum t_i \\cdot C_i \\cdot e^{-y \\cdot t_i}}{B}",
+            "highlightTokens": [
+              "D",
+              "B"
+            ],
+            "stepIndex": 0,
+            "steps": [
+              {
+                "step": "Discounted Cash Flows",
+                "description": "Each coupon C_i is discounted back to present value using e^(-y * t_i)."
+              },
+              {
+                "step": "Time Weighting",
+                "description": "Each discounted payment is weighted by payment time t_i."
+              },
+              {
+                "step": "Normalization by Bond Price",
+                "description": "Dividing by current cash bond price B yields duration D in years."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "D = \\frac{\\sum t_i \\cdot C_i \\cdot e^{-y \\cdot t_i}}{B}",
+              "stepIndex": 0
+            },
+            "semantics": {
+              "teachingObjective": "Introduce Macaulay duration formula and cash flow weighting",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b14",
+          "hindi_tts": "फार्मूला देखिए: हर कैश फ्लो सी आई को समय टी आई से गुणा करके वर्तमान मूल्य पर डिस्काउंट किया जाता है और कुल बॉन्ड भाव बी से भाग दिया जाता है।",
+          "en_subtitle": "Formula: Sum of time-weighted discounted cash flows divided by current market bond price B.",
+          "en_narration": "Observe the formula: each cash flow payment is multiplied by time t_i, discounted to present value, and normalized by dividing by the total market bond price B.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "D = \\frac{\\sum t_i \\cdot C_i \\cdot e^{-y \\cdot t_i}}{B}",
+            "highlightTokens": [
+              "t_i \\cdot C_i \\cdot e^{-y \\cdot t_i}"
+            ],
+            "stepIndex": 1,
+            "steps": [
+              {
+                "step": "Discounted Cash Flows",
+                "description": "Each coupon C_i is discounted back to present value using e^(-y * t_i)."
+              },
+              {
+                "step": "Time Weighting",
+                "description": "Each discounted payment is weighted by payment time t_i."
+              },
+              {
+                "step": "Normalization by Bond Price",
+                "description": "Dividing by current cash bond price B yields duration D in years."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "D = \\frac{\\sum t_i \\cdot C_i \\cdot e^{-y \\cdot t_i}}{B}",
+              "stepIndex": 1
+            },
+            "semantics": {
+              "teachingObjective": "Explain mathematical role of time weighting and discounting in Macaulay duration",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b15",
+          "hindi_tts": "जीरो-कूपन बॉन्ड की मैकाले ड्यूरेशन उसकी मैच्योरिटी के बिल्कुल बराबर होती है। लेकिन कूपन बॉन्ड की ड्यूरेशन कूपन पेमेंट्स के कारण हमेशा मैच्योरिटी से कम होती है!",
+          "en_subtitle": "Zero-coupon bond duration equals maturity; coupon bond duration is always shorter than maturity!",
+          "en_narration": "A zero-coupon bond's duration exactly equals its maturity. However, coupon payments pull cash flows earlier, so coupon bond duration is always shorter than its maturity!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "expression": "D = \\frac{\\sum t_i \\cdot C_i \\cdot e^{-y \\cdot t_i}}{B}",
+            "highlightTokens": [
+              "D"
+            ],
+            "stepIndex": 2,
+            "steps": [
+              {
+                "step": "Discounted Cash Flows",
+                "description": "Each coupon C_i is discounted back to present value using e^(-y * t_i)."
+              },
+              {
+                "step": "Time Weighting",
+                "description": "Each discounted payment is weighted by payment time t_i."
+              },
+              {
+                "step": "Normalization by Bond Price",
+                "description": "Dividing by current cash bond price B yields duration D in years."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "D = \\frac{\\sum t_i \\cdot C_i \\cdot e^{-y \\cdot t_i}}{B}",
+              "stepIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Contrast zero coupon duration vs coupon bond duration shortening",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Modified Duration: Price Sensitivity",
+      "template": "formula_breakdown",
+      "badge": "Linear Risk Metric",
+      "beats": [
+        {
+          "id": "b16",
+          "hindi_tts": "ट्रेडिंग डेस्क पर ब्याज दर के जोखिम को सीधे मापने के लिए मॉडिफाइड ड्यूरेशन का उपयोग किया जाता है। यह बॉन्ड के भाव में होने वाले प्रतिशत बदलाव को दर्शाता है।",
+          "en_subtitle": "Trading desks use Modified Duration D* to measure percentage bond price change per yield shift.",
+          "en_narration": "On trading desks, Modified Duration D-star provides the direct linear metric measuring percentage bond price sensitivity to shifts in market yield.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "\\frac{\\Delta B}{B} \\approx -D^* \\cdot \\Delta y",
+            "highlightTokens": [
+              "\\frac{\\Delta B}{B}",
+              "-D^*"
+            ],
+            "stepIndex": 0,
+            "steps": [
+              {
+                "step": "Linear Price Sensitivity",
+                "description": "Percentage price change is directly proportional to negative modified duration."
+              },
+              {
+                "step": "Compounding Adjustment",
+                "description": "Modified duration equals Macaulay duration divided by (1 + y/m)."
+              },
+              {
+                "step": "Practical Rule of Thumb",
+                "description": "If D* = 6.0 and yield rises +0.50% (+50 bps), bond price drops approx -3.0%."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "\\frac{\\Delta B}{B} \\approx -D^* \\cdot \\Delta y",
+              "stepIndex": 0
+            },
+            "semantics": {
+              "teachingObjective": "Introduce linear price sensitivity formula Delta B / B = -D* * Delta y",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b17",
+          "hindi_tts": "डेल्टा बी बटा बी बराबर माइनस डी स्टार गुणा डेल्टा वाई! अगर किसी बॉन्ड की मॉडिफाइड ड्यूरेशन 6 साल है और ब्याज 50 बेसिस प्वाइंट्स बढ़ता है, तो भाव 3 परसेंट गिर जाएगा!",
+          "en_subtitle": "Delta B / B = -D* * Delta y: If D*=6.0 and yield rises +50 bps, bond price drops approx -3.0%!",
+          "en_narration": "Delta B over B equals minus D-star times Delta y! If a portfolio has a modified duration of 6.0 years and yields rise by 50 basis points, the portfolio falls by 3%!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "\\frac{\\Delta B}{B} \\approx -D^* \\cdot \\Delta y",
+            "highlightTokens": [
+              "-D^* \\cdot \\Delta y"
+            ],
+            "stepIndex": 1,
+            "steps": [
+              {
+                "step": "Linear Price Sensitivity",
+                "description": "Percentage price change is directly proportional to negative modified duration."
+              },
+              {
+                "step": "Compounding Adjustment",
+                "description": "Modified duration equals Macaulay duration divided by (1 + y/m)."
+              },
+              {
+                "step": "Practical Rule of Thumb",
+                "description": "If D* = 6.0 and yield rises +0.50% (+50 bps), bond price drops approx -3.0%."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "\\frac{\\Delta B}{B} \\approx -D^* \\cdot \\Delta y",
+              "stepIndex": 1
+            },
+            "semantics": {
+              "teachingObjective": "Provide concrete 50 bps yield shift calculation example",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "यह माइनस साइन याद रखिए: बॉन्ड की कीमतें और ब्याज दरें हमेशा उल्टी दिशा में चलती हैं। दरें बढ़ेंगी तो कीमतें गिरेंगी, और दरें गिरेंगी तो कीमतें बढ़ेंगी!",
+          "en_subtitle": "Negative sign invariant: Bond prices and yields always move in opposite directions!",
+          "en_narration": "Always remember that crucial negative sign: bond prices and interest rates move in strictly opposite directions. When rates surge, bond prices plummet!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "expression": "\\frac{\\Delta B}{B} \\approx -D^* \\cdot \\Delta y",
+            "highlightTokens": [
+              "-D^*"
+            ],
+            "stepIndex": 2,
+            "steps": [
+              {
+                "step": "Linear Price Sensitivity",
+                "description": "Percentage price change is directly proportional to negative modified duration."
+              },
+              {
+                "step": "Compounding Adjustment",
+                "description": "Modified duration equals Macaulay duration divided by (1 + y/m)."
+              },
+              {
+                "step": "Practical Rule of Thumb",
+                "description": "If D* = 6.0 and yield rises +0.50% (+50 bps), bond price drops approx -3.0%."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "\\frac{\\Delta B}{B} \\approx -D^* \\cdot \\Delta y",
+              "stepIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce negative inverse relationship between interest rates and bond prices",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "Convexity Protection Against Large Shocks",
+      "template": "split_comparison",
+      "badge": "Second-Order Curvature",
+      "beats": [
+        {
+          "id": "b19",
+          "hindi_tts": "लेकिन मॉडिफाइड ड्यूरेशन केवल एक स्पर्श रेखा यानी लीनियर अनुमान है। जब ब्याज दरों में 100 या 200 बेसिस प्वाइंट्स का बड़ा झटका आता है, तो कॉन्वेक्सिटी सामने आती है!",
+          "en_subtitle": "Duration is only a tangent approximation. For large yield shifts (>100 bps), Convexity becomes essential!",
+          "en_narration": "Modified duration is merely a first-order linear tangent approximation. When interest rates suffer large shocks of 100 or 200 basis points, bond convexity becomes critical!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Linear Duration Estimate",
+            "rightTitle": "Convexity Curvature Correction",
+            "leftItems": [
+              "Order: First-order Taylor approximation",
+              "Formula: Delta B / B approx -D* * Delta y",
+              "Assumption: Straight line tangent to curve",
+              "Accuracy: Accurate only for tiny shifts (<25 bps)"
+            ],
+            "rightItems": [
+              "Order: Second-order Taylor series correction",
+              "Formula: + 0.5 * Convexity * (Delta y)^2",
+              "Geometry: Accounts for curve bending",
+              "Sign: Always positive (+), providing extra value"
+            ],
+            "activeFocus": "both"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Linear Duration Estimate",
+              "rightTitle": "Convexity Curvature Correction",
+              "leftItems": [
+                "Order: First-order Taylor approximation",
+                "Formula: Delta B / B approx -D* * Delta y",
+                "Assumption: Straight line tangent to curve",
+                "Accuracy: Accurate only for tiny shifts (<25 bps)"
+              ],
+              "rightItems": [
+                "Order: Second-order Taylor series correction",
+                "Formula: + 0.5 * Convexity * (Delta y)^2",
+                "Geometry: Accounts for curve bending",
+                "Sign: Always positive (+), providing extra value"
+              ],
+              "activeFocus": "both"
+            },
+            "semantics": {
+              "teachingObjective": "Contrast first-order duration against second-order convexity curvature",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b20",
+          "hindi_tts": "टेलर सीरीज का दूसरा पद है: प्लस आधा कॉन्वेक्सिटी गुणा डेल्टा वाई का स्क्वायर। चूंकि डेल्टा वाई का स्क्वायर हमेशा पॉजिटिव होता है, कॉन्वेक्सिटी हमेशा बॉन्ड होल्डर को फायदा पहुंचाती है!",
+          "en_subtitle": "Second term: +0.5 * C * (Delta y)^2. Because (Delta y)^2 is always positive, convexity always helps bondholders!",
+          "en_narration": "The second Taylor term is plus one-half convexity times Delta y squared. Because the square of Delta y is strictly positive, positive convexity always benefits long bondholders!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "When Yields Rise (+200 bps)",
+            "rightTitle": "When Yields Fall (-200 bps)",
+            "leftItems": [
+              "Duration Loss: -7.5 * (+0.02) = -15.0%",
+              "Convexity Benefit: +0.5 * 70 * (0.02)^2 = +1.4%",
+              "Net Price Change: -15.0% + 1.4% = -13.6%",
+              "Result: Loss is LESS than duration predicted"
+            ],
+            "rightItems": [
+              "Duration Gain: -7.5 * (-0.02) = +15.0%",
+              "Convexity Benefit: +0.5 * 70 * (-0.02)^2 = +1.4%",
+              "Net Price Change: +15.0% + 1.4% = +16.4%",
+              "Result: Gain is GREATER than duration predicted"
+            ],
+            "activeFocus": "right"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "When Yields Rise (+200 bps)",
+              "rightTitle": "When Yields Fall (-200 bps)",
+              "leftItems": [
+                "Duration Loss: -7.5 * (+0.02) = -15.0%",
+                "Convexity Benefit: +0.5 * 70 * (0.02)^2 = +1.4%",
+                "Net Price Change: -15.0% + 1.4% = -13.6%",
+                "Result: Loss is LESS than duration predicted"
+              ],
+              "rightItems": [
+                "Duration Gain: -7.5 * (-0.02) = +15.0%",
+                "Convexity Benefit: +0.5 * 70 * (-0.02)^2 = +1.4%",
+                "Net Price Change: +15.0% + 1.4% = +16.4%",
+                "Result: Gain is GREATER than duration predicted"
+              ],
+              "activeFocus": "right"
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate asymmetry: price rises faster on drops (+16.4%) than it falls on hikes (-13.6%)",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "यही बॉन्ड मार्केट का जादुई नियम है: जब ब्याज गिरता है तो कीमतें तेजी से बढ़ती हैं, लेकिन जब ब्याज बढ़ता है तो कीमतें धीमी गति से गिरती हैं!",
+          "en_subtitle": "The convexity edge: Bond prices rise faster when yields drop than they fall when yields surge!",
+          "en_narration": "This creates the golden asymmetry of fixed income: bond prices surge faster when yields drop than they fall when yields spike upward!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftTitle": "Asymmetric Protection",
+            "rightTitle": "The Curvature Premium",
+            "leftItems": [
+              "Upside Participation: Amplified (+16.4%)",
+              "Downside Cushion: Dampened (-13.6%)",
+              "Net Asymmetry Advantage: +2.8%",
+              "Investor Takeaway: High convexity bonds command lower yields"
+            ],
+            "rightItems": [
+              "Institutional Preference: Fund managers pay a premium for convexity",
+              "Option Analogy: Convexity behaves like a free embedded long straddle",
+              "Limitation: Expensive during low-volatility regimes",
+              "Master Rule: Always calculate convexity on large macro shifts"
+            ],
+            "activeFocus": "left"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Asymmetric Protection",
+              "rightTitle": "The Curvature Premium",
+              "leftItems": [
+                "Upside Participation: Amplified (+16.4%)",
+                "Downside Cushion: Dampened (-13.6%)",
+                "Net Asymmetry Advantage: +2.8%",
+                "Investor Takeaway: High convexity bonds command lower yields"
+              ],
+              "rightItems": [
+                "Institutional Preference: Fund managers pay a premium for convexity",
+                "Option Analogy: Convexity behaves like a free embedded long straddle",
+                "Limitation: Expensive during low-volatility regimes",
+                "Master Rule: Always calculate convexity on large macro shifts"
+              ],
+              "activeFocus": "left"
+            },
+            "semantics": {
+              "teachingObjective": "Summarize institutional value of positive convexity as embedded volatility protection",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "The Duration Hedge Ratio Formula",
+      "template": "formula_breakdown",
+      "badge": "Hull Section 6.6",
+      "beats": [
+        {
+          "id": "b22",
+          "hindi_tts": "अब पूरे पोर्टफोलियो को ब्याज दर के जोखिम से मुक्त यानी इम्यूनाइज करने का मास्टर फार्मूला देखिए: ड्यूरेशन-बेस्ड हेज रेशियो एन स्टार!",
+          "en_subtitle": "Master immunization formula: The duration-based hedge ratio N* = (P * D_P) / (V_F * D_F).",
+          "en_narration": "Now examine the master portfolio immunization formula: the duration-based hedge ratio N-star, which insulates bond portfolios against parallel yield curve shocks.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "N^* = \\frac{P \\cdot D_P}{V_F \\cdot D_F}",
+            "highlightTokens": [
+              "N^*"
+            ],
+            "stepIndex": 0,
+            "steps": [
+              {
+                "step": "Portfolio Dollar Duration",
+                "description": "Numerator P * D_P represents the total dollar sensitivity of the asset portfolio."
+              },
+              {
+                "step": "Futures Dollar Duration",
+                "description": "Denominator V_F * D_F represents the dollar sensitivity of one futures contract."
+              },
+              {
+                "step": "Exact Contract Sizing",
+                "description": "Dividing numerator by denominator yields the exact number of contracts to short."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "N^* = \\frac{P \\cdot D_P}{V_F \\cdot D_F}",
+              "stepIndex": 0
+            },
+            "semantics": {
+              "teachingObjective": "Present the master duration-based hedge ratio formula N* = (P * D_P) / (V_F * D_F)",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b23",
+          "hindi_tts": "अंश में है पी गुणा डी पी यानी पोर्टफोलियो का कुल डॉलर ड्यूरेशन, और हर में है वी एफ गुणा डी एफ यानी एक फ्यूचर्स कॉन्ट्रैक्ट का डॉलर ड्यूरेशन!",
+          "en_subtitle": "Numerator is portfolio dollar duration (P * D_P); denominator is futures contract dollar duration (V_F * D_F).",
+          "en_narration": "The numerator is P times D_P, the total dollar duration of your portfolio. The denominator is V_F times D_F, the dollar duration of a single futures contract based on the CTD bond!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "N^* = \\frac{P \\cdot D_P}{V_F \\cdot D_F}",
+            "highlightTokens": [
+              "P \\cdot D_P",
+              "V_F \\cdot D_F"
+            ],
+            "stepIndex": 1,
+            "steps": [
+              {
+                "step": "Portfolio Dollar Duration",
+                "description": "Numerator P * D_P represents the total dollar sensitivity of the asset portfolio."
+              },
+              {
+                "step": "Futures Dollar Duration",
+                "description": "Denominator V_F * D_F represents the dollar sensitivity of one futures contract."
+              },
+              {
+                "step": "Exact Contract Sizing",
+                "description": "Dividing numerator by denominator yields the exact number of contracts to short."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "N^* = \\frac{P \\cdot D_P}{V_F \\cdot D_F}",
+              "stepIndex": 1
+            },
+            "semantics": {
+              "teachingObjective": "Deconstruct numerator dollar duration vs denominator futures dollar duration",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b24",
+          "hindi_tts": "अगर आप बॉन्ड पोर्टफोलियो को सुरक्षित रखना चाहते हैं तो एन स्टार कॉन्ट्रैक्ट्स शॉर्ट कीजिए। दरें बढ़ने पर पोर्टफोलियो का नुकसान फ्यूचर्स के मुनाफे से शून्य हो जाएगा!",
+          "en_subtitle": "Short N* contracts: If interest rates rise, portfolio losses are completely neutralized by futures gains!",
+          "en_narration": "To immunize your bond portfolio against rate hikes, short exactly N-star contracts. When yields spike, portfolio losses are perfectly neutralized by short futures profits!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "expression": "N^* = \\frac{P \\cdot D_P}{V_F \\cdot D_F}",
+            "highlightTokens": [
+              "N^*"
+            ],
+            "stepIndex": 2,
+            "steps": [
+              {
+                "step": "Portfolio Dollar Duration",
+                "description": "Numerator P * D_P represents the total dollar sensitivity of the asset portfolio."
+              },
+              {
+                "step": "Futures Dollar Duration",
+                "description": "Denominator V_F * D_F represents the dollar sensitivity of one futures contract."
+              },
+              {
+                "step": "Exact Contract Sizing",
+                "description": "Dividing numerator by denominator yields the exact number of contracts to short."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "\\frac{P \\cdot D_P}{V_F \\cdot D_F}",
+              "stepIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Explain operational execution of shorting N* contracts for immunization",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "Hedging a $50M Bond Portfolio: Case Study",
+      "template": "progressive_cards",
+      "badge": "Real-World Execution",
+      "beats": [
+        {
+          "id": "b25",
+          "hindi_tts": "आइए एक कॉरपोरेट हेजिंग का लाइव उदाहरण देखें: एक फंड मैनेजर के पास 50 मिलियन डॉलर का बॉन्ड पोर्टफोलियो है जिसकी ड्यूरेशन 6.8 साल है।",
+          "en_subtitle": "Live hedging case: A fund manager holds a $50M bond portfolio with modified duration 6.8 years.",
+          "en_narration": "Let us examine a live corporate hedging case: an asset manager oversees a $50 million bond portfolio with a modified duration of 6.8 years.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. Asset Portfolio Exposure",
+                "subtitle": "",
+                "state": "active_amber"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. Futures Contract Sensitivity",
+                "subtitle": "",
+                "state": "hidden"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Optimal Short Hedge Size",
+                "subtitle": "",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0
+            },
+            "semantics": {
+              "teachingObjective": "Step 1: Compute portfolio dollar duration P * D_P = $340M",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b26",
+          "hindi_tts": "ट्रेजरी बॉन्ड फ्यूचर्स का भाव 98,000 डॉलर है और सीटीडी बॉन्ड की ड्यूरेशन 8.2 साल है। एक फ्यूचर्स कॉन्ट्रैक्ट का डॉलर ड्यूरेशन 8 लाख 3 हजार 600 डॉलर बनता है।",
+          "en_subtitle": "Futures price is $98,000 and CTD duration is 8.2 years, yielding $803,600 dollar duration per contract.",
+          "en_narration": "Treasury bond futures trade at $98,000, and the cheapest-to-deliver bond has a duration of 8.2 years, producing $803,600 in contract dollar duration.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 1,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. Asset Portfolio Exposure",
+                "subtitle": "",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. Futures Contract Sensitivity",
+                "subtitle": "",
+                "state": "active_blue"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Optimal Short Hedge Size",
+                "subtitle": "",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1
+            },
+            "semantics": {
+              "teachingObjective": "Step 2: Calculate contract dollar duration V_F * D_F = $803,600",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b27",
+          "hindi_tts": "340 मिलियन को 8 लाख 3 हजार 600 से भाग दीजिए: एन स्टार आता है ठीक 423 कॉन्ट्रैक्ट्स! 423 कॉन्ट्रैक्ट्स शॉर्ट करते ही पूरा पोर्टफोलियो पूरी तरह सुरक्षित हो गया!",
+          "en_subtitle": "N* = 340M / 803.6k = 423 contracts! Shorting 423 contracts immunizes the entire $50M portfolio!",
+          "en_narration": "Divide 340 million by 803,600: N-star equals exactly 423 contracts! Shorting 423 contracts immunizes the entire $50 million portfolio against parallel yield spikes!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "activeCardIndex": 2,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. Asset Portfolio Exposure",
+                "subtitle": "",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. Futures Contract Sensitivity",
+                "subtitle": "",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Optimal Short Hedge Size",
+                "subtitle": "",
+                "state": "active_green"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Step 3: Conclude hedge execution of shorting 423 contracts",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall: Duration Hedge Ratio",
+      "template": "interactive_quiz",
+      "badge": "Knowledge Verification",
+      "beats": [
+        {
+          "id": "b28",
+          "hindi_tts": "राजू के लिए आज का चैलेंज: एक बैंक के पास 50 मिलियन डॉलर का बॉन्ड पोर्टफोलियो है जिसकी ड्यूरेशन 6.8 साल है। अगर फ्यूचर्स भाव 98,000 डॉलर और सीटीडी ड्यूरेशन 8.2 साल हो, तो कितने कॉन्ट्रैक्ट्स शॉर्ट करने होंगे?",
+          "en_subtitle": "Challenge for Raju: $50M portfolio, D_P=6.8, futures price $98k, CTD duration 8.2. How many short contracts?",
+          "en_narration": "Active recall challenge: A bank holds a $50 million bond portfolio with duration 6.8 years. If futures price is $98,000 and CTD duration is 8.2 years, how many contracts must be shorted?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "question": "A bank holds a $50M bond portfolio with modified duration 6.8 years. If Treasury bond futures have price $98,000 and CTD duration 8.2 years, how many contracts must be shorted to immunize the portfolio?",
+            "options": [
+              "423 short futures contracts",
+              "210 short futures contracts",
+              "510 short futures contracts",
+              "350 short futures contracts"
+            ],
+            "selectedOption": null,
+            "isCorrect": null,
+            "showThinkingSpinner": false,
+            "answer": "423 short futures contracts (N* = (50,000,000 * 6.8) / (98,000 * 8.2) = 423.1)",
+            "explanation": "Applying the duration hedge formula N* = (P * D_P) / (V_F * D_F) yields (50M * 6.8) / (98,000 * 8.2) = 340M / 803,600 = 423.1 contracts."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "selectedOption": null,
+              "isCorrect": null,
+              "showThinkingSpinner": false
+            },
+            "semantics": {
+              "teachingObjective": "Present active recall quiz on duration hedge ratio",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b29",
+          "hindi_tts": "राजू ने हिसाब लगाया: अंश में 50 मिलियन गुणा 6.8 यानी 340 मिलियन, और हर में 98 हजार गुणा 8.2 यानी 8 लाख 3 हजार 600। भाग देने पर जवाब आता है 423 कॉन्ट्रैक्ट्स!",
+          "en_subtitle": "Raju calculates: (50M * 6.8) / (98,000 * 8.2) = 340M / 803,600 = 423 contracts!",
+          "en_narration": "Raju calculates: numerator is 50 million times 6.8 which is 340 million; denominator is 98,000 times 8.2 which is 803,600. Dividing gives 423 contracts!",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "question": "A bank holds a $50M bond portfolio with modified duration 6.8 years. If Treasury bond futures have price $98,000 and CTD duration 8.2 years, how many contracts must be shorted to immunize the portfolio?",
+            "options": [
+              "423 short futures contracts",
+              "210 short futures contracts",
+              "510 short futures contracts",
+              "350 short futures contracts"
+            ],
+            "selectedOption": 0,
+            "isCorrect": true,
+            "showThinkingSpinner": true,
+            "answer": "423 short futures contracts (N* = (50,000,000 * 6.8) / (98,000 * 8.2) = 423.1)",
+            "explanation": "Applying the duration hedge formula N* = (P * D_P) / (V_F * D_F) yields (50M * 6.8) / (98,000 * 8.2) = 340M / 803,600 = 423.1 contracts."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "selectedOption": 0,
+              "isCorrect": true,
+              "showThinkingSpinner": true
+            },
+            "semantics": {
+              "teachingObjective": "Raju solves duration hedge calculation during thinking pause",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b30",
+          "hindi_tts": "बिल्कुल सही राजू! 423 शॉर्ट कॉन्ट्रैक्ट्स सही जवाब है। तुमने बैंक को दिवालिया होने से बचा लिया!",
+          "en_subtitle": "Spot on Raju! 423 short contracts is correct. You just immunized the bank against insolvency!",
+          "en_narration": "Spot on Raju! 423 short contracts is exactly correct. You have mastered balance sheet immunization and saved the bank from insolvency!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "question": "A bank holds a $50M bond portfolio with modified duration 6.8 years. If Treasury bond futures have price $98,000 and CTD duration 8.2 years, how many contracts must be shorted to immunize the portfolio?",
+            "options": [
+              "423 short futures contracts",
+              "210 short futures contracts",
+              "510 short futures contracts",
+              "350 short futures contracts"
+            ],
+            "selectedOption": 0,
+            "isCorrect": true,
+            "showThinkingSpinner": false,
+            "answer": "423 short futures contracts (N* = (50,000,000 * 6.8) / (98,000 * 8.2) = 423.1)",
+            "explanation": "Applying the duration hedge formula N* = (P * D_P) / (V_F * D_F) yields (50M * 6.8) / (98,000 * 8.2) = 340M / 803,600 = 423.1 contracts."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "selectedOption": 0,
+              "isCorrect": true,
+              "showThinkingSpinner": false
+            },
+            "semantics": {
+              "teachingObjective": "Confirm correct calculation and pedagogical mastery",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Raju Masters Duration Immunization",
+      "template": "chat_story",
+      "badge": "Trading Mastery Achieved",
+      "beats": [
+        {
+          "id": "b31",
+          "hindi_tts": "शर्मा जी! अब मुझे पूरी तरह समझ आ गया कि बड़े बैंक और पेंशन फंड्स ब्याज दरों में तेज उछाल के बावजूद कैसे बचते हैं—वे डेरिवेटिव्स से अपनी ड्यूरेशन जीरो कर लेते हैं!",
+          "en_subtitle": "Sharma ji, now I see how big banks survive rate spikes—they use futures to neutralize duration to zero!",
+          "en_narration": "Sharma ji! Now I completely understand how major banks survive violent interest rate hiking cycles—they use interest rate futures to engineer zero duration!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju achieves complete clarity on balance sheet immunization —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji! Now I understand why institutional banks don't collapse when rates surge—they dynamically short futures to immunize net duration!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji! Now I understand why institutional banks don't collapse when rates surge—they dynamically short futures to immunize net duration!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate student epiphany regarding institutional duration hedging",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-07"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b32",
+          "hindi_tts": "शाबाश राजू! लेकिन यह हमेशा याद रखना कि ड्यूरेशन हेजिंग केवल पैरेलल शिफ्ट्स में पूरी तरह काम करती है। अगर यील्ड कर्व मुड़ जाए या क्रेडिट स्प्रेड बढ़ जाए, तो बेसिस रिस्क हमेशा बना रहता है।",
+          "en_subtitle": "Well done Raju! But remember: Duration hedging assumes parallel shifts. Curve twists and credit spreads create basis risk.",
+          "en_narration": "Excellent Raju! But always remember the final master rule: duration hedging assumes parallel yield curve shifts. If the curve twists or credit spreads widen, basis risk remains!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji delivers the vital warning on basis risk and curve twists —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Now I understand why institutional banks don't collapse when rates surge—they dynamically short futures to immunize net duration!",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Spot on! But beware the caveat: duration hedging assumes parallel shifts. Curve steepening and credit spread divergence leave residual basis risk!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Now I understand why institutional banks don't collapse when rates surge—they dynamically short futures to immunize net duration!",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Spot on! But beware the caveat: duration hedging assumes parallel shifts. Curve steepening and credit spread divergence leave residual basis risk!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Highlight limitations of duration hedging: basis risk and non-parallel curve twists",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b33",
+          "hindi_tts": "और अब अगले चैप्टर 7 में हम इंटरेस्ट रेट और करेंसी स्वैप्स के विशाल 500 ट्रिलियन डॉलर के बाजार में कदम रखेंगे!",
+          "en_subtitle": "And now in Chapter 7, we enter the massive $500 Trillion world of Interest Rate & Currency Swaps!",
+          "en_narration": "And now, in Chapter 7, we advance into the massive five hundred trillion dollar global market of Interest Rate and Currency Swaps!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "stageDirections": [
+              "— Transitioning to Chapter 7: Swaps —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Up Next in Chapter 7: Plain vanilla interest rate swaps, comparative advantage, and fixed-for-fixed currency swaps!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Up Next in Chapter 7: Plain vanilla interest rate swaps, comparative advantage, and fixed-for-fixed currency swaps!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Bridge Chapter 6 Interest Rate Futures to Chapter 7 Swaps",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "The Whole Picture: 8 Core Duration & Hedging Rules",
+      "template": "summary_thread",
+      "badge": "Chapter 6 Part 2 Synthesis",
+      "beats": [
+        {
+          "id": "b34",
+          "hindi_tts": "पूरा चैप्टर एक नजर में: यूरोडॉलर फ्यूचर्स, कॉन्वेक्सिटी एडजस्टमेंट, मैकाले और मॉडिफाइड ड्यूरेशन, और पोर्टफोलियो इम्यूनाइजेशन के 8 मौलिक नियम।",
+          "en_subtitle": "Whole chapter at a glance: Eurodollar futures, convexity, duration, and immunization in 8 core rules.",
+          "en_narration": "The whole chapter at a glance: Eurodollar futures, convexity adjustments, Macaulay duration, and portfolio immunization synthesized into eight golden rules.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "CHAPTER 6 · PART 2 · COMPLETE SYNTHESIS",
+            "heading": "Today's thread",
+            "activeStepIndex": 0,
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "steps": [
+              "Eurodollar Tick Standard: Every 1 basis point (0.01%) move in 3-month Eurodollar / SOFR futures is worth exactly $25 per contract.",
+              "The Convexity Wedge: Daily mark-to-market settlement makes futures rates systematically higher than forward rates.",
+              "Convexity Adjustment Formula: Forward Rate = Futures Rate - 0.5 * sigma^2 * T1 * T2 reduces long-dated futures rates.",
+              "Macaulay Duration: Measures effective cash flow timing as the weighted average maturity of discounted payments.",
+              "Modified Duration Sensitivity: Linear price loss is given by Delta B / B approx -D* * Delta y for small parallel shifts.",
+              "Convexity Curvature: Positive curvature protects bondholders: Delta B / B approx -D* * Delta y + 0.5 * C * (Delta y)^2.",
+              "Bank ALM Duration Gap: Banks holding long assets and short liabilities face balance sheet wipeout when yields surge.",
+              "Target Immunization Rule: Shorting N* = (P * D_P) / (V_F * D_F) contracts immunizes portfolios against parallel yield shifts."
+            ],
+            "bottomTakeaway": "Interest rate futures and duration immunization are the primary tools protecting global financial institutions from yield curve shocks.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                0,
+                0
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Present executive roadmap of the 8 rules of duration hedging",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06",
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b35",
+          "hindi_tts": "पहला और दूसरा नियम: यूरोडॉलर और एसओएफआर फ्यूचर्स में हर एक बेसिस प्वाइंट का बदलाव ठीक 25 डॉलर के बराबर होता है। और दूसरा नियम: डेली सेटलमेंट के कारण फ्यूचर्स रेट हमेशा फॉरवर्ड रेट से अधिक होते हैं।",
+          "en_subtitle": "Rules 1 & 2: Eurodollar tick value is $25 per bp. Daily mark-to-market makes futures rates higher than forward rates.",
+          "en_narration": "First and second: Every 1 basis point move in Eurodollar or SOFR futures equals exactly $25 cash per contract. Daily mark-to-market settlement makes futures rates systematically higher than forward rates.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 1 & 2 · TICKS & CONVEXITY WEDGE",
+            "heading": "Today's thread",
+            "activeStepIndex": 1,
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "steps": [
+              "Eurodollar Tick Standard: Every 1 basis point (0.01%) move in 3-month Eurodollar / SOFR futures is worth exactly $25 per contract.",
+              "The Convexity Wedge: Daily mark-to-market settlement makes futures rates systematically higher than forward rates.",
+              "Convexity Adjustment Formula: Forward Rate = Futures Rate - 0.5 * sigma^2 * T1 * T2 reduces long-dated futures rates.",
+              "Macaulay Duration: Measures effective cash flow timing as the weighted average maturity of discounted payments.",
+              "Modified Duration Sensitivity: Linear price loss is given by Delta B / B approx -D* * Delta y for small parallel shifts.",
+              "Convexity Curvature: Positive curvature protects bondholders: Delta B / B approx -D* * Delta y + 0.5 * C * (Delta y)^2.",
+              "Bank ALM Duration Gap: Banks holding long assets and short liabilities face balance sheet wipeout when yields surge.",
+              "Target Immunization Rule: Shorting N* = (P * D_P) / (V_F * D_F) contracts immunizes portfolios against parallel yield shifts."
+            ],
+            "bottomTakeaway": "Eurodollar contract specs standardize cash flow sensitivity, while settlement covariance drives the futures-forward rate wedge.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                1,
+                2
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 1 and 2: $25 tick value and daily settlement wedge",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b36",
+          "hindi_tts": "तीसरा और चौथा नियम: फॉरवर्ड रेट निकालने के लिए फ्यूचर्स रेट से आधा सिग्मा स्क्वायर गुणा टी वन गुणा टी टू घटाना पड़ता है। और चौथा नियम: मैकाले ड्यूरेशन कैश फ्लोज़ के वापस मिलने का वेटेड-एवरेज समय मापती है।",
+          "en_subtitle": "Rules 3 & 4: Forward = Futures - 0.5 * sigma^2 * T1 * T2. Macaulay duration measures weighted-average cash flow timing.",
+          "en_narration": "Third and fourth: Obtain forward rates by subtracting 0.5 times sigma squared times T1 times T2 from futures rates. Macaulay duration measures effective cash flow timing as the weighted average maturity of discounted payments.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 3 & 4 · CONVEXITY FORMULA & MACAULAY DURATION",
+            "heading": "Today's thread",
+            "activeStepIndex": 3,
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "steps": [
+              "Eurodollar Tick Standard: Every 1 basis point (0.01%) move in 3-month Eurodollar / SOFR futures is worth exactly $25 per contract.",
+              "The Convexity Wedge: Daily mark-to-market settlement makes futures rates systematically higher than forward rates.",
+              "Convexity Adjustment Formula: Forward Rate = Futures Rate - 0.5 * sigma^2 * T1 * T2 reduces long-dated futures rates.",
+              "Macaulay Duration: Measures effective cash flow timing as the weighted average maturity of discounted payments.",
+              "Modified Duration Sensitivity: Linear price loss is given by Delta B / B approx -D* * Delta y for small parallel shifts.",
+              "Convexity Curvature: Positive curvature protects bondholders: Delta B / B approx -D* * Delta y + 0.5 * C * (Delta y)^2.",
+              "Bank ALM Duration Gap: Banks holding long assets and short liabilities face balance sheet wipeout when yields surge.",
+              "Target Immunization Rule: Shorting N* = (P * D_P) / (V_F * D_F) contracts immunizes portfolios against parallel yield shifts."
+            ],
+            "bottomTakeaway": "Convexity adjustment aligns long-dated futures with forward curves, while Macaulay duration calculates effective cash flow maturity.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                3,
+                4
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 3 and 4: Convexity adjustment formula and Macaulay duration definition",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b37",
+          "hindi_tts": "पांचवां और छठा नियम: मॉडिफाइड ड्यूरेशन लीनियर प्राइस सेंसिटिविटी देती है: डेल्टा बी बटा बी बराबर माइनस डी स्टार गुणा डेल्टा वाई। और छठा नियम: पॉजिटिव कॉन्वेक्सिटी बड़े झटकों में बॉन्ड होल्डर को अतिरिक्त सुरक्षा देती है।",
+          "en_subtitle": "Rules 5 & 6: Delta B / B = -D* * Delta y. Positive convexity provides curvature protection against large yield shocks.",
+          "en_narration": "Fifth and sixth: Modified duration dictates linear price sensitivity: Delta B over B equals minus D-star times Delta y. Positive convexity provides curvature protection, causing prices to rise faster on drops than they fall on rate spikes.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 5 & 6 · MODIFIED DURATION & CONVEXITY CURVATURE",
+            "heading": "Today's thread",
+            "activeStepIndex": 5,
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "steps": [
+              "Eurodollar Tick Standard: Every 1 basis point (0.01%) move in 3-month Eurodollar / SOFR futures is worth exactly $25 per contract.",
+              "The Convexity Wedge: Daily mark-to-market settlement makes futures rates systematically higher than forward rates.",
+              "Convexity Adjustment Formula: Forward Rate = Futures Rate - 0.5 * sigma^2 * T1 * T2 reduces long-dated futures rates.",
+              "Macaulay Duration: Measures effective cash flow timing as the weighted average maturity of discounted payments.",
+              "Modified Duration Sensitivity: Linear price loss is given by Delta B / B approx -D* * Delta y for small parallel shifts.",
+              "Convexity Curvature: Positive curvature protects bondholders: Delta B / B approx -D* * Delta y + 0.5 * C * (Delta y)^2.",
+              "Bank ALM Duration Gap: Banks holding long assets and short liabilities face balance sheet wipeout when yields surge.",
+              "Target Immunization Rule: Shorting N* = (P * D_P) / (V_F * D_F) contracts immunizes portfolios against parallel yield shifts."
+            ],
+            "bottomTakeaway": "Modified duration provides the first-order risk metric, while convexity adds essential curvature protection against large rate spikes.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                5,
+                6
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 5 and 6: Modified duration sensitivity and second-order convexity curvature",
+              "sourceFactIds": [
+                "fact-04",
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b38",
+          "hindi_tts": "सातवां और आठवां नियम: अनहेज्ड बैंक एसेट-लायबिलिटी मिसमैच के कारण ब्याज दरें बढ़ते ही दिवालिया हो जाते हैं। और आठवां सबसे जरूरी नियम: एन स्टार बराबर पी गुणा डी पी बटा वी एफ गुणा डी एफ कॉन्ट्रैक्ट्स शॉर्ट करके पूरे पोर्टफोलियो को पूरी तरह इम्यूनाइज किया जा सकता है!",
+          "en_subtitle": "Rules 7 & 8: Unhedged banks face ALM wipeout. Rule 8: Shorting N* = (P * D_P) / (V_F * D_F) contracts immunizes the portfolio!",
+          "en_narration": "Seventh and eighth: Unhedged banks face balance sheet insolvency when yield surges destroy long assets. And rule eight: Shorting N-star equals P times D_P divided by V_F times D_F contracts immunizes the entire balance sheet against parallel yield curve shocks!",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "headerBadge": "RULES 7 & 8 · BANK ALM CRISIS & TARGET IMMUNIZATION",
+            "heading": "Today's thread",
+            "activeStepIndex": 7,
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "steps": [
+              "Eurodollar Tick Standard: Every 1 basis point (0.01%) move in 3-month Eurodollar / SOFR futures is worth exactly $25 per contract.",
+              "The Convexity Wedge: Daily mark-to-market settlement makes futures rates systematically higher than forward rates.",
+              "Convexity Adjustment Formula: Forward Rate = Futures Rate - 0.5 * sigma^2 * T1 * T2 reduces long-dated futures rates.",
+              "Macaulay Duration: Measures effective cash flow timing as the weighted average maturity of discounted payments.",
+              "Modified Duration Sensitivity: Linear price loss is given by Delta B / B approx -D* * Delta y for small parallel shifts.",
+              "Convexity Curvature: Positive curvature protects bondholders: Delta B / B approx -D* * Delta y + 0.5 * C * (Delta y)^2.",
+              "Bank ALM Duration Gap: Banks holding long assets and short liabilities face balance sheet wipeout when yields surge.",
+              "Target Immunization Rule: Shorting N* = (P * D_P) / (V_F * D_F) contracts immunizes portfolios against parallel yield shifts."
+            ],
+            "bottomTakeaway": "Duration matching insulates net equity against yield shocks, turning vulnerable balance sheets into resilient immunized portfolios.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                7,
+                8
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Strict dedicated focus on Rules 7 & 8: Bank ALM duration gap and Rule 8 target immunization formula",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b39",
+          "hindi_tts": "यह है ब्याज दर फ्यूचर्स और ड्यूरेशन हेजिंग का पूरा मास्टर फ्रेमवर्क! इन आठ नियमों की महारत ही आपको फिक्स्ड इनकम डेरिवेटिव्स का सच्चा एक्सपर्ट बनाती है।",
+          "en_subtitle": "Complete master summary: Mastery of Eurodollar futures and duration hedging is the foundation of fixed income derivatives.",
+          "en_narration": "That is the complete interest rate futures and duration hedging architecture! Deep mastery of these eight iron laws establishes the foundation of fixed income derivatives.",
+          "pauseAfterMs": 600,
+          "ui_state": {
+            "headerBadge": "CHAPTER 6 · PART 2 · COMPLETE OVERVIEW",
+            "heading": "Today's thread",
+            "activeStepIndex": 0,
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "steps": [
+              "Eurodollar Tick Standard: Every 1 basis point (0.01%) move in 3-month Eurodollar / SOFR futures is worth exactly $25 per contract.",
+              "The Convexity Wedge: Daily mark-to-market settlement makes futures rates systematically higher than forward rates.",
+              "Convexity Adjustment Formula: Forward Rate = Futures Rate - 0.5 * sigma^2 * T1 * T2 reduces long-dated futures rates.",
+              "Macaulay Duration: Measures effective cash flow timing as the weighted average maturity of discounted payments.",
+              "Modified Duration Sensitivity: Linear price loss is given by Delta B / B approx -D* * Delta y for small parallel shifts.",
+              "Convexity Curvature: Positive curvature protects bondholders: Delta B / B approx -D* * Delta y + 0.5 * C * (Delta y)^2.",
+              "Bank ALM Duration Gap: Banks holding long assets and short liabilities face balance sheet wipeout when yields surge.",
+              "Target Immunization Rule: Shorting N* = (P * D_P) / (V_F * D_F) contracts immunizes portfolios against parallel yield shifts."
+            ],
+            "bottomTakeaway": "Eurodollar futures, convexity adjustments, and duration hedging provide the mathematical armor required to navigate volatile global interest rate markets.",
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display complete 2-column whole-chapter reference matrix",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06",
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

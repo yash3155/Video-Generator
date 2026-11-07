@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch07_part1",
+  "title": "Mechanics and Valuation of Plain Vanilla Interest Rate Swaps",
+  "targetAudiencePersona": "Corporate Treasurer & Capital Markets Derivatives Trader",
+  "prerequisites": [
+    "Forward rates and OIS zero curve discounting from Chapter 4",
+    "Cost of carry forward pricing parity from Chapter 5",
+    "Duration-based hedging and balance sheet immunization from Chapter 6"
+  ],
+  "learningOutcomes": [
+    "Diagram and calculate net cash flows for plain vanilla fixed-for-floating interest rate swaps.",
+    "Execute synthetic debt and asset transformations to lock borrowing costs or float investment returns.",
+    "Analyze the comparative advantage argument and calculate net arbitrage surplus sharing across counterparties.",
+    "Value existing interest rate swaps via forward rates and OIS discounting, and via bond portfolio decomposition.",
+    "Differentiate bilateral replacement credit risk from notional risk and explain post-2008 CCP clearing reforms."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "The Floating Rate Debt Dilemma & Swap Cash Flows",
+      "pedagogicalObjective": "Introduce plain vanilla interest rate swaps and explain why notional principal is never exchanged.",
+      "groundedFactIds": [
+        "fact-01"
+      ],
+      "keyPoints": [
+        "Two counterparties agree to exchange fixed interest for floating interest.",
+        "Net settlement transfers only (Floating - Fixed) * Notional * (Days / 360).",
+        "Notional principal ($100M) is purely a scaling factor and never changes hands."
+      ],
+      "formulaUsed": "Net Flow = (R_fl - R_fix) * L * Delta t"
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Synthetic Liability & Asset Transformations",
+      "pedagogicalObjective": "Show how companies and investors synthetically transform debts and assets using swaps.",
+      "groundedFactIds": [
+        "fact-02",
+        "fact-03"
+      ],
+      "keyPoints": [
+        "Borrowers with floating bank loans (SOFR + 1%) pay fixed 5% in swap, locking fixed rate at 6%.",
+        "Investors holding 6% fixed bonds pay fixed 5% and receive SOFR, creating floating return SOFR + 1%.",
+        "Eliminates interest rate vulnerability without restructuring underlying loan contracts."
+      ],
+      "formulaUsed": "Net Borrowing = R_fix + Spread"
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Swap Bank Market Makers & Bid-Offer Spreads",
+      "pedagogicalObjective": "Formulate the role of financial intermediaries and matched swap books.",
+      "groundedFactIds": [
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Swap banks act as market makers quoting bid-ask spreads (e.g., 4.98% bid vs 5.02% ask).",
+        "Matched books earn 4 bps ($40,000/yr per $100M) risk-free without directional market exposure.",
+        "Banks warehouse residual mismatch risk and hedge using Treasury and Eurodollar futures."
+      ],
+      "formulaUsed": "Profit = (Ask - Bid) * Notional"
+    },
+    {
+      "sectionIndex": 3,
+      "title": "The Comparative Advantage Arbitrage Surplus",
+      "pedagogicalObjective": "Deconstruct Hull Section 7.4 quality spread differentials and surplus sharing.",
+      "groundedFactIds": [
+        "fact-05"
+      ],
+      "keyPoints": [
+        "Firm A (AAA) borrows fixed 10.0% / floating SOFR+0.3%; Firm B (BBB) borrows fixed 11.2% / floating SOFR+1.0%.",
+        "Fixed spread difference is 1.2% (120 bps); floating spread difference is 0.7% (70 bps).",
+        "Total arbitrage surplus equals 120 - 70 = 50 bps, shared among Firm A (20 bps), Firm B (20 bps), and Bank (10 bps)."
+      ],
+      "formulaUsed": "Total Surplus = Delta Fixed Spread - Delta Floating Spread"
+    },
+    {
+      "sectionIndex": 4,
+      "title": "Valuation via Forward Rates, OIS & CCP Clearing",
+      "pedagogicalObjective": "Formulate swap valuation via forward rates and bond decomposition, and review CCP risk reforms.",
+      "groundedFactIds": [
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Swap value is zero at inception; revalued as PV of forward floating minus fixed cash flows discounted at OIS.",
+        "Decomposed as V_swap = B_fl - B_fix, where floating bond resets to par at coupon dates.",
+        "Credit risk is strictly replacement cost max(0, V_swap), safeguarded by mandatory CCP clearing."
+      ],
+      "formulaUsed": "V_swap = sum((F_i - K) * Delta t * P(0, t_i))"
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Counterparties in an interest rate swap exchange the $100M principal at inception and maturity.",
+      "factId": "fact-01",
+      "authorRebuttal": "Notional principal is purely a calculation scale; principal is never exchanged, eliminating 100% of notional principal default risk."
+    },
+    {
+      "misconception": "Entering an interest rate swap requires paying an upfront fee or purchase price.",
+      "factId": "fact-06",
+      "authorRebuttal": "The contractual fixed swap rate is set at the par swap rate, ensuring initial net present value is exactly zero."
+    },
+    {
+      "misconception": "If a swap counterparty defaults, the entire $100M notional principal is lost.",
+      "factId": "fact-08",
+      "authorRebuttal": "Counterparty risk is strictly bilateral replacement cost max(0, V_swap), and modern CCP clearing enforces daily mark-to-market variation margin."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "Firm A (AAA rated) can borrow fixed at 10.0% or floating at SOFR + 0.3%. Firm B (BBB rated) can borrow fixed at 11.2% or floating at SOFR + 1.0%. A financial intermediary arranges an interest rate swap.",
+    "testedFactIds": [
+      "fact-05"
+    ],
+    "question": "What is the total comparative advantage arbitrage surplus available to be shared between the counterparties and the bank?",
+    "correctAnswer": "50 basis points (0.50% total surplus)",
+    "explanation": "Total surplus equals (Fixed Spread Difference) minus (Floating Spread Difference) = (11.2% - 10.0%) - (1.0% - 0.3%) = 1.2% - 0.7% = 0.50% (50 basis points)."
+  },
+  "coreTakeaways": [
+    "Plain vanilla swaps exchange fixed for floating payments; notional principal is never exchanged.",
+    "Combining floating bank debt with a fixed-payer swap synthetically locks fixed borrowing rates.",
+    "Swap market makers earn bid-ask spreads on matched books without taking directional interest rate risk.",
+    "Comparative advantage arises from quality spread differentials, creating arbitrage surplus for all parties.",
+    "Swaps have zero value at inception and are valued via forward rate modeling and OIS zero discounting.",
+    "Credit risk in interest rate swaps represents bilateral replacement cost, fully mitigated by CCP clearing."
+  ]
+}

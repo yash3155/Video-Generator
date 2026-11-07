@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch07_part2",
+  "title": "Currency Swaps, Valuation, Legal Risk, and CDS",
+  "targetAudiencePersona": "Global Macro Risk Manager & Multi-Currency Treasury Trader",
+  "prerequisites": [
+    "Plain vanilla interest rate swap mechanics and comparative advantage from Chapter 7 Part 1",
+    "Interest rate parity and forward exchange rates from Chapter 5",
+    "Bond pricing and OIS discounting from Chapter 4"
+  ],
+  "learningOutcomes": [
+    "Differentiate currency swaps from interest rate swaps by modeling initial and terminal principal exchanges.",
+    "Execute synthetic foreign currency liability transformations using domestic borrowing advantages.",
+    "Calculate comparative advantage arbitrage surpluses arising from international market home biases.",
+    "Value currency swaps using bond portfolio decomposition and forward FX contract replication.",
+    "Analyze the Hammersmith & Fulham municipal scandal (Snapshot 7.2) and mitigate ultra vires legal risk.",
+    "Formulate Credit Default Swap (CDS) mechanics and calculate default protection payoffs: Payoff = (1 - R) * L."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Fixed-for-Fixed Currency Swap Architecture",
+      "pedagogicalObjective": "Formulate currency swap mechanics and contrast with interest rate swaps via principal exchange.",
+      "groundedFactIds": [
+        "fact-01"
+      ],
+      "keyPoints": [
+        "Principal amounts in two currencies are exchanged at inception at spot exchange rate S_0.",
+        "Periodic interest payments are exchanged in their respective currencies.",
+        "Principal amounts are re-exchanged at maturity at the exact same initial spot rate."
+      ],
+      "formulaUsed": "Inception: L_USD <-> L_GBP; Maturity: L_GBP <-> L_USD"
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Liability Transformation & Comparative Advantage",
+      "pedagogicalObjective": "Demonstrate cross-border liability synthetic transformation and compute 30 bps arbitrage surplus.",
+      "groundedFactIds": [
+        "fact-02",
+        "fact-03"
+      ],
+      "keyPoints": [
+        "Firms borrow in their domestic home markets where credit spreads are tightest.",
+        "US Firm A (USD 5.0% / GBP 7.0%) vs UK Firm B (USD 5.8% / GBP 6.5%).",
+        "Total arbitrage surplus equals 80 bps - 50 bps = 30 bps, shared among counterparties."
+      ],
+      "formulaUsed": "Total Surplus = Delta USD Spread - Delta GBP Spread"
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Currency Swap Valuation: Bond Portfolios & Forward FX",
+      "pedagogicalObjective": "Deconstruct currency swap valuation via bond decomposition V_swap = B_B - S_0 * B_A and forward FX.",
+      "groundedFactIds": [
+        "fact-04",
+        "fact-05"
+      ],
+      "keyPoints": [
+        "Swap is valued as long domestic bond minus spot-converted foreign bond: V_swap = B_B - S_0 * B_A.",
+        "Alternatively priced as a portfolio of forward FX contracts using interest rate parity.",
+        "Principal exchange at maturity creates significant duration and FX translation sensitivity."
+      ],
+      "formulaUsed": "V_swap = B_B - S_0 * B_A"
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Credit Risk Asymmetry & The Hammersmith Scandal",
+      "pedagogicalObjective": "Analyze credit risk of terminal principal exchange and dissect Snapshot 7.2 legal capacity crisis.",
+      "groundedFactIds": [
+        "fact-06",
+        "fact-07"
+      ],
+      "keyPoints": [
+        "Currency swaps possess far greater credit risk than interest rate swaps due to terminal principal re-exchange.",
+        "Hammersmith and Fulham council entered 600 speculative swaps, losing £600M when rates soared to 15%.",
+        "UK House of Lords declared contracts ultra vires (void), leaving international banks with £1B losses."
+      ],
+      "formulaUsed": "Credit Exposure = max(0, B_B - S_0 * B_A)"
+    },
+    {
+      "sectionIndex": 4,
+      "title": "Credit Default Swaps (CDS) & Default Payoff Mechanics",
+      "pedagogicalObjective": "Introduce CDS mechanics, premium spreads, and recovery rate default payoffs.",
+      "groundedFactIds": [
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Protection buyer pays periodic spread (e.g. 150 bps) to insure against reference entity default.",
+        "Upon credit event, protection seller pays Payoff = (1 - R) * Notional.",
+        "Assuming standard 40% bond recovery rate (R=0.40), default payout equals 60% of notional principal."
+      ],
+      "formulaUsed": "Payoff = (1 - R) * L"
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Currency swaps, like interest rate swaps, never exchange principal amounts.",
+      "factId": "fact-01",
+      "authorRebuttal": "Currency swaps must exchange principal at inception and re-exchange at maturity so counterparties obtain foreign currency capital."
+    },
+    {
+      "misconception": "A legally executed derivative contract with a government body or municipality is always legally binding and enforceable.",
+      "factId": "fact-07",
+      "authorRebuttal": "The Hammersmith and Fulham scandal proved that if an entity lacks statutory capacity (ultra vires), courts can void contracts entirely with zero compensation."
+    },
+    {
+      "misconception": "A Credit Default Swap pays the full 100% face value of the reference bond upon default.",
+      "factId": "fact-08",
+      "authorRebuttal": "CDS contracts pay the loss given default: (1 - R) * Notional, subtracting the recovery rate R realized on defaulted debt."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "An asset manager purchases $20M credit protection on corporate debt via a Credit Default Swap. A credit event occurs, and the defaulted bonds settle in auction with a 40% recovery rate (R = 0.40).",
+    "testedFactIds": [
+      "fact-08"
+    ],
+    "question": "What is the net default insurance payoff received by the protection buyer?",
+    "correctAnswer": "$12 Million default payoff ((1 - 0.40) * $20M = $12M)",
+    "explanation": "The default payoff formula is Payoff = (1 - R) * L = (1 - 0.40) * $20,000,000 = 0.60 * $20M = $12,000,000."
+  },
+  "coreTakeaways": [
+    "Currency swaps exchange principal at inception and maturity, unlike interest rate swaps.",
+    "Home market borrowing advantages create comparative advantage surpluses shared internationally.",
+    "Currency swaps are valued via bond decomposition: V_swap = B_B - S_0 * B_A.",
+    "Terminal principal exchange substantially magnifies credit risk compared to interest rate swaps.",
+    "Snapshot 7.2 illustrates ultra vires legal capacity risk that can void valid contracts completely.",
+    "Credit Default Swaps transfer default risk, paying (1 - R) * Notional upon a credit event."
+  ]
+}

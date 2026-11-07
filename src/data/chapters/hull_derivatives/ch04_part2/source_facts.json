@@ -1,0 +1,261 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch04_part2",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T15:55:30.022Z",
+  "bookTitle": "Options, Futures, and Other Derivatives (John C. Hull)",
+  "generalAssumptions": [
+    "Forward interest rates are mathematically implied by the current term structure of zero rates to prevent arbitrage.",
+    "An FRA is an OTC contract where cash settlement occurs at the start of the loan period discounted back from maturity.",
+    "Yield curves typically slope upward because investors require a liquidity premium for longer maturities (Liquidity Preference Theory)."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "formula",
+      "topic": "Forward Interest Rate Under Continuous Compounding",
+      "statement": "The forward interest rate R_F for the period between future times T_1 and T_2 implied by continuous zero rates R_1 and R_2 is R_F = (R_2 * T_2 - R_1 * T_1) / (T_2 - T_1). If continuous zero rates increase with maturity, forward rates lie strictly above zero rates.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.6 Forward Rates",
+        "page": 86,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Continuous Forward Interest Rate",
+        "latex": "R_F = \\frac{R_2 T_2 - R_1 T_1}{T_2 - T_1}",
+        "variables": [
+          {
+            "symbol": "R_F",
+            "definition": "Continuous forward interest rate between T1 and T2",
+            "unit": "%"
+          },
+          {
+            "symbol": "R_1",
+            "definition": "Continuous zero rate for maturity T1",
+            "unit": "%"
+          },
+          {
+            "symbol": "R_2",
+            "definition": "Continuous zero rate for maturity T2",
+            "unit": "%"
+          },
+          {
+            "symbol": "T_1",
+            "definition": "Start time of the forward period",
+            "unit": "years"
+          },
+          {
+            "symbol": "T_2",
+            "definition": "End time of the forward period",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "forward_rate",
+        "zero_rates",
+        "continuous_compounding",
+        "term_structure"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "market_rule",
+      "topic": "No-Arbitrage Replication of Forward Rates",
+      "statement": "A forward loan starting at T_1 and maturing at T_2 can be synthetically locked today by borrowing for T_1 at rate R_1 and investing the proceeds for T_2 at rate R_2. If the market forward rate differs from R_F = (R_2*T_2 - R_1*T_1)/(T_2 - T_1), riskless arbitrage is achieved.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.6 Forward Rates",
+        "page": 87,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "arbitrage",
+        "synthetic_forward",
+        "replication",
+        "borrow_invest"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "definition",
+      "topic": "Forward Rate Agreement (FRA) Definition & Mechanics",
+      "statement": "A Forward Rate Agreement (FRA) is an over-the-counter derivative contract designed to lock in an interest rate for a future lending or borrowing period between T_1 and T_2. The party paying fixed rate R_K receives floating rate R_M, hedging against rising interest rates.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.7 Forward Rate Agreements",
+        "page": 88,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "fra",
+        "fixed_rate",
+        "floating_rate",
+        "otc_derivative",
+        "hedging"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "formula",
+      "topic": "FRA Payoff and Discounted Settlement at Time T_1",
+      "statement": "At maturity T_2, the payoff for an FRA paying fixed rate R_K on principal L is L * (R_M - R_K) * (T_2 - T_1). In practice, FRAs settle at time T_1, requiring the payoff to be discounted back at the market rate R_M: Settlement = L * (R_M - R_K) * (T_2 - T_1) / [1 + R_M * (T_2 - T_1)].",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.7 Forward Rate Agreements",
+        "page": 89,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "FRA Settlement Formula at Time T1",
+        "latex": "\\text{Settlement} = \\frac{L (R_M - R_K)(T_2 - T_1)}{1 + R_M (T_2 - T_1)}",
+        "variables": [
+          {
+            "symbol": "L",
+            "definition": "Notional principal amount",
+            "unit": "$"
+          },
+          {
+            "symbol": "R_M",
+            "definition": "Realized market floating rate observed at T1",
+            "unit": "%"
+          },
+          {
+            "symbol": "R_K",
+            "definition": "Agreed fixed contract interest rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "T_1",
+            "definition": "Start of forward period / settlement time",
+            "unit": "years"
+          },
+          {
+            "symbol": "T_2",
+            "definition": "End of forward interest period",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "fra_settlement",
+        "discounting",
+        "advance_settlement",
+        "payoff"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "formula",
+      "topic": "Valuation of an Existing FRA Prior to Maturity",
+      "statement": "An existing FRA that pays fixed rate R_K has value V_FRA = L * (R_F - R_K) * (T_2 - T_1) * e^(-R_2 * T_2), where R_F is the current forward rate for the period and R_2 is the risk-free discount zero rate for maturity T_2.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.7 Forward Rate Agreements",
+        "page": 90,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "FRA Value Prior to Maturity",
+        "latex": "V_{\\text{FRA}} = L (R_F - R_K)(T_2 - T_1) e^{-R_2 T_2}",
+        "variables": [
+          {
+            "symbol": "V_{\\text{FRA}}",
+            "definition": "Mark-to-market value of the FRA",
+            "unit": "$"
+          },
+          {
+            "symbol": "L",
+            "definition": "Notional principal",
+            "unit": "$"
+          },
+          {
+            "symbol": "R_F",
+            "definition": "Current forward rate for the period T1 to T2",
+            "unit": "%"
+          },
+          {
+            "symbol": "R_K",
+            "definition": "Agreed fixed contract rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "R_2",
+            "definition": "Continuous zero rate for maturity T2",
+            "unit": "%"
+          }
+        ]
+      },
+      "tags": [
+        "fra_valuation",
+        "mark_to_market",
+        "forward_rates"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "definition",
+      "topic": "Theories of the Term Structure: Expectations vs Liquidity Preference",
+      "statement": "Expectations Theory asserts that forward rates equal expected future spot rates (R_F = E[R]). Liquidity Preference Theory proves that because lenders prefer short-term liquidity while borrowers prefer locking long-term debt, forward rates exceed expected future spot rates (R_F > E[R]) by a positive liquidity premium.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.8 Theories of the Term Structure of Interest Rates",
+        "page": 91,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "expectations_theory",
+        "liquidity_preference",
+        "term_structure",
+        "liquidity_premium"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "case_study",
+      "topic": "Orange County Yield Curve Disaster (Snapshot 4.1)",
+      "statement": "In 1994, Orange County treasurer Bob Citron used $7.5B in county equity to enter $13B in reverse repo borrowing, investing $20.5B in medium-term inverse floaters. When the Federal Reserve raised rates 6 times by 250 bps, repo funding costs exploded above asset yields, wiping out $1.6B and triggering municipal bankruptcy.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "Snapshot 4.1 Orange County's Yield Curve Plays",
+        "page": 93,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "orange_county",
+        "repo_leverage",
+        "inverse_floaters",
+        "rate_hikes",
+        "bankruptcy"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "case_study",
+      "topic": "The 2007-2009 Interbank Liquidity Freeze (Snapshot 4.2)",
+      "statement": "During the 2007-2009 financial crisis, banks hoarded liquidity due to subprime mortgage uncertainty, causing asset-backed commercial paper (ABCP) markets to freeze and the 3-month LIBOR-OIS spread to skyrocket to 364 bps, necessitating massive central bank term lending facilities.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "Snapshot 4.2 The 2007-2009 Liquidity Crisis",
+        "page": 94,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "liquidity_freeze",
+        "commercial_paper",
+        "libor_ois_spread",
+        "crisis_2008"
+      ]
+    }
+  ]
+}

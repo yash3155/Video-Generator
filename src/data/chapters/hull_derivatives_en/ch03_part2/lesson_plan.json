@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch03_part2",
+  "title": "Cross Hedging, Minimum Variance Hedge Ratio, Stock Index Hedging, and Metallgesellschaft Disaster",
+  "targetAudiencePersona": "Retail Trader & Quantitative Finance Student",
+  "prerequisites": [
+    "Understanding of basic long and short futures hedging mechanics",
+    "Concepts of covariance, variance, and standard deviation",
+    "Capital Asset Pricing Model (CAPM) beta intuition"
+  ],
+  "learningOutcomes": [
+    "Calculate the minimum variance hedge ratio h* = rho * (sigma_S / sigma_F) and determine optimal contracts N*.",
+    "Execute an airline jet fuel cross-hedge using heating oil futures.",
+    "Calculate index futures contract quantities to immunize an equity portfolio against systematic market decline.",
+    "Adjust portfolio beta dynamically without liquidating underlying stock positions.",
+    "Analyze the Metallgesellschaft $1.3B disaster to identify contango roll risk and cash margin liquidity drains."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Cross Hedging and Minimum Variance Ratio",
+      "pedagogicalObjective": "Formulate optimal hedge ratio h* when underlying assets differ from futures contracts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Cross hedging introduces basis risk from imperfect asset correlation.",
+        "Minimum variance ratio h* = rho * (sigma_S / sigma_F) eliminates rho^2 of portfolio variance.",
+        "Hull Example 3.2: 2M gallons jet fuel requires 37 heating oil futures contracts."
+      ],
+      "formulaUsed": "h* = rho * (sigma_S / sigma_F)"
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Stock Index Futures Hedging & Beta Tuning",
+      "pedagogicalObjective": "Immunize equity portfolios from market declines and tactically adjust beta.",
+      "groundedFactIds": [
+        "fact-05",
+        "fact-06",
+        "fact-07"
+      ],
+      "keyPoints": [
+        "Index futures shorting N* = beta * (V_A / V_F) neutralizes systematic market exposure.",
+        "Adjusting beta from beta to beta* uses N* = (beta - beta*) * (V_A / V_F).",
+        "Hedging preserves stock-picking alpha while neutralizing market beta."
+      ],
+      "formulaUsed": "N* = (beta - beta*) * (V_A / V_F)"
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Stack and Roll Liquidity Traps & Metallgesellschaft",
+      "pedagogicalObjective": "Demonstrate maturity transformation dangers and liquidity mismatches.",
+      "groundedFactIds": [
+        "fact-08",
+        "fact-09",
+        "fact-10"
+      ],
+      "keyPoints": [
+        "Rolling short-dated futures forward creates substantial roll risk in contango markets.",
+        "Daily marking-to-market margin calls drain cash, while physical forward gains remain unrealized.",
+        "Metallgesellschaft suffered a $1.3B loss due to forced liquidation during oil contango."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "A hedge ratio should always be 1.0 (one barrel of futures per barrel of physical asset).",
+      "factId": "fact-02",
+      "authorRebuttal": "If futures volatility exceeds spot volatility (sigma_F > sigma_S) or correlation is imperfect (rho < 1), a 1.0 ratio overhedges and inflates portfolio variance."
+    },
+    {
+      "misconception": "Hedging an equity portfolio with index futures removes individual stock selection benefits.",
+      "factId": "fact-05",
+      "authorRebuttal": "Index futures hedge only broad market systematic risk. The portfolio manager remains fully exposed to unsystematic alpha from individual stock selection."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "An equity manager holds a $10,000,000 portfolio with beta = 1.2. The S&P 500 index futures contract trades at 2,000 with a $250 multiplier ($500,000 contract value). To reduce portfolio beta to 0.6, how many contracts should be traded?",
+    "testedFactIds": [
+      "fact-06",
+      "fact-07"
+    ],
+    "question": "Given a $10,000,000 equity portfolio with beta 1.2 and $500,000 index futures, what specific transaction reduces the total portfolio beta to 0.6?",
+    "correctAnswer": "Short 12 contracts",
+    "explanation": "N* = (beta - beta*) * (V_A / V_F) = (1.2 - 0.6) * ($10,000,000 / $500,000) = 0.6 * 20 = 12 contracts short."
+  },
+  "coreTakeaways": [
+    "Apply h* = rho * (sigma_S / sigma_F) when hedging with correlated proxy futures; never assume 1:1 hedging.",
+    "Contract sizing N* = h* * (Q_A / Q_F) eliminates rho^2 of asset variance.",
+    "Shorting index futures neutralizes systematic market exposure without selling underlying stocks.",
+    "Portfolio beta can be adjusted tactically using N* = (beta - beta*) * (V_A / V_F).",
+    "Stack-and-roll strategies require massive cash liquidity reserves to withstand daily contango margin drains."
+  ]
+}

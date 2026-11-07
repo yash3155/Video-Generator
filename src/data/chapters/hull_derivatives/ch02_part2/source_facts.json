@@ -1,0 +1,224 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch02_part2",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T11:38:00.628Z",
+  "bookTitle": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "generalAssumptions": [
+    "Futures contracts are settled daily via marking-to-market.",
+    "Bona fide hedgers have lower margin requirements than speculators.",
+    "Margin calls require topping up to the full initial margin."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "market_rule",
+      "topic": "Operation of Margin Accounts, Long/Short Symmetry, and Trader Tiers",
+      "statement": "Margin accounts organize futures trading to prevent contract defaults, with identical margin requirements for both long and short positions. Minimum initial and maintenance margin levels are set by the exchange clearing house based on underlying asset price variability, while bona fide hedgers, day trades, and spread transactions receive lower margin requirements than speculators due to lower default risk.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "2",
+        "section": "2.4",
+        "page": 28,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "margin",
+        "initial_margin",
+        "long_short_symmetry"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "market_rule",
+      "topic": "Margin Interest and Haircuts on Eligible Collateral Securities",
+      "statement": "Brokers typically pay competitive interest on cash balances held in margin accounts. To satisfy initial margin requirements (but not subsequent margin calls), investors may deposit non-cash securities subject to haircuts: Treasury bills are accepted at approximately 90% of face value (10% haircut), and equity shares are accepted at approximately 50% of market value (50% haircut).",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "2",
+        "section": "2.4",
+        "page": 29,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "haircuts",
+        "collateral",
+        "treasury_bills"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "definition",
+      "topic": "Daily Settlement (Marking to Market) and Contract Value Reset",
+      "statement": "Marking to market (daily settlement) is the procedure where, at the close of each trading day, a futures margin account is adjusted to reflect the investor's daily gain or loss. If the futures price drops, the long trader's broker pays the exchange clearing house, which passes the funds to the short trader's broker (and vice versa when prices rise), effectively closing out and rewriting the futures contract at the new settlement price each day so its value resets to zero.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "2",
+        "section": "2.4",
+        "page": 30,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "marking_to_market",
+        "daily_settlement",
+        "clearinghouse"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "formula",
+      "topic": "Initial Margin, Maintenance Margin (75% Rule), and Variation Margin Call Formula",
+      "statement": "Initial margin is deposited when a futures position is opened, while maintenance margin is a lower threshold (typically 75% of initial margin) set to prevent the balance from turning negative. If daily losses push the margin balance (B_t) below the maintenance margin (MM), the broker issues a margin call requiring the investor to deposit cash variation margin (VM = IM - B_t) by the close of the next trading day to restore the balance to the full initial margin (IM), or the broker closes out the position.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "2",
+        "section": "2.4",
+        "page": 31,
+        "provenance": "verified_book_excerpt"
+      },
+      "formulaDetails": {
+        "name": "Variation Margin Formula",
+        "latex": "VM = IM - B_t \\quad \\text{when } B_t < MM",
+        "variables": [
+          {
+            "symbol": "VM",
+            "definition": "Variation margin deposit required",
+            "unit": "$"
+          },
+          {
+            "symbol": "IM",
+            "definition": "Initial margin required per contract",
+            "unit": "$"
+          },
+          {
+            "symbol": "B_t",
+            "definition": "Current account balance after daily MTM debit",
+            "unit": "$"
+          },
+          {
+            "symbol": "MM",
+            "definition": "Maintenance margin threshold (approx 0.75 * IM)",
+            "unit": "$"
+          }
+        ],
+        "assumptions": [
+          "Variation margin must be paid in cash by next trading day."
+        ]
+      },
+      "tags": [
+        "variation_margin",
+        "maintenance_margin",
+        "margin_call"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "numerical_example",
+      "topic": "Example 2.1: 16-Day Gold Futures Margin Account Walkthrough",
+      "statement": "An investor longs 2 December gold futures contracts (100 oz per contract, 200 oz total) on June 5 at $1,250.00/oz. Initial margin is $6,000/contract ($12,000 total) and maintenance margin is $4,500/contract ($9,000 total, 75% of initial margin). On Day 7 (June 13), gold drops to $1,226.90/oz, driving the account balance down to $7,380 ($1,620 below maintenance margin), triggering a margin call requiring a $4,620 cash variation margin deposit to restore the account to the full $12,000 initial margin level.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "2",
+        "section": "2.4",
+        "page": 32,
+        "provenance": "verified_book_excerpt"
+      },
+      "numericalDetails": {
+        "values": {
+          "contractQuantity": 2,
+          "contractSizeOz": 100,
+          "totalOz": 200,
+          "initialFuturesPricePerOz": 1250,
+          "initialMarginTotal": 12000,
+          "maintenanceMarginTotal": 9000,
+          "day7PricePerOz": 1226.9,
+          "day7BalanceBeforeCall": 7380,
+          "variationMarginCall": 4620
+        },
+        "units": "$ and oz",
+        "context": "Hull Table 2.1 16-day daily marking to market settlement."
+      },
+      "tags": [
+        "example_2_1",
+        "gold_futures",
+        "margin_walkthrough"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "market_rule",
+      "topic": "Clearing House Structure, Novation, and Credit Risk Elimination",
+      "statement": "An exchange clearing house acts as an intermediary, guaranteeing performance through legal novation where it becomes the buyer to every seller and seller to every buyer. Clearing house members maintain margin accounts directly with the clearing house and contribute to a default guaranty fund, eliminating bilateral credit risk between trading parties.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "2",
+        "section": "2.5",
+        "page": 34,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "clearing_house",
+        "novation",
+        "counterparty_risk"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "market_rule",
+      "topic": "Bilateral OTC Clearing, ISDA Master Agreements, and Credit Support Annexes",
+      "statement": "In traditional bilateral over-the-counter (OTC) derivatives markets without CCP clearing, parties trade directly under an ISDA Master Agreement and Credit Support Annex (CSA) that specifies collateral thresholds, eligible securities, and independent credit ratings, exposing each party to significant bilateral counterparty credit risk.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "2",
+        "section": "2.5",
+        "page": 35,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "otc_derivatives",
+        "isda",
+        "csa",
+        "bilateral_clearing"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "market_rule",
+      "topic": "Post-Crisis Regulatory Reforms: Mandated CCP Clearing for OTC Derivatives",
+      "statement": "Following the 2007-2009 financial crisis, global regulations (Title VII Dodd-Frank in the US and EMIR in Europe) mandated that all standardized over-the-counter derivatives must be cleared through central counterparties (CCPs), while non-cleared bilateral trades must exchange mandatory initial and variation margin.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "2",
+        "section": "2.5",
+        "page": 36,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "regulatory_reforms",
+        "dodd_frank",
+        "emir",
+        "ccp_mandate"
+      ]
+    },
+    {
+      "id": "fact-09",
+      "category": "case_study",
+      "topic": "Business Snapshot 2.2: Long-Term Capital Management's $4 Billion Collapse",
+      "statement": "In 1998, hedge fund Long-Term Capital Management (LTCM) used extreme leverage (balance-sheet leverage over 25:1 and off-balance-sheet derivatives notional exceeding $1 trillion) to execute convergence arbitrage. Following the August 1998 Russian debt default, widening credit spreads caused simultaneous multi-billion-dollar collateral drains, forcing the Federal Reserve Bank of New York to organize a $3.6 billion bank consortium rescue to avert systemic default.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "2",
+        "section": "Business Snapshot 2.2",
+        "page": 37,
+        "provenance": "verified_book_excerpt"
+      },
+      "tags": [
+        "ltcm",
+        "business_snapshot_2_2",
+        "systemic_risk",
+        "leverage"
+      ]
+    }
+  ]
+}

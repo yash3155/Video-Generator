@@ -1,0 +1,233 @@
+{
+  "answer": "### **1. Investment vs. Consumption Assets**\n\nIn Chapter 5, derivatives valuation distinguishes between two major categories of underlying assets [1, 2]:\n\n* **Investment Assets**: Assets held solely for investment purposes by a significant number of investors [1, 2]. Examples include **stocks, bonds, gold, and silver** [1, 3]. While gold and silver have industrial uses, they qualify as investment assets because they are held by investors primarily for investment value [1, 3]. Forward and futures prices for investment assets are determined strictly by **no-arbitrage pricing models** linking spot prices, interest rates, and income stream cash flows [1, 4, 5].\n* **Consumption Assets**: Assets held primarily for consumption or industrial processing rather than investment [1, 2, 6, 7]. Examples include commodities such as **crude oil, natural gas, copper, corn, and pork bellies** [1, 2, 6, 7]. Because holders of consumption assets derive a physical benefit from holding the tangible commodity (a **convenience yield**), standard short-selling arbitrage arguments do not apply symmetrically, making the theoretical forward price an **upper bound** rather than an exact equality unless convenience yield and storage costs are factored in [1, 3, 4, 6].\n\n---\n\n### **2. Short Selling Mechanics**\n\n**Short selling** involves selling a security that the trader does not currently own [8-10].\n\n* **Borrowing Shares**: To execute a short sale, a trader's broker borrows shares from another investor (such as client shares held in margin accounts, often referred to as \"box stock\") and sells them in the open market [11, 12]. The short seller must eventually buy back (cover) the shares to return them to the lender [9-11].\n* **Paying Dividends**: If the underlying asset pays a cash dividend while the short position remains open, the short seller is obligated to pay the equivalent dividend amount to the lender of the stock [11, 13, 14].\n* **Margin Requirements & Collateral**: Brokers require short sellers to maintain cash or marginable securities in a margin account as collateral to cover potential losses as prices fluctuate [15-17].\n* **Short Squeeze**: A **short squeeze** occurs when a rapid increase in the asset price forces short sellers to cover their short positions simultaneously (buying shares to cut losses or meet margin calls), creating intense buying pressure that drives the price even higher [11, 17-19].\n\n---\n\n### **3. No-Arbitrage Forward Pricing (\\\\(F_0 = S_0 e^{rT}\\\\))**\n\nFor an investment asset providing no income, the relationship between the current spot price (\\\\(S_0\\\\)) and the forward price (\\\\(F_0\\\\)) for delivery at time \\\\(T\\\\) is governed by continuous compounding [1]:\n\n\\\\[\\mathbf{F_0 = S_0 e^{rT}}\\\\] [1]\n\n* **Notation**:\n  * \\\\(S_0\\\\): Current spot price of the asset [1, 4, 20].\n  * \\\\(F_0\\\\): Forward price today for delivery at time \\\\(T\\\\) [1, 4].\n  * \\\\(r\\\\): Continuously compounded risk-free interest rate per annum [21, 22].\n  * \\\\(T\\\\): Time to maturity of the forward contract expressed in years [22, 23].\n\n#### **Arbitrage Arguments**:\n* **Case 1 (\\\\(F_0 > S_0 e^{rT}\\\\))**: Overpriced forward contract. An arbitrageur borrows \\\\(S_0\\\\) at rate \\\\(r\\\\) for time \\\\(T\\\\), buys the spot asset for \\\\(S_0\\\\), and shorts a forward contract at \\\\(F_0\\\\) [1, 4, 24]. At maturity \\\\(T\\\\), the asset is delivered for \\\\(F_0\\\\) and the loan (\\\\(S_0 e^{rT}\\\\)) is repaid, locking in a risk-free profit of \\\\(\\mathbf{F_0 - S_0 e^{rT} > 0}\\\\) [1, 4, 24].\n* **Case 2 (\\\\(F_0 < S_0 e^{rT}\\\\))**: Underpriced forward contract. An arbitrageur short-sells the asset for \\\\(S_0\\\\), invests the cash proceeds at risk-free rate \\\\(r\\\\), and enters a long forward contract at \\\\(F_0\\\\) [1, 4, 24]. At maturity \\\\(T\\\\), the investment grows to \\\\(S_0 e^{rT}\\\\), the asset is bought at \\\\(F_0\\\\) to cover the short position, netting a risk-free profit of \\\\(\\mathbf{S_0 e^{rT} - F_0 > 0}\\\\) [1, 4, 24].\n\n---\n\n### **4. Known Cash Income (\\\\(F_0 = (S_0 - I) e^{rT}\\\\))**\n\nWhen an investment asset pays a known cash income (such as scheduled coupon payments on a bond) during the life of the forward contract, the forward price is adjusted for the present value of that income [1]:\n\n\\\\[\\mathbf{F_0 = (S_0 - I) e^{rT}}\\\\] [1]\n\n* **Definitions & Formulas**:\n  * \\\\(I\\\\): Present value of all cash income expected during the contract's life, discounted at risk-free rate \\\\(r\\\\) to time \\\\(t=0\\\\) [25-27].\n\n#### **Arbitrage Conditions Table**:\n\n| Market Condition | Arbitrage Action | Guaranteed Risk-Free Profit |\n| :--- | :--- | :--- |\n| **\\\\(F_0 > (S_0 - I) e^{rT}\\\\)** | Borrow \\\\((S_0)\\\\), Buy Spot Asset, Short Forward Contract [1, 4, 28] | \\\\(\\mathbf{F_0 - (S_0 - I) e^{rT}}\\\\) [1, 4] |\n| **\\\\(F_0 < (S_0 - I) e^{rT}\\\\)** | Short Spot Asset, Invest Proceeds \\\\((S_0)\\\\), Long Forward Contract [1, 4, 28] | \\\\(\\mathbf{(S_0 - I) e^{rT} - F_0}\\\\) [1, 4] |\n\n---\n\n### **5. Known Dividend Yield (\\\\(F_0 = S_0 e^{(r-q)T}\\\\))**\n\nWhen an investment asset provides a known continuous dividend yield at rate \\\\(q\\\\) per annum, the spot price is adjusted for continuous dividend accumulation [1]:\n\n\\\\[\\mathbf{F_0 = S_0 e^{(r-q)T}}\\\\] [1]\n\n* **Variables**:\n  * \\\\(q\\\\): Average continuously compounded yield per annum over the contract's life [23, 29].\n* **Applications**:\n  * **Stock Indices**: Modeled as assets paying a continuous dividend yield \\\\(q\\\\) across all constituent stocks [23, 29, 30].\n  * **Foreign Currencies**: A foreign currency yields a \"dividend\" equal to the foreign risk-free interest rate \\\\(r_f\\\\), yielding the currency forward formula \\\\(\\mathbf{F_0 = S_0 e^{(r - r_f)T}}\\\\) [30, 31].\n\n---\n\n### **6. Case Studies & Business Snapshots**\n\n#### **Business Snapshot 5.1: Kidder Peabody’s Embarrassing Mistake**\n* **Background**: In the early 1990s, **Joseph Jett**, a government bond trader at Wall Street firm **Kidder Peabody**, exploited a flaw in the firm's internal trading and accounting system [32].\n* **Mechanics**: Kidder Peabody’s trading system incorrectly calculated profits on **Treasury STRIPS** (zero-coupon government bond components) [32-34]. When forward trades were booked for future delivery, the computer software recognized theoretical profits immediately while deferring the recording of associated carrying costs to future dates [32-34].\n* **Outcome**: Jett repeatedly rolled forward transactions to create **\\$350 million in phantom profits**, earning himself large annual performance bonuses while hiding actual trading losses [32]. When the glitch was exposed, Kidder Peabody had to write off \\$350 million in false earnings, causing severe reputational damage that led to the firm's acquisition and demise [32].\n\n#### **Business Snapshot 5.2: A Systems Error?**\n* **Background**: Highlights operational risk in financial institutions resulting from automated computer algorithms, foreign exchange trades, or repo/swap execution platforms [32].\n* **Key Takeaway**: Operational system glitches, software misconfigurations, or mismatched trade entries can generate massive inadvertent exposure or unintended execution orders across global exchanges in fractions of a second [32, 35, 36]. It underscores the necessity of independent risk management systems and real-time operational limits [32].\n\n---\n\n📈 Would you like to explore numerical practice problems on forward contract valuation, or would you prefer a summary of Chapter 5 Part 2 (such as forward contract valuation vs. futures pricing and cost of carry)?",
+  "question": "Extract all authoritative facts, definitions, numerical examples, formulas, tables, and case studies from John C. Hull Chapter 5 Part 1 on: Investment vs Consumption Assets, Short Selling Mechanics (borrowing shares, paying dividends, short squeeze), No-Arbitrage Forward Pricing (F0 = S0*e^(rT)), Known Cash Income (F0 = (S0 - I)*e^(rT)), Known Dividend Yield (F0 = S0*e^((r-q)T)), Business Snapshot 5.1 on Kidder Peabody (Joseph Jett phantom profits), and Business Snapshot 5.2 on A Systems Error. Include exact numbers, formulas, and citations.",
+  "conversation_id": "05edd14b-e5e5-49ae-97ee-5fc32a421b09",
+  "sources_used": [
+    "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "70969d3d-61f3-4031-949b-9431b353da90",
+    "648f3133-0e02-4e0b-ae13-3f54f9bbdc23",
+    "58406c61-acf3-422f-8730-65bbc9cd958c",
+    "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "94d31aa2-3c8e-4824-8dea-76823cdfee0e"
+  ],
+  "citations": {
+    "1": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "2": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "3": "70969d3d-61f3-4031-949b-9431b353da90",
+    "4": "70969d3d-61f3-4031-949b-9431b353da90",
+    "5": "70969d3d-61f3-4031-949b-9431b353da90",
+    "6": "70969d3d-61f3-4031-949b-9431b353da90",
+    "7": "648f3133-0e02-4e0b-ae13-3f54f9bbdc23",
+    "8": "58406c61-acf3-422f-8730-65bbc9cd958c",
+    "9": "58406c61-acf3-422f-8730-65bbc9cd958c",
+    "10": "58406c61-acf3-422f-8730-65bbc9cd958c",
+    "11": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "12": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "13": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "14": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "15": "70969d3d-61f3-4031-949b-9431b353da90",
+    "16": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "17": "58406c61-acf3-422f-8730-65bbc9cd958c",
+    "18": "94d31aa2-3c8e-4824-8dea-76823cdfee0e",
+    "19": "94d31aa2-3c8e-4824-8dea-76823cdfee0e",
+    "20": "70969d3d-61f3-4031-949b-9431b353da90",
+    "21": "58406c61-acf3-422f-8730-65bbc9cd958c",
+    "22": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "23": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "24": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "25": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "26": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "27": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "28": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "29": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "30": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "31": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "32": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "33": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "34": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+    "35": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+    "36": "70969d3d-61f3-4031-949b-9431b353da90"
+  },
+  "references": [
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 1,
+      "cited_text": "5.4 Forward Price for an Investment Asset ....................................................... 110 5.5 Known Income ......................................................................................... 113 5.6 Known Yield ............................................................................................ 115 5.7 Valuing Forward Contracts ........................................................................ 115 5.8 Are Forward Prices and Futures Prices Equal? ............................................ 118"
+    },
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 2,
+      "cited_text": "Appendix: Exponential and Logarithmic Functions..................................... 105 Chapter 5: Determination of Forward and Futures Prices ............................................... 107 5.1 Investment Assets vs. Consumption Assets .................................................. 107 5.2 Short Selling ............................................................................................. 108 5.3 Assumptions and Notation ........................................................................ 109"
+    },
+    {
+      "source_id": "70969d3d-61f3-4031-949b-9431b353da90",
+      "citation_number": 3,
+      "cited_text": "Both STIR and volatility assets normally have downward sloping futures price curves as in the example I have described, and hence normally earn positive carry. Now let’s deal with the more complex world of commodity futures. We’ll begin with the metals complex, since these are most like financial assets: it turns out we can borrow Gold and other metals relatively easily, at some rate of interest. But unlike equities and bonds, Gold doesn’t earn any yield. In fact it costs money to hold physical Gold, since you need to find somewhere very safe to store it, with impressive security and a fully comprehensive insurance policy (or more likely, pay someone to store it on your behalf). Hence for metals:"
+    },
+    {
+      "source_id": "70969d3d-61f3-4031-949b-9431b353da90",
+      "citation_number": 4,
+      "cited_text": "Now for the futures. Through a no-arbitrage24 argument, we know that the futures price at any one time is equal to the spot price of the index, plus any expected dividends we will get before the future expires, minus the interest we would pay to borrow money for buying stocks. This is known as the excess return: This extra component of excess return over and above the spot return is also known as carry: For the S&P 500 the carry was negative until 2008, because dividends were lower than interest rates. Hence the adjusted price was underperforming the raw futures price, as shown in the downward slope in figure 2. Subsequent to that, on the back of the 2008 crash and recession there was a massive reduction in interest rates. Dividends were also reduced, but they did not fall by as much. With dividends above interest rates after 2008, carry went positive. As a result the line begins to slope upwards in figure 2, as the adjusted price returns were higher than the spot price. This upward trend was briefly interrupted from 2016 to 2019 when the Fed raised interest rates, but then resumed with a vengeance during the COVID-19 pandemic when rates were hurriedly slashed. Later in the book I’ll discuss how we can construct"
+    },
+    {
+      "source_id": "70969d3d-61f3-4031-949b-9431b353da90",
+      "citation_number": 5,
+      "cited_text": "24 It’s not necessary to understand no-arbitrage futures pricing theory in any detail, and I won’t be covering a spot versus futures arbitrage strategy in this book. Here’s the elevator pitch version: suppose the futures price was higher than the cash price plus expected dividends minus the margin interest rate (the excess return on the stock). You could borrow money using a margin loan, buy a basket of S&P 500 stocks, and short the future. At expiry, any gains or losses in the stock and future would be perfectly hedged, and after paying off the margin loan and receiving the dividends you would be left with a clear risk-free profit. A similar argument explains why the futures price can’t be lower than the cash price plus the expected value of dividends minus interest. You can find more detailed discussion of no-arbitrage pricing in books such as John Hull’s classic work (see Appendix A). 25 Margins are cash deposited in a futures trading account to cover potential losses. An initial margin is required when a trade is opened, and if losses are subsequently made you will require additional variation margin. If you are unfamiliar with margin trading, I suggest you read my previous book, Leveraged Trading. 26 For a short position you’d technically need infinite quantities of cash available to cover all eventualities."
+    },
+    {
+      "source_id": "70969d3d-61f3-4031-949b-9431b353da90",
+      "citation_number": 6,
+      "cited_text": "The convenience yield147 reflects the markets’ current expectations about future supply and demand for the commodity. This could be positive – reflecting a lot of short-term demand pressure – or negative. To take an extreme example of a negative convenience yield, on 20th April 2020 the price of WTI Crude Oil futures,148 which were due to expire in the near future, actually went below zero. There was a massive glut of oil due to the COVID-19 crisis shutting down the economy, and hence people were willing to pay others to take oil off their hands. On average, commodities will have negative carry, which implies an upward sloping futures price curve. However, it’s possible for commodity futures to have positive carry for long periods of time.149"
+    },
+    {
+      "source_id": "648f3133-0e02-4e0b-ae13-3f54f9bbdc23",
+      "citation_number": 7,
+      "cited_text": "TABLE 2.3    Non-agricultural commodity futures Name Point value Unit Currency Exchange Gasoil 100 Tonne USD NYMEX Crude oil 1,000 Barrels USD NYMEX Heating oil 42,000 Gallons USD NYMEX Natural gas (HH) 10,000 mmBTU USD NYMEX Gasoline 42,000 Gallons USD NYMEX Gold 100 Troy Ounces USD COMEX Copper 25,000 Pounds USc COMEX Palladium 100 Troy Ounces USD NYMEX Platinum 50 Troy Ounces USD NYMEX Silver 5,000 Troy Ounces USc COMEX Futu r e s D ata 35 contango due to the cost of hedging the position, as explained earlier (the main reasons being cost of storage and opportunity cost of capital, although for some markets seasonality is a large part of the explanation as well)."
+    },
+    {
+      "source_id": "58406c61-acf3-422f-8730-65bbc9cd958c",
+      "citation_number": 8,
+      "cited_text": "Series (Options) Option contracts of the same class (underlying asset), same strike price, and same expiration date. Shares Units of ownership in a company or organization. Short Selling a security that you don’t actually own. Short Call A bearish strategy involving the short selling of call options. Short Call Butterfly A three-leg direction neutral strategy requiring high volatility, involving selling a low strike call, buying two middle strike calls with the same strike price, and buying a higher strike call."
+    },
+    {
+      "source_id": "58406c61-acf3-422f-8730-65bbc9cd958c",
+      "citation_number": 9,
+      "cited_text": "Short Selling Selling a security that you don’t actually own beforehand. You will eventually have to buy it back, hopefully at a reduced price, thus making profit. Sigma Generally a term used to represent volatility. It is generally represented as a percentage. The term “one sigma level” refers to the actual change in the underlying asset price. Small-Cap Stocks Smaller (and sometimes newer) companies that are associated with high risk and high potential rewards. Can be illiquid to trade with large bid-ask spreads."
+    },
+    {
+      "source_id": "58406c61-acf3-422f-8730-65bbc9cd958c",
+      "citation_number": 10,
+      "cited_text": "Risk Profile The graphic depiction of a trade, showing the potential risk, reward, and breakeven points as the underlying security price deviates within a range of prices. Securities and Exchange Commission (SEC) Organization that regulates the securities markets in order to protect investors. Security An instrument that can be traded—e.g., stocks, bonds, etc. Selling Short Selling a security that you don’t actually own beforehand. You will eventually have to buy it back, hopefully at a reduced price, thus making profit."
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 11,
+      "cited_text": "Two important factors make the option strategy preferable to the short sale of stock: (1) There is no need to borrow stock, and (2) there is no need for an uptick. When one sells stock short, he must first borrow the stock from someone who owns it. This procedure is handled by one's brokerage firm's stock loan department. If, for 324 Part Ill: Put Option Strategies TABLE 21-2. Synthetic short sale position. XYZ Price at January 50 January 50 Total Option Short Stock Expiration Coll Result Put Result Result Result"
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 12,
+      "cited_text": "BORROWING STOCK TO SELL SHORT The above example assumes that the arbitrageur earns the full carrying rate on the short stock. Only certain arbitrageurs are actually able to earn that rate. When one sells stock short, he must actually borrow the stock from someone who owns it, and then the seller goes into the market to sell the stock. When customers of brokerage firms keep stock in a margin account, they agree to let the brokerage firm loan their stock out without the customer's specific approval. Thus, if an arbitrageur working for that brokerage firm wanted to establish a reversal, and if the stock to be sold short in the reversal were available in one of the margin accounts, the arbitrageur could borrow that stock and earn the full carrying rate on it. This is called \"using box stock,\" since stock held in margin accounts is generally referred to as being in the \"box.\""
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 13,
+      "cited_text": "In actual practice, the situation is more complicated than this, because the price of the puts comes into play; but this example shows the general reasoning that the arbitrageur must go through. Certain arbitrageurs construct positions that allow them to earn interest on a credit balance equal to the striking price of the call. This position involves being short the underlying stock and being long the call. Thus, when the stock goes ex-dividend, the arbitrageur will owe the dividend. If, however, the amount of the dividend is more than he vvill earn in interest from his credit balance, he will merely exercise his call to cover his short stock. This action will prevent him from having to pay out the dividend."
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 14,
+      "cited_text": "134 TABLE 5-1. Position at July expiration. XYZ Price at Call Price at Expiration Expiration 30 0 40 0 50 0 55 5 60 10 70 20 80 30 FIGURE 5-1. Uncovered (naked) call write. +$500 C 0 ~ ·15.. X w cu (/J ~ ...I 0 lt, .... ...... \", Naked Write 45 SO', .... .. .... .. .. Short Sale ,, .. .. Stock Price at Expiration .. Part II: Call Option Strategies Profit on Naked Write +$ 500 + 500 + 500 0 500 - 1,500 - 2,500 .. .... .. ~ Moreover, the short seller pays out the dividends on the underlying stock, whereas the naked call writer does not. The naked call will expire, of course, but the short sale does not. This is a situation in which the naked write outperforms the short sale. However, ifXYZ were to fall sharply- to 20, say- the naked writer could only make 5 points while the short seller would make 30 points. The dashed line in Figure 5-1 shows how the short sale of XYZ at 50 would compare with the naked write of the July 50 call. Notice that the two strategies are equal at 45 at expiration; they both"
+    },
+    {
+      "source_id": "70969d3d-61f3-4031-949b-9431b353da90",
+      "citation_number": 15,
+      "cited_text": "Free cash $250,000 Initial margin €235,000 [worth $250,000] Total $500,000 Alternatively there is the FX borrow option: we could borrow euros to make the initial margin payment: $ Free cash $500,000 € Loan (€235,000) Initial margin €235,000 Total $500,000 With many brokers, unless you do the explicit FX trade, you will end up automatically borrowing. Now suppose that you are a little unlucky with your bet on German interest rates and you lose €20,000, about $21,270. If you are pursuing the FX trade option, then you will sell dollars and buy more euros to cover this loss:"
+    },
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 16,
+      "cited_text": "ments (but not subsequent margin calls), an investor can usually deposit securities with the broker. Treasury bills are usually accepted in lieu of cash at about 90% of their face value. Shares are also sometimes accepted in lieu of cash—but at about 50% of their market value. Whereas a forward contract is settled at the end of its life, a futures contract is settled daily. At the end of each day, the investor’s gain (loss) is added to (subtracted from) the margin account, bringing the value of the contract back to zero. A futures contract is in"
+    },
+    {
+      "source_id": "58406c61-acf3-422f-8730-65bbc9cd958c",
+      "citation_number": 17,
+      "cited_text": "Long Stock Buying shares. Long Synthetic Future Buying calls and selling the same amount of puts with the same strike and expiration date, effectively forming the same risk profile of buying a stock but with almost no cost. Margin An amount paid by the account holder (either in cash or “marginable securities”) that is held by the brokerage against non-cash or high-risk investments, or where the brokerage has lent the account holder the means to undertake a particular trade. Market Capitalization The number of outstanding shares multiplied by the value per share."
+    },
+    {
+      "source_id": "94d31aa2-3c8e-4824-8dea-76823cdfee0e",
+      "citation_number": 18,
+      "cited_text": "the market continued to fall, he started to sell short the market too. One of his colleagues who didn’t know he had commenced shorting the market commented on the fall and said this was a good chance to start buying. The conversation, edited for expletives, went on as follows: “Are you mad?” said Paul. “What do you mean?” said the colleague. “You must be mad. The market has just broken 100 points in 15 minutes, and you are looking to buy it?” “Well, what would you do?” “Let’s put it this way, I am certainly not looking to buy it"
+    },
+    {
+      "source_id": "94d31aa2-3c8e-4824-8dea-76823cdfee0e",
+      "citation_number": 19,
+      "cited_text": "when Adam was living on the streets in Manchester, suicidal and penniless. I did what I could – but Adam didn’t want my help, and I lost contact with him. It started with a bad loss, and it escalated into a complete blow-out. Adam had seen a pattern on a Friday night, and he had gone maximum short the market. At the close he was well in the money, and he decided to keep the position over the weekend. Unfortunately for Adam, this was the weekend when the American special forces finally captured Saddam Hussein."
+    },
+    {
+      "source_id": "70969d3d-61f3-4031-949b-9431b353da90",
+      "citation_number": 20,
+      "cited_text": "Where year fraction is the fraction of a year that has elapsed between t−1 and t. For daily data indexed to business days this will be approximately 0.00391. For convenience, I set the initial synthetic spot price S0 to be equal to the initial back-adjusted price, A0. This is an arbitrary decision and will not affect the forecasts or performance of any trading rule that uses the synthetic spot price. You could fix the final spot price to be identical to the final adjusted price, or set the initial or final prices to any arbitrary figure like your PIN number (but don’t use your PIN number, unless you have excellent computer security). In figure 58 we can see the adjusted price series and the cumulative returns from carry178 for the US 10-year bond future. The synthetic spot price, which is also plotted, is the difference between these."
+    },
+    {
+      "source_id": "58406c61-acf3-422f-8730-65bbc9cd958c",
+      "citation_number": 21,
+      "cited_text": "Resistance A price threshold on a price chart that is thought to be difficult for the price to burst up through because of past price movements. Return The income profit on an investment, often expressed as a percentage. Rho The sensitivity of an option price to interest rates. Typically, call options increase in value as interest rates rise, and puts decrease in value as interest rates rise. Risk The potential loss of a trade. Risk-Free Rate The interest chargeable on Treasury Bills (T-Bills) is generally known as the Risk-Free Rate; this rate is used as a component part of the theoretical valuation of options model."
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 22,
+      "cited_text": "The actual formula is: 456 Chapter 28: Mathematical Applications Theoretical option price= pN(d1) se-rtN(d2) p v2 ln(8 )+ (r +2 )t where d 1 = _ r. V-4 t d2 = d1 - v--ft The variables are: p = stock price s = striking price t = time remaining until expiration, expressed as a percent of a year r = current risk-free interest rate v = volatility measured by annual standard deviation ln = natural logarithm N(x) = cumulative normal density function 457 An important by-product of the model is the exact calculation of the delta - that is, the amount by which the option price can be expected to change for a small change in the stock price. The delta was described in Chapter 3 on call buying, and is more formally known as the hedge ratio."
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 23,
+      "cited_text": "FUTURES FAIR VALUE 533 The formula for calculating the fair value of the futures contract is extremely simple, although one of the factors is a little difficult to obtain information on. First, let's look at the simple futures fair value formula: Simple Formula: Futures fair value= Index x [l +Timex (Rate - Yield)] where index is the current value of the index itself, rate is the current carrying rate (typically, the broker loan rate), yield is the combined annual yield of all the stocks in the index, and time is the time, in years, remaining until expiration of the contract."
+    },
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 24,
+      "cited_text": "maturity date. Describe the investor’s position. 1.33. The price of gold is currently $1,200 per ounce. Forward contracts are available to buy or sell gold at $1,400 per ounce for delivery in one year. An arbitrageur can borrow money at 5% per annum. What should the arbitrageur do? Assume that the cost of storing gold is zero and that gold provides no income. 1.34. Discuss how foreign currency options can be used for hedging in the situation described in Example 1.1 so that (a) ImportCo is guaranteed that its exchange rate will be less than"
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 25,
+      "cited_text": "CHARACTERISTICS Of THE MODEL Several aspects of this model are worth further discussion. First, the reader will notice that the model does not include dividends paid by the common stock. As has been demonstrated, dividends act as a negative effect on call prices. Thus, direct application of the model will tend to give inflated call prices, especially on stocks that pay relatively large dividends. There are ways of handling this. Fisher Black, one of the coauthors of the model, suggested the following method: Adjust the stock price to be used in the formula by subtracting, from the current stock price, the present worth of the dividends likely to be paid before maturity. Then calculate the option. price. Second, assume that the option expires just prior to the last ex-dividend date preceding actual option expiration. Again adjust the stock price and calculate the option price. Use the higher of the two option prices calculated as the theoretical price."
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 26,
+      "cited_text": "As a result, the actual formula changes slightly from the simple formula shown above: Actual Formula: Futures fair value = Index x ( 1 + Time x Rate) - Dividends Chapter 30: Stock Index Hedging Strategies S3S In this formula, the dividends are taken to be the present worth of all the dividends remaining until expiration of the future. Example: In an example similar to the one given for the simple formula, suppose the Z¥X Index is trading at 160.00, the broker loan rate is 10%, the present worth of the dividends remaining until expiration is $1.89, and there are exactly 3 months remaining until expiration of the futures contract. The time is .25, expressed in years, so the formula becomes"
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 27,
+      "cited_text": "P t rth Future amount resen wo = ------ (1 + Rate)Time where rate is the current short-term rate and time is expressed in years. 536 Part V: Index Options and Futures Assume that the current interest rate is 10%. Then the present worth of AAA's dividend would be: Present worth AAA 1.00 =------ (1 + .10)(35/360) 1.00 =---- (1.10)(-0972) 1.00 1.0093 = 0.9908 The present worth of the dividend is always less than the actual dividend. The present worth of an amount is the amount of money that would have to be invested today at the stated rate (10% in this example) to produce the future amount. That is, 99.08 cents invested at 10% would be worth exactly 1.00 in 35 days."
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 28,
+      "cited_text": "Example: It is assumed that XYZ stock is going to pay a ½-point dividend during the life of the position, and that the position will have to be held for three months at a carrying cost of 6% per year. If the arbitrageur were interested in a conversion with a striking price of 50, his fixed cost would be: Conversion fixed cost = Carrying rate x Time held x Striking price - Dividend to be received = .06 X 3/12 X 50 - ½ = .75- ½ = .25, or¼ point The arbitrageur would know that if the profit potential, computed in the simplistic manner using only the prices of the securities involved, was greater than ¼ point, he could establish the conversion for an eventual profit, including all costs. Of course, the carrying costs would be different if the striking price were 40 or 60, so a computer printout of all the possible striking prices on each stock would be useful in order for the trader to be able to refer quickly to a table of his fixed costs each day."
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 29,
+      "cited_text": "Some investors, primarily institutional investors, use the short-term T-bill rate rather than the carrying rate in order to determine the futures fair value. The reason they do that is to determine whether the money they have in cash is better off in Tbills or in an arbitrage strategy such as this. More will be said about this use of the Thill rate later. Dividends Have an Inverse Correlation to the Premium Value. An increase in the overall yield of the index will shrink the fair value of the futures contract. This is because the futures holder does not get the dividends and therefore the future is not as valuable because of the loss of dividends. Conversely, if dividend yields fall, then the fair value of the premium increases. This is not the whole story on dividends, however."
+    },
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 30,
+      "cited_text": "of the foreign currency, domestic interest rates, and foreign interest rates. This is explained in Chapter 5. 1.5 OPTIONS Options are traded both on exchanges and in the over-the-counter markets. There are two types of option: calls and puts. A call option gives the holder the right to buy an asset by a certain date for a certain price. A put option gives the holder the right to sell an asset by a certain date for a certain price. The price in the contract is known as the exercise price or the strike price; the date in the contract is known as the expiration date"
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 31,
+      "cited_text": "Note that when one takes a position in foreign currency options (or futures), he is simultaneously taking an opposite position in U.S. dollars. That is, if one owns a Swiss franc call, he is long the franc (at least delta long) and is by implication therefore short U.S. dollars. Striking prices in Swiss options are assigned in one-cent increments and are stated in cents, not dollars. That is, if the Swiss franc is trading at 50 cents, then there might be striking prices of 48, 49, 50, 51, and 52. Given the unit of trading and the striking price in U.S. dollars, one can compute the total dollars involved in a foreign currency exercise or assignment."
+    },
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 32,
+      "cited_text": "2.2 Long-Term Capital Management’s Big Loss ................................................... 34 3.1 Hedging by Gold Mining Companies ............................................................ 55 3.2 Metallgesellschaft: Hedging Gone Awry ......................................................... 71 4.1 Orange County’s Yield Curve Plays............................................................... 94 4.2 Liquidity and the 2007–2009 Financial Crisis................................................. 100 5.1 Kidder Peabody’s Embarrassing Mistake....................................................... 112 5.2 A Systems Error?....................................................................................... 117"
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 33,
+      "cited_text": "In actuality, many of the brokerage firms and investment banks that undetwrite these products give them names - usually acronyms, such as MITTS, TARGETS, BRIDGES, LINKS, DINKS, ELKS, and so on. If one looks at the listing, he may see that they are called notes rather than stocks or index funds. Nevertheless, when the terms are described, they will often match the examples given in this chapter. INCOME TAX CONSEQUENCES There is one point that should be made now: There is \"phantom interest\" on a structured product. Phantom interest is what one owes the government when a bond is bought at a discount to maturity. The IRS technically calls the initial purchase price an Original Issue Discount (OID) and requires you to pay taxes annually on a proportionate amount of that OID. For example, if one buys a zero-coupon U.S. government bond at 60 cents on the dollar, and later lets it mature for $1.00, the IRS does not treat the 40-cent profit as capital gains. Rather, the 40 cents is interest income. Moreover, says the IRS, you are collecting that income each year, since you bought the bonds at a discount. (In reality, of course, you aren't collecting a thing; your investment is simply worth a little more each year because the discount decreas es as the bonds approach maturity.) However, you must pay income tax on the \"phan-"
+    },
+    {
+      "source_id": "c06dfdef-5d40-475b-8c0c-4659d2298393",
+      "citation_number": 34,
+      "cited_text": "Chapter 32: Structured Products 593 tom interest\" you supposedly received each year. Those are the rules, and there isn't anything you can do about them. Since some structured products involve the purchase of zero-coupon bonds, the IRS has ruled that owners of this type of structured product must pay phantom inter est each year. Thus, structured products should be bought in a tax-free retirement account (IRA, SEP, etc.) if at all possible, in order to avoid having to declare phantom interest on your tax return for each year you hold the product. The phantom interest tax applies only to this type of structured product - one on which you are guaranteed to get back a fixed amount at maturity - because this is the only type that requires buying a zero-coupon bond in order to ensure that you'll get your money back if the stock market goes down. The phantom interest concept does not apply to the type of structured product to be discussed in the second part of this chapter. To be certain, one should get the necessary information from his broker or should read the prospectus of the structured product. Of course, any tax strategies should also be discussed with a qualified tax professional."
+    },
+    {
+      "source_id": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+      "citation_number": 35,
+      "cited_text": "and each contract is on 40,000 pounds of cattle.) The new employee was given responsibility for handling the account. When the time came to close out a contract, the employee noted that the client was long one contract and instructed a trader at the exchange to buy (not sell) one contract. The result of this mistake was that the financial institution ended up with a long position in two live cattle futures contracts. By the time the mistake was spotted, trading in the contract had ceased. The financial institution (not the client) was responsible for the mistake. As a result"
+    },
+    {
+      "source_id": "70969d3d-61f3-4031-949b-9431b353da90",
+      "citation_number": 36,
+      "cited_text": "When I first joined AHL they were running their trading strategies in a mixture of different programming languages. There was even a proprietary language which they had developed themselves, in the early 1990s: ‘Strategy Design’ (SD). SD had a very efficient way of storing time series data like prices, but it couldn’t handle more than a few decimal places. For something like the KRWUSD FX rate, which is currently at around 0.0008, you couldn’t store prices accurately. To get around this, all the prices were first multiplied by a constant before saving them. As far as I can remember, for KRWUSD the relevant constant was 100,000. A few months after joining I got approval to run my first trading strategy. I was given permission to trade a few million dollars of the firm’s own capital to test that it worked properly, before it was allowed access to client money. A software developer rewrote my rather poor prototype implementation into production quality computer code, and after a few final checks the strategy was set to start running at midnight when the Asian markets opened. I left work with a sense of satisfaction. I got a phone call at 1 am. It was one of the traders working on the night shift. He was brief and to the point: “Mate. Did you really mean to buy one third of the entire outstanding national debt of Korea?” This wasn’t a video call, but I knew he was grinning – the ‘salt of the earth’ traders loved embarrassing the ‘ivory tower’ researchers. “Er… no?” I replied, still half asleep and wondering if this was actually a nightmare. “I didn’t think so! OK, I will kill this order for 10-year Korean bond futures then. See you tomorrow.”"
+    }
+  ]
+}

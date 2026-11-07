@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch05_part2",
+  "title": "Determination of Forward and Futures Prices: Part 2",
+  "targetAudiencePersona": "Quantitative Derivatives Trader & Portfolio Manager",
+  "prerequisites": [
+    "Spot-forward parity F_0 = S_0 * e^(rT) from Chapter 5 Part 1",
+    "Continuous dividend yields and cost of carry",
+    "Foreign exchange spot rate quoting conventions"
+  ],
+  "learningOutcomes": [
+    "Distinguish between forward contract value f and forward delivery price during contract life.",
+    "Calculate the mark-to-market value of an existing forward contract using f = S_t - K*e^(-r(T-t)).",
+    "Price stock index futures using continuous dividend yield q and identify index arbitrage opportunities.",
+    "Analyze why index arbitrage broke down during the October 1987 Black Monday market crash.",
+    "Apply covered interest rate parity to calculate forward exchange rates and execute FX arbitrage.",
+    "Explain how storage costs and convenience yields determine contango vs backwardation in commodity markets."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "The Mid-Life Valuation Dilemma",
+      "pedagogicalObjective": "Establish the distinction between forward delivery price and contract value prior to maturity.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "keyPoints": [
+        "Forward price F_0 is agreed delivery price when contract value is zero.",
+        "As spot prices move, existing contracts accumulate positive or negative market value f.",
+        "Long contract value equals spot minus discounted delivery price: f = S_t - K*e^(-r*tau)."
+      ],
+      "formulaUsed": "f = S_t - K * e^(-r(T-t))"
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Stock Index Futures & Index Arbitrage",
+      "pedagogicalObjective": "Formulate index futures pricing F_0 = S_0*e^((r-q)T) and program trading cash-and-carry bounds.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Index dividend yield q continuously offsets financing costs.",
+        "F_0 > S_0*e^((r-q)T) triggers automated basket buying and futures shorting.",
+        "F_0 < S_0*e^((r-q)T) triggers automated reverse cash-and-carry."
+      ],
+      "formulaUsed": "F_0 = S_0 * e^((r - q)T)"
+    },
+    {
+      "sectionIndex": 2,
+      "title": "The October 1987 Crash: When Arbitrage Broke Down",
+      "pedagogicalObjective": "Dissect Snapshot 5.4 to explain portfolio insurance cascades and NYSE DOT system order jams.",
+      "groundedFactIds": [
+        "fact-05"
+      ],
+      "keyPoints": [
+        "Dynamic portfolio insurance hedgers flooded CME with massive S&P 500 futures sell orders.",
+        "Futures traded at huge discounts to cash index quotes.",
+        "Arbitrageurs could not execute because NYSE DOT order printers lagged by hours, freezing liquidity."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Currency Forwards & Covered Interest Rate Parity",
+      "pedagogicalObjective": "Derive F_0 = S_0*e^((r - r_f)T) and execute step-by-step covered interest arbitrage.",
+      "groundedFactIds": [
+        "fact-06",
+        "fact-07"
+      ],
+      "keyPoints": [
+        "Foreign interest rate r_f acts as a continuous dividend yield.",
+        "Forward exchange rate depends on the interest rate differential (r - r_f).",
+        "Divergence generates instant riskless covered borrowing and FX conversion profit."
+      ],
+      "formulaUsed": "F_0 = S_0 * e^((r - r_f)T)"
+    },
+    {
+      "sectionIndex": 4,
+      "title": "Commodities: Storage Costs & Convenience Yield",
+      "pedagogicalObjective": "Formulate F_0 = S_0*e^((r + u - y)T) to define contango vs backwardation.",
+      "groundedFactIds": [
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Storage cost u increases forward carrying cost.",
+        "Convenience yield y reflects operational security of holding physical inventory.",
+        "When y > r + u, market flips into backwardation (F_0 < S_0)."
+      ],
+      "formulaUsed": "F_0 = S_0 * e^((r + u - y)T)"
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "An existing forward contract always maintains zero value until its final expiration day.",
+      "factId": "fact-01",
+      "authorRebuttal": "Forward contracts have zero value only at initiation. Mid-life spot changes create mark-to-market value f = S_t - K*e^(-r(T-t))."
+    },
+    {
+      "misconception": "Stock index futures trade at pure spot compounding without adjusting for stock dividends.",
+      "factId": "fact-03",
+      "authorRebuttal": "Index portfolios pay dividends, which continuously reduce the cost of carry: F_0 = S_0 * e^((r - q)T)."
+    },
+    {
+      "misconception": "Commodity futures must always trade at a premium to spot prices due to storage and financing costs.",
+      "factId": "fact-08",
+      "authorRebuttal": "During physical shortages, the convenience yield y exceeds storage and interest costs (y > r + u), driving futures below spot into backwardation."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A long forward contract on a non-dividend stock has delivery price K = $50 with 3 months remaining (tau = 0.25). The spot price is $53 and the continuous risk-free rate is 6%. An analyst calculates contract value.",
+    "testedFactIds": [
+      "fact-01",
+      "fact-02"
+    ],
+    "question": "What is the theoretical mid-life value f of this long forward contract?",
+    "correctAnswer": "+$3.74 theoretical long contract value",
+    "explanation": "Using f = S_t - K * e^(-r*tau): f = 53 - 50 * e^(-0.06 * 0.25) = 53 - 50 * 0.9851 = 53 - 49.26 = +$3.74."
+  },
+  "coreTakeaways": [
+    "Mid-life forward value f = S_t - K*e^(-r*tau) discounts the agreed delivery price against current spot.",
+    "Stock index futures pricing F_0 = S_0*e^((r-q)T) continuously credits dividend yields against financing carry.",
+    "In the 1987 crash, index arbitrage broke down when NYSE DOT execution bottlenecks disconnected futures from spot.",
+    "Covered interest rate parity F_0 = S_0*e^((r - r_f)T) guarantees foreign currencies price interest rate differentials.",
+    "Convenience yield y measures physical inventory utility, allowing commodity markets to invert into backwardation."
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch06_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T16:45:05.502Z",
+  "bookTitle": "Options, Futures, and Other Derivatives (John C. Hull)",
+  "generalAssumptions": [
+    "Treasury bond markets adhere to institutional day count conventions (Actual/Actual in period).",
+    "Short sellers have embedded delivery options (timing option, quality option, and wild card option).",
+    "Arbitrage forces the futures price to converge to the cheapest-to-deliver bond at maturity."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Day Count Conventions (Actual/Actual vs 30/360 vs Actual/360)",
+      "statement": "Day count conventions define how interest accrues over time. US Treasury bonds use Actual/Actual (actual days between dates divided by actual days in coupon period). Corporate and municipal bonds use 30/360 (assuming 30 days per month and 360 days per year). US money market instruments (T-bills, repo, commercial paper) use Actual/360.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.1 Day Count and Quotation Conventions",
+        "page": 132,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "day_count",
+        "actual_actual",
+        "thirty_three_sixty",
+        "accrued_interest"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "formula",
+      "topic": "Clean Price vs Dirty Price (Cash Price)",
+      "statement": "The cash price (dirty price) paid by the bond buyer equals the quoted price (clean price) plus accrued interest: Cash Price = Quoted Price + Accrued Interest. Accrued Interest is calculated as: AI = Annual Coupon / 2 * (Days since last coupon / Days in coupon period).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.1 Day Count and Quotation Conventions",
+        "page": 133,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Bond Cash Price (Dirty Price) Formula",
+        "latex": "\\text{Cash Price} = \\text{Quoted Price} + \\text{Accrued Interest}",
+        "variables": [
+          {
+            "symbol": "Cash Price",
+            "definition": "Actual invoice cash exchanged at settlement",
+            "unit": "$"
+          },
+          {
+            "symbol": "Quoted Price",
+            "definition": "Clean price displayed on broker trading screens",
+            "unit": "$"
+          },
+          {
+            "symbol": "Accrued Interest",
+            "definition": "Interest earned by seller since last coupon payment",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "dirty_price",
+        "clean_price",
+        "accrued_interest",
+        "cash_settlement"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "definition",
+      "topic": "Treasury Bond Futures Contract Specifications",
+      "statement": "CBOT/CME Treasury bond futures specify delivery of any US Treasury bond that has at least 15 years to maturity (and not callable within 15 years) on the first day of the delivery month. Contract size is $100,000 face value. Prices are quoted in points and 32nds of a point (e.g., 90-16 means 90 + 16/32 = 90.50% of par).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.2 Treasury Bond Futures",
+        "page": 135,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "t_bond_futures",
+        "contract_specs",
+        "thirty_seconds",
+        "cbot_cme"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "formula",
+      "topic": "Conversion Factor (CF) and Invoice Cash Received",
+      "statement": "Because different eligible bonds have different coupons and maturities, the exchange applies a Conversion Factor (CF) to standardize them. The CF is the clean price per $1 par to yield 6.0% per annum (semiannual compounding) on the first day of the delivery month. The invoice cash received by the short party is: Cash Received = (Futures Quoted Price * CF) + Accrued Interest.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.2 Treasury Bond Futures",
+        "page": 136,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Treasury Futures Invoice Price Formula",
+        "latex": "\\text{Invoice Price} = (F_0 \\times CF) + AI",
+        "variables": [
+          {
+            "symbol": "Invoice Price",
+            "definition": "Total cash received by short seller per $100 par",
+            "unit": "$"
+          },
+          {
+            "symbol": "F_0",
+            "definition": "Quoted settlement price of the futures contract",
+            "unit": "$"
+          },
+          {
+            "symbol": "CF",
+            "definition": "Exchange conversion factor for delivered bond",
+            "unit": "decimal"
+          },
+          {
+            "symbol": "AI",
+            "definition": "Accrued interest on delivered bond to delivery date",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "conversion_factor",
+        "invoice_price",
+        "standardization",
+        "six_percent_benchmark"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "formula",
+      "topic": "Cheapest-to-Deliver (CTD) Bond Cost Calculation",
+      "statement": "The short seller chooses the eligible bond that minimizes delivery cost. The net cost of purchasing and delivering bond i is: Cost to Deliver = Bond Spot Clean Price - (Futures Settlement Price * CF_i). The bond with the lowest (most negative or least positive) cost to deliver is the Cheapest-to-Deliver (CTD).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.2 Treasury Bond Futures",
+        "page": 137,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Cost to Deliver Formula",
+        "latex": "\\text{Cost} = S_i - (F_0 \\times CF_i)",
+        "variables": [
+          {
+            "symbol": "Cost",
+            "definition": "Net cost or loss incurred by delivering bond i",
+            "unit": "$"
+          },
+          {
+            "symbol": "S_i",
+            "definition": "Current spot clean price of eligible bond i",
+            "unit": "$"
+          },
+          {
+            "symbol": "F_0",
+            "definition": "Futures settlement price",
+            "unit": "$"
+          },
+          {
+            "symbol": "CF_i",
+            "definition": "Conversion factor of eligible bond i",
+            "unit": "decimal"
+          }
+        ]
+      },
+      "tags": [
+        "cheapest_to_deliver",
+        "ctd",
+        "delivery_option",
+        "basis_trading"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "market_rule",
+      "topic": "CTD Selection Rules of Thumb with Market Yields",
+      "statement": "When market bond yields are strictly greater than 6.0%, the conversion factor system systematically favors long-maturity, low-coupon bonds as CTD. When market bond yields are strictly less than 6.0%, the conversion factor system favors short-maturity, high-coupon bonds as CTD. When the yield curve is upward-sloping, long bonds are favored; when downward-sloping, short bonds are favored.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.2 Treasury Bond Futures",
+        "page": 138,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "ctd_heuristics",
+        "yield_threshold",
+        "duration_bias",
+        "coupon_bias"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "case_study",
+      "topic": "The Wild Card Play Delivery Option (Snapshot 6.2)",
+      "statement": "Trading in CBOT Treasury bond futures closes at 2:00 PM Chicago time, establishing the official settlement price. However, the short seller has until 8:00 PM to submit a Notice of Intention to Deliver at that 2:00 PM settlement price. If spot bond prices decline in the late afternoon OTC market between 2:00 PM and 8:00 PM, the short party buys cheap spot bonds and announces delivery at the earlier higher 2:00 PM price, capturing a riskless profit. This delivery option reduces futures prices below theoretical spot parity.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "Snapshot 6.2 The Wild Card Play",
+        "page": 140,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "wild_card_play",
+        "timing_option",
+        "cbot_rules",
+        "afternoon_drop",
+        "embedded_option"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "numerical_example",
+      "topic": "Cheapest-to-Deliver Identification Worked Example",
+      "statement": "Consider futures price F_0 = 93.00. Bond 1: Spot S_1 = $99.50, CF_1 = 1.0382, cost = 99.50 - (93 * 1.0382) = 99.50 - 96.55 = +$2.95. Bond 2: Spot S_2 = $143.50, CF_2 = 1.5188, cost = 143.50 - (93 * 1.5188) = 143.50 - 141.25 = +$2.25. Bond 3: Spot S_3 = $119.75, CF_3 = 1.2615, cost = 119.75 - (93 * 1.2615) = 119.75 - 117.32 = +$2.43. Bond 2 has the lowest cost ($2.25) and is the Cheapest-to-Deliver.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.2 Treasury Bond Futures",
+        "page": 137,
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "context": "Cheapest-to-deliver bond calculation for futures price 93.00 among three eligible Treasury bonds",
+        "values": {
+          "futures_price": 93,
+          "bond1_spot": 99.5,
+          "bond1_cf": 1.0382,
+          "bond1_cost": 2.95,
+          "bond2_spot": 143.5,
+          "bond2_cf": 1.5188,
+          "bond2_cost": 2.25,
+          "bond3_spot": 119.75,
+          "bond3_cf": 1.2615,
+          "bond3_cost": 2.43,
+          "ctd_selected_bond": 2
+        },
+        "units": "USD per $100 par"
+      },
+      "tags": [
+        "ctd_numerical_example",
+        "cost_minimization",
+        "delivery_selection"
+      ]
+    }
+  ]
+}

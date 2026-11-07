@@ -1,0 +1,321 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch05_part2",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T16:44:36.936Z",
+  "bookTitle": "Options, Futures, and Other Derivatives (John C. Hull)",
+  "generalAssumptions": [
+    "No-arbitrage principles govern pricing in liquid financial and commodity markets.",
+    "Borrowing and lending rates are equal at the continuous risk-free rate r.",
+    "Index dividend payments can be approximated as a continuous dividend yield q.",
+    "Physical storage costs and convenience yields reflect real carrying costs and operational benefits."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "formula",
+      "topic": "Valuing a Forward Contract Mid-Life",
+      "statement": "At inception t=0, the value of a forward contract f is zero and delivery price K equals F_0. At mid-life time t prior to maturity T, the value of an existing long forward contract is f = (F_t - K) * e^(-r(T-t)) = S_t - K * e^(-r(T-t)). For a short forward contract, the value is f_short = (K - F_t) * e^(-r(T-t)) = K * e^(-r(T-t)) - S_t.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.7 Valuing Forward Contracts",
+        "page": 114,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Forward Contract Mid-Life Value (Long)",
+        "latex": "f = S_t - K e^{-r(T - t)}",
+        "variables": [
+          {
+            "symbol": "f",
+            "definition": "Current market value of existing long forward contract",
+            "unit": "$"
+          },
+          {
+            "symbol": "S_t",
+            "definition": "Current spot price of underlying asset at time t",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Contract delivery price fixed at inception",
+            "unit": "$"
+          },
+          {
+            "symbol": "r",
+            "definition": "Continuously compounded risk-free rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "T - t",
+            "definition": "Remaining time to maturity",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "forward_valuation",
+        "mid_life_value",
+        "delivery_price",
+        "discounting"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "numerical_example",
+      "topic": "Long Forward Contract Mid-Life Valuation Example",
+      "statement": "Consider a long forward contract on a non-dividend stock with delivery price K = $50 maturing in 6 months. After 3 months (remaining time tau = 0.25 years), the spot price rises to S_t = $53 and the risk-free rate is r = 6%. The value of the contract is f = 53 - 50 * e^(-0.06 * 0.25) = 53 - 49.26 = +$3.74.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.7 Valuing Forward Contracts",
+        "page": 115,
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "context": "Long forward contract on non-dividend stock maturing in 6 months valued at 3 months",
+        "values": {
+          "spot_price": 53,
+          "strike_price": 50,
+          "risk_free_rate": 0.06,
+          "remaining_time_years": 0.25,
+          "discounted_strike": 49.26,
+          "contract_value": 3.74
+        },
+        "units": "USD"
+      },
+      "tags": [
+        "valuation_example",
+        "numerical_proof",
+        "mark_to_market"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "formula",
+      "topic": "Stock Index Futures Pricing with Continuous Dividend Yield",
+      "statement": "A stock index is treated as an investment asset providing a continuous dividend yield q. The theoretical forward/futures price is F_0 = S_0 * e^((r - q)T), where S_0 is the spot index level, r is the risk-free rate, and q is the dividend yield.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.9 Futures on Stock Indices",
+        "page": 117,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Stock Index Futures Pricing Formula",
+        "latex": "F_0 = S_0 e^{(r - q)T}",
+        "variables": [
+          {
+            "symbol": "F_0",
+            "definition": "Theoretical stock index futures price",
+            "unit": "index points"
+          },
+          {
+            "symbol": "S_0",
+            "definition": "Current spot index level",
+            "unit": "index points"
+          },
+          {
+            "symbol": "r",
+            "definition": "Continuous risk-free interest rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "q",
+            "definition": "Continuous dividend yield of the index portfolio",
+            "unit": "%"
+          },
+          {
+            "symbol": "T",
+            "definition": "Time to contract maturity",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "stock_index_futures",
+        "dividend_yield",
+        "index_pricing"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "market_rule",
+      "topic": "Index Arbitrage and Program Trading",
+      "statement": "Index arbitrage involves simultaneous trading of stock index futures and the underlying portfolio of stocks. If F_0 > S_0 * e^((r-q)T), arbitrageurs buy the stock basket and sell futures (cash-and-carry). If F_0 < S_0 * e^((r-q)T), arbitrageurs short the stock basket and buy futures. Program trading uses computer routing systems to execute constituent trades instantly.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.9 Futures on Stock Indices",
+        "page": 118,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "index_arbitrage",
+        "program_trading",
+        "cash_and_carry",
+        "reverse_cash_and_carry"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "case_study",
+      "topic": "The October 1987 Crash and Index Arbitrage Breakdown (Snapshot 5.4)",
+      "statement": "On Black Monday (October 19, 1987), the Dow Jones Industrial Average plunged 22.6%. Massive selling of S&P 500 index futures by dynamic portfolio insurance hedgers pushed futures prices to unprecedented discounts (backwardation) below cash index levels. Index arbitrage failed because NYSE's Designated Order Turnaround (DOT) system jammed with unexecuted orders, rendering cash index quotes stale and execution impossible. This led to market-wide circuit breakers and NYSE Rule 80A.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "Snapshot 5.4 The October 1987 Crash",
+        "page": 120,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "1987_crash",
+        "black_monday",
+        "portfolio_insurance",
+        "order_congestion",
+        "circuit_breakers"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "formula",
+      "topic": "Currency Forwards and Covered Interest Rate Parity",
+      "statement": "A foreign currency is an investment asset paying a continuous dividend yield equal to the foreign risk-free rate r_f. Under covered interest rate parity, the forward exchange rate is F_0 = S_0 * e^((r - r_f)T), where S_0 is the spot exchange rate expressed as domestic currency per unit of foreign currency.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.10 Forward and Futures Contracts on Currencies",
+        "page": 121,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Covered Interest Rate Parity Formula",
+        "latex": "F_0 = S_0 e^{(r - r_f)T}",
+        "variables": [
+          {
+            "symbol": "F_0",
+            "definition": "Forward exchange rate (domestic per foreign unit)",
+            "unit": "currency"
+          },
+          {
+            "symbol": "S_0",
+            "definition": "Spot exchange rate (domestic per foreign unit)",
+            "unit": "currency"
+          },
+          {
+            "symbol": "r",
+            "definition": "Domestic continuous risk-free rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "r_f",
+            "definition": "Foreign continuous risk-free rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "T",
+            "definition": "Maturity of the forward contract",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "currency_forwards",
+        "interest_rate_parity",
+        "foreign_exchange",
+        "covered_arbitrage"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "numerical_example",
+      "topic": "Covered Interest Arbitrage on USD/GBP",
+      "statement": "Suppose spot USD/GBP is S_0 = 1.5000, US interest rate is r = 5%, and UK interest rate is r_f = 7% for T = 1 year. The theoretical forward rate is F_0 = 1.5000 * e^((0.05 - 0.07) * 1) = 1.5000 * e^(-0.02) = 1.4703. If the actual forward quote is 1.4900, an arbitrageur borrows $1,500 at 5%, converts to 1,000 GBP, deposits in the UK at 7% to yield 1,072.51 GBP, and sells GBP forward at 1.4900 to lock in $1,598.04 against a debt repayment of $1,576.91, capturing a riskless $21.13 profit per 1,000 GBP.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.10 Forward and Futures Contracts on Currencies",
+        "page": 122,
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "context": "Covered interest arbitrage on USD/GBP with 5% US rate and 7% UK rate",
+        "values": {
+          "spot_fx": 1.5,
+          "us_rate": 0.05,
+          "uk_rate": 0.07,
+          "maturity_years": 1,
+          "quoted_forward": 1.49,
+          "theoretical_forward": 1.4703,
+          "arbitrage_profit_per_1000_gbp": 21.13
+        },
+        "units": "USD / GBP"
+      },
+      "tags": [
+        "currency_arbitrage",
+        "fx_worked_example",
+        "parity_enforcement"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "formula",
+      "topic": "Commodity Futures, Storage Costs and Convenience Yield",
+      "statement": "Commodities incur storage costs u (percentage of spot) and provide physical inventory utility known as convenience yield y. The theoretical forward price is F_0 = S_0 * e^((r + u - y)T). For investment commodities (gold/silver), y is virtually zero and F_0 = S_0 * e^((r + u)T). For consumption commodities (crude oil, copper), when spot inventory is critically scarce, y can exceed r + u, producing backwardation where forward price is lower than spot (F_0 < S_0).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "5",
+        "section": "5.11 Futures on Commodities",
+        "page": 125,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Commodity Futures Pricing Formula with Convenience Yield",
+        "latex": "F_0 = S_0 e^{(r + u - y)T}",
+        "variables": [
+          {
+            "symbol": "F_0",
+            "definition": "Theoretical commodity futures price",
+            "unit": "$"
+          },
+          {
+            "symbol": "S_0",
+            "definition": "Spot commodity price",
+            "unit": "$"
+          },
+          {
+            "symbol": "r",
+            "definition": "Continuous risk-free interest rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "u",
+            "definition": "Storage cost as a proportion of spot price",
+            "unit": "%"
+          },
+          {
+            "symbol": "y",
+            "definition": "Convenience yield of physical holding",
+            "unit": "%"
+          },
+          {
+            "symbol": "T",
+            "definition": "Maturity in years",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "commodity_futures",
+        "storage_costs",
+        "convenience_yield",
+        "contango",
+        "backwardation"
+      ]
+    }
+  ]
+}

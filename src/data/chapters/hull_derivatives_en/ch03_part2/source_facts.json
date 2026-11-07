@@ -1,0 +1,326 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch03_part2",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T15:56:28.477Z",
+  "bookTitle": "Options, Futures, and Other Derivatives (John C. Hull)",
+  "generalAssumptions": [
+    "Hedgers minimize variance of price change rather than attempting speculative profit.",
+    "Futures contracts are traded with daily marking-to-market margin requirements.",
+    "Physical or cross-correlated assets share historical price co-movement."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Definition of Cross Hedging",
+      "statement": "Cross hedging occurs when the asset underlying the futures contract is different from the asset whose price is being hedged (e.g., an airline hedging jet fuel purchases using heating oil futures contracts).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "3",
+        "section": "3.3 Cross Hedging",
+        "page": 58,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "cross_hedging",
+        "basis_risk",
+        "commodities"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "formula",
+      "topic": "Minimum Variance Hedge Ratio Formula",
+      "statement": "The hedge ratio that minimizes the variance of the hedged portfolio is h* = rho * (sigma_S / sigma_F), where rho is the correlation coefficient between changes in spot and futures prices, sigma_S is the standard deviation of change in spot price, and sigma_F is the standard deviation of change in futures price.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "3",
+        "section": "3.3 Cross Hedging",
+        "page": 59,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Minimum Variance Hedge Ratio",
+        "latex": "h^* = \\rho \\frac{\\sigma_S}{\\sigma_F}",
+        "variables": [
+          {
+            "symbol": "h^*",
+            "definition": "Optimal hedge ratio",
+            "unit": "ratio"
+          },
+          {
+            "symbol": "\\rho",
+            "definition": "Correlation between ΔS and ΔF",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "\\sigma_S",
+            "definition": "Volatility of spot price changes",
+            "unit": "$ / unit"
+          },
+          {
+            "symbol": "\\sigma_F",
+            "definition": "Volatility of futures price changes",
+            "unit": "$ / unit"
+          }
+        ]
+      },
+      "tags": [
+        "hedge_ratio",
+        "variance_minimization",
+        "correlation"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "formula",
+      "topic": "Optimal Number of Futures Contracts",
+      "statement": "The optimal number of futures contracts to hedge a spot exposure of Q_A units when each futures contract is for Q_F units is N* = h* * (Q_A / Q_F).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "3",
+        "section": "3.3 Cross Hedging",
+        "page": 60,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Optimal Contract Quantity",
+        "latex": "N^* = h^* \\frac{Q_A}{Q_F}",
+        "variables": [
+          {
+            "symbol": "N^*",
+            "definition": "Optimal number of futures contracts",
+            "unit": "contracts"
+          },
+          {
+            "symbol": "h^*",
+            "definition": "Minimum variance hedge ratio",
+            "unit": "ratio"
+          },
+          {
+            "symbol": "Q_A",
+            "definition": "Size of position being hedged",
+            "unit": "units"
+          },
+          {
+            "symbol": "Q_F",
+            "definition": "Size of one futures contract",
+            "unit": "units"
+          }
+        ]
+      },
+      "tags": [
+        "contract_sizing",
+        "hedging_position"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "numerical_example",
+      "topic": "Hull Example 3.2: Airline Jet Fuel Cross Hedge",
+      "statement": "An airline expects to purchase 2 million gallons of jet fuel in one month. Heating oil futures trade with contract size 42,000 gallons. Historical data gives sigma_F = 0.0313, sigma_S = 0.0263, and rho = 0.928. Then h* = 0.928 * (0.0263 / 0.0313) = 0.7777, and N* = 0.7777 * (2,000,000 / 42,000) = 37.03 contracts, rounded to 37 contracts long.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "3",
+        "section": "3.3 Cross Hedging",
+        "page": 61,
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "exposureGallons": 2000000,
+          "contractSize": 42000,
+          "sigmaS": 0.0263,
+          "sigmaF": 0.0313,
+          "rho": 0.928,
+          "optimalHedgeRatio": 0.778,
+          "optimalContracts": 37
+        },
+        "units": "gallons and contracts",
+        "context": "Hull Example 3.2 airline jet fuel cross-hedge"
+      },
+      "tags": [
+        "worked_example",
+        "jet_fuel",
+        "heating_oil"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "formula",
+      "topic": "Hedging an Equity Portfolio with Stock Index Futures",
+      "statement": "To hedge an equity portfolio of value V_A against systematic market decline using index futures with contract price times multiplier equal to V_F, the optimal number of contracts to short is N* = beta * (V_A / V_F), where beta is the CAPM portfolio sensitivity to the index.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "3",
+        "section": "3.4 Stock Index Futures",
+        "page": 63,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Index Futures Hedge Ratio",
+        "latex": "N^* = \\beta \\frac{V_A}{V_F}",
+        "variables": [
+          {
+            "symbol": "N^*",
+            "definition": "Number of index futures contracts to short",
+            "unit": "contracts"
+          },
+          {
+            "symbol": "\\beta",
+            "definition": "Portfolio market beta",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "V_A",
+            "definition": "Current market value of equity portfolio",
+            "unit": "$"
+          },
+          {
+            "symbol": "V_F",
+            "definition": "Value of one index futures contract",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "index_futures",
+        "beta",
+        "systematic_risk"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "formula",
+      "topic": "Changing Portfolio Beta Using Index Futures",
+      "statement": "To adjust a portfolio's beta from beta to a target beta*, the manager should trade N* = (beta - beta*) * (V_A / V_F) contracts. If beta > beta*, the position is short; if beta < beta*, the position is long.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "3",
+        "section": "3.4 Stock Index Futures",
+        "page": 65,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Beta Tuning Formula",
+        "latex": "N^* = (\\beta - \\beta^*) \\frac{V_A}{V_F}",
+        "variables": [
+          {
+            "symbol": "N^*",
+            "definition": "Futures contracts to trade",
+            "unit": "contracts"
+          },
+          {
+            "symbol": "\\beta",
+            "definition": "Current portfolio beta",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "\\beta^*",
+            "definition": "Target portfolio beta",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "V_A",
+            "definition": "Portfolio market value",
+            "unit": "$"
+          },
+          {
+            "symbol": "V_F",
+            "definition": "Index futures contract value",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "beta_adjustment",
+        "synthetic_cash"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "numerical_example",
+      "topic": "Hull Example 3.4: Tactical Beta Reduction",
+      "statement": "A portfolio is worth $5,050,000 with beta = 1.50. The S&P 500 index futures price is 1,000 with a $250 multiplier ($250,000 contract value). To reduce beta to 0.75, short N* = (1.50 - 0.75) * ($5,050,000 / $250,000) = 0.75 * 20.2 = 15.15 -> 15 contracts.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "3",
+        "section": "3.4 Stock Index Futures",
+        "page": 66,
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "portfolioValue": 5050000,
+          "contractValue": 250000,
+          "initialBeta": 1.5,
+          "targetBeta": 0.75,
+          "contractsShort": 15
+        },
+        "units": "$ and contracts",
+        "context": "Hull Example 3.4 beta reduction"
+      },
+      "tags": [
+        "worked_example",
+        "beta_tuning"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "market_rule",
+      "topic": "Stack and Roll Hedging Strategy",
+      "statement": "When an exposure has a longer maturity than the available liquid futures contracts, hedgers roll short-dated contracts forward across expiry cycles. As each near contract nears maturity, it is closed out and replaced with the next maturity contract.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "3",
+        "section": "3.5 Stack and Roll",
+        "page": 68,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "stack_and_roll",
+        "futures_rolling",
+        "maturity_transformation"
+      ]
+    },
+    {
+      "id": "fact-09",
+      "category": "case_study",
+      "topic": "Snapshot 3.2: Metallgesellschaft's $1.3B Hedging Disaster",
+      "statement": "In 1993, German conglomerate Metallgesellschaft sold 5-to-10 year fixed-price oil delivery contracts to customers and hedged using a massive stack-and-roll position in short-dated oil futures. When oil prices plunged into contango, negative roll yields and daily cash margin calls caused a liquidity crisis, forcing premature liquidation at a $1.3 billion loss.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "3",
+        "section": "Snapshot 3.2",
+        "page": 70,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "metallgesellschaft",
+        "liquidity_crisis",
+        "contango",
+        "roll_risk"
+      ]
+    },
+    {
+      "id": "fact-10",
+      "category": "market_rule",
+      "topic": "Liquidity Risk in Long-Dated Synthetic Hedges",
+      "statement": "Stack and roll creates severe liquidity risk because futures margin calls require immediate daily cash settlement, whereas hedged gains on physical long-term contracts are unrealized paper gains that cannot fund margin calls.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "3",
+        "section": "3.5 Stack and Roll",
+        "page": 71,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "liquidity_risk",
+        "margin_drain",
+        "cash_flow_mismatch"
+      ]
+    }
+  ]
+}

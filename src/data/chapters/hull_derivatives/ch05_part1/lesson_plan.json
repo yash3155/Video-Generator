@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch05_part1",
+  "title": "Determination of Forward and Futures Prices: Part 1",
+  "targetAudiencePersona": "Quantitative Trader & Derivative Structurer",
+  "prerequisites": [
+    "Continuous compounding and discounting A = P * e^(rT)",
+    "Basic concepts of short selling and security borrowing",
+    "Term structure of interest rates from Chapter 4"
+  ],
+  "learningOutcomes": [
+    "Classify assets into investment versus consumption assets and explain arbitrage pricing boundaries.",
+    "Calculate theoretical forward prices for no-income assets using F_0 = S_0 * e^(rT).",
+    "Construct cash-and-carry and reverse cash-and-carry arbitrage portfolios when market prices diverge.",
+    "Adjust forward prices for known discrete cash dividends: F_0 = (S_0 - I) * e^(rT).",
+    "Model continuous dividend yields using F_0 = S_0 * e^((r - q)*T) and define cost of carry.",
+    "Analyze the Kidder Peabody scandal to explain how discounting timing errors generate phantom accounting profits."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Asset Typology & Short Selling Mechanics",
+      "pedagogicalObjective": "Establish the distinction between investment and consumption assets and detail short selling obligations.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Investment assets allow two-way arbitrage; consumption assets only establish upper bounds.",
+        "Short sellers must pay all dividends to lenders and face repo special borrowing costs.",
+        "Short squeezes force premature closeout when borrow supply dries up."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "No-Arbitrage Forward Pricing: No Income Assets",
+      "pedagogicalObjective": "Derive F_0 = S_0 * e^(rT) and prove cash-and-carry replication.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Theoretical forward price equals spot price compounded at the risk-free rate.",
+        "F_0 > S_0 * e^(rT) triggers cash-and-carry (borrow cash, buy spot, short forward).",
+        "F_0 < S_0 * e^(rT) triggers reverse cash-and-carry (short spot, invest cash, long forward)."
+      ],
+      "formulaUsed": "F_0 = S_0 * e^(rT)"
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Forward Pricing with Known Income & Dividends",
+      "pedagogicalObjective": "Formulate forward pricing adjustments for discrete cash coupons and continuous dividend yields.",
+      "groundedFactIds": [
+        "fact-05",
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Discrete cash dividends reduce forward price: F_0 = (S_0 - I) * e^(rT).",
+        "Continuous dividend yield q offsets financing cost: F_0 = S_0 * e^((r - q)*T).",
+        "Cost of carry c = r - q; if q > r, forward trades at a discount to spot."
+      ],
+      "formulaUsed": "F_0 = (S_0 - I) * e^(rT) and F_0 = S_0 * e^((r - q)*T)"
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Kidder Peabody's $350M Phantom Forward STRIPs",
+      "pedagogicalObjective": "Dissect Snapshot 5.1 to show how failing to discount forward commitments creates fictitious trading profits.",
+      "groundedFactIds": [
+        "fact-07"
+      ],
+      "keyPoints": [
+        "Trader Joseph Jett exploited accounting software that credited future stripped bond values today without discounting.",
+        "Created $350M in phantom accounting profits while losing $210M in actual trading.",
+        "Destroyed Kidder Peabody and led to its acquisition by PaineWebber."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "The forward price of an asset represents the market's expected future spot price.",
+      "factId": "fact-03",
+      "authorRebuttal": "Forward price is purely determined by the cost of financing spot storage (F_0 = S_0 * e^(rT)) to prevent arbitrage, irrespective of whether investors expect prices to rise or fall."
+    },
+    {
+      "misconception": "Dividends increase the forward price because the asset generates cash flow.",
+      "factId": "fact-05",
+      "authorRebuttal": "Dividends are collected by the spot holder, not the forward buyer. Therefore, dividends reduce the forward price: F_0 = (S_0 - I) * e^(rT)."
+    },
+    {
+      "misconception": "Short sellers can hold short positions indefinitely at zero extra cost.",
+      "factId": "fact-08",
+      "authorRebuttal": "Short sellers face stock borrowing fees, repo specials, and risk of forced buy-ins during short squeezes."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A non-dividend-paying stock trades at $50. The continuous risk-free interest rate is 6% per annum for all maturities. An investor wants to determine the 6-month theoretical forward price.",
+    "testedFactIds": [
+      "fact-03"
+    ],
+    "question": "What is the theoretical 6-month forward price of the stock?",
+    "correctAnswer": "$51.52 theoretical forward price",
+    "explanation": "Using F_0 = S_0 * e^(rT) with S_0 = 50, r = 0.06, and T = 0.5: F_0 = 50 * e^(0.06 * 0.5) = 50 * e^(0.03) = 50 * 1.03045 = $51.52."
+  },
+  "coreTakeaways": [
+    "Investment assets obey strict two-way no-arbitrage bounds; consumption assets only obey upper bounds.",
+    "No-income forward price F_0 = S_0 * e^(rT) reflects the pure cost of carrying the spot asset.",
+    "Known discrete cash dividends reduce forward price to F_0 = (S_0 - I) * e^(rT).",
+    "Continuous dividend yields reduce carry cost: F_0 = S_0 * e^((r - q)*T).",
+    "Kidder Peabody collapsed because accounting software failed to discount forward delivery commitments."
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch04_part2",
+  "title": "Forward Interest Rates, FRAs, and Term Structure Theories",
+  "targetAudiencePersona": "Fixed Income Analyst & Quantitative Derivatives Trader",
+  "prerequisites": [
+    "Understanding of continuous compounding and discounting A = P * e^(rT)",
+    "Zero rates and zero-coupon curve construction from Chapter 4 Part 1",
+    "Concept of over-the-counter contracts and payoff settlements"
+  ],
+  "learningOutcomes": [
+    "Calculate continuous and discrete forward interest rates implied by any zero rate curve.",
+    "Replicate forward borrowing and lending synthetically through spot zero-coupon bonds.",
+    "Price and execute settlement calculations for Forward Rate Agreements (FRAs) at time T_1.",
+    "Mark to market existing FRA portfolios using current forward rates and risk-free discounting.",
+    "Contrast Expectations Theory with Liquidity Preference Theory to interpret upward-sloping yield curves.",
+    "Analyze the Orange County municipal bankruptcy to explain how leverage and inverted repo carry destroy balance sheets."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Forward Interest Rates: The Implied Cost of Future Money",
+      "pedagogicalObjective": "Derive the forward rate formula R_F = (R_2*T_2 - R_1*T_1)/(T_2 - T_1) and demonstrate no-arbitrage replication.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "keyPoints": [
+        "Forward rates are the interest rates implied by current zero rates for future borrowing periods.",
+        "Formula: R_F = (R_2*T_2 - R_1*T_1)/(T_2 - T_1).",
+        "Synthetically created by borrowing for T_1 and investing for T_2."
+      ],
+      "formulaUsed": "R_F = (R_2*T_2 - R_1*T_1)/(T_2 - T_1)"
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Forward Rate Agreements (FRAs) Mechanics and Valuation",
+      "pedagogicalObjective": "Formulate FRA payoffs, advance cash settlement at time T_1, and mid-life valuation.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04",
+        "fact-05"
+      ],
+      "keyPoints": [
+        "Fixed payer receives floating rate R_M and pays fixed contract rate R_K.",
+        "Settlement occurs at time T_1 discounted by [1 + R_M*(T_2 - T_1)].",
+        "Pre-maturity FRA value is discounted difference between current forward rate R_F and fixed rate R_K."
+      ],
+      "formulaUsed": "Settlement = L*(R_M - R_K)*(T_2 - T_1) / [1 + R_M*(T_2 - T_1)]"
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Theories of the Term Structure: Why Yield Curves Slope Upward",
+      "pedagogicalObjective": "Dissect Expectations Theory vs Liquidity Preference Theory to prove why forward rates exceed expected spot rates.",
+      "groundedFactIds": [
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Expectations Theory claims forward rates equal expected future spot rates (R_F = E[R]).",
+        "Liquidity Preference Theory proves investors demand a premium to lock money up for long horizons.",
+        "Forward rates systematically exceed expected future spot rates (R_F > E[R]) by a liquidity premium."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Orange County Bankruptcy: The $1.6B Repo Leverage Disaster",
+      "pedagogicalObjective": "Examine Snapshot 4.1 to understand reverse floaters, repo borrowing leverage, and yield curve inversion risk.",
+      "groundedFactIds": [
+        "fact-07"
+      ],
+      "keyPoints": [
+        "Orange County geared $7.5B equity into $20.5B portfolio via $13B short-term repo borrowing.",
+        "Invested heavily in inverse floaters betting interest rates would fall.",
+        "Six consecutive Fed rate hikes inverted carry, generating $1.6B losses and municipal bankruptcy."
+      ]
+    },
+    {
+      "sectionIndex": 4,
+      "title": "The 2007-2009 Interbank Liquidity Freeze",
+      "pedagogicalObjective": "Analyze Snapshot 4.2 to see how credit mistrust paralyzed the interbank term market.",
+      "groundedFactIds": [
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Subprime mortgage defaults caused interbank trust to collapse.",
+        "Commercial paper markets froze as investors refused rollover.",
+        "LIBOR-OIS spread spiked to 364 bps, requiring emergency central bank term auction facilities."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "An upward-sloping yield curve proves the market is betting interest rates will rise sharply in the future.",
+      "factId": "fact-06",
+      "authorRebuttal": "Liquidity Preference Theory proves forward rates are inflated by positive liquidity premiums (R_F > E[R]). Upward slopes exist even when expected future rates are flat."
+    },
+    {
+      "misconception": "An FRA cash settlement at time T_1 pays the full undiscounted interest difference L*(R_M - R_K)*(T_2 - T_1).",
+      "factId": "fact-04",
+      "authorRebuttal": "Because interest payments are normally due at the end of the loan period T_2, advance payment at T_1 must be discounted back by dividing by [1 + R_M*(T_2 - T_1)]."
+    },
+    {
+      "misconception": "Short-term repo financing can safely fund long-term bond investments indefinitely.",
+      "factId": "fact-07",
+      "authorRebuttal": "Orange County proved that financing long-term assets with short-term repo creates extreme negative carry when the yield curve inverts, leading to catastrophic margin calls."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "Suppose the continuous 1-year zero rate is 4.0% per annum and the 2-year continuous zero rate is 4.5% per annum. An analyst wants to determine the continuous forward interest rate for the second year.",
+    "testedFactIds": [
+      "fact-01"
+    ],
+    "question": "What is the continuous forward rate for the second year (from year 1 to year 2)?",
+    "correctAnswer": "5.0% per annum continuous",
+    "explanation": "Using the forward rate formula R_F = (R_2*T_2 - R_1*T_1)/(T_2 - T_1): R_F = (0.045*2 - 0.040*1)/(2 - 1) = (0.090 - 0.040)/1 = 0.050 or 5.0% per annum continuous."
+  },
+  "coreTakeaways": [
+    "Forward interest rates are mathematically locked by zero rates via R_F = (R_2*T_2 - R_1*T_1)/(T_2 - T_1).",
+    "FRAs allow borrowers and lenders to lock future borrowing costs; settlement at T_1 is discounted by [1 + R_M*tau].",
+    "Existing FRAs are valued by discounting the spread between current forward rates and contract fixed rates.",
+    "Liquidity Preference Theory explains normal upward yield curves via maturity liquidity premiums (R_F > E[R]).",
+    "Orange County suffered a $1.6B bankruptcy by funding long inverse floaters with $13B short repo leverage during Fed hikes."
+  ]
+}

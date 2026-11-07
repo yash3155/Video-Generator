@@ -1,0 +1,511 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch04_part2",
+  "course": "hull_derivatives_en",
+  "chapterTitle": "Forward Interest Rates, FRAs, and Term Structure Theories",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Future Borrowing Dilemma",
+      "template": "chat_story",
+      "concept": "Raju needs a ₹5 Crore loan 1 year from now; Sharma ji introduces forward rates and FRAs to lock the rate today.",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Raju worries interest rates will spike before his plant expansion next year",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "Raju"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Sharma ji explains that current zero rates already define forward interest rates",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "Sharma ji"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Raju asks how an OTC contract can fix his borrowing cost today",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "Raju"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Expectations vs Liquidity Preference",
+      "template": "tug_of_war",
+      "concept": "Contrast pure rate expectations with investor liquidity preference driving yield curve slopes.",
+      "sourceFactIds": [
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Expectations Theory asserts forward rates equal expected future spot rates",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Liquidity Preference Theory proves investors demand a premium for locking cash long-term",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Forward rates systematically exceed expected future spot rates by a liquidity buffer",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Continuous Forward Rate Formula",
+      "template": "formula_breakdown",
+      "concept": "Derive R_F = (R_2*T_2 - R_1*T_1)/(T_2 - T_1) with 3% 1-year and 4% 2-year worked example.",
+      "sourceFactIds": [
+        "fact-01"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The implied forward rate bridges zero rate growth across consecutive horizons",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Continuous formula: R_F = (R_2*T_2 - R_1*T_1)/(T_2 - T_1)",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "If 1-year is 3% and 2-year is 4%, year 2 forward rate is exactly 5.0%",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Synthetic Forward Rate Replication",
+      "template": "split_comparison",
+      "concept": "Show no-arbitrage proof: borrowing for T1 and investing for T2 synthetically locks forward borrowing.",
+      "sourceFactIds": [
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Strategy A: Borrow for period T1 at rate R1 to fund cash needs today",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Strategy B: Invest for period T2 at rate R2 to receive cash flow at T2",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Net cash flow at T0 is zero; forward rate R_F is locked with zero basis risk",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Forward Rate Agreement (FRA) Architecture",
+      "template": "progressive_cards",
+      "concept": "Explain FRA terms, fixed payer vs floating payer, and corporate interest rate risk hedging.",
+      "sourceFactIds": [
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "FRA is an OTC contract setting fixed interest rate R_K for future period T1 to T2",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Fixed Rate Payer receives floating rate R_M, hedging against rising interest rates",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Floating Rate Payer receives fixed rate R_K, protecting lenders against falling rates",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Principal is purely notional; only the net interest difference is exchanged",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "FRA Cash Settlement at Time T1",
+      "template": "formula_breakdown",
+      "concept": "Master the discounted advance settlement formula at time T1.",
+      "sourceFactIds": [
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Standard loan interest is paid at maturity T2: Payoff = L*(R_M - R_K)*(T2 - T1)",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Advance settlement occurs at time T1, requiring discounting by [1 + R_M*(T2 - T1)]",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Discounted settlement ensures economic equivalence without counterparty risk during loan term",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Valuation of an FRA Prior to Maturity",
+      "template": "split_comparison",
+      "concept": "Compare initial zero-value contract with marked-to-market valuation as forward rates evolve.",
+      "sourceFactIds": [
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "At inception: contract rate R_K is set equal to market forward rate R_F, so V_FRA = 0",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Mid-life valuation: V_FRA = L*(R_F - R_K)*(T2 - T1)*e^(-R2*T2)",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Changes in forward rates create immediate balance sheet gains or losses",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Orange County Bankruptcy: Repo Leverage Trap",
+      "template": "progressive_cards",
+      "concept": "Analyze Snapshot 4.1: $13B short repo leverage, inverse floaters, and $1.6B loss.",
+      "sourceFactIds": [
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Bob Citron geared $7.5B county equity into a $20.5B portfolio using $13B short repo",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Invested in medium-term inverse floaters that paid high yields when rates fell",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "In 1994, the Fed raised rates 6 times by 250 bps; repo borrowing costs surpassed bond yields",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Orange County suffered $1.6B losses, collateral liquidations, and municipal bankruptcy",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "The 2007-2009 Interbank Liquidity Freeze",
+      "template": "progressive_cards",
+      "concept": "Analyze Snapshot 4.2: commercial paper paralysis and 364 bps LIBOR-OIS explosion.",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Subprime mortgage contagion triggered widespread interbank counterparty distrust",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Asset-backed commercial paper (ABCP) market froze as money funds refused rollovers",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "LIBOR-OIS spread exploded from 10 bps to 364 bps, showing systemic bank credit risk",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Central banks were forced to launch massive emergency term funding facilities",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall: Implied Forward Rate Calculation",
+      "template": "interactive_quiz",
+      "concept": "Active recall scenario: calculate 1-year forward rate for Year 2 given 1y at 4.0% and 2y at 4.5%.",
+      "sourceFactIds": [
+        "fact-01"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Given 1-year continuous rate 4.0% and 2-year continuous rate 4.5%, calculate year 2 forward rate",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Raju computes (0.045*2 - 0.040*1)/(2 - 1) to extract the forward rate",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "Raju"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Sharma ji confirms 5.0% continuous rate with exact no-arbitrage proof",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "Sharma ji"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Raju Masters the Yield Curve Horizon",
+      "template": "chat_story",
+      "concept": "Raju hedges future loan with an FRA and applies Liquidity Preference Theory to interest rate risk.",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Raju locks in his company loan using an FRA to eliminate interest rate risk",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "Raju"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Sharma ji warns never to mistake upward yield curves for guaranteed future rate hikes",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "Sharma ji"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Raju notes Orange County's mistake and pledges strict duration matching",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "Raju"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "The Whole Picture: 8 Core Term Structure Rules",
+      "template": "summary_thread",
+      "concept": "Execute strict 8-step summary sequence covering all chapter principles with dedicated Rule 8 focus.",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Executive overview of all eight forward rate and term structure principles",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Rules 1 & 2: Forward rate formula and no-arbitrage synthetic borrowing replication",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Rules 3 & 4: FRA hedging mechanics and discounted advance settlement at time T1",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Rules 5 & 6: Pre-maturity FRA mark-to-market valuation and Liquidity Preference Theory",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 4,
+          "textOutline": "Rules 7 & 8: Orange County repo leverage disaster and 2008 interbank liquidity freeze",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 5,
+          "textOutline": "Final 2-column whole-chapter reference matrix",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Forward Rate Formula: Continuous forward rate R_F = (R_2*T_2 - R_1*T_1)/(T_2 - T_1) is implied by zero rates.",
+    "2. No-Arbitrage Replication: Borrowing for T1 and investing for T2 synthetically replicates forward loans.",
+    "3. FRA Hedging Architecture: Fixed payers receive floating R_M and pay fixed R_K to cap borrowing costs.",
+    "4. Advance Settlement Discount: FRAs settling at time T_1 divide payoff by [1 + R_M*(T_2 - T_1)].",
+    "5. Pre-Maturity Valuation: Existing FRAs are valued by discounting the spread between R_F and R_K.",
+    "6. Liquidity Preference Reality: Forward rates exceed expected spot rates (R_F > E[R]) by a positive liquidity buffer.",
+    "7. Orange County Lesson: Funding long assets with $13B short repo leverage destroyed $1.6B during Fed rate hikes.",
+    "8. Interbank Liquidity Freeze: Crisis spreads blew out to 364 bps when commercial paper markets froze."
+  ],
+  "bottomTakeaway": "Forward rates represent no-arbitrage break-evens; liquidity preference creates normal upward slope, and FRAs lock future borrowing costs."
+}

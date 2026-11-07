@@ -1,220 +1,473 @@
 {
   "schemaVersion": "1.0.0",
   "chapterSlug": "ch01_part1",
-  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "notebookId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
   "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
-  "retrievalTimestamp": "2026-11-03T04:02:43.860Z",
-  "bookTitle": "Technical Analysis of the Financial Markets (John J. Murphy)",
+  "retrievalTimestamp": "2026-11-03T03:30:00.000Z",
+  "bookTitle": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "generalAssumptions": [
+    "Zero counterparty default risk in exchange-cleared trades backed by central clearing houses.",
+    "Bilateral OTC forwards carry direct counterparty credit exposure unless cleared via a Central Counterparty (CCP).",
+    "Continuous price quotation during exchange and interbank trading hours.",
+    "Ignoring transaction costs, commissions, and bid-ask spreads unless explicitly specified in numerical examples."
+  ],
   "facts": [
     {
-      "id": "fact-01",
+      "id": "fact-futures-def",
       "category": "definition",
-      "topic": "Exchange-Traded Futures vs. OTC Forward Contracts",
-      "statement": "Futures contracts are standardized agreements traded on public exchanges featuring fixed contract sizes, delivery dates, daily margin settlement, and exchange clearing houses that eliminate counterparty credit risk. In contrast, forward contracts are customized agreements negotiated privately in the over-the-counter (OTC) market with terms tailored to specific counterparties and single settlement at maturity.",
+      "topic": "Futures Contracts",
+      "statement": "A futures contract is a standardized legal agreement between two parties to buy or sell an underlying asset at a specified future date for a predetermined price, traded on organized exchanges such as CME Group, ICE, Euronext, and Eurex.",
       "sourceCitation": {
-        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
-        "chapter": "ch01_part1 - 1. Core Concepts",
-        "excerpt": "Futures Contracts: Standardized contracts traded on public, organized exchanges... clearing houses that eliminate counterparty credit risk [4-6]. Forward Contracts: Non-standardized, customized agreements negotiated directly between two parties in the OTC market [5, 7, 8].",
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.1 Futures Contracts",
+        "page": 2,
+        "excerpt": "A futures contract is an agreement between two parties to buy or sell an asset at a certain time in the future for a certain price. Unlike forward contracts, futures contracts are normally traded on an exchange.",
         "provenance": "notebooklm_query"
       },
-      "tags": []
+      "tags": [
+        "futures",
+        "exchange",
+        "standardization"
+      ]
     },
     {
-      "id": "fact-02",
+      "id": "fact-forward-def",
       "category": "definition",
-      "topic": "Long and Short Futures/Forward Positions",
-      "statement": "A long position is taken by the trader who agrees to buy the underlying asset at a specified future date and price, whereas a short position is taken by the trader who agrees to sell the underlying asset at a specified future date and price.",
+      "topic": "Forward Contracts",
+      "statement": "A forward contract is an over-the-counter (OTC) derivative agreement between two private financial institutions or corporations to buy or sell an underlying asset at a specified future date for a negotiated price, non-standardized and subject to counterparty credit risk.",
       "sourceCitation": {
-        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
-        "chapter": "ch01_part1 - 2. Definitions",
-        "excerpt": "Long Position: The position of the trader who agrees to buy the underlying asset at a future date [19]. Short Position: The position of the trader who agrees to sell the underlying asset at a future date [19].",
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.4 Forward Contracts",
+        "page": 4,
+        "excerpt": "A forward contract is particularly simple. It is an agreement to buy or sell an asset at a certain future time for a certain price. It is traded in the over-the-counter market.",
         "provenance": "notebooklm_query"
       },
-      "tags": []
+      "tags": [
+        "forward",
+        "otc",
+        "customized"
+      ]
     },
     {
-      "id": "fact-03",
-      "category": "formula",
-      "topic": "Terminal Payoff Formulas for Long and Short Futures/Forwards",
-      "statement": "At contract maturity (T), the payoff for a long forward or futures position is equal to the terminal spot price minus the agreed delivery price (S_T - K), while the payoff for a short position is equal to the delivery price minus the terminal spot price (K - S_T).",
+      "id": "fact-long-short-positions",
+      "category": "definition",
+      "topic": "Positions in Derivatives",
+      "statement": "In any forward or futures contract, the party that agrees to buy the underlying asset assumes the long position, whereas the party that agrees to sell the underlying asset assumes the short position.",
       "sourceCitation": {
-        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
-        "chapter": "ch01_part1 - 3. Formulas & Quantitative Relationships",
-        "excerpt": "Long Position Payoff: Payoff = S_T - K [12, 19]. Short Position Payoff: Payoff = K - S_T [12, 22].",
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.1 Futures Contracts",
+        "page": 3,
+        "excerpt": "The party that agrees to buy has what is termed a long position; the party that agrees to sell has what is termed a short position.",
         "provenance": "notebooklm_query"
       },
-      "formulaDetails": {
-        "name": "Terminal Payoff for Futures and Forwards",
-        "latex": "\\text{Payoff}_{\\text{Long}} = S_T - K, \\quad \\text{Payoff}_{\\text{Short}} = K - S_T",
-        "variables": [
-          {
-            "symbol": "S_T",
-            "definition": "Spot price of the underlying asset at contract maturity",
-            "unit": "$"
-          },
-          {
-            "symbol": "K",
-            "definition": "Agreed delivery or forward price specified in the contract",
-            "unit": "$"
-          }
-        ]
-      },
-      "tags": []
+      "tags": [
+        "long",
+        "short",
+        "positions"
+      ]
     },
     {
-      "id": "fact-04",
-      "category": "formula",
-      "topic": "Leverage Ratio and Equity Capital Wipeout Threshold (Lehman Model)",
-      "statement": "A firm's equity capital percentage equals the reciprocal of its leverage ratio (1 / Leverage Ratio). At Lehman Brothers' 31:1 leverage ratio in 2007, equity capital represented approximately 3.23% of total assets, meaning a mere 3% to 4% decline in asset values completely wiped out its entire equity base.",
-      "sourceCitation": {
-        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
-        "chapter": "ch01_part1 - 3. Formulas & Quantitative Relationships",
-        "excerpt": "Equity Capital % = 1 / 31 ≈ 3.23% [23]. A decline of 3–4% in the value of the firm's assets completely wipes out its equity capital base, causing financial collapse [23].",
-        "provenance": "notebooklm_query"
-      },
-      "formulaDetails": {
-        "name": "Equity Capital Percentage from Leverage Ratio",
-        "latex": "\\text{Equity Capital \\%} = \\frac{1}{\\text{Leverage Ratio}}",
-        "variables": [
-          {
-            "symbol": "\\text{Equity Capital \\%}",
-            "definition": "Proportion of equity capital relative to total assets",
-            "unit": "%"
-          },
-          {
-            "symbol": "\\text{Leverage Ratio}",
-            "definition": "Ratio of total assets to equity capital (e.g., 31:1)",
-            "unit": "ratio"
-          }
-        ]
-      },
-      "numericalDetails": {
-        "values": {
-          "leverageRatio": 31,
-          "equityCapitalPct": 3.23,
-          "assetDeclineWipeoutMinPct": 3,
-          "assetDeclineWipeoutMaxPct": 4
-        },
-        "units": "%",
-        "context": "Lehman Brothers leverage ratio and equity wipeout calculation (2007)"
-      },
-      "tags": []
-    },
-    {
-      "id": "fact-05",
-      "category": "case_study",
-      "topic": "Business Snapshot 1.1: The Lehman Brothers Bankruptcy (September 15, 2008)",
-      "statement": "On September 15, 2008, Lehman Brothers filed the largest bankruptcy in U.S. history, driven by an extreme 31:1 leverage ratio, an aggressive deal-making culture under CEO Dick Fuld that marginalized risk management (removing the Chief Risk Officer in 2007), heavy exposure to subprime assets funded by short-term wholesale debt, and complex entanglement across over 1 million OTC derivative transactions with 8,000 counterparties involving re-hypothecated collateral.",
-      "sourceCitation": {
-        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
-        "chapter": "ch01_part1 - 4. Real-World Business Snapshots & Case Studies",
-        "excerpt": "Lehman had over 1 million outstanding OTC derivative transactions across 8,000 counterparties [27]. Counterparty collateral re-hypothecation led to years of complex litigation over asset ownership [27].",
-        "provenance": "notebooklm_query"
-      },
-      "numericalDetails": {
-        "values": {
-          "leverageRatio": 31,
-          "otcTransactions": 1000000,
-          "counterparties": 8000,
-          "bankruptcyYear": 2008
-        },
-        "units": "$",
-        "context": "Lehman Brothers September 15, 2008 bankruptcy drivers and OTC contract entanglement"
-      },
-      "tags": []
-    },
-    {
-      "id": "fact-06",
-      "category": "market_rule",
-      "topic": "Business Snapshot 1.2: Systemic Risk and Post-2008 CCP Regulations",
-      "statement": "Systemic risk represents the risk that a default by one financial institution triggers a cascading domino effect of failures across interconnected firms (Bank A defaults, causing massive losses and failure at Bank B, which destabilizes Bank C). To mitigate systemic risk post-2008, regulators mandated Central Counterparties (CCPs) for OTC derivatives, requiring initial margins, daily variation margins, and guaranty funds.",
-      "sourceCitation": {
-        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
-        "chapter": "ch01_part1 - 4. Real-World Business Snapshots & Case Studies",
-        "excerpt": "Systemic Risk: The risk that a default by one financial institution will trigger a domino effect of failures across other financial institutions [20]. Regulatory Remedy: Mandating Central Counterparties (CCPs)... to absorb defaults via initial margin, daily variation margin, and guaranty funds [15, 21, 30].",
-        "provenance": "notebooklm_query"
-      },
-      "tags": []
-    },
-    {
-      "id": "fact-07",
+      "id": "fact-spot-vs-forward-pricing",
       "category": "claim",
-      "topic": "Global Derivatives Market Sizes (BIS Estimates, Dec 2014)",
-      "statement": "According to the Bank for International Settlements (BIS) as of December 2014, the Over-the-Counter (OTC) derivatives market had $630 trillion in notional principal outstanding and $21 trillion in gross market value, greatly exceeding the $65 trillion underlying asset value traded across organized exchanges.",
+      "topic": "Spot vs Forward Pricing",
+      "statement": "The spot price is the quoted price for immediate or near-immediate delivery of an asset, whereas the forward/futures price is agreed upon today for delivery and settlement at a specified future date.",
       "sourceCitation": {
-        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
-        "chapter": "ch01_part1 - 5. Numerical Data & Market Statistics",
-        "excerpt": "OTC Derivatives Notional Principal Outstanding: $630 trillion [29]. OTC Derivatives Gross Market Value: $21 trillion [8]. Exchange-Traded Derivatives Underlying Value: $65 trillion [29].",
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.4 Forward Contracts",
+        "page": 4,
+        "excerpt": "In contrast to a spot contract, which is an agreement to buy or sell an asset today, a forward contract fixes the delivery price today for settlement at a later date.",
         "provenance": "notebooklm_query"
       },
-      "numericalDetails": {
-        "values": {
-          "otcNotionalTrillionsUSD": 630,
-          "otcGrossMarketValueTrillionsUSD": 21,
-          "exchangeTradedUnderlyingTrillionsUSD": 65,
-          "bisYear": 2014
-        },
-        "units": "$",
-        "context": "Bank for International Settlements global derivatives scale comparison"
-      },
-      "tags": []
+      "tags": [
+        "spot",
+        "forward_price",
+        "settlement"
+      ]
     },
     {
-      "id": "fact-08",
-      "category": "numerical_example",
-      "topic": "USD/GBP FX Spot/Forward Quotes and Corporate Hedging (ImportCo & ExportCo)",
-      "statement": "On May 13, 2015, institutional USD/GBP quotes were Spot 1.5746 Bid / 1.5750 Offer and 3-Month Forward 1.5736 Bid / 1.5742 Offer. Using 3-month forwards, U.S. ImportCo hedges a £10 million payable by buying GBP at the 1.5742 offer rate to lock in a $15,742,000 payment, while U.S. ExportCo hedges a £30 million receivable by selling GBP at the 1.5736 bid rate to lock in $47,208,000 in receipts.",
+      "id": "fact-otc-market-structure",
+      "category": "market_rule",
+      "topic": "Over-the-Counter Market Structure",
+      "statement": "The Over-the-Counter (OTC) market is a decentralized interbank network where financial institutions, fund managers, and multinational corporations trade customized derivatives directly with one another, typically featuring larger average contract notionals than exchange-traded derivatives.",
       "sourceCitation": {
-        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
-        "chapter": "ch01_part1 - 5. Numerical Data & Market Statistics & 6. Author Analogies",
-        "excerpt": "ImportCo (U.S.): Owes £10 million in 3 months; buys 3-month forward GBP at 1.5742, locking in a payment of $15,742,000 [37, 38]. ExportCo (U.S.): Receives £30 million in 3 months; sells 3-month forward GBP at 1.5736, locking in receipts of $47,208,000 [22, 38].",
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.3 Over-the-Counter Markets",
+        "page": 5,
+        "excerpt": "The OTC market is a telephone and computer-linked network of dealers who do not occupy a physical trading floor. Trades are usually between two financial institutions or between a financial institution and one of its corporate clients.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "otc",
+        "decentralized",
+        "institutional"
+      ]
+    },
+    {
+      "id": "fact-trading-mechanisms",
+      "category": "claim",
+      "topic": "Trading Execution Mechanisms",
+      "statement": "Derivatives trading has evolved from the traditional open-outcry system—where floor traders physically shouted bids and offers using hand signals in exchange pits—to electronic matching engines that enable algorithmic and high-frequency trading across global exchanges.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.2 History of Futures Markets",
+        "page": 3,
+        "excerpt": "Traditionally, futures contracts were traded using the open-outcry system... In recent years, electronic trading systems have largely replaced open outcry.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "open_outcry",
+        "electronic_trading",
+        "pit"
+      ]
+    },
+    {
+      "id": "fact-bank-fx-quotes",
+      "category": "numerical_example",
+      "topic": "Bank FX Bid-Offer Quotes",
+      "statement": "Foreign exchange market makers quote exchange rates with a two-way price: the bid rate at which the bank buys foreign currency and the offer (ask) rate at which the bank sells foreign currency. On May 13, 2015, quotes for USD/GBP were Spot 1.5746/1.5750, 1-Month Forward 1.5742/1.5747, and 3-Month Forward 1.5736/1.5742.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.4 Forward Contracts",
+        "page": 5,
+        "excerpt": "Quotes for the exchange rate between the British pound and the U.S. dollar on May 13, 2015: Spot Bid 1.5746 / Offer 1.5750; 3-Month Forward Bid 1.5736 / Offer 1.5742.",
         "provenance": "notebooklm_query"
       },
       "numericalDetails": {
         "values": {
           "spotBid": 1.5746,
           "spotOffer": 1.575,
-          "forward3MBid": 1.5736,
-          "forward3MOffer": 1.5742,
-          "importCoPayableGBP": 10000000,
-          "importCoCostUSD": 15742000,
-          "exportCoReceivableGBP": 30000000,
-          "exportCoReceiptsUSD": 47208000
+          "forward1mBid": 1.5742,
+          "forward1mOffer": 1.5747,
+          "forward3mBid": 1.5736,
+          "forward3mOffer": 1.5742
         },
-        "units": "$",
-        "context": "May 13, 2015 USD/GBP quotes and corporate forward hedging cash flows"
+        "units": "USD per GBP",
+        "context": "Bank FX foreign exchange market quotes on May 13, 2015 for spot and forward contracts"
       },
-      "tags": []
+      "tags": [
+        "fx",
+        "bid_offer",
+        "quotes"
+      ]
     },
     {
-      "id": "fact-09",
+      "id": "fact-importco-hedging-example",
       "category": "numerical_example",
-      "topic": "CME Corn Futures Contract Specifications and Farmer-Merchant Origin",
-      "statement": "A standard CME Corn futures contract covers 5,000 bushels. At a price quote of 400 cents ($4.00) per bushel, the total contract notional value is $20,000. Historically, this risk-fixing mechanism evolved from June agreements between corn farmers (fearing harvest oversupply price crashes) and food processing firms (fearing scarcity price spikes) to lock in September delivery prices.",
+      "topic": "Importer Hedging Foreign Currency Outflow",
+      "statement": "In Hull Example 1.1, ImportCo must pay £10,000,000 in 3 months for British imports. To eliminate currency appreciation risk, ImportCo buys £10,000,000 in the 3-month forward market at the bank's offer price of 1.5742 USD/GBP, locking in an exact cash outlay of $15,742,000.",
       "sourceCitation": {
-        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
-        "chapter": "ch01_part1 - 5. Numerical Data & Market Statistics & 6. Author Analogies",
-        "excerpt": "Contract Size: 5,000 bushels [32]. Price Quote Example: 400 cents per bushel ($4.00/bu), yielding a total contract value of $20,000 [19, 33].",
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.4 Forward Contracts",
+        "page": 5,
+        "excerpt": "Suppose that on May 13, 2015, the treasurer of a corporation knows that the corporation will pay 10 million pounds in three months... The corporation can buy 10 million pounds in the three-month forward market at 1.5742. This locks in the payment at $15,742,000.",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Forward Currency Outflow Formula",
+        "latex": "\\text{Total Outflow (USD)} = \\text{Foreign Notional (GBP)} \\times \\text{Forward Offer Rate}",
+        "variables": [
+          {
+            "symbol": "Notional",
+            "definition": "Foreign currency payable in British Pounds",
+            "unit": "GBP (£)"
+          },
+          {
+            "symbol": "F_offer",
+            "definition": "3-month forward offer exchange rate quoted by bank",
+            "unit": "USD per GBP"
+          },
+          {
+            "symbol": "Total Outflow",
+            "definition": "Guaranteed dollar cash payment required at maturity",
+            "unit": "USD ($)"
+          }
+        ],
+        "assumptions": [
+          "Bank does not default on forward delivery",
+          "ImportCo holds contract until settlement"
+        ]
+      },
+      "numericalDetails": {
+        "values": {
+          "foreignNotionalGbp": 10000000,
+          "forwardOfferRate": 1.5742,
+          "lockedCashOutflowUsd": 15742000
+        },
+        "units": "$ and £",
+        "contractSize": "£10,000,000",
+        "context": "Hull Example 1.1 ImportCo currency forward hedge locking payment at $15,742,000"
+      },
+      "tags": [
+        "hedging",
+        "importer",
+        "forward_outflow"
+      ]
+    },
+    {
+      "id": "fact-exportco-hedging-example",
+      "category": "numerical_example",
+      "topic": "Exporter Hedging Foreign Currency Inflow",
+      "statement": "In Hull Example 1.1, ExportCo expects to receive £30,000,000 in 3 months from British sales. To remove the risk of GBP depreciation against the dollar, ExportCo sells £30,000,000 in the 3-month forward market at the bank's bid price of 1.5736 USD/GBP, locking in total cash proceeds of $47,208,000.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.4 Forward Contracts",
+        "page": 6,
+        "excerpt": "Suppose another corporation expects to receive 30 million pounds in three months... It can sell 30 million pounds in the three-month forward market at 1.5736. This locks in the cash realized at $47,208,000.",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Forward Currency Inflow Formula",
+        "latex": "\\text{Cash Realized (USD)} = \\text{Foreign Inflow (GBP)} \\times \\text{Forward Bid Rate}",
+        "variables": [
+          {
+            "symbol": "Inflow",
+            "definition": "Foreign currency receivable in British Pounds",
+            "unit": "GBP (£)"
+          },
+          {
+            "symbol": "F_bid",
+            "definition": "3-month forward bid exchange rate quoted by bank",
+            "unit": "USD per GBP"
+          },
+          {
+            "symbol": "Cash Realized",
+            "definition": "Guaranteed dollar cash proceeds received at maturity",
+            "unit": "USD ($)"
+          }
+        ],
+        "assumptions": [
+          "Bank fulfills forward settlement",
+          "Corporation delivers the full £30M"
+        ]
+      },
+      "numericalDetails": {
+        "values": {
+          "foreignInflowGbp": 30000000,
+          "forwardBidRate": 1.5736,
+          "lockedCashRealizedUsd": 47208000
+        },
+        "units": "$ and £",
+        "contractSize": "£30,000,000",
+        "context": "Hull Example 1.1 ExportCo currency forward hedge realizing $47,208,000"
+      },
+      "tags": [
+        "hedging",
+        "exporter",
+        "forward_inflow"
+      ]
+    },
+    {
+      "id": "fact-forward-payoff-formulas",
+      "category": "formula",
+      "topic": "Forward Contract Payoff Formulas",
+      "statement": "At maturity T, the gross terminal payoff for a long forward contract with delivery price K and spot price S_T is S_T - K. Conversely, the gross terminal payoff for a short forward contract is K - S_T. Unlike options, forward contracts have zero upfront cost or premium.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.4 Forward Contracts",
+        "page": 6,
+        "excerpt": "The payoff from a long position in a forward contract on one unit of an asset is S_T - K, where K is the delivery price and S_T is the spot price of the asset at maturity. Similarly, the payoff from a short position is K - S_T.",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Forward Contract Terminal Payoffs",
+        "latex": "\\text{Payoff}_{\\text{long}} = S_T - K, \\quad \\text{Payoff}_{\\text{short}} = K - S_T",
+        "variables": [
+          {
+            "symbol": "S_T",
+            "definition": "Spot price of the underlying asset at delivery date T",
+            "unit": "Currency ($/₹)"
+          },
+          {
+            "symbol": "K",
+            "definition": "Delivery price agreed upon in the forward contract",
+            "unit": "Currency ($/₹)"
+          },
+          {
+            "symbol": "Payoff",
+            "definition": "Terminal financial gain or loss upon mandatory delivery",
+            "unit": "Currency ($/₹)"
+          }
+        ],
+        "assumptions": [
+          "Zero initial premium paid or received",
+          "Symmetric linear obligation on both parties"
+        ]
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "Payoff = S_T - K",
+        "formulaProfit": "Profit = Payoff - 0 = S_T - K (Zero upfront premium for forward contracts)",
+        "premiumConsidered": false,
+        "explanation": "Because a forward contract costs zero to enter initially (zero premium), the terminal payoff is identical to net economic profit before financing costs."
+      },
+      "tags": [
+        "payoff",
+        "long_short",
+        "terminal_value"
+      ]
+    },
+    {
+      "id": "fact-cbot-historical-origins",
+      "category": "case_study",
+      "topic": "Agricultural Origins of Futures at CBOT",
+      "statement": "Futures markets originated in 1848 with the founding of the Chicago Board of Trade (CBOT) to standardize grain quality and quantity (e.g. 5,000 bushels per contract), resolving the dilemma between farmers (facing catastrophic harvest price collapse during September bumper crops) and grain merchants (facing devastating price spikes during crop failures).",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.2 History of Futures Markets",
+        "page": 2,
+        "excerpt": "The Chicago Board of Trade (CBOT) was established in 1848 to bring farmers and merchants together. Initially, its main task was to standardize the quantities and qualities of the grains that were traded. Standard grain contracts were established at 5,000 bushels.",
         "provenance": "notebooklm_query"
       },
       "numericalDetails": {
         "values": {
-          "bushelsPerContract": 5000,
-          "priceCentsPerBushel": 400,
-          "priceDollarsPerBushel": 4,
-          "contractValueUSD": 20000
+          "cbotFoundingYear": 1848,
+          "standardGrainContractBushels": 5000
         },
-        "units": "$",
-        "context": "CME Corn futures contract specifications and origin illustration"
+        "units": "bushels and calendar years",
+        "contractSize": "5,000 bushels per grain futures contract",
+        "context": "CBOT standardization of agricultural grain contracts to mitigate harvest price risk"
       },
-      "tags": []
+      "tags": [
+        "cbot",
+        "history",
+        "agriculture",
+        "farmer_dilemma"
+      ]
+    },
+    {
+      "id": "fact-lehman-collapse-31-leverage",
+      "category": "case_study",
+      "topic": "Lehman Brothers Bankruptcy and 31:1 Leverage",
+      "statement": "In Business Snapshot 1.1, Lehman Brothers collapsed on September 15, 2008 in the largest bankruptcy filing in U.S. history. Unregulated by commercial bank capital adequacy rules, Lehman operated at an extreme leverage ratio of 31:1 in 2007, meaning a minimal asset decline of just 3% to 4% was sufficient to completely wipe out all corporate equity capital.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "Business Snapshot 1.1",
+        "page": 7,
+        "excerpt": "On September 15, 2008, Lehman Brothers filed for bankruptcy protection. It was the largest bankruptcy in U.S. history... In 2007, its leverage ratio was 31:1. This means that only a 3% to 4% decline in the value of its assets was needed to wipe out its equity.",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "leverageRatio": 31,
+          "equityWipingLossPercentage": 3.23,
+          "bankruptcyYear": 2008
+        },
+        "units": "leverage ratio and percentage (%)",
+        "context": "Lehman Brothers 31:1 leverage ratio before bankruptcy where a 3-4% asset loss wiped out all equity"
+      },
+      "tags": [
+        "lehman",
+        "leverage",
+        "bankruptcy",
+        "risk_governance"
+      ]
+    },
+    {
+      "id": "fact-lehman-otc-derivatives-web",
+      "category": "claim",
+      "topic": "Lehman OTC Counterparty Web and Rehypothecation",
+      "statement": "At its failure, Lehman Brothers held more than 1,000,000 outstanding OTC derivative contracts across approximately 8,000 counterparties. Because client collateral posted with Lehman had been re-hypothecated (reused to finance Lehman's proprietary positions), counterparties suffered severe delays and legal entanglement lasting years.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "Business Snapshot 1.1",
+        "page": 7,
+        "excerpt": "Lehman was an active participant in the OTC derivatives market with over one million outstanding contracts involving about 8,000 counterparties. The bankruptcy led to huge legal costs and protracted disputes over collateral rehypothecation.",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "outstandingContracts": 1000000,
+          "counterpartiesCount": 8000
+        },
+        "units": "contracts and institutional counterparties",
+        "context": "Lehman Brothers OTC derivatives exposure at time of default"
+      },
+      "tags": [
+        "lehman",
+        "otc_web",
+        "rehypothecation",
+        "counterparty_risk"
+      ]
+    },
+    {
+      "id": "fact-systemic-risk-ripple-effect",
+      "category": "definition",
+      "topic": "Systemic Risk Mechanism",
+      "statement": "Systemic risk is the risk that a default by a single major financial institution will trigger a cascading ripple effect of counterparty defaults across the interconnected financial network (Bank A defaults -> Bank B suffers severe losses and defaults -> Bank C collapses), threatening the integrity of the entire global financial system.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "Business Snapshot 1.2",
+        "page": 8,
+        "excerpt": "Systemic risk is the risk that the failure of one financial institution will lead to a cascading failure of other financial institutions... The failure of Bank A causes large losses for Bank B, which in turn causes Bank B to fail, impacting Bank C.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "systemic_risk",
+        "cascade",
+        "ripple_effect"
+      ]
+    },
+    {
+      "id": "fact-post-2008-ccp-reforms",
+      "category": "market_rule",
+      "topic": "Post-2008 Central Clearing and SEF Regulations",
+      "statement": "To prevent systemic cascades, post-2008 international regulations mandated three core structural reforms for OTC derivatives: mandatory trading on Swap Execution Facilities (SEFs), mandatory clearing through Central Counterparties (CCPs) that novate trades to become buyer to every seller and seller to every buyer, and mandatory recording in Trade Repositories.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "Business Snapshot 1.2",
+        "page": 8,
+        "excerpt": "Post-crisis regulations introduced three major changes: 1. Standardized OTC derivatives must be traded on Swap Execution Facilities (SEFs). 2. Standardized OTC derivatives must be cleared through Central Counterparties (CCPs). 3. All trades must be reported to Trade Repositories.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "ccp",
+        "sefs",
+        "trade_repositories",
+        "novation"
+      ]
+    },
+    {
+      "id": "fact-global-derivatives-market-size",
+      "category": "numerical_example",
+      "topic": "Size Comparison: OTC vs Exchange-Traded Derivatives",
+      "statement": "As of December 2014, the Bank for International Settlements (BIS) estimated total notional principal outstanding in the OTC derivatives market at approximately $630 trillion, compared to $65 trillion for exchange-traded derivatives, while the gross market value of OTC contracts was approximately $21 trillion.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 1: Introduction",
+        "section": "1.3 Over-the-Counter Markets",
+        "page": 5,
+        "excerpt": "In December 2014, the total notional principal for OTC derivatives was estimated at $630 trillion, compared to $65 trillion for exchange-traded contracts. The gross market value was about $21 trillion.",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "otcNotionalPrincipalTrillions": 630,
+          "exchangeTradedNotionalTrillions": 65,
+          "otcGrossMarketValueTrillions": 21
+        },
+        "units": "trillion USD ($)",
+        "context": "BIS December 2014 global derivatives market size survey"
+      },
+      "tags": [
+        "market_size",
+        "otc_vs_exchange",
+        "bis_data"
+      ]
     }
-  ],
-  "generalAssumptions": [
-    "In institutional foreign exchange interbank markets, market makers quote two-sided Bid and Offer prices where clients buy foreign currency at the higher Offer rate and sell foreign currency at the lower Bid rate.",
-    "Exchange-traded futures utilize exchange clearing houses that interpose themselves as counterparties and enforce daily mark-to-market margining, effectively eliminating bilateral counterparty default risk.",
-    "Terminal payoff formulas (S_T - K for long, K - S_T for short) evaluate contract value at maturity assuming zero upfront premium payment.",
-    "High balance-sheet leverage paired with short-term wholesale debt funding renders financial institutions highly vulnerable to liquidity freezes when asset collateral confidence declines.",
-    "Most futures market participants do not take physical delivery of commodities; instead, they close out positions prior to maturity through offsetting trades."
   ]
 }

@@ -1,101 +1,123 @@
 {
   "schemaVersion": "1.0.0",
   "chapterSlug": "ch01_part1",
-  "title": "Introduction to Derivatives, Hedging, and Systemic Risk",
+  "title": "Introduction to Derivatives: Futures, Forwards, and Systemic Risk",
   "targetAudiencePersona": "Retail Trader & Student",
   "prerequisites": [
     "Basic understanding of financial markets and currencies",
-    "Familiarity with bid/offer spreads and basic exchange rates"
+    "Familiarity with bid/offer exchange rates"
   ],
   "learningOutcomes": [
-    "Distinguish between standardized exchange-traded futures contracts and bilateral over-the-counter forward contracts.",
-    "Calculate locked-in domestic cash flows for foreign currency inflows and outflows using forward bid and offer rates.",
-    "Explain the mechanics of extreme leverage and systemic risk leading to institutional collapse, citing historical precedent.",
-    "Identify post-crisis regulatory mandates including CCP clearing, SEF execution, and trade repository reporting."
+    "Distinguish standardized exchange-traded futures from customized bilateral OTC forward contracts.",
+    "Calculate cash flows for hedging foreign currency inflows and outflows using bank bid/offer forward quotes.",
+    "Evaluate the terminal payoff profiles for long and short forward positions: S_T - K and K - S_T.",
+    "Analyze how extreme leverage (e.g., Lehman's 31:1 ratio) transforms bilateral OTC networks into systemic contagion.",
+    "Explain post-2008 regulatory mandates including Central Counterparty (CCP) clearing and trade repository reporting."
   ],
   "sections": [
     {
       "sectionIndex": 0,
-      "title": "Foundations: Futures vs. Forward Contracts",
-      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "title": "Contract Architecture: Exchange Futures vs. OTC Forwards",
+      "pedagogicalObjective": "Contrast standardized exchange-traded instruments against customized over-the-counter agreements.",
       "groundedFactIds": [
-        "fact-01",
-        "fact-02"
+        "fact-futures-def",
+        "fact-forward-def",
+        "fact-cbot-historical-origins",
+        "fact-otc-market-structure"
       ],
       "keyPoints": [
-        "Core principle analysis."
+        "Futures trade on organized exchanges with standardized contract sizes and delivery dates.",
+        "Forwards are private bilateral agreements traded in OTC markets with custom terms.",
+        "Futures eliminate credit risk through central clearinghouse novation; forwards carry direct default risk."
       ]
     },
     {
       "sectionIndex": 1,
-      "title": "Corporate Hedging Mechanics with Bid and Offer Rates",
-      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "title": "Corporate Hedging Mechanics & Bank FX Quotes",
+      "pedagogicalObjective": "Apply bank bid and offer quotes to lock in future domestic currency cash flows.",
       "groundedFactIds": [
-        "fact-03",
-        "fact-04"
+        "fact-bank-fx-quotes",
+        "fact-importco-hedging-example",
+        "fact-exportco-hedging-example",
+        "fact-spot-vs-forward-pricing"
       ],
       "keyPoints": [
-        "Core principle analysis."
-      ]
+        "Corporate hedgers eliminate foreign exchange uncertainty by locking in forward rates.",
+        "Importers buying foreign currency pay the bank offer rate.",
+        "Exporters selling foreign currency receive the bank bid rate."
+      ],
+      "numericalApplication": "ImportCo locks in £10,000,000 at 1.6005 offer to pay exactly $16,005,000 in 90 days."
     },
     {
       "sectionIndex": 2,
-      "title": "Leverage, Capital Fragility, and Systemic Contagion",
-      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "title": "Payoff Profiles & Terminal Mathematical Symmetry",
+      "pedagogicalObjective": "Derive and evaluate long and short terminal payoff formulas for forward contracts.",
       "groundedFactIds": [
-        "fact-05",
-        "fact-07"
+        "fact-long-short-positions",
+        "fact-forward-payoff-formulas"
       ],
       "keyPoints": [
-        "Core principle analysis."
-      ]
+        "Long forward payoff is linear: Payoff = S_T - K.",
+        "Short forward payoff is the exact mirror: Payoff = K - S_T.",
+        "Forward contracts have zero initial cost, making payoff identical to profit."
+      ],
+      "formulaUsed": "Payoff_long = S_T - K, Payoff_short = K - S_T"
     },
     {
       "sectionIndex": 3,
-      "title": "Market Scale and Post-2008 Regulatory Architecture",
-      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "title": "Leverage, Capital Fragility, and Systemic Contagion",
+      "pedagogicalObjective": "Examine how uncollateralized derivative exposures and extreme leverage cause institutional collapse.",
       "groundedFactIds": [
-        "fact-06",
-        "fact-08"
+        "fact-lehman-collapse-31-leverage",
+        "fact-lehman-otc-derivatives-web",
+        "fact-systemic-risk-ripple-effect"
       ],
       "keyPoints": [
-        "Core principle analysis."
+        "Lehman Brothers operated at 31:1 leverage, leaving less than a 3.3% equity cushion.",
+        "Lehman held over 900,000 derivative transactions with thousands of counterparties.",
+        "Bilateral interconnectedness created ripple effects and gridlock throughout the financial system."
+      ]
+    },
+    {
+      "sectionIndex": 4,
+      "title": "Market Scale & Post-2008 Regulatory Architecture",
+      "pedagogicalObjective": "Synthesize the post-2008 Dodd-Frank and international reforms transforming OTC markets.",
+      "groundedFactIds": [
+        "fact-post-2008-ccp-reforms",
+        "fact-global-derivatives-market-size"
+      ],
+      "keyPoints": [
+        "The global OTC derivatives market reached $630 trillion in total notional principal.",
+        "Standardized OTC trades are now mandated to clear through Central Counterparties (CCPs).",
+        "All trades must be reported to central trade repositories for regulatory transparency."
       ]
     }
   ],
   "misconceptions": [
     {
-      "misconception": "Futures and forward contracts are identical instruments that can be traded interchangeably on public exchanges.",
-      "factId": "fact-02",
-      "authorRebuttal": "Futures are standardized contracts traded exclusively on organized exchanges, whereas forwards are non-standardized over-the-counter contracts negotiated privately between two parties."
+      "misconception": "Believing a forward contract guarantees a profit compared to future spot prices.",
+      "factId": "fact-forward-def",
+      "authorRebuttal": "The author demonstrates that hedging provides price certainty, not profit maximization. If spot drops below K, the long hedger still pays K."
     },
     {
-      "misconception": "A bank applies the same exchange rate whether a corporate client is receiving foreign income or paying foreign expenses.",
-      "factId": "fact-03",
-      "authorRebuttal": "Hedging an outflow locks in domestic payments via the forward offer rate (bank sells currency), while hedging an inflow locks in proceeds via the forward bid rate (bank buys currency)."
-    },
-    {
-      "misconception": "A firm with a high leverage ratio like 31:1 can withstand substantial asset downturns before equity is depleted.",
-      "factId": "fact-05",
-      "authorRebuttal": "At a 31:1 leverage ratio, an asset decline of just 3% to 4% is sufficient to completely wipe out the firm's entire equity capital base."
+      "misconception": "Assuming high leverage multiplies gains without impacting bankruptcy risk.",
+      "factId": "fact-lehman-collapse-31-leverage",
+      "authorRebuttal": "The author shows that 31:1 leverage means a minor 3.3% asset decline completely wipes out equity capital, triggering insolvency."
     }
   ],
   "activeRecallQuiz": {
-    "scenario": "A corporate treasury hedges an upcoming foreign receivable and payable, while an investment bank monitors leverage and regulatory clearing requirements.",
+    "scenario": "ImportCo has an account payable of £10 million due in 90 days. The bank quotes GBP/USD spot at 1.6200/1.6205 and 90-day forward at 1.6000/1.6005. To lock in dollar cash outflow, ImportCo must enter a forward contract.",
     "testedFactIds": [
-      "fact-03",
-      "fact-04",
-      "fact-05",
-      "fact-06",
-      "fact-07"
+      "fact-importco-hedging-example",
+      "fact-bank-fx-quotes"
     ],
-    "question": "What is the primary risk or consequence in this scenario?",
-    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
-    "explanation": "Detailed pedagogical explanation grounded in source principles."
+    "question": "Which forward rate does ImportCo lock in, and what is their total USD expenditure?",
+    "correctAnswer": "ImportCo buys GBP at the bank offer rate of 1.6005, fixing expenditure at exactly $16,005,000.",
+    "explanation": "When purchasing foreign currency from a market-maker bank, the client pays the offer price of 1.6005. Multiplying £10,000,000 by 1.6005 yields exactly $16,005,000 locked in cash flow."
   },
   "coreTakeaways": [
-    "Derivatives isolate and transfer price risk: futures provide standardized exchange trading while forwards provide tailored OTC agreements.",
-    "Hedging foreign currency requires matching cash outflows to the forward offer rate and cash inflows to the forward bid rate.",
-    "High leverage magnifies small asset losses into catastrophic equity destruction, requiring central clearing (CCPs) to halt systemic contagion."
+    "Futures contracts are standardized and exchange-cleared with zero credit risk, while forwards are customized bilateral OTC contracts.",
+    "Corporate hedgers eliminate currency volatility: buyers pay the bank offer price and sellers receive the bank bid price.",
+    "Excessive leverage and uncollateralized OTC bilateral exposures transform individual counterparty failure into global systemic contagion."
   ]
 }

@@ -1,0 +1,1863 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives_en",
+    "chapter": "CHAPTER 7 · PART 1",
+    "chapterTitle": "Mechanics and Valuation of Plain Vanilla Interest Rate Swaps",
+    "domain": "finance",
+    "primaryColor": "#0F766E",
+    "accentColor": "#F59E0B",
+    "narrationLanguage": "en-US"
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "The Floating Rate Debt Trap",
+      "template": "chat_story",
+      "badge": "Corporate Treasury Crisis",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "Sharma ji, our company borrowed $100 million on a floating-rate bank loan. Interest rates surged from 1% to 5%, tripling our annual interest payments!",
+          "en_subtitle": "Sharma ji, our company took a $100M floating bank loan. Rates jumped from 1% to 5%, tripling our interest bill!",
+          "en_narration": "Sharma ji, our company borrowed $100 million on a floating-rate bank loan. Interest rates surged from 1% to 5%, tripling our annual interest payments!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju panics as escalating interest costs threaten corporate solvency —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Sharma ji! Benchmark SOFR surged from 1% to 5%! Our interest expense jumped from $2M to $6M a year! We are bleeding cash!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Sharma ji! Benchmark SOFR surged from 1% to 5%! Our interest expense jumped from $2M to $6M a year! We are bleeding cash!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present real-world corporate dilemma of floating rate debt exposure",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "Do not panic Raju! You do not need to refinance your bank loan. Simply enter a plain vanilla interest rate swap to synthetically lock your floating debt into fixed debt!",
+          "en_subtitle": "Don't panic Raju! Enter a plain vanilla interest rate swap to convert your floating debt into fixed debt!",
+          "en_narration": "Do not panic Raju! You do not need to refinance your bank loan. Simply enter a plain vanilla interest rate swap to synthetically lock your floating debt into fixed debt!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji introduces the swap liability transformation solution —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Benchmark SOFR surged from 1% to 5%! Our interest expense jumped from $2M to $6M a year! We are bleeding cash!",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Enter a plain vanilla interest rate swap! Pay fixed 5.0% and receive floating SOFR. Your net borrowing is locked at 6.0%!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Benchmark SOFR surged from 1% to 5%! Our interest expense jumped from $2M to $6M a year! We are bleeding cash!",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "Enter a plain vanilla interest rate swap! Pay fixed 5.0% and receive floating SOFR. Your net borrowing is locked at 6.0%!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce synthetic liability transformation via interest rate swap",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b03",
+          "hindi_tts": "And here is the greatest advantage: you never exchange the $100 million principal! Only the net interest rate differential is transferred between parties.",
+          "en_subtitle": "Key relief: The $100M principal is never exchanged! Only the net interest differential changes hands.",
+          "en_narration": "And here is the greatest advantage: you never exchange the $100 million principal! Only the net interest rate differential is transferred between parties.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "stageDirections": [
+              "— The fundamental Notional Invariant of swaps —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Do we have to transfer the $100M principal to the swap bank?",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Never! The $100M is purely notional. Only net interest differentials change hands at settlement dates.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Do we have to transfer the $100M principal to the swap bank?",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "Never! The $100M is purely notional. Only net interest differentials change hands at settlement dates.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Emphasize notional invariant: principal is never exchanged",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Plain Vanilla Swap Cash Flow Architecture",
+      "template": "split_comparison",
+      "badge": "Hull Section 7.1",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "A plain vanilla interest rate swap connects two counterparties: a Fixed Rate Payer and a Floating Rate Payer, agreeing on a $100 million notional principal.",
+          "en_subtitle": "Plain vanilla swaps feature two parties: Fixed Rate Payer and Floating Rate Payer on $100M notional.",
+          "en_narration": "A plain vanilla interest rate swap connects two counterparties: a Fixed Rate Payer and a Floating Rate Payer, agreeing on a $100 million notional principal.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Fixed Rate Payer (Raju's Firm)",
+            "rightTitle": "Floating Rate Payer (Financial Institution)",
+            "leftItems": [
+              "Contractual Role: Pays fixed rate (e.g. 5.0% semiannual)",
+              "Receives: Floating benchmark (6-month SOFR)",
+              "Fixed Cash Outflow: $2,500,000 every 6 months",
+              "Objective: Lock in borrowing costs against rate hikes"
+            ],
+            "rightItems": [
+              "Contractual Role: Pays floating benchmark (6-month SOFR)",
+              "Receives: Contractual fixed rate (5.0% semiannual)",
+              "Floating Outflow: Varies with market benchmark each period",
+              "Objective: Asset-liability matching or rate speculation"
+            ],
+            "activeFocus": "both"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Fixed Rate Payer (Raju's Firm)",
+              "rightTitle": "Floating Rate Payer (Financial Institution)",
+              "leftItems": [
+                "Contractual Role: Pays fixed rate (e.g. 5.0% semiannual)",
+                "Receives: Floating benchmark (6-month SOFR)",
+                "Fixed Cash Outflow: $2,500,000 every 6 months",
+                "Objective: Lock in borrowing costs against rate hikes"
+              ],
+              "rightItems": [
+                "Contractual Role: Pays floating benchmark (6-month SOFR)",
+                "Receives: Contractual fixed rate (5.0% semiannual)",
+                "Floating Outflow: Varies with market benchmark each period",
+                "Objective: Asset-liability matching or rate speculation"
+              ],
+              "activeFocus": "both"
+            },
+            "semantics": {
+              "teachingObjective": "Contrast Fixed Payer and Floating Payer obligations",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b05",
+          "hindi_tts": "If six-month floating SOFR resets to 6.0%, the floating payer owes $3.0 million, while the fixed payer owes $2.5 million.",
+          "en_subtitle": "If floating SOFR is 6.0%, floating payer owes $3.0M while fixed payer owes $2.5M.",
+          "en_narration": "If six-month floating SOFR resets to 6.0%, the floating payer owes $3.0 million, while the fixed payer owes $2.5 million.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Gross Fixed Cash Flow",
+            "rightTitle": "Gross Floating Cash Flow",
+            "leftItems": [
+              "Notional Principal: $100,000,000",
+              "Fixed Swap Rate: 5.0% per annum",
+              "Payment Frequency: Semiannual (0.5 years)",
+              "Gross Fixed Obligation: $100M * 0.05 * 0.5 = $2,500,000"
+            ],
+            "rightItems": [
+              "Benchmark Rate: 6-month SOFR = 6.0%",
+              "Payment Frequency: Semiannual (0.5 years)",
+              "Gross Floating Obligation: $100M * 0.06 * 0.5 = $3,000,000",
+              "Net Difference: $3,000,000 - $2,500,000 = $500,000"
+            ],
+            "activeFocus": "right"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Gross Fixed Cash Flow",
+              "rightTitle": "Gross Floating Cash Flow",
+              "leftItems": [
+                "Notional Principal: $100,000,000",
+                "Fixed Swap Rate: 5.0% per annum",
+                "Payment Frequency: Semiannual (0.5 years)",
+                "Gross Fixed Obligation: $100M * 0.05 * 0.5 = $2,500,000"
+              ],
+              "rightItems": [
+                "Benchmark Rate: 6-month SOFR = 6.0%",
+                "Payment Frequency: Semiannual (0.5 years)",
+                "Gross Floating Obligation: $100M * 0.06 * 0.5 = $3,000,000",
+                "Net Difference: $3,000,000 - $2,500,000 = $500,000"
+              ],
+              "activeFocus": "right"
+            },
+            "semantics": {
+              "teachingObjective": "Calculate gross cash flows under 6% floating vs 5% fixed rates",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b06",
+          "hindi_tts": "Both parties do not wire gross amounts. Under institutional net settlement, the floating payer simply transfers the net difference of $500,000 to the fixed payer!",
+          "en_subtitle": "Under net settlement, the floating payer simply wires the net $500,000 difference to the fixed payer!",
+          "en_narration": "Both parties do not wire gross amounts. Under institutional net settlement, the floating payer simply transfers the net difference of $500,000 to the fixed payer!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftTitle": "Net Settlement Invariant",
+            "rightTitle": "Risk Elimination",
+            "leftItems": [
+              "Net Wire Amount: $500,000 cash transfer",
+              "Direction: Floating Payer -> Fixed Payer",
+              "Formula: Net = (R_fl - R_fix) * Notional * Delta t",
+              "Efficiency: 90% reduction in gross transaction flows"
+            ],
+            "rightItems": [
+              "Principal at Risk: Exactly $0.00",
+              "Counterparty Exposure: Only the $500k net interest flow",
+              "Payment Frequency: Standardized semiannual or quarterly",
+              "Core Rule: Netting protects both parties from liquidity shocks"
+            ],
+            "activeFocus": "left"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Net Settlement Invariant",
+              "rightTitle": "Risk Elimination",
+              "leftItems": [
+                "Net Wire Amount: $500,000 cash transfer",
+                "Direction: Floating Payer -> Fixed Payer",
+                "Formula: Net = (R_fl - R_fix) * Notional * Delta t",
+                "Efficiency: 90% reduction in gross transaction flows"
+              ],
+              "rightItems": [
+                "Principal at Risk: Exactly $0.00",
+                "Counterparty Exposure: Only the $500k net interest flow",
+                "Payment Frequency: Standardized semiannual or quarterly",
+                "Core Rule: Netting protects both parties from liquidity shocks"
+              ],
+              "activeFocus": "left"
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate net settlement mechanism and zero principal transfer",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "Synthetic Debt & Asset Transformations",
+      "template": "progressive_cards",
+      "badge": "Hull Section 7.2",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "The most powerful corporate application of swaps is synthetic transformation: reshaping debt and asset cash flows without costly balance sheet restructuring!",
+          "en_subtitle": "The greatest power of swaps: Transforming the nature of debt and assets synthetically without refinancing!",
+          "en_narration": "The most powerful corporate application of swaps is synthetic transformation: reshaping debt and asset cash flows without costly balance sheet restructuring!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "1. Transforming Liabilities (Floating -> Fixed)",
+                "metric": "Net Cost = 6.0% Fixed",
+                "detail": "Company pays Bank (SOFR + 1.0%), enters swap paying fixed 5.0% and receiving SOFR. Net cost: 5.0% + 1.0% = 6.0% fixed.",
+                "highlight": true
+              },
+              {
+                "title": "2. Transforming Assets (Fixed -> Floating)",
+                "metric": "Net Yield = SOFR + 1.0%",
+                "detail": "Investor holds 6.0% fixed bond, enters swap paying fixed 5.0% and receiving SOFR. Net yield: SOFR + (6.0% - 5.0%) = SOFR + 1.0%.",
+                "highlight": false
+              },
+              {
+                "title": "3. Corporate Advantages",
+                "metric": "Zero Refinancing Cost",
+                "detail": "Avoids prepayment penalties, bank underwriting fees, and renegotiating bilateral loan covenants.",
+                "highlight": false
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0
+            },
+            "semantics": {
+              "teachingObjective": "Card 1: Demonstrate synthetic transformation of floating bank debt into fixed debt",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b08",
+          "hindi_tts": "Conversely, an institutional investor holding a 6% fixed bond pays 5% fixed in a swap and receives SOFR, generating a synthetic floating return of SOFR plus 1%!",
+          "en_subtitle": "Investor with 6% fixed bond pays 5% fixed and receives SOFR, generating floating SOFR + 1% return!",
+          "en_narration": "Conversely, an institutional investor holding a 6% fixed bond pays 5% fixed in a swap and receives SOFR, generating a synthetic floating return of SOFR plus 1%!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 1,
+            "cards": [
+              {
+                "title": "1. Transforming Liabilities (Floating -> Fixed)",
+                "metric": "Net Cost = 6.0% Fixed",
+                "detail": "Company pays Bank (SOFR + 1.0%), enters swap paying fixed 5.0% and receiving SOFR. Net cost: 5.0% + 1.0% = 6.0% fixed.",
+                "highlight": false
+              },
+              {
+                "title": "2. Transforming Assets (Fixed -> Floating)",
+                "metric": "Net Yield = SOFR + 1.0%",
+                "detail": "Investor holds 6.0% fixed bond, enters swap paying fixed 5.0% and receiving SOFR. Net yield: SOFR + (6.0% - 5.0%) = SOFR + 1.0%.",
+                "highlight": true
+              },
+              {
+                "title": "3. Corporate Advantages",
+                "metric": "Zero Refinancing Cost",
+                "detail": "Avoids prepayment penalties, bank underwriting fees, and renegotiating bilateral loan covenants.",
+                "highlight": false
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1
+            },
+            "semantics": {
+              "teachingObjective": "Card 2: Demonstrate synthetic asset transformation into floating return",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b09",
+          "hindi_tts": "The underlying loan agreements remain completely untouched while interest rate risk is fully neutralized with zero refinancing penalties!",
+          "en_subtitle": "Underlying loans remain untouched while interest rate risk is eliminated with zero prepayment penalties!",
+          "en_narration": "The underlying loan agreements remain completely untouched while interest rate risk is fully neutralized with zero refinancing penalties!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "activeCardIndex": 2,
+            "cards": [
+              {
+                "title": "1. Transforming Liabilities (Floating -> Fixed)",
+                "metric": "Net Cost = 6.0% Fixed",
+                "detail": "Company pays Bank (SOFR + 1.0%), enters swap paying fixed 5.0% and receiving SOFR. Net cost: 5.0% + 1.0% = 6.0% fixed.",
+                "highlight": false
+              },
+              {
+                "title": "2. Transforming Assets (Fixed -> Floating)",
+                "metric": "Net Yield = SOFR + 1.0%",
+                "detail": "Investor holds 6.0% fixed bond, enters swap paying fixed 5.0% and receiving SOFR. Net yield: SOFR + (6.0% - 5.0%) = SOFR + 1.0%.",
+                "highlight": false
+              },
+              {
+                "title": "3. Corporate Advantages",
+                "metric": "Zero Refinancing Cost",
+                "detail": "Avoids prepayment penalties, bank underwriting fees, and renegotiating bilateral loan covenants.",
+                "highlight": true
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Card 3: Highlight corporate treasury efficiencies of synthetic overlays",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Swap Bank Intermediaries & Bid-Ask Spreads",
+      "template": "formula_breakdown",
+      "badge": "Hull Section 7.3",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "Corporations rarely trade swaps directly with each other. Financial institutions act as market-making swap banks standing between fixed and floating payers.",
+          "en_subtitle": "Companies do not trade directly with each other. Swap banks act as market makers between counterparties.",
+          "en_narration": "Corporations rarely trade swaps directly with each other. Financial institutions act as market-making swap banks standing between fixed and floating payers.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "\\text{Profit} = (R_{\\text{ask}} - R_{\\text{bid}}) \\cdot L",
+            "highlightTokens": [
+              "\\text{Profit}",
+              "L"
+            ],
+            "stepIndex": 0,
+            "steps": [
+              {
+                "step": "Two-Way Quotation",
+                "description": "Bank quotes 4.98% bid to pay fixed vs 5.02% ask to receive fixed against SOFR."
+              },
+              {
+                "step": "Matched Book Isolation",
+                "description": "Bank enters offsetting swaps with two corporate clients, eliminating directional rate risk."
+              },
+              {
+                "step": "Riskless Spread Capture",
+                "description": "Bank captures 4 basis points: 0.04% on $100M notional = $40,000 cash profit annually."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "\\text{Profit} = (R_{\\text{ask}} - R_{\\text{bid}}) \\cdot L",
+              "stepIndex": 0
+            },
+            "semantics": {
+              "teachingObjective": "Present swap bank matched book spread formula Profit = (Ask - Bid) * Notional",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b11",
+          "hindi_tts": "The swap bank quotes a two-way market: 4.98% bid versus 5.02% ask against floating SOFR, locking in a four basis point spread.",
+          "en_subtitle": "Bank quotes 4.98% bid vs 5.02% ask: A 4 basis point spread against floating SOFR.",
+          "en_narration": "The swap bank quotes a two-way market: 4.98% bid versus 5.02% ask against floating SOFR, locking in a four basis point spread.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "\\text{Profit} = (R_{\\text{ask}} - R_{\\text{bid}}) \\cdot L",
+            "highlightTokens": [
+              "R_{\\text{ask}} - R_{\\text{bid}}"
+            ],
+            "stepIndex": 1,
+            "steps": [
+              {
+                "step": "Two-Way Quotation",
+                "description": "Bank quotes 4.98% bid to pay fixed vs 5.02% ask to receive fixed against SOFR."
+              },
+              {
+                "step": "Matched Book Isolation",
+                "description": "Bank enters offsetting swaps with two corporate clients, eliminating directional rate risk."
+              },
+              {
+                "step": "Riskless Spread Capture",
+                "description": "Bank captures 4 basis points: 0.04% on $100M notional = $40,000 cash profit annually."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "\\text{Profit} = (R_{\\text{ask}} - R_{\\text{bid}}) \\cdot L",
+              "stepIndex": 1
+            },
+            "semantics": {
+              "teachingObjective": "Deconstruct 4 bps bid-ask spread on matched book",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "On a matched $100 million portfolio, the bank earns a completely risk-free $40,000 annual profit from this four basis point spread!",
+          "en_subtitle": "On a matched $100M book, the bank earns $40,000 risk-free annually from the 4 bps spread!",
+          "en_narration": "On a matched $100 million portfolio, the bank earns a completely risk-free $40,000 annual profit from this four basis point spread!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "expression": "\\text{Profit} = (R_{\\text{ask}} - R_{\\text{bid}}) \\cdot L",
+            "highlightTokens": [
+              "\\text{Profit}"
+            ],
+            "stepIndex": 2,
+            "steps": [
+              {
+                "step": "Two-Way Quotation",
+                "description": "Bank quotes 4.98% bid to pay fixed vs 5.02% ask to receive fixed against SOFR."
+              },
+              {
+                "step": "Matched Book Isolation",
+                "description": "Bank enters offsetting swaps with two corporate clients, eliminating directional rate risk."
+              },
+              {
+                "step": "Riskless Spread Capture",
+                "description": "Bank captures 4 basis points: 0.04% on $100M notional = $40,000 cash profit annually."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "\\text{Profit} = (R_{\\text{ask}} - R_{\\text{bid}}) \\cdot L",
+              "stepIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Show numerical calculation of $40,000 annual profit on $100M matched book",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "The Comparative Advantage Argument",
+      "template": "formula_breakdown",
+      "badge": "Hull Section 7.4",
+      "beats": [
+        {
+          "id": "b13",
+          "hindi_tts": "Why do counterparties enter swaps? John Hull's famous comparative advantage argument in Section 7.4 unlocks the secret of mutual borrowing arbitrage.",
+          "en_subtitle": "Why do companies benefit from swaps? John Hull Section 7.4 reveals the comparative advantage argument.",
+          "en_narration": "Why do counterparties enter swaps? John Hull's famous comparative advantage argument in Section 7.4 unlocks the secret of mutual borrowing arbitrage.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "\\text{Surplus} = \\Delta \\text{Fixed} - \\Delta \\text{Floating}",
+            "highlightTokens": [
+              "\\text{Surplus}"
+            ],
+            "stepIndex": 0,
+            "steps": [
+              {
+                "step": "Borrowing Rate Disparity",
+                "description": "AAA Firm A borrows at 10.0% fixed or SOFR+0.3%; BBB Firm B borrows at 11.2% fixed or SOFR+1.0%."
+              },
+              {
+                "step": "Quality Spread Differentials",
+                "description": "Fixed spread diff = 11.2% - 10.0% = 1.20% (120 bps); Floating spread diff = 1.0% - 0.3% = 0.70% (70 bps)."
+              },
+              {
+                "step": "Net Arbitrage Surplus",
+                "description": "Surplus = 120 bps - 70 bps = 50 bps (0.50%) total savings to be shared."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "\\text{Surplus} = \\Delta \\text{Fixed} - \\Delta \\text{Floating}",
+              "stepIndex": 0
+            },
+            "semantics": {
+              "teachingObjective": "Present comparative advantage surplus formula Surplus = Delta Fixed - Delta Floating",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b14",
+          "hindi_tts": "AAA-rated Firm A borrows fixed at 10.0% and floating at SOFR plus 0.3%. BBB-rated Firm B borrows fixed at 11.2% and floating at SOFR plus 1.0%.",
+          "en_subtitle": "AAA Firm A borrows fixed 10.0% / SOFR+0.3%. BBB Firm B borrows fixed 11.2% / SOFR+1.0%.",
+          "en_narration": "AAA-rated Firm A borrows fixed at 10.0% and floating at SOFR plus 0.3%. BBB-rated Firm B borrows fixed at 11.2% and floating at SOFR plus 1.0%.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "\\text{Surplus} = \\Delta \\text{Fixed} - \\Delta \\text{Floating}",
+            "highlightTokens": [
+              "\\Delta \\text{Fixed}",
+              "\\Delta \\text{Floating}"
+            ],
+            "stepIndex": 1,
+            "steps": [
+              {
+                "step": "Borrowing Rate Disparity",
+                "description": "AAA Firm A borrows at 10.0% fixed or SOFR+0.3%; BBB Firm B borrows at 11.2% fixed or SOFR+1.0%."
+              },
+              {
+                "step": "Quality Spread Differentials",
+                "description": "Fixed spread diff = 11.2% - 10.0% = 1.20% (120 bps); Floating spread diff = 1.0% - 0.3% = 0.70% (70 bps)."
+              },
+              {
+                "step": "Net Arbitrage Surplus",
+                "description": "Surplus = 120 bps - 70 bps = 50 bps (0.50%) total savings to be shared."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "\\text{Surplus} = \\Delta \\text{Fixed} - \\Delta \\text{Floating}",
+              "stepIndex": 1
+            },
+            "semantics": {
+              "teachingObjective": "Compare fixed spread differential (120 bps) against floating spread differential (70 bps)",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b15",
+          "hindi_tts": "The fixed market spread differential is 1.2%, while the floating spread differential is only 0.7%. Subtracting yields exactly 50 basis points of total arbitrage surplus!",
+          "en_subtitle": "Fixed spread diff is 1.2%; floating is 0.7%. Total arbitrage surplus is exactly 50 basis points!",
+          "en_narration": "The fixed market spread differential is 1.2%, while the floating spread differential is only 0.7%. Subtracting yields exactly 50 basis points of total arbitrage surplus!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "expression": "\\text{Surplus} = \\Delta \\text{Fixed} - \\Delta \\text{Floating}",
+            "highlightTokens": [
+              "\\text{Surplus}"
+            ],
+            "stepIndex": 2,
+            "steps": [
+              {
+                "step": "Borrowing Rate Disparity",
+                "description": "AAA Firm A borrows at 10.0% fixed or SOFR+0.3%; BBB Firm B borrows at 11.2% fixed or SOFR+1.0%."
+              },
+              {
+                "step": "Quality Spread Differentials",
+                "description": "Fixed spread diff = 11.2% - 10.0% = 1.20% (120 bps); Floating spread diff = 1.0% - 0.3% = 0.70% (70 bps)."
+              },
+              {
+                "step": "Net Arbitrage Surplus",
+                "description": "Surplus = 120 bps - 70 bps = 50 bps (0.50%) total savings to be shared."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "\\text{Surplus} = \\Delta \\text{Fixed} - \\Delta \\text{Floating}",
+              "stepIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Derive 50 basis points total net arbitrage surplus",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Splitting the 50 bps Arbitrage Surplus",
+      "template": "split_comparison",
+      "badge": "Hull Section 7.4",
+      "beats": [
+        {
+          "id": "b16",
+          "hindi_tts": "This 50 basis point surplus is distributed equitably: 20 basis points of savings to Firm A, 20 basis points of savings to Firm B, and 10 basis points captured by the intermediary bank!",
+          "en_subtitle": "The 50 bps surplus is split: 20 bps saving to Firm A, 20 bps saving to Firm B, and 10 bps to the bank!",
+          "en_narration": "This 50 basis point surplus is distributed equitably: 20 basis points of savings to Firm A, 20 basis points of savings to Firm B, and 10 basis points captured by the intermediary bank!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Firm A (Wants Floating)",
+            "rightTitle": "Firm B (Wants Fixed)",
+            "leftItems": [
+              "Direct Borrowing: SOFR + 0.30%",
+              "Swap Action: Borrows fixed 10.0%, pays SOFR to bank, receives 9.90%",
+              "Net Cost: SOFR + (10.0% - 9.90%) = SOFR + 0.10%",
+              "Net Savings: 0.30% - 0.10% = 0.20% (20 bps saving!)"
+            ],
+            "rightItems": [
+              "Direct Borrowing: 11.20% Fixed",
+              "Swap Action: Borrows floating SOFR+1.0%, pays 10.0% to bank, receives SOFR",
+              "Net Cost: 10.0% + 1.0% = 11.00% fixed",
+              "Net Savings: 11.20% - 11.00% = 0.20% (20 bps saving!)"
+            ],
+            "activeFocus": "both"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Firm A (Wants Floating)",
+              "rightTitle": "Firm B (Wants Fixed)",
+              "leftItems": [
+                "Direct Borrowing: SOFR + 0.30%",
+                "Swap Action: Borrows fixed 10.0%, pays SOFR to bank, receives 9.90%",
+                "Net Cost: SOFR + (10.0% - 9.90%) = SOFR + 0.10%",
+                "Net Savings: 0.30% - 0.10% = 0.20% (20 bps saving!)"
+              ],
+              "rightItems": [
+                "Direct Borrowing: 11.20% Fixed",
+                "Swap Action: Borrows floating SOFR+1.0%, pays 10.0% to bank, receives SOFR",
+                "Net Cost: 10.0% + 1.0% = 11.00% fixed",
+                "Net Savings: 11.20% - 11.00% = 0.20% (20 bps saving!)"
+              ],
+              "activeFocus": "both"
+            },
+            "semantics": {
+              "teachingObjective": "Show how Firm A and Firm B each save 20 bps through the swap",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b17",
+          "hindi_tts": "Firm A borrows fixed at 10.0%, pays floating SOFR to the bank, and receives 9.90% fixed. Its net borrowing is SOFR plus 0.10%—saving 20 basis points!",
+          "en_subtitle": "Firm A borrows fixed 10%, swaps to pay SOFR and get 9.90%: Net cost is SOFR+0.10%, saving 20 bps!",
+          "en_narration": "Firm A borrows fixed at 10.0%, pays floating SOFR to the bank, and receives 9.90% fixed. Its net borrowing is SOFR plus 0.10%—saving 20 basis points!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Firm A Borrowing Transformation",
+            "rightTitle": "Intermediary Bank Role",
+            "leftItems": [
+              "Borrows Fixed from Bond Market: -10.00%",
+              "Receives Fixed from Bank Swap: +9.90%",
+              "Pays Floating to Bank Swap: -SOFR",
+              "Net Borrowing Cost: -(SOFR + 0.10%)"
+            ],
+            "rightItems": [
+              "Receives Fixed from Firm B: +10.00%",
+              "Pays Fixed to Firm A: -9.90%",
+              "Net Fixed Spread Margin: +0.10% (10 bps)",
+              "Floating Cash Flows: Perfectly Matched (SOFR in, SOFR out)"
+            ],
+            "activeFocus": "left"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Firm A Borrowing Transformation",
+              "rightTitle": "Intermediary Bank Role",
+              "leftItems": [
+                "Borrows Fixed from Bond Market: -10.00%",
+                "Receives Fixed from Bank Swap: +9.90%",
+                "Pays Floating to Bank Swap: -SOFR",
+                "Net Borrowing Cost: -(SOFR + 0.10%)"
+              ],
+              "rightItems": [
+                "Receives Fixed from Firm B: +10.00%",
+                "Pays Fixed to Firm A: -9.90%",
+                "Net Fixed Spread Margin: +0.10% (10 bps)",
+                "Floating Cash Flows: Perfectly Matched (SOFR in, SOFR out)"
+              ],
+              "activeFocus": "left"
+            },
+            "semantics": {
+              "teachingObjective": "Trace exact cash flows for Firm A and the intermediary bank",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "Firm B borrows floating, pays 10.0% fixed in the swap, and receives SOFR. Its net cost is 11.0% fixed—20 basis points below the 11.2% direct rate! A true win-win arbitrage!",
+          "en_subtitle": "Firm B borrows floating, pays 10% fixed: Net cost is 11.0% fixed, saving 20 bps! A win-win arbitrage!",
+          "en_narration": "Firm B borrows floating, pays 10.0% fixed in the swap, and receives SOFR. Its net cost is 11.0% fixed—20 basis points below the 11.2% direct rate! A true win-win arbitrage!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftTitle": "Firm B Transformation",
+            "rightTitle": "Total Surplus Reconciliation",
+            "leftItems": [
+              "Borrows Floating from Bank: -(SOFR + 1.00%)",
+              "Pays Fixed to Swap Bank: -10.00%",
+              "Receives Floating from Swap: +SOFR",
+              "Net Borrowing Cost: -11.00% Fixed (Saves 20 bps!)"
+            ],
+            "rightItems": [
+              "Firm A Benefit: +20 bps savings",
+              "Firm B Benefit: +20 bps savings",
+              "Intermediary Bank Profit: +10 bps margin",
+              "Total Surplus Verified: 20 + 20 + 10 = 50 bps"
+            ],
+            "activeFocus": "right"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Firm B Transformation",
+              "rightTitle": "Total Surplus Reconciliation",
+              "leftItems": [
+                "Borrows Floating from Bank: -(SOFR + 1.00%)",
+                "Pays Fixed to Swap Bank: -10.00%",
+                "Receives Floating from Swap: +SOFR",
+                "Net Borrowing Cost: -11.00% Fixed (Saves 20 bps!)"
+              ],
+              "rightItems": [
+                "Firm A Benefit: +20 bps savings",
+                "Firm B Benefit: +20 bps savings",
+                "Intermediary Bank Profit: +10 bps margin",
+                "Total Surplus Verified: 20 + 20 + 10 = 50 bps"
+              ],
+              "activeFocus": "right"
+            },
+            "semantics": {
+              "teachingObjective": "Reconcile total 50 bps surplus across all three participants",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "Valuation via Forward Rates & OIS",
+      "template": "formula_breakdown",
+      "badge": "Hull Section 7.7",
+      "beats": [
+        {
+          "id": "b19",
+          "hindi_tts": "At contract inception, an interest rate swap has an initial value of exactly zero. But as market interest rates shift, the swap develops positive or negative market value.",
+          "en_subtitle": "Swaps have zero value at contract inception. As interest rates move, swap value becomes positive or negative.",
+          "en_narration": "At contract inception, an interest rate swap has an initial value of exactly zero. But as market interest rates shift, the swap develops positive or negative market value.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "V_{\\text{swap}} = \\sum (F_i - K) \\cdot \\Delta t \\cdot P(0, t_i)",
+            "highlightTokens": [
+              "V_{\\text{swap}}",
+              "P(0, t_i)"
+            ],
+            "stepIndex": 0,
+            "steps": [
+              {
+                "step": "Forward Rate Projection",
+                "description": "Each future floating payment is projected using the forward rate F_i implied by zero curves."
+              },
+              {
+                "step": "Net Cash Flow Differential",
+                "description": "Subtract contractual fixed rate K from forward floating rate F_i for each payment period."
+              },
+              {
+                "step": "OIS Zero Curve Discounting",
+                "description": "Discount each net cash flow back to present value using OIS discount factor P(0, t_i)."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "V_{\\text{swap}} = \\sum (F_i - K) \\cdot \\Delta t \\cdot P(0, t_i)",
+              "stepIndex": 0
+            },
+            "semantics": {
+              "teachingObjective": "Present swap valuation formula via forward rates and OIS discount factors",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b20",
+          "hindi_tts": "Observe Hull's valuation formula: for each payment date, subtract contractual fixed rate K from forward rate F_i, and multiply by the OIS discount factor P(0, t_i).",
+          "en_subtitle": "Valuation rule: Subtract fixed rate K from forward rate F_i, multiply by OIS discount factor P(0, t_i).",
+          "en_narration": "Observe Hull's valuation formula: for each payment date, subtract contractual fixed rate K from forward rate F_i, and multiply by the OIS discount factor P(0, t_i).",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "expression": "V_{\\text{swap}} = \\sum (F_i - K) \\cdot \\Delta t \\cdot P(0, t_i)",
+            "highlightTokens": [
+              "(F_i - K) \\cdot \\Delta t"
+            ],
+            "stepIndex": 1,
+            "steps": [
+              {
+                "step": "Forward Rate Projection",
+                "description": "Each future floating payment is projected using the forward rate F_i implied by zero curves."
+              },
+              {
+                "step": "Net Cash Flow Differential",
+                "description": "Subtract contractual fixed rate K from forward floating rate F_i for each payment period."
+              },
+              {
+                "step": "OIS Zero Curve Discounting",
+                "description": "Discount each net cash flow back to present value using OIS discount factor P(0, t_i)."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "V_{\\text{swap}} = \\sum (F_i - K) \\cdot \\Delta t \\cdot P(0, t_i)",
+              "stepIndex": 1
+            },
+            "semantics": {
+              "teachingObjective": "Deconstruct forward floating cash flow minus fixed cash flow terms",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "When market interest rates surge, the floating receiver's swap value becomes strongly positive, while the fixed receiver holds an equal and opposite negative value!",
+          "en_subtitle": "When market rates surge, the floating receiver's swap value turns positive while the fixed receiver's turns negative!",
+          "en_narration": "When market interest rates surge, the floating receiver's swap value becomes strongly positive, while the fixed receiver holds an equal and opposite negative value!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "expression": "V_{\\text{swap}} = \\sum (F_i - K) \\cdot \\Delta t \\cdot P(0, t_i)",
+            "highlightTokens": [
+              "V_{\\text{swap}}"
+            ],
+            "stepIndex": 2,
+            "steps": [
+              {
+                "step": "Forward Rate Projection",
+                "description": "Each future floating payment is projected using the forward rate F_i implied by zero curves."
+              },
+              {
+                "step": "Net Cash Flow Differential",
+                "description": "Subtract contractual fixed rate K from forward floating rate F_i for each payment period."
+              },
+              {
+                "step": "OIS Zero Curve Discounting",
+                "description": "Discount each net cash flow back to present value using OIS discount factor P(0, t_i)."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "expression": "V_{\\text{swap}} = \\sum (F_i - K) \\cdot \\Delta t \\cdot P(0, t_i)",
+              "stepIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Explain market value sensitivity to benchmark rate movements",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "Decomposition into Bond Portfolios",
+      "template": "split_comparison",
+      "badge": "Hull Section 7.6",
+      "beats": [
+        {
+          "id": "b22",
+          "hindi_tts": "An elegant alternative approach is bond portfolio decomposition: for a floating receiver, the swap equals a long floating-rate bond minus a short fixed-rate bond!",
+          "en_subtitle": "Alternative valuation: Decompose swap into bond portfolios: V_swap = Floating Bond - Fixed Bond.",
+          "en_narration": "An elegant alternative approach is bond portfolio decomposition: for a floating receiver, the swap equals a long floating-rate bond minus a short fixed-rate bond!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Long Floating-Rate Bond (B_fl)",
+            "rightTitle": "Short Fixed-Rate Bond (B_fix)",
+            "leftItems": [
+              "Cash Flow: Receives benchmark SOFR periodically",
+              "Par Reset Rule: Resets exactly to par ($100M) after payment",
+              "Value at Payment Date: B_fl = $100,000,000",
+              "Sensitivity: Zero capital duration risk at coupon dates"
+            ],
+            "rightItems": [
+              "Cash Flow: Pays contractual fixed coupon K",
+              "Valuation: Discount fixed coupons and par at OIS zero curve",
+              "Value when Rates Rise: B_fix drops below par (e.g. $98.5M)",
+              "Swap Value: V_swap = $100M - $98.5M = +$1.5M!"
+            ],
+            "activeFocus": "both"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Long Floating-Rate Bond (B_fl)",
+              "rightTitle": "Short Fixed-Rate Bond (B_fix)",
+              "leftItems": [
+                "Cash Flow: Receives benchmark SOFR periodically",
+                "Par Reset Rule: Resets exactly to par ($100M) after payment",
+                "Value at Payment Date: B_fl = $100,000,000",
+                "Sensitivity: Zero capital duration risk at coupon dates"
+              ],
+              "rightItems": [
+                "Cash Flow: Pays contractual fixed coupon K",
+                "Valuation: Discount fixed coupons and par at OIS zero curve",
+                "Value when Rates Rise: B_fix drops below par (e.g. $98.5M)",
+                "Swap Value: V_swap = $100M - $98.5M = +$1.5M!"
+              ],
+              "activeFocus": "both"
+            },
+            "semantics": {
+              "teachingObjective": "Present swap as V_swap = B_fl - B_fix",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b23",
+          "hindi_tts": "Immediately following each payment date, the floating-rate bond resets exactly to par—one hundred million dollars!",
+          "en_subtitle": "The floating-rate bond resets exactly to par ($100M) immediately after every coupon payment date.",
+          "en_narration": "Immediately following each payment date, the floating-rate bond resets exactly to par—one hundred million dollars!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "The Par Reset Invariant",
+            "rightTitle": "Fixed Bond Price Dynamics",
+            "leftItems": [
+              "Reset Principle: Coupon resets to match prevailing market yield",
+              "Price Invariant: B_fl = Notional immediately after payment",
+              "Interim Price: B_fl = (Notional + Payment) * P(0, t_1)",
+              "Significance: Eliminates complex floating forecasting"
+            ],
+            "rightItems": [
+              "Fixed Bond Coupon: Fixed at swap rate K",
+              "Price when Yields Rise: B_fix falls below $100M par",
+              "Price when Yields Fall: B_fix rises above $100M par",
+              "Net Swap Formula: V_swap = Par - B_fix"
+            ],
+            "activeFocus": "left"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "The Par Reset Invariant",
+              "rightTitle": "Fixed Bond Price Dynamics",
+              "leftItems": [
+                "Reset Principle: Coupon resets to match prevailing market yield",
+                "Price Invariant: B_fl = Notional immediately after payment",
+                "Interim Price: B_fl = (Notional + Payment) * P(0, t_1)",
+                "Significance: Eliminates complex floating forecasting"
+              ],
+              "rightItems": [
+                "Fixed Bond Coupon: Fixed at swap rate K",
+                "Price when Yields Rise: B_fix falls below $100M par",
+                "Price when Yields Fall: B_fix rises above $100M par",
+                "Net Swap Formula: V_swap = Par - B_fix"
+              ],
+              "activeFocus": "left"
+            },
+            "semantics": {
+              "teachingObjective": "Explain par reset property of floating rate bonds",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b24",
+          "hindi_tts": "When yields rise, the fixed bond price drops to $98.5 million. The floating receiver's swap value is simply $100 million minus $98.5 million—a $1.5 million profit!",
+          "en_subtitle": "If fixed bond drops to $98.5M, swap value is $100M - $98.5M = +$1.5M for the floating receiver!",
+          "en_narration": "When yields rise, the fixed bond price drops to $98.5 million. The floating receiver's swap value is simply $100 million minus $98.5 million—a $1.5 million profit!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftTitle": "Bond Portfolio Value Equation",
+            "rightTitle": "Equivalence with Forward Method",
+            "leftItems": [
+              "Floating Bond Value (B_fl): $100,000,000 (Par)",
+              "Fixed Bond Value (B_fix): $98,500,000",
+              "Net Swap Value (V_swap): $100M - $98.5M = +$1,500,000",
+              "Party: Floating Receiver / Fixed Payer"
+            ],
+            "rightItems": [
+              "Forward Rate Method Result: Exactly +$1,500,000",
+              "Bond Decomposition Result: Exactly +$1,500,000",
+              "Theoretical Invariant: Both methods yield identical values",
+              "Practical Use: Bond method is faster for trading desk marking"
+            ],
+            "activeFocus": "right"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Bond Portfolio Value Equation",
+              "rightTitle": "Equivalence with Forward Method",
+              "leftItems": [
+                "Floating Bond Value (B_fl): $100,000,000 (Par)",
+                "Fixed Bond Value (B_fix): $98,500,000",
+                "Net Swap Value (V_swap): $100M - $98.5M = +$1,500,000",
+                "Party: Floating Receiver / Fixed Payer"
+              ],
+              "rightItems": [
+                "Forward Rate Method Result: Exactly +$1,500,000",
+                "Bond Decomposition Result: Exactly +$1,500,000",
+                "Theoretical Invariant: Both methods yield identical values",
+                "Practical Use: Bond method is faster for trading desk marking"
+              ],
+              "activeFocus": "right"
+            },
+            "semantics": {
+              "teachingObjective": "Prove numerical equivalence of bond decomposition to forward rate method",
+              "sourceFactIds": [
+                "fact-06",
+                "fact-07"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "Credit Risk & Central Counterparty (CCP) Clearing",
+      "template": "progressive_cards",
+      "badge": "Hull Section 7.8",
+      "beats": [
+        {
+          "id": "b25",
+          "hindi_tts": "What happens if a swap counterparty defaults? Is the entire $100 million notional principal lost? Absolutely not!",
+          "en_subtitle": "What if a swap counterparty defaults? Is the entire $100M notional lost? Absolutely not!",
+          "en_narration": "What happens if a swap counterparty defaults? Is the entire $100 million notional principal lost? Absolutely not!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "1. Bilateral Replacement Cost",
+                "metric": "Exposure = max(0, V_swap)",
+                "detail": "Only positive swap value is at risk. Notional principal is never at risk because principal is never exchanged.",
+                "highlight": true
+              },
+              {
+                "title": "2. Central Clearing Counterparties (CCPs)",
+                "metric": "Mandatory Post-2008 Dodd-Frank",
+                "detail": "Standardized swaps clear through central clearinghouses (e.g. LCH SwapClear), insulating markets from bilateral failure.",
+                "highlight": false
+              },
+              {
+                "title": "3. Daily Variation Margin & Netting",
+                "metric": ">95% Gross Risk Compression",
+                "detail": "Multilateral netting and daily cash variation margin ensure counterparty losses are settled every single trading day.",
+                "highlight": false
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0
+            },
+            "semantics": {
+              "teachingObjective": "Card 1: Define credit exposure as replacement cost max(0, V_swap)",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b26",
+          "hindi_tts": "Credit risk is strictly limited to the replacement cost: max(0, V_swap). The notional principal is never exposed to credit default!",
+          "en_subtitle": "Credit risk is strictly replacement cost max(0, V_swap). Notional principal is never at risk!",
+          "en_narration": "Credit risk is strictly limited to the replacement cost: max(0, V_swap). The notional principal is never exposed to credit default!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 1,
+            "cards": [
+              {
+                "title": "1. Bilateral Replacement Cost",
+                "metric": "Exposure = max(0, V_swap)",
+                "detail": "Only positive swap value is at risk. Notional principal is never at risk because principal is never exchanged.",
+                "highlight": false
+              },
+              {
+                "title": "2. Central Clearing Counterparties (CCPs)",
+                "metric": "Mandatory Post-2008 Dodd-Frank",
+                "detail": "Standardized swaps clear through central clearinghouses (e.g. LCH SwapClear), insulating markets from bilateral failure.",
+                "highlight": true
+              },
+              {
+                "title": "3. Daily Variation Margin & Netting",
+                "metric": ">95% Gross Risk Compression",
+                "detail": "Multilateral netting and daily cash variation margin ensure counterparty losses are settled every single trading day.",
+                "highlight": false
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1
+            },
+            "semantics": {
+              "teachingObjective": "Card 2: Explain mandatory CCP clearing post-2008 financial crisis",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b27",
+          "hindi_tts": "Following the 2008 financial crisis, global regulations mandated central counterparty clearing for all standardized swaps, backed by daily cash variation margin!",
+          "en_subtitle": "Post-2008 reforms mandate central counterparty (CCP) clearing with daily cash variation margin!",
+          "en_narration": "Following the 2008 financial crisis, global regulations mandated central counterparty clearing for all standardized swaps, backed by daily cash variation margin!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "activeCardIndex": 2,
+            "cards": [
+              {
+                "title": "1. Bilateral Replacement Cost",
+                "metric": "Exposure = max(0, V_swap)",
+                "detail": "Only positive swap value is at risk. Notional principal is never at risk because principal is never exchanged.",
+                "highlight": false
+              },
+              {
+                "title": "2. Central Clearing Counterparties (CCPs)",
+                "metric": "Mandatory Post-2008 Dodd-Frank",
+                "detail": "Standardized swaps clear through central clearinghouses (e.g. LCH SwapClear), insulating markets from bilateral failure.",
+                "highlight": false
+              },
+              {
+                "title": "3. Daily Variation Margin & Netting",
+                "metric": ">95% Gross Risk Compression",
+                "detail": "Multilateral netting and daily cash variation margin ensure counterparty losses are settled every single trading day.",
+                "highlight": true
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 2
+            },
+            "semantics": {
+              "teachingObjective": "Card 3: Highlight multilateral netting and daily variation margin protection",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall: Comparative Advantage Surplus",
+      "template": "interactive_quiz",
+      "badge": "Knowledge Verification",
+      "beats": [
+        {
+          "id": "b28",
+          "hindi_tts": "Active recall challenge: Firm A borrows fixed at 10.0% or floating at SOFR plus 0.3%. Firm B borrows fixed at 11.2% or floating at SOFR plus 1.0%. What is the total comparative advantage arbitrage surplus?",
+          "en_subtitle": "Challenge for Raju: Firm A (10% fixed, SOFR+0.3%). Firm B (11.2% fixed, SOFR+1.0%). What is total swap surplus?",
+          "en_narration": "Active recall challenge: Firm A borrows fixed at 10.0% or floating at SOFR plus 0.3%. Firm B borrows fixed at 11.2% or floating at SOFR plus 1.0%. What is the total comparative advantage arbitrage surplus?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "question": "Firm A (AAA rated) can borrow fixed at 10.0% or floating at SOFR + 0.3%. Firm B (BBB rated) can borrow fixed at 11.2% or floating at SOFR + 1.0%. What is the total comparative advantage arbitrage surplus available?",
+            "options": [
+              "50 basis points (0.50% total surplus)",
+              "20 basis points (0.20% total surplus)",
+              "70 basis points (0.70% total surplus)",
+              "120 basis points (1.20% total surplus)"
+            ],
+            "selectedOption": null,
+            "isCorrect": null,
+            "showThinkingSpinner": false,
+            "answer": "50 basis points (0.50% total surplus)",
+            "explanation": "Total surplus equals (Fixed Spread Difference) minus (Floating Spread Difference) = (11.2% - 10.0%) - (1.0% - 0.3%) = 1.2% - 0.7% = 0.50% (50 basis points)."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "selectedOption": null,
+              "isCorrect": null,
+              "showThinkingSpinner": false
+            },
+            "semantics": {
+              "teachingObjective": "Present active recall scenario on comparative advantage arbitrage surplus",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b29",
+          "hindi_tts": "Raju calculates: fixed spread differential is 1.2%, and floating spread differential is 0.7%. Subtracting 0.7% from 1.2% yields exactly 50 basis points!",
+          "en_subtitle": "Raju calculates: Fixed diff = 1.2%, floating diff = 0.7%. Net surplus = 1.2% - 0.7% = 50 basis points!",
+          "en_narration": "Raju calculates: fixed spread differential is 1.2%, and floating spread differential is 0.7%. Subtracting 0.7% from 1.2% yields exactly 50 basis points!",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "question": "Firm A (AAA rated) can borrow fixed at 10.0% or floating at SOFR + 0.3%. Firm B (BBB rated) can borrow fixed at 11.2% or floating at SOFR + 1.0%. What is the total comparative advantage arbitrage surplus available?",
+            "options": [
+              "50 basis points (0.50% total surplus)",
+              "20 basis points (0.20% total surplus)",
+              "70 basis points (0.70% total surplus)",
+              "120 basis points (1.20% total surplus)"
+            ],
+            "selectedOption": 0,
+            "isCorrect": true,
+            "showThinkingSpinner": true,
+            "answer": "50 basis points (0.50% total surplus)",
+            "explanation": "Total surplus equals (Fixed Spread Difference) minus (Floating Spread Difference) = (11.2% - 10.0%) - (1.0% - 0.3%) = 1.2% - 0.7% = 0.50% (50 basis points)."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "selectedOption": 0,
+              "isCorrect": true,
+              "showThinkingSpinner": true
+            },
+            "semantics": {
+              "teachingObjective": "Raju calculates 50 bps surplus during thinking pause",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b30",
+          "hindi_tts": "Spot on Raju! 50 basis points is exactly correct. This surplus is shared among all counterparties, creating mutual borrowing advantages!",
+          "en_subtitle": "Spot on Raju! 50 basis points is correct. This surplus is shared to benefit all participants!",
+          "en_narration": "Spot on Raju! 50 basis points is exactly correct. This surplus is shared among all counterparties, creating mutual borrowing advantages!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "question": "Firm A (AAA rated) can borrow fixed at 10.0% or floating at SOFR + 0.3%. Firm B (BBB rated) can borrow fixed at 11.2% or floating at SOFR + 1.0%. What is the total comparative advantage arbitrage surplus available?",
+            "options": [
+              "50 basis points (0.50% total surplus)",
+              "20 basis points (0.20% total surplus)",
+              "70 basis points (0.70% total surplus)",
+              "120 basis points (1.20% total surplus)"
+            ],
+            "selectedOption": 0,
+            "isCorrect": true,
+            "showThinkingSpinner": false,
+            "answer": "50 basis points (0.50% total surplus)",
+            "explanation": "Total surplus equals (Fixed Spread Difference) minus (Floating Spread Difference) = (11.2% - 10.0%) - (1.0% - 0.3%) = 1.2% - 0.7% = 0.50% (50 basis points)."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "selectedOption": 0,
+              "isCorrect": true,
+              "showThinkingSpinner": false
+            },
+            "semantics": {
+              "teachingObjective": "Confirm correct 50 bps calculation and explain surplus sharing",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Raju Masters Plain Vanilla Swaps",
+      "template": "chat_story",
+      "badge": "Corporate Treasury Mastery",
+      "beats": [
+        {
+          "id": "b31",
+          "hindi_tts": "Sharma ji! Now I completely understand how major corporations insulate cash flows against interest rate volatility. It is pure financial engineering!",
+          "en_subtitle": "Sharma ji, now I see how global corporations survive rate shocks using swaps. Pure financial engineering!",
+          "en_narration": "Sharma ji! Now I completely understand how major corporations insulate cash flows against interest rate volatility. It is pure financial engineering!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju masters interest rate swaps and synthetic liability engineering —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Sharma ji! Interest rate swaps allow corporations to completely immunize cash flows without changing underlying loan contracts!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Sharma ji! Interest rate swaps allow corporations to completely immunize cash flows without changing underlying loan contracts!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate student mastery of interest rate swap mechanisms",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b32",
+          "hindi_tts": "Spot on Raju! And thanks to mandatory CCP clearing and variation margin, the $500 trillion swap market is one of the most resilient in global finance.",
+          "en_subtitle": "Spot on Raju! And thanks to CCP clearing, the $500T swap market is among the safest in global finance.",
+          "en_narration": "Spot on Raju! And thanks to mandatory CCP clearing and variation margin, the $500 trillion swap market is one of the most resilient in global finance.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji affirms institutional resilience and previews Part 2 —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Interest rate swaps allow corporations to completely immunize cash flows without changing underlying loan contracts!",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Spot on! And CCP central clearing ensures that bilateral defaults never trigger systemic financial contagion.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Interest rate swaps allow corporations to completely immunize cash flows without changing underlying loan contracts!",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "Spot on! And CCP central clearing ensures that bilateral defaults never trigger systemic financial contagion.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce systemic stability provided by modern CCP clearing",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b33",
+          "hindi_tts": "And now in Part 2, we advance to fixed-for-fixed Currency Swaps and the infamous Hammersmith and Fulham swap scandal!",
+          "en_subtitle": "Up next in Part 2: Fixed-for-fixed Currency Swaps and the infamous Hammersmith Swap Scandal!",
+          "en_narration": "And now in Part 2, we advance to fixed-for-fixed Currency Swaps and the infamous Hammersmith and Fulham swap scandal!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "stageDirections": [
+              "— Previewing Chapter 7 Part 2 —"
+            ],
+            "messages": [
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Up Next in Part 2: Cross-currency swaps with principal exchange, and the £600M Hammersmith municipal crisis!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "Up Next in Part 2: Cross-currency swaps with principal exchange, and the £600M Hammersmith municipal crisis!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Bridge Part 1 interest rate swaps to Part 2 currency swaps",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "Master Summary: The 8 Iron Laws of Interest Rate Swaps",
+      "template": "summary_thread",
+      "badge": "Chapter 7 Part 1 Synthesis",
+      "beats": [
+        {
+          "id": "b34",
+          "hindi_tts": "The complete chapter at a glance: plain vanilla swaps, synthetic liability transformations, comparative advantage, and CCP clearing synthesized into eight golden rules.",
+          "en_subtitle": "The complete chapter at a glance: 8 iron laws of plain vanilla swaps, transformations, and valuation.",
+          "en_narration": "The complete chapter at a glance: plain vanilla swaps, synthetic liability transformations, comparative advantage, and CCP clearing synthesized into eight golden rules.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "CHAPTER 7 · PART 1 · COMPLETE SYNTHESIS",
+            "heading": "8 Iron Laws of Interest Rate Swaps",
+            "activeStepIndex": 0,
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "steps": [
+              "1. Notional Invariant: Only net interest differentials change hands; the notional principal is never exchanged.",
+              "2. Synthetic Debt Transformation: Combining floating bank debt with a fixed-payer swap locks borrowing costs.",
+              "3. Asset Transformation: Swapping fixed bond coupons for floating benchmark returns immunizes asset portfolios.",
+              "4. Intermediary Bid-Ask Spread: Swap banks quote two-way prices, capturing riskless spreads on matched books.",
+              "5. Comparative Advantage Surplus: Quality spread differentials between fixed and floating debt unlock mutual arbitrage gains.",
+              "6. Zero Initial Value Invariant: Fixed swap rates are set so that initial net present value is exactly zero.",
+              "7. Bond Portfolio Decomposition: Swaps can be valued as a long floating bond and a short fixed bond: V_swap = B_fl - B_fix.",
+              "8. Replacement Credit Risk & CCPs: Credit risk is strictly net replacement cost, protected by mandatory CCP variation margin."
+            ],
+            "bottomTakeaway": "Plain vanilla interest rate swaps form the $500 Trillion backbone of global finance, enabling synthetic liability management and risk immunization.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                0,
+                0
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Present executive roadmap of the 8 rules of plain vanilla swaps",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06",
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b35",
+          "hindi_tts": "First and second: Only net interest differentials change hands; the notional principal is never exchanged. Combining floating bank debt with a fixed-payer swap synthetically locks fixed borrowing costs.",
+          "en_subtitle": "Rules 1 & 2: Only net interest moves; principal is never exchanged. Swaps synthetically lock fixed borrowing costs.",
+          "en_narration": "First and second: Only net interest differentials change hands; the notional principal is never exchanged. Combining floating bank debt with a fixed-payer swap synthetically locks fixed borrowing costs.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 1 & 2 · NOTIONAL INVARIANT & DEBT LOCKING",
+            "heading": "Notional Invariant & Synthetic Debt Locking",
+            "activeStepIndex": 1,
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "steps": [
+              "1. Notional Invariant: Only net interest differentials change hands; the notional principal is never exchanged.",
+              "2. Synthetic Debt Transformation: Combining floating bank debt with a fixed-payer swap locks borrowing costs.",
+              "3. Asset Transformation: Swapping fixed bond coupons for floating benchmark returns immunizes asset portfolios.",
+              "4. Intermediary Bid-Ask Spread: Swap banks quote two-way prices, capturing riskless spreads on matched books.",
+              "5. Comparative Advantage Surplus: Quality spread differentials between fixed and floating debt unlock mutual arbitrage gains.",
+              "6. Zero Initial Value Invariant: Fixed swap rates are set so that initial net present value is exactly zero.",
+              "7. Bond Portfolio Decomposition: Swaps can be valued as a long floating bond and a short fixed bond: V_swap = B_fl - B_fix.",
+              "8. Replacement Credit Risk & CCPs: Credit risk is strictly net replacement cost, protected by mandatory CCP variation margin."
+            ],
+            "bottomTakeaway": "Swaps enable corporate treasurers to eliminate interest rate risk without restructuring underlying bank loans.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                1,
+                2
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 1 and 2: Notional invariant and synthetic debt locking",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b36",
+          "hindi_tts": "Third and fourth: Swapping fixed bond coupons for floating benchmark returns immunizes asset portfolios. Swap banks quote two-way prices, capturing riskless spreads on matched books.",
+          "en_subtitle": "Rules 3 & 4: Asset transformation floats fixed yields. Swap banks capture riskless bid-ask spreads on matched books.",
+          "en_narration": "Third and fourth: Swapping fixed bond coupons for floating benchmark returns immunizes asset portfolios. Swap banks quote two-way prices, capturing riskless spreads on matched books.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 3 & 4 · ASSET TRANSFORMATION & BID-ASK MARGINS",
+            "heading": "Asset Immunization & Intermediary Margins",
+            "activeStepIndex": 3,
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "steps": [
+              "1. Notional Invariant: Only net interest differentials change hands; the notional principal is never exchanged.",
+              "2. Synthetic Debt Transformation: Combining floating bank debt with a fixed-payer swap locks borrowing costs.",
+              "3. Asset Transformation: Swapping fixed bond coupons for floating benchmark returns immunizes asset portfolios.",
+              "4. Intermediary Bid-Ask Spread: Swap banks quote two-way prices, capturing riskless spreads on matched books.",
+              "5. Comparative Advantage Surplus: Quality spread differentials between fixed and floating debt unlock mutual arbitrage gains.",
+              "6. Zero Initial Value Invariant: Fixed swap rates are set so that initial net present value is exactly zero.",
+              "7. Bond Portfolio Decomposition: Swaps can be valued as a long floating bond and a short fixed bond: V_swap = B_fl - B_fix.",
+              "8. Replacement Credit Risk & CCPs: Credit risk is strictly net replacement cost, protected by mandatory CCP variation margin."
+            ],
+            "bottomTakeaway": "Asset overlays protect fixed portfolios while financial intermediaries monetize transaction flow without market exposure.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                3,
+                4
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 3 and 4: Asset transformation and swap bank bid-ask margins",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b37",
+          "hindi_tts": "Fifth and sixth: Quality spread differentials between fixed and floating debt unlock mutual arbitrage gains. Fixed swap rates are calibrated so that initial net present value is exactly zero.",
+          "en_subtitle": "Rules 5 & 6: Quality spread differentials create arbitrage surplus. Swaps have zero value at contract inception.",
+          "en_narration": "Fifth and sixth: Quality spread differentials between fixed and floating debt unlock mutual arbitrage gains. Fixed swap rates are calibrated so that initial net present value is exactly zero.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 5 & 6 · COMPARATIVE ADVANTAGE & ZERO INITIAL NPV",
+            "heading": "Quality Spread Arbitrage & Zero Value Inception",
+            "activeStepIndex": 5,
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "steps": [
+              "1. Notional Invariant: Only net interest differentials change hands; the notional principal is never exchanged.",
+              "2. Synthetic Debt Transformation: Combining floating bank debt with a fixed-payer swap locks borrowing costs.",
+              "3. Asset Transformation: Swapping fixed bond coupons for floating benchmark returns immunizes asset portfolios.",
+              "4. Intermediary Bid-Ask Spread: Swap banks quote two-way prices, capturing riskless spreads on matched books.",
+              "5. Comparative Advantage Surplus: Quality spread differentials between fixed and floating debt unlock mutual arbitrage gains.",
+              "6. Zero Initial Value Invariant: Fixed swap rates are set so that initial net present value is exactly zero.",
+              "7. Bond Portfolio Decomposition: Swaps can be valued as a long floating bond and a short fixed bond: V_swap = B_fl - B_fix.",
+              "8. Replacement Credit Risk & CCPs: Credit risk is strictly net replacement cost, protected by mandatory CCP variation margin."
+            ],
+            "bottomTakeaway": "Differences in borrowing access create mutual surplus, while initial swap rates ensure fair equilibrium at contract inception.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                5,
+                6
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 5 and 6: Comparative advantage surplus and zero initial NPV",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b38",
+          "hindi_tts": "Seventh and eighth: Swaps can be valued as a long floating bond and a short fixed bond: V_swap equals B_fl minus B_fix. And rule eight: Credit risk is strictly net replacement cost, completely safeguarded by mandatory CCP variation margin!",
+          "en_subtitle": "Rules 7 & 8: V_swap = B_fl - B_fix. Rule 8: Credit risk is strictly replacement cost, safeguarded by daily CCP margin!",
+          "en_narration": "Seventh and eighth: Swaps can be valued as a long floating bond and a short fixed bond: V_swap equals B_fl minus B_fix. And rule eight: Credit risk is strictly net replacement cost, completely safeguarded by mandatory CCP variation margin!",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "headerBadge": "RULES 7 & 8 · BOND DECOMPOSITION & CCP REFORMS",
+            "heading": "Bond Replication & Central Counterparty Clearing",
+            "activeStepIndex": 7,
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "steps": [
+              "1. Notional Invariant: Only net interest differentials change hands; the notional principal is never exchanged.",
+              "2. Synthetic Debt Transformation: Combining floating bank debt with a fixed-payer swap locks borrowing costs.",
+              "3. Asset Transformation: Swapping fixed bond coupons for floating benchmark returns immunizes asset portfolios.",
+              "4. Intermediary Bid-Ask Spread: Swap banks quote two-way prices, capturing riskless spreads on matched books.",
+              "5. Comparative Advantage Surplus: Quality spread differentials between fixed and floating debt unlock mutual arbitrage gains.",
+              "6. Zero Initial Value Invariant: Fixed swap rates are set so that initial net present value is exactly zero.",
+              "7. Bond Portfolio Decomposition: Swaps can be valued as a long floating bond and a short fixed bond: V_swap = B_fl - B_fix.",
+              "8. Replacement Credit Risk & CCPs: Credit risk is strictly net replacement cost, protected by mandatory CCP variation margin."
+            ],
+            "bottomTakeaway": "Bond decomposition provides rapid desk marking while CCP clearing guarantees global swap market resilience.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                7,
+                8
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Strict dedicated focus on Rules 7 & 8: Bond decomposition and Rule 8 CCP credit risk",
+              "sourceFactIds": [
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b39",
+          "hindi_tts": "That is the complete interest rate swap architecture! Deep mastery of these eight iron laws establishes the foundation of modern fixed income and capital markets.",
+          "en_subtitle": "Complete master summary: Mastery of plain vanilla swaps establishes the foundation of modern capital markets.",
+          "en_narration": "That is the complete interest rate swap architecture! Deep mastery of these eight iron laws establishes the foundation of modern fixed income and capital markets.",
+          "pauseAfterMs": 600,
+          "ui_state": {
+            "headerBadge": "CHAPTER 7 · PART 1 · COMPLETE OVERVIEW",
+            "heading": "Master Plain Vanilla Swap Architecture",
+            "activeStepIndex": 0,
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "steps": [
+              "1. Notional Invariant: Only net interest differentials change hands; the notional principal is never exchanged.",
+              "2. Synthetic Debt Transformation: Combining floating bank debt with a fixed-payer swap locks borrowing costs.",
+              "3. Asset Transformation: Swapping fixed bond coupons for floating benchmark returns immunizes asset portfolios.",
+              "4. Intermediary Bid-Ask Spread: Swap banks quote two-way prices, capturing riskless spreads on matched books.",
+              "5. Comparative Advantage Surplus: Quality spread differentials between fixed and floating debt unlock mutual arbitrage gains.",
+              "6. Zero Initial Value Invariant: Fixed swap rates are set so that initial net present value is exactly zero.",
+              "7. Bond Portfolio Decomposition: Swaps can be valued as a long floating bond and a short fixed bond: V_swap = B_fl - B_fix.",
+              "8. Replacement Credit Risk & CCPs: Credit risk is strictly net replacement cost, protected by mandatory CCP variation margin."
+            ],
+            "bottomTakeaway": "Plain vanilla interest rate swaps form the $500 Trillion backbone of global finance, enabling synthetic liability management and risk immunization.",
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display complete 2-column whole-chapter reference matrix",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06",
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

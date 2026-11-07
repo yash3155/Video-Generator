@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch03_part1",
+  "title": "Short Hedges vs Long Hedges, Corporate Hedging Arguments, and Basis Risk Mechanics",
+  "targetAudiencePersona": "Finance Students & Global Derivatives Traders",
+  "prerequisites": [
+    "Futures contract definition and standardized specifications",
+    "Long vs short futures position mechanics and daily settlement"
+  ],
+  "learningOutcomes": [
+    "Determine when to implement a short hedge vs a long hedge based on commercial asset exposure",
+    "Evaluate the corporate finance debate between shareholder portfolio diversification and managerial cash-flow stabilization",
+    "Analyze Business Snapshot 3.1: How gold mining companies hedged production via central bank gold leases, and why shareholders revolted during gold rallies",
+    "Formulate basis b_t = S_t - F_t and calculate effective net prices received or paid (P_net = F_1 + b_2)",
+    "Differentiate between strengthening and weakening basis dynamics and predict their impact on hedger profitability"
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "The Basic Principles: Short Hedges vs Long Hedges",
+      "pedagogicalObjective": "Explain commercial motivations for short vs long hedges in agricultural, energy, and metals markets.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03"
+      ],
+      "keyPoints": [
+        "A short hedge locks in selling price for asset owners or future producers (farmers, oil extractors).",
+        "A long hedge locks in purchase costs for future buyers (manufacturers, electric utilities).",
+        "Hedging provides price certainty rather than guaranteeing superior financial profit."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Corporate Hedging: The Shareholder Diversification Paradox",
+      "pedagogicalObjective": "Examine whether public corporations should hedge when shareholders can diversify unsystematic risk on their own.",
+      "groundedFactIds": [
+        "fact-04",
+        "fact-05"
+      ],
+      "keyPoints": [
+        "Shareholder diversification argument: Well-diversified investors hold multi-asset portfolios and may not value costly corporate hedging.",
+        "Managerial argument: Hedging reduces bankruptcy risk, lowers financial distress costs, and preserves internal capital investment funding.",
+        "Competitive risk: If industry competitors remain unhedged during favorable price swings, hedged firms face strategic margin disadvantages."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Business Snapshot 3.1: Gold Mining Companies & The Lease Rate",
+      "pedagogicalObjective": "Unpack how bullion banks structure forward hedges using central bank gold loans, and why shareholders opposed hedging.",
+      "groundedFactIds": [
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Mining companies locked in forward sales; banks hedged by borrowing physical gold from central banks at the gold lease rate.",
+        "Banks sold borrowed gold spot and invested proceeds, returning physical metal upon mine delivery.",
+        "Shareholder revolt: When gold entered a major bull market, hedged producers capped upside, angering investors seeking gold exposure."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Basis Mechanics: Mathematical Definition and Convergence",
+      "pedagogicalObjective": "Master the exact mathematical formulation of basis (b = S - F) and contract expiration convergence.",
+      "groundedFactIds": [
+        "fact-07",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Basis is strictly defined as Spot price minus Futures price: b_t = S_t - F_t.",
+        "As delivery approaches, arbitrage forces spot and futures prices to converge, driving basis to zero (b_T = 0).",
+        "The effective realized price received or paid simplifies algebraically to P_net = F_1 + b_2."
+      ],
+      "formulaUsed": "b_t = S_t - F_t \\quad \\text{and} \\quad P_{\\text{net}} = F_1 + b_2",
+      "numericalApplication": "Corn farmer: F_1 = $4.20, S_2 = $3.80, F_2 = $3.82 -> b_2 = -$0.02, P_net = $4.18."
+    },
+    {
+      "sectionIndex": 4,
+      "title": "Strengthening vs Weakening Basis & Basis Risk Transformation",
+      "pedagogicalObjective": "Demonstrate how basis shifts affect hedger outcomes, and why basis risk is preferable to spot price risk.",
+      "groundedFactIds": [
+        "fact-08",
+        "fact-09",
+        "fact-10"
+      ],
+      "keyPoints": [
+        "Strengthening basis (b_2 > b_1): Spot price rises relative to futures; benefits short hedgers and harms long hedgers.",
+        "Weakening basis (b_2 < b_1): Spot price falls relative to futures; benefits long hedgers and harms short hedgers.",
+        "Hedging transforms unhedged spot price risk into basis risk, significantly lowering overall variance."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Hedging guarantees that a company will make more profit than staying unhedged.",
+      "factId": "fact-01",
+      "authorRebuttal": "John C. Hull emphasizes that hedging does not maximize profit—it removes uncertainty. If prices move favorably, an unhedged firm makes higher profits, whereas a hedged firm has fixed its outcome."
+    },
+    {
+      "misconception": "Shareholders always benefit when management hedges commodity price risk.",
+      "factId": "fact-04",
+      "authorRebuttal": "Hull notes that shareholders are already diversified across many stocks and often specifically invest in commodity companies to obtain pure commodity price exposure. Corporate hedging incurs fees without reducing systematic risk for diversified investors."
+    },
+    {
+      "misconception": "A futures hedge eliminates all financial risk for the enterprise.",
+      "factId": "fact-10",
+      "authorRebuttal": "Hull clarifies that a futures hedge eliminates spot price risk but substitutes basis risk (uncertainty about b_2 = S_2 - F_2). The final economic price is F_1 + b_2."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "In May, a farmer enters a short futures hedge at F_1 = $4.20/bushel for 100,000 bushels of corn. In September, the farmer sells the corn in the spot market at S_2 = $3.80/bushel and closes out the futures contract at F_2 = $3.82/bushel.",
+    "testedFactIds": [
+      "fact-07",
+      "fact-08",
+      "fact-09"
+    ],
+    "question": "What is the final basis b_2 and the effective net price received per bushel?",
+    "correctAnswer": "b_2 = -$0.02/bu, Effective Price = $4.18/bu",
+    "explanation": "The final basis is b_2 = S_2 - F_2 = $3.80 - $3.82 = -$0.02. The effective price is F_1 + b_2 = $4.20 + (-$0.02) = $4.18 (or spot price $3.80 plus futures gain $4.20 - $3.82 = $0.38)."
+  },
+  "coreTakeaways": [
+    "Short hedges protect asset owners against falling prices; long hedges protect purchasers against rising prices.",
+    "Corporate hedging stabilizes cash flows and avoids distress, but diversified shareholders often prefer unhedged exposure.",
+    "Basis equals spot minus futures (b_t = S_t - F_t) and converges toward zero at expiration.",
+    "Effective price equals F_1 + b_2; hedging transforms spot price risk into basis risk.",
+    "Strengthening basis benefits short hedgers; weakening basis benefits long hedgers."
+  ]
+}

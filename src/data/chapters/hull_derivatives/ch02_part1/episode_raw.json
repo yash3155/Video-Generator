@@ -141,7 +141,7 @@
         {
           "id": "b06",
           "hindi_tts": "अगला ऑक्शन अगले मंगलवार को था, इसलिए पूरे एक हफ्ते तक मवेशियों को खिलाने का खर्च उठाना पड़ा।",
-          "en_subtitle": "With no livestock auction until next Tuesday, the firm had to house and feed the herd for a week.",
+          "en_subtitle": "With no nearby auction until Tuesday, the firm housed and fed 80,000 pounds for a week.",
           "pauseAfterMs": 500,
           "ui_state": {
             "statValue": "7",
@@ -417,7 +417,7 @@
       "segmentIndex": 4,
       "title": "Calculating Futures Gain & Loss",
       "template": "formula_breakdown",
-      "badge": "PnL Mechanics",
+      "badge": "John C. Hull · Contract PnL Mechanics",
       "beats": [
         {
           "id": "b14",
@@ -425,28 +425,125 @@
           "en_subtitle": "Long position PnL equals Contract Size multiplied by exit futures price minus entry futures price.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "formula": "Gain/Loss (Long) = Q × (F_exit - F_entry)",
-            "terms": [
+            "title": "Long Futures Gain & Loss Mechanics",
+            "badge": "John C. Hull · Section 2.1",
+            "subtitle": "Cash Settlement for Long Futures Contracts",
+            "expression": "\\text{PnL}_{\\text{Long}} = Q \\cdot (F_t - F_0)",
+            "purpose": "Calculate cash gain or loss on an exchange-standard long futures position",
+            "variables": [
               {
                 "symbol": "Q",
-                "name": "Contract Size",
-                "meaning": "Total physical units or index multiplier (e.g., 40,000 lbs)",
-                "highlight": true
+                "label": "Contract Size",
+                "value": "40,000 lbs",
+                "unit": "lbs/contract",
+                "description": "Physical commodity quantity or index multiplier"
               },
               {
-                "symbol": "F_exit",
-                "name": "Exit Price",
-                "meaning": "Futures price at which position is closed or settled",
-                "highlight": false
+                "symbol": "F_t",
+                "label": "Exit Futures Price",
+                "value": "1.4500",
+                "unit": "USD/lb",
+                "description": "Price at which long position is closed or settled"
               },
               {
-                "symbol": "F_entry",
-                "name": "Entry Price",
-                "meaning": "Initial agreed futures transaction price",
-                "highlight": false
+                "symbol": "F_0",
+                "label": "Entry Futures Price",
+                "value": "1.4000",
+                "unit": "USD/lb",
+                "description": "Initial agreed transaction price on exchange"
               }
             ],
-            "resultNote": "For Longs: Price rise yields positive cash flow; price decline incurs cash debit"
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Initial Contract Position",
+                "equation": "F_0 = \\$1.4000/\\text{lb} \\quad (Q = 40,000\\text{ lbs})",
+                "note": "Long position entered at initial market quote"
+              },
+              {
+                "stepIndex": 1,
+                "label": "Market Price Movement",
+                "equation": "\\Delta F = F_t - F_0 = +\\$0.0500/\\text{lb}",
+                "note": "Futures price rises above entry level"
+              },
+              {
+                "stepIndex": 2,
+                "label": "Net Cash Settlement",
+                "equation": "\\text{PnL} = 40,000 \\cdot (\\$1.45 - \\$1.40) = +\\$2,000",
+                "note": "Immediate cash credit credited to margin balance"
+              }
+            ],
+            "activeStepIndex": 2,
+            "assumptions": [
+              "Exchange standard contract specifications",
+              "Daily marking to market across trading days"
+            ],
+            "interpretation": "A price rise (F_t > F_0) generates positive cash flow; a price decline incurs a margin cash debit."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Long Futures Gain & Loss Mechanics",
+              "badge": "John C. Hull · Section 2.1",
+              "subtitle": "Cash Settlement for Long Futures Contracts",
+              "expression": "\\text{PnL}_{\\text{Long}} = Q \\cdot (F_t - F_0)",
+              "purpose": "Calculate cash gain or loss on an exchange-standard long futures position",
+              "variables": [
+                {
+                  "symbol": "Q",
+                  "label": "Contract Size",
+                  "value": "40,000 lbs",
+                  "unit": "lbs/contract",
+                  "description": "Physical commodity quantity or index multiplier"
+                },
+                {
+                  "symbol": "F_t",
+                  "label": "Exit Futures Price",
+                  "value": "1.4500",
+                  "unit": "USD/lb",
+                  "description": "Price at which long position is closed or settled"
+                },
+                {
+                  "symbol": "F_0",
+                  "label": "Entry Futures Price",
+                  "value": "1.4000",
+                  "unit": "USD/lb",
+                  "description": "Initial agreed transaction price on exchange"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Initial Contract Position",
+                  "equation": "F_0 = \\$1.4000/\\text{lb} \\quad (Q = 40,000\\text{ lbs})",
+                  "note": "Long position entered at initial market quote"
+                },
+                {
+                  "stepIndex": 1,
+                  "label": "Market Price Movement",
+                  "equation": "\\Delta F = F_t - F_0 = +\\$0.0500/\\text{lb}",
+                  "note": "Futures price rises above entry level"
+                },
+                {
+                  "stepIndex": 2,
+                  "label": "Net Cash Settlement",
+                  "equation": "\\text{PnL} = 40,000 \\cdot (\\$1.45 - \\$1.40) = +\\$2,000",
+                  "note": "Immediate cash credit credited to margin balance"
+                }
+              ],
+              "activeStepIndex": 2,
+              "assumptions": [
+                "Exchange standard contract specifications",
+                "Daily marking to market across trading days"
+              ],
+              "interpretation": "A price rise (F_t > F_0) generates positive cash flow; a price decline incurs a margin cash debit."
+            },
+            "semantics": {
+              "teachingObjective": "Define standardized PnL equation for long futures contracts",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
           }
         },
         {
@@ -455,28 +552,125 @@
           "en_subtitle": "For Short positions, PnL equals Contract Size multiplied by entry price minus exit price.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "formula": "Gain/Loss (Short) = Q × (F_entry - F_exit)",
-            "terms": [
+            "title": "Short Futures Gain & Loss Mechanics",
+            "badge": "John C. Hull · Section 2.1",
+            "subtitle": "Cash Settlement for Short Futures Contracts",
+            "expression": "\\text{PnL}_{\\text{Short}} = Q \\cdot (F_0 - F_t)",
+            "purpose": "Calculate cash gain or loss on an exchange-standard short futures position",
+            "variables": [
               {
                 "symbol": "Q",
-                "name": "Contract Size",
-                "meaning": "Contract units per agreement (e.g., 5,000 bushels of corn)",
-                "highlight": false
+                "label": "Contract Size",
+                "value": "5,000 bu",
+                "unit": "bushels",
+                "description": "Standard grain contract size (CME Corn)"
               },
               {
-                "symbol": "F_entry",
-                "name": "Entry Price",
-                "meaning": "Futures price where short was opened",
-                "highlight": true
+                "symbol": "F_0",
+                "label": "Entry Short Price",
+                "value": "4.2000",
+                "unit": "USD/bu",
+                "description": "Futures price where short agreement was opened"
               },
               {
-                "symbol": "F_exit",
-                "name": "Exit Price",
-                "meaning": "Futures price where short was bought back",
-                "highlight": true
+                "symbol": "F_t",
+                "label": "Exit Buying Price",
+                "value": "4.0500",
+                "unit": "USD/bu",
+                "description": "Futures price where position was bought back to close"
               }
             ],
-            "resultNote": "For Shorts: Falling prices yield cash gains; rising prices create margin losses"
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Initial Short Position",
+                "equation": "F_0 = \\$4.2000/\\text{bu} \\quad (Q = 5,000\\text{ bu})",
+                "note": "Short entered at agreed delivery price"
+              },
+              {
+                "stepIndex": 1,
+                "label": "Market Price Decline",
+                "equation": "F_0 - F_t = \\$4.20 - \\$4.05 = +\\$0.1500/\\text{bu}",
+                "note": "Falling price benefits short position holder"
+              },
+              {
+                "stepIndex": 2,
+                "label": "Net Cash Settlement",
+                "equation": "\\text{PnL} = 5,000 \\cdot (\\$4.20 - \\$4.05) = +\\$750",
+                "note": "Profit credited directly to short trader account"
+              }
+            ],
+            "activeStepIndex": 2,
+            "assumptions": [
+              "Exchange standard contract specifications",
+              "Timely offset executed before first notice day"
+            ],
+            "interpretation": "For shorts, falling prices deliver cash gains, while rising prices produce margin cash debits."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Short Futures Gain & Loss Mechanics",
+              "badge": "John C. Hull · Section 2.1",
+              "subtitle": "Cash Settlement for Short Futures Contracts",
+              "expression": "\\text{PnL}_{\\text{Short}} = Q \\cdot (F_0 - F_t)",
+              "purpose": "Calculate cash gain or loss on an exchange-standard short futures position",
+              "variables": [
+                {
+                  "symbol": "Q",
+                  "label": "Contract Size",
+                  "value": "5,000 bu",
+                  "unit": "bushels",
+                  "description": "Standard grain contract size (CME Corn)"
+                },
+                {
+                  "symbol": "F_0",
+                  "label": "Entry Short Price",
+                  "value": "4.2000",
+                  "unit": "USD/bu",
+                  "description": "Futures price where short agreement was opened"
+                },
+                {
+                  "symbol": "F_t",
+                  "label": "Exit Buying Price",
+                  "value": "4.0500",
+                  "unit": "USD/bu",
+                  "description": "Futures price where position was bought back to close"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Initial Short Position",
+                  "equation": "F_0 = \\$4.2000/\\text{bu} \\quad (Q = 5,000\\text{ bu})",
+                  "note": "Short entered at agreed delivery price"
+                },
+                {
+                  "stepIndex": 1,
+                  "label": "Market Price Decline",
+                  "equation": "F_0 - F_t = \\$4.20 - \\$4.05 = +\\$0.1500/\\text{bu}",
+                  "note": "Falling price benefits short position holder"
+                },
+                {
+                  "stepIndex": 2,
+                  "label": "Net Cash Settlement",
+                  "equation": "\\text{PnL} = 5,000 \\cdot (\\$4.20 - \\$4.05) = +\\$750",
+                  "note": "Profit credited directly to short trader account"
+                }
+              ],
+              "activeStepIndex": 2,
+              "assumptions": [
+                "Exchange standard contract specifications",
+                "Timely offset executed before first notice day"
+              ],
+              "interpretation": "For shorts, falling prices deliver cash gains, while rising prices produce margin cash debits."
+            },
+            "semantics": {
+              "teachingObjective": "Define standardized PnL equation for short futures contracts",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
           }
         },
         {
@@ -485,22 +679,99 @@
           "en_subtitle": "Whether offsetting early or holding to expiry, your net cash flow mirrors this price delta.",
           "pauseAfterMs": 500,
           "ui_state": {
-            "formula": "Cumulative Cash Flow = ∑ [Q × ΔF]",
-            "terms": [
+            "title": "Cumulative Futures Cash Flow & Offset",
+            "badge": "John C. Hull · Section 2.1",
+            "subtitle": "Early Offset Replaces Physical Delivery",
+            "expression": "\\text{Cash Flow} = \\sum [Q \\cdot \\Delta F]",
+            "purpose": "Demonstrate cumulative cash settlement achieved through early offsetting trades",
+            "variables": [
               {
                 "symbol": "Q",
-                "name": "Position Multiplier",
-                "meaning": "Fixed standardization across all contracts",
-                "highlight": true
+                "label": "Contract Size Multiplier",
+                "value": "Fixed Scale",
+                "unit": "units",
+                "description": "Uniform exchange-standard specification"
               },
               {
-                "symbol": "ΔF",
-                "name": "Net Price Movement",
-                "meaning": "Total price change realized across the holding horizon",
-                "highlight": true
+                "symbol": "\\Delta F_i",
+                "label": "Daily Price Delta",
+                "value": "Settlement Delta",
+                "unit": "USD/unit",
+                "description": "Daily marking-to-market variation"
               }
             ],
-            "resultNote": "Closing early nets exact cash profit or loss without physical handling hassle"
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Early Offsetting Principle",
+                "equation": "\\text{Long} + \\text{Short (Same Month)} = 0",
+                "note": "Clearinghouse cancels mutual obligations"
+              },
+              {
+                "stepIndex": 1,
+                "label": "Cash Flow Equivalence",
+                "equation": "\\sum \\Delta F_i = F_{\\text{exit}} - F_{\\text{entry}}",
+                "note": "Net sum of daily MTM equals terminal price delta"
+              }
+            ],
+            "activeStepIndex": 1,
+            "assumptions": [
+              "Over 99% of futures contracts are closed out prior to delivery",
+              "Offset executes in identical contract month and exchange"
+            ],
+            "interpretation": "Closing early via an equal opposite transaction captures exact net cash delta without physical delivery burden."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Cumulative Futures Cash Flow & Offset",
+              "badge": "John C. Hull · Section 2.1",
+              "subtitle": "Early Offset Replaces Physical Delivery",
+              "expression": "\\text{Cash Flow} = \\sum [Q \\cdot \\Delta F]",
+              "purpose": "Demonstrate cumulative cash settlement achieved through early offsetting trades",
+              "variables": [
+                {
+                  "symbol": "Q",
+                  "label": "Contract Size Multiplier",
+                  "value": "Fixed Scale",
+                  "unit": "units",
+                  "description": "Uniform exchange-standard specification"
+                },
+                {
+                  "symbol": "\\Delta F_i",
+                  "label": "Daily Price Delta",
+                  "value": "Settlement Delta",
+                  "unit": "USD/unit",
+                  "description": "Daily marking-to-market variation"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Early Offsetting Principle",
+                  "equation": "\\text{Long} + \\text{Short (Same Month)} = 0",
+                  "note": "Clearinghouse cancels mutual obligations"
+                },
+                {
+                  "stepIndex": 1,
+                  "label": "Cash Flow Equivalence",
+                  "equation": "\\sum \\Delta F_i = F_{\\text{exit}} - F_{\\text{entry}}",
+                  "note": "Net sum of daily MTM equals terminal price delta"
+                }
+              ],
+              "activeStepIndex": 1,
+              "assumptions": [
+                "Over 99% of futures contracts are closed out prior to delivery",
+                "Offset executes in identical contract month and exchange"
+              ],
+              "interpretation": "Closing early via an equal opposite transaction captures exact net cash delta without physical delivery burden."
+            },
+            "semantics": {
+              "teachingObjective": "Show cumulative cash flow equivalence and offset mechanics",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
           }
         }
       ]
@@ -550,7 +821,7 @@
         {
           "id": "b18",
           "hindi_tts": "कॉन्ट्रैक्ट साइज भी तय होता है: जैसे लाइव कैटल चालीस हज़ार पाउंड है, और मिनी नैस्डैक बीस गुना इंडेक्स।",
-          "en_subtitle": "Contract sizes are fixed: CME Cattle is 40,000 lbs, while E-mini Nasdaq is 20 times the index.",
+          "en_subtitle": "Contract sizes are standardized: CME Cattle is 40,000 lbs, and E-mini Nasdaq is 20 times index.",
           "pauseAfterMs": 400,
           "ui_state": {
             "sectionHeader": "Key Contract Specifications",
@@ -735,7 +1006,7 @@
       "segmentIndex": 7,
       "title": "The Arbitrage Tug-of-War: Spot-Futures Convergence",
       "template": "tug_of_war",
-      "badge": "Law of One Price",
+      "badge": "HYPOTHETICAL DESK EXAMPLE · LAW OF ONE PRICE",
       "beats": [
         {
           "id": "b24",
@@ -753,6 +1024,31 @@
             "bottomPill": {
               "text": "Arbitrageurs short futures & deliver spot",
               "color": "red"
+            },
+            "badge": "HYPOTHETICAL DESK EXAMPLE"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Spot Buying Demand",
+              "leftCount": 45,
+              "rightLabel": "Futures Selling Wave",
+              "rightCount": 95,
+              "centerTitle": "DELIVERY GAP",
+              "centerMetric": "F ₹260 > S ₹250",
+              "trend": "down",
+              "bottomPill": {
+                "text": "Arbitrageurs short futures & deliver spot",
+                "color": "red"
+              },
+              "badge": "HYPOTHETICAL DESK EXAMPLE"
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate spot-futures convergence pressure using hypothetical desk pricing example",
+              "sourceFactIds": [
+                "fact-04",
+                "fact-10"
+              ]
             }
           }
         },
@@ -772,6 +1068,31 @@
             "bottomPill": {
               "text": "Buyers buy cheap futures to stand for delivery",
               "color": "green"
+            },
+            "badge": "HYPOTHETICAL DESK EXAMPLE"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Futures Long Demand",
+              "leftCount": 95,
+              "rightLabel": "Spot Sellers",
+              "rightCount": 40,
+              "centerTitle": "DELIVERY GAP",
+              "centerMetric": "F ₹240 < S ₹250",
+              "trend": "up",
+              "bottomPill": {
+                "text": "Buyers buy cheap futures to stand for delivery",
+                "color": "green"
+              },
+              "badge": "HYPOTHETICAL DESK EXAMPLE"
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate spot-futures convergence pressure using hypothetical desk pricing example",
+              "sourceFactIds": [
+                "fact-04",
+                "fact-10"
+              ]
             }
           }
         },
@@ -791,6 +1112,31 @@
             "bottomPill": {
               "text": "Delivery arbitrage eliminates any pricing gap",
               "color": "blue"
+            },
+            "badge": "HYPOTHETICAL DESK EXAMPLE"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Spot Equilibrium",
+              "leftCount": 70,
+              "rightLabel": "Futures Equilibrium",
+              "rightCount": 70,
+              "centerTitle": "CONVERGENCE",
+              "centerMetric": "F_T = S_T = ₹250",
+              "trend": "neutral",
+              "bottomPill": {
+                "text": "Delivery arbitrage eliminates any pricing gap",
+                "color": "blue"
+              },
+              "badge": "HYPOTHETICAL DESK EXAMPLE"
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate spot-futures convergence pressure using hypothetical desk pricing example",
+              "sourceFactIds": [
+                "fact-04",
+                "fact-10"
+              ]
             }
           }
         }
@@ -800,7 +1146,7 @@
       "segmentIndex": 8,
       "title": "Visualizing Convergence & Arbitrage Profit",
       "template": "formula_breakdown",
-      "badge": "Mathematical Proof",
+      "badge": "John C. Hull · Section 2.3 Arbitrage Proof",
       "beats": [
         {
           "id": "b27",
@@ -808,28 +1154,126 @@
           "en_subtitle": "During the delivery window, riskless arbitrage profit equals futures price minus spot price.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "formula": "Arbitrage Profit = Q × (F_T - S_T) > 0",
-            "terms": [
+            "title": "Maturity Arbitrage Profit Equation",
+            "badge": "John C. Hull · Section 2.3",
+            "subtitle": "Delivery-Period Discrepancy Arbitrage",
+            "expression": "\\text{Profit}_{\\text{Arb}} = Q \\cdot (F_T - S_T) > 0",
+            "purpose": "Prove risk-free profit potential if futures price exceeds spot during delivery period",
+            "variables": [
               {
                 "symbol": "Q",
-                "name": "Contract Size",
-                "meaning": "Physical delivery quantity per traded contract",
-                "highlight": false
+                "label": "Contract Size",
+                "value": "5,000 bu",
+                "unit": "bushels",
+                "description": "Commodity physical delivery quantity"
               },
               {
                 "symbol": "F_T",
-                "name": "Futures Price at Maturity",
-                "meaning": "Exchange traded futures price in delivery period",
-                "highlight": true
+                "label": "Maturity Futures Price",
+                "value": "$4.12",
+                "unit": "USD/bu",
+                "description": "Overvalued futures price during delivery window"
               },
               {
                 "symbol": "S_T",
-                "name": "Spot Price at Maturity",
-                "meaning": "Immediate physical market cash purchase price",
-                "highlight": true
+                "label": "Maturity Spot Price",
+                "value": "$4.00",
+                "unit": "USD/bu",
+                "description": "Cash commodity purchase price in spot market"
               }
             ],
-            "resultNote": "Traders sell futures at F_T, buy spot at S_T, and deliver immediately"
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Price Divergence Observed",
+                "equation": "F_T > S_T \\quad (\\$4.12 > \\$4.00)",
+                "note": "Futures trades at premium during delivery window"
+              },
+              {
+                "stepIndex": 1,
+                "label": "Simultaneous Arbitrage Execution",
+                "equation": "\\text{Buy Spot } S_T + \\text{Sell Futures } F_T",
+                "note": "Immediately stand to deliver spot into futures"
+              },
+              {
+                "stepIndex": 2,
+                "label": "Locked Profit Calculation",
+                "equation": "\\text{Profit} = 5,000 \\cdot (\\$4.12 - \\$4.00) = +\\$600",
+                "note": "Riskless profit captured via physical delivery"
+              }
+            ],
+            "activeStepIndex": 2,
+            "assumptions": [
+              "Delivery window active",
+              "Zero storage or transport penalty during window"
+            ],
+            "interpretation": "Arbitrageurs short overvalued futures, purchase physical spot commodity, and deliver to pocket riskless spread."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Maturity Arbitrage Profit Equation",
+              "badge": "John C. Hull · Section 2.3",
+              "subtitle": "Delivery-Period Discrepancy Arbitrage",
+              "expression": "\\text{Profit}_{\\text{Arb}} = Q \\cdot (F_T - S_T) > 0",
+              "purpose": "Prove risk-free profit potential if futures price exceeds spot during delivery period",
+              "variables": [
+                {
+                  "symbol": "Q",
+                  "label": "Contract Size",
+                  "value": "5,000 bu",
+                  "unit": "bushels",
+                  "description": "Commodity physical delivery quantity"
+                },
+                {
+                  "symbol": "F_T",
+                  "label": "Maturity Futures Price",
+                  "value": "$4.12",
+                  "unit": "USD/bu",
+                  "description": "Overvalued futures price during delivery window"
+                },
+                {
+                  "symbol": "S_T",
+                  "label": "Maturity Spot Price",
+                  "value": "$4.00",
+                  "unit": "USD/bu",
+                  "description": "Cash commodity purchase price in spot market"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Price Divergence Observed",
+                  "equation": "F_T > S_T \\quad (\\$4.12 > \\$4.00)",
+                  "note": "Futures trades at premium during delivery window"
+                },
+                {
+                  "stepIndex": 1,
+                  "label": "Simultaneous Arbitrage Execution",
+                  "equation": "\\text{Buy Spot } S_T + \\text{Sell Futures } F_T",
+                  "note": "Immediately stand to deliver spot into futures"
+                },
+                {
+                  "stepIndex": 2,
+                  "label": "Locked Profit Calculation",
+                  "equation": "\\text{Profit} = 5,000 \\cdot (\\$4.12 - \\$4.00) = +\\$600",
+                  "note": "Riskless profit captured via physical delivery"
+                }
+              ],
+              "activeStepIndex": 2,
+              "assumptions": [
+                "Delivery window active",
+                "Zero storage or transport penalty during window"
+              ],
+              "interpretation": "Arbitrageurs short overvalued futures, purchase physical spot commodity, and deliver to pocket riskless spread."
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate mathematical arbitrage profit when futures exceeds spot at maturity",
+              "sourceFactIds": [
+                "fact-04",
+                "fact-10"
+              ]
+            }
           }
         },
         {
@@ -838,22 +1282,111 @@
           "en_subtitle": "As arbitrageurs short futures and buy cash goods, price pressure forces F_T down to S_T.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "formula": "lim (t → T) |F_t - S_t| = 0",
-            "terms": [
+            "title": "Mathematical Limit of Basis Convergence",
+            "badge": "Law of One Price",
+            "subtitle": "Asymptotic Collapse of Spot-Futures Basis",
+            "expression": "\\lim_{t \\to T} |F_t - S_t| = 0",
+            "purpose": "Model mathematical convergence of futures price to spot price as time reaches maturity",
+            "variables": [
               {
-                "symbol": "t → T",
-                "name": "Time to Expiry",
-                "meaning": "Holding horizon approaches final delivery date",
-                "highlight": true
+                "symbol": "t \\to T",
+                "label": "Time Horizon",
+                "value": "Expiry Approach",
+                "unit": "days",
+                "description": "Holding time reaches final contract settlement"
               },
               {
                 "symbol": "|F_t - S_t|",
-                "name": "Basis Gap",
-                "meaning": "Absolute difference between futures and spot prices",
-                "highlight": true
+                "label": "Absolute Basis Gap",
+                "value": "Collapses to $0.00",
+                "unit": "USD/unit",
+                "description": "Difference between futures quote and cash price"
               }
             ],
-            "resultNote": "Heavy selling of overvalued futures drives prices down to spot parity"
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Arbitrage Pressure Applied",
+                "equation": "\\text{Heavy Selling of } F_t \\implies F_t \\downarrow",
+                "note": "Arbitrageurs dump overvalued futures"
+              },
+              {
+                "stepIndex": 1,
+                "label": "Spot Buying Pressure",
+                "equation": "\\text{Heavy Buying of } S_t \\implies S_t \\uparrow",
+                "note": "Arbitrageurs buy physical commodity to deliver"
+              },
+              {
+                "stepIndex": 2,
+                "label": "Terminal Convergence",
+                "equation": "|F_T - S_T| = 0 \\implies F_T = S_T",
+                "note": "Law of one price fully re-established"
+              }
+            ],
+            "activeStepIndex": 2,
+            "assumptions": [
+              "Competitive algorithmic arbitrageurs active in market",
+              "Standard exchange delivery mechanism enforceable"
+            ],
+            "interpretation": "Selling overvalued futures and buying physical goods drives basis to zero as expiration is reached."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Mathematical Limit of Basis Convergence",
+              "badge": "Law of One Price",
+              "subtitle": "Asymptotic Collapse of Spot-Futures Basis",
+              "expression": "\\lim_{t \\to T} |F_t - S_t| = 0",
+              "purpose": "Model mathematical convergence of futures price to spot price as time reaches maturity",
+              "variables": [
+                {
+                  "symbol": "t \\to T",
+                  "label": "Time Horizon",
+                  "value": "Expiry Approach",
+                  "unit": "days",
+                  "description": "Holding time reaches final contract settlement"
+                },
+                {
+                  "symbol": "|F_t - S_t|",
+                  "label": "Absolute Basis Gap",
+                  "value": "Collapses to $0.00",
+                  "unit": "USD/unit",
+                  "description": "Difference between futures quote and cash price"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Arbitrage Pressure Applied",
+                  "equation": "\\text{Heavy Selling of } F_t \\implies F_t \\downarrow",
+                  "note": "Arbitrageurs dump overvalued futures"
+                },
+                {
+                  "stepIndex": 1,
+                  "label": "Spot Buying Pressure",
+                  "equation": "\\text{Heavy Buying of } S_t \\implies S_t \\uparrow",
+                  "note": "Arbitrageurs buy physical commodity to deliver"
+                },
+                {
+                  "stepIndex": 2,
+                  "label": "Terminal Convergence",
+                  "equation": "|F_T - S_T| = 0 \\implies F_T = S_T",
+                  "note": "Law of one price fully re-established"
+                }
+              ],
+              "activeStepIndex": 2,
+              "assumptions": [
+                "Competitive algorithmic arbitrageurs active in market",
+                "Standard exchange delivery mechanism enforceable"
+              ],
+              "interpretation": "Selling overvalued futures and buying physical goods drives basis to zero as expiration is reached."
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate mathematical limit of basis convergence driven by arbitrage",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
           }
         },
         {
@@ -862,22 +1395,100 @@
           "en_subtitle": "Even though deliveries are rare, the legal right to deliver anchors paper futures to physical reality.",
           "pauseAfterMs": 500,
           "ui_state": {
-            "formula": "F_T = S_T (At Expiration)",
-            "terms": [
+            "title": "The Legal Delivery Price Anchor",
+            "badge": "John C. Hull · Section 2.3",
+            "subtitle": "Physical Delivery Enforces Contract Integrity",
+            "expression": "F_T = S_T \\quad (\\text{At Expiration})",
+            "purpose": "Highlight the delivery option as the fundamental anchor linking financial futures to real economy",
+            "variables": [
               {
                 "symbol": "F_T",
-                "name": "Terminal Futures Price",
-                "meaning": "Exact closing settlement price",
-                "highlight": true
+                "label": "Terminal Futures Price",
+                "value": "Market Close",
+                "unit": "USD/unit",
+                "description": "Final exchange closing settlement"
               },
               {
                 "symbol": "S_T",
-                "name": "Terminal Spot Price",
-                "meaning": "Real economy physical asset value",
-                "highlight": true
+                "label": "Terminal Spot Price",
+                "value": "Physical Cash Price",
+                "unit": "USD/unit",
+                "description": "Real-world spot value of physical commodity"
               }
             ],
-            "resultNote": "Physical delivery guarantees paper contracts remain honest and reliable"
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "The 1% Paradox",
+                "equation": "\\text{Deliveries} < 1\\% \\text{ of volume}",
+                "note": "Almost all traders close out early"
+              },
+              {
+                "stepIndex": 1,
+                "label": "The Invisible Anchor",
+                "equation": "\\text{Legal Delivery Option} \\implies F_T = S_T",
+                "note": "The threat of delivery enforces 100% price parity"
+              }
+            ],
+            "activeStepIndex": 1,
+            "assumptions": [
+              "Contract specifications clearly define delivery terms and locations",
+              "Clearinghouse guarantees delivery performance without credit default"
+            ],
+            "interpretation": "Even though physical deliveries account for under 1% of volume, the legal delivery right ties paper markets to physical reality."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "The Legal Delivery Price Anchor",
+              "badge": "John C. Hull · Section 2.3",
+              "subtitle": "Physical Delivery Enforces Contract Integrity",
+              "expression": "F_T = S_T \\quad (\\text{At Expiration})",
+              "purpose": "Highlight the delivery option as the fundamental anchor linking financial futures to real economy",
+              "variables": [
+                {
+                  "symbol": "F_T",
+                  "label": "Terminal Futures Price",
+                  "value": "Market Close",
+                  "unit": "USD/unit",
+                  "description": "Final exchange closing settlement"
+                },
+                {
+                  "symbol": "S_T",
+                  "label": "Terminal Spot Price",
+                  "value": "Physical Cash Price",
+                  "unit": "USD/unit",
+                  "description": "Real-world spot value of physical commodity"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "The 1% Paradox",
+                  "equation": "\\text{Deliveries} < 1\\% \\text{ of volume}",
+                  "note": "Almost all traders close out early"
+                },
+                {
+                  "stepIndex": 1,
+                  "label": "The Invisible Anchor",
+                  "equation": "\\text{Legal Delivery Option} \\implies F_T = S_T",
+                  "note": "The threat of delivery enforces 100% price parity"
+                }
+              ],
+              "activeStepIndex": 1,
+              "assumptions": [
+                "Contract specifications clearly define delivery terms and locations",
+                "Clearinghouse guarantees delivery performance without credit default"
+              ],
+              "interpretation": "Even though physical deliveries account for under 1% of volume, the legal delivery right ties paper markets to physical reality."
+            },
+            "semantics": {
+              "teachingObjective": "Explain why delivery mechanism anchors paper contracts to real economy",
+              "sourceFactIds": [
+                "fact-04",
+                "fact-10"
+              ]
+            }
           }
         }
       ]
@@ -915,7 +1526,7 @@
         {
           "id": "b32",
           "hindi_tts": "ट्रेडर्स 412 सेंट पर फ्यूचर्स बेचेंगे, 400 सेंट पर स्पॉट खरीदेंगे और 12 सेंट का पक्का मुनाफा कमाएंगे, जिससे फ्यूचर्स 400 पर गिर जाएगा।",
-          "en_subtitle": "Traders short futures at 412, buy spot at 400, pocketing 12 cents and driving futures down to 400.",
+          "en_subtitle": "Traders short futures at 412 and buy spot at 400, pocketing 12 cents risk-free.",
           "pauseAfterMs": 500,
           "ui_state": {
             "badge": "Delivery Arbitrage",
@@ -1043,7 +1654,40 @@
               "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
               "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
             ],
-            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices."
+            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 2 · PART 1 · MASTER THREAD",
+              "heading": "Today's thread",
+              "activeStepRange": [
+                0,
+                0
+              ],
+              "steps": [
+                "Futures contracts are standardized exchange agreements where a Long agrees to buy and a Short agrees to sell an asset at a future date",
+                "Over 99% of futures positions are closed out before delivery by executing the exact opposite trade in the same contract month",
+                "In Business Snapshot 2.1, buying instead of selling to close left a trader with 2 contracts and 80,000 lbs of cattle 2,000 miles away",
+                "Total futures gain or loss equals Contract Size multiplied by the difference between entry and exit futures prices",
+                "Exchanges specify asset grades and adjustments like CME Corn No. 1 (+1.5 cents) and No. 3 (-1.5 cents) or US Grade A Orange Juice (62.5 Brix)",
+                "Contract sizes and quotes vary from $100,000 Treasury Bonds quoted in 1/32nds to Mini Nasdaq 100 contracts set at 20 times the index",
+                "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
+                "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
+              ],
+              "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-04",
+                "fact-07",
+                "fact-10"
+              ]
+            }
           }
         },
         {
@@ -1068,7 +1712,40 @@
               "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
               "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
             ],
-            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices."
+            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 2 · PART 1 · MASTER THREAD",
+              "heading": "Today's thread",
+              "activeStepRange": [
+                1,
+                2
+              ],
+              "steps": [
+                "Futures contracts are standardized exchange agreements where a Long agrees to buy and a Short agrees to sell an asset at a future date",
+                "Over 99% of futures positions are closed out before delivery by executing the exact opposite trade in the same contract month",
+                "In Business Snapshot 2.1, buying instead of selling to close left a trader with 2 contracts and 80,000 lbs of cattle 2,000 miles away",
+                "Total futures gain or loss equals Contract Size multiplied by the difference between entry and exit futures prices",
+                "Exchanges specify asset grades and adjustments like CME Corn No. 1 (+1.5 cents) and No. 3 (-1.5 cents) or US Grade A Orange Juice (62.5 Brix)",
+                "Contract sizes and quotes vary from $100,000 Treasury Bonds quoted in 1/32nds to Mini Nasdaq 100 contracts set at 20 times the index",
+                "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
+                "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
+              ],
+              "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-04",
+                "fact-07",
+                "fact-10"
+              ]
+            }
           }
         },
         {
@@ -1093,7 +1770,40 @@
               "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
               "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
             ],
-            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices."
+            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 2 · PART 1 · MASTER THREAD",
+              "heading": "Today's thread",
+              "activeStepRange": [
+                3,
+                4
+              ],
+              "steps": [
+                "Futures contracts are standardized exchange agreements where a Long agrees to buy and a Short agrees to sell an asset at a future date",
+                "Over 99% of futures positions are closed out before delivery by executing the exact opposite trade in the same contract month",
+                "In Business Snapshot 2.1, buying instead of selling to close left a trader with 2 contracts and 80,000 lbs of cattle 2,000 miles away",
+                "Total futures gain or loss equals Contract Size multiplied by the difference between entry and exit futures prices",
+                "Exchanges specify asset grades and adjustments like CME Corn No. 1 (+1.5 cents) and No. 3 (-1.5 cents) or US Grade A Orange Juice (62.5 Brix)",
+                "Contract sizes and quotes vary from $100,000 Treasury Bonds quoted in 1/32nds to Mini Nasdaq 100 contracts set at 20 times the index",
+                "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
+                "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
+              ],
+              "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-04",
+                "fact-07",
+                "fact-10"
+              ]
+            }
           }
         },
         {
@@ -1118,7 +1828,40 @@
               "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
               "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
             ],
-            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices."
+            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 2 · PART 1 · MASTER THREAD",
+              "heading": "Today's thread",
+              "activeStepRange": [
+                5,
+                6
+              ],
+              "steps": [
+                "Futures contracts are standardized exchange agreements where a Long agrees to buy and a Short agrees to sell an asset at a future date",
+                "Over 99% of futures positions are closed out before delivery by executing the exact opposite trade in the same contract month",
+                "In Business Snapshot 2.1, buying instead of selling to close left a trader with 2 contracts and 80,000 lbs of cattle 2,000 miles away",
+                "Total futures gain or loss equals Contract Size multiplied by the difference between entry and exit futures prices",
+                "Exchanges specify asset grades and adjustments like CME Corn No. 1 (+1.5 cents) and No. 3 (-1.5 cents) or US Grade A Orange Juice (62.5 Brix)",
+                "Contract sizes and quotes vary from $100,000 Treasury Bonds quoted in 1/32nds to Mini Nasdaq 100 contracts set at 20 times the index",
+                "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
+                "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
+              ],
+              "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-04",
+                "fact-07",
+                "fact-10"
+              ]
+            }
           }
         },
         {
@@ -1143,7 +1886,40 @@
               "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
               "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
             ],
-            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices."
+            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 2 · PART 1 · MASTER THREAD",
+              "heading": "Today's thread",
+              "activeStepRange": [
+                7,
+                8
+              ],
+              "steps": [
+                "Futures contracts are standardized exchange agreements where a Long agrees to buy and a Short agrees to sell an asset at a future date",
+                "Over 99% of futures positions are closed out before delivery by executing the exact opposite trade in the same contract month",
+                "In Business Snapshot 2.1, buying instead of selling to close left a trader with 2 contracts and 80,000 lbs of cattle 2,000 miles away",
+                "Total futures gain or loss equals Contract Size multiplied by the difference between entry and exit futures prices",
+                "Exchanges specify asset grades and adjustments like CME Corn No. 1 (+1.5 cents) and No. 3 (-1.5 cents) or US Grade A Orange Juice (62.5 Brix)",
+                "Contract sizes and quotes vary from $100,000 Treasury Bonds quoted in 1/32nds to Mini Nasdaq 100 contracts set at 20 times the index",
+                "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
+                "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
+              ],
+              "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-04",
+                "fact-07",
+                "fact-10"
+              ]
+            }
           }
         },
         {
@@ -1168,7 +1944,40 @@
               "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
               "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
             ],
-            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices."
+            "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "headerBadge": "CHAPTER 2 · PART 1 · MASTER THREAD",
+              "heading": "Today's thread",
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "steps": [
+                "Futures contracts are standardized exchange agreements where a Long agrees to buy and a Short agrees to sell an asset at a future date",
+                "Over 99% of futures positions are closed out before delivery by executing the exact opposite trade in the same contract month",
+                "In Business Snapshot 2.1, buying instead of selling to close left a trader with 2 contracts and 80,000 lbs of cattle 2,000 miles away",
+                "Total futures gain or loss equals Contract Size multiplied by the difference between entry and exit futures prices",
+                "Exchanges specify asset grades and adjustments like CME Corn No. 1 (+1.5 cents) and No. 3 (-1.5 cents) or US Grade A Orange Juice (62.5 Brix)",
+                "Contract sizes and quotes vary from $100,000 Treasury Bonds quoted in 1/32nds to Mini Nasdaq 100 contracts set at 20 times the index",
+                "Daily price limits (Limit Up and Limit Down) curb single-day volatility while Position Limits prevent speculators from cornering a market",
+                "As delivery arrives, arbitrage forces the futures price to converge to the spot price (F_T = S_T) because any gap creates riskless profit"
+              ],
+              "bottomTakeaway": "Less than 1% of futures contracts result in physical delivery, yet the legal threat of delivery is the invisible anchor that ties futures prices to real-world spot prices.",
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize chapter core principles with progressive focus and compact overview",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-04",
+                "fact-07",
+                "fact-10"
+              ]
+            }
           }
         }
       ]

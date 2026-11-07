@@ -1,0 +1,346 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch01_part2",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T03:25:04.701Z",
+  "bookTitle": "Technical Analysis of the Financial Markets (John J. Murphy)",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Call, Put, European, and American Options",
+      "statement": "An option contract grants the holder the right, without the obligation, to buy (call) or sell (put) an underlying asset at a predetermined strike price by a specified expiration date in exchange for an up-front option premium. European options can be exercised only on the maturity date, whereas American options can be exercised at any time up to expiration.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch01_part2 - Call & Put Options Basics",
+        "excerpt": "A financial contract giving the holder the right, but not the obligation, to buy or sell an underlying asset by a specified date for a specified price [1, 2].",
+        "provenance": "notebooklm_query"
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "max(S - K, 0) for Call; max(K - S, 0) for Put",
+        "formulaProfit": "Payoff - Premium",
+        "premiumConsidered": true,
+        "explanation": "Unlike futures or forward contracts which require no up-front fee and feature symmetric payoff profiles, options require an up-front premium payment that caps the buyer's maximum downside loss while preserving asymmetric upside potential."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-02",
+      "category": "market_rule",
+      "topic": "Option Pricing Dynamics Relative to Strike and Maturity",
+      "statement": "Call option prices decrease as the strike price increases, whereas put option prices increase as the strike price increases. Furthermore, both call and put options become more valuable as the time to maturity increases.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch01_part2 - Real-World Market Quotes: CBOE Google Options",
+        "excerpt": "Call Option Prices decrease as the strike price increases [6, 7]. Put Option Prices increase as the strike price increases [6, 7]. Both call and put options become more valuable as time to maturity increases [7].",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-03",
+      "category": "numerical_example",
+      "topic": "Buying a CBOE Google Dec $550 Call Option",
+      "statement": "Purchasing 1 contract (100 shares) of a Google December $550 call option at an offer price of $29.00 per share requires an up-front cost of $2,900. If the stock closes at or below $550 at expiration, the option expires unexercised with a capped loss of $2,900. If the stock rises to $650, exercising yields a $10,000 gross payoff and a net profit of $7,100.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch01_part2 - Numerical Case Calculations",
+        "excerpt": "Exercising allows buying 100 shares at $550 and selling at $650 for a $10,000 payoff [10]. Subtracting the $2,900 initial premium yields a net profit of $7,100 [10].",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "contractSize": 100,
+          "strike": 550,
+          "premiumPerShare": 29,
+          "totalUpfrontCost": 2900,
+          "spotAtExpirationBull": 650,
+          "grossPayoffBull": 10000,
+          "netProfitBull": 7100,
+          "maxLossBear": 2900
+        },
+        "units": "$",
+        "context": "Long 1 CBOE Google Dec $550 Call contract (May 13, 2015 quotes, underlying bid $532.20 / offer $532.34)"
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "100 * max(S_T - 550, 0)",
+        "formulaProfit": "100 * max(S_T - 550, 0) - 2900",
+        "premiumConsidered": true,
+        "explanation": "At $650 stock price, gross exercise payoff is 100 * ($650 - $550) = $10,000, while net profit deducts the $2,900 up-front premium to arrive at $7,100."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-04",
+      "category": "numerical_example",
+      "topic": "Selling (Writing) a CBOE Google Sept $525 Put Option",
+      "statement": "Writing 1 contract (100 shares) of a Google September $525 put option at a bid price of $22.40 per share generates an immediate cash inflow of $2,240. If the stock remains above $525, the option expires worthless and the writer retains the $2,240 maximum profit. If the stock falls to $480, the writer suffers a $4,500 gross assignment loss, resulting in a net loss of $2,260 after accounting for the initial premium received.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch01_part2 - Numerical Case Calculations",
+        "excerpt": "Writer is assigned to buy 100 shares at $525 when they are worth $480, incurring a gross loss of $4,500 [11]. Net loss after initial premium received = $4,500 - $2,240 = $2,260 [11].",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "contractSize": 100,
+          "strike": 525,
+          "premiumPerShare": 22.4,
+          "upfrontCashInflow": 2240,
+          "spotAtExpirationBear": 480,
+          "grossLossBear": 4500,
+          "netLossBear": 2260,
+          "maxProfitBull": 2240
+        },
+        "units": "$",
+        "context": "Short 1 CBOE Google Sept $525 Put contract"
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "-100 * max(525 - S_T, 0)",
+        "formulaProfit": "2240 - 100 * max(525 - S_T, 0)",
+        "premiumConsidered": true,
+        "explanation": "The short put writer collects $2,240 up-front, which partially buffers the $4,500 gross exercise liability when the stock drops to $480, leaving a net loss of $2,260."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-05",
+      "category": "numerical_example",
+      "topic": "FX Forward Hedging (ImportCo and ExportCo - Example 1.1)",
+      "statement": "To eliminate foreign exchange risk over a 3-month horizon, ImportCo hedges a £10 million payable by buying GBP forward at 1.5742 USD/GBP to lock in a $15,742,000 payment, while ExportCo hedges a £30 million receivable by selling GBP forward at 1.5736 USD/GBP to lock in $47,208,000 in proceeds. Forward hedging neutralizes price risk by fixing the exchange rate, eliminating both downside loss and upside gain.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch01_part2 - The Three Traders: 1. Hedgers",
+        "excerpt": "ImportCo: Owes £10 million in 3 months. Buys £10M in the 3-month forward market at 1.5742 USD/GBP, locking in a total payment of $15,742,000 [15-17].",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "importCoPayableGBP": 10000000,
+          "importCoForwardRate": 1.5742,
+          "importCoLockedPaymentUSD": 15742000,
+          "exportCoReceivableGBP": 30000000,
+          "exportCoForwardRate": 1.5736,
+          "exportCoLockedProceedsUSD": 47208000,
+          "tenorMonths": 3
+        },
+        "units": "$",
+        "context": "3-month USD/GBP corporate forward hedging (Example 1.1)"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-06",
+      "category": "numerical_example",
+      "topic": "Protective Put Portfolio Insurance (Example 1.2)",
+      "statement": "An investor holding 1,000 shares priced at $28 ($28,000 portfolio value) can hedge downside risk by purchasing 10 July $27.50 put contracts at $1 per option ($1,000 total cost). This guarantees a minimum liquidation price of $27.50 per share ($26,500 net portfolio floor after the $1,000 premium cost) while retaining full participation in upside stock appreciation.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch01_part2 - The Three Traders: 1. Hedgers",
+        "excerpt": "Guarantees that shares can be sold for at least $27.50 ($26,500 net value after option cost) if stock plummets, while preserving full participation in upside gains if stock price surges [22, 23].",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "sharesHeld": 1000,
+          "initialSharePrice": 28,
+          "initialPortfolioValue": 28000,
+          "putContractsBought": 10,
+          "strike": 27.5,
+          "premiumPerOption": 1,
+          "totalHedgeCost": 1000,
+          "grossFloorValue": 27500,
+          "netProtectedValue": 26500
+        },
+        "units": "$",
+        "context": "Hedging a 1,000-share equity position with July $27.50 put options (Example 1.2)"
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "1000 * S_T + 1000 * max(27.50 - S_T, 0)",
+        "formulaProfit": "1000 * max(S_T, 27.50) - 1000",
+        "premiumConsidered": true,
+        "explanation": "Gross guaranteed floor value from exercising the puts is $27,500, and subtracting the $1,000 option premium yields a net hedged portfolio floor of $26,500."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-07",
+      "category": "numerical_example",
+      "topic": "Speculation Leverage: Spot GBP vs. CME Futures (Table 1.4)",
+      "statement": "A speculator betting on GBP appreciation of £250,000 can either buy £250,000 in the spot market at 1.5470 for $386,750 cash, or go long 4 CME April futures contracts at 1.5410 using only $20,000 in initial margin. If the exchange rate rises to 1.6000 at expiration, futures yield a $14,750 profit on $20,000 margin compared to a $13,250 spot profit on $386,750 capital. If the rate drops to 1.5000, futures incur a $10,250 loss versus an $11,750 spot loss.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch01_part2 - The Three Traders: 2. Speculators",
+        "excerpt": "If Exchange Rate rises to 1.6000: Futures yield $14,750 profit on $20k deposit vs. Spot profit of $13,250 on $386.7k capital [25, 28]. If Exchange Rate falls to 1.5000: Futures yield $10,250 loss vs. Spot loss of $11,750 [25, 27, 28].",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "notionalGBP": 250000,
+          "spotEntryRate": 1.547,
+          "futuresEntryRate": 1.541,
+          "spotCapitalRequired": 386750,
+          "futuresMarginRequired": 20000,
+          "futuresContracts": 4,
+          "bullExitRate": 1.6,
+          "futuresProfitBull": 14750,
+          "spotProfitBull": 13250,
+          "bearExitRate": 1.5,
+          "futuresLossBear": 10250,
+          "spotLossBear": 11750
+        },
+        "units": "$",
+        "context": "Comparing spot currency speculation vs. 4 CME April GBP futures contracts (Table 1.4)"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-08",
+      "category": "numerical_example",
+      "topic": "Speculation Leverage: Shares vs. Call Options (Table 1.5)",
+      "statement": "With $2,000 in capital and a stock trading at $20, a speculator can buy 100 shares or buy 2,000 two-month $22.50 strike call options priced at $1 each. If the stock rises to $27 at expiration, the share position profits by $700 whereas the options position generates $7,000 in net profit (10x higher profit). Conversely, if the stock falls to $15, shares lose $500 (25%) while the options expire worthless for a $2,000 loss (100% of investment).",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch01_part2 - The Three Traders: 2. Speculators",
+        "excerpt": "If Stock rises to $27: Share profit = $700; Options profit = (2,000 * $4.50) - $2,000 = $7,000 (10x higher profit) [31, 32]. If Stock falls to $15: Share loss = $500; Options loss = $2,000 (100% loss of investment) [32].",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "initialCapital": 2000,
+          "initialStockPrice": 20,
+          "sharesBought": 100,
+          "strike": 22.5,
+          "premium": 1,
+          "optionsBought": 2000,
+          "bullStockPrice": 27,
+          "shareProfitBull": 700,
+          "optionsGrossPayoffBull": 9000,
+          "optionsNetProfitBull": 7000,
+          "bearStockPrice": 15,
+          "shareLossBear": 500,
+          "optionsLossBear": 2000
+        },
+        "units": "$",
+        "context": "Comparing $2,000 equity outlay in 100 shares vs. 2,000 call options (Table 1.5)"
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "2000 * max(S_T - 22.50, 0)",
+        "formulaProfit": "2000 * max(S_T - 22.50, 0) - 2000",
+        "premiumConsidered": true,
+        "explanation": "At $27, each option yields a $4.50 payoff ($9,000 total across 2,000 options); subtracting the $2,000 initial premium cost leaves $7,000 net profit."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-09",
+      "category": "formula",
+      "topic": "Dual-Listed Cross-Border Stock Arbitrage (Example 1.3)",
+      "statement": "When a dual-listed stock trades at $152 in New York and £100 in London while the exchange rate is $1.5500/£, an arbitrageur locks in a riskless profit of $300 by simultaneously buying 100 shares in New York for $15,200, selling 100 shares in London for £10,000, and converting the sterling proceeds into $15,500. Buying pressure in New York raises the USD price while selling pressure in London lowers the GBP price until the arbitrage discrepancy vanishes.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch01_part2 - The Three Traders: 3. Arbitrageurs",
+        "excerpt": "Risk-Free Profit: 100 * [($1.55 * 100) - $152] = $300 [34, 35].",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Cross-Market Dual-Listed Equity Arbitrage Profit",
+        "latex": "\\Pi = N \\times \\left[ (FX_{\\text{USD/GBP}} \\times P_{\\text{UK}}) - P_{\\text{US}} \\right]",
+        "variables": [
+          {
+            "symbol": "\\Pi",
+            "definition": "Risk-free arbitrage profit in US dollars",
+            "unit": "$"
+          },
+          {
+            "symbol": "N",
+            "definition": "Number of shares traded simultaneously across both exchanges",
+            "unit": "shares"
+          },
+          {
+            "symbol": "FX_{\\text{USD/GBP}}",
+            "definition": "Spot exchange rate in US dollars per British pound",
+            "unit": "$/£"
+          },
+          {
+            "symbol": "P_{\\text{UK}}",
+            "definition": "Stock price on the London exchange",
+            "unit": "£"
+          },
+          {
+            "symbol": "P_{\\text{US}}",
+            "definition": "Stock price on the New York exchange",
+            "unit": "$"
+          }
+        ]
+      },
+      "numericalDetails": {
+        "values": {
+          "sharesTraded": 100,
+          "nyPriceUSD": 152,
+          "londonPriceGBP": 100,
+          "exchangeRateUSDPerGBP": 1.55,
+          "nyPurchaseCostUSD": 15200,
+          "londonSaleProceedsUSD": 15500,
+          "riskFreeProfitUSD": 300
+        },
+        "units": "$",
+        "context": "Dual-listed equity arbitrage between New York and London exchanges (Example 1.3)"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-10",
+      "category": "claim",
+      "topic": "Hedge Fund Industry Scale, '2-and-20' Fee Model, and Core Strategies",
+      "statement": "Global hedge fund assets under management exceed $2 trillion, operating outside mutual fund regulations on daily redemptions, leverage limits, and public disclosures. The standard '2-and-20' compensation structure charges a 2% annual management fee on total assets under management plus a 20% incentive fee on generated profits, deployed across six core strategies: Long/Short Equities, Convertible Arbitrage, Distressed Securities, Emerging Markets, Global Macro, and Merger Arbitrage.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch01_part2 - Business Snapshot 1.3: Hedge Fund '2-and-20' Fee Structure & Strategies",
+        "excerpt": "Global assets under management in hedge funds exceed $2 trillion [38]. 2% Management Fee: Calculated annually on total assets under management [38]. 20% Incentive/Performance Fee: Calculated as 20% of total profits generated by the fund [38].",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-11",
+      "category": "case_study",
+      "topic": "Jérôme Kerviel's €4.9B Société Générale Rogue Trade and Historical Precedents",
+      "statement": "Tasked with low-risk equity index arbitrage on the Delta One desk (DAX, CAC 40, Euro Stoxx 50), Société Générale trader Jérôme Kerviel exploited his prior compliance background (2000-2005) to enter fictitious offsetting trades that masked tens of billions of euros in unhedged directional bets. Uncovered in January 2008 and liquidated over 3 days in a falling market, the trades caused a €4.9 billion ($7.2 billion) loss—paralleling earlier rogue trading failures by Nick Leeson at Barings Bank ($1 billion loss in 1995) and John Rusnak at Allied Irish Bank ($700 million loss in 2002).",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch01_part2 - Business Snapshot 1.4: Jérôme Kerviel's €4.9B Société Générale Rogue Trade",
+        "excerpt": "Over a 3-day liquidation period in a falling market, SocGen unwound the massive positions, incurring a net loss of €4.9 billion [44].",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "kervielLossEUR": 4900000000,
+          "kervielLossUSD": 7200000000,
+          "liquidationDays": 3,
+          "discoveryYear": 2008,
+          "leesonBaringsLossUSD": 1000000000,
+          "leesonYear": 1995,
+          "rusnakAibLossUSD": 700000000,
+          "rusnakYear": 2002
+        },
+        "units": "$",
+        "context": "Business Snapshot 1.4 rogue trader losses and risk control failures"
+      },
+      "tags": []
+    }
+  ],
+  "generalAssumptions": [
+    "Standard equity option contracts represent the right to buy or sell 100 shares of the underlying stock per contract.",
+    "Numerical case calculations for options, forwards, and cross-border arbitrage omit transaction costs, brokerage commissions, bid-ask slippage on liquidation, and tax effects to isolate core payoff mechanics.",
+    "Futures contracts require a small initial margin deposit (typically 5% to 10% of contract notional value) and expose the holder to symmetric, theoretically unlimited upside and downside price risk.",
+    "Option buyers face asymmetric risk where maximum loss is strictly capped at the up-front option premium paid, whereas option writers receive the up-front premium in exchange for assuming contingent assignment liabilities.",
+    "In efficient multi-exchange markets, simultaneous arbitrage buying in the lower-priced venue and selling in the higher-priced venue rapidly drives prices toward equilibrium until riskless profit opportunities disappear."
+  ]
+}

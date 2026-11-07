@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch04_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T15:36:28.626Z",
+  "bookTitle": "Options, Futures, and Other Derivatives (John C. Hull)",
+  "generalAssumptions": [
+    "Treasury rates are artificially lower than true risk-free rates due to tax rules and regulatory liquidity requirements.",
+    "Derivatives transactions require daily cash collateral that earns the overnight rate, making OIS the correct discount curve.",
+    "Cash flows occurring at different times must be discounted at zero rates corresponding to their specific maturities."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Types of Benchmark Interest Rates",
+      "statement": "Treasury rates are paid on sovereign debt; LIBOR was unsecured interbank lending between AA banks; Repo rates are collateralized short-term borrowing; and OIS (Overnight Indexed Swap) rates represent the swap of a fixed rate for the geometric average of overnight rates, serving as the modern risk-free benchmark.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.1 Types of Rates",
+        "page": 76,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "treasury",
+        "libor",
+        "repo",
+        "ois",
+        "benchmark"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "formula",
+      "topic": "Continuous Compounding vs Discrete Compounding",
+      "statement": "An amount P invested at interest rate R per annum compounded m times per year grows to P*(1 + R/m)^(m*T) after T years. In the limit as m approaches infinity, compounding is continuous and the amount grows to P*e^(R_c * T).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.2 Measuring Interest Rates",
+        "page": 78,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Terminal Value under Continuous Compounding",
+        "latex": "A = P \\cdot e^{R_c T}",
+        "variables": [
+          {
+            "symbol": "A",
+            "definition": "Future value of investment",
+            "unit": "$"
+          },
+          {
+            "symbol": "P",
+            "definition": "Initial investment amount",
+            "unit": "$"
+          },
+          {
+            "symbol": "R_c",
+            "definition": "Continuously compounded interest rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "T",
+            "definition": "Investment maturity in years",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "compounding",
+        "continuous",
+        "discrete",
+        "terminal_value"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "formula",
+      "topic": "Conversion Between Discrete and Continuous Compounding",
+      "statement": "The continuously compounded rate equivalent to a discrete rate R_m compounded m times per year is R_c = m * ln(1 + R_m / m). Conversely, the discrete rate is R_m = m * (e^(R_c / m) - 1).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.2 Measuring Interest Rates",
+        "page": 79,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Continuous Compounding Equivalence",
+        "latex": "R_c = m \\ln\\left(1 + \\frac{R_m}{m}\\right)",
+        "variables": [
+          {
+            "symbol": "R_c",
+            "definition": "Continuously compounded annual rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "R_m",
+            "definition": "Discretely compounded annual rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "m",
+            "definition": "Compounding frequency per year",
+            "unit": "periods"
+          }
+        ]
+      },
+      "tags": [
+        "conversion",
+        "continuous_rate",
+        "discrete_rate"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "definition",
+      "topic": "Zero-Coupon Rate (Spot Rate)",
+      "statement": "An n-year zero rate (or spot rate) is the interest rate earned on an investment that starts today and lasts for n years, with all interest and principal paid as a single lump sum at maturity and no intermediate coupon payments.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.3 Zero Rates",
+        "page": 81,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "zero_rate",
+        "spot_rate",
+        "pure_discount"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "formula",
+      "topic": "Bond Pricing Using Individual Zero Rates",
+      "statement": "A coupon bond is a portfolio of zero-coupon cash flows. Its theoretical price is calculated by discounting each cash flow at the zero rate corresponding to its maturity: P = sum(C_i * e^(-r_i * t_i)) + M * e^(-r_n * t_n).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.4 Bond Pricing",
+        "page": 82,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Bond Pricing via Zero Rates",
+        "latex": "P = \\sum_{i=1}^n C_i e^{-r_i t_i} + M e^{-r_n t_n}",
+        "variables": [
+          {
+            "symbol": "P",
+            "definition": "Theoretical cash price of the bond",
+            "unit": "$"
+          },
+          {
+            "symbol": "C_i",
+            "definition": "Coupon cash flow received at time t_i",
+            "unit": "$"
+          },
+          {
+            "symbol": "r_i",
+            "definition": "Maturity-matched continuous zero rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "M",
+            "definition": "Principal repayment at maturity t_n",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "bond_pricing",
+        "discounting",
+        "zero_rates",
+        "coupons"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "definition",
+      "topic": "Bond Yield to Maturity (YTM) vs Par Yield",
+      "statement": "Yield to maturity (YTM) is the single constant discount rate that equates a bond's discounted cash flows to its market price. The par yield is the coupon rate per annum that causes the bond price to equal its par value (100).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.4 Bond Pricing",
+        "page": 83,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "ytm",
+        "par_yield",
+        "bond_pricing"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "market_rule",
+      "topic": "The Bootstrap Method for Constructing the Zero Curve",
+      "statement": "The bootstrap method constructs the zero curve sequentially: money market instruments provide zero rates up to 1 year; coupon bonds are then used iteratively where earlier coupons are discounted using previously derived zero rates, leaving only the final zero rate to be determined algebraically.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.5 Determining Treasury Zero Rates: The Bootstrap Method",
+        "page": 84,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "bootstrap",
+        "zero_curve",
+        "sequential_derivation"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "case_study",
+      "topic": "The 2008 Financial Crisis and the Transition to OIS Discounting",
+      "statement": "Prior to 2008, LIBOR was used as the risk-free discount rate. During the 2007-2009 crisis, the LIBOR-OIS spread blew out from 10 bps to 364 bps as bank credit risk surged. Because collateralized derivatives earn the overnight rate, OIS replaced LIBOR as the true risk-free discount rate.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "4",
+        "section": "4.7 What Rate to Use as Risk-Free",
+        "page": 92,
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "ois",
+        "libor_freeze",
+        "credit_spread",
+        "derivatives_discounting"
+      ]
+    }
+  ]
+}

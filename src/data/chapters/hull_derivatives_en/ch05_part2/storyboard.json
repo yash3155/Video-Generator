@@ -1,0 +1,546 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch05_part2",
+  "course": "hull_derivatives_en",
+  "chapterTitle": "Determination of Forward and Futures Prices: Part 2",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Profit on Paper Dilemma",
+      "template": "chat_story",
+      "concept": "Raju realizes spot price moved up, but doesn't know how to value his locked forward contract today.",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Raju asks Sharma ji how to value his locked forward contract after spot moves",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "Raju"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Sharma ji explains forward delivery price is locked and must be discounted",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "Sharma ji"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Raju learns contract value fluctuates continuously until maturity",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "Sharma ji"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Valuing Forward Contracts Mid-Life",
+      "template": "formula_breakdown",
+      "concept": "Derive f = S_t - K*e^(-r(T-t)) and show how forward delivery strike is discounted.",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Explain why delivery strike K is discounted back to today",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Present formula f = S_t - K*e^(-r*tau) with LaTeX and variable chips",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Walk through $50 delivery strike, $53 spot price, yielding $3.74 value",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Forward Price vs Contract Value",
+      "template": "split_comparison",
+      "concept": "Contrast Forward Price F_t (price to enter new contract at zero cost) with Contract Value f (P&L of existing contract).",
+      "sourceFactIds": [
+        "fact-01"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Contrast Forward Price F_t with Contract Value f",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Forward price sets zero initial value for new market participants",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Contract value tracks cumulative unrealized mark-to-market gain or loss",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Stock Index Futures Pricing",
+      "template": "formula_breakdown",
+      "concept": "Formulate F_0 = S_0*e^((r-q)T) with continuous dividend yield q offsetting financing cost.",
+      "sourceFactIds": [
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Stock index represents broad diversified basket paying continuous dividends",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Derive formula F_0 = S_0 * e^((r - q)T) highlighting dividend yield q",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Examine case when dividend yield q exceeds risk-free rate r",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Index Arbitrage & Program Trading",
+      "template": "split_comparison",
+      "concept": "Contrast cash-and-carry vs reverse cash-and-carry on stock index baskets.",
+      "sourceFactIds": [
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Explain index arbitrage mechanics and computer-driven program trading",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Cash-and-carry buys constituent stocks and sells index futures when overvalued",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Reverse cash-and-carry shorts stock basket and buys index futures when undervalued",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "October 1987 Crash & Order Bottlenecks",
+      "template": "progressive_cards",
+      "concept": "Examine Black Monday, portfolio insurance feedback loops, DOT bottlenecks, and circuit breaker reforms.",
+      "sourceFactIds": [
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Black Monday 22.6% plunge triggered massive automated portfolio insurance selling",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "S&P futures crashed to unprecedented discounts below cash index quotes",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "NYSE DOT routing systems clogged with unexecuted orders, halting arbitrage",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Crisis resulted in modern cross-market circuit breakers and Rule 80A",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Currency Forwards & Interest Rate Parity",
+      "template": "formula_breakdown",
+      "concept": "Derive F_0 = S_0*e^((r - r_f)T) and show foreign interest rate acting as a dividend yield.",
+      "sourceFactIds": [
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Foreign currency deposits pay foreign interest rate r_f as dividend yield",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "State Covered Interest Rate Parity formula F_0 = S_0 * e^((r - r_f)T)",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Higher foreign interest rates mean foreign currency trades at forward discount",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Covered Interest Arbitrage on USD/GBP",
+      "template": "progressive_cards",
+      "concept": "Walk through USD/GBP $21.13 riskless arbitrage proof step-by-step.",
+      "sourceFactIds": [
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Present USD/GBP spot 1.5000 with US 5% and UK 7% rates",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Theoretical forward rate is 1.4703 but market quotes 1.4900",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Borrow $1,500, buy GBP, earn 7% interest, sell forward at 1.4900",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Lock in riskless $21.13 profit per 1,000 GBP, driving quote back to parity",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Commodities: Storage Cost & Convenience Yield",
+      "template": "formula_breakdown",
+      "concept": "Derive F_0 = S_0*e^((r + u - y)T) and contrast investment vs consumption commodities.",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Physical commodities incur physical storage costs and insurance u",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Convenience yield y measures business security of holding inventory",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Present master commodity pricing formula F_0 = S_0 * e^((r + u - y)T)",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Contango vs Backwardation",
+      "template": "split_comparison",
+      "concept": "Contrast contango (normal carrying market) with backwardation (convenience yield dominance).",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Contango occurs when carry costs dominate, making futures trade above spot",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Backwardation occurs when shortages push convenience yield above carry costs",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Producers cannot easily short physical inventory, allowing sustained backwardation",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Active Recall: Valuing a Mid-Life Forward",
+      "template": "interactive_quiz",
+      "concept": "Test active calculation of f = 53 - 50*e^(-0.06*0.25) = $3.74.",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Present challenge: Calculate mid-life forward value for $50 strike and $53 spot",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Raju discounts $50 at 6% for 3 months to $49.26 and subtracts from $53",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "Raju"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Validate correct answer +$3.74 and explain mark-to-market mechanics",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "Sharma ji"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "Raju Masters Complete Forward Pricing",
+      "template": "chat_story",
+      "concept": "Raju summarizes the synthesis of carrying costs, dividends, exchange rates, and convenience yield.",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Raju realizes forward pricing links all asset classes through cost of carry",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "Raju"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Sharma ji praises mastery and emphasizes operational risks in real markets",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "Sharma ji"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Raju is ready to apply the 8 pricing laws in institutional trading",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "Raju"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 12,
+      "title": "The Whole Picture: 8 Core Forward Pricing Laws",
+      "template": "summary_thread",
+      "concept": "Review the 8 foundational laws of forward and futures pricing with full chapter matrix.",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Roadmap overview of the 8 core forward pricing laws",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Rules 1 & 2: Mid-life contract valuation and delivery price discounting",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Rules 3 & 4: Index futures continuous dividend yield and index arbitrage",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Rules 5 & 6: 1987 crash DOT breakdown and covered interest parity",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 4,
+          "textOutline": "Rules 7 & 8: FX covered arbitrage and commodity convenience yields",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 5,
+          "textOutline": "Complete whole-chapter 2-column reference matrix",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04",
+            "fact-05",
+            "fact-06",
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Mid-Life Contract Value: Long forward value f = S_t - K·e^(-r·tau) discounts the delivery strike.",
+    "2. Contract Value vs Price: Forward price F_t enters at zero cost; contract value f tracks mark-to-market P&L.",
+    "3. Stock Index Futures: Continuous dividend yield q reduces carry: F_0 = S_0·e^((r - q)T).",
+    "4. Index Arbitrage: Program trading enforces cash-and-carry bounds across CME futures and NYSE baskets.",
+    "5. 1987 Crash Breakdown: Portfolio insurance cascades jammed NYSE DOT order printers, decoupling futures from spot.",
+    "6. Covered Interest Parity: Foreign interest rates act as continuous dividends: F_0 = S_0·e^((r - r_f)T).",
+    "7. Covered FX Arbitrage: Any forward currency divergence allows instant riskless borrowing and foreign conversion.",
+    "8. Convenience Yield Dynamics: In commodity shortages, high convenience yield y produces backwardation: F_0 < S_0."
+  ],
+  "bottomTakeaway": "Forward and futures prices across stocks, indices, currencies, and commodities represent the net cost of carry, adjusted for dividends, foreign interest rates, and physical convenience yields."
+}

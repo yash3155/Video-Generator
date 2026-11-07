@@ -1,0 +1,501 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch06_part2",
+  "course": "hull_derivatives_en",
+  "chapterTitle": "Interest Rate Futures: Eurodollar Futures, Convexity, and Duration Hedging",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Bank Balance Sheet Shock",
+      "template": "chat_story",
+      "concept": "Raju's bank faces huge unrealized losses as rates surge; Sharma ji reveals the fatal unhedged duration gap.",
+      "sourceFactIds": [
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Raju panics as bond portfolio value plunges during rate hike",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "Raju"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Sharma ji explains the fatal 7-year asset vs 1-year liability duration gap",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "Sharma ji"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Sharma ji introduces interest rate futures as the balance sheet immunization shield",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-07"
+          ],
+          "speaker": "Sharma ji"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Bank ALM Duration Gap: Snapshot 6.3",
+      "template": "split_comparison",
+      "concept": "Dissect Snapshot 6.3 balance sheet numbers proving negative equity wipeout under +200 bps hike.",
+      "sourceFactIds": [
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Present $1,000M assets (D=7) vs $900M liabilities (D=1)",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Calculate -$140M loss on assets vs $18M gain on liabilities under +200 bps shock",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Prove net $122M equity loss wiping out total $100M bank capital",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Eurodollar & SOFR Futures Specifications",
+      "template": "progressive_cards",
+      "concept": "Detail 3-month contract specifications: $1M principal, 100 - R quotation, and $25 tick value.",
+      "sourceFactIds": [
+        "fact-01"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Introduce $1,000,000 contract principal on 3-month deposits",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Explain index quotation Price = 100 - R",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Derive exact $25 per basis point tick value formula",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "The Convexity Adjustment Formula",
+      "template": "formula_breakdown",
+      "concept": "Deconstruct Forward Rate = Futures Rate - 0.5 * sigma^2 * T1 * T2 with worked 5-year example.",
+      "sourceFactIds": [
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Highlight why daily mark-to-market makes futures rates exceed forward rates",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down the convexity adjustment formula terms",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Demonstrate 19 bps convexity adjustment on 5-year contract",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Macaulay Duration: Cash Flow Timing",
+      "template": "formula_breakdown",
+      "concept": "Derive Macaulay duration D as weighted average cash flow maturity.",
+      "sourceFactIds": [
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Define Macaulay duration as cash flow time weighting",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down time-weighting and discounting formula terms",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Contrast zero coupon duration vs coupon bond duration shortening",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Modified Duration: Price Sensitivity",
+      "template": "formula_breakdown",
+      "concept": "Explain linear price sensitivity Delta B / B approx -D* * Delta y with 50 bps yield hike example.",
+      "sourceFactIds": [
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Define modified duration D* as linear price sensitivity",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Calculate -3.0% loss on 6-year duration bond facing +50 bps hike",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Emphasize negative inverse relationship between yields and bond prices",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Convexity Protection Against Large Shocks",
+      "template": "split_comparison",
+      "concept": "Contrast linear duration estimate vs second-order convexity curvature correction.",
+      "sourceFactIds": [
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Explain why linear duration fails on large rate shocks (>100 bps)",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Show second-order term +0.5 * C * (Delta y)^2",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Demonstrate asymmetry: prices rise faster on drops (+16.4%) than they fall on hikes (-13.6%)",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "The Duration Hedge Ratio Formula",
+      "template": "formula_breakdown",
+      "concept": "Formulate master portfolio immunization formula N* = (P * D_P) / (V_F * D_F).",
+      "sourceFactIds": [
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Introduce duration hedge ratio formula N*",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Deconstruct portfolio dollar duration vs futures dollar duration",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Explain how shorting N* contracts neutralizes rate risk",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Hedging a $50M Bond Portfolio: Case Study",
+      "template": "progressive_cards",
+      "concept": "Step-by-step sizing: $50M portfolio with D=6.8 hedged with CTD D=8.2 yields 423 contracts.",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Calculate portfolio dollar duration P * D_P = $340,000,000",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Calculate futures contract dollar duration V_F * D_F = $803,600",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Size optimal hedge: N* = 340M / 803.6k = 423 short contracts",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall: Duration Hedge Ratio",
+      "template": "interactive_quiz",
+      "concept": "Challenge learner to compute N* contracts for the $50M portfolio.",
+      "sourceFactIds": [
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Present active recall scenario on portfolio immunization",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Learner calculates N* = 423 contracts during thinking pause",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Validate correct Option A and celebrate balance sheet immunization",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Raju Masters Duration Immunization",
+      "template": "chat_story",
+      "concept": "Raju masters institutional balance sheet hedging; Sharma ji warns about basis risk and curve twists.",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Raju achieves epiphany on institutional duration immunization",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "Raju"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Sharma ji warns about non-parallel shifts and credit basis risk",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "Sharma ji"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Sharma ji introduces upcoming Chapter 7 on Swaps",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "Sharma ji"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "The Whole Picture: 8 Core Duration & Hedging Rules",
+      "template": "summary_thread",
+      "concept": "Synthesize the 8 iron laws of interest rate futures and duration hedging.",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Present executive roadmap of the 8 rules",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04",
+            "fact-05",
+            "fact-06",
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Focus on Rules 1 and 2: Eurodollar ticks and daily settlement wedge",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Focus on Rules 3 and 4: Convexity adjustment formula and Macaulay duration",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Focus on Rules 5 and 6: Modified duration sensitivity and second-order convexity",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 4,
+          "textOutline": "Strict dedicated focus on Rules 7 & 8: Bank ALM crisis and Rule 8 target immunization formula",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 5,
+          "textOutline": "Display complete 2-column whole-chapter matrix",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04",
+            "fact-05",
+            "fact-06",
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Eurodollar Tick Standard: Every 1 basis point (0.01%) move in 3-month Eurodollar / SOFR futures is worth exactly $25 per contract.",
+    "2. The Convexity Wedge: Daily mark-to-market settlement makes futures rates systematically higher than forward rates.",
+    "3. Convexity Adjustment Formula: Forward Rate = Futures Rate - 0.5 * sigma^2 * T1 * T2 reduces long-dated futures rates.",
+    "4. Macaulay Duration: Measures effective cash flow timing as the weighted average maturity of discounted payments.",
+    "5. Modified Duration Sensitivity: Linear price loss is given by Delta B / B approx -D* * Delta y for small parallel shifts.",
+    "6. Convexity Curvature: Positive curvature protects bondholders: Delta B / B approx -D* * Delta y + 0.5 * C * (Delta y)^2.",
+    "7. Bank ALM Duration Gap: Banks holding long assets and short liabilities face balance sheet wipeout when yields surge.",
+    "8. Target Immunization Rule: Shorting N* = (P * D_P) / (V_F * D_F) contracts immunizes portfolios against parallel yield shifts."
+  ],
+  "bottomTakeaway": "Eurodollar futures, convexity adjustments, and duration hedging provide the mathematical armor required to navigate volatile global interest rate markets."
+}

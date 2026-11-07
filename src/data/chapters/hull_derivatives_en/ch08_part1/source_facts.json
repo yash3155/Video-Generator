@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch08_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T17:44:10.773Z",
+  "bookTitle": "Options, Futures, and Other Derivatives (John C. Hull)",
+  "generalAssumptions": [
+    "Securitization transforms illiquid portfolios of loans (e.g. subprime mortgages) into tradeable tranches of debt securities.",
+    "The waterfall rule determines the priority of cash flow distributions and credit loss allocations across tranches.",
+    "ABS CDOs repackage mezzanine debt into secondary structures, creating extreme vulnerability to systemic correlation shocks."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Origin-to-Distribute Model & SPV Waterfall",
+      "statement": "Under the origin-to-distribute securitization model, banks originate mortgages, sell them to a Special Purpose Vehicle (SPV), and distribute the risk to capital market investors. Cash flows from mortgage payments flow through a structured waterfall where senior bondholders are paid principal and interest first before subordinated tranches.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "8",
+        "section": "8.1 Securitization",
+        "page": 190,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Waterfall Distribution Rule",
+        "latex": "\\text{Cash Flow Priority}: \\text{Senior} \\succ \\text{Mezzanine} \\succ \\text{Equity}",
+        "variables": [
+          {
+            "symbol": "Senior",
+            "definition": "Highest priority cash flow tranche, lowest risk",
+            "unit": "$"
+          },
+          {
+            "symbol": "Mezzanine",
+            "definition": "Subordinated to senior, absorbs intermediate losses",
+            "unit": "$"
+          },
+          {
+            "symbol": "Equity",
+            "definition": "Residual first-loss piece absorbing early defaults",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "securitization",
+        "origin_to_distribute",
+        "spv",
+        "waterfall"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "claim",
+      "topic": "Tranche Structure & Credit Subordination",
+      "statement": "A standard mortgage ABS divides a portfolio (e.g. $100M) into three primary tranches: Senior Tranche (80%, $80M, rated AAA), Mezzanine Tranche (15%, $15M, rated BBB), and Equity Tranche (5%, $5M, unrated first-loss piece). Subordination ensures the senior tranche is protected from the first 20% of aggregate losses.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "8",
+        "section": "8.1 Securitization",
+        "page": 191,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Tranche Subordination Capital Partition",
+        "latex": "100\\% = 80\\% \\text{ Senior} + 15\\% \\text{ Mezzanine} + 5\\% \\text{ Equity}",
+        "variables": [
+          {
+            "symbol": "Senior",
+            "definition": "80% AAA protected debt",
+            "unit": "%"
+          },
+          {
+            "symbol": "Mezzanine",
+            "definition": "15% BBB subordinated debt",
+            "unit": "%"
+          },
+          {
+            "symbol": "Equity",
+            "definition": "5% unrated first-loss piece",
+            "unit": "%"
+          }
+        ]
+      },
+      "tags": [
+        "tranches",
+        "subordination",
+        "senior_aaa",
+        "mezzanine_bbb",
+        "equity_tranche"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "claim",
+      "topic": "The ABS CDO Alchemy",
+      "statement": "In an ABS Collateralized Debt Obligation (ABS CDO), financial engineers bundle the hard-to-sell BBB-rated mezzanine tranches from hundreds of different mortgage ABS structures into a new pool, issuing a secondary waterfall that creates 75% AAA-rated Senior CDO debt out of 100% BBB-rated risk.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "8",
+        "section": "8.1 Securitization",
+        "page": 193,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "ABS CDO Tranche Reconstitution",
+        "latex": "\\text{Pool}_{\\text{BBB}} \\longrightarrow 75\\% \\text{ AAA CDO} + 20\\% \\text{ Mezz CDO} + 5\\% \\text{ Equity CDO}",
+        "variables": [
+          {
+            "symbol": "Pool_BBB",
+            "definition": "Underlying portfolio made entirely of BBB mezzanine tranches",
+            "unit": "$"
+          },
+          {
+            "symbol": "AAA CDO",
+            "definition": "Senior synthetic/repackaged debt rated AAA",
+            "unit": "%"
+          }
+        ]
+      },
+      "tags": [
+        "abs_cdo",
+        "financial_alchemy",
+        "rating_arbitrage",
+        "mezzanine_repackaging"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "claim",
+      "topic": "Subprime Boom, Teaser Rates & Principal-Agent Incentives",
+      "statement": "Between 2000 and 2006, loose monetary policy and rising home prices fueled the subprime boom. Lenders loosened credit standards, offering 100% loan-to-value mortgages, teaser rates (low fixed rates resetting higher after 2-3 years), and NINJA loans (No Income, No Job, No Assets). Originators faced a principal-agent conflict: earning upfront origination fees while passing all default risk to bondholders.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "8",
+        "section": "8.2 The U.S. Housing Market",
+        "page": 194,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Adjustable Rate Mortgage Reset",
+        "latex": "\\text{Payment}_{t > 2} = \\text{Principal} \\times (\\text{LIBOR} + \\text{Margin}) \\gg \\text{Teaser Rate}",
+        "variables": [
+          {
+            "symbol": "Payment",
+            "definition": "Monthly mortgage payment after teaser reset",
+            "unit": "$"
+          },
+          {
+            "symbol": "Teaser Rate",
+            "definition": "Artificially low initial coupon rate (e.g., 2% to 3%)",
+            "unit": "%"
+          }
+        ]
+      },
+      "tags": [
+        "subprime_mortgages",
+        "teaser_rates",
+        "ninja_loans",
+        "agency_problem"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "rule",
+      "topic": "Systemic Correlation Breakdown",
+      "statement": "Securitization models relied on the fatal assumption that mortgage defaults in different geographic regions were largely uncorrelated (e.g., defaults in California would not coincide with defaults in Florida). When nationwide house prices peaked in 2006 and plunged, default correlations surged toward 1.0, invalidating diversification assumptions across all tranches.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "8",
+        "section": "8.3 What Went Wrong?",
+        "page": 198,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Correlation Jump Invariant",
+        "latex": "\\rho(\\text{Default}_A, \\text{Default}_B) \\longrightarrow 1.0 \\quad (\\text{Nationwide Price Collapse})",
+        "variables": [
+          {
+            "symbol": "\\rho",
+            "definition": "Pairwise default correlation across regions",
+            "unit": "Dimensionless"
+          }
+        ]
+      },
+      "tags": [
+        "default_correlation",
+        "correlation_breakdown",
+        "systemic_risk",
+        "housing_collapse"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "calculation",
+      "topic": "Mathematical Tranche Loss Wipeout Mechanics",
+      "statement": "Credit losses are absorbed strictly bottom-up: In a $100M pool (5% Equity, 15% Mezzanine, 80% Senior), an aggregate collateral loss of 10% completely wipes out the $5M Equity tranche (100% loss) and destroys $5M of the Mezzanine tranche (33.3% loss). When collateral losses reach 20%, the Mezzanine tranche suffers a total 100% loss. In an ABS CDO built on BBB tranches, a 5% to 8% portfolio loss wipes out the underlying assets, destroying even AAA CDO senior tranches.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "8",
+        "section": "8.3 What Went Wrong?",
+        "page": 199,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Tranche Loss Allocation Formula",
+        "latex": "\\text{Loss}_{\\text{Mezz}} = \\min(15\\%, \\max(0, \\text{Collateral Loss} - 5\\%))",
+        "variables": [
+          {
+            "symbol": "Loss_Mezz",
+            "definition": "Percentage loss suffered by the mezzanine tranche",
+            "unit": "%"
+          },
+          {
+            "symbol": "Collateral Loss",
+            "definition": "Total portfolio default loss net of recoveries",
+            "unit": "%"
+          }
+        ]
+      },
+      "tags": [
+        "tranche_losses",
+        "waterfall_wipeout",
+        "equity_absorption",
+        "mathematical_loss"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "claim",
+      "topic": "Business Snapshot 8.1 & Rating Agency Conflicts",
+      "statement": "Credit rating agencies operated under an 'issuer-pays' conflict of interest: rating fees were paid directly by the investment banks structuring the ABS CDOs. Furthermore, ratings models relied on short historical time series that only covered benign economic environments with rising house prices, underestimating the tail risk of systemic collapse.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "8",
+        "section": "8.3 What Went Wrong? & Snapshot 8.1",
+        "page": 201,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Rating Arbitrage Conflict",
+        "latex": "\\text{Fee Revenue} \\propto \\text{Deal Volume} \\implies \\text{Incentive to Grant AAA Ratings}",
+        "variables": [
+          {
+            "symbol": "Fee Revenue",
+            "definition": "Rating agency compensation from structuring desks",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "snapshot_8_1",
+        "rating_agencies",
+        "issuer_pays",
+        "conflict_of_interest"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "rule",
+      "topic": "Post-Crisis Regulatory Architecture (Basel III & Dodd-Frank)",
+      "statement": "The post-2008 regulatory overhaul enforced three pillars: Basel III introduced significantly higher Tier 1 Common Equity capital ratios (4.5% + 2.5% conservation buffer), mandatory liquidity ratios (LCR and NSFR), and the Dodd-Frank Act mandated 5% 'skin-in-the-game' risk retention for securitizers, alongside central clearing for standardized OTC derivatives.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "8",
+        "section": "8.4 The Aftermath",
+        "page": 202,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Basel III Minimum Capital Ratio",
+        "latex": "\\text{CET1 Ratio} = \\frac{\\text{Common Equity Tier 1}}{\\text{Risk-Weighted Assets}} \\ge 7.0\\%",
+        "variables": [
+          {
+            "symbol": "CET1 Ratio",
+            "definition": "Common Equity Tier 1 capital adequacy ratio",
+            "unit": "%"
+          },
+          {
+            "symbol": "Risk-Weighted Assets",
+            "definition": "Total assets weighted by statutory credit/market risk",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "basel_iii",
+        "dodd_frank",
+        "skin_in_the_game",
+        "regulatory_reforms",
+        "cet1_ratio"
+      ]
+    }
+  ]
+}

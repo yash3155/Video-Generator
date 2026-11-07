@@ -1,145 +1,392 @@
 {
+  "schemaVersion": "1.0.0",
   "meta": {
-    "domain": "finance",
-    "course": "DERIVATIVES & RISK MANAGEMENT · HULL",
+    "course": "hull_derivatives",
     "chapter": "CHAPTER 1 · PART 1",
-    "totalSegments": 12,
+    "chapterTitle": "Introduction to Derivatives: Futures, Forwards, and Systemic Risk",
+    "domain": "finance",
+    "primaryColor": "#0F766E",
+    "accentColor": "#F59E0B",
+    "narrationLanguage": "hi-IN-devanagari",
     "generationProvenance": {
       "model": "gemini-4-argon",
       "requestedModel": "gemini-4-argon",
       "preflightStatus": "PASSED",
-      "preflightEngine": "proxy",
-      "approvedByUser": true,
-      "approvalTimestamp": "2026-11-02T22:41:34.242Z",
-      "runId": "run_1793659294243_wnbeio"
+      "architectureVersion": "2.0-microkernel-adaptive",
+      "updatedAt": "2026-11-07T21:36:49.768Z"
     }
   },
   "scenes": [
     {
       "segmentIndex": 0,
-      "title": "The Illusion of OTC Safety",
+      "title": "Origins of Derivatives: The 1848 Grain Dilemma",
       "template": "chat_story",
-      "badge": "Trading Desk · Market Structure",
+      "badge": "Historical Origins · 1848 CBOT",
       "beats": [
         {
           "id": "b01",
-          "hindi_tts": "राजू सोचता है कि बड़े बैंकों के बीच होने वाले ओटीसी सौदे एक्सचेंज फ्यूचर्स से ज्यादा सुरक्षित हैं।",
-          "en_subtitle": "Raju assumes private OTC trades between giant banks are safer than exchange futures.",
-          "pauseAfterMs": 400,
+          "hindi_tts": "राजू पूछता है, शर्मा जी, वित्तीय बाजारों में यह फ्यूचर्स और फॉरवर्ड्स की शुरुआत आखिर कैसे हुई?",
+          "en_narration": "Raju asks: Sharma ji, how did futures and forwards actually originate in financial markets?",
+          "en_subtitle": "Raju asks: Sharma ji, how did futures and forwards actually originate?",
+          "pauseAfterMs": 450,
           "ui_state": {
             "stageDirections": [
-              "— morning: Raju reviews institutional OTC derivatives desk —"
+              "— Raju asks about the human origins of derivatives —"
             ],
             "messages": [
               {
                 "sender": "Raju",
                 "avatar": "R",
-                "text": "OTC forward contracts between giant banks must be tiny and virtually risk-free!",
+                "text": "Sharma ji, how did futures and forwards actually originate in financial history?",
                 "theme": "amber",
                 "align": "left"
               }
             ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji, how did futures and forwards actually originate in financial history?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Hook the audience with the natural human origin question",
+              "sourceFactIds": [
+                "fact-cbot-historical-origins"
+              ]
+            }
           }
         },
         {
           "id": "b02",
-          "hindi_tts": "शर्मा जी उसे 15 सितंबर 2008 की याद दिलाते हैं जब लेहमन ब्रदर्स 31 गुना लेवरेज पर ढह गया।",
-          "en_subtitle": "Sharma ji recalls September 15, 2008, when Lehman collapsed at 31 to 1 leverage.",
+          "hindi_tts": "शर्मा जी समझाते हैं, उन्नीसवीं सदी में अमेरिकी किसान जून में मक्के की बुआई करते थे और सितंबर में फसल कटती थी।",
+          "en_narration": "Sharma ji explains: In the 19th century, American Midwest farmers planted corn in June for September harvest.",
+          "en_subtitle": "In the 1800s, American farmers planted corn in June for September harvest.",
           "pauseAfterMs": 450,
           "ui_state": {
             "stageDirections": [
-              "— Sharma ji points to the historical Lehman insolvency filing —"
+              "— Sharma ji introduces the agricultural production cycle —"
             ],
             "messages": [
               {
                 "sender": "Raju",
                 "avatar": "R",
-                "text": "OTC forward contracts between giant banks must be tiny and virtually risk-free!",
+                "text": "Sharma ji, how did futures and forwards actually originate in financial history?",
                 "theme": "amber",
                 "align": "left"
               },
               {
                 "sender": "Sharma ji",
                 "avatar": "S",
-                "text": "Never underestimate counterparty risk. Lehman reached 31:1 leverage in 2007!",
+                "text": "In the 1800s, Midwest farmers planted corn in June, with harvest arriving in September.",
                 "theme": "teal",
                 "align": "right"
               }
             ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji, how did futures and forwards actually originate in financial history?",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "In the 1800s, Midwest farmers planted corn in June, with harvest arriving in September.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Establish agricultural production cycle and harvest timing",
+              "sourceFactIds": [
+                "fact-cbot-historical-origins"
+              ]
+            }
           }
         },
         {
           "id": "b03",
-          "hindi_tts": "एसेट वैल्यू में सिर्फ तीन से चार परसेंट की गिरावट ने लेहमन की पूरी इक्विटी मिटा दी और दस लाख से ज्यादा कॉन्ट्रैक्ट्स फंस गए।",
-          "en_subtitle": "A mere 3% to 4% asset drop wiped out Lehman equity, freezing over 1M contracts.",
-          "pauseAfterMs": 500,
+          "hindi_tts": "अगर बंपर पैदावार होती तो भाव धड़ाम से गिर जाते और किसान बर्बाद हो जाता, और सूखा पड़ता तो अनाज व्यापारी के लिए लागत आसमान छू जाती।",
+          "en_narration": "A bumper crop caused harvest prices to collapse, ruining farmers; while a drought caused prices to surge, bankrupting flour merchants.",
+          "en_subtitle": "Bumper crops crashed prices, ruining farmers; drought surged costs for merchants.",
+          "pauseAfterMs": 450,
           "ui_state": {
             "stageDirections": [
-              "— highlighting counterparty contagion across global OTC desks —"
+              "— Sharma ji reveals the dual existential dilemma —"
             ],
             "messages": [
               {
                 "sender": "Raju",
                 "avatar": "R",
-                "text": "OTC forward contracts between giant banks must be tiny and virtually risk-free!",
+                "text": "Sharma ji, how did futures and forwards actually originate in financial history?",
                 "theme": "amber",
                 "align": "left"
               },
               {
                 "sender": "Sharma ji",
                 "avatar": "S",
-                "text": "A tiny 3% asset drop wiped Lehman out, freezing over 1,000,000 bilateral OTC contracts!",
+                "text": "In the 1800s, Midwest farmers planted corn in June, with harvest arriving in September.",
+                "theme": "teal",
+                "align": "right"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "A bumper crop crashed prices, bankrupting farmers; drought caused price spikes, bankrupting millers!",
                 "theme": "teal",
                 "align": "right"
               }
             ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji, how did futures and forwards actually originate in financial history?",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "In the 1800s, Midwest farmers planted corn in June, with harvest arriving in September.",
+                  "theme": "teal",
+                  "align": "right"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "A bumper crop crashed prices, bankrupting farmers; drought caused price spikes, bankrupting millers!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reveal the dual human dilemma motivating contract creation",
+              "sourceFactIds": [
+                "fact-cbot-historical-origins"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b04",
+          "hindi_tts": "इसलिए अठारह सौ अड़तालीस में शिकागो बोर्ड ऑफ ट्रेड ने पांच हजार बुशल के मानकीकृत सौदों से भाव पहले ही तय करना शुरू किया, ताकि दोनों का जीवन सुरक्षित हो सके।",
+          "en_narration": "Thus in 1848, the Chicago Board of Trade created standardized 5,000-bushel contracts to fix prices ahead of delivery, protecting both livelihoods.",
+          "en_subtitle": "In 1848, CBOT standardized 5,000-bushel contracts to lock prices in advance.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "stageDirections": [
+              "— The birth of standardized futures at CBOT in 1848 —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji, how did futures and forwards actually originate in financial history?",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "In the 1800s, Midwest farmers planted corn in June, with harvest arriving in September.",
+                "theme": "teal",
+                "align": "right"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "A bumper crop crashed prices, bankrupting farmers; drought caused price spikes, bankrupting millers!",
+                "theme": "teal",
+                "align": "right"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "In 1848, CBOT standardized 5,000-bushel contracts to lock delivery prices in advance!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji, how did futures and forwards actually originate in financial history?",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "In the 1800s, Midwest farmers planted corn in June, with harvest arriving in September.",
+                  "theme": "teal",
+                  "align": "right"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "A bumper crop crashed prices, bankrupting farmers; drought caused price spikes, bankrupting millers!",
+                  "theme": "teal",
+                  "align": "right"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "In 1848, CBOT standardized 5,000-bushel contracts to lock delivery prices in advance!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Conclude 1848 CBOT standardization origin resolution",
+              "sourceFactIds": [
+                "fact-cbot-historical-origins"
+              ]
+            }
           }
         }
       ]
     },
     {
       "segmentIndex": 1,
-      "title": "Lehman Brothers 31:1 Leverage Collapse",
-      "template": "stat_counter",
-      "badge": "Business Snapshot 1.1 · Bankruptcy",
+      "title": "Origins of Futures: Corn Farmer vs. Miller",
+      "template": "tug_of_war",
+      "badge": "John Hull Section 1.2 · 5,000 Bushel Contract",
       "beats": [
         {
-          "id": "b04",
-          "hindi_tts": "साल 2007 में लेहमन ब्रदर्स 31 अनुपात 1 के भारी लेवरेज रेश्यो पर काम कर रहा था।",
-          "en_subtitle": "In 2007, Lehman Brothers operated at an extreme leverage ratio of 31 to 1.",
-          "pauseAfterMs": 450,
-          "ui_state": {
-            "statLabel": "Lehman Peak Leverage Ratio (2007)",
-            "primaryValue": "31 : 1",
-            "deltaText": "$31 Assets for every $1 Equity Capital",
-            "trend": "down",
-            "contextNote": "Unregulated investment banking outside standard capital rules"
-          }
-        },
-        {
           "id": "b05",
-          "hindi_tts": "इकतीस गुना लेवरेज पर केवल 3.23 परसेंट की एसेट गिरावट से कंपनी की पूरी पूंजी साफ हो गई।",
-          "en_subtitle": "At 31:1 leverage, an asset decline of just 3.2% erased total equity capital.",
-          "pauseAfterMs": 500,
+          "hindi_tts": "फ्यूचर्स की शुरुआत शिकागो में मक्का किसानों और मिल मालिकों के बीच मूल्य जोखिम को संतुलित करने के लिए हुई थी।",
+          "en_narration": "Futures originated in Chicago to balance price uncertainty between corn farmers and flour millers.",
+          "en_subtitle": "Futures markets originated in Chicago to balance risk between farmers and millers.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "statLabel": "Asset Drop to Trigger Insolvency",
-            "primaryValue": "3.23%",
-            "deltaText": "1 / 31 = Exactly 3.23% loss wipes equity",
-            "trend": "down",
-            "contextNote": "Subprime mortgage declines easily breached this threshold"
+            "title": "Farmer vs Miller Price Risk",
+            "leftTitle": "Farmers (Downside Fear)",
+            "leftScore": 20,
+            "rightTitle": "Millers (Price Spike Fear)",
+            "rightScore": 20,
+            "centerLabel": "5,000 Bushel Contract",
+            "advantage": "neutral",
+            "trend": "neutral"
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "title": "Farmer vs Miller Price Risk",
+              "cards": [
+                {
+                  "title": "Corn Farmers",
+                  "details": "Fear autumn oversupply and price collapse below production cost."
+                },
+                {
+                  "title": "Flour Millers",
+                  "details": "Fear spring droughts causing unhedged raw grain price spikes."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Visualize opposing commercial exposures of producers and processors",
+              "sourceFactIds": [
+                "fact-cbot-historical-origins"
+              ]
+            }
           }
         },
         {
           "id": "b06",
-          "hindi_tts": "15 सितंबर 2008 को लेहमन दिवालिया हुआ और 8,000 पार्टियों के 10 लाख से अधिक ओटीसी ट्रेड्स अदालत में उलझ गए।",
-          "en_subtitle": "On Sept 15, 2008, over 1M OTC trades across 8,000 counterparties entered litigation.",
+          "hindi_tts": "किसान को बंपर फसल पर भाव गिरने का डर था, और मिल मालिक को फसल खराब होने पर आटा बनाने की लागत बढ़ने का खौफ था।",
+          "en_narration": "The farmer feared price collapse from oversupply, while the miller dreaded price spikes wiping out operating margins.",
+          "en_subtitle": "Farmers feared harvest gluts; millers feared costly crop shortages.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Opposing Commercial Exposures",
+            "leftTitle": "Farmers (Downside Fear)",
+            "leftScore": 25,
+            "rightTitle": "Millers (Price Spike Fear)",
+            "rightScore": 25,
+            "centerLabel": "Equilibrium Price",
+            "advantage": "neutral",
+            "trend": "neutral"
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "title": "Opposing Commercial Exposures",
+              "cards": [
+                {
+                  "title": "Harvest Price Risk",
+                  "details": "Without forward commitments, both parties faced potential bankruptcy."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Show economic symmetry between short and long hedgers",
+              "sourceFactIds": [
+                "fact-cbot-historical-origins"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b07",
+          "hindi_tts": "जून में ही सितंबर का डिलीवरी भाव तय करने से यह अनिश्चितता खत्म हो गई, जो आज सीएमई पर पांच हजार बुशल का मानकीकृत अनुबंध है।",
+          "en_narration": "Locking the September delivery price in June eliminated uncertainty, establishing today's standardized 5,000-bushel CME contract.",
+          "en_subtitle": "Locking prices in June eliminated risk, founding today's 5,000-bushel CME contracts.",
           "pauseAfterMs": 500,
           "ui_state": {
-            "statLabel": "Unsettled OTC Derivatives Contracts",
-            "primaryValue": "> 1,000,000",
-            "deltaText": "Spread across ~8,000 global counterparties",
-            "trend": "down",
-            "contextNote": "Catalyzed global post-crisis Central Counterparty (CCP) mandates"
+            "title": "Locking in Certainty",
+            "leftTitle": "Forward Sellers (Farmers)",
+            "leftScore": 50,
+            "rightTitle": "Forward Buyers (Millers)",
+            "rightScore": 50,
+            "centerLabel": "Locked Delivery Price",
+            "advantage": "left",
+            "trend": "up"
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "title": "Locking in Certainty",
+              "cards": [
+                {
+                  "title": "Standardized Resolution",
+                  "details": "1848 CBOT agreement standardized contract grade, location, and 5,000-bushel size."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Conclude how forward contracting creates economic certainty",
+              "sourceFactIds": [
+                "fact-cbot-historical-origins",
+                "fact-futures-def"
+              ]
+            }
           }
         }
       ]
@@ -148,259 +395,384 @@
       "segmentIndex": 2,
       "title": "Chapter 1 Part 1 Roadmap",
       "template": "progressive_cards",
-      "badge": "Core Curriculum · Hull Ch 1",
+      "badge": "Foundational Roadmap",
       "beats": [
         {
-          "id": "b07",
-          "hindi_tts": "पहला पिलर है: एक्सचेंज ट्रेडेड फ्यूचर्स और प्राइवेट ओटीसी फॉरवर्ड्स के बीच संरचनात्मक फर्क।",
-          "en_subtitle": "Pillar one contrasts exchange futures against private over-the-counter forwards.",
-          "pauseAfterMs": 400,
-          "ui_state": {
-            "sectionHeader": "Chapter 1 Part 1 Roadmap",
-            "layout": "grid",
-            "cards": [
-              {
-                "icon": "Repeat",
-                "title": "Futures vs OTC Forwards",
-                "subtitle": "Standardized CME contracts vs custom private trades",
-                "state": "active_amber"
-              },
-              {
-                "icon": "DollarSign",
-                "title": "Spot vs Forward FX Quotes",
-                "subtitle": "Reading bank bid and offer spreads across tenors",
-                "state": "hidden"
-              },
-              {
-                "icon": "ShieldCheck",
-                "title": "Corporate Currency Hedging",
-                "subtitle": "ImportCo outflow and ExportCo inflow calculations",
-                "state": "hidden"
-              },
-              {
-                "icon": "AlertTriangle",
-                "title": "Systemic Risk & CCP Reforms",
-                "subtitle": "Lehman 31:1 collapse, SEFs, and central novation",
-                "state": "hidden"
-              }
-            ]
-          }
-        },
-        {
           "id": "b08",
-          "hindi_tts": "दूसरा पिलर है: बैंक के स्पॉट और फॉरवर्ड फॉरेन एक्सचेंज कोट्स को बिड और ऑफर स्प्रेड के साथ समझना।",
-          "en_subtitle": "Pillar two examines bank spot and forward FX quotations across maturities.",
+          "hindi_tts": "इस अध्याय में हम वित्तीय डेरिवेटिव्स के चार मुख्य स्तंभों को समझेंगे। पहला: एक्सचेंज फ्यूचर्स और ओवर द काउंटर फॉरवर्ड्स के बीच अंतर।",
+          "en_narration": "In this lesson we master four core pillars of derivatives. First: The fundamental distinction between exchange futures and OTC forwards.",
+          "en_subtitle": "Module 1: Exchange-Traded Futures vs Over-the-Counter (OTC) Forwards.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Chapter 1 Part 1 Roadmap",
-            "layout": "grid",
+            "title": "Chapter 1 Part 1 Curriculum",
             "cards": [
               {
-                "icon": "Repeat",
-                "title": "Futures vs OTC Forwards",
-                "subtitle": "Standardized CME contracts vs custom private trades",
-                "state": "muted"
-              },
-              {
-                "icon": "DollarSign",
-                "title": "Spot vs Forward FX Quotes",
-                "subtitle": "Reading bank bid and offer spreads across tenors",
-                "state": "active_blue"
-              },
-              {
-                "icon": "ShieldCheck",
-                "title": "Corporate Currency Hedging",
-                "subtitle": "ImportCo outflow and ExportCo inflow calculations",
-                "state": "hidden"
-              },
-              {
-                "icon": "AlertTriangle",
-                "title": "Systemic Risk & CCP Reforms",
-                "subtitle": "Lehman 31:1 collapse, SEFs, and central novation",
-                "state": "hidden"
+                "title": "1. Futures vs. Forwards Architecture",
+                "details": "Standardized exchange trading (CME/ICE) vs bilateral customized OTC forward agreements.",
+                "active": true,
+                "badge": "Market Structure"
               }
             ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "1. Futures vs. Forwards Architecture",
+                  "details": "Standardized exchange trading (CME/ICE) vs bilateral customized OTC forward agreements.",
+                  "active": true,
+                  "badge": "Market Structure"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce first pillar of derivatives architecture",
+              "sourceFactIds": [
+                "fact-futures-def",
+                "fact-forward-def"
+              ]
+            }
           }
         },
         {
           "id": "b09",
-          "hindi_tts": "तीसरा पिलर है: इम्पोर्टर और एक्सपोर्टर कंपनियों के लिए सटीक करेंसी हेजिंग का गणित।",
-          "en_subtitle": "Pillar three calculates precise currency hedging formulas for corporate treasurers.",
+          "hindi_tts": "दूसरा: मैच्योरिटी पर लीनियर पेऑफ सूत्र—लॉन्ग के लिए एस टी माइनस के और शॉर्ट के लिए के माइनस एस टी।",
+          "en_narration": "Second: Linear expiration payoff mechanics—S_t minus K for long positions and K minus S_t for short positions.",
+          "en_subtitle": "Module 2: Linear Payoffs: Long (Sₜ − K) and Short (K − Sₜ).",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Chapter 1 Part 1 Roadmap",
-            "layout": "grid",
+            "title": "Chapter 1 Part 1 Curriculum",
             "cards": [
               {
-                "icon": "Repeat",
-                "title": "Futures vs OTC Forwards",
-                "subtitle": "Standardized CME contracts vs custom private trades",
-                "state": "muted"
+                "title": "1. Futures vs. Forwards Architecture",
+                "details": "Standardized exchange trading (CME/ICE) vs bilateral customized OTC forward agreements.",
+                "active": false,
+                "badge": "Market Structure"
               },
               {
-                "icon": "DollarSign",
-                "title": "Spot vs Forward FX Quotes",
-                "subtitle": "Reading bank bid and offer spreads across tenors",
-                "state": "muted"
-              },
-              {
-                "icon": "ShieldCheck",
-                "title": "Corporate Currency Hedging",
-                "subtitle": "ImportCo outflow and ExportCo inflow calculations",
-                "state": "active_green"
-              },
-              {
-                "icon": "AlertTriangle",
-                "title": "Systemic Risk & CCP Reforms",
-                "subtitle": "Lehman 31:1 collapse, SEFs, and central novation",
-                "state": "hidden"
+                "title": "2. Terminal Payoff Formulas",
+                "details": "Symmetrical linear payoffs: Long (Sₜ − K) and Short (K − Sₜ) with zero upfront premium.",
+                "active": true,
+                "badge": "Payoff Math"
               }
             ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "1. Futures vs. Forwards Architecture",
+                  "details": "Standardized exchange trading (CME/ICE) vs bilateral customized OTC forward agreements.",
+                  "active": false,
+                  "badge": "Market Structure"
+                },
+                {
+                  "title": "2. Terminal Payoff Formulas",
+                  "details": "Symmetrical linear payoffs: Long (Sₜ − K) and Short (K − Sₜ) with zero upfront premium.",
+                  "active": true,
+                  "badge": "Payoff Math"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce second pillar: terminal linear payoff formulas",
+              "sourceFactIds": [
+                "fact-forward-payoff-formulas"
+              ]
+            }
           }
         },
         {
           "id": "b10",
-          "hindi_tts": "चौथा पिलर है: सिस्टमिक रिस्क, लेहमन का सबक, और ट्रेड निपटाने के लिए सेंट्रल काउंटरपार्टी रिफॉर्म्स।",
-          "en_subtitle": "Pillar four evaluates systemic domino risks and post-crisis CCP clearing mandates.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "तीसरा: कॉर्पोरेट विदेशी मुद्रा हेजिंग—बैंकों के बिड और ऑफर रेट्स से आयातक और निर्यातक द्वारा कैश फ्लो लॉक करना।",
+          "en_narration": "Third: Corporate FX hedging—how importers and exporters lock cash flows using bank bid and offer rates.",
+          "en_subtitle": "Module 3: Corporate Currency Hedging via Bank Bid and Offer Quotes.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Chapter 1 Part 1 Roadmap",
-            "layout": "grid",
+            "title": "Chapter 1 Part 1 Curriculum",
             "cards": [
               {
-                "icon": "Repeat",
-                "title": "Futures vs OTC Forwards",
-                "subtitle": "Standardized CME contracts vs custom private trades",
-                "state": "muted"
+                "title": "1. Futures vs. Forwards Architecture",
+                "details": "Standardized exchange trading (CME/ICE) vs bilateral customized OTC forward agreements.",
+                "active": false,
+                "badge": "Market Structure"
               },
               {
-                "icon": "DollarSign",
-                "title": "Spot vs Forward FX Quotes",
-                "subtitle": "Reading bank bid and offer spreads across tenors",
-                "state": "muted"
+                "title": "2. Terminal Payoff Formulas",
+                "details": "Symmetrical linear payoffs: Long (Sₜ − K) and Short (K − Sₜ) with zero upfront premium.",
+                "active": false,
+                "badge": "Payoff Math"
               },
               {
-                "icon": "ShieldCheck",
-                "title": "Corporate Currency Hedging",
-                "subtitle": "ImportCo outflow and ExportCo inflow calculations",
-                "state": "muted"
-              },
-              {
-                "icon": "AlertTriangle",
-                "title": "Systemic Risk & CCP Reforms",
-                "subtitle": "Lehman 31:1 collapse, SEFs, and central novation",
-                "state": "active_purple"
+                "title": "3. Corporate Foreign Exchange Hedging",
+                "details": "Locking cash flows for ImportCo (paying offer) and ExportCo (receiving bid).",
+                "active": true,
+                "badge": "Real-World Application"
               }
             ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "1. Futures vs. Forwards Architecture",
+                  "details": "Standardized exchange trading (CME/ICE) vs bilateral customized OTC forward agreements.",
+                  "active": false,
+                  "badge": "Market Structure"
+                },
+                {
+                  "title": "2. Terminal Payoff Formulas",
+                  "details": "Symmetrical linear payoffs: Long (Sₜ − K) and Short (K − Sₜ) with zero upfront premium.",
+                  "active": false,
+                  "badge": "Payoff Math"
+                },
+                {
+                  "title": "3. Corporate Foreign Exchange Hedging",
+                  "details": "Locking cash flows for ImportCo (paying offer) and ExportCo (receiving bid).",
+                  "active": true,
+                  "badge": "Real-World Application"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce third pillar: commercial currency hedging",
+              "sourceFactIds": [
+                "fact-importco-hedging-example",
+                "fact-exportco-hedging-example"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b11",
+          "hindi_tts": "और चौथा: दो हजार आठ में लेहमन ब्रदर्स का इकतीस गुना लेवरेज पर दिवालियापन, और पोस्ट-क्राइसिस सेंट्रल काउंटरपार्टी सुधार।",
+          "en_narration": "And fourth: Lehman Brothers' 2008 bankruptcy at 31:1 leverage, systemic contagion, and post-crisis CCP clearing reforms.",
+          "en_subtitle": "Module 4: Lehman Brothers 31:1 Collapse and Post-2008 CCP Mandates.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Chapter 1 Part 1 Curriculum",
+            "cards": [
+              {
+                "title": "1. Futures vs. Forwards Architecture",
+                "details": "Standardized exchange trading (CME/ICE) vs bilateral customized OTC forward agreements.",
+                "active": false,
+                "badge": "Market Structure"
+              },
+              {
+                "title": "2. Terminal Payoff Formulas",
+                "details": "Symmetrical linear payoffs: Long (Sₜ − K) and Short (K − Sₜ) with zero upfront premium.",
+                "active": false,
+                "badge": "Payoff Math"
+              },
+              {
+                "title": "3. Corporate Foreign Exchange Hedging",
+                "details": "Locking cash flows for ImportCo (paying offer) and ExportCo (receiving bid).",
+                "active": false,
+                "badge": "Real-World Application"
+              },
+              {
+                "title": "4. Lehman 31:1 & Systemic CCP Reforms",
+                "details": "31:1 leverage, 3.23% equity wipeout, counterparty risk, and mandatory CCP novation.",
+                "active": true,
+                "badge": "Systemic Risk"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "1. Futures vs. Forwards Architecture",
+                  "details": "Standardized exchange trading (CME/ICE) vs bilateral customized OTC forward agreements.",
+                  "active": false,
+                  "badge": "Market Structure"
+                },
+                {
+                  "title": "2. Terminal Payoff Formulas",
+                  "details": "Symmetrical linear payoffs: Long (Sₜ − K) and Short (K − Sₜ) with zero upfront premium.",
+                  "active": false,
+                  "badge": "Payoff Math"
+                },
+                {
+                  "title": "3. Corporate Foreign Exchange Hedging",
+                  "details": "Locking cash flows for ImportCo (paying offer) and ExportCo (receiving bid).",
+                  "active": false,
+                  "badge": "Real-World Application"
+                },
+                {
+                  "title": "4. Lehman 31:1 & Systemic CCP Reforms",
+                  "details": "31:1 leverage, 3.23% equity wipeout, counterparty risk, and mandatory CCP novation.",
+                  "active": true,
+                  "badge": "Systemic Risk"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce fourth pillar: systemic risk and regulatory architecture",
+              "sourceFactIds": [
+                "fact-lehman-collapse-31-leverage",
+                "fact-systemic-risk-ripple-effect"
+              ]
+            }
           }
         }
       ]
     },
     {
       "segmentIndex": 3,
-      "title": "Origins of Futures & Market Evolution",
+      "title": "Exchange-Traded Futures vs. OTC Forwards",
       "template": "split_comparison",
-      "badge": "CBOT 1848 · Contract Architecture",
+      "badge": "Market Structure Comparison",
       "beats": [
         {
-          "id": "b11",
-          "hindi_tts": "शिकागो बोर्ड ऑफ ट्रेड की शुरुआत 1848 में किसानों और अनाज व्यापारियों के प्राइस रिस्क को लॉक करने के लिए हुई।",
-          "en_subtitle": "CBOT was founded in 1848 to lock in crop prices between farmers and merchants.",
-          "pauseAfterMs": 400,
-          "ui_state": {
-            "showVsBadge": true,
-            "leftColumn": {
-              "icon": "Layers",
-              "title": "Exchange Futures",
-              "subtitle": "Standardized & cleared",
-              "theme": "blue",
-              "active": true,
-              "bullets": [
-                "Founded at CBOT in 1848 for Midwest grain farmers",
-                "Strict contract size and fixed delivery dates",
-                "Electronic central order book matching on exchanges",
-                "Zero bilateral default risk via clearinghouse guarantee"
-              ]
-            },
-            "rightColumn": {
-              "icon": "Handshake",
-              "title": "OTC Forwards",
-              "subtitle": "Private & bilateral",
-              "theme": "amber",
-              "active": false,
-              "bullets": [
-                "Direct private negotiation between two parties",
-                "Tailored contract size and customized expiry",
-                "Decentralized telephone and electronic quote networks",
-                "Exposed to full counterparty default risk"
-              ]
-            }
-          }
-        },
-        {
           "id": "b12",
-          "hindi_tts": "एक्सचेंज फ्यूचर्स में क्लियरिंगहाउस डिफॉल्ट रिस्क खत्म करता है, जबकि ओटीसी फॉरवर्ड्स में काउंटरपार्टी रिस्क बना रहता है।",
-          "en_subtitle": "Clearinghouses eliminate default in futures, while forwards carry bilateral credit risk.",
+          "hindi_tts": "फ्यूचर्स अनुबंध पूरी तरह मानकीकृत होते हैं और संगठित एक्सचेंजों जैसे सीएमई और आइस पर ट्रेड होते हैं।",
+          "en_narration": "Futures contracts are fully standardized and trade on organized public exchanges such as CME and ICE.",
+          "en_subtitle": "Futures contracts are standardized and trade on organized exchanges like CME.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "showVsBadge": true,
-            "leftColumn": {
-              "icon": "Layers",
-              "title": "Exchange Futures",
-              "subtitle": "Standardized & cleared",
-              "theme": "blue",
-              "active": false,
-              "bullets": [
-                "Founded at CBOT in 1848 for Midwest grain farmers",
-                "Strict contract size and fixed delivery dates",
-                "Electronic central order book matching on exchanges",
-                "Zero bilateral default risk via clearinghouse guarantee"
+            "title": "Market Structure Comparison",
+            "leftTitle": "Exchange-Traded Futures",
+            "leftPoints": [
+              "Standardized contract sizes (e.g., 5,000 bushels of corn)",
+              "Traded on centralized public exchanges (CME, ICE, NSE)",
+              "Clearinghouse guarantees performance; zero bilateral credit risk",
+              "Marked to market daily with margin calls"
+            ],
+            "rightTitle": "Over-the-Counter (OTC) Forwards",
+            "rightPoints": [
+              "Customized contract sizes, dates, and specifications",
+              "Private bilateral negotiation between two institutions",
+              "Direct counterparty default risk between buyer and seller",
+              "Settled entirely at final contract maturity"
+            ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Exchange-Traded Futures",
+              "leftPoints": [
+                "Standardized contract sizes (e.g., 5,000 bushels of corn)",
+                "Traded on centralized public exchanges (CME, ICE, NSE)",
+                "Clearinghouse guarantees performance; zero bilateral credit risk",
+                "Marked to market daily with margin calls"
+              ],
+              "rightTitle": "Over-the-Counter (OTC) Forwards",
+              "rightPoints": [
+                "Customized contract sizes, dates, and specifications",
+                "Private bilateral negotiation between two institutions",
+                "Direct counterparty default risk between buyer and seller",
+                "Settled entirely at final contract maturity"
               ]
             },
-            "rightColumn": {
-              "icon": "Handshake",
-              "title": "OTC Forwards",
-              "subtitle": "Private & bilateral",
-              "theme": "amber",
-              "active": true,
-              "bullets": [
-                "Direct private negotiation between two parties",
-                "Tailored contract size and customized expiry",
-                "Decentralized telephone and electronic quote networks",
-                "Exposed to full counterparty default risk"
+            "semantics": {
+              "teachingObjective": "Differentiate exchange-traded futures from bilateral forward contracts",
+              "sourceFactIds": [
+                "fact-futures-def",
+                "fact-forward-def"
               ]
             }
           }
         },
         {
           "id": "b13",
-          "hindi_tts": "लॉन्ग पोजीशन भविष्य में एसेट खरीदने का वादा है, जबकि शॉर्ट पोजीशन उसी एसेट को बेचने की प्रतिबद्धता है।",
-          "en_subtitle": "Long obligates buying the asset, while short obligates selling at the future date.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "दूसरी तरफ फॉरवर्ड अनुबंध ओवर द काउंटर बाजार में दो निजी पक्षों के बीच कस्टमाइज्ड समझौते होते हैं।",
+          "en_narration": "Conversely, forward contracts are customized, private over-the-counter agreements negotiated between two financial counterparties.",
+          "en_subtitle": "Forward contracts are custom bilateral OTC agreements between private parties.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "showVsBadge": true,
-            "leftColumn": {
-              "icon": "TrendingUp",
-              "title": "Long Position",
-              "subtitle": "Buyer obligation",
-              "theme": "blue",
-              "active": true,
-              "bullets": [
-                "Agrees to buy the underlying asset on delivery date",
-                "Profits if spot price rises above forward price",
-                "Chosen by corporate importers facing foreign currency payables"
+            "title": "Market Structure Comparison",
+            "leftTitle": "Exchange-Traded Futures",
+            "leftPoints": [
+              "Standardized contract sizes (e.g., 5,000 bushels of corn)",
+              "Traded on centralized public exchanges (CME, ICE, NSE)",
+              "Clearinghouse guarantees performance; zero bilateral credit risk",
+              "Marked to market daily with margin calls"
+            ],
+            "rightTitle": "Over-the-Counter (OTC) Forwards",
+            "rightPoints": [
+              "Customized contract sizes, dates, and specifications",
+              "Private bilateral negotiation between two institutions",
+              "Direct counterparty default risk between buyer and seller",
+              "Settled entirely at final contract maturity"
+            ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Exchange-Traded Futures",
+              "leftPoints": [
+                "Standardized contract sizes (e.g., 5,000 bushels of corn)",
+                "Traded on centralized public exchanges (CME, ICE, NSE)",
+                "Clearinghouse guarantees performance; zero bilateral credit risk",
+                "Marked to market daily with margin calls"
+              ],
+              "rightTitle": "Over-the-Counter (OTC) Forwards",
+              "rightPoints": [
+                "Customized contract sizes, dates, and specifications",
+                "Private bilateral negotiation between two institutions",
+                "Direct counterparty default risk between buyer and seller",
+                "Settled entirely at final contract maturity"
               ]
             },
-            "rightColumn": {
-              "icon": "TrendingDown",
-              "title": "Short Position",
-              "subtitle": "Seller obligation",
-              "theme": "amber",
-              "active": true,
-              "bullets": [
-                "Agrees to sell the underlying asset on delivery date",
-                "Profits if spot price falls below forward price",
-                "Chosen by corporate exporters protecting future currency receivables"
+            "semantics": {
+              "teachingObjective": "Highlight custom tailoring of OTC contracts",
+              "sourceFactIds": [
+                "fact-forward-def"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b14",
+          "hindi_tts": "फ्यूचर्स में लिक्विडिटी ज्यादा होती है और क्लीयरिंगहाउस डिफॉल्ट से बचाता है, जबकि फॉरवर्ड में कंपनियां अपनी जरूरत के हिसाब से दिन और रकम तय कर सकती हैं।",
+          "en_narration": "Futures offer deep liquidity and clearinghouse protection, whereas forwards allow corporations to match precise dates and quantities.",
+          "en_subtitle": "Futures guarantee liquidity and safety; forwards allow exact operational customization.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Market Structure Comparison",
+            "leftTitle": "Exchange-Traded Futures",
+            "leftPoints": [
+              "Standardized contract sizes (e.g., 5,000 bushels of corn)",
+              "Traded on centralized public exchanges (CME, ICE, NSE)",
+              "Clearinghouse guarantees performance; zero bilateral credit risk",
+              "Marked to market daily with margin calls"
+            ],
+            "rightTitle": "Over-the-Counter (OTC) Forwards",
+            "rightPoints": [
+              "Customized contract sizes, dates, and specifications",
+              "Private bilateral negotiation between two institutions",
+              "Direct counterparty default risk between buyer and seller",
+              "Settled entirely at final contract maturity"
+            ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Exchange-Traded Futures",
+              "leftPoints": [
+                "Standardized contract sizes (e.g., 5,000 bushels of corn)",
+                "Traded on centralized public exchanges (CME, ICE, NSE)",
+                "Clearinghouse guarantees performance; zero bilateral credit risk",
+                "Marked to market daily with margin calls"
+              ],
+              "rightTitle": "Over-the-Counter (OTC) Forwards",
+              "rightPoints": [
+                "Customized contract sizes, dates, and specifications",
+                "Private bilateral negotiation between two institutions",
+                "Direct counterparty default risk between buyer and seller",
+                "Settled entirely at final contract maturity"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Conclude institutional trade-off between standardization and customization",
+              "sourceFactIds": [
+                "fact-futures-def",
+                "fact-forward-def"
               ]
             }
           }
@@ -409,816 +781,1782 @@
     },
     {
       "segmentIndex": 4,
-      "title": "OTC vs Exchange Market Scale",
-      "template": "horizontal_bar_race",
-      "badge": "BIS Data · Global Notional Principal",
+      "title": "Global Market Scale: $630T OTC vs. $65T Exchange",
+      "template": "stat_counter",
+      "badge": "BIS Global Derivatives Survey · $630T",
       "beats": [
         {
-          "id": "b14",
-          "hindi_tts": "वैश्विक स्तर पर ओटीसी डेरिवेटिव्स मार्केट का आकार 630 ट्रिलियन डॉलर है, जो एक्सचेंजों से दस गुना बड़ा है।",
-          "en_subtitle": "The global OTC market reached $630T notional, roughly ten times exchange volume.",
-          "pauseAfterMs": 450,
-          "ui_state": {
-            "title": "Global Derivatives Market Size (Notional Principal)",
-            "subtitle": "Dec 2014 Bank for International Settlements (BIS) Survey",
-            "bars": [
-              {
-                "label": "Over-the-Counter (OTC) Market",
-                "value": 630,
-                "formattedValue": "$630 Trillion",
-                "color": "amber",
-                "icon": "Building"
-              },
-              {
-                "label": "Exchange-Traded Market",
-                "value": 65,
-                "formattedValue": "$65 Trillion",
-                "color": "blue",
-                "icon": "BarChart"
-              }
-            ]
-          }
-        },
-        {
           "id": "b15",
-          "hindi_tts": "कॉर्पोरेशंस अपनी जरूरतों के हिसाब से बड़े कस्टम कॉन्ट्रैक्ट्स सीधे बैंकों के साथ ओटीसी में बनाते हैं।",
-          "en_subtitle": "Corporations prefer OTC for custom notional sizes matching precise cashflows.",
+          "hindi_tts": "बैंक फॉर इंटरनेशनल सेटलमेंट्स के आंकड़ों के मुताबिक वैश्विक डेरिवेटिव्स बाजार का दायरा अकल्पनीय रूप से विशाल है।",
+          "en_narration": "According to the Bank for International Settlements (BIS), the global derivatives market is staggering in scale.",
+          "en_subtitle": "BIS data reveals derivatives markets are among the largest in global finance.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "title": "Why OTC Notional Dominates Global Trading",
-            "subtitle": "Institutional scale, bespoke delivery dates, and custom sizes",
-            "bars": [
-              {
-                "label": "OTC Notional Outstanding",
-                "value": 630,
-                "formattedValue": "$630T Bespoke",
-                "color": "amber",
-                "icon": "ShieldAlert"
-              },
-              {
-                "label": "Exchange-Traded Standardized",
-                "value": 65,
-                "formattedValue": "$65T Standard",
-                "color": "blue",
-                "icon": "Sliders"
-              }
-            ]
+            "numericValue": 630,
+            "prefix": "$",
+            "suffix": " Trillion",
+            "topLabel": "Global OTC Derivatives Notional Principal",
+            "subtext": "Bank for International Settlements (BIS) Survey · Exceeds Global GDP",
+            "bottomPill": "$630 Trillion Bilateral OTC vs $65 Trillion Exchange-Traded",
+            "contextNote": "December 2014 Benchmark Data",
+            "changeText": "+869% vs Exchange Volume"
+          },
+          "visual": {
+            "kind": "chart",
+            "data": {
+              "chartType": "bar",
+              "title": "Global Derivatives Notional Principal (BIS)",
+              "series": [
+                {
+                  "id": "market_size",
+                  "name": "Notional Principal ($ Trillion)",
+                  "type": "bar",
+                  "color": "#0F766E",
+                  "data": [
+                    {
+                      "x": "Exchange-Traded",
+                      "y": 65,
+                      "label": "$65 Trillion"
+                    },
+                    {
+                      "x": "Over-The-Counter (OTC)",
+                      "y": 630,
+                      "label": "$630 Trillion"
+                    }
+                  ]
+                }
+              ],
+              "annotations": [
+                {
+                  "type": "callout",
+                  "text": "$630 Trillion Notional Principal",
+                  "x": "Over-The-Counter (OTC)",
+                  "y": 630,
+                  "color": "#F59E0B"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Visualize the overwhelming $630 Trillion scale of bilateral OTC derivatives.",
+              "sourceFactIds": [
+                "fact-global-derivatives-market-size",
+                "fact-otc-market-structure"
+              ]
+            }
           }
         },
         {
           "id": "b16",
-          "hindi_tts": "ओटीसी का ग्रॉस मार्केट वैल्यू 21 ट्रिलियन डॉलर था, जो दिखाता है कि डिफॉल्ट का खतरा कितना गंभीर हो सकता है।",
-          "en_subtitle": "Gross market value of $21T underscores systemic exposure if counterparties default.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "दिसंबर दो हजार चौदह में ओवर द काउंटर बाजार का कुल मूलधन छह सौ तीस ट्रिलियन डॉलर था, जबकि एक्सचेंजों पर केवल पैंसठ ट्रिलियन डॉलर था।",
+          "en_narration": "In December 2014, total OTC notional principal stood at $630 Trillion, compared to just $65 Trillion on organized exchanges.",
+          "en_subtitle": "December 2014: $630 Trillion OTC notional principal vs $65 Trillion on exchanges.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "title": "Gross Market Value (True Replacement Cost)",
-            "subtitle": "Total capital at immediate risk if contracts terminated today",
-            "bars": [
-              {
-                "label": "OTC Gross Replacement Value",
-                "value": 21,
-                "formattedValue": "$21 Trillion",
-                "color": "red",
-                "icon": "Zap"
-              },
-              {
-                "label": "Typical Exchange Margin Buffers",
-                "value": 2,
-                "formattedValue": "~$2 Trillion",
-                "color": "teal",
-                "icon": "Lock"
-              }
-            ]
+            "numericValue": 20.9,
+            "prefix": "$",
+            "suffix": " Trillion",
+            "topLabel": "Gross Market Value of OTC Contracts",
+            "subtext": "Actual Capital at Risk to Counterparty Default",
+            "bottomPill": "Net replacement value across all bilateral market participants",
+            "contextNote": "Direct Credit Exposure",
+            "changeText": "High Systemic Fragility"
+          },
+          "visual": {
+            "kind": "chart",
+            "data": {
+              "chartType": "bar",
+              "title": "Gross Market Value vs Notional Principal",
+              "series": [
+                {
+                  "id": "gross_value",
+                  "name": "Valuation ($ Trillion)",
+                  "type": "bar",
+                  "color": "#EF4444",
+                  "data": [
+                    {
+                      "x": "Gross Market Value",
+                      "y": 20.9,
+                      "label": "$20.9 Trillion"
+                    },
+                    {
+                      "x": "Notional Principal",
+                      "y": 630,
+                      "label": "$630 Trillion"
+                    }
+                  ]
+                }
+              ],
+              "annotations": [
+                {
+                  "type": "callout",
+                  "text": "$20.9 Trillion Active Credit Exposure",
+                  "x": "Gross Market Value",
+                  "y": 20.9,
+                  "color": "#EF4444"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Differentiate $630T notional size from $20.9T actual credit exposure.",
+              "sourceFactIds": [
+                "fact-global-derivatives-market-size"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b17",
+          "hindi_tts": "ओटीसी सौदों का कुल ग्रॉस मार्केट वैल्यू इक्कीस ट्रिलियन डॉलर था, जो उन सौदों को तुरंत रिप्लेस करने की वास्तविक क्रेडिट जोखिम लागत को दर्शाता है।",
+          "en_narration": "Gross market value stood at $21 Trillion, representing the actual net replacement cost if counterparties defaulted.",
+          "en_subtitle": "Gross market value was $21 Trillion, measuring actual interbank counterparty risk.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "numericValue": 90,
+            "prefix": "",
+            "suffix": "%",
+            "topLabel": "OTC Market Share in Global Derivatives",
+            "subtext": "Nine out of ten derivative contracts trade off-exchange without clearinghouse novation",
+            "bottomPill": "Pre-2008 Bilateral Vulnerability",
+            "contextNote": "Uncollateralized Dominance",
+            "changeText": "Reform Trigger"
+          },
+          "visual": {
+            "kind": "chart",
+            "data": {
+              "chartType": "bar",
+              "title": "Share of Total Derivatives Contracts",
+              "series": [
+                {
+                  "id": "market_share",
+                  "name": "Percentage (%)",
+                  "type": "bar",
+                  "color": "#0F766E",
+                  "data": [
+                    {
+                      "x": "Bilateral OTC",
+                      "y": 90,
+                      "label": "90%"
+                    },
+                    {
+                      "x": "Exchange Traded",
+                      "y": 10,
+                      "label": "10%"
+                    }
+                  ]
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Highlight bilateral dominance creating systemic vulnerability.",
+              "sourceFactIds": [
+                "fact-global-derivatives-market-size",
+                "fact-otc-market-structure"
+              ]
+            }
           }
         }
       ]
     },
     {
       "segmentIndex": 5,
-      "title": "Spot vs Forward FX Quotations",
-      "template": "progressive_cards",
-      "badge": "FX Desk · USD / GBP Quotes",
+      "title": "Terminal Payoff Mechanics: Long (S_T - K) & Short (K - S_T)",
+      "template": "formula_breakdown",
+      "badge": "Core Payoff Mathematics",
       "beats": [
         {
-          "id": "b17",
-          "hindi_tts": "स्पॉट कोट तुरंत डिलीवरी के लिए होता है, जहां बैंक 1.5746 पर पाउंड खरीदता है और 1.5750 पर बेचता है।",
-          "en_subtitle": "Spot quotes deliver immediately: bank buys at 1.5746 Bid and sells at 1.5750 Offer.",
-          "pauseAfterMs": 450,
-          "ui_state": {
-            "sectionHeader": "Foreign Exchange Quotations (May 13, 2015)",
-            "layout": "stack",
-            "cards": [
-              {
-                "icon": "Clock",
-                "title": "Spot FX Rate (T+2 Immediate)",
-                "subtitle": "Bid: 1.5746 | Offer: 1.5750 (Spread = 4 pips)",
-                "state": "active_amber"
-              },
-              {
-                "icon": "Repeat",
-                "title": "Bank Spread Mechanics",
-                "subtitle": "Bank buys base currency at Bid, sells at higher Offer",
-                "state": "hidden"
-              },
-              {
-                "icon": "Calendar",
-                "title": "3-Month Forward Rate (T+90)",
-                "subtitle": "Bid: 1.5736 | Offer: 1.5742 (Locked today for delivery)",
-                "state": "hidden"
-              }
-            ]
-          }
-        },
-        {
           "id": "b18",
-          "hindi_tts": "बैंक हमेशा कम कीमत पर खरीदता है जिसे बिड कहते हैं, और ज्यादा कीमत पर बेचता है जिसे ऑफर कहते हैं।",
-          "en_subtitle": "The quoting bank buys at the lower Bid and sells at the higher Offer rate.",
+          "hindi_tts": "मैच्योरिटी पर फॉरवर्ड अनुबंध का पेऑफ पूरी तरह लीनियर और सममित होता है, जिसमें कोई शुरुआती प्रीमियम नहीं लगता।",
+          "en_narration": "At expiration, a forward contract delivers a linear, symmetrical payoff with zero upfront cost or option premium.",
+          "en_subtitle": "Forward contracts have linear, symmetrical payoffs with zero upfront premium.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Foreign Exchange Quotations (May 13, 2015)",
-            "layout": "stack",
-            "cards": [
+            "title": "Terminal Forward Payoffs",
+            "expression": "\\text{Payoff} = \\pm(S_t - K)",
+            "variables": [
               {
-                "icon": "Clock",
-                "title": "Spot FX Rate (T+2 Immediate)",
-                "subtitle": "Bid: 1.5746 | Offer: 1.5750 (Spread = 4 pips)",
-                "state": "muted"
+                "symbol": "S_t",
+                "label": "Terminal Spot Price",
+                "description": "Spot price of the underlying asset at expiration date T",
+                "unit": "$ or ₹"
               },
               {
-                "icon": "Repeat",
-                "title": "Bank Spread Mechanics",
-                "subtitle": "Bank buys base currency at Bid, sells at higher Offer",
-                "state": "active_blue"
-              },
-              {
-                "icon": "Calendar",
-                "title": "3-Month Forward Rate (T+90)",
-                "subtitle": "Bid: 1.5736 | Offer: 1.5742 (Locked today for delivery)",
-                "state": "hidden"
+                "symbol": "K",
+                "label": "Delivery Price",
+                "description": "Contractually agreed strike or delivery price",
+                "unit": "$ or ₹"
               }
-            ]
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Core Equations",
+                "equation": "\\text{Payoff} = \\pm (S_t - K)",
+                "note": "Zero-sum game between buyer and seller"
+              }
+            ],
+            "assumptions": [
+              "Contract is held to maturity with zero default."
+            ],
+            "interpretation": "Unlike options, forward contracts impose an obligation with zero initial premium."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Terminal Forward Payoffs",
+              "expression": "\\text{Payoff} = \\pm(S_t - K)",
+              "variables": [
+                {
+                  "symbol": "S_t",
+                  "label": "Terminal Spot Price",
+                  "description": "Spot price of the underlying asset at expiration date T",
+                  "unit": "$ or ₹"
+                },
+                {
+                  "symbol": "K",
+                  "label": "Delivery Price",
+                  "description": "Contractually agreed strike or delivery price",
+                  "unit": "$ or ₹"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Core Equations",
+                  "equation": "\\text{Payoff} = \\pm (S_t - K)",
+                  "note": "Zero-sum game between buyer and seller"
+                }
+              ],
+              "assumptions": [
+                "Contract is held to maturity with zero default."
+              ],
+              "interpretation": "Unlike options, forward contracts impose an obligation with zero initial premium."
+            },
+            "semantics": {
+              "teachingObjective": "Present fundamental linear payoff equations for forwards",
+              "sourceFactIds": [
+                "fact-forward-payoff-formulas"
+              ]
+            }
           }
         },
         {
           "id": "b19",
-          "hindi_tts": "तीन महीने का फॉरवर्ड कोट 1.5736 बिड और 1.5742 ऑफर है, जो आज ही नब्बे दिन बाद का रेट लॉक करता है।",
-          "en_subtitle": "The 3-month forward quote locks 1.5736 Bid and 1.5742 Offer for 90 days out.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "लॉन्ग पोजीशन का पेऑफ एस टी माइनस के होता है, यानी अगर अंतिम भाव डिलीवरी प्राइस से ऊपर गया तो लॉन्ग को सीधा मुनाफा होगा।",
+          "en_narration": "The payoff to a long position is S_t minus K: if the spot price rises above delivery price K, the long makes a direct profit.",
+          "en_subtitle": "Long Payoff = Sₜ − K: Profit if spot price finishes above delivery price K.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Foreign Exchange Quotations (May 13, 2015)",
-            "layout": "stack",
-            "cards": [
+            "title": "Long Position Payoff",
+            "expression": "\\text{Payoff}_{\\text{Long}} = S_t - K",
+            "variables": [
               {
-                "icon": "Clock",
-                "title": "Spot FX Rate (T+2 Immediate)",
-                "subtitle": "Bid: 1.5746 | Offer: 1.5750 (Spread = 4 pips)",
-                "state": "muted"
+                "symbol": "S_t",
+                "label": "Terminal Spot",
+                "description": "Market price at delivery",
+                "unit": "$ / unit"
               },
               {
-                "icon": "Repeat",
-                "title": "Bank Spread Mechanics",
-                "subtitle": "Bank buys base currency at Bid, sells at higher Offer",
-                "state": "muted"
-              },
-              {
-                "icon": "Calendar",
-                "title": "3-Month Forward Rate (T+90)",
-                "subtitle": "Bid: 1.5736 | Offer: 1.5742 (Locked today for delivery)",
-                "state": "active_green"
+                "symbol": "K",
+                "label": "Delivery Price",
+                "description": "Fixed agreed price",
+                "unit": "$ / unit"
               }
-            ]
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Long Gain Condition",
+                "equation": "S_t > K \\implies \\text{Profit} > 0",
+                "note": "Purchased asset worth more than price paid"
+              },
+              {
+                "stepIndex": 1,
+                "label": "Long Loss Condition",
+                "equation": "S_t < K \\implies \\text{Loss} < 0",
+                "note": "Must buy asset above current market price"
+              }
+            ],
+            "assumptions": [
+              "No early termination."
+            ],
+            "interpretation": "Long hedgers lock in purchasing costs; long speculators gain on price rallies."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Long Position Payoff",
+              "expression": "\\text{Payoff}_{\\text{Long}} = S_t - K",
+              "variables": [
+                {
+                  "symbol": "S_t",
+                  "label": "Terminal Spot",
+                  "description": "Market price at delivery",
+                  "unit": "$ / unit"
+                },
+                {
+                  "symbol": "K",
+                  "label": "Delivery Price",
+                  "description": "Fixed agreed price",
+                  "unit": "$ / unit"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Long Gain Condition",
+                  "equation": "S_t > K \\implies \\text{Profit} > 0",
+                  "note": "Purchased asset worth more than price paid"
+                },
+                {
+                  "stepIndex": 1,
+                  "label": "Long Loss Condition",
+                  "equation": "S_t < K \\implies \\text{Loss} < 0",
+                  "note": "Must buy asset above current market price"
+                }
+              ],
+              "assumptions": [
+                "No early termination."
+              ],
+              "interpretation": "Long hedgers lock in purchasing costs; long speculators gain on price rallies."
+            },
+            "semantics": {
+              "teachingObjective": "Derive long payoff mechanics S_t - K",
+              "sourceFactIds": [
+                "fact-forward-payoff-formulas"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b20",
+          "hindi_tts": "इसके विपरीत, शॉर्ट पोजीशन का पेऑफ के माइनस एस टी होता है, जो ठीक उसी मात्रा में विपरीत लाभ या हानि दिखाता है।",
+          "en_narration": "Conversely, the payoff to a short position is K minus S_t, mirror-imaging the long position dollar for dollar.",
+          "en_subtitle": "Short Payoff = K − Sₜ: Mirror image of long position dollar for dollar.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Short Position Payoff",
+            "expression": "\\text{Payoff}_{\\text{Short}} = K - S_t",
+            "variables": [
+              {
+                "symbol": "K",
+                "label": "Delivery Price",
+                "description": "Agreed sales price",
+                "unit": "$ / unit"
+              },
+              {
+                "symbol": "S_t",
+                "label": "Terminal Spot",
+                "description": "Market price at delivery",
+                "unit": "$ / unit"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Short Gain Condition",
+                "equation": "S_t < K \\implies \\text{Profit} > 0",
+                "note": "Sold asset above prevailing market price"
+              },
+              {
+                "stepIndex": 1,
+                "label": "Zero-Sum Identity",
+                "equation": "\\text{Payoff}_{\\text{Long}} + \\text{Payoff}_{\\text{Short}} = 0",
+                "note": "Total wealth created is zero"
+              }
+            ],
+            "assumptions": [
+              "Zero counterparty default."
+            ],
+            "interpretation": "Short hedgers protect asset value; short speculators profit when prices fall."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Short Position Payoff",
+              "expression": "\\text{Payoff}_{\\text{Short}} = K - S_t",
+              "variables": [
+                {
+                  "symbol": "K",
+                  "label": "Delivery Price",
+                  "description": "Agreed sales price",
+                  "unit": "$ / unit"
+                },
+                {
+                  "symbol": "S_t",
+                  "label": "Terminal Spot",
+                  "description": "Market price at delivery",
+                  "unit": "$ / unit"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Short Gain Condition",
+                  "equation": "S_t < K \\implies \\text{Profit} > 0",
+                  "note": "Sold asset above prevailing market price"
+                },
+                {
+                  "stepIndex": 1,
+                  "label": "Zero-Sum Identity",
+                  "equation": "\\text{Payoff}_{\\text{Long}} + \\text{Payoff}_{\\text{Short}} = 0",
+                  "note": "Total wealth created is zero"
+                }
+              ],
+              "assumptions": [
+                "Zero counterparty default."
+              ],
+              "interpretation": "Short hedgers protect asset value; short speculators profit when prices fall."
+            },
+            "semantics": {
+              "teachingObjective": "Derive short payoff mechanics K - S_t and zero-sum identity",
+              "sourceFactIds": [
+                "fact-forward-payoff-formulas"
+              ]
+            }
           }
         }
       ]
     },
     {
       "segmentIndex": 6,
-      "title": "ImportCo Outflow Hedging Formula",
-      "template": "formula_breakdown",
-      "badge": "Hull Example 1.1 · Part A",
+      "title": "Corporate Hedging: ImportCo vs. ExportCo (USD/GBP)",
+      "template": "split_comparison",
+      "badge": "John Hull Section 1.3 Worked Example",
       "beats": [
         {
-          "id": "b20",
-          "hindi_tts": "इम्पोर्टको को तीन महीने में एक करोड़ पाउंड चुकाने हैं, और उसे डर है कि पाउंड महंगा न हो जाए।",
-          "en_subtitle": "ImportCo owes £10M in 3 months and faces risk if the pound appreciates.",
-          "pauseAfterMs": 400,
-          "ui_state": {
-            "formulaTitle": "Importer FX Forward Hedging Formula",
-            "formulaLatex": "USD Outflow = Foreign Currency Payable \\times Forward Offer Rate",
-            "steps": [
-              {
-                "label": "Payable Obligation",
-                "explanation": "ImportCo must deliver £10,000,000 to British supplier in 3 months",
-                "value": "£10,000,000",
-                "active": true
-              },
-              {
-                "label": "Applicable Forward Rate",
-                "explanation": "Bank sells GBP to ImportCo at 3-Month Forward Offer rate",
-                "value": "1.5742 USD/GBP",
-                "active": false
-              },
-              {
-                "label": "Locked USD Outflow",
-                "explanation": "Exact dollar amount committed today regardless of spot movement",
-                "value": "$15,742,000",
-                "active": false
-              }
-            ]
-          }
-        },
-        {
           "id": "b21",
-          "hindi_tts": "कंपनी बैंक से तीन महीने का फॉरवर्ड ऑफर रेट 1.5742 पर पाउंड खरीदने का अनुबंध करती है।",
-          "en_subtitle": "The company contracts to buy pounds at the bank's 3-month forward Offer of 1.5742.",
+          "hindi_tts": "आइये जॉन हल की किताब का कॉर्पोरेट हेजिंग उदाहरण देखें: बैंक तीन महीने का स्टर्लिंग पाउंड कोट करता है—एक दशमलव पांच सात तीन छह बिड और एक दशमलव पांच सात चार दो ऑफर।",
+          "en_narration": "Consider John Hull's corporate hedging case: A bank quotes 3-month USD/GBP forward rates at 1.5736 Bid and 1.5742 Offer.",
+          "en_subtitle": "Hull Example: Bank quotes 3-month GBP/USD at 1.5736 Bid / 1.5742 Offer.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "formulaTitle": "Importer FX Forward Hedging Formula",
-            "formulaLatex": "USD Outflow = £10,000,000 \\times 1.5742",
-            "steps": [
-              {
-                "label": "Payable Obligation",
-                "explanation": "ImportCo must deliver £10,000,000 to British supplier in 3 months",
-                "value": "£10,000,000",
-                "active": false
-              },
-              {
-                "label": "Applicable Forward Rate",
-                "explanation": "Bank sells GBP to ImportCo at 3-Month Forward Offer rate",
-                "value": "1.5742 USD/GBP",
-                "active": true
-              },
-              {
-                "label": "Locked USD Outflow",
-                "explanation": "Exact dollar amount committed today regardless of spot movement",
-                "value": "$15,742,000",
-                "active": false
-              }
+            "title": "Corporate Currency Hedging (USD/GBP)",
+            "leftTitle": "ImportCo (Buying £10M)",
+            "leftPoints": [
+              "Must pay GBP £10,000,000 in 3 months for UK goods",
+              "Buys GBP forward from bank at Offer Rate: $1.5742",
+              "Total USD outflow locked: £10M × 1.5742 = $15,742,000",
+              "Protected completely if Pound surges to $1.70"
+            ],
+            "rightTitle": "ExportCo (Selling £30M)",
+            "rightPoints": [
+              "Expects GBP £30,000,000 export proceeds in 3 months",
+              "Sells GBP forward to bank at Bid Rate: $1.5736",
+              "Total USD inflow locked: £30M × 1.5736 = $47,208,000",
+              "Protected completely if Pound crashes to $1.40"
             ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "ImportCo (Buying £10M)",
+              "leftPoints": [
+                "Must pay GBP £10,000,000 in 3 months for UK goods",
+                "Buys GBP forward from bank at Offer Rate: $1.5742",
+                "Total USD outflow locked: £10M × 1.5742 = $15,742,000",
+                "Protected completely if Pound surges to $1.70"
+              ],
+              "rightTitle": "ExportCo (Selling £30M)",
+              "rightPoints": [
+                "Expects GBP £30,000,000 export proceeds in 3 months",
+                "Sells GBP forward to bank at Bid Rate: $1.5736",
+                "Total USD inflow locked: £30M × 1.5736 = $47,208,000",
+                "Protected completely if Pound crashes to $1.40"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present bank two-sided forward quotes and corporate client needs",
+              "sourceFactIds": [
+                "fact-bank-fx-quotes",
+                "fact-importco-hedging-example"
+              ]
+            }
           }
         },
         {
           "id": "b22",
-          "hindi_tts": "इसका नतीजा है कि तीन महीने बाद इम्पोर्टको को ठीक 1 करोड़ 57 लाख 42 हजार डॉलर चुकाने होंगे।",
-          "en_subtitle": "ImportCo locks in exactly $15,742,000, eliminating all upside currency risk.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "इम्पोर्टको को पाउंड खरीदने हैं, इसलिए वह ऑफर रेट एक दशमलव पांच सात चार दो पर एक करोड़ पाउंड के लिए एक करोड़ सत्तावन लाख बयालीस हजार डॉलर लॉक करता है।",
+          "en_narration": "ImportCo needs to purchase pounds, locking in the offer rate of 1.5742 to fix its total dollar cost at $15,742,000.",
+          "en_subtitle": "ImportCo buys GBP at offer 1.5742, locking dollar outflow at $15,742,000.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "formulaTitle": "Importer FX Forward Hedging Formula",
-            "formulaLatex": "Locked Cash Outflow = $15,742,000",
-            "steps": [
-              {
-                "label": "Payable Obligation",
-                "explanation": "ImportCo must deliver £10,000,000 to British supplier in 3 months",
-                "value": "£10,000,000",
-                "active": false
-              },
-              {
-                "label": "Applicable Forward Rate",
-                "explanation": "Bank sells GBP to ImportCo at 3-Month Forward Offer rate",
-                "value": "1.5742 USD/GBP",
-                "active": false
-              },
-              {
-                "label": "Locked USD Outflow",
-                "explanation": "Exact dollar amount committed today regardless of spot movement",
-                "value": "$15,742,000",
-                "active": true
-              }
+            "title": "Corporate Currency Hedging (USD/GBP)",
+            "leftTitle": "ImportCo (Buying £10M)",
+            "leftPoints": [
+              "Must pay GBP £10,000,000 in 3 months for UK goods",
+              "Buys GBP forward from bank at Offer Rate: $1.5742",
+              "Total USD outflow locked: £10M × 1.5742 = $15,742,000",
+              "Protected completely if Pound surges to $1.70"
+            ],
+            "rightTitle": "ExportCo (Selling £30M)",
+            "rightPoints": [
+              "Expects GBP £30,000,000 export proceeds in 3 months",
+              "Sells GBP forward to bank at Bid Rate: $1.5736",
+              "Total USD inflow locked: £30M × 1.5736 = $47,208,000",
+              "Protected completely if Pound crashes to $1.40"
             ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "ImportCo (Buying £10M)",
+              "leftPoints": [
+                "Must pay GBP £10,000,000 in 3 months for UK goods",
+                "Buys GBP forward from bank at Offer Rate: $1.5742",
+                "Total USD outflow locked: £10M × 1.5742 = $15,742,000",
+                "Protected completely if Pound surges to $1.70"
+              ],
+              "rightTitle": "ExportCo (Selling £30M)",
+              "rightPoints": [
+                "Expects GBP £30,000,000 export proceeds in 3 months",
+                "Sells GBP forward to bank at Bid Rate: $1.5736",
+                "Total USD inflow locked: £30M × 1.5736 = $47,208,000",
+                "Protected completely if Pound crashes to $1.40"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate cash flow lock-in for commercial importer",
+              "sourceFactIds": [
+                "fact-importco-hedging-example"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b23",
+          "hindi_tts": "एक्सपोर्टको को पाउंड बेचने हैं, इसलिए वह बिड रेट एक दशमलव पांच सात तीन छह पर तीन करोड़ पाउंड बेचकर चार करोड़ बहत्तर लाख आठ हजार डॉलर हासिल करता है।",
+          "en_narration": "ExportCo must sell pounds, locking in the bid rate of 1.5736 to secure exactly $47,208,000 in cash flow.",
+          "en_subtitle": "ExportCo sells GBP at bid 1.5736, locking cash inflow at $47,208,000.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Corporate Currency Hedging (USD/GBP)",
+            "leftTitle": "ImportCo (Buying £10M)",
+            "leftPoints": [
+              "Must pay GBP £10,000,000 in 3 months for UK goods",
+              "Buys GBP forward from bank at Offer Rate: $1.5742",
+              "Total USD outflow locked: £10M × 1.5742 = $15,742,000",
+              "Protected completely if Pound surges to $1.70"
+            ],
+            "rightTitle": "ExportCo (Selling £30M)",
+            "rightPoints": [
+              "Expects GBP £30,000,000 export proceeds in 3 months",
+              "Sells GBP forward to bank at Bid Rate: $1.5736",
+              "Total USD inflow locked: £30M × 1.5736 = $47,208,000",
+              "Protected completely if Pound crashes to $1.40"
+            ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "ImportCo (Buying £10M)",
+              "leftPoints": [
+                "Must pay GBP £10,000,000 in 3 months for UK goods",
+                "Buys GBP forward from bank at Offer Rate: $1.5742",
+                "Total USD outflow locked: £10M × 1.5742 = $15,742,000",
+                "Protected completely if Pound surges to $1.70"
+              ],
+              "rightTitle": "ExportCo (Selling £30M)",
+              "rightPoints": [
+                "Expects GBP £30,000,000 export proceeds in 3 months",
+                "Sells GBP forward to bank at Bid Rate: $1.5736",
+                "Total USD inflow locked: £30M × 1.5736 = $47,208,000",
+                "Protected completely if Pound crashes to $1.40"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate cash flow lock-in for commercial exporter",
+              "sourceFactIds": [
+                "fact-exportco-hedging-example"
+              ]
+            }
           }
         }
       ]
     },
     {
       "segmentIndex": 7,
-      "title": "ExportCo Inflow Hedging Formula",
-      "template": "formula_breakdown",
-      "badge": "Hull Example 1.1 · Part B",
+      "title": "Business Snapshot 1.1: Lehman's 31:1 Collapse",
+      "template": "horizontal_bar_race",
+      "badge": "Business Snapshot 1.1 · Lehman's 31:1 Collapse",
       "beats": [
         {
-          "id": "b23",
-          "hindi_tts": "एक्सपोर्टको को तीन महीने में तीन करोड़ पाउंड मिलने हैं, और उसे डर है कि पाउंड गिर न जाए।",
-          "en_subtitle": "ExportCo expects £30M in 3 months and risks loss if the pound depreciates.",
-          "pauseAfterMs": 400,
-          "ui_state": {
-            "formulaTitle": "Exporter FX Forward Hedging Formula",
-            "formulaLatex": "USD Inflow = Foreign Currency Receivable \\times Forward Bid Rate",
-            "steps": [
-              {
-                "label": "Receivable Inflow",
-                "explanation": "ExportCo will collect £30,000,000 from UK buyers in 3 months",
-                "value": "£30,000,000",
-                "active": true
-              },
-              {
-                "label": "Applicable Forward Rate",
-                "explanation": "Bank buys GBP from ExportCo at 3-Month Forward Bid rate",
-                "value": "1.5736 USD/GBP",
-                "active": false
-              },
-              {
-                "label": "Locked USD Cash Realized",
-                "explanation": "Guaranteed dollar cashflow shielded from any sterling depreciation",
-                "value": "$47,208,000",
-                "active": false
-              }
-            ]
-          }
-        },
-        {
           "id": "b24",
-          "hindi_tts": "कंपनी बैंक को 1.5736 के तीन महीने फॉरवर्ड बिड रेट पर पाउंड बेचने का शॉर्ट फॉरवर्ड करती है।",
-          "en_subtitle": "ExportCo shorts forwards at the bank's 3-month forward Bid rate of 1.5736.",
+          "hindi_tts": "लेकिन जब डेरिवेटिव्स और अत्यधिक लेवरेज का दुरुपयोग होता है, तो पूरा वित्तीय तंत्र हिल जाता है—जैसा दो हजार आठ में लेहमन ब्रदर्स के साथ हुआ।",
+          "en_narration": "When derivatives and excessive leverage are abused, entire banking systems can shatter—as happened to Lehman Brothers in 2008.",
+          "en_subtitle": "Business Snapshot 1.1: Extreme leverage turned derivatives into systemic weapons.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "formulaTitle": "Exporter FX Forward Hedging Formula",
-            "formulaLatex": "USD Inflow = £30,000,000 \\times 1.5736",
-            "steps": [
-              {
-                "label": "Receivable Inflow",
-                "explanation": "ExportCo will collect £30,000,000 from UK buyers in 3 months",
-                "value": "£30,000,000",
-                "active": false
-              },
-              {
-                "label": "Applicable Forward Rate",
-                "explanation": "Bank buys GBP from ExportCo at 3-Month Forward Bid rate",
-                "value": "1.5736 USD/GBP",
-                "active": true
-              },
-              {
-                "label": "Locked USD Cash Realized",
-                "explanation": "Guaranteed dollar cashflow shielded from any sterling depreciation",
-                "value": "$47,208,000",
-                "active": false
-              }
-            ]
+            "title": "Balance Sheet Leverage: Lehman Brothers vs. Commercial Bank Standard",
+            "leftHeader": "Lehman Brothers (2007)",
+            "leftWeight": 31,
+            "leftValueText": "31 : 1 Leverage",
+            "leftBar": {
+              "label": "Lehman Brothers (2007)",
+              "value": 31,
+              "unit": ":1",
+              "annotation": "$639B Assets vs $20B Equity (3.23% Cushion)"
+            },
+            "rightHeader": "Prudent Commercial Bank Limit",
+            "rightWeight": 10,
+            "rightValueText": "10 : 1 Limit",
+            "rightBar": {
+              "label": "Commercial Bank Limit",
+              "value": 10,
+              "unit": ":1",
+              "annotation": "10.0% Capital Cushion Buffer"
+            },
+            "bottomNote": "Extreme leverage turned minor mortgage price declines into fatal insolvency"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "title": "Balance Sheet Leverage: Lehman vs Prudent Standard",
+              "leftLabel": "Lehman Brothers (31:1)",
+              "rightLabel": "Commercial Bank (10:1)",
+              "tension": 85
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate Lehman's extreme 31:1 leverage ratio.",
+              "sourceFactIds": [
+                "fact-lehman-collapse-31-leverage"
+              ]
+            }
           }
         },
         {
           "id": "b25",
-          "hindi_tts": "इस तरह एक्सपोर्टको के लिए 4 करोड़ 72 लाख 8 हजार डॉलर की आमदनी पूरी तरह पक्की हो जाती है।",
-          "en_subtitle": "ExportCo guarantees $47,208,000, fully shielded from currency volatility.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "लेहमन के पास साठ हजार करोड़ डॉलर की बैलेंस शीट थी और दस लाख से ज्यादा द्विपक्षीय ओटीसी डेरिवेटिव सौदे थे।",
+          "en_narration": "Lehman held over $600 billion in balance sheet assets and more than 1,000,000 bilateral OTC derivative contracts worldwide.",
+          "en_subtitle": "Lehman held $600B in assets and over 1,000,000 bilateral OTC derivatives.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "formulaTitle": "Exporter FX Forward Hedging Formula",
-            "formulaLatex": "Locked Cash Inflow = $47,208,000",
-            "steps": [
-              {
-                "label": "Receivable Inflow",
-                "explanation": "ExportCo will collect £30,000,000 from UK buyers in 3 months",
-                "value": "£30,000,000",
-                "active": false
-              },
-              {
-                "label": "Applicable Forward Rate",
-                "explanation": "Bank buys GBP from ExportCo at 3-Month Forward Bid rate",
-                "value": "1.5736 USD/GBP",
-                "active": false
-              },
-              {
-                "label": "Locked USD Cash Realized",
-                "explanation": "Guaranteed dollar cashflow shielded from any sterling depreciation",
-                "value": "$47,208,000",
-                "active": true
-              }
-            ]
+            "title": "Equity Cushion Depletion: A 3.23% Asset Loss Destroys 100% of Equity",
+            "leftHeader": "Asset Loss Threshold",
+            "leftWeight": 3.23,
+            "leftValueText": "3.23% Loss",
+            "leftBar": {
+              "label": "Asset Loss Threshold",
+              "value": 3.23,
+              "unit": "%",
+              "annotation": "3.23% asset decline wipes out 100% of equity"
+            },
+            "rightHeader": "Required Equity Capital",
+            "rightWeight": 100,
+            "rightValueText": "100% Equity",
+            "rightBar": {
+              "label": "Total Equity Pool",
+              "value": 100,
+              "unit": "%",
+              "annotation": "Zero buffer remaining for creditors"
+            },
+            "bottomNote": "At 31:1 leverage, insolvency strikes when assets decline by only 1/31 = 3.23%"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "title": "Capital Buffer Depletion Threshold",
+              "leftLabel": "Loss Margin (3.23%)",
+              "rightLabel": "Total Equity (100%)",
+              "tension": 95
+            },
+            "semantics": {
+              "teachingObjective": "Mathematically illustrate how 3.23% loss triggers complete insolvency.",
+              "sourceFactIds": [
+                "fact-lehman-collapse-31-leverage"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b26",
+          "hindi_tts": "पंद्रह सितंबर दो हजार आठ को लेहमन दिवालिया हुआ, और काउंटरपार्टी जोखिम के खौफ से वैश्विक इंटरबैंक लिक्विडिटी पूरी तरह जम गई।",
+          "en_narration": "On September 15, 2008, Lehman filed for bankruptcy, freezing credit markets worldwide as counterparties questioned who was solvent.",
+          "en_subtitle": "September 15, 2008: Bankruptcy triggered a worldwide interbank credit freeze.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Total Balance Sheet Assets vs Shareholder Equity ($ Billions)",
+            "leftHeader": "Total Funded Assets",
+            "leftWeight": 639,
+            "leftValueText": "$639 Billion",
+            "leftBar": {
+              "label": "Funded Assets",
+              "value": 639,
+              "unit": "B",
+              "annotation": "Massive illiquid mortgage & derivative book"
+            },
+            "rightHeader": "Loss-Absorbing Equity",
+            "rightWeight": 20,
+            "rightValueText": "$20 Billion",
+            "rightBar": {
+              "label": "Shareholder Equity",
+              "value": 20,
+              "unit": "B",
+              "annotation": "Tiny capital cushion protecting creditors"
+            },
+            "bottomNote": "September 15, 2008: Largest bankruptcy filing in United States history ($639B)"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "title": "Lehman Assets vs Equity ($ Billions)",
+              "leftLabel": "$639B Assets",
+              "rightLabel": "$20B Equity",
+              "tension": 90
+            },
+            "semantics": {
+              "teachingObjective": "Show the stark dollar contrast between $639B assets and $20B equity.",
+              "sourceFactIds": [
+                "fact-lehman-collapse-31-leverage"
+              ]
+            }
           }
         }
       ]
     },
     {
       "segmentIndex": 8,
-      "title": "Systemic Risk & Post-2008 CCP Reforms",
-      "template": "progressive_cards",
-      "badge": "Business Snapshot 1.2 · Regulatory Architecture",
+      "title": "Bank Capital Fragility & The 3.23% Equity Wipeout",
+      "template": "formula_breakdown",
+      "badge": "Quantitative Leverage Math",
       "beats": [
         {
-          "id": "b26",
-          "hindi_tts": "सिस्टमिक रिस्क में बैंक ए का डिफॉल्ट बैंक बी और बैंक सी को डोमिनो की तरह गिरा सकता है।",
-          "en_subtitle": "In systemic contagion, Bank A default cascades into Bank B and C failures.",
-          "pauseAfterMs": 400,
-          "ui_state": {
-            "sectionHeader": "Tackling Systemic Contagion in OTC Markets",
-            "layout": "grid",
-            "cards": [
-              {
-                "icon": "Share2",
-                "title": "Bilateral Domino Contagion",
-                "subtitle": "Uncollateralized OTC defaults trigger domino failures across banks",
-                "state": "active_amber"
-              },
-              {
-                "icon": "Monitor",
-                "title": "Swap Execution Facilities",
-                "subtitle": "Mandatory electronic trading platforms for standard contracts",
-                "state": "hidden"
-              },
-              {
-                "icon": "Shield",
-                "title": "Central Counterparties (CCPs)",
-                "subtitle": "Novates trades to sit between buyer and seller as guarantor",
-                "state": "hidden"
-              },
-              {
-                "icon": "Database",
-                "title": "Trade Repositories",
-                "subtitle": "Mandatory centralized data reporting for market regulators",
-                "state": "hidden"
-              }
-            ]
-          }
-        },
-        {
           "id": "b27",
-          "hindi_tts": "पहला सुधार था स्वैप एक्जीक्यूशन फैसिलिटीज, जहां सभी स्टैंडर्ड ओटीसी डेरिवेटिव्स स्क्रीन पर ट्रेड होते हैं।",
-          "en_subtitle": "Reform one mandated Swap Execution Facilities for transparent electronic trading.",
+          "hindi_tts": "आइये इकतीस गुना लेवरेज के खतरनाक गणित को समझें। लेवरेज का मतलब होता है कुल संपत्ति बटे शेयरहोल्डर इक्विटी।",
+          "en_narration": "Let us understand the lethal mathematics of 31:1 leverage. Leverage is defined as Total Assets divided by Equity Capital.",
+          "en_subtitle": "Leverage Ratio Formula: Leverage = Total Assets / Equity Capital.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Tackling Systemic Contagion in OTC Markets",
-            "layout": "grid",
-            "cards": [
+            "title": "Bank Capital Fragility Formula",
+            "expression": "L = \\frac{\\text{Assets}}{\\text{Equity}} = 31 : 1",
+            "variables": [
               {
-                "icon": "Share2",
-                "title": "Bilateral Domino Contagion",
-                "subtitle": "Uncollateralized OTC defaults trigger domino failures across banks",
-                "state": "muted"
+                "symbol": "A",
+                "label": "Total Assets",
+                "description": "Total bank holdings ($600 Billion)",
+                "unit": "$"
               },
               {
-                "icon": "Monitor",
-                "title": "Swap Execution Facilities",
-                "subtitle": "Mandatory electronic trading platforms for standard contracts",
-                "state": "active_blue"
+                "symbol": "E",
+                "label": "Equity Buffer",
+                "description": "Shareholder capital absorbing losses",
+                "unit": "$"
               },
               {
-                "icon": "Shield",
-                "title": "Central Counterparties (CCPs)",
-                "subtitle": "Novates trades to sit between buyer and seller as guarantor",
-                "state": "hidden"
-              },
-              {
-                "icon": "Database",
-                "title": "Trade Repositories",
-                "subtitle": "Mandatory centralized data reporting for market regulators",
-                "state": "hidden"
+                "symbol": "L",
+                "label": "Leverage Ratio",
+                "description": "Magnification multiple of asset returns",
+                "unit": "multiple"
               }
-            ]
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Capital Buffer Definition",
+                "equation": "\\text{Equity \\%} = \\frac{1}{\\text{Leverage}} = \\frac{1}{31} = 3.23\\%",
+                "note": "Only 3.23% of assets funded by equity"
+              }
+            ],
+            "assumptions": [
+              "Short-term liabilities must be rolled over daily."
+            ],
+            "interpretation": "A bank at 31:1 leverage operates with an equity safety cushion of barely 3.23%."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Bank Capital Fragility Formula",
+              "expression": "L = \\frac{\\text{Assets}}{\\text{Equity}} = 31 : 1",
+              "variables": [
+                {
+                  "symbol": "A",
+                  "label": "Total Assets",
+                  "description": "Total bank holdings ($600 Billion)",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "E",
+                  "label": "Equity Buffer",
+                  "description": "Shareholder capital absorbing losses",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "L",
+                  "label": "Leverage Ratio",
+                  "description": "Magnification multiple of asset returns",
+                  "unit": "multiple"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Capital Buffer Definition",
+                  "equation": "\\text{Equity \\%} = \\frac{1}{\\text{Leverage}} = \\frac{1}{31} = 3.23\\%",
+                  "note": "Only 3.23% of assets funded by equity"
+                }
+              ],
+              "assumptions": [
+                "Short-term liabilities must be rolled over daily."
+              ],
+              "interpretation": "A bank at 31:1 leverage operates with an equity safety cushion of barely 3.23%."
+            },
+            "semantics": {
+              "teachingObjective": "Derive equity capital buffer ratio 1 / L = 3.23%",
+              "sourceFactIds": [
+                "fact-lehman-collapse-31-leverage"
+              ]
+            }
           }
         },
         {
           "id": "b28",
-          "hindi_tts": "दूसरा सुधार था सेंट्रल काउंटरपार्टीज, जो खरीदार और विक्रेता के बीच गारंटर बनकर डिफॉल्ट रिस्क सोख लेते हैं।",
-          "en_subtitle": "Reform two introduced CCP novation, absorbing default risk between buyers and sellers.",
+          "hindi_tts": "इकतीस गुना लेवरेज पर लेहमन की अपनी पूंजी सिर्फ सवा तीन प्रतिशत थी। इसका सीधा मतलब यह है कि संपत्ति के मूल्य में सिर्फ तीन दशमलव दो तीन प्रतिशत की गिरावट पूरी इक्विटी समाप्त कर देती है!",
+          "en_narration": "At 31:1 leverage, equity was merely 3.23%. Consequently, an asset decline of just 3.23% completely wiped out all shareholder equity!",
+          "en_subtitle": "At 31:1 leverage, a tiny 3.23% decline in asset values wipes out all equity!",
           "pauseAfterMs": 400,
           "ui_state": {
-            "sectionHeader": "Tackling Systemic Contagion in OTC Markets",
-            "layout": "grid",
-            "cards": [
+            "title": "The Equity Wipeout Threshold",
+            "expression": "\\Delta \\text{Equity} = \\Delta \\text{Assets} \\times L",
+            "variables": [
               {
-                "icon": "Share2",
-                "title": "Bilateral Domino Contagion",
-                "subtitle": "Uncollateralized OTC defaults trigger domino failures across banks",
-                "state": "muted"
+                "symbol": "\\Delta A",
+                "label": "Asset Decline",
+                "description": "Drop in mortgage and credit asset values (-3.23%)",
+                "unit": "%"
               },
               {
-                "icon": "Monitor",
-                "title": "Swap Execution Facilities",
-                "subtitle": "Mandatory electronic trading platforms for standard contracts",
-                "state": "muted"
+                "symbol": "L",
+                "label": "Leverage",
+                "description": "31x multiplier",
+                "unit": "ratio"
               },
               {
-                "icon": "Shield",
-                "title": "Central Counterparties (CCPs)",
-                "subtitle": "Novates trades to sit between buyer and seller as guarantor",
-                "state": "active_green"
-              },
-              {
-                "icon": "Database",
-                "title": "Trade Repositories",
-                "subtitle": "Mandatory centralized data reporting for market regulators",
-                "state": "hidden"
+                "symbol": "\\Delta E",
+                "label": "Equity Loss",
+                "description": "Complete destruction of bank capital (-100%)",
+                "unit": "%"
               }
-            ]
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Loss Magnification",
+                "equation": "-3.23\\% \\times 31 = -100\\% \\implies \\text{Insolvency}",
+                "note": "Zero equity cushion triggers immediate regulatory failure"
+              }
+            ],
+            "assumptions": [
+              "Assets cannot be liquidated without fire-sale discounts."
+            ],
+            "interpretation": "Small losses on subprime assets mathematically destroyed Lehman's balance sheet."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "The Equity Wipeout Threshold",
+              "expression": "\\Delta \\text{Equity} = \\Delta \\text{Assets} \\times L",
+              "variables": [
+                {
+                  "symbol": "\\Delta A",
+                  "label": "Asset Decline",
+                  "description": "Drop in mortgage and credit asset values (-3.23%)",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "L",
+                  "label": "Leverage",
+                  "description": "31x multiplier",
+                  "unit": "ratio"
+                },
+                {
+                  "symbol": "\\Delta E",
+                  "label": "Equity Loss",
+                  "description": "Complete destruction of bank capital (-100%)",
+                  "unit": "%"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Loss Magnification",
+                  "equation": "-3.23\\% \\times 31 = -100\\% \\implies \\text{Insolvency}",
+                  "note": "Zero equity cushion triggers immediate regulatory failure"
+                }
+              ],
+              "assumptions": [
+                "Assets cannot be liquidated without fire-sale discounts."
+              ],
+              "interpretation": "Small losses on subprime assets mathematically destroyed Lehman's balance sheet."
+            },
+            "semantics": {
+              "teachingObjective": "Prove mathematically why 3.23% asset loss causes 100% equity wipeout",
+              "sourceFactIds": [
+                "fact-lehman-collapse-31-leverage"
+              ]
+            }
           }
         },
         {
           "id": "b29",
-          "hindi_tts": "तीसरा सुधार था ट्रेड रिपॉजिटरीज, ताकि रेगुलेटर्स को पूरे बाजार के ओटीसी एक्सपोजर की पारदर्शी जानकारी रहे।",
-          "en_subtitle": "Reform three created Trade Repositories for transparent position reporting.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "यही कारण है कि जब सबप्राइम मोर्गेज में थोड़ी सी गिरावट आई, तो लेहमन रातोंरात दिवालिया हो गया। लेवरेज मुनाफे को बढ़ाता है, लेकिन नुकसान को जानलेवा बना देता है।",
+          "en_narration": "This is why minor losses in subprime mortgages caused instant bankruptcy. Leverage amplifies gains, but renders minor losses fatal.",
+          "en_subtitle": "Leverage magnifies profits, but turns small market dips into fatal collapses.",
+          "pauseAfterMs": 500,
           "ui_state": {
-            "sectionHeader": "Tackling Systemic Contagion in OTC Markets",
-            "layout": "grid",
-            "cards": [
+            "title": "The Double-Edged Sword of Leverage",
+            "expression": "\\text{ROE}_{\\text{net}} = L \\times \\text{ROA}",
+            "variables": [
               {
-                "icon": "Share2",
-                "title": "Bilateral Domino Contagion",
-                "subtitle": "Uncollateralized OTC defaults trigger domino failures across banks",
-                "state": "muted"
+                "symbol": "ROE",
+                "label": "Return on Equity",
+                "description": "Shareholder return rate",
+                "unit": "%"
               },
               {
-                "icon": "Monitor",
-                "title": "Swap Execution Facilities",
-                "subtitle": "Mandatory electronic trading platforms for standard contracts",
-                "state": "muted"
+                "symbol": "ROA",
+                "label": "Return on Assets",
+                "description": "Unleveraged asset return",
+                "unit": "%"
               },
               {
-                "icon": "Shield",
-                "title": "Central Counterparties (CCPs)",
-                "subtitle": "Novates trades to sit between buyer and seller as guarantor",
-                "state": "muted"
-              },
-              {
-                "icon": "Database",
-                "title": "Trade Repositories",
-                "subtitle": "Mandatory centralized data reporting for market regulators",
-                "state": "active_purple"
+                "symbol": "L",
+                "label": "Leverage Ratio",
+                "description": "31:1 multiplier",
+                "unit": "multiplier"
               }
-            ]
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Asymmetric Risk",
+                "equation": "\\text{If ROA} = -3.23\\% \\implies \\text{ROE} = -100\\%",
+                "note": "Extreme leverage leaves zero margin for error"
+              }
+            ],
+            "assumptions": [
+              "Illiquid OTC markets prevent orderly hedging."
+            ],
+            "interpretation": "Disciplined margin rules and capital buffers are essential for survival."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "The Double-Edged Sword of Leverage",
+              "expression": "\\text{ROE}_{\\text{net}} = L \\times \\text{ROA}",
+              "variables": [
+                {
+                  "symbol": "ROE",
+                  "label": "Return on Equity",
+                  "description": "Shareholder return rate",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "ROA",
+                  "label": "Return on Assets",
+                  "description": "Unleveraged asset return",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "L",
+                  "label": "Leverage Ratio",
+                  "description": "31:1 multiplier",
+                  "unit": "multiplier"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Asymmetric Risk",
+                  "equation": "\\text{If ROA} = -3.23\\% \\implies \\text{ROE} = -100\\%",
+                  "note": "Extreme leverage leaves zero margin for error"
+                }
+              ],
+              "assumptions": [
+                "Illiquid OTC markets prevent orderly hedging."
+              ],
+              "interpretation": "Disciplined margin rules and capital buffers are essential for survival."
+            },
+            "semantics": {
+              "teachingObjective": "Summarize the core pedagogical takeaway on leverage risk",
+              "sourceFactIds": [
+                "fact-lehman-collapse-31-leverage"
+              ]
+            }
           }
         }
       ]
     },
     {
       "segmentIndex": 9,
-      "title": "FX Forward Hedging Quiz",
-      "template": "interactive_quiz",
-      "badge": "Risk Check · 6-Month Tenor",
+      "title": "Systemic Risk & Post-2008 CCP Reforms",
+      "template": "diagram_flow",
+      "badge": "Regulatory Architecture · Dodd-Frank & CCP Novation",
       "beats": [
         {
           "id": "b30",
-          "hindi_tts": "मान लीजिए एक अमेरिकी कंपनी को छह महीने बाद दो करोड़ पाउंड का भुगतान करना है।",
-          "en_subtitle": "Suppose a U.S. firm must pay £20 million in 6 months given forward quotes.",
+          "hindi_tts": "लेहमन के संकट से सीख लेकर वैश्विक नियामकों ने ओटीसी डेरिवेटिव्स बाजार को सुरक्षित बनाने के लिए तीन क्रांतिकारी नियम लागू किए।",
+          "en_narration": "Learning from Lehman's collapse, global regulators enacted three landmark mandates to eliminate bilateral counterparty contagion.",
+          "en_subtitle": "Post-2008 G20 reforms introduced three mandatory pillars for OTC derivatives.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "badge": "Risk Check · 6-Month Tenor",
-            "question": "A U.S. corporation must pay £20 million in 6 months, and the 6-month USD/GBP forward quote is Bid 1.5730 and Offer 1.5736. Which position and exact dollar cost locks in the hedge?",
-            "showThinkingSpinner": false,
-            "answer": null
+            "title": "Evolution of Derivatives Market Safeguards",
+            "subtitle": "From Unregulated Bilateral Risk to Centralized Clearinghouses",
+            "layout": "linear_horizontal",
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "1995: Barings Bank",
+                "subtitle": "Speculative Rogue Trader Loss ($1.4B)",
+                "state": "warning",
+                "icon": "alert-triangle"
+              },
+              {
+                "id": "n2",
+                "label": "2008: Lehman Crisis",
+                "subtitle": "31:1 Leverage & 900K Bilateral OTC Swaps",
+                "state": "active",
+                "icon": "activity"
+              },
+              {
+                "id": "n3",
+                "label": "2010+: Dodd-Frank Act",
+                "subtitle": "Mandatory Central Counterparty (CCP) Novation",
+                "state": "success",
+                "icon": "shield-check"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "label": "Leverage Ignored",
+                "directional": true
+              },
+              {
+                "from": "n2",
+                "to": "n3",
+                "label": "Regulatory Reform",
+                "directional": true
+              }
+            ],
+            "activeNodeIds": [
+              "n1",
+              "n2"
+            ],
+            "activeEdgeIds": [
+              "e1"
+            ]
+          },
+          "visual": {
+            "kind": "diagram",
+            "data": {
+              "title": "Evolution of Derivatives Market Safeguards",
+              "subtitle": "From Bilateral Risk to Centralized Clearinghouses",
+              "layout": "linear_horizontal",
+              "nodes": [
+                {
+                  "id": "n1",
+                  "label": "1995: Barings Bank",
+                  "subtitle": "Rogue Trader ($1.4B)",
+                  "state": "warning"
+                },
+                {
+                  "id": "n2",
+                  "label": "2008: Lehman Crisis",
+                  "subtitle": "31:1 Leverage & 900K Swaps",
+                  "state": "active"
+                },
+                {
+                  "id": "n3",
+                  "label": "2010+: Dodd-Frank CCP",
+                  "subtitle": "Mandatory Central Novation",
+                  "state": "success"
+                }
+              ],
+              "edges": [
+                {
+                  "from": "n1",
+                  "to": "n2",
+                  "label": "Leverage Ignored",
+                  "directional": true
+                },
+                {
+                  "from": "n2",
+                  "to": "n3",
+                  "label": "Global Mandate",
+                  "directional": true
+                }
+              ],
+              "activeNodeIds": [
+                "n1",
+                "n2"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Trace historical crises leading to post-2008 clearinghouse reforms.",
+              "sourceFactIds": [
+                "fact-lehman-otc-derivatives-web",
+                "fact-post-2008-ccp-reforms"
+              ]
+            }
           }
         },
         {
           "id": "b31",
-          "hindi_tts": "सोचिए, क्या कंपनी बैंक के बिड रेट पर खरीदेगी या ऑफर रेट पर?",
-          "en_subtitle": "Consider whether the firm buys pounds at the bank's Bid or Offer forward rate.",
-          "pauseAfterMs": 3200,
+          "hindi_tts": "पहला: मानकीकृत ओटीसी सौदों को अब सेंट्रल काउंटरपार्टी यानी सीसीपी के जरिए क्लियर करना अनिवार्य है, जहां सीसीपी हर खरीदार के लिए विक्रेता और हर विक्रेता के लिए खरीदार बन जाता है।",
+          "en_narration": "First: Standardized OTC trades must clear through CCPs via novation—the CCP becomes the buyer to every seller and seller to every buyer.",
+          "en_subtitle": "CCPs sit between all market participants, guaranteeing trade settlement.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "badge": "Risk Check · 6-Month Tenor",
-            "question": "A U.S. corporation must pay £20 million in 6 months, and the 6-month USD/GBP forward quote is Bid 1.5730 and Offer 1.5736. Which position and exact dollar cost locks in the hedge?",
-            "showThinkingSpinner": true,
-            "answer": null
+            "title": "Three Pillars of Post-2008 OTC Derivatives Reform",
+            "subtitle": "Mandatory Clearing, Electronic Execution, and Trade Transparency",
+            "layout": "linear_horizontal",
+            "nodes": [
+              {
+                "id": "p1",
+                "label": "1. CCP Novation",
+                "subtitle": "Clearinghouse guarantees settlement",
+                "state": "success",
+                "icon": "shield"
+              },
+              {
+                "id": "p2",
+                "label": "2. SEF Execution",
+                "subtitle": "Transparent electronic trading venues",
+                "state": "success",
+                "icon": "monitor"
+              },
+              {
+                "id": "p3",
+                "label": "3. Trade Repositories",
+                "subtitle": "Full regulatory exposure reporting",
+                "state": "success",
+                "icon": "database"
+              }
+            ],
+            "edges": [
+              {
+                "from": "p1",
+                "to": "p2",
+                "label": "Standardized",
+                "directional": true
+              },
+              {
+                "from": "p2",
+                "to": "p3",
+                "label": "Reported",
+                "directional": true
+              }
+            ],
+            "activeNodeIds": [
+              "p1",
+              "p2",
+              "p3"
+            ]
+          },
+          "visual": {
+            "kind": "diagram",
+            "data": {
+              "title": "Three Pillars of Post-2008 OTC Reform",
+              "subtitle": "Clearing, Trading, and Reporting",
+              "layout": "linear_horizontal",
+              "nodes": [
+                {
+                  "id": "p1",
+                  "label": "1. CCP Novation",
+                  "subtitle": "Guaranteed Settlement",
+                  "state": "success"
+                },
+                {
+                  "id": "p2",
+                  "label": "2. SEF Execution",
+                  "subtitle": "Electronic Order Books",
+                  "state": "success"
+                },
+                {
+                  "id": "p3",
+                  "label": "3. Trade Repositories",
+                  "subtitle": "Systemic Transparency",
+                  "state": "success"
+                }
+              ],
+              "edges": [
+                {
+                  "from": "p1",
+                  "to": "p2",
+                  "directional": true
+                },
+                {
+                  "from": "p2",
+                  "to": "p3",
+                  "directional": true
+                }
+              ],
+              "activeNodeIds": [
+                "p1",
+                "p2",
+                "p3"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Explain the three mandated pillars of post-2008 derivative regulation.",
+              "sourceFactIds": [
+                "fact-post-2008-ccp-reforms"
+              ]
+            }
           }
         },
         {
           "id": "b32",
-          "hindi_tts": "कंपनी लॉन्ग फॉरवर्ड लेगी ऑफर रेट 1.5736 पर, जिससे कुल लागत 3 करोड़ 14 लाख 72 हजार डॉलर लॉक हो जाएगी।",
-          "en_subtitle": "Long forward at 1.5736 Offer locks in exactly $31,472,000 for £20 million.",
+          "hindi_tts": "दूसरा और तीसरा: स्वैप एग्जीक्यूशन फैसिलिटीज पर पारदर्शी इलेक्ट्रॉनिक ट्रेडिंग, और सभी सौदों का ट्रेड रिपॉजिटरी में अनिवार्य पंजीकरण ताकि कोई छिपा हुआ रिस्क न रहे।",
+          "en_narration": "Second and third: Transparent electronic SEF trading, and mandatory reporting to trade repositories so systemic risks are visible.",
+          "en_subtitle": "Electronic execution and trade repositories eliminate hidden systemic shadows.",
           "pauseAfterMs": 500,
           "ui_state": {
-            "badge": "Risk Check · 6-Month Tenor",
-            "question": "A U.S. corporation must pay £20 million in 6 months, and the 6-month USD/GBP forward quote is Bid 1.5730 and Offer 1.5736. Which position and exact dollar cost locks in the hedge?",
-            "showThinkingSpinner": false,
-            "answer": "Spot on! Since the firm needs to buy £20 million from the bank in 6 months, it takes a Long Forward position at the bank's Offer rate of 1.5736, locking in an exact payment of $31,472,000."
+            "title": "Bilateral Contagion Shield: Clearinghouse Novation",
+            "subtitle": "Replacing the opaque web with a single well-capitalized counterparty",
+            "layout": "linear_horizontal",
+            "nodes": [
+              {
+                "id": "c1",
+                "label": "Trading Bank A",
+                "subtitle": "Buyer of Swap",
+                "state": "default",
+                "icon": "user"
+              },
+              {
+                "id": "c2",
+                "label": "Central Counterparty (CCP)",
+                "subtitle": "Novation Shield & Daily Margin",
+                "state": "success",
+                "icon": "shield-check"
+              },
+              {
+                "id": "c3",
+                "label": "Trading Bank B",
+                "subtitle": "Seller of Swap",
+                "state": "default",
+                "icon": "user"
+              }
+            ],
+            "edges": [
+              {
+                "from": "c1",
+                "to": "c2",
+                "label": "Clears With",
+                "directional": true
+              },
+              {
+                "from": "c2",
+                "to": "c3",
+                "label": "Clears With",
+                "directional": true
+              }
+            ],
+            "activeNodeIds": [
+              "c2"
+            ]
+          },
+          "visual": {
+            "kind": "diagram",
+            "data": {
+              "title": "Clearinghouse Novation Architecture",
+              "subtitle": "Eliminating Bilateral Network Default Risk",
+              "layout": "linear_horizontal",
+              "nodes": [
+                {
+                  "id": "c1",
+                  "label": "Bank A (Long)",
+                  "state": "default"
+                },
+                {
+                  "id": "c2",
+                  "label": "CCP Clearinghouse",
+                  "state": "success"
+                },
+                {
+                  "id": "c3",
+                  "label": "Bank B (Short)",
+                  "state": "default"
+                }
+              ],
+              "edges": [
+                {
+                  "from": "c1",
+                  "to": "c2",
+                  "directional": true
+                },
+                {
+                  "from": "c2",
+                  "to": "c3",
+                  "directional": true
+                }
+              ],
+              "activeNodeIds": [
+                "c2"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Show how CCP novation breaks bilateral contagion chains.",
+              "sourceFactIds": [
+                "fact-post-2008-ccp-reforms",
+                "fact-systemic-risk-ripple-effect"
+              ]
+            }
           }
         }
       ]
     },
     {
       "segmentIndex": 10,
-      "title": "Applying the Market Structure Checklist",
-      "template": "chat_story",
-      "badge": "Synthesis · Practical Takeaways",
+      "title": "Active Recall: Corporate FX Hedging & Leverage Math",
+      "template": "interactive_quiz",
+      "badge": "Active Recall Challenge",
       "beats": [
         {
           "id": "b33",
-          "hindi_tts": "राजू समझ गया कि करेंसी खरीदने के लिए ऑफर रेट 1.5742 और बेचने के लिए बिड रेट 1.5736 लगता है।",
-          "en_subtitle": "Raju confirms using the 1.5742 Offer to buy and the 1.5736 Bid to sell pounds.",
+          "hindi_tts": "आइये आपकी समझ की परीक्षा लें: एक आयातक को तीन महीने में एक करोड़ पाउंड का भुगतान करना है। बैंक एक दशमलव पांच सात तीन छह बिड और एक दशमलव पांच सात चार दो ऑफर कोट करता है। आयातक को किस रेट पर सौदा लॉक करना चाहिए?",
+          "en_narration": "Test your understanding: An importer must pay GBP £10,000,000 in 3 months. The bank quotes 1.5736 Bid / 1.5742 Offer. At which forward rate does the importer lock in dollars?",
+          "en_subtitle": "Importer needs £10M. Bank quotes 1.5736 Bid / 1.5742 Offer. What rate applies?",
           "pauseAfterMs": 400,
           "ui_state": {
-            "stageDirections": [
-              "— afternoon: Raju reviews hedged corporate portfolio ledger —"
+            "scenario": "An importer must pay £10,000,000 in 3 months. Bank quotes USD/GBP at 1.5736 Bid / 1.5742 Offer.",
+            "question": "Given that the importer must settle a £10,000,000 payable in 3 months, at which forward exchange rate will the firm lock in its purchase cost?",
+            "options": [
+              "A) Bid Rate: $1.5736",
+              "B) Offer Rate: $1.5742",
+              "C) Average Mid Rate: $1.5739",
+              "D) Spot Rate upon delivery"
             ],
-            "messages": [
-              {
-                "sender": "Raju",
-                "avatar": "R",
-                "text": "Got it! Importers buy foreign currency at the bank's Offer, and exporters sell at the Bid.",
-                "theme": "amber",
-                "align": "left"
-              }
-            ]
+            "correctOptionIndex": 1,
+            "answer": "B) Offer Rate: $1.5742",
+            "showThinkingSpinner": false
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "scenario": "An importer must pay £10,000,000 in 3 months. Bank quotes USD/GBP at 1.5736 Bid / 1.5742 Offer.",
+              "question": "Given that the importer must settle a £10,000,000 payable in 3 months, at which forward exchange rate will the firm lock in its purchase cost?",
+              "options": [
+                "A) Bid Rate: $1.5736",
+                "B) Offer Rate: $1.5742",
+                "C) Average Mid Rate: $1.5739",
+                "D) Spot Rate upon delivery"
+              ],
+              "correctOptionIndex": 1,
+              "answer": "B) Offer Rate: $1.5742",
+              "showThinkingSpinner": false
+            },
+            "semantics": {
+              "teachingObjective": "Active recall on bank two-sided quotes for corporate hedgers",
+              "sourceFactIds": [
+                "fact-bank-fx-quotes",
+                "fact-importco-hedging-example"
+              ]
+            }
           }
         },
         {
           "id": "b34",
-          "hindi_tts": "साथ ही लेहमन का 31 गुना लेवरेज सिखाता है कि अनकंट्रोल्ड क्रेडिट रिस्क पूरी वित्तीय प्रणाली को जमा सकता है।",
-          "en_subtitle": "Lehman's 31:1 leverage proved uncontrolled credit risk freezes financial systems.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "राजू सोचता है: आयातक को पाउंड खरीदने हैं, और बैंक हमेशा ग्राहक को ऊंची कीमत पर यानी ऑफर रेट पर बेचता है।",
+          "en_narration": "Raju reasons: The importer needs to buy pounds, and the bank always sells currency to clients at the higher Offer rate.",
+          "en_subtitle": "Raju reasons: The client is buying pounds, so the bank sells at the higher Offer rate.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "stageDirections": [
-              "— analyzing systemic counterparty risk and balance sheet leverage —"
+            "scenario": "An importer must pay £10,000,000 in 3 months. Bank quotes USD/GBP at 1.5736 Bid / 1.5742 Offer.",
+            "question": "Given that the importer must settle a £10,000,000 payable in 3 months, at which forward exchange rate will the firm lock in its purchase cost?",
+            "options": [
+              "A) Bid Rate: $1.5736",
+              "B) Offer Rate: $1.5742",
+              "C) Average Mid Rate: $1.5739",
+              "D) Spot Rate upon delivery"
             ],
-            "messages": [
-              {
-                "sender": "Raju",
-                "avatar": "R",
-                "text": "Got it! Importers buy foreign currency at the bank's Offer, and exporters sell at the Bid.",
-                "theme": "amber",
-                "align": "left"
-              },
-              {
-                "sender": "Sharma ji",
-                "avatar": "S",
-                "text": "Exactly. And extreme 31:1 leverage means a tiny 3% asset slide wipes equity completely.",
-                "theme": "teal",
-                "align": "right"
-              }
-            ]
+            "correctOptionIndex": 1,
+            "answer": "B) Offer Rate: $1.5742",
+            "showThinkingSpinner": true
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "scenario": "An importer must pay £10,000,000 in 3 months. Bank quotes USD/GBP at 1.5736 Bid / 1.5742 Offer.",
+              "question": "Given that the importer must settle a £10,000,000 payable in 3 months, at which forward exchange rate will the firm lock in its purchase cost?",
+              "options": [
+                "A) Bid Rate: $1.5736",
+                "B) Offer Rate: $1.5742",
+                "C) Average Mid Rate: $1.5739",
+                "D) Spot Rate upon delivery"
+              ],
+              "correctOptionIndex": 1,
+              "answer": "B) Offer Rate: $1.5742",
+              "showThinkingSpinner": true
+            },
+            "semantics": {
+              "teachingObjective": "Show client reasoning regarding bid vs offer pricing",
+              "sourceFactIds": [
+                "fact-bank-fx-quotes",
+                "fact-importco-hedging-example"
+              ]
+            }
           }
         },
         {
           "id": "b35",
-          "hindi_tts": "शर्मा जी समझाते हैं कि आज सेंट्रल काउंटरपार्टीज और डेली मार्जिनिंग की वजह से ओटीसी बाजार ज्यादा सुरक्षित है।",
-          "en_subtitle": "Sharma ji highlights how modern CCP clearing and margin buffers secure OTC markets.",
+          "hindi_tts": "ऑप्शन बी बिल्कुल सही है! आयातक एक दशमलव पांच सात चार दो पर लॉक करके कुल एक करोड़ सत्तावन लाख बयालीस हजार डॉलर तय करेगा, जिससे मुद्रा में किसी भी उछाल का जोखिम खत्म हो जाएगा।",
+          "en_narration": "Option B is correct! The importer locks in 1.5742, committing exactly $15,742,000 and eliminating all foreign exchange uncertainty.",
+          "en_subtitle": "Option B is correct! Total outflow is locked at £10M × 1.5742 = $15,742,000.",
           "pauseAfterMs": 500,
           "ui_state": {
-            "stageDirections": [
-              "— concluding on post-Dodd-Frank and EMIR central clearing mandates —"
+            "scenario": "An importer must pay £10,000,000 in 3 months. Bank quotes USD/GBP at 1.5736 Bid / 1.5742 Offer.",
+            "question": "Given that the importer must settle a £10,000,000 payable in 3 months, at which forward exchange rate will the firm lock in its purchase cost?",
+            "options": [
+              "A) Bid Rate: $1.5736",
+              "B) Offer Rate: $1.5742",
+              "C) Average Mid Rate: $1.5739",
+              "D) Spot Rate upon delivery"
             ],
-            "messages": [
-              {
-                "sender": "Raju",
-                "avatar": "R",
-                "text": "Got it! Importers buy foreign currency at the bank's Offer, and exporters sell at the Bid.",
-                "theme": "amber",
-                "align": "left"
-              },
-              {
-                "sender": "Sharma ji",
-                "avatar": "S",
-                "text": "That is why modern CCP clearing, SEFs, and margin rules are mandatory shields.",
-                "theme": "teal",
-                "align": "right"
-              }
-            ]
+            "correctOptionIndex": 1,
+            "answer": "B) Offer Rate: $1.5742",
+            "showThinkingSpinner": false,
+            "feedback": "Correct! The importer buys GBP from the bank at the Offer price of $1.5742, locking cash outflow at $15,742,000."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "scenario": "An importer must pay £10,000,000 in 3 months. Bank quotes USD/GBP at 1.5736 Bid / 1.5742 Offer.",
+              "question": "Given that the importer must settle a £10,000,000 payable in 3 months, at which forward exchange rate will the firm lock in its purchase cost?",
+              "options": [
+                "A) Bid Rate: $1.5736",
+                "B) Offer Rate: $1.5742",
+                "C) Average Mid Rate: $1.5739",
+                "D) Spot Rate upon delivery"
+              ],
+              "correctOptionIndex": 1,
+              "answer": "B) Offer Rate: $1.5742",
+              "showThinkingSpinner": false,
+              "feedback": "Correct! The importer buys GBP from the bank at the Offer price of $1.5742, locking cash outflow at $15,742,000."
+            },
+            "semantics": {
+              "teachingObjective": "Validate correct option and provide numerical confirmation",
+              "sourceFactIds": [
+                "fact-bank-fx-quotes",
+                "fact-importco-hedging-example"
+              ]
+            }
           }
         }
       ]
     },
     {
       "segmentIndex": 11,
-      "title": "Chapter 1 Part 1 Summary Thread",
+      "title": "Master Blueprint: 8 Core Principles",
       "template": "summary_thread",
-      "badge": "Core Synthesis · 8 Key Steps",
+      "badge": "Core Chapter Takeaways",
       "beats": [
         {
           "id": "b36",
-          "hindi_tts": "तो आज के पूरे अध्याय का आठ बिंदुओं वाला निचोड़ यह है।",
-          "en_subtitle": "Here is today's eight-point synthesis of derivatives market structure.",
+          "hindi_tts": "आइये अध्याय एक के पहले भाग के आठ मुख्य नियमों और सिद्धांतों को एक साथ दोहराएं।",
+          "en_narration": "Let us review the eight core principles and market mechanisms mastered in Chapter 1 Part 1.",
+          "en_subtitle": "Executive Summary: Eight core principles mastered in Chapter 1 Part 1.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
-            "heading": "Today's thread",
             "activeStepRange": [
               0,
               0
             ],
             "steps": [
-              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
-              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
-              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
-              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
-              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
-              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
-              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
-              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
+              "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+              "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+              "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+              "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+              "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+              "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+              "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+              "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
             ],
-            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                0,
+                0
+              ],
+              "steps": [
+                "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+                "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+                "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+                "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+                "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+                "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+                "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+                "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Executive introduction to 8-rule master summary thread",
+              "sourceFactIds": [
+                "fact-cbot-historical-origins"
+              ]
+            }
           }
         },
         {
           "id": "b37",
-          "hindi_tts": "एक्सचेंज फ्यूचर्स 1848 से मानकीकृत हैं, जबकि ओटीसी फॉरवर्ड्स 630 ट्रिलियन डॉलर के विशाल बाजार का हिस्सा हैं।",
-          "en_subtitle": "Exchange futures are standardized since 1848, while OTC forwards span $630T notional.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "पहला और दूसरा: डेरिवेटिव्स वास्तविक मूल्य जोखिम खत्म करने के लिए 1848 में शिकागो में पैदा हुए, और एक्सचेंज फ्यूचर्स में दैनिक मार्जिन अनुशासन होता है।",
+          "en_narration": "First and second: Derivatives originated at the 1848 CBOT to eliminate operational price risk, and exchange futures enforce daily margin clearing.",
+          "en_subtitle": "1 & 2: 1848 CBOT risk origins and daily margin discipline on futures exchanges.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
-            "heading": "Today's thread",
             "activeStepRange": [
               1,
               2
             ],
             "steps": [
-              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
-              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
-              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
-              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
-              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
-              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
-              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
-              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
+              "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+              "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+              "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+              "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+              "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+              "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+              "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+              "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
             ],
-            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                1,
+                2
+              ],
+              "steps": [
+                "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+                "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+                "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+                "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+                "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+                "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+                "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+                "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Recap items 1 and 2: origin and exchange clearing architecture",
+              "sourceFactIds": [
+                "fact-cbot-historical-origins",
+                "fact-futures-def"
+              ]
+            }
           }
         },
         {
           "id": "b38",
-          "hindi_tts": "लॉन्ग पोजीशन खरीदने और शॉर्ट बेचने के लिए होती है, और फॉरवर्ड कोट्स भविष्य का रेट आज ही तय कर देते हैं।",
-          "en_subtitle": "Long obligates buying, short obligates selling, and forwards lock future rates today.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "तीसरा और चौथा: 630 ट्रिलियन डॉलर का विशाल ओटीसी बाजार एक्सचेंज से दस गुना बड़ा है, और मैच्योरिटी पर पेऑफ सूत्र लीनियर एस टी माइनस के और के माइनस एस टी होते हैं।",
+          "en_narration": "Third and fourth: The $630 Trillion OTC market dwarfs exchange trading, and terminal payoff formulas are linear S_t minus K and K minus S_t.",
+          "en_subtitle": "3 & 4: Massive $630T OTC market scale and linear terminal payoff formulas.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
-            "heading": "Today's thread",
             "activeStepRange": [
               3,
               4
             ],
             "steps": [
-              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
-              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
-              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
-              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
-              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
-              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
-              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
-              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
+              "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+              "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+              "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+              "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+              "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+              "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+              "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+              "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
             ],
-            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                3,
+                4
+              ],
+              "steps": [
+                "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+                "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+                "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+                "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+                "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+                "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+                "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+                "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Recap items 3 and 4: OTC scale and linear payoff formulas",
+              "sourceFactIds": [
+                "fact-global-derivatives-market-size",
+                "fact-forward-payoff-formulas"
+              ]
+            }
           }
         },
         {
           "id": "b39",
-          "hindi_tts": "इम्पोर्टको ने ऑफर रेट पर 1.5742 करोड़ डॉलर लॉक किए और एक्सपोर्टको ने बिड रेट पर 4.7208 करोड़ डॉलर पक्के किए।",
-          "en_subtitle": "ImportCo locked $15.742M at Offer, and ExportCo secured $47.208M at Bid.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "पांचवां और छठा: आयातक बैंक के ऑफर रेट पर और निर्यातक बिड रेट पर हेज करते हैं, और 31 गुना लेवरेज पर सवा तीन प्रतिशत गिरावट पूरी इक्विटी समाप्त कर देती है।",
+          "en_narration": "Fifth and sixth: Importers hedge at the Offer and exporters at the Bid, while at 31:1 leverage a mere 3.23% asset fall wipes out all equity.",
+          "en_subtitle": "5 & 6: Corporate FX hedging via bid/offer and the lethal 31:1 leverage wipeout.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
-            "heading": "Today's thread",
             "activeStepRange": [
               5,
               6
             ],
             "steps": [
-              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
-              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
-              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
-              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
-              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
-              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
-              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
-              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
+              "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+              "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+              "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+              "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+              "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+              "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+              "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+              "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
             ],
-            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                5,
+                6
+              ],
+              "steps": [
+                "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+                "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+                "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+                "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+                "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+                "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+                "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+                "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Recap items 5 and 6: corporate hedging quotes and leverage wipeout",
+              "sourceFactIds": [
+                "fact-bank-fx-quotes",
+                "fact-lehman-collapse-31-leverage"
+              ]
+            }
           }
         },
         {
           "id": "b40",
-          "hindi_tts": "लेहमन का 31 गुना लेवरेज संकट बना, जिससे निपटने के लिए अब सीसीपी और ट्रेड रिपॉजिटरीज अनिवार्य हैं।",
-          "en_subtitle": "Lehman 31:1 leverage prompted mandatory CCP clearing and trade repositories.",
-          "pauseAfterMs": 450,
+          "hindi_tts": "सातवां और आठवां: ओटीसी की आपस में जुड़ी कड़ियां सिस्टमिक जोखिम पैदा करती हैं, और इसे रोकने के लिए 2008 के बाद सुधारों ने सेंट्रल काउंटरपार्टी और ट्रेड रिपॉजिटरी अनिवार्य किया।",
+          "en_narration": "Seventh and eighth: Interconnected OTC exposures create systemic contagion, and post-2008 reforms mandated central counterparty clearing and trade repositories.",
+          "en_subtitle": "7 & 8: Systemic default contagion and mandatory post-2008 CCP clearing reforms.",
+          "pauseAfterMs": 400,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
-            "heading": "Today's thread",
             "activeStepRange": [
               7,
               8
             ],
             "steps": [
-              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
-              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
-              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
-              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
-              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
-              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
-              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
-              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
+              "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+              "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+              "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+              "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+              "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+              "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+              "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+              "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
             ],
-            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                7,
+                8
+              ],
+              "steps": [
+                "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+                "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+                "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+                "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+                "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+                "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+                "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+                "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Recap items 7 and 8: systemic contagion and post-2008 CCP reforms",
+              "sourceFactIds": [
+                "fact-systemic-risk-ripple-effect",
+                "fact-post-2008-ccp-reforms"
+              ]
+            }
           }
         },
         {
           "id": "b41",
-          "hindi_tts": "निष्कर्ष यह है कि फॉरवर्ड्स और फ्यूचर्स कीमतों का रिस्क हटाते हैं, और सेंट्रल क्लियरिंग डिफॉल्ट का खतरा रोकती है।",
-          "en_subtitle": "Derivatives remove price uncertainty, while central clearing stops counterparty default chains.",
+          "hindi_tts": "तो यह था अध्याय एक का पहला भाग। बिना हेजिंग के सिस्टमिक जोखिम से बचिए और मार्जिन अनुशासन अपनाइए। अगले भाग में हम समझेंगे ऑप्शंस पेऑफ और लेवरेज!",
+          "en_narration": "This concludes Chapter 1 Part 1. Respect leverage limits and maintain margin discipline. Next up in Part 2: Call and Put Options Basics and Trading Profiles!",
+          "en_subtitle": "Complete Chapter 1 Part 1 summary grid. Next: Options Basics in Part 2!",
           "pauseAfterMs": 600,
           "ui_state": {
-            "headerBadge": "CHAPTER 1 · PART 1 · SUMMARY",
-            "heading": "Today's thread",
             "activeStepRange": [
-              1,
-              8
+              0,
+              7
             ],
             "steps": [
-              "Futures are standardized contracts traded on exchanges like CME since 1848 with electronic matching",
-              "Forwards are private OTC agreements contributing to a massive $630 trillion notional market",
-              "A Long position agrees to buy the underlying asset while a Short position agrees to sell it in the future",
-              "Spot quotes reflect immediate delivery whereas Forward quotes lock in future exchange rates today",
-              "ImportCo hedges a £10M outflow by buying 3-month forwards at the 1.5742 Offer for $15,742,000",
-              "ExportCo hedges a £30M inflow by selling 3-month forwards at the 1.5736 Bid for $47,208,000",
-              "Lehman Brothers ran 31 to 1 leverage in 2007 where a 3% to 4% asset drop wiped out equity across 1M OTC trades",
-              "Post-2008 regulations mandate SEFs, Central Counterparties, and Trade Repositories to curb systemic risk"
+              "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+              "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+              "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+              "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+              "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+              "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+              "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+              "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
             ],
-            "bottomTakeaway": "Forwards and futures eliminate price uncertainty, while central clearing prevents counterparty default chains."
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                0,
+                7
+              ],
+              "steps": [
+                "1. Origins: Derivatives exist fundamentally to eliminate operational price risk, founded at 1848 CBOT.",
+                "2. Market Architecture: Standardized exchange futures (CME) feature daily margin; custom OTC forwards trade bilaterally.",
+                "3. Market Scale: The global OTC market ($630T notional) dwarfs exchange trading ($65T) by a 10:1 ratio.",
+                "4. Symmetrical Payoffs: Linear terminal payoffs are Long (Sₜ − K) and Short (K − Sₜ) with zero upfront cost.",
+                "5. Corporate Hedging: Importers lock costs buying at Offer; exporters lock revenues selling at Bid.",
+                "6. Leverage Fragility: At 31:1 leverage, Lehman's equity buffer was 3.23%; a tiny 3.23% drop caused insolvency.",
+                "7. Systemic Risk: Interconnected bilateral OTC exposures create domino default freezes across banking systems.",
+                "8. Post-2008 Reforms: Mandatory CCP novation, electronic SEF trading, and trade repository reporting restore stability."
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Present complete 2-column executive summary grid",
+              "sourceFactIds": [
+                "fact-cbot-historical-origins",
+                "fact-futures-def",
+                "fact-forward-payoff-formulas",
+                "fact-lehman-collapse-31-leverage",
+                "fact-post-2008-ccp-reforms"
+              ]
+            }
           }
         }
       ]

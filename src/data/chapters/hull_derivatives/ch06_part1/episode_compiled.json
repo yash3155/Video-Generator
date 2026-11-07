@@ -1,0 +1,3259 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives",
+    "chapter": "CHAPTER 6 · PART 1",
+    "chapterTitle": "Interest Rate Futures: Day Counts, Bond Futures, and the Wild Card",
+    "domain": "finance",
+    "primaryColor": "#0F766E",
+    "accentColor": "#F59E0B",
+    "narrationLanguage": "hi-IN-devanagari",
+    "generationProvenance": {
+      "model": "gemini-4-argon",
+      "requestedModel": "gemini-4-argon",
+      "preflightStatus": "PASSED",
+      "preflightEngine": "direct_cookies",
+      "approvedByUser": true,
+      "approvalTimestamp": "2026-11-03T20:11:11.473Z",
+      "runId": "run_1793736671474_drtj6e"
+    }
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "The Clean vs Dirty Price Shock",
+      "template": "chat_story",
+      "badge": "Fixed Income Trading Desk",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "शर्मा जी! मैंने स्क्रीन पर 98 डॉलर देखकर ट्रेजरी बॉन्ड खरीदा, लेकिन इनवॉइस में मुझसे 100.50 डॉलर मांगे गए! यह ढाई डॉलर एक्स्ट्रा क्यों?",
+          "en_subtitle": "Sharma ji, I bought a bond quoted at $98 on screen, but was invoiced $100.50! Why the extra $2.50?",
+          "en_narration": "Sharma ji, I bought a Treasury bond quoted at $98 on screen, but the settlement invoice demanded $100.50! Why was I charged an extra $2.50?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju inspects his bond trade invoice —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji! Quoted price was $98.00, but invoice demands $100.50! Where did the $2.50 markup come from?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji! Quoted price was $98.00, but invoice demands $100.50! Where did the $2.50 markup come from?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present retail shock at clean vs dirty bond pricing disparity",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "0431435cadfcb01e",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b01.mp3",
+          "audioDurationSec": 14.42,
+          "durationInFrames": 445,
+          "subtitlePhrases": [
+            {
+              "text": "Sharma ji,",
+              "startMs": 0,
+              "endMs": 1502
+            },
+            {
+              "text": "I bought a bond quoted at $98 on screen,",
+              "startMs": 1502,
+              "endMs": 7510
+            },
+            {
+              "text": "but was invoiced $100.50! Why the extra $2.50?",
+              "startMs": 7510,
+              "endMs": 14420
+            }
+          ]
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "राजू! स्क्रीन पर दिखने वाला भाव क्लीन प्राइस होता है। लेकिन सेलर ने पिछले कूपन के बाद जितने दिन बॉन्ड रखा, उसका ब्याज तुम्हें देना पड़ेगा!",
+          "en_subtitle": "Raju, screens show clean prices. You must pay accrued interest earned by seller since last coupon!",
+          "en_narration": "Raju! Screen quotes show clean prices. You must reimburse the seller for accrued interest earned since the last coupon date!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji reveals accrued interest mechanics —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Quoted price was $98.00, but invoice demands $100.50! Where did the $2.50 markup come from?",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "That $2.50 is Accrued Interest! Total Cash Price = Quoted Clean Price + Accrued Interest.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Quoted price was $98.00, but invoice demands $100.50! Where did the $2.50 markup come from?",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "That $2.50 is Accrued Interest! Total Cash Price = Quoted Clean Price + Accrued Interest.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Explain clean price exclusion of accrued interest and dirty price settlement",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "baf68ec40f14c026",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b02.mp3",
+          "audioDurationSec": 13.08,
+          "durationInFrames": 405,
+          "subtitlePhrases": [
+            {
+              "text": "Raju,",
+              "startMs": 0,
+              "endMs": 674
+            },
+            {
+              "text": "screens show clean prices. You must pay accrued interest earned by seller since last coupon!",
+              "startMs": 674,
+              "endMs": 13080
+            }
+          ]
+        },
+        {
+          "id": "b03",
+          "hindi_tts": "इसे डर्टी प्राइस कहते हैं। और ब्याज कितने दिनों का बना, यह तय करने के लिए अलग-अलग मार्केट्स में अलग डे काउंट रूल्स होते हैं।",
+          "en_subtitle": "This is the dirty cash price. Day count conventions determine the exact accrued interest days.",
+          "en_narration": "This total invoice is the dirty cash price. Institutional day count conventions govern exactly how accrued interest days are calculated.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "stageDirections": [
+              "— Transitioning to institutional day count standards —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "So the buyer always pays clean price plus accrued interest. How are those accrued days counted?",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Treasury bonds use Actual/Actual, corporate bonds use 30/360, and money markets use Actual/360. Let's compare them!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "So the buyer always pays clean price plus accrued interest. How are those accrued days counted?",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Treasury bonds use Actual/Actual, corporate bonds use 30/360, and money markets use Actual/360. Let's compare them!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Preview day count conventions and transition to split comparison",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "92eaf2c5f0396415",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b03.mp3",
+          "audioDurationSec": 11.18,
+          "durationInFrames": 351,
+          "subtitlePhrases": [
+            {
+              "text": "This is the dirty cash",
+              "startMs": 0,
+              "endMs": 2673
+            },
+            {
+              "text": "price. Day count conventions determine",
+              "startMs": 2673,
+              "endMs": 7291
+            },
+            {
+              "text": "the exact accrued interest days.",
+              "startMs": 7291,
+              "endMs": 11180
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Day Count Conventions: Actual/Actual vs 30/360",
+      "template": "split_comparison",
+      "badge": "Institutional Conventions",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "फिक्स्ड इनकम में तीन मुख्य डे काउंट नियम चलते हैं: एक्चुअल-बाय-एक्चुअल, थर्टी-बाय-थ्री-सिक्स्टी, और एक्चुअल-बाय-थ्री-सिक्स्टी।",
+          "en_subtitle": "Three main day count conventions dominate fixed income: Actual/Actual, 30/360, and Actual/360.",
+          "en_narration": "Three institutional day count conventions govern fixed income: Actual/Actual in period, 30/360, and Actual/360.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftCard": {
+              "title": "US Treasury Bonds",
+              "subtitle": "Actual / Actual (in period)",
+              "tag": "Sovereign Debt Standard",
+              "color": "#0F766E",
+              "points": [
+                "Counts exact actual calendar days between dates.",
+                "Divides by exact actual days in the semiannual coupon period (e.g. 181 or 184 days).",
+                "Accounts for leap years and exact calendar day differences.",
+                "Used for all US Treasury bonds and notes."
+              ]
+            },
+            "rightCard": {
+              "title": "Corporate & Municipal Bonds",
+              "subtitle": "30 / 360 Convention",
+              "tag": "Commercial Debt Standard",
+              "color": "#F59E0B",
+              "points": [
+                "Assumes every full calendar month has exactly 30 days.",
+                "Assumes every year has exactly 360 days (12 months x 30 days).",
+                "Simplifies manual interest accounting for corporate issuers.",
+                "Used for US corporate bonds and municipal municipal debt."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Treasury: Actual/Actual",
+              "rightLabel": "Corporate: 30/360",
+              "contrast": "Exact calendar days vs standardized 30-day months"
+            },
+            "semantics": {
+              "teachingObjective": "Contrast Treasury Actual/Actual rule against corporate 30/360 standard",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "1cfa15f7346b3fcf",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b04.mp3",
+          "audioDurationSec": 9.36,
+          "durationInFrames": 293,
+          "subtitlePhrases": [
+            {
+              "text": "Three main day count conventions dominate fixed income: Actual/Actual,",
+              "startMs": 0,
+              "endMs": 7122
+            },
+            {
+              "text": "30/360,",
+              "startMs": 7122,
+              "endMs": 7834
+            },
+            {
+              "text": "and Actual/360.",
+              "startMs": 7834,
+              "endMs": 9360
+            }
+          ]
+        },
+        {
+          "id": "b05",
+          "hindi_tts": "ट्रेजरी बॉन्ड्स में कैलेंडर के असली दिन गिने जाते हैं। जबकि कॉर्पोरेट बॉन्ड्स में हर महीने को 30 दिन और साल को 360 दिन मान लिया जाता है।",
+          "en_subtitle": "Treasury bonds count exact calendar days. Corporate bonds assume 30 days per month and 360 days per year.",
+          "en_narration": "Treasury bonds count exact calendar days. Corporate bonds assume each month contains 30 days and the year contains 360 days.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftCard": {
+              "title": "Actual / Actual Ratio",
+              "subtitle": "Interest Fraction",
+              "tag": "Fraction = d / D",
+              "color": "#0F766E",
+              "points": [
+                "Let d = actual days elapsed since last coupon.",
+                "Let D = actual days in current coupon period.",
+                "Accrued Interest = (Annual Coupon / 2) x (d / D).",
+                "Perfect mathematical reflection of true elapsed time."
+              ]
+            },
+            "rightCard": {
+              "title": "30 / 360 Ratio",
+              "subtitle": "Interest Fraction",
+              "tag": "Standardized Months",
+              "color": "#F59E0B",
+              "points": [
+                "Day count formula: 360(Y2 - Y1) + 30(M2 - M1) + (D2 - D1).",
+                "Denominator is always 180 for semiannual coupons.",
+                "February 28th and 31-day months are adjusted by special rule sets.",
+                "Slightly diverges from exact solar calendar time."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Exact Time Fraction",
+              "rightLabel": "Simplified 180-Day Half",
+              "contrast": "Actual/Actual exact fraction vs 30/360 standardized half-year"
+            },
+            "semantics": {
+              "teachingObjective": "Explain accrual ratio formulas across both conventions",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "603b5577f4e71856",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b05.mp3",
+          "audioDurationSec": 12.84,
+          "durationInFrames": 398,
+          "subtitlePhrases": [
+            {
+              "text": "Treasury bonds count exact calendar days.",
+              "startMs": 0,
+              "endMs": 5111
+            },
+            {
+              "text": "Corporate bonds assume 30 days per",
+              "startMs": 5111,
+              "endMs": 9349
+            },
+            {
+              "text": "month and 360 days per year.",
+              "startMs": 9349,
+              "endMs": 12840
+            }
+          ]
+        },
+        {
+          "id": "b06",
+          "hindi_tts": "और मनी मार्केट इंस्ट्रूमेंट्स जैसे टी-बिल्स और कमर्शियल पेपर में एक्चुअल-बाय-360 नियम चलता है, जहां साल 360 दिन का माना जाता है।",
+          "en_subtitle": "Money market instruments like T-bills and commercial paper use Actual/360.",
+          "en_narration": "Furthermore, money market instruments such as Treasury bills, repo, and commercial paper use Actual/360 convention.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftCard": {
+              "title": "Actual / 360 Money Market",
+              "subtitle": "T-Bills, Repo, Commercial Paper",
+              "tag": "Short-Term Standard",
+              "color": "#0F766E",
+              "points": [
+                "Counts exact actual elapsed calendar days.",
+                "Divides by 360-day year denominator.",
+                "Effectively increases the annualized interest rate by 365/360 (approx 1.39%).",
+                "Standard across international money markets and interbank deposits."
+              ]
+            },
+            "rightCard": {
+              "title": "Market Implications",
+              "subtitle": "Yield Comparison Caveat",
+              "tag": "Convention Mismatch",
+              "color": "#F59E0B",
+              "points": [
+                "Traders cannot directly compare T-bill discount rates to T-bond yields.",
+                "Must convert money market rates to bond-equivalent yield (BEY).",
+                "Prevents mispricing when constructing zero curves."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Money Market: Actual/360",
+              "rightLabel": "Bond-Equivalent Yield",
+              "contrast": "Actual/360 day count requires conversion to bond-equivalent yields"
+            },
+            "semantics": {
+              "teachingObjective": "Present Actual/360 money market convention and yield conversion requirement",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "16c4b69418de58e3",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b06.mp3",
+          "audioDurationSec": 11.81,
+          "durationInFrames": 370,
+          "subtitlePhrases": [
+            {
+              "text": "Money market instruments like T-bills",
+              "startMs": 0,
+              "endMs": 5986
+            },
+            {
+              "text": "and commercial paper use Actual/360.",
+              "startMs": 5986,
+              "endMs": 11810
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "Dirty Price & Accrued Interest Formula",
+      "template": "formula_breakdown",
+      "badge": "Settlement Mathematics",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "बॉन्ड मार्केट में क्लीन प्राइस और डर्टी प्राइस का संबंध बहुत सीधा है: कैश प्राइस बराबर कोटेड प्राइस प्लस एक्रूड इंटरेस्ट।",
+          "en_subtitle": "Formula: Cash Price (Dirty Price) equals Quoted Price (Clean Price) plus Accrued Interest.",
+          "en_narration": "In bond trading, invoice cash is governed by a fundamental formula: Cash Price equals Quoted Clean Price plus Accrued Interest.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Bond Invoice Price Formula",
+            "expression": "\\text{Cash} = \\text{Clean} + \\text{AI}",
+            "variables": [
+              {
+                "symbol": "Cash",
+                "label": "Dirty Price",
+                "description": "Actual dollar cash exchanged at settlement",
+                "unit": "$"
+              },
+              {
+                "symbol": "Clean",
+                "label": "Clean Price",
+                "description": "Price displayed on broker trading terminals",
+                "unit": "$"
+              },
+              {
+                "symbol": "AI",
+                "label": "Accrued Coupon",
+                "description": "Interest earned by seller since last coupon",
+                "unit": "$"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Invoice Identity",
+                "equation": "\\text{Cash} = \\text{Clean} + \\text{AI}",
+                "note": "Clean price isolates capital value; dirty price includes accrued cash."
+              }
+            ],
+            "assumptions": [
+              "Standard T+1 or T+2 settlement applies."
+            ],
+            "interpretation": "Clean prices prevent artificial daily jumps caused by coupon accrual."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Bond Invoice Price Formula",
+              "expression": "\\text{Cash} = \\text{Clean} + \\text{AI}",
+              "variables": [
+                {
+                  "symbol": "Cash",
+                  "label": "Dirty Price",
+                  "description": "Actual dollar cash exchanged at settlement",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "Clean",
+                  "label": "Clean Price",
+                  "description": "Price displayed on broker trading terminals",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "AI",
+                  "label": "Accrued Coupon",
+                  "description": "Interest earned by seller since last coupon",
+                  "unit": "$"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Invoice Identity",
+                  "equation": "\\text{Cash} = \\text{Clean} + \\text{AI}",
+                  "note": "Clean price isolates capital value; dirty price includes accrued cash."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present dirty cash price equation Cash = Clean + AI",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "84ef2e4f65f83c1e",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b07.mp3",
+          "audioDurationSec": 9.53,
+          "durationInFrames": 298,
+          "subtitlePhrases": [
+            {
+              "text": "Formula: Cash Price (Dirty Price)",
+              "startMs": 0,
+              "endMs": 3574
+            },
+            {
+              "text": "equals Quoted Price (Clean Price)",
+              "startMs": 3574,
+              "endMs": 7148
+            },
+            {
+              "text": "plus Accrued Interest.",
+              "startMs": 7148,
+              "endMs": 9530
+            }
+          ]
+        },
+        {
+          "id": "b08",
+          "hindi_tts": "एक्रूड इंटरेस्ट का फार्मूला है: छह महीने का कूपन गुणा पिछले कूपन से बीते दिन, भागे पूरे कूपन पीरियड के कुल दिन।",
+          "en_subtitle": "Accrued Interest = (Annual Coupon / 2) * (Days since last coupon / Days in coupon period).",
+          "en_narration": "Accrued interest is computed as semiannual coupon payment multiplied by elapsed days divided by total days in the coupon period.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Accrued Interest Calculation",
+            "expression": "\\text{AI} = \\frac{C}{2} \\times \\frac{d}{D}",
+            "variables": [
+              {
+                "symbol": "C / 2",
+                "label": "Semiannual Coupon",
+                "description": "Half of annual coupon rate per $100 par",
+                "unit": "$"
+              },
+              {
+                "symbol": "Days Elapsed",
+                "label": "d",
+                "description": "Actual days from prior coupon date to settlement",
+                "unit": "days"
+              },
+              {
+                "symbol": "Days in Period",
+                "label": "D",
+                "description": "Actual calendar days in current 6-month coupon cycle",
+                "unit": "days"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 1,
+                "label": "Coupon Fraction",
+                "equation": "AI = \\frac{C}{2} \\times \\frac{d}{D}",
+                "note": "Accrues linearly each day between coupon dates."
+              }
+            ],
+            "assumptions": [
+              "Coupons are paid semiannually on fixed calendar dates."
+            ],
+            "interpretation": "Buyer recovers this paid accrued interest when the next full coupon arrives."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Accrued Interest Calculation",
+              "expression": "\\text{AI} = \\frac{C}{2} \\times \\frac{d}{D}",
+              "variables": [
+                {
+                  "symbol": "C / 2",
+                  "label": "Semiannual Coupon",
+                  "description": "Half of annual coupon rate per $100 par",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "Days Elapsed",
+                  "label": "d",
+                  "description": "Actual days from prior coupon date to settlement",
+                  "unit": "days"
+                },
+                {
+                  "symbol": "Days in Period",
+                  "label": "D",
+                  "description": "Actual calendar days in current 6-month coupon cycle",
+                  "unit": "days"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 1,
+                  "label": "Coupon Fraction",
+                  "equation": "AI = \\frac{C}{2} \\times \\frac{d}{D}",
+                  "note": "Accrues linearly each day between coupon dates."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Break down mathematical calculation of accrued interest",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "5633176a0b0f751f",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b08.mp3",
+          "audioDurationSec": 9.14,
+          "durationInFrames": 287,
+          "subtitlePhrases": [
+            {
+              "text": "Accrued Interest = (Annual Coupon /",
+              "startMs": 0,
+              "endMs": 3635
+            },
+            {
+              "text": "2) * (Days since last coupon",
+              "startMs": 3635,
+              "endMs": 6543
+            },
+            {
+              "text": "/ Days in coupon period).",
+              "startMs": 6543,
+              "endMs": 9140
+            }
+          ]
+        },
+        {
+          "id": "b09",
+          "hindi_tts": "जैसे ही कूपन पेमेंट की तारीख आती है, एक्रूड इंटरेस्ट तुरंत जीरो हो जाता है। जिससे डर्टी प्राइस का ग्राफ एक आरी जैसा दिखाई देता है!",
+          "en_subtitle": "On coupon payment date, accrued interest resets to zero, giving dirty price its classic sawtooth pattern.",
+          "en_narration": "Immediately upon coupon payment, accrued interest resets to zero. This dynamic gives dirty cash prices their classic sawtooth pattern!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "The Sawtooth Price Dynamic",
+            "expression": "\\text{At Coupon}: \\text{Cash} = \\text{Clean}",
+            "variables": [
+              {
+                "symbol": "Clean Price",
+                "label": "Stable Trend",
+                "description": "Moves only with yield curve interest rate shifts",
+                "unit": "$"
+              },
+              {
+                "symbol": "Dirty Price",
+                "label": "Sawtooth Cycle",
+                "description": "Climbs daily with AI, drops sharply by C/2 on payment date",
+                "unit": "$"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 2,
+                "label": "Coupon Drop",
+                "equation": "\\Delta \\text{Cash} = -\\frac{C}{2}",
+                "note": "Cash price drops exactly by the coupon distribution amount on ex-dividend day."
+              }
+            ],
+            "assumptions": [
+              "Clean price remains constant if benchmark interest rates do not change."
+            ],
+            "interpretation": "Clean quotes shield investors from the daily sawtooth fluctuations of accrued cash."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "The Sawtooth Price Dynamic",
+              "expression": "\\text{At Coupon}: \\text{Cash} = \\text{Clean}",
+              "variables": [
+                {
+                  "symbol": "Clean Price",
+                  "label": "Stable Trend",
+                  "description": "Moves only with yield curve interest rate shifts",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "Dirty Price",
+                  "label": "Sawtooth Cycle",
+                  "description": "Climbs daily with AI, drops sharply by C/2 on payment date",
+                  "unit": "$"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 2,
+                  "label": "Coupon Drop",
+                  "equation": "\\Delta \\text{Cash} = -\\frac{C}{2}",
+                  "note": "Cash price drops exactly by the coupon distribution amount on ex-dividend day."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate sawtooth pattern of dirty prices around coupon dates",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "ecea0dee5aca65a7",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b09.mp3",
+          "audioDurationSec": 12.17,
+          "durationInFrames": 381,
+          "subtitlePhrases": [
+            {
+              "text": "On coupon payment date,",
+              "startMs": 0,
+              "endMs": 2718
+            },
+            {
+              "text": "accrued interest resets to zero,",
+              "startMs": 2718,
+              "endMs": 6499
+            },
+            {
+              "text": "giving dirty price its classic sawtooth pattern.",
+              "startMs": 6499,
+              "endMs": 12170
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Treasury Bond Futures Contract Architecture",
+      "template": "progressive_cards",
+      "badge": "CME / CBOT Specifications",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "अब दुनिया के सबसे बड़े फ्यूचर्स कॉन्ट्रैक्ट पर आएं: सीबीओटी ट्रेजरी बॉन्ड फ्यूचर्स!",
+          "en_subtitle": "Now consider one of the world's most liquid derivatives: CBOT Treasury Bond Futures.",
+          "en_narration": "Now examine one of the largest derivative markets in the world: CBOT Treasury Bond Futures.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "CBOT Treasury Bond Futures Specifications",
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. Contract Size & Delivery Basket",
+                "subtitle": "$100,000 Par Value · 15 to 25 Years to Maturity",
+                "state": "active_amber"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. Quotation in Thirty-Seconds",
+                "subtitle": "Points & 32nds (e.g., 90-16)",
+                "state": "hidden"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Delivery Window & Short's Discretion",
+                "subtitle": "Entire Delivery Month Available",
+                "state": "hidden"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "4. The Multi-Bond Dilemma",
+                "subtitle": "Dozens of Eligible Issues",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Present contract size and 15-25 year delivery basket",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "d2286ccf3eb762da",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b10.mp3",
+          "audioDurationSec": 6.65,
+          "durationInFrames": 212,
+          "subtitlePhrases": [
+            {
+              "text": "Now consider one of the",
+              "startMs": 0,
+              "endMs": 1865
+            },
+            {
+              "text": "world's most liquid derivatives: CBOT",
+              "startMs": 1865,
+              "endMs": 4866
+            },
+            {
+              "text": "Treasury Bond Futures.",
+              "startMs": 4866,
+              "endMs": 6650
+            }
+          ]
+        },
+        {
+          "id": "b11",
+          "hindi_tts": "हर कॉन्ट्रैक्ट 1 लाख डॉलर फेस वैल्यू का होता है। इसमें 15 से 25 साल की मैच्योरिटी वाला कोई भी ट्रेजरी बॉन्ड डिलीवर किया जा सकता है।",
+          "en_subtitle": "Each contract represents $100,000 face value. Any Treasury bond maturing in 15 to 25 years is eligible for delivery.",
+          "en_narration": "Each contract represents $100,000 face value. Any US Treasury bond with 15 to 25 years remaining to maturity is eligible for delivery.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "CBOT Treasury Bond Futures Specifications",
+            "activeCardIndex": 1,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. Contract Size & Delivery Basket",
+                "subtitle": "$100,000 Par Value · 15 to 25 Years to Maturity",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. Quotation in Thirty-Seconds",
+                "subtitle": "Points & 32nds (e.g., 90-16)",
+                "state": "active_blue"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Delivery Window & Short's Discretion",
+                "subtitle": "Entire Delivery Month Available",
+                "state": "hidden"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "4. The Multi-Bond Dilemma",
+                "subtitle": "Dozens of Eligible Issues",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Explain fractional quotation in 32nds of a point",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "ca263fa67e382dc5",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b11.mp3",
+          "audioDurationSec": 12.43,
+          "durationInFrames": 385,
+          "subtitlePhrases": [
+            {
+              "text": "Each contract represents $100,000 face value. Any",
+              "startMs": 0,
+              "endMs": 5343
+            },
+            {
+              "text": "Treasury bond maturing in 15 to 25",
+              "startMs": 5343,
+              "endMs": 9050
+            },
+            {
+              "text": "years is eligible for delivery.",
+              "startMs": 9050,
+              "endMs": 12430
+            }
+          ]
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "भाव 32वें हिस्से में कोट होता है। जैसे 90-16 का मतलब है 90 प्लस 16 बटा 32, यानी पार वैल्यू का साढ़े नब्बे परसेंट।",
+          "en_subtitle": "Quoted in 32nds: A quote of 90-16 means 90 + 16/32 = 90.50% of par ($90,500).",
+          "en_narration": "Prices are quoted in 32nds of a point. A quote of 90-16 represents 90 plus 16 thirty-seconds, or 90.50% of par value, equaling $90,500.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "CBOT Treasury Bond Futures Specifications",
+            "activeCardIndex": 2,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. Contract Size & Delivery Basket",
+                "subtitle": "$100,000 Par Value · 15 to 25 Years to Maturity",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. Quotation in Thirty-Seconds",
+                "subtitle": "Points & 32nds (e.g., 90-16)",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Delivery Window & Short's Discretion",
+                "subtitle": "Entire Delivery Month Available",
+                "state": "active_green"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "4. The Multi-Bond Dilemma",
+                "subtitle": "Dozens of Eligible Issues",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 2,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Show that short seller holds all delivery options",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "2a2471c73dd2a809",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b12.mp3",
+          "audioDurationSec": 12.12,
+          "durationInFrames": 376,
+          "subtitlePhrases": [
+            {
+              "text": "Quoted in 32nds: A quote of",
+              "startMs": 0,
+              "endMs": 4363
+            },
+            {
+              "text": "90-16 means 90 + 16/32 =",
+              "startMs": 4363,
+              "endMs": 8241
+            },
+            {
+              "text": "90.50% of par ($90,500).",
+              "startMs": 8241,
+              "endMs": 12120
+            }
+          ]
+        },
+        {
+          "id": "b13",
+          "hindi_tts": "और सबसे खास बात: शॉर्ट पोजीशन के पास यह ताकत होती है कि वह बास्केट में से कोई भी बॉन्ड और पूरे डिलीवरी महीने में किसी भी दिन डिलीवर कर सकता है!",
+          "en_subtitle": "Most importantly, the short party has the complete right to choose which eligible bond to deliver and on which day.",
+          "en_narration": "Most importantly, the short seller possesses the complete option to choose which eligible bond to deliver, and on which day of the delivery month to initiate delivery!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "CBOT Treasury Bond Futures Specifications",
+            "activeCardIndex": 3,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. Contract Size & Delivery Basket",
+                "subtitle": "$100,000 Par Value · 15 to 25 Years to Maturity",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. Quotation in Thirty-Seconds",
+                "subtitle": "Points & 32nds (e.g., 90-16)",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Delivery Window & Short's Discretion",
+                "subtitle": "Entire Delivery Month Available",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "4. The Multi-Bond Dilemma",
+                "subtitle": "Dozens of Eligible Issues",
+                "state": "active_purple"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 3,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Present multiple eligible bond challenge leading to conversion factors",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "ff8f027df7f07b42",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b13.mp3",
+          "audioDurationSec": 11.66,
+          "durationInFrames": 365,
+          "subtitlePhrases": [
+            {
+              "text": "Most importantly,",
+              "startMs": 0,
+              "endMs": 1739
+            },
+            {
+              "text": "the short party has the complete right to choose which eligible bond to deliver and on which day.",
+              "startMs": 1739,
+              "endMs": 11660
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Conversion Factors: Standardizing the Basket",
+      "template": "formula_breakdown",
+      "badge": "Standardization Mechanism",
+      "beats": [
+        {
+          "id": "b14",
+          "hindi_tts": "चूंकि अलग-अलग बॉन्ड्स के कूपन और मैच्योरिटी अलग होते हैं, इसलिए एक्सचेंज कन्वर्जन फैक्टर यानी सीएफ तय करता है।",
+          "en_subtitle": "Because eligible bonds have different coupons and maturities, the exchange assigns a Conversion Factor (CF) to each bond.",
+          "en_narration": "Because eligible Treasury bonds carry different coupons and maturities, the exchange calculates a Conversion Factor CF for each issue.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Conversion Factor Definition",
+            "expression": "\\text{CF} = \\text{Bond Price to yield 6.0\\% semiannual}",
+            "variables": [
+              {
+                "symbol": "CF",
+                "label": "Conversion Factor",
+                "description": "Clean price per $1 par to yield 6.0%",
+                "unit": "decimal"
+              },
+              {
+                "symbol": "6.0%",
+                "label": "Benchmark Yield",
+                "description": "Standard CBOT discount rate applied to all bonds",
+                "unit": "%"
+              },
+              {
+                "symbol": "Day 1",
+                "label": "Valuation Date",
+                "description": "First day of the delivery month",
+                "unit": "date"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Normalization Standard",
+                "equation": "YTM = 6.0\\%",
+                "note": "Bonds with coupon > 6% have CF > 1.0; bonds with coupon < 6% have CF < 1.0."
+              }
+            ],
+            "assumptions": [
+              "Semiannual compounding at 6.0% per annum."
+            ],
+            "interpretation": "CF eliminates coupon differences by pricing every bond at a uniform 6.0% yield."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Conversion Factor Definition",
+              "expression": "\\text{CF} = \\text{Bond Price to yield 6.0\\% semiannual}",
+              "variables": [
+                {
+                  "symbol": "CF",
+                  "label": "Conversion Factor",
+                  "description": "Clean price per $1 par to yield 6.0%",
+                  "unit": "decimal"
+                },
+                {
+                  "symbol": "6.0%",
+                  "label": "Benchmark Yield",
+                  "description": "Standard CBOT discount rate applied to all bonds",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "Day 1",
+                  "label": "Valuation Date",
+                  "description": "First day of the delivery month",
+                  "unit": "date"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Normalization Standard",
+                  "equation": "YTM = 6.0\\%",
+                  "note": "Bonds with coupon > 6% have CF > 1.0; bonds with coupon < 6% have CF < 1.0."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Define Conversion Factor as bond price yielding 6.0%",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "f197a0251038f618",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b14.mp3",
+          "audioDurationSec": 9.55,
+          "durationInFrames": 299,
+          "subtitlePhrases": [
+            {
+              "text": "Because eligible bonds have different coupons and maturities,",
+              "startMs": 0,
+              "endMs": 4855
+            },
+            {
+              "text": "the exchange assigns a Conversion Factor (CF) to each bond.",
+              "startMs": 4855,
+              "endMs": 9550
+            }
+          ]
+        },
+        {
+          "id": "b15",
+          "hindi_tts": "सीएफ वह भाव है जिस पर उस बॉन्ड की यील्ड ठीक 6 परसेंट बने। 6 परसेंट से ज्यादा कूपन वाले बॉन्ड का सीएफ 1 से बड़ा होता है।",
+          "en_subtitle": "CF is the price giving exactly a 6.0% yield. Bonds with coupon > 6% have CF > 1.0.",
+          "en_narration": "The conversion factor is the clean price per dollar par giving exactly a 6.0% yield. Bonds with coupons above 6% have conversion factors greater than 1.0.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Conversion Factor Benchmarks",
+            "expression": "\\text{Coupon} > 6\\% \\implies \\text{CF} > 1.0",
+            "variables": [
+              {
+                "symbol": "Coupon > 6%",
+                "label": "Premium Bond",
+                "description": "Yields 6% when priced above par",
+                "unit": "CF > 1.0"
+              },
+              {
+                "symbol": "Coupon < 6%",
+                "label": "Discount Bond",
+                "description": "Yields 6% when priced below par",
+                "unit": "CF < 1.0"
+              },
+              {
+                "symbol": "Coupon = 6%",
+                "label": "Par Bond",
+                "description": "Priced exactly at 1.0000",
+                "unit": "CF = 1.0"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 1,
+                "label": "Coupon Threshold",
+                "equation": "\\text{Coupon} = 6\\% \\implies \\text{CF} = 1.0000",
+                "note": "Bonds with 8% coupons have CF around 1.2 to 1.5."
+              }
+            ],
+            "assumptions": [
+              "Maturity rounded down to the nearest 3-month quarter."
+            ],
+            "interpretation": "Ensures higher-coupon bonds receive higher invoice proceeds at delivery."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Conversion Factor Benchmarks",
+              "expression": "\\text{Coupon} > 6\\% \\implies \\text{CF} > 1.0",
+              "variables": [
+                {
+                  "symbol": "Coupon > 6%",
+                  "label": "Premium Bond",
+                  "description": "Yields 6% when priced above par",
+                  "unit": "CF > 1.0"
+                },
+                {
+                  "symbol": "Coupon < 6%",
+                  "label": "Discount Bond",
+                  "description": "Yields 6% when priced below par",
+                  "unit": "CF < 1.0"
+                },
+                {
+                  "symbol": "Coupon = 6%",
+                  "label": "Par Bond",
+                  "description": "Priced exactly at 1.0000",
+                  "unit": "CF = 1.0"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 1,
+                  "label": "Coupon Threshold",
+                  "equation": "\\text{Coupon} = 6\\% \\implies \\text{CF} = 1.0000",
+                  "note": "Bonds with 8% coupons have CF around 1.2 to 1.5."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Show coupon threshold rules relative to 6% benchmark",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "dbb95e14d424bccf",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b15.mp3",
+          "audioDurationSec": 11.47,
+          "durationInFrames": 357,
+          "subtitlePhrases": [
+            {
+              "text": "CF is the price giving exactly",
+              "startMs": 0,
+              "endMs": 4301
+            },
+            {
+              "text": "a 6.0% yield. Bonds with coupon",
+              "startMs": 4301,
+              "endMs": 8746
+            },
+            {
+              "text": "> 6% have CF > 1.0.",
+              "startMs": 8746,
+              "endMs": 11470
+            }
+          ]
+        },
+        {
+          "id": "b16",
+          "hindi_tts": "डिलीवरी पर शॉर्ट सेलर को मिलने वाला कैश इनवॉइस फार्मूला है: फ्यूचर्स सेटलमेंट प्राइस गुणा बॉन्ड का सीएफ, प्लस एक्रूड इंटरेस्ट!",
+          "en_subtitle": "Invoice Price received by short seller: (Futures Price * CF) + Accrued Interest.",
+          "en_narration": "The actual invoice cash collected by the short seller upon delivery equals the futures settlement price multiplied by the bond's conversion factor, plus accrued interest!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Total Invoice Cash Received",
+            "expression": "\\text{Invoice Price} = (F_0 \\times \\text{CF}) + AI",
+            "variables": [
+              {
+                "symbol": "Invoice Price",
+                "label": "Cash Collected",
+                "description": "Total cash received per $100 par",
+                "unit": "$"
+              },
+              {
+                "symbol": "F_0",
+                "label": "Futures Settlement",
+                "description": "Final futures settlement quote",
+                "unit": "$"
+              },
+              {
+                "symbol": "CF",
+                "label": "Conversion Factor",
+                "description": "Specific factor for delivered bond",
+                "unit": "decimal"
+              },
+              {
+                "symbol": "AI",
+                "label": "Accrued Interest",
+                "description": "Interest accrued up to delivery day",
+                "unit": "$"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 2,
+                "label": "Final Invoice",
+                "equation": "\\text{Cash} = (F_0 \\times \\text{CF}) + AI",
+                "note": "For $100,000 contract, multiply the per-$100 invoice price by 1,000."
+              }
+            ],
+            "assumptions": [
+              "Delivery occurs on an authorized business day."
+            ],
+            "interpretation": "This formula determines the exact cash received by the short party for delivering any eligible bond."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Total Invoice Cash Received",
+              "expression": "\\text{Invoice Price} = (F_0 \\times \\text{CF}) + AI",
+              "variables": [
+                {
+                  "symbol": "Invoice Price",
+                  "label": "Cash Collected",
+                  "description": "Total cash received per $100 par",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "F_0",
+                  "label": "Futures Settlement",
+                  "description": "Final futures settlement quote",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "CF",
+                  "label": "Conversion Factor",
+                  "description": "Specific factor for delivered bond",
+                  "unit": "decimal"
+                },
+                {
+                  "symbol": "AI",
+                  "label": "Accrued Interest",
+                  "description": "Interest accrued up to delivery day",
+                  "unit": "$"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 2,
+                  "label": "Final Invoice",
+                  "equation": "\\text{Cash} = (F_0 \\times \\text{CF}) + AI",
+                  "note": "For $100,000 contract, multiply the per-$100 invoice price by 1,000."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present master Treasury futures delivery invoice price equation",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "dd7d90afcbf65213",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b16.mp3",
+          "audioDurationSec": 9.55,
+          "durationInFrames": 302,
+          "subtitlePhrases": [
+            {
+              "text": "Invoice Price received by short",
+              "startMs": 0,
+              "endMs": 3796
+            },
+            {
+              "text": "seller: (Futures Price * CF)",
+              "startMs": 3796,
+              "endMs": 7224
+            },
+            {
+              "text": "+ Accrued Interest.",
+              "startMs": 7224,
+              "endMs": 9550
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "The Cheapest-to-Deliver (CTD) Mechanism",
+      "template": "formula_breakdown",
+      "badge": "Delivery Optimization",
+      "beats": [
+        {
+          "id": "b17",
+          "hindi_tts": "चूंकि शॉर्ट सेलर के पास डिलीवरी का चुनाव है, तो वह वही बॉन्ड चुनेगा जिसे बाजार से खरीदकर डिलीवर करने में सबसे कम लागत आए।",
+          "en_subtitle": "The short seller chooses the eligible bond that minimizes the net cost of purchasing and delivering.",
+          "en_narration": "Because the short party holds delivery discretion, they naturally select whichever eligible bond minimizes the net cost of purchasing spot and delivering.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Cost to Deliver Equation",
+            "expression": "\\text{Cost} = S_i - (F_0 \\times \\text{CF}_i)",
+            "variables": [
+              {
+                "symbol": "Cost",
+                "label": "Delivery Net Cost",
+                "description": "Net financial loss incurred by short delivering bond i",
+                "unit": "$"
+              },
+              {
+                "symbol": "S_i",
+                "label": "Spot Clean Price",
+                "description": "Market purchase price of bond i in cash OTC market",
+                "unit": "$"
+              },
+              {
+                "symbol": "F_0 x CF_i",
+                "label": "Invoice Principal",
+                "description": "Cash received from long futures buyer",
+                "unit": "$"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Delivery Cost Formula",
+                "equation": "\\text{Cost} = S_i - (F_0 \\times \\text{CF}_i)",
+                "note": "Accrued interest cancels out because short pays AI on spot and receives AI on invoice."
+              }
+            ],
+            "assumptions": [
+              "Short purchases bond i in the spot market at price S_i."
+            ],
+            "interpretation": "The bond with the lowest delivery cost is the Cheapest-to-Deliver (CTD)."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Cost to Deliver Equation",
+              "expression": "\\text{Cost} = S_i - (F_0 \\times \\text{CF}_i)",
+              "variables": [
+                {
+                  "symbol": "Cost",
+                  "label": "Delivery Net Cost",
+                  "description": "Net financial loss incurred by short delivering bond i",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "S_i",
+                  "label": "Spot Clean Price",
+                  "description": "Market purchase price of bond i in cash OTC market",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "F_0 x CF_i",
+                  "label": "Invoice Principal",
+                  "description": "Cash received from long futures buyer",
+                  "unit": "$"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Delivery Cost Formula",
+                  "equation": "\\text{Cost} = S_i - (F_0 \\times \\text{CF}_i)",
+                  "note": "Accrued interest cancels out because short pays AI on spot and receives AI on invoice."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Derive Cost to Deliver equation and show accrued interest cancellation",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          },
+          "narrationHash": "fb27536527d9fd87",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b17.mp3",
+          "audioDurationSec": 10.03,
+          "durationInFrames": 313,
+          "subtitlePhrases": [
+            {
+              "text": "The short seller chooses the eligible",
+              "startMs": 0,
+              "endMs": 3787
+            },
+            {
+              "text": "bond that minimizes the net cost",
+              "startMs": 3787,
+              "endMs": 7062
+            },
+            {
+              "text": "of purchasing and delivering.",
+              "startMs": 7062,
+              "endMs": 10030
+            }
+          ]
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "लागत का फार्मूला है: बॉन्ड का स्पॉट भाव माइनस फ्यूचर्स भाव गुणा सीएफ। जिस बॉन्ड में यह लागत सबसे कम होगी, वही सीटीडी यानी चीपेस्ट-टू-डिलीवर कहलाता है।",
+          "en_subtitle": "Cost = Spot - (Futures * CF). The bond with the lowest net cost is the Cheapest-to-Deliver (CTD).",
+          "en_narration": "The delivery cost equals spot clean price minus futures price times conversion factor. The bond minimizing this cost is the Cheapest-to-Deliver or CTD.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "CTD Identification Objective",
+            "expression": "\\text{CTD} = \\min_i \\left[ S_i - F_0 \\cdot \\text{CF}_i \\right]",
+            "variables": [
+              {
+                "symbol": "CTD",
+                "label": "Cheapest to Deliver",
+                "description": "The specific bond delivered by rational short sellers",
+                "unit": "issue"
+              },
+              {
+                "symbol": "min Cost",
+                "label": "Minimum Net Cost",
+                "description": "Smallest net expenditure across all eligible bonds",
+                "unit": "$"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 1,
+                "label": "Optimization Rule",
+                "equation": "\\text{Minimize: } S_i - F_0 \\cdot \\text{CF}_i",
+                "note": "A rational short seller will never deliver a bond that costs more."
+              }
+            ],
+            "assumptions": [
+              "All eligible bonds are available in sufficient liquidity in the spot market."
+            ],
+            "interpretation": "Treasury futures prices track the yield movements of the CTD bond almost exclusively."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "CTD Identification Objective",
+              "expression": "\\text{CTD} = \\min_i \\left[ S_i - F_0 \\cdot \\text{CF}_i \\right]",
+              "variables": [
+                {
+                  "symbol": "CTD",
+                  "label": "Cheapest to Deliver",
+                  "description": "The specific bond delivered by rational short sellers",
+                  "unit": "issue"
+                },
+                {
+                  "symbol": "min Cost",
+                  "label": "Minimum Net Cost",
+                  "description": "Smallest net expenditure across all eligible bonds",
+                  "unit": "$"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 1,
+                  "label": "Optimization Rule",
+                  "equation": "\\text{Minimize: } S_i - F_0 \\cdot \\text{CF}_i",
+                  "note": "A rational short seller will never deliver a bond that costs more."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Formulate CTD minimization objective and show futures link to CTD",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          },
+          "narrationHash": "8719deeb2f99166b",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b18.mp3",
+          "audioDurationSec": 13.66,
+          "durationInFrames": 422,
+          "subtitlePhrases": [
+            {
+              "text": "Cost = Spot - (Futures *",
+              "startMs": 0,
+              "endMs": 3451
+            },
+            {
+              "text": "CF). The bond with the lowest",
+              "startMs": 3451,
+              "endMs": 7621
+            },
+            {
+              "text": "net cost is the Cheapest-to-Deliver (CTD).",
+              "startMs": 7621,
+              "endMs": 13660
+            }
+          ]
+        },
+        {
+          "id": "b19",
+          "hindi_tts": "फ्यूचर्स का बाजार भाव पूरे समय इसी सीटीडी बॉन्ड के साथ कदमताल करता है। चलो एक 3-बॉन्ड के उदाहरण से इसे साबित करते हैं!",
+          "en_subtitle": "Futures prices closely track the CTD bond throughout contract life. Let us verify with a 3-bond worked proof.",
+          "en_narration": "Treasury bond futures prices trade in lockstep with the yield movements of this CTD bond. Let us prove this with an authoritative 3-bond worked example!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Futures Price Convergence to CTD",
+            "expression": "F_0 \\approx \\frac{S_{\\text{CTD}}}{\\text{CF}_{\\text{CTD}}}",
+            "variables": [
+              {
+                "symbol": "F_0",
+                "label": "Futures Price",
+                "description": "Determined by CTD bond price divided by its CF",
+                "unit": "$"
+              },
+              {
+                "symbol": "S_CTD",
+                "label": "Spot CTD Price",
+                "description": "Spot market price of the cheapest bond",
+                "unit": "$"
+              },
+              {
+                "symbol": "CF_CTD",
+                "label": "Conversion Factor",
+                "description": "Conversion factor of CTD bond",
+                "unit": "decimal"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 2,
+                "label": "Basis Link",
+                "equation": "F_0 \\approx S_{\\text{CTD}} / \\text{CF}_{\\text{CTD}}",
+                "note": "At maturity, the futures price converges exactly to the spot CTD price divided by CF."
+              }
+            ],
+            "assumptions": [
+              "Zero arbitrage opportunities remain open at delivery maturity."
+            ],
+            "interpretation": "Hedgers must hedge using the CTD bond's duration rather than average basket duration."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Futures Price Convergence to CTD",
+              "expression": "F_0 \\approx \\frac{S_{\\text{CTD}}}{\\text{CF}_{\\text{CTD}}}",
+              "variables": [
+                {
+                  "symbol": "F_0",
+                  "label": "Futures Price",
+                  "description": "Determined by CTD bond price divided by its CF",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "S_CTD",
+                  "label": "Spot CTD Price",
+                  "description": "Spot market price of the cheapest bond",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "CF_CTD",
+                  "label": "Conversion Factor",
+                  "description": "Conversion factor of CTD bond",
+                  "unit": "decimal"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 2,
+                  "label": "Basis Link",
+                  "equation": "F_0 \\approx S_{\\text{CTD}} / \\text{CF}_{\\text{CTD}}",
+                  "note": "At maturity, the futures price converges exactly to the spot CTD price divided by CF."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Show that futures price converges to S_CTD / CF_CTD at expiration",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "2837a7bc5aaaef1e",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b19.mp3",
+          "audioDurationSec": 11.98,
+          "durationInFrames": 375,
+          "subtitlePhrases": [
+            {
+              "text": "Futures prices closely track the CTD",
+              "startMs": 0,
+              "endMs": 4031
+            },
+            {
+              "text": "bond throughout contract life. Let us",
+              "startMs": 4031,
+              "endMs": 8174
+            },
+            {
+              "text": "verify with a 3-bond worked proof.",
+              "startMs": 8174,
+              "endMs": 11980
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "CTD Identification: A 3-Bond Case Study",
+      "template": "progressive_cards",
+      "badge": "Numerical Proof · Hull Section 6.2",
+      "beats": [
+        {
+          "id": "b20",
+          "hindi_tts": "मान लीजिए फ्यूचर्स भाव 93.00 है और डिलीवरी के लिए 3 अलग-अलग बॉन्ड्स उपलब्ध हैं।",
+          "en_subtitle": "Suppose futures price F_0 = 93.00, and three eligible bonds compete for delivery.",
+          "en_narration": "Suppose the futures price is 93.00, and three eligible Treasury bonds with different coupons compete for delivery.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Cheapest-to-Deliver Worked Example (F_0 = 93.00)",
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "Market Setup: F_0 = 93.00",
+                "subtitle": "Three Competing Eligible Bonds",
+                "state": "active_amber"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 1: Spot $99.50 · CF 1.0382",
+                "subtitle": "Low Coupon · Low Price",
+                "state": "hidden"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 2: Spot $143.50 · CF 1.5188",
+                "subtitle": "High Coupon · High Price",
+                "state": "hidden"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 3: Spot $119.75 · CF 1.2615",
+                "subtitle": "Medium Coupon · Medium Price",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Present 3-bond market parameters and futures price F_0 = 93.00",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "725a4ac73d8746a9",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b20.mp3",
+          "audioDurationSec": 8.88,
+          "durationInFrames": 279,
+          "subtitlePhrases": [
+            {
+              "text": "Suppose futures price F_0 = 93.00,",
+              "startMs": 0,
+              "endMs": 3774
+            },
+            {
+              "text": "and three eligible bonds compete for delivery.",
+              "startMs": 3774,
+              "endMs": 8880
+            }
+          ]
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "बॉन्ड 1: स्पॉट 99.50 डॉलर और सीएफ 1.0382 है। डिलीवरी पर मिलेंगे 96.55 डॉलर। तो लागत बनी 99.50 माइनस 96.55 बराबर 2.95 डॉलर!",
+          "en_subtitle": "Bond 1: Spot $99.50, CF 1.0382. Cash received $96.55. Net cost: 99.50 - 96.55 = +$2.95.",
+          "en_narration": "Bond 1 has spot price $99.50 and conversion factor 1.0382. Delivery proceeds are $96.55, giving a net cost of 99.50 minus 96.55 equals positive $2.95!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Cheapest-to-Deliver Worked Example (F_0 = 93.00)",
+            "activeCardIndex": 1,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "Market Setup: F_0 = 93.00",
+                "subtitle": "Three Competing Eligible Bonds",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 1: Spot $99.50 · CF 1.0382",
+                "subtitle": "Low Coupon · Low Price",
+                "state": "active_blue"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 2: Spot $143.50 · CF 1.5188",
+                "subtitle": "High Coupon · High Price",
+                "state": "hidden"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 3: Spot $119.75 · CF 1.2615",
+                "subtitle": "Medium Coupon · Medium Price",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Calculate Bond 1 delivery cost of $2.95",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "c34089b6c5296b85",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b21.mp3",
+          "audioDurationSec": 21.26,
+          "durationInFrames": 650,
+          "subtitlePhrases": [
+            {
+              "text": "Bond 1: Spot $99.50,",
+              "startMs": 0,
+              "endMs": 4944
+            },
+            {
+              "text": "CF 1.0382. Cash received $96.55. Net cost: 99.50 - 96.55 = +$2.95.",
+              "startMs": 4944,
+              "endMs": 21260
+            }
+          ]
+        },
+        {
+          "id": "b22",
+          "hindi_tts": "बॉन्ड 2: स्पॉट 143.50 डॉलर और सीएफ 1.5188 है। डिलीवरी पर मिलेंगे 141.25 डॉलर। तो लागत बनी 143.50 माइनस 141.25 बराबर केवल 2.25 डॉलर!",
+          "en_subtitle": "Bond 2: Spot $143.50, CF 1.5188. Cash received $141.25. Net cost: 143.50 - 141.25 = +$2.25.",
+          "en_narration": "Bond 2 has spot price $143.50 and conversion factor 1.5188. Delivery proceeds are $141.25, resulting in a net cost of only $2.25 per $100 par!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Cheapest-to-Deliver Worked Example (F_0 = 93.00)",
+            "activeCardIndex": 2,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "Market Setup: F_0 = 93.00",
+                "subtitle": "Three Competing Eligible Bonds",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 1: Spot $99.50 · CF 1.0382",
+                "subtitle": "Low Coupon · Low Price",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 2: Spot $143.50 · CF 1.5188",
+                "subtitle": "High Coupon · High Price",
+                "state": "active_green"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 3: Spot $119.75 · CF 1.2615",
+                "subtitle": "Medium Coupon · Medium Price",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 2,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Calculate Bond 2 delivery cost of $2.25 and show it is lowest",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "e6287ccb579095c5",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b22.mp3",
+          "audioDurationSec": 24.1,
+          "durationInFrames": 735,
+          "subtitlePhrases": [
+            {
+              "text": "Bond 2: Spot $143.50,",
+              "startMs": 0,
+              "endMs": 5623
+            },
+            {
+              "text": "CF 1.5188. Cash received $141.25. Net cost: 143.50 - 141.25 = +$2.25.",
+              "startMs": 5623,
+              "endMs": 24100
+            }
+          ]
+        },
+        {
+          "id": "b23",
+          "hindi_tts": "बॉन्ड 3 की लागत 2.43 डॉलर निकली। हालांकि बॉन्ड 2 सबसे महंगा दिखता था, लेकिन हाई सीएफ के कारण वही सबसे सस्ता चीपेस्ट-टू-डिलीवर साबित हुआ!",
+          "en_subtitle": "Bond 3 cost is $2.43. Although Bond 2 had highest spot price, high CF makes it the Cheapest-to-Deliver!",
+          "en_narration": "Bond 3 has a cost of $2.43. Notice that although Bond 2 appeared most expensive in spot terms, its high conversion factor makes it the Cheapest-to-Deliver!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Cheapest-to-Deliver Worked Example (F_0 = 93.00)",
+            "activeCardIndex": 3,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "Market Setup: F_0 = 93.00",
+                "subtitle": "Three Competing Eligible Bonds",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 1: Spot $99.50 · CF 1.0382",
+                "subtitle": "Low Coupon · Low Price",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 2: Spot $143.50 · CF 1.5188",
+                "subtitle": "High Coupon · High Price",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Bond 3: Spot $119.75 · CF 1.2615",
+                "subtitle": "Medium Coupon · Medium Price",
+                "state": "active_purple"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 3,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Conclude Bond 2 is CTD and disprove naive spot price comparison",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "822de4baf3e50d6d",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b23.mp3",
+          "audioDurationSec": 13.39,
+          "durationInFrames": 417,
+          "subtitlePhrases": [
+            {
+              "text": "Bond 3 cost is $2.43. Although Bond 2 had highest spot price,",
+              "startMs": 0,
+              "endMs": 8008
+            },
+            {
+              "text": "high CF makes it the Cheapest-to-Deliver!",
+              "startMs": 8008,
+              "endMs": 13390
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "Market Yield Regimes: The 6% Rule of Thumb",
+      "template": "split_comparison",
+      "badge": "Institutional Heuristics",
+      "beats": [
+        {
+          "id": "b24",
+          "hindi_tts": "क्या बिना लंबी कैलकुलेशन के बता सकते हैं कि कौन सा बॉन्ड सीटीडी बनेगा? बिल्कुल! इसके लिए 6 परसेंट का गोल्डन रूल है।",
+          "en_subtitle": "Can traders anticipate CTD bonds without calculating every issue? Yes, using the 6.0% yield rule of thumb.",
+          "en_narration": "Can fixed income traders anticipate which bond will become CTD without calculating dozens of issues? Yes, using the 6.0% yield rule of thumb.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftCard": {
+              "title": "Market Yields > 6.0%",
+              "subtitle": "High Yield Regime",
+              "tag": "Favors Long / Low Coupon",
+              "color": "#0F766E",
+              "points": [
+                "Conversion factor formula penalizes low-coupon, long-maturity bonds.",
+                "Market prices these bonds even lower than the CF assumes.",
+                "Long-maturity, low-coupon bonds become Cheapest-to-Deliver.",
+                "Duration of futures contract extends toward 20+ years."
+              ]
+            },
+            "rightCard": {
+              "title": "Market Yields < 6.0%",
+              "subtitle": "Low Yield Regime",
+              "tag": "Favors Short / High Coupon",
+              "color": "#F59E0B",
+              "points": [
+                "Conversion factor formula rewards high-coupon, short-maturity bonds.",
+                "Short-maturity, high-coupon bonds become Cheapest-to-Deliver.",
+                "Duration of futures contract contracts toward 15 years.",
+                "Dominates during low-rate central bank easing cycles."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Yields > 6.0%",
+              "rightLabel": "Yields < 6.0%",
+              "contrast": "Long/low-coupon favored vs short/high-coupon favored"
+            },
+            "semantics": {
+              "teachingObjective": "Contrast CTD bond selection across the 6% yield divide",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "9da7e915495c613d",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b24.mp3",
+          "audioDurationSec": 11.33,
+          "durationInFrames": 352,
+          "subtitlePhrases": [
+            {
+              "text": "Can traders anticipate CTD bonds without calculating every issue? Yes,",
+              "startMs": 0,
+              "endMs": 7553
+            },
+            {
+              "text": "using the 6.0% yield rule of thumb.",
+              "startMs": 7553,
+              "endMs": 11330
+            }
+          ]
+        },
+        {
+          "id": "b25",
+          "hindi_tts": "जब बाजार में ब्याज दर 6 परसेंट से ऊपर हो, तो लंबी मैच्योरिटी और कम कूपन वाले बॉन्ड्स सीटीडी बनते हैं।",
+          "en_subtitle": "When market yields exceed 6%, long-maturity, low-coupon bonds systematically become CTD.",
+          "en_narration": "When market yields trade above 6 percent, long-maturity, low-coupon bonds systematically emerge as Cheapest-to-Deliver.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftCard": {
+              "title": "Why Yields > 6% Favor Long",
+              "subtitle": "Mathematical Pricing Bias",
+              "tag": "Discount Amplification",
+              "color": "#0F766E",
+              "points": [
+                "Bonds yielding > 6% trade at a market discount.",
+                "The longer the maturity, the greater the price discount in the cash market.",
+                "CF formula does not fully reflect this discount, making spot cheaper to acquire.",
+                "Basis traders aggressively short the long bond basis."
+              ]
+            },
+            "rightCard": {
+              "title": "Portfolio Implication",
+              "subtitle": "Dynamic Duration Tracking",
+              "tag": "Hedge Ratio Shifts",
+              "color": "#F59E0B",
+              "points": [
+                "As yields rise above 6%, the futures contract behaves like a 25-year bond.",
+                "Portfolio managers must adjust hedge ratios to account for higher duration.",
+                "Failure to update CTD duration causes serious hedging mismatches."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Long Maturity Bias",
+              "rightLabel": "Duration Extension",
+              "contrast": "Yields > 6% push futures duration to maximum maturity limit"
+            },
+            "semantics": {
+              "teachingObjective": "Explain mathematical pricing bias when yields exceed 6%",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "92233378e70b0790",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b25.mp3",
+          "audioDurationSec": 8.95,
+          "durationInFrames": 281,
+          "subtitlePhrases": [
+            {
+              "text": "When market yields exceed 6%,",
+              "startMs": 0,
+              "endMs": 3018
+            },
+            {
+              "text": "long-maturity,",
+              "startMs": 3018,
+              "endMs": 4475
+            },
+            {
+              "text": "low-coupon bonds systematically become CTD.",
+              "startMs": 4475,
+              "endMs": 8950
+            }
+          ]
+        },
+        {
+          "id": "b26",
+          "hindi_tts": "और जब दर 6 परसेंट से नीचे हो, तो छोटी मैच्योरिटी और ऊंचे कूपन वाले बॉन्ड्स सीटीडी बनते हैं। इसके अलावा अपवर्ड स्लोपिंग यील्ड कर्व लंबी मैच्योरिटी को फेवर करता है।",
+          "en_subtitle": "When yields trade below 6%, short-maturity, high-coupon bonds become CTD. Upward curves favor long bonds.",
+          "en_narration": "Conversely, when market yields fall below 6 percent, short-maturity, high-coupon bonds become CTD. Additionally, upward-sloping yield curves favor longer bonds.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftCard": {
+              "title": "Yield Curve Slope Impact",
+              "subtitle": "Upward vs Inverted Curves",
+              "tag": "Term Structure Rule",
+              "color": "#0F766E",
+              "points": [
+                "Upward sloping curve: Long yields > short yields, pushing CTD toward longer bonds.",
+                "Downward sloping curve: Short yields > long yields, pushing CTD toward shorter bonds.",
+                "A parallel yield shift can trigger an instantaneous change in which bond is CTD!",
+                "Known as the 'Quality Option' held by the short position."
+              ]
+            },
+            "rightCard": {
+              "title": "The Quality Delivery Option",
+              "subtitle": "Value to the Short Seller",
+              "tag": "Short Switch Option",
+              "color": "#F59E0B",
+              "points": [
+                "Short party can switch CTD bonds mid-month if yields cross the 6% threshold.",
+                "Long party cannot refuse the delivered bond issue.",
+                "This embedded quality option further depresses futures prices below cash parity."
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Yield Curve Slope",
+              "rightLabel": "Quality Switch Option",
+              "contrast": "Yield shifts trigger CTD switches, providing embedded value to short seller"
+            },
+            "semantics": {
+              "teachingObjective": "Present yield curve slope impacts and define the Quality Delivery Option",
+              "sourceFactIds": [
+                "fact-06",
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "b1d96b1d0fcce1fb",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b26.mp3",
+          "audioDurationSec": 14.57,
+          "durationInFrames": 453,
+          "subtitlePhrases": [
+            {
+              "text": "When yields trade below 6%,",
+              "startMs": 0,
+              "endMs": 3819
+            },
+            {
+              "text": "short-maturity,",
+              "startMs": 3819,
+              "endMs": 5941
+            },
+            {
+              "text": "high-coupon bonds become CTD. Upward curves favor long bonds.",
+              "startMs": 5941,
+              "endMs": 14570
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "The Wild Card Play Delivery Option",
+      "template": "progressive_cards",
+      "badge": "Historical Case Study · Snapshot 6.2",
+      "beats": [
+        {
+          "id": "b27",
+          "hindi_tts": "अब बॉन्ड फ्यूचर्स का सबसे रोचक राज जानिए: द वाइल्ड कार्ड प्ले!",
+          "en_subtitle": "Now examine the most fascinating delivery loophole in futures: The Wild Card Play!",
+          "en_narration": "Now discover the most fascinating delivery loophole in fixed income derivatives: The Wild Card Play!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Snapshot 6.2 · The Wild Card Play",
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. The 2:00 PM Chicago Close",
+                "subtitle": "Futures Trading Ceases & Price Locks",
+                "state": "active_amber"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. The 8:00 PM Notice Window",
+                "subtitle": "6-Hour Free Option Window",
+                "state": "hidden"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Afternoon Market Selloff Arbitrage",
+                "subtitle": "Spot Bonds Plunge After 2:00 PM",
+                "state": "hidden"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "4. The Riskless Profit Extraction",
+                "subtitle": "Buy Cheap Cash Spot · Deliver at High 2 PM Price",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Introduce Wild Card Play timing discrepancy between 2:00 PM and 8:00 PM",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "cefc0676adcae8a4",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b27.mp3",
+          "audioDurationSec": 5.33,
+          "durationInFrames": 172,
+          "subtitlePhrases": [
+            {
+              "text": "Now examine the most fascinating",
+              "startMs": 0,
+              "endMs": 2132
+            },
+            {
+              "text": "delivery loophole in futures: The",
+              "startMs": 2132,
+              "endMs": 4331
+            },
+            {
+              "text": "Wild Card Play!",
+              "startMs": 4331,
+              "endMs": 5330
+            }
+          ]
+        },
+        {
+          "id": "b28",
+          "hindi_tts": "शिकागो में फ्यूचर्स ट्रेडिंग दोपहर 2:00 बजे बंद हो जाती है और दिन का सेटलमेंट प्राइस लॉक हो जाता है।",
+          "en_subtitle": "CBOT futures trading closes at 2:00 PM Chicago time, locking the day's settlement price.",
+          "en_narration": "Trading in CBOT Treasury bond futures closes at 2:00 PM Chicago time, officially locking the day's settlement price for delivery.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Snapshot 6.2 · The Wild Card Play",
+            "activeCardIndex": 1,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. The 2:00 PM Chicago Close",
+                "subtitle": "Futures Trading Ceases & Price Locks",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. The 8:00 PM Notice Window",
+                "subtitle": "6-Hour Free Option Window",
+                "state": "active_blue"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Afternoon Market Selloff Arbitrage",
+                "subtitle": "Spot Bonds Plunge After 2:00 PM",
+                "state": "hidden"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "4. The Riskless Profit Extraction",
+                "subtitle": "Buy Cheap Cash Spot · Deliver at High 2 PM Price",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Show 6-hour option window remaining open until 8:00 PM",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "d291c14146723e10",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b28.mp3",
+          "audioDurationSec": 8.3,
+          "durationInFrames": 261,
+          "subtitlePhrases": [
+            {
+              "text": "CBOT futures trading closes at 2:00 PM Chicago time,",
+              "startMs": 0,
+              "endMs": 4961
+            },
+            {
+              "text": "locking the day's settlement price.",
+              "startMs": 4961,
+              "endMs": 8300
+            }
+          ]
+        },
+        {
+          "id": "b29",
+          "hindi_tts": "लेकिन एक्सचेंज के नियमों के अनुसार शॉर्ट सेलर को डिलीवरी का नोटिस देने के लिए रात 8:00 बजे तक का समय मिलता है!",
+          "en_subtitle": "Yet CBOT rules allow the short seller until 8:00 PM to submit notice of intention to deliver at that 2:00 PM price!",
+          "en_narration": "Yet under CBOT exchange rules, the short seller has until 8:00 PM that evening to submit notice of intention to deliver at that 2:00 PM settlement price!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Snapshot 6.2 · The Wild Card Play",
+            "activeCardIndex": 2,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. The 2:00 PM Chicago Close",
+                "subtitle": "Futures Trading Ceases & Price Locks",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. The 8:00 PM Notice Window",
+                "subtitle": "6-Hour Free Option Window",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Afternoon Market Selloff Arbitrage",
+                "subtitle": "Spot Bonds Plunge After 2:00 PM",
+                "state": "active_green"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "4. The Riskless Profit Extraction",
+                "subtitle": "Buy Cheap Cash Spot · Deliver at High 2 PM Price",
+                "state": "hidden"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 2,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Explain late afternoon OTC market drops creating riskless delivery arbitrage",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "21132382d2171cb7",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b29.mp3",
+          "audioDurationSec": 8.98,
+          "durationInFrames": 282,
+          "subtitlePhrases": [
+            {
+              "text": "Yet CBOT rules allow the short seller until",
+              "startMs": 0,
+              "endMs": 3417
+            },
+            {
+              "text": "8:00 PM to submit notice of intention to",
+              "startMs": 3417,
+              "endMs": 6596
+            },
+            {
+              "text": "deliver at that 2:00 PM price!",
+              "startMs": 6596,
+              "endMs": 8980
+            }
+          ]
+        },
+        {
+          "id": "b30",
+          "hindi_tts": "अगर दोपहर में बॉन्ड बाजार गिर जाए, तो शॉर्ट सेलर सस्ते में बॉन्ड खरीदकर पुराने ऊंचे 2:00 बजे वाले भाव पर डिलीवरी कर देता है! इस वाइल्ड कार्ड ऑप्शन की वजह से फ्यूचर्स हमेशा थोड़ा सस्ता बिकता है।",
+          "en_subtitle": "If spot bonds drop late afternoon, shorts buy cheap spot and deliver at high 2:00 PM price. This option depresses futures prices.",
+          "en_narration": "If spot bonds drop during the late afternoon, the short buys cheap spot and delivers at the higher 2:00 PM price. This embedded Wild Card option depresses futures prices.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Snapshot 6.2 · The Wild Card Play",
+            "activeCardIndex": 3,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "1. The 2:00 PM Chicago Close",
+                "subtitle": "Futures Trading Ceases & Price Locks",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "2. The 8:00 PM Notice Window",
+                "subtitle": "6-Hour Free Option Window",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "3. Afternoon Market Selloff Arbitrage",
+                "subtitle": "Spot Bonds Plunge After 2:00 PM",
+                "state": "muted"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "4. The Riskless Profit Extraction",
+                "subtitle": "Buy Cheap Cash Spot · Deliver at High 2 PM Price",
+                "state": "active_purple"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 3,
+              "cardCount": 4
+            },
+            "semantics": {
+              "teachingObjective": "Show that embedded short options systematically lower Treasury bond futures prices",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "9cddcc04f295f92f",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b30.mp3",
+          "audioDurationSec": 16.15,
+          "durationInFrames": 500,
+          "subtitlePhrases": [
+            {
+              "text": "If spot bonds drop late afternoon,",
+              "startMs": 0,
+              "endMs": 4290
+            },
+            {
+              "text": "shorts buy cheap spot and deliver at high 2:00 PM price. This option depresses futures prices.",
+              "startMs": 4290,
+              "endMs": 16150
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall: Identifying the CTD Bond",
+      "template": "interactive_quiz",
+      "badge": "Knowledge Verification",
+      "beats": [
+        {
+          "id": "b31",
+          "hindi_tts": "राजू के लिए आज का सवाल: फ्यूचर्स भाव 93 है। बॉन्ड A का स्पॉट 99.50 और सीएफ 1.0382 है। बॉन्ड B का स्पॉट 143.50 और सीएफ 1.5188 है। कौन सा बॉन्ड सीटीडी है?",
+          "en_subtitle": "Quiz for Raju: Futures at 93. Bond A has spot $99.50, CF 1.0382. Bond B has spot $143.50, CF 1.5188. Which is CTD?",
+          "en_narration": "A question for Raju: The futures price is 93. Bond A has spot $99.50 and CF 1.0382. Bond B has spot $143.50 and CF 1.5188. Which bond is the Cheapest-to-Deliver?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "question": "Given Treasury bond futures trading at $93.00, with Bond A quoted at $99.50 (CF=1.0382) and Bond B quoted at $143.50 (CF=1.5188), which bond is the Cheapest-to-Deliver (CTD)?",
+            "options": [
+              "A) Bond A with delivery cost $2.95",
+              "B) Bond B with delivery cost $2.25",
+              "C) Both bonds have identical delivery cost",
+              "D) Bond A because its spot price ($99.50) is lower"
+            ],
+            "selectedOption": null,
+            "isCorrect": null,
+            "answer": "B) Bond B with delivery cost $2.25",
+            "showThinkingSpinner": false,
+            "feedback": "Raju computes Cost = Spot - (Futures * CF) for both bonds..."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "Given Treasury bond futures trading at $93.00, with Bond A quoted at $99.50 (CF=1.0382) and Bond B quoted at $143.50 (CF=1.5188), which bond is the Cheapest-to-Deliver (CTD)?",
+              "options": [
+                "A) Bond A with delivery cost $2.95",
+                "B) Bond B with delivery cost $2.25",
+                "C) Both bonds have identical delivery cost",
+                "D) Bond A because its spot price ($99.50) is lower"
+              ],
+              "selectedOption": null,
+              "isCorrect": null,
+              "answer": "B) Bond B with delivery cost $2.25",
+              "showThinkingSpinner": false
+            },
+            "semantics": {
+              "teachingObjective": "Present active recall CTD selection calculation",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "91f7028247e17527",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b31.mp3",
+          "audioDurationSec": 24.24,
+          "durationInFrames": 740,
+          "subtitlePhrases": [
+            {
+              "text": "Quiz for Raju: Futures at 93. Bond A has spot $99.50,",
+              "startMs": 0,
+              "endMs": 11471
+            },
+            {
+              "text": "CF 1.0382. Bond B has spot $143.50,",
+              "startMs": 11471,
+              "endMs": 19046
+            },
+            {
+              "text": "CF 1.5188. Which is CTD?",
+              "startMs": 19046,
+              "endMs": 24240
+            }
+          ]
+        },
+        {
+          "id": "b32",
+          "hindi_tts": "राजू ने कैलकुलेट किया: बॉन्ड A की लागत 99.50 माइनस 96.55 बराबर 2.95 डॉलर। बॉन्ड B की लागत 143.50 माइनस 141.25 बराबर केवल 2.25 डॉलर!",
+          "en_subtitle": "Raju computes: Bond A cost = 99.50 - 96.55 = $2.95. Bond B cost = 143.50 - 141.25 = $2.25!",
+          "en_narration": "Raju calculates: Bond A cost equals 99.50 minus 96.55, which is $2.95. Bond B cost equals 143.50 minus 141.25, which is only $2.25!",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "question": "Given Treasury bond futures trading at $93.00, with Bond A quoted at $99.50 (CF=1.0382) and Bond B quoted at $143.50 (CF=1.5188), which bond is the Cheapest-to-Deliver (CTD)?",
+            "options": [
+              "A) Bond A with delivery cost $2.95",
+              "B) Bond B with delivery cost $2.25",
+              "C) Both bonds have identical delivery cost",
+              "D) Bond A because its spot price ($99.50) is lower"
+            ],
+            "selectedOption": 1,
+            "isCorrect": true,
+            "answer": "B) Bond B with delivery cost $2.25",
+            "showThinkingSpinner": true,
+            "feedback": "Raju evaluates: Cost A = $2.95; Cost B = $2.25. Bond B minimizes delivery cost!"
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "Given Treasury bond futures trading at $93.00, with Bond A quoted at $99.50 (CF=1.0382) and Bond B quoted at $143.50 (CF=1.5188), which bond is the Cheapest-to-Deliver (CTD)?",
+              "options": [
+                "A) Bond A with delivery cost $2.95",
+                "B) Bond B with delivery cost $2.25",
+                "C) Both bonds have identical delivery cost",
+                "D) Bond A because its spot price ($99.50) is lower"
+              ],
+              "selectedOption": 1,
+              "isCorrect": true,
+              "answer": "B) Bond B with delivery cost $2.25",
+              "showThinkingSpinner": true
+            },
+            "semantics": {
+              "teachingObjective": "Show thinking pause and selection of Option B",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "0bbd87fabb631045",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b32.mp3",
+          "audioDurationSec": 21.02,
+          "durationInFrames": 727,
+          "subtitlePhrases": [
+            {
+              "text": "Raju computes: Bond A cost = 99.50",
+              "startMs": 0,
+              "endMs": 8121
+            },
+            {
+              "text": "- 96.55 = $2.95. Bond B cost",
+              "startMs": 8121,
+              "endMs": 14809
+            },
+            {
+              "text": "= 143.50 - 141.25 = $2.25!",
+              "startMs": 14809,
+              "endMs": 21020
+            }
+          ]
+        },
+        {
+          "id": "b33",
+          "hindi_tts": "बिल्कुल सही राजू! ऑप्शन B सही जवाब है। बॉन्ड B का स्पॉट भले ज्यादा था, लेकिन हाई सीएफ के कारण यह डिलीवरी के लिए सबसे सस्ता निकला।",
+          "en_subtitle": "Brilliant Raju! Option B is correct. Despite higher spot price, Bond B's high CF makes it Cheapest-to-Deliver.",
+          "en_narration": "Brilliant Raju! Option B is correct. Although Bond B had a higher spot price, its high conversion factor makes it Cheapest-to-Deliver.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "question": "Given Treasury bond futures trading at $93.00, with Bond A quoted at $99.50 (CF=1.0382) and Bond B quoted at $143.50 (CF=1.5188), which bond is the Cheapest-to-Deliver (CTD)?",
+            "options": [
+              "A) Bond A with delivery cost $2.95",
+              "B) Bond B with delivery cost $2.25",
+              "C) Both bonds have identical delivery cost",
+              "D) Bond A because its spot price ($99.50) is lower"
+            ],
+            "selectedOption": 1,
+            "isCorrect": true,
+            "answer": "B) Bond B with delivery cost $2.25",
+            "showThinkingSpinner": false,
+            "feedback": "Verified! Never judge by spot price alone—the Conversion Factor determines the true delivery economics."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "Given Treasury bond futures trading at $93.00, with Bond A quoted at $99.50 (CF=1.0382) and Bond B quoted at $143.50 (CF=1.5188), which bond is the Cheapest-to-Deliver (CTD)?",
+              "options": [
+                "A) Bond A with delivery cost $2.95",
+                "B) Bond B with delivery cost $2.25",
+                "C) Both bonds have identical delivery cost",
+                "D) Bond A because its spot price ($99.50) is lower"
+              ],
+              "selectedOption": 1,
+              "isCorrect": true,
+              "answer": "B) Bond B with delivery cost $2.25",
+              "showThinkingSpinner": false
+            },
+            "semantics": {
+              "teachingObjective": "Validate active recall solution and cement CTD decision rule",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "e44ba70063f8c068",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b33.mp3",
+          "audioDurationSec": 13.22,
+          "durationInFrames": 412,
+          "subtitlePhrases": [
+            {
+              "text": "Brilliant Raju! Option B is correct. Despite higher spot price,",
+              "startMs": 0,
+              "endMs": 7641
+            },
+            {
+              "text": "Bond B's high CF makes it Cheapest-to-Deliver.",
+              "startMs": 7641,
+              "endMs": 13220
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Raju Masters Bond Futures Deliveries",
+      "template": "chat_story",
+      "badge": "Desk Debrief",
+      "beats": [
+        {
+          "id": "b34",
+          "hindi_tts": "शर्मा जी! अब मैं समझ गया कि बॉन्ड फ्यूचर्स में ट्रेडर को सिर्फ यील्ड नहीं, बल्कि सीटीडी और शॉर्ट सेलर के ऑप्शंस को भी ट्रैक करना होता है!",
+          "en_subtitle": "Sharma ji, I see that bond futures trading requires tracking CTD dynamics and embedded short delivery options!",
+          "en_narration": "Sharma ji, I now see the full picture! Bond futures trading requires tracking not just yields, but CTD shifts and embedded delivery options!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju connects bond pricing and delivery options —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji! Bond futures aren't simple forward contracts—they contain embedded delivery options that reduce futures prices!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji! Bond futures aren't simple forward contracts—they contain embedded delivery options that reduce futures prices!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Raju synthesizes bond futures mechanics and delivery options",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "9fcf0c22f1786676",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b34.mp3",
+          "audioDurationSec": 11.88,
+          "durationInFrames": 369,
+          "subtitlePhrases": [
+            {
+              "text": "Sharma ji,",
+              "startMs": 0,
+              "endMs": 1090
+            },
+            {
+              "text": "I see that bond futures trading requires tracking CTD dynamics and embedded short delivery options!",
+              "startMs": 1090,
+              "endMs": 11880
+            }
+          ]
+        },
+        {
+          "id": "b35",
+          "hindi_tts": "बिल्कुल सही राजू! शॉर्ट के पास तीन ऑप्शंस होते हैं: क्वालिटी ऑप्शन कि कौन सा बॉन्ड दे, टाइमिंग ऑप्शन कि किस दिन दे, और वाइल्ड कार्ड ऑप्शन!",
+          "en_subtitle": "Exactly Raju! The short holds three options: quality option, timing option, and the Wild Card option!",
+          "en_narration": "Spot on Raju! The short party holds three valuable delivery rights: the quality option, the timing option, and the Wild Card option!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji catalogs the three delivery options —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Bond futures aren't simple forward contracts—they contain embedded delivery options that reduce futures prices!",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Three distinct delivery options: Quality Option (which bond), Timing Option (which day), and Wild Card Option (2 PM to 8 PM window)!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Bond futures aren't simple forward contracts—they contain embedded delivery options that reduce futures prices!",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Three distinct delivery options: Quality Option (which bond), Timing Option (which day), and Wild Card Option (2 PM to 8 PM window)!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Sharma ji categorizes quality, timing, and wild card delivery options",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "a2673e9d3bcac3d2",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b35.mp3",
+          "audioDurationSec": 12.05,
+          "durationInFrames": 374,
+          "subtitlePhrases": [
+            {
+              "text": "Exactly Raju! The short holds three options: quality option,",
+              "startMs": 0,
+              "endMs": 7303
+            },
+            {
+              "text": "timing option,",
+              "startMs": 7303,
+              "endMs": 9007
+            },
+            {
+              "text": "and the Wild Card option!",
+              "startMs": 9007,
+              "endMs": 12050
+            }
+          ]
+        },
+        {
+          "id": "b36",
+          "hindi_tts": "और अब अगले पार्ट में हम देखेंगे कि बैंक और फंड्स इन फ्यूचर्स से ड्यूरेशन हेजिंग कैसे करते हैं। चलो 8 नियमों का पूरा निचोड़ देखें!",
+          "en_subtitle": "In Part 2, we will explore Eurodollar futures and duration hedging. Now let's review the 8 core rules!",
+          "en_narration": "And in Part 2, we will master Eurodollar futures and duration-based hedging. Now let us review the eight core bond futures rules!",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "stageDirections": [
+              "— Final desk takeaway before master summary —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Understanding CTD basis is essential before we tackle Eurodollar futures and duration-based hedging in Part 2.",
+                "theme": "teal",
+                "align": "right"
+              },
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Ready for the 8-rule summary matrix! Fixed income futures are starting to click perfectly.",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Understanding CTD basis is essential before we tackle Eurodollar futures and duration-based hedging in Part 2.",
+                  "theme": "teal",
+                  "align": "right"
+                },
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Ready for the 8-rule summary matrix! Fixed income futures are starting to click perfectly.",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Transition to 8-rule progressive summary thread",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "3bd38255a137d19d",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b36.mp3",
+          "audioDurationSec": 11.54,
+          "durationInFrames": 362,
+          "subtitlePhrases": [
+            {
+              "text": "In Part 2,",
+              "startMs": 0,
+              "endMs": 1143
+            },
+            {
+              "text": "we will explore Eurodollar futures and duration hedging. Now let's review the 8 core rules!",
+              "startMs": 1143,
+              "endMs": 11540
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "The Whole Picture: 8 Core Bond Futures Rules",
+      "template": "summary_thread",
+      "badge": "Master Chapter Synthesis",
+      "beats": [
+        {
+          "id": "b37",
+          "hindi_tts": "पूरा चैप्टर एक नजर में: इंटरेस्ट रेट और बॉन्ड फ्यूचर्स के 8 बुनियादी नियम!",
+          "en_subtitle": "The complete chapter at a glance: The 8 fundamental laws of interest rate and bond futures!",
+          "en_narration": "The complete chapter at a glance: The eight fundamental laws of interest rate and Treasury bond futures!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "EXECUTIVE SUMMARY",
+            "heading": "Today's thread",
+            "activeStepIndex": 0,
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "steps": [
+              "Day Count Conventions: Treasuries use Actual/Actual, corporates use 30/360, and money markets use Actual/360.",
+              "Dirty Cash Price: Buyer pays Clean Quoted Price plus Accrued Interest: Cash = Clean + AI.",
+              "T-Bond Futures Basket: Contracts allow delivery of any Treasury bond maturing in 15 to 25 years.",
+              "Conversion Factors (CF): Equalize heterogeneous bonds to a 6.0% semiannual yield standard.",
+              "CTD Cost Formula: Short delivers the bond minimizing Cost = Spot Clean Price - (Futures * CF).",
+              "The 6% Yield Heuristic: Yields > 6% favor long-maturity low-coupon; yields < 6% favor short-maturity high-coupon.",
+              "The Wild Card Play: 6-hour delivery notice window post-2 PM allows shorts to profit from late price drops.",
+              "Embedded Option Value: Short delivery flexibility systematically lowers futures prices below cash parity."
+            ],
+            "bottomTakeaway": "Treasury bond futures pricing is governed by the cheapest-to-deliver bond, standardized via conversion factors.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                0,
+                0
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Present executive roadmap overview of 8 core bond futures rules",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "0405dd90d702ee0e",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b37.mp3",
+          "audioDurationSec": 6.26,
+          "durationInFrames": 200,
+          "subtitlePhrases": [
+            {
+              "text": "The complete chapter at a glance:",
+              "startMs": 0,
+              "endMs": 2321
+            },
+            {
+              "text": "The 8 fundamental laws of interest",
+              "startMs": 2321,
+              "endMs": 4712
+            },
+            {
+              "text": "rate and bond futures!",
+              "startMs": 4712,
+              "endMs": 6260
+            }
+          ]
+        },
+        {
+          "id": "b38",
+          "hindi_tts": "पहला और दूसरा नियम: ट्रेजरी बॉन्ड्स एक्चुअल-बाय-एक्चुअल इस्तेमाल करते हैं, कॉर्पोरेट्स 30-बाय-360। और बॉन्ड बायर को हमेशा क्लीन प्राइस के साथ सेलर का एक्रूड इंटरेस्ट जोड़कर डर्टी कैश प्राइस चुकाना होता है।",
+          "en_subtitle": "Rules 1 & 2: Treasuries use Actual/Actual, corporates 30/360. Buyers pay dirty cash price: Cash = Clean + AI.",
+          "en_narration": "First and second: Treasuries use Actual/Actual, while corporate debt uses 30/360. Bond buyers always pay the dirty cash price: Clean price plus accrued interest.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 1 & 2 · DAY COUNTS & DIRTY PRICES",
+            "heading": "Today's thread",
+            "activeStepIndex": 1,
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "steps": [
+              "Day Count Conventions: Treasuries use Actual/Actual, corporates use 30/360, and money markets use Actual/360.",
+              "Dirty Cash Price: Buyer pays Clean Quoted Price plus Accrued Interest: Cash = Clean + AI.",
+              "T-Bond Futures Basket: Contracts allow delivery of any Treasury bond maturing in 15 to 25 years.",
+              "Conversion Factors (CF): Equalize heterogeneous bonds to a 6.0% semiannual yield standard.",
+              "CTD Cost Formula: Short delivers the bond minimizing Cost = Spot Clean Price - (Futures * CF).",
+              "The 6% Yield Heuristic: Yields > 6% favor long-maturity low-coupon; yields < 6% favor short-maturity high-coupon.",
+              "The Wild Card Play: 6-hour delivery notice window post-2 PM allows shorts to profit from late price drops.",
+              "Embedded Option Value: Short delivery flexibility systematically lowers futures prices below cash parity."
+            ],
+            "bottomTakeaway": "Accrued interest reconciles clean screen quotes with actual dirty cash invoice payments.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                1,
+                2
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 1 and 2: Day count conventions and clean vs dirty cash pricing",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "e9b0e8bada16070a",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b38.mp3",
+          "audioDurationSec": 17.59,
+          "durationInFrames": 540,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 1 & 2: Treasuries use Actual/Actual,",
+              "startMs": 0,
+              "endMs": 6841
+            },
+            {
+              "text": "corporates 30/360. Buyers pay dirty cash price: Cash = Clean + AI.",
+              "startMs": 6841,
+              "endMs": 17590
+            }
+          ]
+        },
+        {
+          "id": "b39",
+          "hindi_tts": "तीसरा और चौथा नियम: सीबीओटी कॉन्ट्रैक्ट 15 से 25 साल के किसी भी बॉन्ड की डिलीवरी की इजाजत देता है। और अलग-अलग कूपन्स को 6 परसेंट यील्ड के बेंचमार्क पर कन्वर्जन फैक्टर से स्टैंडर्डाइज किया जाता है।",
+          "en_subtitle": "Rules 3 & 4: T-bond futures accept 15-25 year maturities. Conversion factors standardize eligible bonds to 6% yield.",
+          "en_narration": "Third and fourth: The CBOT contract allows delivery of any Treasury bond maturing in 15 to 25 years. Conversion factors standardize eligible bonds to a uniform 6% yield standard.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 3 & 4 · BASKETS & CONVERSION FACTORS",
+            "heading": "Today's thread",
+            "activeStepIndex": 3,
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "steps": [
+              "Day Count Conventions: Treasuries use Actual/Actual, corporates use 30/360, and money markets use Actual/360.",
+              "Dirty Cash Price: Buyer pays Clean Quoted Price plus Accrued Interest: Cash = Clean + AI.",
+              "T-Bond Futures Basket: Contracts allow delivery of any Treasury bond maturing in 15 to 25 years.",
+              "Conversion Factors (CF): Equalize heterogeneous bonds to a 6.0% semiannual yield standard.",
+              "CTD Cost Formula: Short delivers the bond minimizing Cost = Spot Clean Price - (Futures * CF).",
+              "The 6% Yield Heuristic: Yields > 6% favor long-maturity low-coupon; yields < 6% favor short-maturity high-coupon.",
+              "The Wild Card Play: 6-hour delivery notice window post-2 PM allows shorts to profit from late price drops.",
+              "Embedded Option Value: Short delivery flexibility systematically lowers futures prices below cash parity."
+            ],
+            "bottomTakeaway": "Conversion factors equalize disparate coupon bonds to a common 6.0% semiannual pricing standard.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                3,
+                4
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 3 and 4: 15-25 year basket and 6% conversion factor system",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "3976e13680372684",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b39.mp3",
+          "audioDurationSec": 16.8,
+          "durationInFrames": 516,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 3 & 4: T-bond futures",
+              "startMs": 0,
+              "endMs": 3979
+            },
+            {
+              "text": "accept 15-25 year maturities. Conversion factors",
+              "startMs": 3979,
+              "endMs": 11053
+            },
+            {
+              "text": "standardize eligible bonds to 6% yield.",
+              "startMs": 11053,
+              "endMs": 16800
+            }
+          ]
+        },
+        {
+          "id": "b40",
+          "hindi_tts": "पांचवां और छठा नियम: शॉर्ट सेलर वही बॉन्ड डिलीवर करता है जिसकी लागत 'स्पॉट माइनस फ्यूचर्स गुणा सीएफ' सबसे कम हो। जब ब्याज 6 परसेंट से ऊपर हो, तो लंबी मैच्योरिटी और कम कूपन वाले बॉन्ड्स सीटीडी बनते हैं।",
+          "en_subtitle": "Rules 5 & 6: Short delivers bond minimizing Spot - (Futures * CF). When yields > 6%, long/low-coupon bonds become CTD.",
+          "en_narration": "Fifth and sixth: The short seller minimizes Cost = Spot - (Futures * CF). When market yields exceed 6%, long-maturity, low-coupon bonds become the Cheapest-to-Deliver.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "RULES 5 & 6 · CTD MECHANICS & 6% HEURISTIC",
+            "heading": "Today's thread",
+            "activeStepIndex": 5,
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "steps": [
+              "Day Count Conventions: Treasuries use Actual/Actual, corporates use 30/360, and money markets use Actual/360.",
+              "Dirty Cash Price: Buyer pays Clean Quoted Price plus Accrued Interest: Cash = Clean + AI.",
+              "T-Bond Futures Basket: Contracts allow delivery of any Treasury bond maturing in 15 to 25 years.",
+              "Conversion Factors (CF): Equalize heterogeneous bonds to a 6.0% semiannual yield standard.",
+              "CTD Cost Formula: Short delivers the bond minimizing Cost = Spot Clean Price - (Futures * CF).",
+              "The 6% Yield Heuristic: Yields > 6% favor long-maturity low-coupon; yields < 6% favor short-maturity high-coupon.",
+              "The Wild Card Play: 6-hour delivery notice window post-2 PM allows shorts to profit from late price drops.",
+              "Embedded Option Value: Short delivery flexibility systematically lowers futures prices below cash parity."
+            ],
+            "bottomTakeaway": "The Cheapest-to-Deliver bond minimizes net delivery cost and determines futures price movements.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                5,
+                6
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Focus on Rules 5 and 6: CTD formula and 6% yield regime heuristics",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "3ee9e1a28655bb3a",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b40.mp3",
+          "audioDurationSec": 17.42,
+          "durationInFrames": 535,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 5 & 6: Short delivers bond minimizing Spot - (Futures * CF). When yields > 6%,",
+              "startMs": 0,
+              "endMs": 12507
+            },
+            {
+              "text": "long/low-coupon bonds become CTD.",
+              "startMs": 12507,
+              "endMs": 17420
+            }
+          ]
+        },
+        {
+          "id": "b41",
+          "hindi_tts": "सातवां और आठवां नियम: दोपहर 2:00 बजे ट्रेडिंग बंद होने के बाद भी रात 8:00 बजे तक डिलीवरी नोटिस देने का वाइल्ड कार्ड प्ले शॉर्ट को फ्री ऑप्शन देता है। और आठवां सबसे जरूरी नियम: शॉर्ट सेलर के इन्हीं ऑप्शंस की वजह से फ्यूचर्स हमेशा कैश पैरिटी से थोड़ा सस्ता बिकता है!",
+          "en_subtitle": "Rules 7 & 8: Wild Card Play gives 6-hr delivery window. Rule 8: Embedded delivery options systematically lower futures prices!",
+          "en_narration": "Seventh and eighth: The Wild Card Play gives shorts a 6-hour window until 8:00 PM to exploit late price drops. And rule eight: These embedded delivery options systematically discount futures prices below theoretical parity!",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "headerBadge": "RULES 7 & 8 · WILD CARD & EMBEDDED OPTIONS",
+            "heading": "Today's thread",
+            "activeStepIndex": 7,
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "steps": [
+              "Day Count Conventions: Treasuries use Actual/Actual, corporates use 30/360, and money markets use Actual/360.",
+              "Dirty Cash Price: Buyer pays Clean Quoted Price plus Accrued Interest: Cash = Clean + AI.",
+              "T-Bond Futures Basket: Contracts allow delivery of any Treasury bond maturing in 15 to 25 years.",
+              "Conversion Factors (CF): Equalize heterogeneous bonds to a 6.0% semiannual yield standard.",
+              "CTD Cost Formula: Short delivers the bond minimizing Cost = Spot Clean Price - (Futures * CF).",
+              "The 6% Yield Heuristic: Yields > 6% favor long-maturity low-coupon; yields < 6% favor short-maturity high-coupon.",
+              "The Wild Card Play: 6-hour delivery notice window post-2 PM allows shorts to profit from late price drops.",
+              "Embedded Option Value: Short delivery flexibility systematically lowers futures prices below cash parity."
+            ],
+            "bottomTakeaway": "Delivery options held by the short party systematically depress Treasury bond futures prices.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                7,
+                8
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Strict dedicated focus on Rules 7 & 8: Wild Card Play and Rule 8 embedded delivery options",
+              "sourceFactIds": [
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "1316a9fcefac4c18",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b41.mp3",
+          "audioDurationSec": 21.38,
+          "durationInFrames": 655,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 7 & 8: Wild Card Play",
+              "startMs": 0,
+              "endMs": 4655
+            },
+            {
+              "text": "gives 6-hr delivery window. Rule 8: Embedded",
+              "startMs": 4655,
+              "endMs": 12241
+            },
+            {
+              "text": "delivery options systematically lower futures prices!",
+              "startMs": 12241,
+              "endMs": 21380
+            }
+          ]
+        },
+        {
+          "id": "b42",
+          "hindi_tts": "यह है ट्रेजरी बॉन्ड फ्यूचर्स का पूरा मास्टर फ्रेमवर्क! सीटीडी और डिलीवरी ऑप्शंस की समझ ही फिक्स्ड इनकम ट्रेडिंग में कामयाबी की चाबी है।",
+          "en_subtitle": "Complete master summary: Mastery of CTD selection and embedded delivery options is the key to bond derivatives.",
+          "en_narration": "That is the complete master bond futures framework! Deep mastery of CTD dynamics and delivery options is the key to fixed income derivative success.",
+          "pauseAfterMs": 600,
+          "ui_state": {
+            "headerBadge": "CHAPTER 6 · PART 1 · COMPLETE OVERVIEW",
+            "heading": "Today's thread",
+            "activeStepIndex": 0,
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "steps": [
+              "Day Count Conventions: Treasuries use Actual/Actual, corporates use 30/360, and money markets use Actual/360.",
+              "Dirty Cash Price: Buyer pays Clean Quoted Price plus Accrued Interest: Cash = Clean + AI.",
+              "T-Bond Futures Basket: Contracts allow delivery of any Treasury bond maturing in 15 to 25 years.",
+              "Conversion Factors (CF): Equalize heterogeneous bonds to a 6.0% semiannual yield standard.",
+              "CTD Cost Formula: Short delivers the bond minimizing Cost = Spot Clean Price - (Futures * CF).",
+              "The 6% Yield Heuristic: Yields > 6% favor long-maturity low-coupon; yields < 6% favor short-maturity high-coupon.",
+              "The Wild Card Play: 6-hour delivery notice window post-2 PM allows shorts to profit from late price drops.",
+              "Embedded Option Value: Short delivery flexibility systematically lowers futures prices below cash parity."
+            ],
+            "bottomTakeaway": "Treasury bond futures pricing is governed by the cheapest-to-deliver bond, standardized via conversion factors, with prices discounted by embedded delivery options.",
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display complete 2-column whole-chapter reference matrix",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06",
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "9dee6da6a4171362",
+          "audioFile": "audio/hull_derivatives/ch06_part1/b42.mp3",
+          "audioDurationSec": 11.52,
+          "durationInFrames": 364,
+          "subtitlePhrases": [
+            {
+              "text": "Complete master summary: Mastery of CTD",
+              "startMs": 0,
+              "endMs": 4122
+            },
+            {
+              "text": "selection and embedded delivery options is",
+              "startMs": 4122,
+              "endMs": 8561
+            },
+            {
+              "text": "the key to bond derivatives.",
+              "startMs": 8561,
+              "endMs": 11520
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

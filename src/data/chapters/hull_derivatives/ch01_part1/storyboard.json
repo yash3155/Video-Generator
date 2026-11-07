@@ -1,44 +1,51 @@
 {
   "schemaVersion": "1.0.0",
   "chapterSlug": "ch01_part1",
-  "course": "Technical Analysis of the Financial Markets (John J. Murphy)",
-  "chapterTitle": "Introduction to Derivatives, Hedging, and Systemic Risk",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Introduction to Derivatives: Futures, Forwards, and Systemic Risk",
   "approvedFactIds": [
-    "fact-01",
-    "fact-02",
-    "fact-03",
-    "fact-04",
-    "fact-05",
-    "fact-06",
-    "fact-07",
-    "fact-08"
+    "fact-futures-def",
+    "fact-forward-def",
+    "fact-long-short-positions",
+    "fact-spot-vs-forward-pricing",
+    "fact-otc-market-structure",
+    "fact-trading-mechanisms",
+    "fact-bank-fx-quotes",
+    "fact-importco-hedging-example",
+    "fact-exportco-hedging-example",
+    "fact-forward-payoff-formulas",
+    "fact-cbot-historical-origins",
+    "fact-lehman-collapse-31-leverage",
+    "fact-lehman-otc-derivatives-web",
+    "fact-systemic-risk-ripple-effect",
+    "fact-post-2008-ccp-reforms",
+    "fact-global-derivatives-market-size"
   ],
   "scenes": [
     {
       "sceneIndex": 0,
-      "title": "The Danger of Unhedged Risk",
-      "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "title": "Historical Origins: Chicago 1848 & The Need for Hedging",
+      "template": "chat_story",
+      "concept": "Historical origin of agricultural forward and futures agreements",
       "sourceFactIds": [
-        "fact-01",
-        "fact-02"
+        "fact-cbot-historical-origins",
+        "fact-futures-def"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "A treasury analyst and CFO discuss locking in currency values for an upcoming delivery using forward and futures agreements.",
+          "textOutline": "Raju and Sharma ji discuss how seasonal price volatility in grain markets led Chicago farmers and merchants to establish CBOT in 1848.",
           "sourceFactIds": [
-            "fact-01",
-            "fact-02"
+            "fact-cbot-historical-origins"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 1,
-          "textOutline": "The analyst contrasts standardized exchange-traded futures against custom OTC forward agreements.",
+          "textOutline": "Sharma ji explains how forward agreements evolved into standardized futures contracts to eliminate delivery default risk.",
           "sourceFactIds": [
-            "fact-01",
-            "fact-02"
+            "fact-futures-def",
+            "fact-cbot-historical-origins"
           ],
           "speaker": "narrator"
         }
@@ -46,26 +53,30 @@
     },
     {
       "sceneIndex": 1,
-      "title": "Scale of the Global OTC Derivatives Market",
-      "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "title": "Futures vs. Forwards: Exchange Standardization vs. OTC Customization",
+      "template": "tug_of_war",
+      "concept": "Structural tension between standardized exchange contracts and customized bilateral OTC agreements",
       "sourceFactIds": [
-        "fact-08"
+        "fact-futures-def",
+        "fact-forward-def",
+        "fact-otc-market-structure"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "Display OTC derivatives outstanding principal reaching $630 trillion as of December 2014.",
+          "textOutline": "Compare standardized exchange trading with clearinghouse backing against private bilateral over-the-counter negotiations.",
           "sourceFactIds": [
-            "fact-08"
+            "fact-futures-def",
+            "fact-forward-def"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 1,
-          "textOutline": "Contrast gross market value of $21 trillion against $65 trillion in exchange-traded underlying value.",
+          "textOutline": "Highlight that OTC forward contracts allow custom sizing but expose both counterparties to direct default risk.",
           "sourceFactIds": [
-            "fact-08"
+            "fact-forward-def",
+            "fact-otc-market-structure"
           ],
           "speaker": "narrator"
         }
@@ -73,45 +84,46 @@
     },
     {
       "sceneIndex": 2,
-      "title": "Four Pillars of Market Structure and Risk",
+      "title": "Four Structural Pillars of Derivatives Markets",
       "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "concept": "The foundational pillars governing derivatives contracts",
       "sourceFactIds": [
-        "fact-01",
-        "fact-02",
-        "fact-05",
-        "fact-06"
+        "fact-futures-def",
+        "fact-forward-def",
+        "fact-long-short-positions",
+        "fact-trading-mechanisms"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "Card 1: Exchange-traded futures contracts with standardized terms.",
+          "textOutline": "Introduce Pillar 1: Contract Standardization on organized exchanges versus customization in bilateral OTC markets.",
           "sourceFactIds": [
-            "fact-01"
+            "fact-futures-def",
+            "fact-forward-def"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 1,
-          "textOutline": "Card 2: Bilateral OTC forward contracts tailored to private counterparties.",
+          "textOutline": "Introduce Pillar 2: Long position buyer agrees to purchase asset; short position seller agrees to deliver asset.",
           "sourceFactIds": [
-            "fact-02"
+            "fact-long-short-positions"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 2,
-          "textOutline": "Card 3: Excessive institutional leverage vulnerability as demonstrated by Lehman Brothers.",
+          "textOutline": "Introduce Pillar 3: Central Counterparty clearing eliminates bilateral credit risk through legal novation.",
           "sourceFactIds": [
-            "fact-05"
+            "fact-futures-def"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 3,
-          "textOutline": "Card 4: Post-crisis regulatory architecture including SEFs, CCPs, and repositories.",
+          "textOutline": "Introduce Pillar 4: Electronic trading mechanisms replace open outcry with continuous transparent order books.",
           "sourceFactIds": [
-            "fact-06"
+            "fact-trading-mechanisms"
           ],
           "speaker": "narrator"
         }
@@ -119,27 +131,30 @@
     },
     {
       "sceneIndex": 3,
-      "title": "Futures vs. Forwards Architecture",
-      "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "title": "Corporate Currency Hedging: ImportCo vs. ExportCo",
+      "template": "split_comparison",
+      "concept": "Application of bank bid and offer quotes to lock in future domestic currency cash flows",
       "sourceFactIds": [
-        "fact-01",
-        "fact-02"
+        "fact-bank-fx-quotes",
+        "fact-importco-hedging-example",
+        "fact-exportco-hedging-example"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "Side A: Futures are standardized, binding contracts traded on organized exchanges.",
+          "textOutline": "Examine ImportCo locking in £10,000,000 payable at the bank offer rate of 1.6005, paying exactly $16,005,000.",
           "sourceFactIds": [
-            "fact-01"
+            "fact-bank-fx-quotes",
+            "fact-importco-hedging-example"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 1,
-          "textOutline": "Side B: Forwards are non-standardized OTC contracts privately negotiated between two counterparties.",
+          "textOutline": "Contrast with ExportCo locking in £30,000,000 receivable at the bank bid rate of 1.6000, receiving exactly $48,000,000.",
           "sourceFactIds": [
-            "fact-02"
+            "fact-bank-fx-quotes",
+            "fact-exportco-hedging-example"
           ],
           "speaker": "narrator"
         }
@@ -147,26 +162,28 @@
     },
     {
       "sceneIndex": 4,
-      "title": "Hedging Foreign Outflows (Payables)",
-      "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "title": "Terminal Payoff Profiles: Long vs. Short Symmetry",
+      "template": "formula_breakdown",
+      "concept": "Mathematical payoff functions S_T - K and K - S_T for forward contracts",
       "sourceFactIds": [
-        "fact-03"
+        "fact-long-short-positions",
+        "fact-forward-payoff-formulas"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "Present formula: Domestic Payment = Foreign Payable Amount x Forward Offer Exchange Rate.",
+          "textOutline": "Derive the terminal payoff for a long forward contract: Payoff = S_T - K, showing linear upside above delivery price K.",
           "sourceFactIds": [
-            "fact-03"
+            "fact-forward-payoff-formulas"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 1,
-          "textOutline": "Explain why the forward offer rate is locked in when the company purchases foreign currency from a bank.",
+          "textOutline": "Derive the short forward payoff: Payoff = K - S_T, establishing exact zero-sum symmetry between buyer and seller.",
           "sourceFactIds": [
-            "fact-03"
+            "fact-long-short-positions",
+            "fact-forward-payoff-formulas"
           ],
           "speaker": "narrator"
         }
@@ -174,26 +191,28 @@
     },
     {
       "sceneIndex": 5,
-      "title": "Hedging Foreign Inflows (Receivables)",
+      "title": "The Clearinghouse Shield: Daily Margining & Novation",
       "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "concept": "Exchange clearinghouse risk mitigation mechanisms",
       "sourceFactIds": [
-        "fact-04"
+        "fact-futures-def",
+        "fact-trading-mechanisms"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "Present formula: Domestic Proceeds = Foreign Receivable Amount x Forward Bid Exchange Rate.",
+          "textOutline": "The clearinghouse steps between every buyer and seller, becoming the counterparty to every executed trade.",
           "sourceFactIds": [
-            "fact-04"
+            "fact-futures-def"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 1,
-          "textOutline": "Detail how locking in the forward bid rate protects the corporation from domestic currency appreciation.",
+          "textOutline": "Daily marked-to-market settlement and variation margin payments prevent default losses from accumulating over time.",
           "sourceFactIds": [
-            "fact-04"
+            "fact-futures-def",
+            "fact-trading-mechanisms"
           ],
           "speaker": "narrator"
         }
@@ -201,26 +220,28 @@
     },
     {
       "sceneIndex": 6,
-      "title": "Extreme Leverage and Equity Depletion",
-      "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "title": "Scale of the Global OTC Derivatives Market",
+      "template": "stat_counter",
+      "concept": "Massive global scale of bilateral OTC derivatives contracts",
       "sourceFactIds": [
-        "fact-05"
+        "fact-global-derivatives-market-size",
+        "fact-otc-market-structure"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "Depict Lehman Brothers' 31:1 leverage ratio in 2007.",
+          "textOutline": "The global OTC derivatives market reached $630 trillion in outstanding notional principal by December 2014.",
           "sourceFactIds": [
-            "fact-05"
+            "fact-global-derivatives-market-size"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 1,
-          "textOutline": "Show how an asset decline of just 3% to 4% wiped out 100% of the firm's equity capital.",
+          "textOutline": "Gross market value stood at $20.9 trillion, illustrating the immense scale of bilateral counterparty exposure.",
           "sourceFactIds": [
-            "fact-05"
+            "fact-global-derivatives-market-size",
+            "fact-otc-market-structure"
           ],
           "speaker": "narrator"
         }
@@ -228,26 +249,26 @@
     },
     {
       "sceneIndex": 7,
-      "title": "Systemic Risk and Contagion Mechanics",
-      "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "title": "The Fragility of Leverage: Lehman Brothers at 31 to 1",
+      "template": "horizontal_bar_race",
+      "concept": "Leverage ratio comparison and thin equity cushions leading to insolvency",
       "sourceFactIds": [
-        "fact-07"
+        "fact-lehman-collapse-31-leverage"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "Illustrate a single firm defaulting under severe balance sheet pressure.",
+          "textOutline": "Lehman Brothers funded $639 billion in assets with just $20 billion in equity, creating an extreme leverage ratio of 31:1.",
           "sourceFactIds": [
-            "fact-07"
+            "fact-lehman-collapse-31-leverage"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 1,
-          "textOutline": "Demonstrate systemic risk as cascading losses ripple across counterparties throughout the financial system.",
+          "textOutline": "A minor asset decline of just 3.3% was sufficient to wipe out 100% of equity capital, forcing immediate bankruptcy.",
           "sourceFactIds": [
-            "fact-07"
+            "fact-lehman-collapse-31-leverage"
           ],
           "speaker": "narrator"
         }
@@ -255,34 +276,29 @@
     },
     {
       "sceneIndex": 8,
-      "title": "Post-2008 Clearing and Trading Reforms",
-      "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "title": "From Bilateral Contagion to Central Clearing (CCP)",
+      "template": "split_comparison",
+      "concept": "Structural transformation from opaque bilateral webs to post-2008 CCP clearing",
       "sourceFactIds": [
-        "fact-06"
+        "fact-lehman-otc-derivatives-web",
+        "fact-systemic-risk-ripple-effect",
+        "fact-post-2008-ccp-reforms"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "Mandatory execution of standardized OTC derivatives on Swap Execution Facilities (SEFs).",
+          "textOutline": "In 2008, Lehman held 900,000 OTC contracts across thousands of counterparties, causing global panic upon failure.",
           "sourceFactIds": [
-            "fact-06"
+            "fact-lehman-otc-derivatives-web",
+            "fact-systemic-risk-ripple-effect"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 1,
-          "textOutline": "Mandatory clearing through Central Counterparties (CCPs) to eliminate bilateral counterparty risk.",
+          "textOutline": "Post-crisis regulations mandate standardized OTC derivatives clear through Central Counterparties with trade reporting.",
           "sourceFactIds": [
-            "fact-06"
-          ],
-          "speaker": "narrator"
-        },
-        {
-          "beatIndex": 2,
-          "textOutline": "Mandatory trade reporting to central trade repositories for regulatory transparency.",
-          "sourceFactIds": [
-            "fact-06"
+            "fact-post-2008-ccp-reforms"
           ],
           "speaker": "narrator"
         }
@@ -290,31 +306,29 @@
     },
     {
       "sceneIndex": 9,
-      "title": "Derivatives and Systemic Risk Assessment",
-      "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "title": "Active Recall Challenge: Corporate FX Forward Lock-In",
+      "template": "interactive_quiz",
+      "concept": "Testing learner mastery of bank bid/offer quotes and cash flow calculations",
       "sourceFactIds": [
-        "fact-03",
-        "fact-04",
-        "fact-05",
-        "fact-06"
+        "fact-importco-hedging-example",
+        "fact-bank-fx-quotes"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "Question on matching foreign payables to the forward offer rate and foreign receivables to the forward bid rate.",
+          "textOutline": "Challenge the learner: ImportCo owes £10 million in 90 days. Bank quotes forward rate 1.6000/1.6005. Which rate applies?",
           "sourceFactIds": [
-            "fact-03",
-            "fact-04"
+            "fact-importco-hedging-example",
+            "fact-bank-fx-quotes"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 1,
-          "textOutline": "Question evaluating the asset drop required to wipe out equity at 31:1 leverage and mandatory reform mechanisms.",
+          "textOutline": "Explain the correct answer: ImportCo pays the bank offer price of 1.6005, locking in total cash flow of $16,005,000.",
           "sourceFactIds": [
-            "fact-05",
-            "fact-06"
+            "fact-importco-hedging-example",
+            "fact-bank-fx-quotes"
           ],
           "speaker": "narrator"
         }
@@ -323,26 +337,28 @@
     {
       "sceneIndex": 10,
       "title": "Risk Officer Audit Walkthrough",
-      "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "template": "chat_story",
+      "concept": "Synthesis of professional derivative risk management principles",
       "sourceFactIds": [
-        "fact-03",
-        "fact-06"
+        "fact-forward-def",
+        "fact-futures-def",
+        "fact-lehman-collapse-31-leverage"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "Risk officer audits a corporate client hedging payables using the forward offer exchange rate.",
+          "textOutline": "Raju reviews the risk checklist: when should a corporation use standardized futures versus custom OTC forwards?",
           "sourceFactIds": [
-            "fact-03"
+            "fact-forward-def",
+            "fact-futures-def"
           ],
           "speaker": "narrator"
         },
         {
           "beatIndex": 1,
-          "textOutline": "The auditor confirms all standardized contracts route through SEFs and clear via CCPs.",
+          "textOutline": "Sharma ji emphasizes that hedging controls price uncertainty, but leverage and credit risk must always be monitored.",
           "sourceFactIds": [
-            "fact-06"
+            "fact-lehman-collapse-31-leverage"
           ],
           "speaker": "narrator"
         }
@@ -351,31 +367,45 @@
     {
       "sceneIndex": 11,
       "title": "Master Summary: Contracts, Hedging, and Systemic Safety",
-      "template": "progressive_cards",
-      "concept": "Foundational market concept",
+      "template": "summary_thread",
+      "concept": "Cognitive consolidation of the 8 core principles of derivatives markets",
       "sourceFactIds": [
-        "fact-01",
-        "fact-02",
-        "fact-03",
-        "fact-04",
-        "fact-05",
-        "fact-06",
-        "fact-07",
-        "fact-08"
+        "fact-futures-def",
+        "fact-forward-def",
+        "fact-long-short-positions",
+        "fact-bank-fx-quotes",
+        "fact-forward-payoff-formulas",
+        "fact-lehman-collapse-31-leverage",
+        "fact-post-2008-ccp-reforms",
+        "fact-global-derivatives-market-size"
       ],
       "beatOutlines": [
         {
           "beatIndex": 0,
-          "textOutline": "Review of the 8 core principles from standardized futures to systemic contagion and regulatory clearing.",
+          "textOutline": "Review principles 1 and 2: Contract standardization on exchanges versus customized bilateral OTC forwards.",
           "sourceFactIds": [
-            "fact-01",
-            "fact-02",
-            "fact-03",
-            "fact-04",
-            "fact-05",
-            "fact-06",
-            "fact-07",
-            "fact-08"
+            "fact-futures-def",
+            "fact-forward-def"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Review principles 3 and 4: Corporate hedging with bank bid/offer rates and linear zero-sum payoff profiles.",
+          "sourceFactIds": [
+            "fact-long-short-positions",
+            "fact-bank-fx-quotes",
+            "fact-forward-payoff-formulas"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Review principles 5 through 8: Clearinghouse daily margin, leverage discipline, CCP reforms, and market transparency.",
+          "sourceFactIds": [
+            "fact-lehman-collapse-31-leverage",
+            "fact-post-2008-ccp-reforms",
+            "fact-global-derivatives-market-size"
           ],
           "speaker": "narrator"
         }
@@ -383,14 +413,14 @@
     }
   ],
   "summarySteps": [
-    "1. Futures contracts are standardized, binding agreements traded on organized exchanges for future delivery at a set price [fact-01].",
-    "2. Forward contracts provide over-the-counter equivalents negotiated privately between two counterparties [fact-02].",
-    "3. Hedging a foreign payable locks in domestic costs by multiplying the payable by the forward offer rate [fact-03].",
-    "4. Hedging a foreign receivable locks in domestic proceeds by multiplying the receivable by the forward bid rate [fact-04].",
-    "5. Operating at 31:1 leverage exposes institutions to complete equity wipeout from a mere 3% to 4% asset decline [fact-05].",
-    "6. Default by a single leveraged institution can create systemic risk through cascading counterparty failure chains [fact-07].",
-    "7. The OTC derivatives market reached $630 trillion in principal and $21 trillion in gross market value by December 2014 [fact-08].",
-    "8. Post-2008 reforms mandate trading on SEFs, clearing through CCPs, and reporting to trade repositories [fact-06]."
+    "1. Futures are standardized exchange contracts; forwards are customized bilateral OTC agreements.",
+    "2. Long position agrees to buy the underlying; short position agrees to sell.",
+    "3. Corporate hedgers buying foreign currency pay the bank offer rate.",
+    "4. Corporate hedgers selling foreign currency receive the bank bid rate.",
+    "5. Long forward terminal payoff is S_T - K; short payoff is K - S_T.",
+    "6. Clearinghouse daily mark-to-market margining eliminates cumulative default loss.",
+    "7. Extreme leverage of 31:1 leaves less than a 3.3% equity cushion against insolvency.",
+    "8. Post-2008 regulations mandate Central Counterparty (CCP) clearing and trade repository reporting."
   ],
-  "bottomTakeaway": "Mastering derivatives requires understanding contract standardization, precise hedging via bid/offer rates, and how post-crisis CCP clearing mitigates catastrophic systemic leverage."
+  "bottomTakeaway": "Standardized clearing and disciplined leverage transform lethal derivative risk into robust financial protection."
 }

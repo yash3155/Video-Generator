@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch02_part2",
+  "title": "Operation of Margin Accounts, Marking-to-Market, and Clearing Mechanics",
+  "targetAudiencePersona": "Finance Students & Derivatives Traders",
+  "prerequisites": [
+    "Futures contract definition and standardized specifications",
+    "Long vs short position mechanics and basic PnL calculation"
+  ],
+  "learningOutcomes": [
+    "Explain the operation of futures margin accounts and the 75% maintenance threshold rule",
+    "Calculate daily marking-to-market settlements, margin account balances, and variation margin calls",
+    "Contrast central counterparty (CCP) clearing with bilateral OTC clearing, ISDA agreements, and collateral haircuts",
+    "Analyze the systemic collapse of Long-Term Capital Management ($4B loss) driven by extreme leverage and collateral drains"
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "The Purpose and Operation of Margin Accounts",
+      "pedagogicalObjective": "Explain why futures exchanges require performance bond deposits to eliminate party default risk.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "keyPoints": [
+        "Margin accounts act as collateral performance bonds rather than borrowed money loans.",
+        "Long and short positions face symmetric margin requirements set by the clearinghouse.",
+        "Brokers accept Treasury bills at 90% face value and shares at 50% market value as initial collateral."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Daily Settlement and Marking to Market (MTM)",
+      "pedagogicalObjective": "Master the end-of-day re-pricing mechanism that resets contract values to zero daily.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Each trading day, contracts are settled at closing price and rewritten at the new settlement level.",
+        "Daily profits are credited in cash to the winning account; losses are debited immediately.",
+        "Maintenance margin is set at approximately 75% of initial margin to absorb daily volatility."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Example 2.1: 16-Day Gold Futures Margin Walkthrough",
+      "pedagogicalObjective": "Follow day-by-day cash flows in a 200 oz gold position to calculate exact margin call obligations.",
+      "groundedFactIds": [
+        "fact-04",
+        "fact-05"
+      ],
+      "keyPoints": [
+        "Two gold contracts require $12,000 initial margin and $9,000 maintenance margin.",
+        "On Day 7, gold drops to $1,226.90, dipping account balance to $7,380 ($1,620 below maintenance).",
+        "Crucial rule: The investor must deposit $4,620 variation margin to restore balance to initial $12,000."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Central Counterparty (CCP) vs Bilateral OTC Clearing",
+      "pedagogicalObjective": "Contrast clearinghouse multilateral netting and default funds with OTC bilateral ISDA CSA rules.",
+      "groundedFactIds": [
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "CCPs act as legal counterparty to every trade through novation, eliminating bilateral credit risk.",
+        "Bilateral OTC trades rely on ISDA master agreements and Credit Support Annexes with collateral thresholds.",
+        "Post-2008 Dodd-Frank and Basel regulations mandate standardized OTC derivatives clear through CCPs."
+      ]
+    },
+    {
+      "sectionIndex": 4,
+      "title": "Business Snapshot 2.2: The LTCM $4B Collapse",
+      "pedagogicalObjective": "Demonstrate how excessive leverage and flight-to-quality spread widening caused $4B in liquidation losses.",
+      "groundedFactIds": [
+        "fact-09"
+      ],
+      "keyPoints": [
+        "LTCM traded convergence arbitrage, assuming liquid and illiquid bond spreads would narrow.",
+        "The August 1998 Russian debt default triggered a flight to quality, blowing spreads wide open.",
+        "LTCM suffered simultaneous collateral drains on both legs, forcing fire-sale liquidation of $4 billion."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "A margin call only requires depositing enough money to get back above the maintenance margin.",
+      "factId": "fact-04",
+      "authorRebuttal": "John C. Hull emphasizes that when a margin call occurs, the investor must deposit variation margin to bring the account balance all the way back up to the INITIAL margin level, not merely the maintenance level."
+    },
+    {
+      "misconception": "Short futures positions require borrowing the underlying asset like stock short sales.",
+      "factId": "fact-01",
+      "authorRebuttal": "In futures markets, entering a short position is completely symmetric to entering a long position, requiring identical initial margin with no borrowing of physical goods."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "An investor enters 2 gold futures contracts (200 oz total). Initial margin is $6,000/contract ($12,000 total) and maintenance margin is $4,500/contract ($9,000 total). After adverse price moves, the account balance drops to $7,800.",
+    "testedFactIds": [
+      "fact-04",
+      "fact-05"
+    ],
+    "question": "How much variation margin cash must the investor deposit by the close of the next business day?",
+    "correctAnswer": "$4,200 (to restore the account balance back to the initial margin of $12,000)",
+    "explanation": "Because the $7,800 balance is below the $9,000 maintenance margin, a margin call is triggered. The variation margin required is $12,000 - $7,800 = $4,200, restoring the account to the full initial margin."
+  },
+  "coreTakeaways": [
+    "Margin accounts and daily marking-to-market eliminate default risk in futures trading.",
+    "Maintenance margin is 75% of initial margin; margin calls require topping up to full initial margin.",
+    "CCPs eliminate bilateral default risk through novation, netting, and default guaranty funds.",
+    "Excessive leverage can turn manageable market fluctuations into catastrophic collateral liquidation."
+  ]
+}

@@ -1,0 +1,3537 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives_en",
+    "chapter": "CHAPTER 4 · PART 1",
+    "chapterTitle": "Interest Rates: Types of Rates, Continuous Compounding, and Zero Curve Bootstrapping",
+    "domain": "finance",
+    "primaryColor": "#0F766E",
+    "accentColor": "#F59E0B",
+    "narrationLanguage": "en-US"
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "The Bond Coupon Illusion",
+      "template": "chat_story",
+      "badge": "Fixed Income Trading Desk",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "Sharma ji, I bought a ten lakh bond paying an eight percent semiannual coupon.",
+          "en_subtitle": "Sharma ji, I bought a corporate bond with an eight percent semiannual coupon payment.",
+          "en_narration": "Sharma ji, I bought a ten lakh bond paying an eight percent semiannual coupon.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Alex examines bond yields and compounding —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Marcus! I bought an 8% semiannual bond. Does this mean I earn a simple flat 8% annual return?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Marcus! I bought an 8% semiannual bond. Does this mean I earn a simple flat 8% annual return?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present retail misconception on coupon yield and compounding frequency",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "4d0e7e56c7e690a8",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b01.mp3",
+          "audioDurationSec": 5.69,
+          "durationInFrames": 183,
+          "subtitlePhrases": [
+            {
+              "text": "Sharma ji,",
+              "startMs": 0,
+              "endMs": 677
+            },
+            {
+              "text": "I bought a corporate bond with an eight percent semiannual coupon payment.",
+              "startMs": 677,
+              "endMs": 5690
+            }
+          ]
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "Not quite, Raju! Semiannual compounding actually generates an effective annual yield of 8.16 percent.",
+          "en_subtitle": "Not quite, Raju! Semiannual compounding generates an effective annual yield of 8.16 percent.",
+          "en_narration": "Not quite, Raju! Semiannual compounding actually generates an effective annual yield of 8.16 percent.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Marcus clarifies effective compounding —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Marcus! I bought an 8% semiannual bond. Does this mean I earn a simple flat 8% annual return?",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Not quite Alex! Reinvesting semiannual coupons compounds effective yield to 8.16% per annum.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Marcus! I bought an 8% semiannual bond. Does this mean I earn a simple flat 8% annual return?",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "Not quite Alex! Reinvesting semiannual coupons compounds effective yield to 8.16% per annum.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Explain compounding frequency impact on effective interest yield",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "24efce8a3d6b7a3f",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b02.mp3",
+          "audioDurationSec": 8.98,
+          "durationInFrames": 282,
+          "subtitlePhrases": [
+            {
+              "text": "Not quite,",
+              "startMs": 0,
+              "endMs": 987
+            },
+            {
+              "text": "Raju! Semiannual compounding generates an effective annual yield of 8.16 percent.",
+              "startMs": 987,
+              "endMs": 8980
+            }
+          ]
+        },
+        {
+          "id": "b03",
+          "hindi_tts": "Furthermore, in derivatives we discount each cash flow with its dedicated zero rate.",
+          "en_subtitle": "In derivatives, we discount each individual cash flow with its unique spot zero rate.",
+          "en_narration": "Furthermore, in derivatives we discount each cash flow with its dedicated zero rate.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "stageDirections": [
+              "— Marcus introduces the necessity of spot zero curves —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Marcus! I bought an 8% semiannual bond. Does this mean I earn a simple flat 8% annual return?",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Not quite Alex! Reinvesting semiannual coupons compounds effective yield to 8.16% per annum.",
+                "theme": "teal",
+                "align": "right"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "And in derivatives, every individual cash flow requires its own dedicated zero rate discount factor!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Marcus! I bought an 8% semiannual bond. Does this mean I earn a simple flat 8% annual return?",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "Not quite Alex! Reinvesting semiannual coupons compounds effective yield to 8.16% per annum.",
+                  "theme": "teal",
+                  "align": "right"
+                },
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "And in derivatives, every individual cash flow requires its own dedicated zero rate discount factor!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Bridge coupon reinvestment to the requirement of spot zero curves",
+              "sourceFactIds": [
+                "fact-04",
+                "fact-05"
+              ]
+            }
+          },
+          "narrationHash": "358c0266a891766d",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b03.mp3",
+          "audioDurationSec": 5.98,
+          "durationInFrames": 195,
+          "subtitlePhrases": [
+            {
+              "text": "In derivatives,",
+              "startMs": 0,
+              "endMs": 1068
+            },
+            {
+              "text": "we discount each individual cash flow with its unique spot zero rate.",
+              "startMs": 1068,
+              "endMs": 5980
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Discrete vs Continuous Compounding",
+      "template": "tug_of_war",
+      "badge": "Compounding Mechanics",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "Traditional banking compounds interest discretely at fixed intervals like quarterly or semiannually.",
+          "en_subtitle": "Traditional banking compounds interest discretely at fixed intervals, such as semiannually or quarterly.",
+          "en_narration": "Traditional banking compounds interest discretely at fixed intervals like quarterly or semiannually.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "sideA": {
+              "title": "Discrete Compounding",
+              "points": [
+                "Periodic payment jumps: quarterly or semiannually",
+                "Formula: A = P · (1 + R_m / m)^(m·T)",
+                "Creates mathematical friction in option models"
+              ],
+              "badge": "Banking Standard"
+            },
+            "sideB": {
+              "title": "Continuous Compounding",
+              "points": [
+                "Compounding occurs at every infinitesimal microsecond",
+                "Formula: A = P · e^(R_c · T)",
+                "Mathematical bedrock of quantitative derivatives"
+              ],
+              "badge": "Derivatives Standard"
+            },
+            "dominance": "side_a",
+            "centerMetric": "Frequency: m = 2 (Semiannual)",
+            "advantageShift": -30
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Discrete Compounding",
+              "rightTitle": "Continuous Compounding",
+              "leftMetrics": [
+                "Jumps: m times/year",
+                "Formula: (1 + R/m)^mT"
+              ],
+              "rightMetrics": [
+                "Infinite frequency: m -> ∞",
+                "Formula: e^(rT)"
+              ],
+              "state": "left_focus"
+            },
+            "semantics": {
+              "teachingObjective": "Contrast discrete periodic compounding with continuous growth",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "1168f9845dfda729",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b04.mp3",
+          "audioDurationSec": 6.34,
+          "durationInFrames": 203,
+          "subtitlePhrases": [
+            {
+              "text": "Traditional banking compounds interest discretely at fixed intervals,",
+              "startMs": 0,
+              "endMs": 4247
+            },
+            {
+              "text": "such as semiannually or quarterly.",
+              "startMs": 4247,
+              "endMs": 6340
+            }
+          ]
+        },
+        {
+          "id": "b05",
+          "hindi_tts": "As compounding frequency approaches infinity, interest accrues continuously at every microsecond.",
+          "en_subtitle": "As compounding frequency approaches infinity, interest accrues continuously at every instant.",
+          "en_narration": "As compounding frequency approaches infinity, interest accrues continuously at every microsecond.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "sideA": {
+              "title": "Discrete Compounding",
+              "points": [
+                "Periodic payment jumps: quarterly or semiannually",
+                "Formula: A = P · (1 + R_m / m)^(m·T)",
+                "Step-wise discontinuous wealth accumulation"
+              ],
+              "badge": "Banking Standard"
+            },
+            "sideB": {
+              "title": "Continuous Compounding",
+              "points": [
+                "Compounding occurs at every infinitesimal microsecond",
+                "Formula: A = P · e^(R_c · T)",
+                "Smooth exponential exponential function"
+              ],
+              "badge": "Derivatives Standard"
+            },
+            "dominance": "balanced",
+            "centerMetric": "Lim m -> ∞: (1 + R/m)^m = e^R",
+            "advantageShift": 0
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Discrete Compounding",
+              "rightTitle": "Continuous Compounding",
+              "leftMetrics": [
+                "Jumps: m times/year",
+                "Discontinuous growth"
+              ],
+              "rightMetrics": [
+                "Infinite frequency",
+                "Smooth exponential e^(rT)"
+              ],
+              "state": "balanced"
+            },
+            "semantics": {
+              "teachingObjective": "Derive Euler's limit e^(rT) as compounding frequency tends to infinity",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "8ee5be5d78da6adb",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b05.mp3",
+          "audioDurationSec": 6.62,
+          "durationInFrames": 211,
+          "subtitlePhrases": [
+            {
+              "text": "As compounding frequency approaches infinity,",
+              "startMs": 0,
+              "endMs": 3238
+            },
+            {
+              "text": "interest accrues continuously at every instant.",
+              "startMs": 3238,
+              "endMs": 6620
+            }
+          ]
+        },
+        {
+          "id": "b06",
+          "hindi_tts": "Continuous compounding exponential functions eliminate discrete step distortions in derivative formulas.",
+          "en_subtitle": "In financial engineering, continuous compounding eliminates discrete jumps, enabling clean pricing calculus.",
+          "en_narration": "Continuous compounding exponential functions eliminate discrete step distortions in derivative formulas.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "sideA": {
+              "title": "Discrete Compounding",
+              "points": [
+                "Periodic payment jumps: quarterly or semiannually",
+                "Discrete step distortions across maturities",
+                "Complex piecewise derivatives discounting"
+              ],
+              "badge": "Banking Standard"
+            },
+            "sideB": {
+              "title": "Continuous Compounding",
+              "points": [
+                "Compounding occurs at every infinitesimal microsecond",
+                "Clean calculus: d/dt(e^(rT)) = r · e^(rT)",
+                "Universal bedrock for Black-Scholes and swaps"
+              ],
+              "badge": "Derivatives Standard"
+            },
+            "dominance": "side_b",
+            "centerMetric": "Essential for All Derivative Pricing",
+            "advantageShift": 40
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Discrete Compounding",
+              "rightTitle": "Continuous Compounding",
+              "leftMetrics": [
+                "Piecewise discounting",
+                "Discrete distortions"
+              ],
+              "rightMetrics": [
+                "Analytical derivatives",
+                "Continuous discounting"
+              ],
+              "state": "right_focus"
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate why derivatives mathematics relies exclusively on continuous compounding",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "9992f6ec132ab4e9",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b06.mp3",
+          "audioDurationSec": 6.77,
+          "durationInFrames": 219,
+          "subtitlePhrases": [
+            {
+              "text": "In financial engineering,",
+              "startMs": 0,
+              "endMs": 1597
+            },
+            {
+              "text": "continuous compounding eliminates discrete jumps,",
+              "startMs": 1597,
+              "endMs": 4727
+            },
+            {
+              "text": "enabling clean pricing calculus.",
+              "startMs": 4727,
+              "endMs": 6770
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "The Hierarchy of Benchmark Rates",
+      "template": "progressive_cards",
+      "badge": "Market Benchmarks",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "First, Treasury rates: Sovereign government yields, historically viewed as default-free.",
+          "en_subtitle": "First, Treasury rates: Sovereign government debt yields, historically considered default-free.",
+          "en_narration": "First, Treasury rates: Sovereign government yields, historically viewed as default-free.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "1. Treasury Rates",
+                "subtitle": "Sovereign Debt Benchmark",
+                "value": "Artificially Depressed",
+                "badge": "Zero Default Risk",
+                "state": "active_teal",
+                "bulletPoints": [
+                  "Backed by sovereign printing power",
+                  "Held by commercial banks for capital adequacy",
+                  "Tax exemptions depress yields below true market rates"
+                ]
+              },
+              {
+                "title": "2. LIBOR Benchmark",
+                "subtitle": "Unsecured Interbank Lending",
+                "value": "Credit Risk Included",
+                "badge": "Phased Out Post-2021",
+                "state": "muted",
+                "bulletPoints": [
+                  "AA-bank unsecured lending quote across 10 currencies",
+                  "Vulnerable to bank credit spreads and manipulation",
+                  "Replaced globally after 2008 systemic crisis"
+                ]
+              },
+              {
+                "title": "3. Repo Rates",
+                "subtitle": "Secured Repurchase Financing",
+                "value": "High Quality Collateral",
+                "badge": "Overnight Secured",
+                "state": "muted",
+                "bulletPoints": [
+                  "Contract to sell securities and repurchase later",
+                  "Collateralized by Treasuries, minimal credit risk",
+                  "Represents true short-term institutional borrowing cost"
+                ]
+              },
+              {
+                "title": "4. OIS & SOFR",
+                "subtitle": "Overnight Indexed Swap Rate",
+                "value": "True Risk-Free Benchmark",
+                "badge": "Modern Gold Standard",
+                "state": "muted",
+                "bulletPoints": [
+                  "Geometric average of daily overnight unsecured rates",
+                  "Matches interest earned on daily collateral margin",
+                  "Universal discounting benchmark for derivatives"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cardCount": 4,
+              "focusTopic": "Treasury Rates"
+            },
+            "semantics": {
+              "teachingObjective": "Introduce Treasury rates and explain why yields are depressed",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "f4e75a787ab69cd8",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b07.mp3",
+          "audioDurationSec": 6.12,
+          "durationInFrames": 196,
+          "subtitlePhrases": [
+            {
+              "text": "First,",
+              "startMs": 0,
+              "endMs": 399
+            },
+            {
+              "text": "Treasury rates: Sovereign government debt yields,",
+              "startMs": 399,
+              "endMs": 3659
+            },
+            {
+              "text": "historically considered default-free.",
+              "startMs": 3659,
+              "endMs": 6120
+            }
+          ]
+        },
+        {
+          "id": "b08",
+          "hindi_tts": "Second was LIBOR: Unsecured interbank quotes, which failed during the 2008 credit crisis.",
+          "en_subtitle": "Second was LIBOR: Unsecured interbank quotes, which collapsed during the 2008 credit freeze.",
+          "en_narration": "Second was LIBOR: Unsecured interbank quotes, which failed during the 2008 credit crisis.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "1. Treasury Rates",
+                "subtitle": "Sovereign Debt Benchmark",
+                "value": "Artificially Depressed",
+                "badge": "Zero Default Risk",
+                "state": "muted",
+                "bulletPoints": [
+                  "Backed by sovereign printing power",
+                  "Held by commercial banks for capital adequacy",
+                  "Tax exemptions depress yields below true market rates"
+                ]
+              },
+              {
+                "title": "2. LIBOR Benchmark",
+                "subtitle": "Unsecured Interbank Lending",
+                "value": "Credit Risk Included",
+                "badge": "Phased Out Post-2021",
+                "state": "active_amber",
+                "bulletPoints": [
+                  "AA-bank unsecured lending quote across 10 currencies",
+                  "Carried hidden counterparty credit risk and manipulation",
+                  "Proved disastrous as a risk-free discount rate in 2008"
+                ]
+              },
+              {
+                "title": "3. Repo Rates",
+                "subtitle": "Secured Repurchase Financing",
+                "value": "High Quality Collateral",
+                "badge": "Overnight Secured",
+                "state": "muted",
+                "bulletPoints": [
+                  "Contract to sell securities and repurchase later",
+                  "Collateralized by Treasuries, minimal credit risk",
+                  "Represents true short-term institutional borrowing cost"
+                ]
+              },
+              {
+                "title": "4. OIS & SOFR",
+                "subtitle": "Overnight Indexed Swap Rate",
+                "value": "True Risk-Free Benchmark",
+                "badge": "Modern Gold Standard",
+                "state": "muted",
+                "bulletPoints": [
+                  "Geometric average of daily overnight unsecured rates",
+                  "Matches interest earned on daily collateral margin",
+                  "Universal discounting benchmark for derivatives"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1,
+              "cardCount": 4,
+              "focusTopic": "LIBOR Benchmark"
+            },
+            "semantics": {
+              "teachingObjective": "Highlight LIBOR credit risk and why it failed as a risk-free proxy",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "c985e26b7ec2dbcf",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b08.mp3",
+          "audioDurationSec": 6.86,
+          "durationInFrames": 218,
+          "subtitlePhrases": [
+            {
+              "text": "Second was LIBOR: Unsecured interbank quotes,",
+              "startMs": 0,
+              "endMs": 3392
+            },
+            {
+              "text": "which collapsed during the 2008 credit freeze.",
+              "startMs": 3392,
+              "endMs": 6860
+            }
+          ]
+        },
+        {
+          "id": "b09",
+          "hindi_tts": "Third is the Repo rate: Secured borrowing backed by government securities collateral.",
+          "en_subtitle": "Third is the Repo rate: Secured borrowing collateralized by high-quality government paper.",
+          "en_narration": "Third is the Repo rate: Secured borrowing backed by government securities collateral.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "1. Treasury Rates",
+                "subtitle": "Sovereign Debt Benchmark",
+                "value": "Artificially Depressed",
+                "badge": "Zero Default Risk",
+                "state": "muted",
+                "bulletPoints": [
+                  "Backed by sovereign printing power",
+                  "Held by commercial banks for capital adequacy",
+                  "Tax exemptions depress yields below true market rates"
+                ]
+              },
+              {
+                "title": "2. LIBOR Benchmark",
+                "subtitle": "Unsecured Interbank Lending",
+                "value": "Credit Risk Included",
+                "badge": "Phased Out Post-2021",
+                "state": "muted",
+                "bulletPoints": [
+                  "AA-bank unsecured lending quote across 10 currencies",
+                  "Carried hidden counterparty credit risk and manipulation",
+                  "Proved disastrous as a risk-free discount rate in 2008"
+                ]
+              },
+              {
+                "title": "3. Repo Rates",
+                "subtitle": "Secured Repurchase Financing",
+                "value": "Collateralized Financing",
+                "badge": "Overnight Secured",
+                "state": "active_teal",
+                "bulletPoints": [
+                  "Borrower sells securities and repurchases next morning",
+                  "Secured by Treasury bonds, virtually zero credit risk",
+                  "Drives money-market wholesale financing desk trades"
+                ]
+              },
+              {
+                "title": "4. OIS & SOFR",
+                "subtitle": "Overnight Indexed Swap Rate",
+                "value": "True Risk-Free Benchmark",
+                "badge": "Modern Gold Standard",
+                "state": "muted",
+                "bulletPoints": [
+                  "Geometric average of daily overnight unsecured rates",
+                  "Matches interest earned on daily collateral margin",
+                  "Universal discounting benchmark for derivatives"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 2,
+              "cardCount": 4,
+              "focusTopic": "Repo Rates"
+            },
+            "semantics": {
+              "teachingObjective": "Explain repo mechanics and collateralized lending security",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "79c5753efa950bd2",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b09.mp3",
+          "audioDurationSec": 5.59,
+          "durationInFrames": 180,
+          "subtitlePhrases": [
+            {
+              "text": "Third is the Repo",
+              "startMs": 0,
+              "endMs": 1080
+            },
+            {
+              "text": "rate: Secured borrowing collateralized",
+              "startMs": 1080,
+              "endMs": 3494
+            },
+            {
+              "text": "by high-quality government paper.",
+              "startMs": 3494,
+              "endMs": 5590
+            }
+          ]
+        },
+        {
+          "id": "b10",
+          "hindi_tts": "Fourth is OIS: The overnight indexed swap rate, the true risk-free derivatives benchmark.",
+          "en_subtitle": "Fourth is OIS: The overnight indexed swap rate, now the definitive risk-free derivatives benchmark.",
+          "en_narration": "Fourth is OIS: The overnight indexed swap rate, the true risk-free derivatives benchmark.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "1. Treasury Rates",
+                "subtitle": "Sovereign Debt Benchmark",
+                "value": "Artificially Depressed",
+                "badge": "Zero Default Risk",
+                "state": "muted",
+                "bulletPoints": [
+                  "Backed by sovereign printing power",
+                  "Held by commercial banks for capital adequacy",
+                  "Tax exemptions depress yields below true market rates"
+                ]
+              },
+              {
+                "title": "2. LIBOR Benchmark",
+                "subtitle": "Unsecured Interbank Lending",
+                "value": "Credit Risk Included",
+                "badge": "Phased Out Post-2021",
+                "state": "muted",
+                "bulletPoints": [
+                  "AA-bank unsecured lending quote across 10 currencies",
+                  "Carried hidden counterparty credit risk and manipulation",
+                  "Proved disastrous as a risk-free discount rate in 2008"
+                ]
+              },
+              {
+                "title": "3. Repo Rates",
+                "subtitle": "Secured Repurchase Financing",
+                "value": "Collateralized Financing",
+                "badge": "Overnight Secured",
+                "state": "muted",
+                "bulletPoints": [
+                  "Borrower sells securities and repurchases next morning",
+                  "Secured by Treasury bonds, virtually zero credit risk",
+                  "Drives money-market wholesale financing desk trades"
+                ]
+              },
+              {
+                "title": "4. OIS & SOFR",
+                "subtitle": "Overnight Indexed Swap Rate",
+                "value": "True Risk-Free Benchmark",
+                "badge": "Modern Gold Standard",
+                "state": "active_green",
+                "bulletPoints": [
+                  "Geometric average of overnight rates (SOFR / Fed Funds)",
+                  "Matches daily interest paid on cash collateral margin",
+                  "Standard discount curve for all post-2008 cleared swaps"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 3,
+              "cardCount": 4,
+              "focusTopic": "OIS & SOFR"
+            },
+            "semantics": {
+              "teachingObjective": "Establish OIS as the modern collateral-aligned risk-free discount rate",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "645083e1d8ab409f",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b10.mp3",
+          "audioDurationSec": 6.84,
+          "durationInFrames": 221,
+          "subtitlePhrases": [
+            {
+              "text": "Fourth is OIS: The overnight indexed swap rate,",
+              "startMs": 0,
+              "endMs": 3280
+            },
+            {
+              "text": "now the definitive risk-free derivatives benchmark.",
+              "startMs": 3280,
+              "endMs": 6840
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Continuous Compounding Equivalence",
+      "template": "formula_breakdown",
+      "badge": "Mathematical Rigor",
+      "beats": [
+        {
+          "id": "b11",
+          "hindi_tts": "Banks quote discrete rates, requiring conversion into continuously compounded equivalents for derivative models.",
+          "en_subtitle": "Banks quote discrete compounding, requiring traders to convert them into continuously compounded equivalents.",
+          "en_narration": "Banks quote discrete rates, requiring conversion into continuously compounded equivalents for derivative models.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Continuous Compounding Conversion",
+            "expression": "R_c = m \\cdot \\ln\\left(1 + \\frac{R_m}{m}\\right)",
+            "variables": [
+              {
+                "symbol": "R_c",
+                "label": "Continuous Rate",
+                "description": "Continuously compounded annual rate",
+                "unit": "%"
+              },
+              {
+                "symbol": "R_m",
+                "label": "Discrete Rate",
+                "description": "Quoted discrete rate per annum",
+                "unit": "%"
+              },
+              {
+                "symbol": "m",
+                "label": "Frequency",
+                "description": "Compounding periods per year",
+                "unit": "periods"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Core Equivalence",
+                "equation": "e^{R_c \\cdot T} = \\left(1 + \\frac{R_m}{m}\\right)^{m \\cdot T}",
+                "note": "Equates future wealth under continuous and discrete rates"
+              }
+            ],
+            "assumptions": [
+              "Quoted rate remains constant across the annual investment horizon."
+            ],
+            "interpretation": "Converts market quotes into continuous rates required for derivatives pricing."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Continuous Compounding Conversion",
+              "expression": "R_c = m \\cdot \\ln\\left(1 + \\frac{R_m}{m}\\right)",
+              "variables": [
+                {
+                  "symbol": "R_c",
+                  "label": "Continuous Rate",
+                  "description": "Continuously compounded annual rate",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "R_m",
+                  "label": "Discrete Rate",
+                  "description": "Quoted discrete rate per annum",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "m",
+                  "label": "Frequency",
+                  "description": "Compounding periods per year",
+                  "unit": "periods"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Core Equivalence",
+                  "equation": "e^{R_c \\cdot T} = \\left(1 + \\frac{R_m}{m}\\right)^{m \\cdot T}",
+                  "note": "Equates future wealth under continuous and discrete rates"
+                }
+              ],
+              "assumptions": [
+                "Quoted rate remains constant across the annual investment horizon."
+              ],
+              "interpretation": "Converts market quotes into continuous rates required for derivatives pricing."
+            },
+            "semantics": {
+              "teachingObjective": "Present the continuous compounding conversion formula",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "76133566e2e4f245",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b11.mp3",
+          "audioDurationSec": 7.3,
+          "durationInFrames": 231,
+          "subtitlePhrases": [
+            {
+              "text": "Banks quote discrete compounding,",
+              "startMs": 0,
+              "endMs": 2231
+            },
+            {
+              "text": "requiring traders to convert them into continuously compounded equivalents.",
+              "startMs": 2231,
+              "endMs": 7300
+            }
+          ]
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "The formula is R_c equals m multiplied by the natural log of one plus R_m over m.",
+          "en_subtitle": "Formula: R_c equals m multiplied by the natural log of 1 plus R_m over m.",
+          "en_narration": "The formula is R_c equals m multiplied by the natural log of one plus R_m over m.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Continuous Compounding Conversion",
+            "expression": "R_c = m \\cdot \\ln\\left(1 + \\frac{R_m}{m}\\right)",
+            "variables": [
+              {
+                "symbol": "R_c",
+                "label": "Continuous Rate",
+                "description": "Continuously compounded annual rate",
+                "unit": "%"
+              },
+              {
+                "symbol": "R_m",
+                "label": "Discrete Rate",
+                "description": "10.00% per annum",
+                "unit": "%"
+              },
+              {
+                "symbol": "m",
+                "label": "Frequency",
+                "description": "2 (Semiannual compounding)",
+                "unit": "periods"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Logarithmic Scaling",
+                "equation": "R_c = 2 \\cdot \\ln(1 + 0.05) = 2 \\cdot 0.04879",
+                "note": "Natural log calculates equivalent continuous compounding"
+              }
+            ],
+            "assumptions": [
+              "Quoted rate remains constant across the annual investment horizon."
+            ],
+            "interpretation": "Semiannual compounding frequency divides rate into 5% per half-year."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Continuous Compounding Conversion",
+              "expression": "R_c = m \\cdot \\ln\\left(1 + \\frac{R_m}{m}\\right)",
+              "variables": [
+                {
+                  "symbol": "R_c",
+                  "label": "Continuous Rate",
+                  "description": "Continuously compounded annual rate",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "R_m",
+                  "label": "Discrete Rate",
+                  "description": "10.00% per annum",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "m",
+                  "label": "Frequency",
+                  "description": "2 (Semiannual compounding)",
+                  "unit": "periods"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Logarithmic Scaling",
+                  "equation": "R_c = 2 \\cdot \\ln(1 + 0.05) = 2 \\cdot 0.04879",
+                  "note": "Natural log calculates equivalent continuous compounding"
+                }
+              ],
+              "assumptions": [
+                "Quoted rate remains constant across the annual investment horizon."
+              ],
+              "interpretation": "Semiannual compounding frequency divides rate into 5% per half-year."
+            },
+            "semantics": {
+              "teachingObjective": "Break down algebraic components of conversion formula",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "87655b22c4118176",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b12.mp3",
+          "audioDurationSec": 7.3,
+          "durationInFrames": 231,
+          "subtitlePhrases": [
+            {
+              "text": "Formula: R_c equals m multiplied",
+              "startMs": 0,
+              "endMs": 3290
+            },
+            {
+              "text": "by the natural log of",
+              "startMs": 3290,
+              "endMs": 5449
+            },
+            {
+              "text": "1 plus R_m over m.",
+              "startMs": 5449,
+              "endMs": 7300
+            }
+          ]
+        },
+        {
+          "id": "b13",
+          "hindi_tts": "A ten percent semiannual rate corresponds to 9.758 percent continuously compounded.",
+          "en_subtitle": "A 10 percent semiannual interest rate equals exactly 9.758 percent compounded continuously.",
+          "en_narration": "A ten percent semiannual rate corresponds to 9.758 percent continuously compounded.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Worked Example: 10% Semiannual Rate",
+            "expression": "R_c = 2 \\cdot \\ln(1.05) = 9.758\\%",
+            "variables": [
+              {
+                "symbol": "R_m",
+                "label": "Quoted Discrete Rate",
+                "description": "10.00% semiannual coupon yield",
+                "unit": "%"
+              },
+              {
+                "symbol": "m",
+                "label": "Semiannual Frequency",
+                "description": "2 compounding periods per annum",
+                "unit": "periods"
+              },
+              {
+                "symbol": "R_c",
+                "label": "Continuous Equivalent",
+                "description": "9.758% continuously compounded",
+                "unit": "%"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Semiannual Setup",
+                "equation": "R_m = 10\\%, \\quad m = 2",
+                "note": "Input parameters into conversion formula"
+              },
+              {
+                "stepIndex": 1,
+                "label": "Evaluate Logarithm",
+                "equation": "2 \\cdot \\ln(1.05) = 2 \\cdot 0.048790",
+                "note": "Intra-year interest generates intermediate compounding"
+              },
+              {
+                "stepIndex": 2,
+                "label": "Continuous Rate",
+                "equation": "R_c = 9.758\\% \\text{ per annum}",
+                "note": "Continuous rate is strictly lower than discrete rate"
+              }
+            ],
+            "assumptions": [
+              "Investment held for minimum 1 year with continuous reinvestment."
+            ],
+            "interpretation": "Compounding continuously produces identical wealth to 10% semiannual compounding."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Worked Example: 10% Semiannual Rate",
+              "expression": "R_c = 2 \\cdot \\ln(1.05) = 9.758\\%",
+              "variables": [
+                {
+                  "symbol": "R_m",
+                  "label": "Quoted Discrete Rate",
+                  "description": "10.00% semiannual coupon yield",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "m",
+                  "label": "Semiannual Frequency",
+                  "description": "2 compounding periods per annum",
+                  "unit": "periods"
+                },
+                {
+                  "symbol": "R_c",
+                  "label": "Continuous Equivalent",
+                  "description": "9.758% continuously compounded",
+                  "unit": "%"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Semiannual Setup",
+                  "equation": "R_m = 10\\%, \\quad m = 2",
+                  "note": "Input parameters into conversion formula"
+                },
+                {
+                  "stepIndex": 1,
+                  "label": "Evaluate Logarithm",
+                  "equation": "2 \\cdot \\ln(1.05) = 2 \\cdot 0.048790",
+                  "note": "Intra-year interest generates intermediate compounding"
+                },
+                {
+                  "stepIndex": 2,
+                  "label": "Continuous Rate",
+                  "equation": "R_c = 9.758\\% \\text{ per annum}",
+                  "note": "Continuous rate is strictly lower than discrete rate"
+                }
+              ],
+              "assumptions": [
+                "Investment held for minimum 1 year with continuous reinvestment."
+              ],
+              "interpretation": "Compounding continuously produces identical wealth to 10% semiannual compounding."
+            },
+            "semantics": {
+              "teachingObjective": "Compute practical continuous compounding equivalence for a 10% semiannual rate",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "c2ceae2a31df7d63",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b13.mp3",
+          "audioDurationSec": 7.03,
+          "durationInFrames": 226,
+          "subtitlePhrases": [
+            {
+              "text": "A 10 percent semiannual",
+              "startMs": 0,
+              "endMs": 1817
+            },
+            {
+              "text": "interest rate equals exactly",
+              "startMs": 1817,
+              "endMs": 4029
+            },
+            {
+              "text": "9.758 percent compounded continuously.",
+              "startMs": 4029,
+              "endMs": 7030
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Compounding Architectures Compared",
+      "template": "split_comparison",
+      "badge": "Core Architecture",
+      "beats": [
+        {
+          "id": "b14",
+          "hindi_tts": "Discrete compounding grows wealth in discrete periodic steps across calendar payment dates.",
+          "en_subtitle": "Discrete compounding increases money in distinct periodic steps across calendar payment dates.",
+          "en_narration": "Discrete compounding grows wealth in discrete periodic steps across calendar payment dates.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Discrete Compounding",
+            "leftSubtitle": "Periodic Step Growth",
+            "leftBadge": "Retail Banking",
+            "leftPoints": [
+              "Terminal formula: A = P · (1 + R_m / m)^(m·T)",
+              "Interest credited at fixed dates (e.g. quarterly)",
+              "Creates step-function discontinuities in pricing calculus",
+              "10% semiannual grows $100 to $110.25 after 1 year"
+            ],
+            "rightTitle": "Continuous Compounding",
+            "rightSubtitle": "Smooth Exponential Growth",
+            "rightBadge": "Derivatives Engine",
+            "rightPoints": [
+              "Terminal formula: A = P · e^(R_c · T)",
+              "Interest accrued smoothly at every infinitesimal instant",
+              "Enables clean analytical derivatives and integral calculus",
+              "9.758% continuous grows $100 to exactly $110.25 after 1 year"
+            ],
+            "comparisonMetric": "Growth Pattern: Periodic Step vs Smooth Exponential",
+            "highlightSide": "left"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Discrete Compounding",
+              "rightTitle": "Continuous Compounding",
+              "leftMetrics": [
+                "Formula: P(1+R/m)^mT",
+                "Discrete periodic leaps"
+              ],
+              "rightMetrics": [
+                "Formula: P·e^(rT)",
+                "Smooth exponential growth"
+              ],
+              "state": "left_focus"
+            },
+            "semantics": {
+              "teachingObjective": "Contrast discrete periodic steps with smooth continuous growth",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "3b0e78dbd1e4a3f1",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b14.mp3",
+          "audioDurationSec": 5.86,
+          "durationInFrames": 188,
+          "subtitlePhrases": [
+            {
+              "text": "Discrete compounding increases money",
+              "startMs": 0,
+              "endMs": 2293
+            },
+            {
+              "text": "in distinct periodic steps",
+              "startMs": 2293,
+              "endMs": 3949
+            },
+            {
+              "text": "across calendar payment dates.",
+              "startMs": 3949,
+              "endMs": 5860
+            }
+          ]
+        },
+        {
+          "id": "b15",
+          "hindi_tts": "Continuous compounding expands capital along a smooth exponential curve at every instant.",
+          "en_subtitle": "Continuous compounding expands wealth continuously along a seamless exponential curve.",
+          "en_narration": "Continuous compounding expands capital along a smooth exponential curve at every instant.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Discrete Compounding",
+            "leftSubtitle": "Periodic Step Growth",
+            "leftBadge": "Retail Banking",
+            "leftPoints": [
+              "Terminal formula: A = P · (1 + R_m / m)^(m·T)",
+              "Interest credited at fixed dates (e.g. quarterly)",
+              "Creates step-function discontinuities in pricing calculus",
+              "10% semiannual grows $100 to $110.25 after 1 year"
+            ],
+            "rightTitle": "Continuous Compounding",
+            "rightSubtitle": "Smooth Exponential Growth",
+            "rightBadge": "Derivatives Engine",
+            "rightPoints": [
+              "Terminal formula: A = P · e^(R_c · T)",
+              "Interest accrued smoothly at every infinitesimal instant",
+              "Enables clean analytical derivatives and integral calculus",
+              "9.758% continuous grows $100 to exactly $110.25 after 1 year"
+            ],
+            "comparisonMetric": "Reinvestment Timing: Fixed Interval vs Instantaneous",
+            "highlightSide": "right"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Discrete Compounding",
+              "rightTitle": "Continuous Compounding",
+              "leftMetrics": [
+                "Discontinuous steps",
+                "Reinvestment lag"
+              ],
+              "rightMetrics": [
+                "Instantaneous reinvestment",
+                "Pure exponential e^(rT)"
+              ],
+              "state": "right_focus"
+            },
+            "semantics": {
+              "teachingObjective": "Highlight continuous reinvestment and mathematical elegance of e^(rT)",
+              "sourceFactIds": [
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "efbda2fd139f1c1b",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b15.mp3",
+          "audioDurationSec": 6.02,
+          "durationInFrames": 193,
+          "subtitlePhrases": [
+            {
+              "text": "Continuous compounding expands wealth continuously",
+              "startMs": 0,
+              "endMs": 3541
+            },
+            {
+              "text": "along a seamless exponential curve.",
+              "startMs": 3541,
+              "endMs": 6020
+            }
+          ]
+        },
+        {
+          "id": "b16",
+          "hindi_tts": "Both yield identical terminal wealth, but continuous compounding enables seamless derivatives valuation.",
+          "en_subtitle": "Both yield identical terminal wealth, but continuous compounding enables seamless derivatives valuation.",
+          "en_narration": "Both yield identical terminal wealth, but continuous compounding enables seamless derivatives valuation.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftTitle": "Discrete Compounding",
+            "leftSubtitle": "Periodic Step Growth",
+            "leftBadge": "Retail Banking",
+            "leftPoints": [
+              "Terminal formula: A = P · (1 + R_m / m)^(m·T)",
+              "Quoted in bank deposits, commercial loans, and mortgages",
+              "Requires conversion for quantitative derivative pricing",
+              "Terminal value matches exactly when R_c = m·ln(1+R_m/m)"
+            ],
+            "rightTitle": "Continuous Compounding",
+            "rightSubtitle": "Smooth Exponential Growth",
+            "rightBadge": "Derivatives Engine",
+            "rightPoints": [
+              "Terminal formula: A = P · e^(R_c · T)",
+              "Standard in Black-Scholes, forward pricing, and swap discounting",
+              "Discount factor: e^(-rT) operates linearly across multi-year horizons",
+              "Universal benchmark for quantitative interest rate curves"
+            ],
+            "comparisonMetric": "Verdict: 10% Semiannual ≡ 9.758% Continuous",
+            "highlightSide": "both"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Discrete Compounding",
+              "rightTitle": "Continuous Compounding",
+              "leftMetrics": [
+                "Standard bank quotes",
+                "Terminal wealth identical"
+              ],
+              "rightMetrics": [
+                "Universal derivatives engine",
+                "Linear multi-year discounting"
+              ],
+              "state": "balanced"
+            },
+            "semantics": {
+              "teachingObjective": "Confirm equivalence of discrete and continuous terminal wealth and justify derivatives adoption",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "4d7584022170e64a",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b16.mp3",
+          "audioDurationSec": 6.84,
+          "durationInFrames": 221,
+          "subtitlePhrases": [
+            {
+              "text": "Both yield identical terminal wealth,",
+              "startMs": 0,
+              "endMs": 2457
+            },
+            {
+              "text": "but continuous compounding enables seamless derivatives valuation.",
+              "startMs": 2457,
+              "endMs": 6840
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Bond Pricing via Zero Rates",
+      "template": "formula_breakdown",
+      "badge": "No-Arbitrage Pricing",
+      "beats": [
+        {
+          "id": "b17",
+          "hindi_tts": "Most market participants mistakenly discount every bond coupon using a single yield to maturity.",
+          "en_subtitle": "Most market participants mistakenly discount every bond coupon with a single yield to maturity.",
+          "en_narration": "Most market participants mistakenly discount every bond coupon using a single yield to maturity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Bond Pricing via Individual Zero Rates",
+            "expression": "P = \\sum C_i e^{-r_i t_i} + M e^{-r_n t_n}",
+            "variables": [
+              {
+                "symbol": "P",
+                "label": "Bond Price",
+                "description": "Theoretical cash price of the bond",
+                "unit": "$"
+              },
+              {
+                "symbol": "C_i",
+                "label": "Coupon Payment",
+                "description": "Coupon cash flow received at time t_i",
+                "unit": "$"
+              },
+              {
+                "symbol": "r_i",
+                "label": "Spot Zero Rate",
+                "description": "Continuously compounded zero rate for maturity t_i",
+                "unit": "%"
+              },
+              {
+                "symbol": "M",
+                "label": "Par Value",
+                "description": "Principal repayment received at maturity t_n",
+                "unit": "$"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Deconstruct Cash Flows",
+                "equation": "P = C_1 e^{-r_1 t_1} + \\dots + (C_n + M) e^{-r_n t_n}",
+                "note": "Treat bond as a portfolio of pure zero-coupon payoffs"
+              }
+            ],
+            "assumptions": [
+              "Market is frictionless with zero default risk across Treasury zero rates."
+            ],
+            "interpretation": "Discounting each coupon at its unique zero rate eliminates yield curve distortions."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Bond Pricing via Individual Zero Rates",
+              "expression": "P = \\sum C_i e^{-r_i t_i} + M e^{-r_n t_n}",
+              "variables": [
+                {
+                  "symbol": "P",
+                  "label": "Bond Price",
+                  "description": "Theoretical cash price of the bond",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "C_i",
+                  "label": "Coupon Payment",
+                  "description": "Coupon cash flow received at time t_i",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "r_i",
+                  "label": "Spot Zero Rate",
+                  "description": "Continuously compounded zero rate for maturity t_i",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "M",
+                  "label": "Par Value",
+                  "description": "Principal repayment received at maturity t_n",
+                  "unit": "$"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Deconstruct Cash Flows",
+                  "equation": "P = C_1 e^{-r_1 t_1} + \\dots + (C_n + M) e^{-r_n t_n}",
+                  "note": "Treat bond as a portfolio of pure zero-coupon payoffs"
+                }
+              ],
+              "assumptions": [
+                "Market is frictionless with zero default risk across Treasury zero rates."
+              ],
+              "interpretation": "Discounting each coupon at its unique zero rate eliminates yield curve distortions."
+            },
+            "semantics": {
+              "teachingObjective": "Present the foundational no-arbitrage bond pricing formula using zero rates",
+              "sourceFactIds": [
+                "fact-04",
+                "fact-05"
+              ]
+            }
+          },
+          "narrationHash": "96c719619c4aea20",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b17.mp3",
+          "audioDurationSec": 6.38,
+          "durationInFrames": 204,
+          "subtitlePhrases": [
+            {
+              "text": "Most market participants mistakenly discount",
+              "startMs": 0,
+              "endMs": 3018
+            },
+            {
+              "text": "every bond coupon with a",
+              "startMs": 3018,
+              "endMs": 4664
+            },
+            {
+              "text": "single yield to maturity.",
+              "startMs": 4664,
+              "endMs": 6380
+            }
+          ]
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "A coupon bond is a package of zero-coupon payouts, each requiring its own spot zero rate.",
+          "en_subtitle": "A bond is a portfolio of zero coupons, each requiring its own spot zero rate.",
+          "en_narration": "A coupon bond is a package of zero-coupon payouts, each requiring its own spot zero rate.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Bond Pricing via Individual Zero Rates",
+            "expression": "P = \\sum C_i e^{-r_i t_i} + M e^{-r_n t_n}",
+            "variables": [
+              {
+                "symbol": "P",
+                "label": "Bond Price",
+                "description": "Theoretical cash price of the bond",
+                "unit": "$"
+              },
+              {
+                "symbol": "C_i",
+                "label": "Coupon Payment",
+                "description": "Coupon cash flow received at time t_i",
+                "unit": "$"
+              },
+              {
+                "symbol": "r_i",
+                "label": "Spot Zero Rate",
+                "description": "Continuously compounded zero rate for maturity t_i",
+                "unit": "%"
+              },
+              {
+                "symbol": "M",
+                "label": "Par Value",
+                "description": "Principal repayment received at maturity t_n",
+                "unit": "$"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Discount Each Payout",
+                "equation": "\\text{PV}_i = C_i \\cdot e^{-r_i \\cdot t_i}",
+                "note": "Each cash flow is discounted using its dedicated zero rate"
+              }
+            ],
+            "assumptions": [
+              "Market is frictionless with zero default risk across Treasury zero rates."
+            ],
+            "interpretation": "Discounting each coupon at its unique zero rate eliminates yield curve distortions."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Bond Pricing via Individual Zero Rates",
+              "expression": "P = \\sum C_i e^{-r_i t_i} + M e^{-r_n t_n}",
+              "variables": [
+                {
+                  "symbol": "P",
+                  "label": "Bond Price",
+                  "description": "Theoretical cash price of the bond",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "C_i",
+                  "label": "Coupon Payment",
+                  "description": "Coupon cash flow received at time t_i",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "r_i",
+                  "label": "Spot Zero Rate",
+                  "description": "Continuously compounded zero rate for maturity t_i",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "M",
+                  "label": "Par Value",
+                  "description": "Principal repayment received at maturity t_n",
+                  "unit": "$"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Discount Each Payout",
+                  "equation": "\\text{PV}_i = C_i \\cdot e^{-r_i \\cdot t_i}",
+                  "note": "Each cash flow is discounted using its dedicated zero rate"
+                }
+              ],
+              "assumptions": [
+                "Market is frictionless with zero default risk across Treasury zero rates."
+              ],
+              "interpretation": "Discounting each coupon at its unique zero rate eliminates yield curve distortions."
+            },
+            "semantics": {
+              "teachingObjective": "Deconstruct bond into distinct zero-coupon cash flows",
+              "sourceFactIds": [
+                "fact-05"
+              ]
+            }
+          },
+          "narrationHash": "7246718bb8265527",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b18.mp3",
+          "audioDurationSec": 6.58,
+          "durationInFrames": 210,
+          "subtitlePhrases": [
+            {
+              "text": "A bond is a portfolio of zero coupons,",
+              "startMs": 0,
+              "endMs": 3290
+            },
+            {
+              "text": "each requiring its own spot zero rate.",
+              "startMs": 3290,
+              "endMs": 6580
+            }
+          ]
+        },
+        {
+          "id": "b19",
+          "hindi_tts": "Discounting each coupon at its unique zero rate guarantees exact no-arbitrage valuation.",
+          "en_subtitle": "Discounting each coupon at its unique spot zero rate ensures exact market valuation without arbitrage.",
+          "en_narration": "Discounting each coupon at its unique zero rate guarantees exact no-arbitrage valuation.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "title": "Bond Pricing via Individual Zero Rates",
+            "expression": "P = \\sum C_i e^{-r_i t_i} + M e^{-r_n t_n}",
+            "variables": [
+              {
+                "symbol": "P",
+                "label": "Bond Price",
+                "description": "Theoretical cash price of the bond",
+                "unit": "$"
+              },
+              {
+                "symbol": "C_i",
+                "label": "Coupon Payment",
+                "description": "Coupon cash flow received at time t_i",
+                "unit": "$"
+              },
+              {
+                "symbol": "r_i",
+                "label": "Spot Zero Rate",
+                "description": "Continuously compounded zero rate for maturity t_i",
+                "unit": "%"
+              },
+              {
+                "symbol": "M",
+                "label": "Par Value",
+                "description": "Principal repayment received at maturity t_n",
+                "unit": "$"
+              }
+            ],
+            "steps": [
+              {
+                "stepIndex": 0,
+                "label": "Sum Discounted Values",
+                "equation": "P = \\sum_{i=1}^n C_i e^{-r_i t_i} + M e^{-r_n t_n}",
+                "note": "Guarantees no arbitrage against replicated zero-coupon bonds"
+              }
+            ],
+            "assumptions": [
+              "Market is frictionless with zero default risk across Treasury zero rates."
+            ],
+            "interpretation": "Discounting each coupon at its unique zero rate eliminates yield curve distortions."
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Bond Pricing via Individual Zero Rates",
+              "expression": "P = \\sum C_i e^{-r_i t_i} + M e^{-r_n t_n}",
+              "variables": [
+                {
+                  "symbol": "P",
+                  "label": "Bond Price",
+                  "description": "Theoretical cash price of the bond",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "C_i",
+                  "label": "Coupon Payment",
+                  "description": "Coupon cash flow received at time t_i",
+                  "unit": "$"
+                },
+                {
+                  "symbol": "r_i",
+                  "label": "Spot Zero Rate",
+                  "description": "Continuously compounded zero rate for maturity t_i",
+                  "unit": "%"
+                },
+                {
+                  "symbol": "M",
+                  "label": "Par Value",
+                  "description": "Principal repayment received at maturity t_n",
+                  "unit": "$"
+                }
+              ],
+              "steps": [
+                {
+                  "stepIndex": 0,
+                  "label": "Sum Discounted Values",
+                  "equation": "P = \\sum_{i=1}^n C_i e^{-r_i t_i} + M e^{-r_n t_n}",
+                  "note": "Guarantees no arbitrage against replicated zero-coupon bonds"
+                }
+              ],
+              "assumptions": [
+                "Market is frictionless with zero default risk across Treasury zero rates."
+              ],
+              "interpretation": "Discounting each coupon at its unique zero rate eliminates yield curve distortions."
+            },
+            "semantics": {
+              "teachingObjective": "Verify theoretical bond price using multi-period zero rate discounting",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "5363eeb5f5cdb6a4",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b19.mp3",
+          "audioDurationSec": 6.48,
+          "durationInFrames": 210,
+          "subtitlePhrases": [
+            {
+              "text": "Discounting each coupon at its",
+              "startMs": 0,
+              "endMs": 1944
+            },
+            {
+              "text": "unique spot zero rate ensures",
+              "startMs": 1944,
+              "endMs": 3823
+            },
+            {
+              "text": "exact market valuation without arbitrage.",
+              "startMs": 3823,
+              "endMs": 6480
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "The Bootstrap Method Step-by-Step",
+      "template": "progressive_cards",
+      "badge": "Curve Construction",
+      "beats": [
+        {
+          "id": "b20",
+          "hindi_tts": "To construct the zero curve, trading desks utilize the recursive bootstrap method.",
+          "en_subtitle": "To construct the continuous zero curve, quantitative desks utilize the recursive bootstrap method.",
+          "en_narration": "To construct the zero curve, trading desks utilize the recursive bootstrap method.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "Step 1: Money Market Zero Rates",
+                "subtitle": "T-Bills & Cash Rates (<= 1 Year)",
+                "value": "Direct Zero Rates",
+                "badge": "Pure Discount",
+                "state": "active_teal",
+                "bulletPoints": [
+                  "3-month and 6-month Treasury bills have no coupons",
+                  "Direct yield gives spot zero rates: r_0.25 and r_0.50",
+                  "Forms the firm anchor at the short end of the zero curve"
+                ]
+              },
+              {
+                "title": "Step 2: 1-Year Coupon Bond",
+                "subtitle": "Isolating the 1-Year Zero Rate",
+                "value": "Algebraic Extraction",
+                "badge": "First Coupon Solved",
+                "state": "muted",
+                "bulletPoints": [
+                  "6-month coupon is discounted using known r_0.50",
+                  "Only the 1-year payment is unknown in bond price formula",
+                  "Solve directly: r_1.0 = -ln[(P - C·e^(-r_0.5·0.5)) / (C + M)]"
+                ]
+              },
+              {
+                "title": "Step 3: 1.5-Year Coupon Bond",
+                "subtitle": "Recursive Backward Substitution",
+                "value": "Sequential Bootstrap",
+                "badge": "Multi-Period Cascade",
+                "state": "muted",
+                "bulletPoints": [
+                  "Coupons at 0.5y and 1.0y discounted at r_0.50 and r_1.0",
+                  "Isolates the 1.5-year cash flow (C + M) at time 1.5y",
+                  "Unlocks r_1.5 cleanly without simultaneous equation systems"
+                ]
+              },
+              {
+                "title": "Step 4: Full Zero Curve",
+                "subtitle": "Extending to 2y, 5y, and 10y",
+                "value": "Complete Zero Curve",
+                "badge": "Pricing Benchmark",
+                "state": "muted",
+                "bulletPoints": [
+                  "Iterate sequentially across all benchmark bond maturities",
+                  "Interpolate linearly or with cubic splines between nodes",
+                  "Creates authoritative zero curve for swap and option valuation"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cardCount": 4,
+              "focusTopic": "Step 1: Short End Anchor"
+            },
+            "semantics": {
+              "teachingObjective": "Introduce bootstrap method and show short-term cash rates",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "ce8e3dc0a1ed177a",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b20.mp3",
+          "audioDurationSec": 5.9,
+          "durationInFrames": 189,
+          "subtitlePhrases": [
+            {
+              "text": "To construct the continuous zero curve,",
+              "startMs": 0,
+              "endMs": 2372
+            },
+            {
+              "text": "quantitative desks utilize the recursive bootstrap method.",
+              "startMs": 2372,
+              "endMs": 5900
+            }
+          ]
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "Step one: Three and six month Treasury bills have no coupons, directly providing zero rates.",
+          "en_subtitle": "Step one: Three and six month Treasury bills have no coupons, directly yielding spot zero rates.",
+          "en_narration": "Step one: Three and six month Treasury bills have no coupons, directly providing zero rates.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "Step 1: Money Market Zero Rates",
+                "subtitle": "T-Bills & Cash Rates (<= 1 Year)",
+                "value": "Direct Zero Rates",
+                "badge": "Pure Discount",
+                "state": "active_teal",
+                "bulletPoints": [
+                  "T-bills pay single face value at maturity with zero coupons",
+                  "Continuous zero rate: r_T = -ln(P / 100) / T",
+                  "Directly yields r_0.25 and r_0.50 without any bootstrap solving"
+                ]
+              },
+              {
+                "title": "Step 2: 1-Year Coupon Bond",
+                "subtitle": "Isolating the 1-Year Zero Rate",
+                "value": "Algebraic Extraction",
+                "badge": "First Coupon Solved",
+                "state": "muted",
+                "bulletPoints": [
+                  "6-month coupon is discounted using known r_0.50",
+                  "Only the 1-year payment is unknown in bond price formula",
+                  "Solve directly: r_1.0 = -ln[(P - C·e^(-r_0.5·0.5)) / (C + M)]"
+                ]
+              },
+              {
+                "title": "Step 3: 1.5-Year Coupon Bond",
+                "subtitle": "Recursive Backward Substitution",
+                "value": "Sequential Bootstrap",
+                "badge": "Multi-Period Cascade",
+                "state": "muted",
+                "bulletPoints": [
+                  "Coupons at 0.5y and 1.0y discounted at r_0.50 and r_1.0",
+                  "Isolates the 1.5-year cash flow (C + M) at time 1.5y",
+                  "Unlocks r_1.5 cleanly without simultaneous equation systems"
+                ]
+              },
+              {
+                "title": "Step 4: Full Zero Curve",
+                "subtitle": "Extending to 2y, 5y, and 10y",
+                "value": "Complete Zero Curve",
+                "badge": "Pricing Benchmark",
+                "state": "muted",
+                "bulletPoints": [
+                  "Iterate sequentially across all benchmark bond maturities",
+                  "Interpolate linearly or with cubic splines between nodes",
+                  "Creates authoritative zero curve for swap and option valuation"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cardCount": 4,
+              "focusTopic": "Pure Discount Instruments"
+            },
+            "semantics": {
+              "teachingObjective": "Anchor bootstrap with zero-coupon money market instruments",
+              "sourceFactIds": [
+                "fact-04",
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "585d62ea81e3b90d",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b21.mp3",
+          "audioDurationSec": 6.98,
+          "durationInFrames": 222,
+          "subtitlePhrases": [
+            {
+              "text": "Step one: Three and six month Treasury bills have no coupons,",
+              "startMs": 0,
+              "endMs": 4482
+            },
+            {
+              "text": "directly yielding spot zero rates.",
+              "startMs": 4482,
+              "endMs": 6980
+            }
+          ]
+        },
+        {
+          "id": "b22",
+          "hindi_tts": "Step two: Discount the six-month coupon at the known rate to isolate the one-year zero rate.",
+          "en_subtitle": "Step two: Discount the six-month coupon using the known rate, algebraically isolating the one-year zero rate.",
+          "en_narration": "Step two: Discount the six-month coupon at the known rate to isolate the one-year zero rate.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "Step 1: Money Market Zero Rates",
+                "subtitle": "T-Bills & Cash Rates (<= 1 Year)",
+                "value": "Direct Zero Rates",
+                "badge": "Pure Discount",
+                "state": "muted",
+                "bulletPoints": [
+                  "T-bills pay single face value at maturity with zero coupons",
+                  "Continuous zero rate: r_T = -ln(P / 100) / T",
+                  "Directly yields r_0.25 and r_0.50 without any bootstrap solving"
+                ]
+              },
+              {
+                "title": "Step 2: 1-Year Coupon Bond",
+                "subtitle": "Isolating the 1-Year Zero Rate",
+                "value": "r_1.0 = 5.93%",
+                "badge": "First Coupon Solved",
+                "state": "active_amber",
+                "bulletPoints": [
+                  "Bond price: 100 = 3·e^(-0.05·0.5) + 103·e^(-r_1.0·1.0)",
+                  "First coupon PV: 3·e^(-0.025) = $2.9259",
+                  "Solve: 103·e^(-r_1.0) = 97.0741 -> r_1.0 = 5.93%"
+                ]
+              },
+              {
+                "title": "Step 3: 1.5-Year Coupon Bond",
+                "subtitle": "Recursive Backward Substitution",
+                "value": "Sequential Bootstrap",
+                "badge": "Multi-Period Cascade",
+                "state": "muted",
+                "bulletPoints": [
+                  "Coupons at 0.5y and 1.0y discounted at r_0.50 and r_1.0",
+                  "Isolates the 1.5-year cash flow (C + M) at time 1.5y",
+                  "Unlocks r_1.5 cleanly without simultaneous equation systems"
+                ]
+              },
+              {
+                "title": "Step 4: Full Zero Curve",
+                "subtitle": "Extending to 2y, 5y, and 10y",
+                "value": "Complete Zero Curve",
+                "badge": "Pricing Benchmark",
+                "state": "muted",
+                "bulletPoints": [
+                  "Iterate sequentially across all benchmark bond maturities",
+                  "Interpolate linearly or with cubic splines between nodes",
+                  "Creates authoritative zero curve for swap and option valuation"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1,
+              "cardCount": 4,
+              "focusTopic": "Isolating r_1.0"
+            },
+            "semantics": {
+              "teachingObjective": "Show analytical extraction of 1-year zero rate via bootstrap",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "2d3ddef243c1cdab",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b22.mp3",
+          "audioDurationSec": 6.36,
+          "durationInFrames": 203,
+          "subtitlePhrases": [
+            {
+              "text": "Step two: Discount the six-month coupon using the known rate,",
+              "startMs": 0,
+              "endMs": 3592
+            },
+            {
+              "text": "algebraically isolating the one-year zero rate.",
+              "startMs": 3592,
+              "endMs": 6360
+            }
+          ]
+        },
+        {
+          "id": "b23",
+          "hindi_tts": "Repeating this sequential calculation across maturities constructs the complete zero rate term structure.",
+          "en_subtitle": "Repeating this recursive calculation across all maturities constructs the entire term structure of zero rates.",
+          "en_narration": "Repeating this sequential calculation across maturities constructs the complete zero rate term structure.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "Step 1: Money Market Zero Rates",
+                "subtitle": "T-Bills & Cash Rates (<= 1 Year)",
+                "value": "r_0.5 = 5.00%",
+                "badge": "Pure Discount",
+                "state": "muted",
+                "bulletPoints": [
+                  "T-bills pay single face value at maturity with zero coupons",
+                  "Continuous zero rate: r_T = -ln(P / 100) / T",
+                  "Directly yields r_0.25 and r_0.50 without any bootstrap solving"
+                ]
+              },
+              {
+                "title": "Step 2: 1-Year Coupon Bond",
+                "subtitle": "Isolating the 1-Year Zero Rate",
+                "value": "r_1.0 = 5.93%",
+                "badge": "First Coupon Solved",
+                "state": "muted",
+                "bulletPoints": [
+                  "Bond price: 100 = 3·e^(-0.05·0.5) + 103·e^(-r_1.0·1.0)",
+                  "First coupon PV: 3·e^(-0.025) = $2.9259",
+                  "Solve: 103·e^(-r_1.0) = 97.0741 -> r_1.0 = 5.93%"
+                ]
+              },
+              {
+                "title": "Step 3: 1.5-Year Coupon Bond",
+                "subtitle": "Recursive Backward Substitution",
+                "value": "r_1.5 = 6.42%",
+                "badge": "Multi-Period Cascade",
+                "state": "muted",
+                "bulletPoints": [
+                  "Coupons at 0.5y and 1.0y discounted at r_0.50 and r_1.0",
+                  "Isolates the 1.5-year cash flow (C + M) at time 1.5y",
+                  "Unlocks r_1.5 cleanly without simultaneous equation systems"
+                ]
+              },
+              {
+                "title": "Step 4: Full Zero Curve",
+                "subtitle": "Extending to 2y, 5y, and 10y",
+                "value": "r_2.0 = 6.80%",
+                "badge": "Pricing Benchmark",
+                "state": "active_green",
+                "bulletPoints": [
+                  "Iterate sequentially across all benchmark bond maturities",
+                  "Interpolate linearly or with cubic splines between nodes",
+                  "Creates authoritative zero curve for swap and option valuation"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 3,
+              "cardCount": 4,
+              "focusTopic": "Full Zero Curve"
+            },
+            "semantics": {
+              "teachingObjective": "Complete full zero curve construction across maturities",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "f8cf39aee8182bd5",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b23.mp3",
+          "audioDurationSec": 6.5,
+          "durationInFrames": 210,
+          "subtitlePhrases": [
+            {
+              "text": "Repeating this recursive calculation across",
+              "startMs": 0,
+              "endMs": 2588
+            },
+            {
+              "text": "all maturities constructs the entire",
+              "startMs": 2588,
+              "endMs": 4755
+            },
+            {
+              "text": "term structure of zero rates.",
+              "startMs": 4755,
+              "endMs": 6500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "Par Yield vs Zero Rate Dynamics",
+      "template": "split_comparison",
+      "badge": "Term Structure Wedge",
+      "beats": [
+        {
+          "id": "b24",
+          "hindi_tts": "The par yield is the coupon rate per annum setting a bond price equal to par 100.",
+          "en_subtitle": "Par yield is the coupon rate setting a bond price equal to face value 100.",
+          "en_narration": "The par yield is the coupon rate per annum setting a bond price equal to par 100.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Par Yield Curve",
+            "leftSubtitle": "Coupon Rate Setting Price = 100",
+            "leftBadge": "Market Benchmark",
+            "leftPoints": [
+              "Coupon rate that equates bond cash flows to principal face value",
+              "Determined by: 100 = (c/2) · sum(e^(-r_i · t_i)) + 100 · e^(-r_n · t_n)",
+              "Blends yields of intermediate coupons with principal repayment",
+              "Heavily quoted in fixed income issuance desks"
+            ],
+            "rightTitle": "Zero Rate Curve",
+            "rightSubtitle": "Pure Single Cash Flow Spot Rate",
+            "rightBadge": "Derivatives Valuation",
+            "rightPoints": [
+              "Return on a zero-coupon bond with no intermediate payouts",
+              "Zero reinvestment risk across the entire investment lifecycle",
+              "Lies strictly ABOVE par curve in normal upward-sloping markets",
+              "Universal discount ruler for forwards, swaps, and options"
+            ],
+            "comparisonMetric": "Concept: Coupon-bearing Par Benchmark vs Pure Spot Yield",
+            "highlightSide": "left"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Par Yield Curve",
+              "rightTitle": "Zero Rate Curve",
+              "leftMetrics": [
+                "Price = 100 coupon rate",
+                "Blended cash flows"
+              ],
+              "rightMetrics": [
+                "Single spot cash flow",
+                "No reinvestment risk"
+              ],
+              "state": "left_focus"
+            },
+            "semantics": {
+              "teachingObjective": "Define par yield and show how it equates bond price to face value",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "8e80732c04b1c3bc",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b24.mp3",
+          "audioDurationSec": 5.71,
+          "durationInFrames": 184,
+          "subtitlePhrases": [
+            {
+              "text": "Par yield is the coupon",
+              "startMs": 0,
+              "endMs": 1824
+            },
+            {
+              "text": "rate setting a bond price",
+              "startMs": 1824,
+              "endMs": 3807
+            },
+            {
+              "text": "equal to face value 100.",
+              "startMs": 3807,
+              "endMs": 5710
+            }
+          ]
+        },
+        {
+          "id": "b25",
+          "hindi_tts": "In contrast, the zero rate is the return on a pure discount payout with zero reinvestment risk.",
+          "en_subtitle": "The zero rate is the return on a pure discount payout with zero reinvestment risk.",
+          "en_narration": "In contrast, the zero rate is the return on a pure discount payout with zero reinvestment risk.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftTitle": "Par Yield Curve",
+            "leftSubtitle": "Coupon Rate Setting Price = 100",
+            "leftBadge": "Market Benchmark",
+            "leftPoints": [
+              "Coupon rate that equates bond cash flows to principal face value",
+              "Determined by: 100 = (c/2) · sum(e^(-r_i · t_i)) + 100 · e^(-r_n · t_n)",
+              "Blends yields of intermediate coupons with principal repayment",
+              "Heavily quoted in fixed income issuance desks"
+            ],
+            "rightTitle": "Zero Rate Curve",
+            "rightSubtitle": "Pure Single Cash Flow Spot Rate",
+            "rightBadge": "Derivatives Valuation",
+            "rightPoints": [
+              "Return on a zero-coupon bond with no intermediate payouts",
+              "Zero reinvestment risk across the entire investment lifecycle",
+              "Lies strictly ABOVE par curve in normal upward-sloping markets",
+              "Universal discount ruler for forwards, swaps, and options"
+            ],
+            "comparisonMetric": "Reinvestment Risk: Blended intermediate coupons vs Zero intermediate payouts",
+            "highlightSide": "right"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Par Yield Curve",
+              "rightTitle": "Zero Rate Curve",
+              "leftMetrics": [
+                "Intermediate coupon drag",
+                "Quoted issuance rate"
+              ],
+              "rightMetrics": [
+                "Zero reinvestment risk",
+                "Pure spot return"
+              ],
+              "state": "right_focus"
+            },
+            "semantics": {
+              "teachingObjective": "Define zero rate as pure spot yield with no reinvestment risk",
+              "sourceFactIds": [
+                "fact-04",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "3c09f6481fa49b40",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b25.mp3",
+          "audioDurationSec": 6.72,
+          "durationInFrames": 214,
+          "subtitlePhrases": [
+            {
+              "text": "The zero rate is the",
+              "startMs": 0,
+              "endMs": 1680
+            },
+            {
+              "text": "return on a pure discount",
+              "startMs": 1680,
+              "endMs": 3780
+            },
+            {
+              "text": "payout with zero reinvestment risk.",
+              "startMs": 3780,
+              "endMs": 6720
+            }
+          ]
+        },
+        {
+          "id": "b26",
+          "hindi_tts": "In upward-sloping markets, the zero curve lies strictly above the par yield curve.",
+          "en_subtitle": "In normal upward-sloping markets, the zero curve lies strictly above the par yield curve.",
+          "en_narration": "In upward-sloping markets, the zero curve lies strictly above the par yield curve.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "leftTitle": "Par Yield Curve",
+            "leftSubtitle": "Coupon Rate Setting Price = 100",
+            "leftBadge": "Market Benchmark",
+            "leftPoints": [
+              "Lower than zero curve because early coupons are discounted at lower short-term rates",
+              "Par yield: c = 2 · (100 - 100·e^(-r_n·t_n)) / sum(e^(-r_i·t_i))",
+              "Acts as a weighted average across all maturity zero rates",
+              "Understates true long-term discount rates during expansions"
+            ],
+            "rightTitle": "Zero Rate Curve",
+            "rightSubtitle": "Pure Single Cash Flow Spot Rate",
+            "rightBadge": "Derivatives Valuation",
+            "rightPoints": [
+              "Higher than par curve because no cash is returned early at lower short-term rates",
+              "Every dollar remains invested until maturity t_n",
+              "Captures the full compounding power of long-term spot yields",
+              "Mandatory benchmark for all multi-year interest rate swaps"
+            ],
+            "comparisonMetric": "Wedge: Zero Curve > Par Curve (Upward Sloping Yield Curve)",
+            "highlightSide": "both"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftTitle": "Par Yield Curve",
+              "rightTitle": "Zero Rate Curve",
+              "leftMetrics": [
+                "Discounted at lower short rates",
+                "Lies below zero curve"
+              ],
+              "rightMetrics": [
+                "Full long-term compounding",
+                "Lies above par curve"
+              ],
+              "state": "balanced"
+            },
+            "semantics": {
+              "teachingObjective": "Explain the mathematical wedge between par yield and zero curves in upward-sloping markets",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "07ad326a7c94ecc8",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b26.mp3",
+          "audioDurationSec": 5.93,
+          "durationInFrames": 193,
+          "subtitlePhrases": [
+            {
+              "text": "In normal upward-sloping markets,",
+              "startMs": 0,
+              "endMs": 2224
+            },
+            {
+              "text": "the zero curve lies strictly above the par yield curve.",
+              "startMs": 2224,
+              "endMs": 5930
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "The 2008 Crisis & The OIS Revolution",
+      "template": "progressive_cards",
+      "badge": "Systemic Paradigm Shift",
+      "beats": [
+        {
+          "id": "b27",
+          "hindi_tts": "Prior to 2008, financial markets treated LIBOR as the universal risk-free benchmark.",
+          "en_subtitle": "Prior to 2008, global finance treated LIBOR as the universal risk-free benchmark for all derivatives.",
+          "en_narration": "Prior to 2008, financial markets treated LIBOR as the universal risk-free benchmark.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "1. The Pre-2008 Illusion",
+                "subtitle": "LIBOR Treated as Risk-Free",
+                "value": "LIBOR = Risk-Free",
+                "badge": "Flawed Assumption",
+                "state": "active_amber",
+                "bulletPoints": [
+                  "Banks assumed AA interbank credit risk was negligible",
+                  "Swaps and forwards were universally discounted using LIBOR",
+                  "Ignored underlying counterparty solvency risks"
+                ]
+              },
+              {
+                "title": "2. The 2008 Credit Freeze",
+                "subtitle": "Lehman Collapse & Spread Explosion",
+                "value": "Spread: 10 -> 364 bps",
+                "badge": "Systemic Shock",
+                "state": "muted",
+                "bulletPoints": [
+                  "Interbank trust evaporated overnight in September 2008",
+                  "LIBOR-OIS spread blew out from 10 bps to 364 bps",
+                  "Proved LIBOR contained massive credit and liquidity risk"
+                ]
+              },
+              {
+                "title": "3. Collateral Alignment",
+                "subtitle": "Cash Collateral Margin Reality",
+                "value": "Overnight Rate Earned",
+                "badge": "Economic Foundation",
+                "state": "muted",
+                "bulletPoints": [
+                  "Standard CSA agreements mandate daily cash margin posting",
+                  "Collateral margin earns the Fed Funds / SOFR overnight rate",
+                  "Discounting collateralized trades with LIBOR created huge valuation errors"
+                ]
+              },
+              {
+                "title": "4. The OIS Paradigm",
+                "subtitle": "Modern Post-Crisis Benchmark",
+                "value": "OIS Discounting Mandated",
+                "badge": "Regulatory Standard",
+                "state": "muted",
+                "bulletPoints": [
+                  "Exchanges and clearing houses switched all discounting to OIS",
+                  "Eliminated bank credit risk from derivatives valuation",
+                  "OIS / SOFR zero curve is now the non-negotiable benchmark"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cardCount": 4,
+              "focusTopic": "Pre-2008 Illusion"
+            },
+            "semantics": {
+              "teachingObjective": "Present the historical pre-2008 reliance on LIBOR",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "df9c5e3fa9f47188",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b27.mp3",
+          "audioDurationSec": 6.43,
+          "durationInFrames": 205,
+          "subtitlePhrases": [
+            {
+              "text": "Prior to 2008,",
+              "startMs": 0,
+              "endMs": 900
+            },
+            {
+              "text": "global finance treated LIBOR as the universal risk-free benchmark for all derivatives.",
+              "startMs": 900,
+              "endMs": 6430
+            }
+          ]
+        },
+        {
+          "id": "b28",
+          "hindi_tts": "When Lehman collapsed, interbank trust froze and the LIBOR-OIS spread spiked to 364 basis points.",
+          "en_subtitle": "When Lehman collapsed, interbank trust froze and the LIBOR-OIS spread spiked to 364 basis points.",
+          "en_narration": "When Lehman collapsed, interbank trust froze and the LIBOR-OIS spread spiked to 364 basis points.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "1. The Pre-2008 Illusion",
+                "subtitle": "LIBOR Treated as Risk-Free",
+                "value": "LIBOR = Risk-Free",
+                "badge": "Flawed Assumption",
+                "state": "muted",
+                "bulletPoints": [
+                  "Banks assumed AA interbank credit risk was negligible",
+                  "Swaps and forwards were universally discounted using LIBOR",
+                  "Ignored underlying counterparty solvency risks"
+                ]
+              },
+              {
+                "title": "2. The 2008 Credit Freeze",
+                "subtitle": "Lehman Collapse & Spread Explosion",
+                "value": "Spread: 364 bps",
+                "badge": "Systemic Shock",
+                "state": "active_red",
+                "bulletPoints": [
+                  "Interbank trust evaporated overnight in September 2008",
+                  "LIBOR-OIS spread blew out from 10 bps to 364 bps",
+                  "Proved LIBOR contained massive credit and liquidity risk"
+                ]
+              },
+              {
+                "title": "3. Collateral Alignment",
+                "subtitle": "Cash Collateral Margin Reality",
+                "value": "Overnight Rate Earned",
+                "badge": "Economic Foundation",
+                "state": "muted",
+                "bulletPoints": [
+                  "Standard CSA agreements mandate daily cash margin posting",
+                  "Collateral margin earns the Fed Funds / SOFR overnight rate",
+                  "Discounting collateralized trades with LIBOR created huge valuation errors"
+                ]
+              },
+              {
+                "title": "4. The OIS Paradigm",
+                "subtitle": "Modern Post-Crisis Benchmark",
+                "value": "OIS Discounting Mandated",
+                "badge": "Regulatory Standard",
+                "state": "muted",
+                "bulletPoints": [
+                  "Exchanges and clearing houses switched all discounting to OIS",
+                  "Eliminated bank credit risk from derivatives valuation",
+                  "OIS / SOFR zero curve is now the non-negotiable benchmark"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 1,
+              "cardCount": 4,
+              "focusTopic": "Spread Blowout"
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate credit risk exposure during the 2008 LIBOR spread explosion",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "5d67b9de58ff2c94",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b28.mp3",
+          "audioDurationSec": 8.06,
+          "durationInFrames": 254,
+          "subtitlePhrases": [
+            {
+              "text": "When Lehman collapsed,",
+              "startMs": 0,
+              "endMs": 1847
+            },
+            {
+              "text": "interbank trust froze and the LIBOR-OIS spread spiked to 364 basis points.",
+              "startMs": 1847,
+              "endMs": 8060
+            }
+          ]
+        },
+        {
+          "id": "b29",
+          "hindi_tts": "Because collateral margin earns overnight interest, collateralized trades must be discounted with OIS.",
+          "en_subtitle": "Because collateral margin earns the overnight rate, collateralized derivatives must be discounted with OIS.",
+          "en_narration": "Because collateral margin earns overnight interest, collateralized trades must be discounted with OIS.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "1. The Pre-2008 Illusion",
+                "subtitle": "LIBOR Treated as Risk-Free",
+                "value": "LIBOR = Risk-Free",
+                "badge": "Flawed Assumption",
+                "state": "muted",
+                "bulletPoints": [
+                  "Banks assumed AA interbank credit risk was negligible",
+                  "Swaps and forwards were universally discounted using LIBOR",
+                  "Ignored underlying counterparty solvency risks"
+                ]
+              },
+              {
+                "title": "2. The 2008 Credit Freeze",
+                "subtitle": "Lehman Collapse & Spread Explosion",
+                "value": "Spread: 364 bps",
+                "badge": "Systemic Shock",
+                "state": "muted",
+                "bulletPoints": [
+                  "Interbank trust evaporated overnight in September 2008",
+                  "LIBOR-OIS spread blew out from 10 bps to 364 bps",
+                  "Proved LIBOR contained massive credit and liquidity risk"
+                ]
+              },
+              {
+                "title": "3. Collateral Alignment",
+                "subtitle": "Cash Collateral Margin Reality",
+                "value": "Overnight Rate Earned",
+                "badge": "Economic Foundation",
+                "state": "active_teal",
+                "bulletPoints": [
+                  "Standard CSA agreements mandate daily cash margin posting",
+                  "Collateral margin earns the Fed Funds / SOFR overnight rate",
+                  "Discounting collateralized trades with LIBOR created huge valuation errors"
+                ]
+              },
+              {
+                "title": "4. The OIS Paradigm",
+                "subtitle": "Modern Post-Crisis Benchmark",
+                "value": "OIS Discounting Mandated",
+                "badge": "Regulatory Standard",
+                "state": "muted",
+                "bulletPoints": [
+                  "Exchanges and clearing houses switched all discounting to OIS",
+                  "Eliminated bank credit risk from derivatives valuation",
+                  "OIS / SOFR zero curve is now the non-negotiable benchmark"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 2,
+              "cardCount": 4,
+              "focusTopic": "Collateral Alignment"
+            },
+            "semantics": {
+              "teachingObjective": "Explain economic necessity of discounting collateralized trades with OIS",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "aa33d08f0bc3838c",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b29.mp3",
+          "audioDurationSec": 6.89,
+          "durationInFrames": 219,
+          "subtitlePhrases": [
+            {
+              "text": "Because collateral margin earns the overnight rate,",
+              "startMs": 0,
+              "endMs": 3315
+            },
+            {
+              "text": "collateralized derivatives must be discounted with OIS.",
+              "startMs": 3315,
+              "endMs": 6890
+            }
+          ]
+        },
+        {
+          "id": "b30",
+          "hindi_tts": "Global clearing houses replaced LIBOR with OIS and SOFR as the definitive benchmark.",
+          "en_subtitle": "Consequently, global clearing houses replaced LIBOR with OIS and SOFR as the definitive benchmark.",
+          "en_narration": "Global clearing houses replaced LIBOR with OIS and SOFR as the definitive benchmark.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "cards": [
+              {
+                "title": "1. The Pre-2008 Illusion",
+                "subtitle": "LIBOR Treated as Risk-Free",
+                "value": "LIBOR = Risk-Free",
+                "badge": "Flawed Assumption",
+                "state": "muted",
+                "bulletPoints": [
+                  "Banks assumed AA interbank credit risk was negligible",
+                  "Swaps and forwards were universally discounted using LIBOR",
+                  "Ignored underlying counterparty solvency risks"
+                ]
+              },
+              {
+                "title": "2. The 2008 Credit Freeze",
+                "subtitle": "Lehman Collapse & Spread Explosion",
+                "value": "Spread: 364 bps",
+                "badge": "Systemic Shock",
+                "state": "muted",
+                "bulletPoints": [
+                  "Interbank trust evaporated overnight in September 2008",
+                  "LIBOR-OIS spread blew out from 10 bps to 364 bps",
+                  "Proved LIBOR contained massive credit and liquidity risk"
+                ]
+              },
+              {
+                "title": "3. Collateral Alignment",
+                "subtitle": "Cash Collateral Margin Reality",
+                "value": "Overnight Rate Earned",
+                "badge": "Economic Foundation",
+                "state": "muted",
+                "bulletPoints": [
+                  "Standard CSA agreements mandate daily cash margin posting",
+                  "Collateral margin earns the Fed Funds / SOFR overnight rate",
+                  "Discounting collateralized trades with LIBOR created huge valuation errors"
+                ]
+              },
+              {
+                "title": "4. The OIS Paradigm",
+                "subtitle": "Modern Post-Crisis Benchmark",
+                "value": "OIS Discounting Mandated",
+                "badge": "Regulatory Standard",
+                "state": "active_green",
+                "bulletPoints": [
+                  "Exchanges and clearing houses switched all discounting to OIS",
+                  "Eliminated bank credit risk from derivatives valuation",
+                  "OIS / SOFR zero curve is now the non-negotiable benchmark"
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 3,
+              "cardCount": 4,
+              "focusTopic": "Modern OIS Standard"
+            },
+            "semantics": {
+              "teachingObjective": "Establish OIS / SOFR as the permanent post-crisis discount standard",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "a3d2ee7fe61a7f05",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b30.mp3",
+          "audioDurationSec": 6.46,
+          "durationInFrames": 209,
+          "subtitlePhrases": [
+            {
+              "text": "Consequently,",
+              "startMs": 0,
+              "endMs": 866
+            },
+            {
+              "text": "global clearing houses replaced LIBOR with OIS and SOFR as the definitive benchmark.",
+              "startMs": 866,
+              "endMs": 6460
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall: Bootstrap Calculation",
+      "template": "interactive_quiz",
+      "badge": "Active Recall",
+      "beats": [
+        {
+          "id": "b31",
+          "hindi_tts": "Given a 1-year 6 percent semiannual par bond and a 6-month zero rate of 5 percent, what is the 1-year zero rate?",
+          "en_subtitle": "Given a 1-year 6% semiannual par bond and 6m zero rate 5%, calculate 1-year zero rate.",
+          "en_narration": "Given a 1-year 6 percent semiannual par bond and a 6-month zero rate of 5 percent, what is the 1-year zero rate?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "scenario": "A 1-year Treasury bond pays a 6% semiannual coupon and trades at par 100. The 6-month continuously compounded zero rate is 5%.",
+            "question": "Given a 1-year Treasury bond paying 6% semiannual coupon trading at par $100 and a 6-month zero rate of 5%, what is the 1-year continuous zero rate?",
+            "options": [
+              "A) 5.00% per annum",
+              "B) 5.93% per annum",
+              "C) 6.00% per annum",
+              "D) 6.25% per annum"
+            ],
+            "correctOptionIndex": 1,
+            "answer": "B) 5.93% per annum",
+            "showThinkingSpinner": false,
+            "explanation": "The 6-month coupon of $3 discounts to $2.9259. The remaining $97.0741 paid at 1 year yields r_1 = 5.93%."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "scenario": "A 1-year Treasury bond pays a 6% semiannual coupon and trades at par 100. The 6-month continuously compounded zero rate is 5%.",
+              "question": "Given a 1-year Treasury bond paying 6% semiannual coupon trading at par $100 and a 6-month zero rate of 5%, what is the 1-year continuous zero rate?",
+              "options": [
+                "A) 5.00% per annum",
+                "B) 5.93% per annum",
+                "C) 6.00% per annum",
+                "D) 6.25% per annum"
+              ],
+              "correctOptionIndex": 1,
+              "answer": "B) 5.93% per annum",
+              "showThinkingSpinner": false
+            },
+            "semantics": {
+              "teachingObjective": "Present quantitative bootstrap calculation scenario",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "012999108fe3e06c",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b31.mp3",
+          "audioDurationSec": 8.06,
+          "durationInFrames": 254,
+          "subtitlePhrases": [
+            {
+              "text": "Given a 1-year 6% semiannual par bond and 6m zero rate 5%,",
+              "startMs": 0,
+              "endMs": 5500
+            },
+            {
+              "text": "calculate 1-year zero rate.",
+              "startMs": 5500,
+              "endMs": 8060
+            }
+          ]
+        },
+        {
+          "id": "b32",
+          "hindi_tts": "Calculate carefully: Discount the 3 dollar coupon at 5 percent, leaving 97.07 dollars for the final cash flow.",
+          "en_subtitle": "Discount $3 coupon at 5%, leaving $97.07 for the 1-year final cash flow.",
+          "en_narration": "Calculate carefully: Discount the 3 dollar coupon at 5 percent, leaving 97.07 dollars for the final cash flow.",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "scenario": "A 1-year Treasury bond pays a 6% semiannual coupon and trades at par 100. The 6-month continuously compounded zero rate is 5%.",
+            "question": "Given a 1-year Treasury bond paying 6% semiannual coupon trading at par $100 and a 6-month zero rate of 5%, what is the 1-year continuous zero rate?",
+            "options": [
+              "A) 5.00% per annum",
+              "B) 5.93% per annum",
+              "C) 6.00% per annum",
+              "D) 6.25% per annum"
+            ],
+            "correctOptionIndex": 1,
+            "answer": "B) 5.93% per annum",
+            "showThinkingSpinner": true,
+            "explanation": "The 6-month coupon of $3 discounts to $2.9259. The remaining $97.0741 paid at 1 year yields r_1 = 5.93%."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "scenario": "A 1-year Treasury bond pays a 6% semiannual coupon and trades at par 100. The 6-month continuously compounded zero rate is 5%.",
+              "question": "Given a 1-year Treasury bond paying 6% semiannual coupon trading at par $100 and a 6-month zero rate of 5%, what is the 1-year continuous zero rate?",
+              "options": [
+                "A) 5.00% per annum",
+                "B) 5.93% per annum",
+                "C) 6.00% per annum",
+                "D) 6.25% per annum"
+              ],
+              "correctOptionIndex": 1,
+              "answer": "B) 5.93% per annum",
+              "showThinkingSpinner": true
+            },
+            "semantics": {
+              "teachingObjective": "Provide thinking pause for viewer calculation",
+              "sourceFactIds": [
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "3170255911008c48",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b32.mp3",
+          "audioDurationSec": 9.1,
+          "durationInFrames": 369,
+          "subtitlePhrases": [
+            {
+              "text": "Discount $3 coupon at 5%,",
+              "startMs": 0,
+              "endMs": 3204
+            },
+            {
+              "text": "leaving $97.07 for the 1-year final cash flow.",
+              "startMs": 3204,
+              "endMs": 9100
+            }
+          ]
+        },
+        {
+          "id": "b33",
+          "hindi_tts": "Correct! Option B: 5.93 percent. Subtracting coupon PV 2.93 leaves 97.07, solving to 5.93 percent.",
+          "en_subtitle": "Correct! Option B: 5.93 percent. Subtracting coupon PV 2.93 leaves 97.07, solving to 5.93 percent.",
+          "en_narration": "Correct! Option B: 5.93 percent. Subtracting coupon PV 2.93 leaves 97.07, solving to 5.93 percent.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "scenario": "A 1-year Treasury bond pays a 6% semiannual coupon and trades at par 100. The 6-month continuously compounded zero rate is 5%.",
+            "question": "Given a 1-year Treasury bond paying 6% semiannual coupon trading at par $100 and a 6-month zero rate of 5%, what is the 1-year continuous zero rate?",
+            "options": [
+              "A) 5.00% per annum",
+              "B) 5.93% per annum (CORRECT)",
+              "C) 6.00% per annum",
+              "D) 6.25% per annum"
+            ],
+            "correctOptionIndex": 1,
+            "answer": "B) 5.93% per annum",
+            "showThinkingSpinner": false,
+            "explanation": "Calculation: 100 = 3·e^(-0.05·0.5) + 103·e^(-r_1.0) -> 103·e^(-r_1.0) = 97.0741 -> r_1.0 = -ln(97.0741/103) = 5.93%."
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "scenario": "A 1-year Treasury bond pays a 6% semiannual coupon and trades at par 100. The 6-month continuously compounded zero rate is 5%.",
+              "question": "Given a 1-year Treasury bond paying 6% semiannual coupon trading at par $100 and a 6-month zero rate of 5%, what is the 1-year continuous zero rate?",
+              "options": [
+                "A) 5.00% per annum",
+                "B) 5.93% per annum (CORRECT)",
+                "C) 6.00% per annum",
+                "D) 6.25% per annum"
+              ],
+              "correctOptionIndex": 1,
+              "answer": "B) 5.93% per annum",
+              "showThinkingSpinner": false
+            },
+            "semantics": {
+              "teachingObjective": "Validate correct bootstrap answer with mathematical proof",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "35c4fd1514a61235",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b33.mp3",
+          "audioDurationSec": 14.04,
+          "durationInFrames": 437,
+          "subtitlePhrases": [
+            {
+              "text": "Correct! Option B: 5.93 percent. Subtracting coupon PV 2.93 leaves 97.07,",
+              "startMs": 0,
+              "endMs": 10566
+            },
+            {
+              "text": "solving to 5.93 percent.",
+              "startMs": 10566,
+              "endMs": 14040
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Raju Redraws His Yield Curve",
+      "template": "chat_story",
+      "badge": "Trading Desk Resolution",
+      "beats": [
+        {
+          "id": "b34",
+          "hindi_tts": "Sharma ji, I now see why discounting all coupons with a single flat yield is a critical error.",
+          "en_subtitle": "Sharma ji, discounting all coupons with a single flat yield causes major valuation errors.",
+          "en_narration": "Sharma ji, I now see why discounting all coupons with a single flat yield is a critical error.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Alex updates trading desk pricing models —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Marcus! I now understand why discounting every coupon at a single flat YTM causes critical valuation errors.",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Marcus! I now understand why discounting every coupon at a single flat YTM causes critical valuation errors.",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reflect on zero rate vs YTM distinction",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "950356a8ff418a2c",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b34.mp3",
+          "audioDurationSec": 6.72,
+          "durationInFrames": 214,
+          "subtitlePhrases": [
+            {
+              "text": "Sharma ji,",
+              "startMs": 0,
+              "endMs": 755
+            },
+            {
+              "text": "discounting all coupons with a single flat yield causes major valuation errors.",
+              "startMs": 755,
+              "endMs": 6720
+            }
+          ]
+        },
+        {
+          "id": "b35",
+          "hindi_tts": "Sharma ji nods: The bootstrap zero curve is the master ruler for all swaps and derivatives.",
+          "en_subtitle": "Sharma ji nods: The bootstrap zero curve is the foundational ruler for all swaps and derivatives.",
+          "en_narration": "Sharma ji nods: The bootstrap zero curve is the master ruler for all swaps and derivatives.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Marcus emphasizes zero curves as the foundation of derivatives —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Marcus! I now understand why discounting every coupon at a single flat YTM causes critical valuation errors.",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Exactly Alex! The bootstrap zero curve is the foundational ruler for all forwards, swaps, and options.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Marcus! I now understand why discounting every coupon at a single flat YTM causes critical valuation errors.",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "Exactly Alex! The bootstrap zero curve is the foundational ruler for all forwards, swaps, and options.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Confirm zero curve as the master pricing benchmark",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-07"
+              ]
+            }
+          },
+          "narrationHash": "1e217015a77c006d",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b35.mp3",
+          "audioDurationSec": 6.72,
+          "durationInFrames": 214,
+          "subtitlePhrases": [
+            {
+              "text": "Sharma ji nods: The bootstrap zero",
+              "startMs": 0,
+              "endMs": 2405
+            },
+            {
+              "text": "curve is the foundational ruler for",
+              "startMs": 2405,
+              "endMs": 4881
+            },
+            {
+              "text": "all swaps and derivatives.",
+              "startMs": 4881,
+              "endMs": 6720
+            }
+          ]
+        },
+        {
+          "id": "b36",
+          "hindi_tts": "And remember: For collateralized contracts, always discount using the risk-free OIS benchmark curve.",
+          "en_subtitle": "And remember: On collateralized contracts, always discount using the risk-free OIS benchmark curve.",
+          "en_narration": "And remember: For collateralized contracts, always discount using the risk-free OIS benchmark curve.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "stageDirections": [
+              "— Marcus reinforces collateralized OIS discounting —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Marcus! I now understand why discounting every coupon at a single flat YTM causes critical valuation errors.",
+                "theme": "amber",
+                "align": "left"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Exactly Alex! The bootstrap zero curve is the foundational ruler for all forwards, swaps, and options.",
+                "theme": "teal",
+                "align": "right"
+              },
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "And remember: on collateralized contracts, always discount using the risk-free OIS benchmark curve!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Marcus! I now understand why discounting every coupon at a single flat YTM causes critical valuation errors.",
+                  "theme": "amber",
+                  "align": "left"
+                },
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "Exactly Alex! The bootstrap zero curve is the foundational ruler for all forwards, swaps, and options.",
+                  "theme": "teal",
+                  "align": "right"
+                },
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "And remember: on collateralized contracts, always discount using the risk-free OIS benchmark curve!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce post-2008 OIS collateral discounting mandate",
+              "sourceFactIds": [
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "9095e95d4381d056",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b36.mp3",
+          "audioDurationSec": 7.32,
+          "durationInFrames": 235,
+          "subtitlePhrases": [
+            {
+              "text": "And remember: On collateralized contracts,",
+              "startMs": 0,
+              "endMs": 3137
+            },
+            {
+              "text": "always discount using the risk-free OIS benchmark curve.",
+              "startMs": 3137,
+              "endMs": 7320
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "The Whole Picture: 8 Core Rate Rules",
+      "template": "summary_thread",
+      "badge": "Master Chapter Synthesis",
+      "beats": [
+        {
+          "id": "b37",
+          "hindi_tts": "Today we mastered the eight foundational rules of interest rates, compounding, and zero curve construction.",
+          "en_subtitle": "Today we mastered the eight foundational rules of interest rates, compounding, and zero curve construction.",
+          "en_narration": "Today we mastered the eight foundational rules of interest rates, compounding, and zero curve construction.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "CHAPTER 4 · PART 1 · SUMMARY",
+            "heading": "Interest Rates & Zero Curve Master Thread",
+            "activeStepIndex": 0,
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "steps": [
+              "1. Benchmark Hierarchy: Treasury yields carry tax conveniences; OIS represents true risk-free funding.",
+              "2. Compounding Effect: Higher compounding frequencies yield greater exponential terminal wealth.",
+              "3. Equivalence Formula: R_c = m · ln(1 + R_m / m) bridges discrete bank quotes and continuous models.",
+              "4. Zero Rate Purity: Zero-coupon spot rates eliminate coupon reinvestment risk across maturities.",
+              "5. Bond Pricing Reality: Bonds must be priced as portfolios of zero-coupon cash flows at dedicated rates.",
+              "6. Par Yield Wedge: In upward-sloping yield curves, the zero curve lies strictly above the par curve.",
+              "7. Bootstrap Power: Money market instruments and coupon bonds sequentially unlock zero rates.",
+              "8. Systemic OIS Transition: Collateralized derivatives strictly require OIS discounting to remove bank credit risk."
+            ],
+            "bottomTakeaway": "Every cash flow requires its dedicated zero rate; continuous compounding and OIS form the bedrock of derivatives pricing.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                0,
+                0
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Present executive overview of 8 core interest rate rules",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06",
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "e51e01821f2d212c",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b37.mp3",
+          "audioDurationSec": 7.08,
+          "durationInFrames": 225,
+          "subtitlePhrases": [
+            {
+              "text": "Today we mastered the eight foundational rules of interest rates,",
+              "startMs": 0,
+              "endMs": 4383
+            },
+            {
+              "text": "compounding,",
+              "startMs": 4383,
+              "endMs": 5192
+            },
+            {
+              "text": "and zero curve construction.",
+              "startMs": 5192,
+              "endMs": 7080
+            }
+          ]
+        },
+        {
+          "id": "b38",
+          "hindi_tts": "Rules 1 and 2: Treasury yields carry tax perks, while higher compounding frequencies expand terminal wealth exponentially.",
+          "en_subtitle": "Rules 1 and 2: Treasury yields carry tax perks; higher compounding frequencies expand wealth exponentially.",
+          "en_narration": "Rules 1 and 2: Treasury yields carry tax perks, while higher compounding frequencies expand terminal wealth exponentially.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "CHAPTER 4 · PART 1 · SUMMARY",
+            "heading": "Interest Rates & Zero Curve Master Thread",
+            "activeStepIndex": 1,
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "steps": [
+              "1. Benchmark Hierarchy: Treasury yields carry tax conveniences; OIS represents true risk-free funding.",
+              "2. Compounding Effect: Higher compounding frequencies yield greater exponential terminal wealth.",
+              "3. Equivalence Formula: R_c = m · ln(1 + R_m / m) bridges discrete bank quotes and continuous models.",
+              "4. Zero Rate Purity: Zero-coupon spot rates eliminate coupon reinvestment risk across maturities.",
+              "5. Bond Pricing Reality: Bonds must be priced as portfolios of zero-coupon cash flows at dedicated rates.",
+              "6. Par Yield Wedge: In upward-sloping yield curves, the zero curve lies strictly above the par curve.",
+              "7. Bootstrap Power: Money market instruments and coupon bonds sequentially unlock zero rates.",
+              "8. Systemic OIS Transition: Collateralized derivatives strictly require OIS discounting to remove bank credit risk."
+            ],
+            "bottomTakeaway": "Every cash flow requires its dedicated zero rate; continuous compounding and OIS form the bedrock of derivatives pricing.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                1,
+                2
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Highlight Rules 1 and 2: Benchmark hierarchy and compounding frequency",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "b051db2b6393c81a",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b38.mp3",
+          "audioDurationSec": 8.62,
+          "durationInFrames": 271,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 1 and 2: Treasury yields carry tax perks;",
+              "startMs": 0,
+              "endMs": 3822
+            },
+            {
+              "text": "higher compounding frequencies expand wealth exponentially.",
+              "startMs": 3822,
+              "endMs": 8620
+            }
+          ]
+        },
+        {
+          "id": "b39",
+          "hindi_tts": "Rules 3 and 4: Formula R_c = m·ln(1+R_m/m) converts rates, while zero rates eliminate reinvestment ambiguity.",
+          "en_subtitle": "Rules 3 and 4: Formula R_c = m·ln(1+R_m/m) converts rates, while zero rates eliminate reinvestment ambiguity.",
+          "en_narration": "Rules 3 and 4: Formula R_c = m·ln(1+R_m/m) converts rates, while zero rates eliminate reinvestment ambiguity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "CHAPTER 4 · PART 1 · SUMMARY",
+            "heading": "Interest Rates & Zero Curve Master Thread",
+            "activeStepIndex": 3,
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "steps": [
+              "1. Benchmark Hierarchy: Treasury yields carry tax conveniences; OIS represents true risk-free funding.",
+              "2. Compounding Effect: Higher compounding frequencies yield greater exponential terminal wealth.",
+              "3. Equivalence Formula: R_c = m · ln(1 + R_m / m) bridges discrete bank quotes and continuous models.",
+              "4. Zero Rate Purity: Zero-coupon spot rates eliminate coupon reinvestment risk across maturities.",
+              "5. Bond Pricing Reality: Bonds must be priced as portfolios of zero-coupon cash flows at dedicated rates.",
+              "6. Par Yield Wedge: In upward-sloping yield curves, the zero curve lies strictly above the par curve.",
+              "7. Bootstrap Power: Money market instruments and coupon bonds sequentially unlock zero rates.",
+              "8. Systemic OIS Transition: Collateralized derivatives strictly require OIS discounting to remove bank credit risk."
+            ],
+            "bottomTakeaway": "Every cash flow requires its dedicated zero rate; continuous compounding and OIS form the bedrock of derivatives pricing.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                3,
+                4
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Highlight Rules 3 and 4: Continuous rate conversion and zero rate purity",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "e8b83f220ad385f9",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b39.mp3",
+          "audioDurationSec": 12.1,
+          "durationInFrames": 375,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 3 and 4: Formula R_c = m·ln(1+R_m/m) converts rates,",
+              "startMs": 0,
+              "endMs": 6498
+            },
+            {
+              "text": "while zero rates eliminate reinvestment ambiguity.",
+              "startMs": 6498,
+              "endMs": 12100
+            }
+          ]
+        },
+        {
+          "id": "b40",
+          "hindi_tts": "Rules 5 and 6: Value bonds as zero coupon cash flows, and note zero curves exceed par curves in normal markets.",
+          "en_subtitle": "Rules 5 and 6: Value bonds as zero coupons; zero curves exceed par curves.",
+          "en_narration": "Rules 5 and 6: Value bonds as zero coupon cash flows, and note zero curves exceed par curves in normal markets.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "headerBadge": "CHAPTER 4 · PART 1 · SUMMARY",
+            "heading": "Interest Rates & Zero Curve Master Thread",
+            "activeStepIndex": 5,
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "steps": [
+              "1. Benchmark Hierarchy: Treasury yields carry tax conveniences; OIS represents true risk-free funding.",
+              "2. Compounding Effect: Higher compounding frequencies yield greater exponential terminal wealth.",
+              "3. Equivalence Formula: R_c = m · ln(1 + R_m / m) bridges discrete bank quotes and continuous models.",
+              "4. Zero Rate Purity: Zero-coupon spot rates eliminate coupon reinvestment risk across maturities.",
+              "5. Bond Pricing Reality: Bonds must be priced as portfolios of zero-coupon cash flows at dedicated rates.",
+              "6. Par Yield Wedge: In upward-sloping yield curves, the zero curve lies strictly above the par curve.",
+              "7. Bootstrap Power: Money market instruments and coupon bonds sequentially unlock zero rates.",
+              "8. Systemic OIS Transition: Collateralized derivatives strictly require OIS discounting to remove bank credit risk."
+            ],
+            "bottomTakeaway": "Every cash flow requires its dedicated zero rate; continuous compounding and OIS form the bedrock of derivatives pricing.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                5,
+                6
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Highlight Rules 5 and 6: Bond valuation via zero rates and par yield wedge",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "9ffd070e25f88420",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b40.mp3",
+          "audioDurationSec": 9.26,
+          "durationInFrames": 290,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 5 and 6: Value bonds as zero coupons;",
+              "startMs": 0,
+              "endMs": 5455
+            },
+            {
+              "text": "zero curves exceed par curves.",
+              "startMs": 5455,
+              "endMs": 9260
+            }
+          ]
+        },
+        {
+          "id": "b41",
+          "hindi_tts": "Rules 7 and 8: The bootstrap sequentially extracts zero rates, and collateralized derivatives strictly mandate OIS discounting.",
+          "en_subtitle": "Rules 7 and 8: Bootstrap extracts zero rates sequentially; collateralized derivatives strictly mandate OIS discounting.",
+          "en_narration": "Rules 7 and 8: The bootstrap sequentially extracts zero rates, and collateralized derivatives strictly mandate OIS discounting.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "headerBadge": "CHAPTER 4 · PART 1 · SUMMARY",
+            "heading": "Interest Rates & Zero Curve Master Thread",
+            "activeStepIndex": 7,
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "steps": [
+              "1. Benchmark Hierarchy: Treasury yields carry tax conveniences; OIS represents true risk-free funding.",
+              "2. Compounding Effect: Higher compounding frequencies yield greater exponential terminal wealth.",
+              "3. Equivalence Formula: R_c = m · ln(1 + R_m / m) bridges discrete bank quotes and continuous models.",
+              "4. Zero Rate Purity: Zero-coupon spot rates eliminate coupon reinvestment risk across maturities.",
+              "5. Bond Pricing Reality: Bonds must be priced as portfolios of zero-coupon cash flows at dedicated rates.",
+              "6. Par Yield Wedge: In upward-sloping yield curves, the zero curve lies strictly above the par curve.",
+              "7. Bootstrap Power: Money market instruments and coupon bonds sequentially unlock zero rates.",
+              "8. Systemic OIS Transition: Collateralized derivatives strictly require OIS discounting to remove bank credit risk."
+            ],
+            "bottomTakeaway": "Every cash flow requires its dedicated zero rate; continuous compounding and OIS form the bedrock of derivatives pricing.",
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                7,
+                8
+              ],
+              "compactOverview": false
+            },
+            "semantics": {
+              "teachingObjective": "Highlight Rules 7 and 8 with dedicated focus on Rule 8 OIS transition",
+              "sourceFactIds": [
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "2d7d7a4dc516074b",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b41.mp3",
+          "audioDurationSec": 9.29,
+          "durationInFrames": 293,
+          "subtitlePhrases": [
+            {
+              "text": "Rules 7 and 8: Bootstrap extracts zero rates sequentially;",
+              "startMs": 0,
+              "endMs": 4566
+            },
+            {
+              "text": "collateralized derivatives strictly mandate OIS discounting.",
+              "startMs": 4566,
+              "endMs": 9290
+            }
+          ]
+        },
+        {
+          "id": "b42",
+          "hindi_tts": "Here is the complete blueprint: Maturity-matched zero rates, continuous compounding, and collateralized OIS discounting.",
+          "en_subtitle": "Here is the master blueprint: Maturity-matched zero rates, continuous compounding, and collateralized OIS discounting.",
+          "en_narration": "Here is the complete blueprint: Maturity-matched zero rates, continuous compounding, and collateralized OIS discounting.",
+          "pauseAfterMs": 600,
+          "ui_state": {
+            "headerBadge": "CHAPTER 4 · PART 1 · COMPLETE OVERVIEW",
+            "heading": "Master Interest Rate & Zero Curve Architecture",
+            "activeStepIndex": 0,
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "steps": [
+              "1. Benchmark Hierarchy: Treasury yields carry tax conveniences; OIS represents true risk-free funding.",
+              "2. Compounding Effect: Higher compounding frequencies yield greater exponential terminal wealth.",
+              "3. Equivalence Formula: R_c = m · ln(1 + R_m / m) bridges discrete bank quotes and continuous models.",
+              "4. Zero Rate Purity: Zero-coupon spot rates eliminate coupon reinvestment risk across maturities.",
+              "5. Bond Pricing Reality: Bonds must be priced as portfolios of zero-coupon cash flows at dedicated rates.",
+              "6. Par Yield Wedge: In upward-sloping yield curves, the zero curve lies strictly above the par curve.",
+              "7. Bootstrap Power: Money market instruments and coupon bonds sequentially unlock zero rates.",
+              "8. Systemic OIS Transition: Collateralized derivatives strictly require OIS discounting to remove bank credit risk."
+            ],
+            "bottomTakeaway": "Every cash flow requires its dedicated zero rate; continuous compounding and OIS form the bedrock of derivatives pricing.",
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display complete 2-column whole-chapter master summary matrix",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06",
+                "fact-07",
+                "fact-08"
+              ]
+            }
+          },
+          "narrationHash": "2891a67d0175d364",
+          "audioFile": "audio/hull_derivatives_en/ch04_part1/b42.mp3",
+          "audioDurationSec": 8.47,
+          "durationInFrames": 273,
+          "subtitlePhrases": [
+            {
+              "text": "Here is the master blueprint: Maturity-matched zero rates,",
+              "startMs": 0,
+              "endMs": 4235
+            },
+            {
+              "text": "continuous compounding,",
+              "startMs": 4235,
+              "endMs": 5914
+            },
+            {
+              "text": "and collateralized OIS discounting.",
+              "startMs": 5914,
+              "endMs": 8470
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

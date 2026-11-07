@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch01_part2",
+  "title": "Options Mechanics, The Three Trader Archetypes, and Institutional Risk Controls",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Basic mechanics of spot equity transactions and bid-ask spreads [fact-03, fact-04]",
+    "Fundamental structure of forward and futures contracts and initial margin requirements [fact-05, fact-07]",
+    "Foreign exchange spot rate quotation conventions (USD/GBP) [fact-05, fact-07, fact-09]"
+  ],
+  "learningOutcomes": [
+    "Distinguish between call and put options, European and American exercise styles, and calculate exact gross payoffs versus net profits for long calls and short puts using 100-share CBOE contract specifications [fact-01, fact-02, fact-03, fact-04].",
+    "Contrast how hedgers neutralize price risk entirely using currency forwards versus establishing asymmetric downside portfolio floors while preserving upside gains using protective put options [fact-05, fact-06].",
+    "Quantify the financial leverage, capital efficiency, and asymmetric risk profiles of speculating via CME currency futures and equity call options relative to unleveraged spot positions [fact-07, fact-08].",
+    "Execute multi-market cross-border arbitrage calculations for dual-listed equities and explain how simultaneous buying and selling restores market price equilibrium [fact-09].",
+    "Evaluate institutional hedge fund fee structures ('2-and-20'), core trading strategies, and the operational compliance failures behind major rogue trading losses [fact-10, fact-11]."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Options Mechanics, Strike/Maturity Pricing Rules, and Payoff vs. Profit",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Hedging Strategies: Neutralizing FX Risk with Forwards vs. Insuring Portfolios with Puts",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-05",
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Speculative Leverage and Cross-Border Riskless Arbitrage",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-07",
+        "fact-08",
+        "fact-09"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Institutional Hedge Fund Architecture and Rogue Trading Risk Controls",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-10",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-03",
+      "authorRebuttal": "This confuses gross exercise payoff with net profit. As demonstrated in the Google December $550 call example [fact-03], when the stock rises to $650, exercising 1 contract (100 shares) yields a gross payoff of $10,000, but you must subtract the $2,900 up-front option premium ($29.00 per share) to arrive at the true net profit of $7,100 [fact-01, fact-03]."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-06",
+      "authorRebuttal": "Forward contracts neutralize risk symmetrically by locking in a fixed price—such as ImportCo locking in $15,742,000 at 1.5742 USD/GBP—which eliminates both downside loss and upside gain [fact-05]. In contrast, buying protective put options (such as 10 July $27.50 puts for $1,000 on 1,000 shares at $28) acts as insurance: it establishes a guaranteed net floor of $26,500 while preserving full participation in upside stock surges [fact-06]."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-11",
+      "authorRebuttal": "While true arbitrage locks in riskless profit via simultaneous offsetting transactions [fact-09], an arbitrage mandate does not prevent catastrophic loss if internal controls fail. At Société Générale, Jérôme Kerviel exploited his prior compliance knowledge (2000–2005) on the Delta One equity index arbitrage desk to enter fictitious offsetting trades, masking tens of billions of euros in unhedged directional bets that resulted in a €4.9 billion ($7.2 billion) liquidation loss in January 2008—mirroring Nick Leeson's $1 billion rogue loss at Barings Bank in 1995 [fact-11]."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A trader with $2,000 in capital is bullish on a stock currently trading at $20 per share. Two-month call options with a $22.50 strike price are available at an option premium of $1.00 per share. Instead of buying 100 shares of stock, the trader deploys the entire $2,000 into buying 2,000 call options (20 contracts). At expiration in two months, the stock price rises to $27.00.",
+    "testedFactIds": [
+      "fact-01",
+      "fact-08"
+    ],
+    "question": "What are the trader's gross option payoff, net option profit, and profit multiple compared to the unleveraged 100-share stock strategy, and what would the net loss have been if the stock had fallen to $15.00 instead?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "With 2,000 call options at a $22.50 strike, a stock price of $27.00 at expiration yields $4.50 per option in intrinsic value, or a gross payoff of 2,000 × $4.50 = $9,000. Subtracting the $2,000 initial premium paid produces a net profit of $7,000, which is exactly 10x higher than the $700 profit earned on 100 shares (($27 - $20) × 100). However, if the stock drops to $15.00, all 2,000 call options expire worthless for a $2,000 loss (100% of capital), whereas the 100-share position loses only $500 [fact-08]."
+  },
+  "coreTakeaways": [
+    "Options grant asymmetric rights without obligation in exchange for an up-front premium: call buyers cap their maximum loss at the premium paid while retaining unlimited upside, whereas put writers collect up-front cash inflow in exchange for contingent downside assignment liability [fact-01, fact-03, fact-04].",
+    "Derivatives serve three distinct participant mandates: hedgers use forwards to fix prices or options to buy downside portfolio insurance [fact-05, fact-06]; speculators use futures margin or option premiums to magnify capital returns [fact-07, fact-08]; and arbitrageurs exploit multi-market price discrepancies to lock in riskless profit and restore equilibrium [fact-09].",
+    "While hedge funds deploy over $2 trillion under '2-and-20' fee structures across specialized arbitrage and directional strategies [fact-10], institutional disasters like Jérôme Kerviel's €4.9 billion loss at Société Générale prove that strict daily verification of offsetting hedges is essential to prevent unauthorized directional speculation [fact-11]."
+  ]
+}

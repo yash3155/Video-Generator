@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch02_part2",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T10:20:08.636Z",
+  "bookTitle": "Technical Analysis of the Financial Markets (John J. Murphy)",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "market_rule",
+      "topic": "Operation of Margin Accounts, Long/Short Symmetry, and Trader Tiers",
+      "statement": "Margin accounts organize futures trading to prevent contract defaults, with identical margin requirements for both long and short positions. Minimum initial and maintenance margin levels are set by the exchange clearing house based on underlying asset price variability (higher variability requires higher margins), while bona fide hedgers, day trades, and spread transactions receive lower margin requirements than speculators due to lower default risk.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch02_part2 - 2.4 The Operation of Margin Accounts",
+        "excerpt": "Note that margin requirements are the same on short futures positions as they are on long futures positions. It is just as easy to take a short futures position as it is to take a long one [4].",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-02",
+      "category": "market_rule",
+      "topic": "Margin Interest and Haircuts on Eligible Collateral Securities",
+      "statement": "Brokers typically pay competitive interest on cash balances held in margin accounts. To satisfy initial margin requirements (but not subsequent margin calls), investors may deposit non-cash securities subject to haircuts: Treasury bills are accepted at approximately 90% of face value (10% haircut), and equity shares are accepted at approximately 50% of market value (50% haircut).",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch02_part2 - 2.4 The Operation of Margin Accounts",
+        "excerpt": "Treasury bills are usually accepted in lieu of cash at about 90% of their face value. Shares are also sometimes accepted in lieu of cash—but at about 50% of their market value [8].",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "treasuryBillCollateralValuationPct": 90,
+          "treasuryBillHaircutPct": 10,
+          "equityShareCollateralValuationPct": 50,
+          "equityShareHaircutPct": 50
+        },
+        "units": "%",
+        "context": "Collateral valuation percentages for satisfying initial margin requirements in lieu of cash"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-03",
+      "category": "definition",
+      "topic": "Daily Settlement (Marking to Market) and Contract Value Reset",
+      "statement": "Marking to market (daily settlement) is the procedure where, at the close of each trading day, a futures margin account is adjusted to reflect the investor's daily gain or loss. If the futures price drops, the long trader's broker pays the exchange clearing house, which passes the funds to the short trader's broker (and vice versa when prices rise), effectively closing out and rewriting the futures contract at the new settlement price each day so its value resets to zero.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch02_part2 - 2.4 Daily Settlement",
+        "excerpt": "At the end of each day, the investor's gain (loss) is added to (subtracted from) the margin account, bringing the value of the contract back to zero. A futures contract is in effect closed out and rewritten at a new price each day [8, 10].",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-04",
+      "category": "formula",
+      "topic": "Initial Margin, Maintenance Margin (75% Rule), and Variation Margin Call Formula",
+      "statement": "Initial margin is deposited when a futures position is opened, while maintenance margin is a lower threshold (typically 75% of initial margin) set to prevent the balance from turning negative. If daily losses push the margin balance (B_t) below the maintenance margin (MM), the broker issues a margin call requiring the investor to deposit cash variation margin (VM = IM - B_t) by the close of the next trading day to restore the balance to the full initial margin (IM), or the broker closes out the position.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch02_part2 - 2.4 Daily Settlement",
+        "excerpt": "The maintenance margin is usually about 75% of the initial margin [5]. If the balance in the margin account falls below the maintenance margin, the investor receives a margin call and is expected to top up the margin account to the initial margin level the next day. The extra funds deposited are known as a variation margin [16, 17].",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Variation Margin Top-Up Requirement on Margin Call",
+        "latex": "\\text{If } B_t < MM \\implies VM = IM - B_t, \\quad \\text{where } MM \\approx 0.75 \\times IM",
+        "variables": [
+          {
+            "symbol": "B_t",
+            "definition": "Margin account balance at the close of trading day t after daily marking to market",
+            "unit": "$"
+          },
+          {
+            "symbol": "IM",
+            "definition": "Initial margin requirement across all open contracts",
+            "unit": "$"
+          },
+          {
+            "symbol": "MM",
+            "definition": "Maintenance margin threshold (typically 75% of initial margin)",
+            "unit": "$"
+          },
+          {
+            "symbol": "VM",
+            "definition": "Variation margin cash deposit required to restore account balance back to initial margin",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-05",
+      "category": "numerical_example",
+      "topic": "Table 2.1: 16-Day Gold Futures Margin Account & Margin Call Walkthrough",
+      "statement": "In Table 2.1, an investor goes long 2 December gold futures contracts (100 oz per contract = 200 oz total) on Day 1 at $1,250.00/oz, posting $6,000 initial margin per contract ($12,000 total) with a $4,500 maintenance margin per contract ($9,000 total). On Day 1, gold settles at $1,241.00 (-$1,800 loss, balance $10,200). On Day 7, gold settles at $1,229.90 (cumulative loss -$4,020), dropping the balance to $7,980 ($1,020 below the $9,000 maintenance margin) and triggering a $4,020 variation margin call to restore $12,000. On Day 11, gold drops to $1,211.00 (-$3,420 daily loss), reducing the balance to $8,220 and triggering a second margin call for $3,780. On Day 16, the position is closed out at $1,226.90 with a -$4,620 cumulative loss and a final balance of $15,180 ($12,000 + $4,020 + $3,780 - $4,620).",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch02_part2 - Table 2.1 Operation of margin account for a long position in two gold futures contracts",
+        "excerpt": "On Day 7 the balance in the margin account falls $1,020 below the maintenance margin level. This drop triggers a margin call from the broker for additional $4,020 to bring the margin account balance up to $12,000... On Day 11 the balance in the margin account again falls below the maintenance margin level, and a margin call for $3,780 is sent out [18].",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "contractsLong": 2,
+          "ouncesPerContract": 100,
+          "totalOunces": 200,
+          "day1EntryPricePerOz": 1250,
+          "initialMarginPerContract": 6000,
+          "totalInitialMargin": 12000,
+          "maintenanceMarginPerContract": 4500,
+          "totalMaintenanceMargin": 9000,
+          "day1ClosePricePerOz": 1241,
+          "day1Loss": -1800,
+          "day1Balance": 10200,
+          "day7ClosePricePerOz": 1229.9,
+          "day7Balance": 7980,
+          "day7MarginCall": 4020,
+          "day11ClosePricePerOz": 1211,
+          "day11DailyLoss": -3420,
+          "day11Balance": 8220,
+          "day11MarginCall": 3780,
+          "day16ExitPricePerOz": 1226.9,
+          "finalCumulativeLoss": -4620,
+          "finalAccountBalance": 15180
+        },
+        "units": "$",
+        "context": "Table 2.1 16-day mark-to-market ledger for long 2 December gold futures contracts (200 ounces)"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-06",
+      "category": "numerical_example",
+      "topic": "Exchange Clearing House Member Net Margining, 99% VaR Coverage, and Guaranty Funds",
+      "statement": "Exchange clearing house members post clearing margin without a separate maintenance margin, settling daily (or intraday during high volatility) via variation margin and contributing to a guaranty fund. Member initial margin is typically calculated on a net basis designed to cover default close-out losses with 99% certainty: for example, a member handling one client long 20 contracts and another client short 15 contracts posts clearing margin on the net position of 5 contracts.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch02_part2 - The Clearing House and Its Members",
+        "excerpt": "Suppose, for example, that the clearing house member has two clients: one with a long position in 20 contracts, the other with a short position in 15 contracts. The initial margin would be calculated on the basis of 5 contracts. The calculation of the margin requirement is usually designed to ensure that it is 99% certain to cover any losses [15].",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "clientLongContracts": 20,
+          "clientShortContracts": 15,
+          "netClearedContracts": 5,
+          "lossCoverageConfidencePct": 99
+        },
+        "units": "contracts",
+        "context": "Clearing house member net margin calculation and 99% confidence coverage"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-07",
+      "category": "market_rule",
+      "topic": "Central Counterparties (CCPs) vs. Bilateral OTC Clearing (ISDA, CSA, and 2016 Rules)",
+      "statement": "In the OTC market, standardized trades clear through Central Counterparties (CCPs) via novation—where the CCP becomes buyer to the seller and seller to the buyer, requiring initial margin, daily variation margin, and guaranty fund contributions. Uncleared OTC trades clear bilaterally under an ISDA Master Agreement with a Credit Support Annex (CSA), where regulations effective in 2016 mandate both daily variation margin and initial margin segregated with a third party for transactions between financial institutions.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch02_part2 - Central Counterparties & Bilateral Clearing",
+        "excerpt": "Beginning in 2016, regulations require both initial margin and variation margin to be provided for bilaterally cleared transactions between financial institutions. The initial margin will typically be segregated from other funds and posted with a third party [27, 29].",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-08",
+      "category": "market_rule",
+      "topic": "Interest Treatment on Variation Margin: Futures Settlement vs. OTC Collateral",
+      "statement": "Initial margin provided in cash usually earns interest across both futures and OTC markets. However, daily variation margin in exchange-traded futures markets does not earn interest because it constitutes final daily settlement, whereas cash variation margin in OTC transactions (whether cleared through a CCP or bilaterally under a CSA) earns interest because it represents pledged collateral rather than daily contract settlement.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch02_part2 - Futures Trades vs. OTC Trades",
+        "excerpt": "The daily variation margin provided by clearing house members for futures contracts does not earn interest. This is because the variation margin constitutes the daily settlement. Transactions in the OTC market, whether cleared through CCPs or cleared bilaterally, are usually not settled daily. For this reason, the daily variation margin... earns interest when it is in the form of cash [28, 30].",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-09",
+      "category": "case_study",
+      "topic": "Business Snapshot 2.2: Long-Term Capital Management (LTCM) $4B Collapse (August 1998)",
+      "statement": "Long-Term Capital Management (LTCM), a highly leveraged 1990s hedge fund executing convergence arbitrage (buying cheaper illiquid bond X and shorting pricier liquid bond Y of the same issuer), expected collateral inflows on one leg to offset outflows on the other. When Russia defaulted on its debt in August 1998, a global 'flight to quality' caused spreads between liquid and illiquid bonds to widen dramatically: illiquid long bonds X fell while liquid short bonds Y rose, forcing LTCM to post collateral on both sides simultaneously and liquidate positions for an approximate $4 billion loss.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch02_part2 - Business Snapshot 2.2 Long-Term Capital Management's big loss",
+        "excerpt": "The prices of the bonds LTCM had bought went down and the prices of those it had shorted increased. It was required to post collateral on both. The company experienced difficulties because it was highly leveraged. Positions had to be closed out and LTCM lost about $4 billion [33, 34].",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "ltcmLossBillionsUSD": 4,
+          "russianDefaultYear": 1998,
+          "simultaneousCollateralDrainSides": 2
+        },
+        "units": "$",
+        "context": "August 1998 Russian debt default flight to quality and LTCM $4 billion convergence arbitrage liquidation"
+      },
+      "tags": []
+    }
+  ],
+  "generalAssumptions": [
+    "Exchange clearing houses interpose themselves as the counterparty to every futures transaction, guaranteeing contract performance via initial margins, daily mark-to-market variation margins, and member guaranty funds.",
+    "When a retail or institutional futures trader's margin balance falls below the maintenance margin threshold (typically 75% of initial margin), the variation margin call requires topping the account all the way back up to the initial margin level—not merely back to the maintenance margin level.",
+    "Any margin account balance in excess of the initial margin requirement may be freely withdrawn by the investor (Table 2.1 assumes excess margin on Days 8, 13, 14, and 15 is left unwithdrawn).",
+    "Unlike exchange-traded futures where daily variation margin is a final cash settlement that resets contract value to zero and earns no interest, OTC variation margin is collateral that earns interest when posted in cash.",
+    "High balance-sheet leverage in relative-value or convergence arbitrage leaves a fund vulnerable to two-sided liquidity and collateral squeezes during market-wide flights to quality, even when long-term fundamental convergence is sound."
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch06_part2",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T17:01:34.306Z",
+  "bookTitle": "Options, Futures, and Other Derivatives (John C. Hull)",
+  "generalAssumptions": [
+    "Interest rate futures trade on standardized short-term interest rates (Eurodollar/SOFR).",
+    "Daily mark-to-market settlement induces a positive covariance wedge between futures and forward rates.",
+    "Duration and convexity provide first-order and second-order price sensitivities to parallel yield curve shifts."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Eurodollar and SOFR Futures Specifications and Tick Valuation",
+      "statement": "3-month Eurodollar futures and 3-month SOFR futures trade on $1,000,000 principal. Prices are quoted on an index basis as 100 minus the annualized interest rate R (Price = 100 - R). The contract tick value for a 1 basis point (0.01%) move is exactly $25 ($1,000,000 * 0.0001 * 90/360 = $25).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.3 Eurodollar Futures",
+        "page": 142,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Eurodollar Price and Tick Value",
+        "latex": "\\text{Price} = 100 - R, \\quad \\Delta \\text{Cash} = \\$25 \\text{ per bp}",
+        "variables": [
+          {
+            "symbol": "Price",
+            "definition": "Quoted futures contract price index",
+            "unit": "index points"
+          },
+          {
+            "symbol": "R",
+            "definition": "Annualized 3-month interest rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "Tick",
+            "definition": "Cash value per 0.01% interest rate movement",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "eurodollar_futures",
+        "sofr_futures",
+        "tick_value",
+        "cme"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "formula",
+      "topic": "Futures vs Forward Rates: The Convexity Adjustment",
+      "statement": "Due to daily mark-to-market settlement, interest rate futures generate cash flows positively correlated with interest rates. This makes futures rates systematically higher than forward rates. The relationship requires a downward convexity adjustment: Forward Rate = Futures Rate - 0.5 * sigma^2 * T1 * T2.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.4 Convexity Adjustment",
+        "page": 146,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Convexity Adjustment Formula",
+        "latex": "\\text{Forward} = \\text{Futures} - \\frac{1}{2}\\sigma^2 T_1 T_2",
+        "variables": [
+          {
+            "symbol": "Forward",
+            "definition": "Theoretical forward borrowing rate",
+            "unit": "decimal"
+          },
+          {
+            "symbol": "Futures",
+            "definition": "Rate implied by interest rate futures price",
+            "unit": "decimal"
+          },
+          {
+            "symbol": "sigma",
+            "definition": "Annual volatility of the underlying short rate",
+            "unit": "decimal"
+          },
+          {
+            "symbol": "T1",
+            "definition": "Maturity of futures contract",
+            "unit": "years"
+          },
+          {
+            "symbol": "T2",
+            "definition": "Maturity of underlying 90-day deposit (T1 + 0.25)",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "convexity_adjustment",
+        "futures_vs_forward",
+        "daily_settlement",
+        "mark_to_market"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "formula",
+      "topic": "Macaulay Duration: Weighted Average Cash Flow Timing",
+      "statement": "Macaulay duration measures the effective maturity of a bond as the weighted average time until all discounted cash flows are received: D = sum(t_i * C_i * e^(-y * t_i)) / B, where B is the bond market price.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.5 Duration",
+        "page": 150,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Macaulay Duration Formula",
+        "latex": "D = \\frac{\\sum t_i \\cdot C_i \\cdot e^{-y \\cdot t_i}}{B}",
+        "variables": [
+          {
+            "symbol": "D",
+            "definition": "Macaulay duration",
+            "unit": "years"
+          },
+          {
+            "symbol": "t_i",
+            "definition": "Time until payment of cash flow i",
+            "unit": "years"
+          },
+          {
+            "symbol": "C_i",
+            "definition": "Cash flow amount (coupon or principal)",
+            "unit": "$"
+          },
+          {
+            "symbol": "y",
+            "definition": "Yield to maturity continuously compounded",
+            "unit": "decimal"
+          },
+          {
+            "symbol": "B",
+            "definition": "Current clean cash price of the bond",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "macaulay_duration",
+        "effective_maturity",
+        "cash_flow_timing"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "formula",
+      "topic": "Modified Duration and Linear Price Sensitivity",
+      "statement": "Modified duration D* provides the direct first-order linear approximation of bond price change per unit shift in yield: Delta B / B approx -D* * Delta y, where D* = D / (1 + y/m).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.5 Duration",
+        "page": 153,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Modified Duration Price Sensitivity",
+        "latex": "\\frac{\\Delta B}{B} \\approx -D^* \\cdot \\Delta y",
+        "variables": [
+          {
+            "symbol": "Delta B / B",
+            "definition": "Percentage change in bond price",
+            "unit": "decimal"
+          },
+          {
+            "symbol": "D*",
+            "definition": "Modified duration",
+            "unit": "years"
+          },
+          {
+            "symbol": "Delta y",
+            "definition": "Parallel shift in market yield",
+            "unit": "decimal"
+          }
+        ]
+      },
+      "tags": [
+        "modified_duration",
+        "price_sensitivity",
+        "linear_risk",
+        "taylor_series"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "formula",
+      "topic": "Duration-Based Hedging Ratio (N*)",
+      "statement": "To immunize a bond portfolio of market value P and duration D_P against parallel yield curve shifts, the optimal number of futures contracts to short is: N* = (P * D_P) / (V_F * D_F), where V_F is the futures contract value and D_F is the duration of the CTD bond.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.6 Duration-Based Hedging",
+        "page": 156,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Duration Hedge Ratio Formula",
+        "latex": "N^* = \\frac{P \\cdot D_P}{V_F \\cdot D_F}",
+        "variables": [
+          {
+            "symbol": "N*",
+            "definition": "Optimal number of futures contracts to hedge",
+            "unit": "contracts"
+          },
+          {
+            "symbol": "P",
+            "definition": "Market value of asset bond portfolio",
+            "unit": "$"
+          },
+          {
+            "symbol": "D_P",
+            "definition": "Modified duration of asset bond portfolio",
+            "unit": "years"
+          },
+          {
+            "symbol": "V_F",
+            "definition": "Futures contract value (quoted price * unit)",
+            "unit": "$"
+          },
+          {
+            "symbol": "D_F",
+            "definition": "Modified duration of CTD bond at futures maturity",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "duration_hedging",
+        "hedge_ratio",
+        "portfolio_immunization",
+        "dollar_duration"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "formula",
+      "topic": "Convexity Protection: Second-Order Curvature Correction",
+      "statement": "Convexity C accounts for the curvature of the bond price-yield curve: Delta B / B approx -D* * Delta y + 0.5 * C * (Delta y)^2. Because (Delta y)^2 is always positive, positive convexity ensures that bond prices rise faster when yields drop than they fall when yields rise.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.5 Duration",
+        "page": 154,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Convexity Curvature Correction",
+        "latex": "\\frac{\\Delta B}{B} \\approx -D^* \\cdot \\Delta y + \\frac{1}{2} C (\\Delta y)^2",
+        "variables": [
+          {
+            "symbol": "C",
+            "definition": "Bond or portfolio convexity",
+            "unit": "years^2"
+          },
+          {
+            "symbol": "Delta y",
+            "definition": "Parallel change in yield",
+            "unit": "decimal"
+          },
+          {
+            "symbol": "D*",
+            "definition": "Modified duration",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "convexity",
+        "curvature",
+        "second_order",
+        "asymmetric_protection"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "case_study",
+      "topic": "Snapshot 6.3: Bank Asset-Liability Management (ALM) Duration Gap",
+      "statement": "A commercial bank with $1,000M in long-term assets (duration 7.0 years) funded by $900M in deposits (duration 1.0 year) has an unhedged duration gap. A +200 bps yield hike inflicts a -$140M loss on assets while liabilities only gain $18M, producing a net -$122M equity loss that completely wipes out the bank's $100M capital.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "Snapshot 6.3 Asset-Liability Management",
+        "page": 157,
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "context": "Bank insolvency triggered by +200 bps rate shock with 7-year asset duration vs 1-year deposit duration",
+        "values": {
+          "initial_assets": 1000,
+          "initial_liabilities": 900,
+          "initial_equity": 100,
+          "asset_duration": 7,
+          "liability_duration": 1,
+          "rate_shock_bps": 200,
+          "asset_loss": -140,
+          "liability_gain": 18,
+          "net_equity_loss": -122
+        },
+        "units": "Millions USD"
+      },
+      "tags": [
+        "alm_gap",
+        "bank_run",
+        "insolvency",
+        "duration_mismatch",
+        "snapshot_6_3"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "numerical_example",
+      "topic": "Corporate Bond Portfolio Duration Hedge Worked Example",
+      "statement": "A fund manager holds a $50M bond portfolio with modified duration 6.8 years. Treasury futures trade at $98,000 with CTD duration 8.2 years. Total portfolio dollar duration is $340,000,000; single contract dollar duration is $803,600. Sizing the hedge yields N* = 340,000,000 / 803,600 = 423.1 contracts. Shorting 423 contracts immunizes the portfolio against parallel yield spikes.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "6",
+        "section": "6.6 Duration-Based Hedging",
+        "page": 158,
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "context": "Optimal short futures contract sizing to immunize a $50M corporate bond portfolio",
+        "values": {
+          "portfolio_value": 50000000,
+          "portfolio_duration": 6.8,
+          "futures_price": 98000,
+          "ctd_duration": 8.2,
+          "numerator_dollar_duration": 340000000,
+          "denominator_dollar_duration": 803600,
+          "optimal_contracts": 423
+        },
+        "units": "Contracts / USD"
+      },
+      "tags": [
+        "hedging_example",
+        "contract_sizing",
+        "corporate_immunization"
+      ]
+    }
+  ]
+}

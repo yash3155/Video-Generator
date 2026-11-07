@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch06_part1",
+  "title": "Interest Rate Futures: Day Counts, Bond Futures, and the Wild Card",
+  "targetAudiencePersona": "Fixed Income Portfolio Manager & Futures Basis Trader",
+  "prerequisites": [
+    "Bond pricing, yield to maturity, and coupon discounting from Chapter 4",
+    "Concept of short selling and delivery obligations",
+    "Cost of carry and forward pricing parity from Chapter 5"
+  ],
+  "learningOutcomes": [
+    "Differentiate between Actual/Actual, 30/360, and Actual/360 day count conventions.",
+    "Calculate dirty cash price from quoted clean price and accrued interest.",
+    "Understand CBOT/CME Treasury bond futures specifications and 32nds price quoting.",
+    "Apply Conversion Factors (CF) to compute exact invoice cash received upon delivery.",
+    "Identify the Cheapest-to-Deliver (CTD) bond using Cost = Spot - (Futures * CF).",
+    "Explain the mechanics of the Wild Card Play and why delivery options lower futures prices."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Day Counts & The Clean vs Dirty Price Paradox",
+      "pedagogicalObjective": "Explain how day count conventions govern accrued interest and why invoice cash differs from screen quotes.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "keyPoints": [
+        "Treasury bonds use Actual/Actual in period; corporates use 30/360; money market uses Actual/360.",
+        "Clean price excludes accrued interest; dirty cash price is actual invoice settlement: Cash = Clean + AI.",
+        "Accrued interest drops to zero immediately after coupon dates, creating the sawtooth price chart."
+      ],
+      "formulaUsed": "Cash Price = Quoted Price + Accrued Interest"
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Treasury Bond Futures & Conversion Factors",
+      "pedagogicalObjective": "Formulate contract specifications, 32nds quotation, and the 6% conversion factor standardization.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Contract allows delivery of any Treasury bond maturing in 15 to 25 years.",
+        "Conversion factor equals the price of $1 par to yield 6.0% semiannual.",
+        "Invoice cash received by short party: (Futures Price * CF) + Accrued Interest."
+      ],
+      "formulaUsed": "Invoice Price = (F_0 * CF) + AI"
+    },
+    {
+      "sectionIndex": 2,
+      "title": "The Cheapest-to-Deliver (CTD) Bond",
+      "pedagogicalObjective": "Derive Cost to Deliver = Spot - (Futures * CF) and demonstrate CTD selection across 3 bonds.",
+      "groundedFactIds": [
+        "fact-05",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Short seller minimizes delivery cost: Cost = Spot - (Futures * CF).",
+        "The bond with the lowest delivery cost is selected as CTD.",
+        "Futures price tracks the CTD bond closely throughout the life of the contract."
+      ],
+      "formulaUsed": "Cost = Spot - (Futures * CF)"
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Yield Regimes and CTD Selection Rules",
+      "pedagogicalObjective": "Establish heuristics governing CTD choice when market yields trade above or below 6%.",
+      "groundedFactIds": [
+        "fact-06"
+      ],
+      "keyPoints": [
+        "When market yields > 6%: CF system favors long-maturity, low-coupon bonds.",
+        "When market yields < 6%: CF system favors short-maturity, high-coupon bonds.",
+        "Upward sloping yield curves favor long-maturity bonds."
+      ]
+    },
+    {
+      "sectionIndex": 4,
+      "title": "The Wild Card Play & Embedded Delivery Options",
+      "pedagogicalObjective": "Dissect Snapshot 6.2 to analyze the 2:00 PM to 8:00 PM delivery timing window.",
+      "groundedFactIds": [
+        "fact-07"
+      ],
+      "keyPoints": [
+        "Futures settle at 2:00 PM Chicago time, but delivery notice can be submitted until 8:00 PM.",
+        "Late afternoon bond price drops allow short sellers to buy cheap spot and deliver at high 2:00 PM price.",
+        "This embedded timing option lowers the futures price below theoretical parity."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "The bond buyer pays the exact quoted price displayed on financial market screens.",
+      "factId": "fact-02",
+      "authorRebuttal": "Screen quotes show clean prices. The buyer must pay the dirty cash price, which adds accrued interest earned by the seller since the last coupon."
+    },
+    {
+      "misconception": "Treasury bond futures require delivery of a specific unique benchmark government bond.",
+      "factId": "fact-03",
+      "authorRebuttal": "The contract allows delivery of any US Treasury bond maturing in 15 to 25 years, standardized via conversion factors."
+    },
+    {
+      "misconception": "The short seller delivers whichever bond has the lowest spot market price.",
+      "factId": "fact-05",
+      "authorRebuttal": "The short seller delivers the bond that minimizes Cost = Spot - (Futures * CF). A higher-priced bond with a high conversion factor can be cheaper to deliver."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A Treasury bond futures price is quoted at 93.00. Bond A has spot price $99.50 and conversion factor 1.0382. Bond B has spot price $143.50 and conversion factor 1.5188. An analyst calculates the delivery cost.",
+    "testedFactIds": [
+      "fact-05",
+      "fact-08"
+    ],
+    "question": "Which bond is cheaper to deliver and what is its net cost?",
+    "correctAnswer": "Bond B with cost $2.25",
+    "explanation": "Cost A = 99.50 - (93 * 1.0382) = 99.50 - 96.55 = $2.95. Cost B = 143.50 - (93 * 1.5188) = 143.50 - 141.25 = $2.25. Bond B has the lower cost ($2.25 vs $2.95) and is the Cheapest-to-Deliver."
+  },
+  "coreTakeaways": [
+    "Day counts (Actual/Actual vs 30/360) determine accrued interest and dirty cash invoice settlement.",
+    "Conversion factors (CF) normalize eligible Treasury bonds to a 6.0% semiannual yield standard.",
+    "The short seller delivers the Cheapest-to-Deliver (CTD) bond minimizing Cost = Spot - (Futures * CF).",
+    "When yields exceed 6%, long-maturity low-coupon bonds become CTD; below 6%, short-maturity high-coupon bonds win.",
+    "The Wild Card Play grants short sellers a 6-hour delivery option after 2:00 PM, reducing futures prices."
+  ]
+}

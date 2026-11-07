@@ -1,0 +1,337 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch07_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-03T17:03:28.870Z",
+  "bookTitle": "Options, Futures, and Other Derivatives (John C. Hull)",
+  "generalAssumptions": [
+    "Plain vanilla interest rate swaps involve exchange of fixed for floating payments on a notional principal.",
+    "Notional principal is never exchanged at any point in an interest rate swap.",
+    "The swap rate is chosen at contract inception so that the initial net present value of the swap is zero.",
+    "Credit risk in interest rate swaps represents bilateral replacement cost, governed post-2008 by CCP central clearing."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Mechanics of Plain Vanilla Interest Rate Swaps",
+      "statement": "An interest rate swap is an agreement between two counterparties to exchange interest rate cash flows on a specified notional principal without exchanging the principal itself. Party A agrees to pay fixed interest payments and receive floating interest payments (referencing 6-month SOFR or LIBOR). Net payment = (Floating Rate - Fixed Rate) * Notional * (Days / 360).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "7",
+        "section": "7.1 Mechanics of Interest Rate Swaps",
+        "page": 165,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Swap Net Cash Flow Formula",
+        "latex": "\\text{Net Flow} = (R_{\\text{fl}} - R_{\\text{fix}}) \\cdot L \\cdot \\Delta t",
+        "variables": [
+          {
+            "symbol": "Net Flow",
+            "definition": "Actual cash settlement transferred between counterparties",
+            "unit": "$"
+          },
+          {
+            "symbol": "R_fl",
+            "definition": "Observed floating benchmark interest rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "R_fix",
+            "definition": "Contractual fixed swap rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "L",
+            "definition": "Notional principal amount ($100,000,000)",
+            "unit": "$"
+          },
+          {
+            "symbol": "Delta t",
+            "definition": "Payment accrual fraction of a year",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": [
+        "interest_rate_swap",
+        "plain_vanilla",
+        "notional_principal",
+        "net_settlement"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "claim",
+      "topic": "Transforming Liabilities: Floating Debt to Fixed Debt",
+      "statement": "A company with floating-rate debt (e.g. paying SOFR + 1.0% to a bank) can enter an interest rate swap paying fixed 5.0% and receiving SOFR. The received SOFR exactly offsets the floating loan benchmark, transforming borrowing costs into a synthetically locked fixed rate of 6.0% (5.0% fixed swap + 1.0% bank spread).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "7",
+        "section": "7.2 Using Swaps to Transform Liabilities and Assets",
+        "page": 168,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Synthetic Fixed Liability Formula",
+        "latex": "\\text{Net Borrowing} = (\\text{SOFR} + s) + R_{\\text{fix}} - \\text{SOFR} = R_{\\text{fix}} + s",
+        "variables": [
+          {
+            "symbol": "Net Borrowing",
+            "definition": "Effective synthetic fixed interest cost",
+            "unit": "%"
+          },
+          {
+            "symbol": "s",
+            "definition": "Corporate loan spread over floating benchmark",
+            "unit": "%"
+          },
+          {
+            "symbol": "R_fix",
+            "definition": "Fixed swap rate paid",
+            "unit": "%"
+          }
+        ]
+      },
+      "tags": [
+        "liability_transformation",
+        "floating_to_fixed",
+        "synthetic_debt",
+        "hedging"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "claim",
+      "topic": "Transforming Assets: Fixed Investments to Floating Returns",
+      "statement": "An institutional investor holding a 6.0% fixed-rate bond enters a swap paying fixed 5.0% and receiving SOFR. The net asset return becomes SOFR + 1.0% (6.0% bond coupon - 5.0% fixed swap + SOFR), transforming a fixed investment into a floating asset and immunizing portfolio value against interest rate hikes.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "7",
+        "section": "7.2 Using Swaps to Transform Liabilities and Assets",
+        "page": 170,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Synthetic Floating Asset Formula",
+        "latex": "\\text{Net Return} = R_{\\text{bond}} - R_{\\text{fix}} + \\text{SOFR} = \\text{SOFR} + (R_{\\text{bond}} - R_{\\text{fix}})",
+        "variables": [
+          {
+            "symbol": "Net Return",
+            "definition": "Effective synthetic floating return",
+            "unit": "%"
+          },
+          {
+            "symbol": "R_bond",
+            "definition": "Fixed bond yield received",
+            "unit": "%"
+          },
+          {
+            "symbol": "R_fix",
+            "definition": "Fixed swap rate paid",
+            "unit": "%"
+          }
+        ]
+      },
+      "tags": [
+        "asset_transformation",
+        "fixed_to_floating",
+        "synthetic_asset",
+        "immunization"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "market_rule",
+      "topic": "Financial Intermediary Role and Bid-Offer Spreads",
+      "statement": "Financial institutions act as market-making swap banks between fixed payers and floating payers. A swap bank quotes a bid-ask spread (e.g. 4.98% bid vs 5.02% ask against floating SOFR), earning 4 basis points ($40,000 per year per $100M notional) completely insulated from directional interest rate movements.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "7",
+        "section": "7.3 Organization of Trading",
+        "page": 171,
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "context": "Swap bank matched book earning 4 bps bid-offer spread on $100M notional",
+        "values": {
+          "bid_rate": 0.0498,
+          "ask_rate": 0.0502,
+          "spread_bps": 4,
+          "notional": 100000000,
+          "annual_spread_usd": 40000
+        },
+        "units": "USD / bps"
+      },
+      "tags": [
+        "swap_bank",
+        "bid_ask_spread",
+        "market_maker",
+        "matched_book"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "claim",
+      "topic": "The Comparative-Advantage Argument (Hull Section 7.4)",
+      "statement": "When credit spread differentials differ between fixed and floating debt markets, a swap unlocks mutual arbitrage gains: Total Gain = (Fixed Spread Difference) - (Floating Spread Difference). E.g., if AAA Firm A borrows fixed at 10.0% and floating at SOFR+0.3%, while BBB Firm B borrows fixed at 11.2% and floating at SOFR+1.0%, the fixed spread differential is 1.2% and floating is 0.7%, unlocking 50 bps total arbitrage surplus.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "7",
+        "section": "7.4 The Comparative-Advantage Argument",
+        "page": 173,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Comparative Advantage Arbitrage Surplus",
+        "latex": "\\text{Total Surplus} = \\Delta \\text{Fixed Spread} - \\Delta \\text{Floating Spread}",
+        "variables": [
+          {
+            "symbol": "Total Surplus",
+            "definition": "Combined arbitrage savings available to counterparties",
+            "unit": "%"
+          },
+          {
+            "symbol": "Delta Fixed",
+            "definition": "Difference between Firm B and Firm A fixed borrowing rates",
+            "unit": "%"
+          },
+          {
+            "symbol": "Delta Floating",
+            "definition": "Difference between Firm B and Firm A floating borrowing spreads",
+            "unit": "%"
+          }
+        ]
+      },
+      "tags": [
+        "comparative_advantage",
+        "arbitrage_surplus",
+        "credit_tiers",
+        "hull_section_7_4"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "formula",
+      "topic": "Valuation of Interest Rate Swaps via Forward Rates and OIS Discounting",
+      "statement": "A swap is calibrated to have zero market value at inception. As benchmark rates shift, swap value to the floating receiver equals the sum of discounted cash flows where floating payments are determined by forward rates F_i and discounted using OIS zero discount factors P(0, t_i): V_swap = sum((F_i - K) * Delta t * P(0, t_i)).",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "7",
+        "section": "7.7 Valuation of Interest Rate Swaps",
+        "page": 179,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Swap Valuation via Forward Rates",
+        "latex": "V_{\\text{swap}} = \\sum_{i=1}^n (F_i - K) \\cdot \\Delta t \\cdot P(0, t_i)",
+        "variables": [
+          {
+            "symbol": "V_swap",
+            "definition": "Net present value of swap to floating receiver",
+            "unit": "$"
+          },
+          {
+            "symbol": "F_i",
+            "definition": "Forward interest rate for period i",
+            "unit": "%"
+          },
+          {
+            "symbol": "K",
+            "definition": "Contractual fixed swap rate",
+            "unit": "%"
+          },
+          {
+            "symbol": "P(0, t_i)",
+            "definition": "OIS risk-free discount factor to cash flow date t_i",
+            "unit": "decimal"
+          }
+        ]
+      },
+      "tags": [
+        "swap_valuation",
+        "forward_rates",
+        "ois_discounting",
+        "zero_npv_inception"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "formula",
+      "topic": "Bond Portfolio Decomposition of an Interest Rate Swap",
+      "statement": "An interest rate swap paying fixed and receiving floating can be decomposed into an equivalent long position in a floating-rate bond and a short position in a fixed-rate bond: V_swap = B_fl - B_fix. Immediately after each payment date, the floating-rate bond resets exactly to par ($100M), simplifying ongoing revaluation.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "7",
+        "section": "7.6 Valuation in Terms of Bond Prices",
+        "page": 177,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Bond Portfolio Decomposition",
+        "latex": "V_{\\text{swap}} = B_{\\text{fl}} - B_{\\text{fix}}",
+        "variables": [
+          {
+            "symbol": "V_swap",
+            "definition": "Value of swap to floating receiver",
+            "unit": "$"
+          },
+          {
+            "symbol": "B_fl",
+            "definition": "Market price of equivalent floating-rate bond (resets to par)",
+            "unit": "$"
+          },
+          {
+            "symbol": "B_fix",
+            "definition": "Market price of equivalent fixed-rate coupon bond",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "bond_decomposition",
+        "floating_bond_par",
+        "fixed_bond",
+        "replication"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "claim",
+      "topic": "Credit Risk, Bilateral Replacement Cost, and CCP Clearing",
+      "statement": "Counterparty credit risk in interest rate swaps is strictly bilateral replacement cost: max(0, V_swap). Notional principal is never at risk. Post-2008 regulatory reforms mandate that standardized plain vanilla interest rate swaps be cleared through Central Counterparties (CCPs) with daily variation margin and multilateral netting, virtually eliminating systemic counterparty default contagion.",
+      "sourceCitation": {
+        "book": "Options, Futures, and Other Derivatives",
+        "chapter": "7",
+        "section": "7.8 Credit Risk in Swaps",
+        "page": 184,
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Bilateral Replacement Exposure",
+        "latex": "\\text{Credit Exposure} = \\max(0, V_{\\text{swap}})",
+        "variables": [
+          {
+            "symbol": "Credit Exposure",
+            "definition": "Maximum capital loss if counterparty defaults",
+            "unit": "$"
+          },
+          {
+            "symbol": "V_swap",
+            "definition": "Current market value of swap position",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "credit_risk",
+        "replacement_cost",
+        "ccp_clearing",
+        "variation_margin",
+        "dodd_frank"
+      ]
+    }
+  ]
+}
