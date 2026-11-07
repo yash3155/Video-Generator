@@ -1,14 +1,14 @@
 # Bilingual Course Production Inventory & Audit Matrix
 
-Generated: 2026-11-07T23:27:09.459Z
+Generated: 2026-11-07T23:36:34.987Z
 
 ## Executive Summary
 
 - **Total Tracked Chapter Pairs**: 48
   - **John C. Hull (Derivatives)**: 15 chapters
   - **John J. Murphy (Technical Analysis)**: 33 chapters
-- **Bilingual Data Complete (7/7 Artifacts in both Hindi & English)**: 37 / 48
-- **Both Videos Rendered**: 15 / 48
+- **Bilingual Data Complete (7/7 Artifacts in both Hindi & English)**: 45 / 48
+- **Both Videos Rendered**: 17 / 48
 - **Both QA Passed (0 Blockers, 0 Highs)**: 1 / 48
 
 ## Detailed Bilingual Audit Table
@@ -30,9 +30,9 @@ Generated: 2026-11-07T23:27:09.459Z
 | `hull_derivatives` | `ch07_part1` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: NO_QA |
 | `hull_derivatives` | `ch07_part2` | ✅ Complete (7/7) | 32 audio | 🎬 Rendered | ✅ Complete (7/7) | 32 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
 | `hull_derivatives` | `ch08_part1` | ✅ Complete (7/7) | 33 audio | 🎬 Rendered | ✅ Complete (7/7) | 33 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
-| `murphy_technical_analysis` | `appendix_ab` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ✅ Complete (7/7) | 40 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
+| `murphy_technical_analysis` | `appendix_ab` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS ⚠️ (1 Highs) |
 | `murphy_technical_analysis` | `appendix_cd` | ✅ Complete (7/7) | 35 audio | 🎬 Rendered | ✅ Complete (7/7) | 35 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
-| `murphy_technical_analysis` | `ch01_part1` | ✅ Complete (7/7) | 42 audio | 🎬 Rendered | ✅ Complete (7/7) | 42 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: PASS |
+| `murphy_technical_analysis` | `ch01_part1` | ✅ Complete (7/7) | 42 audio | 🎬 Rendered | ✅ Complete (7/7) | 42 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: PASS |
 | `murphy_technical_analysis` | `ch01_part2` | ✅ Complete (7/7) | 43 audio | 🎬 Rendered | ✅ Complete (7/7) | 42 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: PASS |
 | `murphy_technical_analysis` | `ch02_part1` | ✅ Complete (7/7) | 41 audio | 🎬 Rendered | ✅ Complete (7/7) | 35 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA |
 | `murphy_technical_analysis` | `ch02_part2` | ✅ Complete (7/7) | 36 audio | 🎬 Rendered | ✅ Complete (7/7) | 36 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA |
@@ -52,14 +52,14 @@ Generated: 2026-11-07T23:27:09.459Z
 | `murphy_technical_analysis` | `ch10_part1` | ✅ Complete (7/7) | 37 audio | 🎬 Rendered | ✅ Complete (7/7) | 36 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
 | `murphy_technical_analysis` | `ch10_part2` | ✅ Complete (7/7) | 35 audio | 🎬 Rendered | ✅ Complete (7/7) | 34 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
 | `murphy_technical_analysis` | `ch11_part1` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ✅ Complete (7/7) | 39 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
-| `murphy_technical_analysis` | `ch12_part1` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 39 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
-| `murphy_technical_analysis` | `ch13_part1` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 0 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
-| `murphy_technical_analysis` | `ch13_part2` | ✅ Complete (7/7) | 37 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 0 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
-| `murphy_technical_analysis` | `ch14_part1` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 0 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
-| `murphy_technical_analysis` | `ch15_part1` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 0 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
-| `murphy_technical_analysis` | `ch16_part1` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 0 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
-| `murphy_technical_analysis` | `ch16_part2` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 0 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
-| `murphy_technical_analysis` | `ch17_part1` | ✅ Complete (7/7) | 38 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 0 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
-| `murphy_technical_analysis` | `ch17_part2` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 0 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
+| `murphy_technical_analysis` | `ch12_part1` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ✅ Complete (7/7) | 40 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
+| `murphy_technical_analysis` | `ch13_part1` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ✅ Complete (7/7) | 39 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
+| `murphy_technical_analysis` | `ch13_part2` | ✅ Complete (7/7) | 37 audio | 🎬 Rendered | ✅ Complete (7/7) | 37 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
+| `murphy_technical_analysis` | `ch14_part1` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ✅ Complete (7/7) | 40 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
+| `murphy_technical_analysis` | `ch15_part1` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ✅ Complete (7/7) | 39 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
+| `murphy_technical_analysis` | `ch16_part1` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ✅ Complete (7/7) | 39 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
+| `murphy_technical_analysis` | `ch16_part2` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ✅ Complete (7/7) | 39 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
+| `murphy_technical_analysis` | `ch17_part1` | ✅ Complete (7/7) | 38 audio | 🎬 Rendered | ✅ Complete (7/7) | 38 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
+| `murphy_technical_analysis` | `ch17_part2` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 22 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
 | `murphy_technical_analysis` | `ch18_part1` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 0 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (1 Highs) |
 | `murphy_technical_analysis` | `ch19_part1` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ⚠️ Incomplete (6/7: missing episode_compiled.json) | 0 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA ⚠️ (4 Highs) |
