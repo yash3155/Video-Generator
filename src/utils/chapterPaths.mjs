@@ -22,6 +22,9 @@ export function getBookSlug(chapterSlug = '', meta = {}) {
   if (courseStr.includes('hull') || slugStr.startsWith('hull_') || slugStr.includes('hull')) {
     return 'hull_derivatives';
   }
+  if (courseStr.includes('murphy_technical_analysis_en') || courseStr.includes('murphy_en') || slugStr.includes('murphy_technical_analysis_en') || slugStr.startsWith('murphy_en_') || slugStr.includes('murphy_en')) {
+    return 'murphy_technical_analysis_en';
+  }
   if (courseStr.includes('murphy') || slugStr.includes('murphy')) {
     return 'murphy_technical_analysis';
   }
@@ -33,6 +36,7 @@ export function getBookSlug(chapterSlug = '', meta = {}) {
   }
 
   // If path contains course directory name
+  if (slugStr.includes('murphy_technical_analysis_en')) return 'murphy_technical_analysis_en';
   if (slugStr.includes('murphy_technical_analysis')) return 'murphy_technical_analysis';
   if (slugStr.includes('hull_derivatives')) return 'hull_derivatives';
   if (slugStr.includes('classical_mechanics')) return 'classical_mechanics';
