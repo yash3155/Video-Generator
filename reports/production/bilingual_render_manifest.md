@@ -1,14 +1,14 @@
 # Official Bilingual Course Delivery Manifest
 
-**Generated**: 2026-11-07T23:06:04.667Z  
+**Generated**: 2026-11-07T23:24:07.593Z  
 **Governing Standard**: `AGENTS.md` Phase 12 Delivery Contract  
 
 ## 1. Executive Delivery Summary
 
 - **Total Configured Course Chapter Pairs**: 48
-- **Complete Back-to-Back Bilingual Video Pairs Delivered**: 14 pairs
-- **Total Hindi Videos Rendered**: 47 / 48
-- **Total English Videos Rendered**: 14 / 48
+- **Complete Back-to-Back Bilingual Video Pairs Delivered**: 15 pairs
+- **Total Hindi Videos Rendered**: 48 / 48
+- **Total English Videos Rendered**: 15 / 48
 
 ## 2. John C. Hull — Fundamentals of Futures & Options Markets
 
@@ -28,7 +28,7 @@
 | `ch06_part2` | [`ch06_part2.mp4` (44.5MB)](../../out/chapters/hull_derivatives/ch06_part2.mp4) | N/A | CONDITIONAL_PASS | [`ch06_part2.mp4` (39.9MB)](../../out/chapters/hull_derivatives_en/ch06_part2.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
 | `ch07_part1` | [`ch07_part1.mp4` (43.6MB)](../../out/chapters/hull_derivatives/ch07_part1.mp4) | N/A | CONDITIONAL_PASS | [`ch07_part1.mp4` (40.8MB)](../../out/chapters/hull_derivatives_en/ch07_part1.mp4) | N/A | NO_QA | ✅ Complete Pair |
 | `ch07_part2` | [`ch07_part2.mp4` (37.3MB)](../../out/chapters/hull_derivatives/ch07_part2.mp4) | N/A | CONDITIONAL_PASS | [`ch07_part2.mp4` (34.2MB)](../../out/chapters/hull_derivatives_en/ch07_part2.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
-| `ch08_part1` | ⏳ Pending | N/A | CONDITIONAL_PASS | ⏳ Pending | N/A | CONDITIONAL_PASS | ⏳ Pending Data |
+| `ch08_part1` | [`ch08_part1.mp4` (26.1MB)](../../out/chapters/hull_derivatives/ch08_part1.mp4) | N/A | CONDITIONAL_PASS | [`ch08_part1.mp4` (34.2MB)](../../out/chapters/hull_derivatives_en/ch08_part1.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
 
 ## 3. John J. Murphy — Technical Analysis of the Financial Markets
 
