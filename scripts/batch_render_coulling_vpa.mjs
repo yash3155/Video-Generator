@@ -14,8 +14,7 @@ const outEn = path.resolve(`out/chapters/${courseEn}`);
 fs.mkdirSync(outHi, { recursive: true });
 fs.mkdirSync(outEn, { recursive: true });
 
-const vpaCourseConfig = JSON.parse(fs.readFileSync('src/courses/coulling_vpa.json', 'utf-8'));
-const chapters = vpaCourseConfig.chapters.map(c => c.id);
+const chapters = fs.readdirSync(baseHi).filter(d => fs.statSync(path.join(baseHi, d)).isDirectory());
 
 // Check for CLI filter
 const args = process.argv.slice(2);
