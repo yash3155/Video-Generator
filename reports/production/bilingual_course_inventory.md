@@ -1,16 +1,17 @@
 # Bilingual Course Production Inventory & Audit Matrix
 
-Generated: 2026-11-08T09:25:55.180Z
+Generated: 2026-11-08T12:42:12.180Z
 
 ## Executive Summary
 
-- **Total Tracked Chapter Pairs**: 73
+- **Total Tracked Chapter Pairs**: 98
   - **John C. Hull (Derivatives)**: 40 chapters
   - **John J. Murphy (Technical Analysis)**: 33 chapters
-- **Bilingual Data Complete (7/7 Artifacts in both Hindi & English)**: 73 / 73
-- **Both Videos Rendered**: 73 / 73
-- **Both QA Passed Phase 2C Release Gate (0 Blockers, 0 Highs)**: 73 / 73
-- **Both QA Strict Clean Pass (0 Defects of Any Severity)**: 2 / 73
+  - **Anna Coulling (Volume Price Analysis)**: 25 chapters
+- **Bilingual Data Complete (7/7 Artifacts in both Hindi & English)**: 98 / 98
+- **Both Videos Rendered**: 74 / 98
+- **Both QA Passed Phase 2C Release Gate (0 Blockers, 0 Highs)**: 74 / 98
+- **Both QA Strict Clean Pass (0 Defects of Any Severity)**: 2 / 98
 
 ## Detailed Bilingual Audit Table
 
@@ -89,3 +90,28 @@ Generated: 2026-11-08T09:25:55.180Z
 | `murphy_technical_analysis` | `ch17_part2` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS ⚠️ (1 Highs) |
 | `murphy_technical_analysis` | `ch18_part1` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS ⚠️ (1 Highs) |
 | `murphy_technical_analysis` | `ch19_part1` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS ⚠️ (4 Highs) |
+| `coulling_vpa` | `vpa_ch01_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch01_part2` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch02_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch02_part2` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch03_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch03_part2` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch04_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch04_part2` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch04_part3` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch05_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch05_part2` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch05_part3` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch05_part4` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch06_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch06_part2` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch06_part3` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch07_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch07_part2` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch08_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch09_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch10_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch10_part2` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch11_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_ch12_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `coulling_vpa` | `vpa_foreword` | ✅ Complete (7/7) | 21 audio | 🎬 Rendered | ✅ Complete (7/7) | 21 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |

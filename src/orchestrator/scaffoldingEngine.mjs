@@ -35,7 +35,7 @@ export function scaffoldEpisode({
   const match = chapterKey.match(/ch0?(\d+)[_.-]*(?:part|p)0?(\d+)/i);
   const chapterDisplay = match
     ? `CHAPTER ${parseInt(match[1], 10)} · PART ${parseInt(match[2], 10)}`
-    : chapterKey.toUpperCase();
+    : (chapterKey.toLowerCase().includes('foreword') ? 'FOREWORD' : chapterKey.toUpperCase().replace(/_/g, ' '));
 
   const primaryColor = courseConfig.visualTheme?.primaryColor || courseConfig.theme?.primaryColor || '#0F766E';
   const accentColor = courseConfig.visualTheme?.accentColor || courseConfig.theme?.accentColor || '#F59E0B';

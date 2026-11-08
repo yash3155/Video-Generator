@@ -137,7 +137,27 @@ async function run() {
     });
   }
 
-  // 3. Other configured courses (classical_mechanics, world_history)
+  // 3. Coulling Volume Price Analysis (Hindi: coulling_vpa, English: coulling_vpa_en)
+  const vpaRoot = path.join(chaptersRoot, 'coulling_vpa');
+  if (fs.existsSync(vpaRoot)) {
+    const vpaChapters = fs.readdirSync(vpaRoot)
+      .filter(d => fs.statSync(path.join(vpaRoot, d)).isDirectory() && !d.includes('backup'));
+
+    for (const chId of vpaChapters) {
+      const hi = checkChapter('coulling_vpa', chId);
+      const en = checkChapter('coulling_vpa_en', chId);
+      inventory.push({
+        baseCourse: 'coulling_vpa',
+        chapterId: chId,
+        hiCourseId: 'coulling_vpa',
+        enCourseId: 'coulling_vpa_en',
+        hi,
+        en
+      });
+    }
+  }
+
+  // 4. Other configured courses (classical_mechanics, world_history)
   // Check if they have any directories
   for (const cId of ['classical_mechanics', 'world_history']) {
     const p = path.join(chaptersRoot, cId);
@@ -166,6 +186,7 @@ async function run() {
   const totalPairs = inventory.length;
   const hullPairs = inventory.filter(i => i.baseCourse === 'hull_derivatives').length;
   const murphyPairs = inventory.filter(i => i.baseCourse === 'murphy_technical_analysis').length;
+  const vpaPairs = inventory.filter(i => i.baseCourse === 'coulling_vpa').length;
 
   const bothCompleteData = inventory.filter(i => i.hi.hasAllArtifacts && i.en.hasAllArtifacts).length;
   const bothRendered = inventory.filter(i => i.hi.hasVideo && i.en.hasVideo).length;
@@ -176,6 +197,9 @@ async function run() {
   md += `- **Total Tracked Chapter Pairs**: ${totalPairs}\n`;
   md += `  - **John C. Hull (Derivatives)**: ${hullPairs} chapters\n`;
   md += `  - **John J. Murphy (Technical Analysis)**: ${murphyPairs} chapters\n`;
+  if (vpaPairs > 0) {
+    md += `  - **Anna Coulling (Volume Price Analysis)**: ${vpaPairs} chapters\n`;
+  }
   md += `- **Bilingual Data Complete (7/7 Artifacts in both Hindi & English)**: ${bothCompleteData} / ${totalPairs}\n`;
   md += `- **Both Videos Rendered**: ${bothRendered} / ${totalPairs}\n`;
   md += `- **Both QA Passed Phase 2C Release Gate (0 Blockers, 0 Highs)**: ${bothQAPass} / ${totalPairs}\n`;

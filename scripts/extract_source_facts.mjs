@@ -28,9 +28,11 @@ export async function extractSourceFacts(targetDir, options = {}) {
   let rawContext = '';
   let notebookId = options.notebookId || 'c10a8b30-fee8-4d92-9d2c-516bc8866bad';
   let sourceId = options.sourceId || 'f8901e7b-90e2-4ac7-b8cb-492198f9ac7a';
-  let bookTitle = /hull/i.test(chapterSlug)
-    ? 'Fundamentals of Futures and Options Markets (John C. Hull)'
-    : 'Technical Analysis of the Financial Markets (John J. Murphy)';
+  let bookTitle = /vpa|coulling|volume/i.test(chapterSlug) || /coulling_vpa/i.test(dirPath)
+    ? 'A Complete Guide to Volume Price Analysis (Anna Coulling)'
+    : (/hull/i.test(chapterSlug)
+      ? 'Fundamentals of Futures and Options Markets (John C. Hull)'
+      : 'Technical Analysis of the Financial Markets (John J. Murphy)');
 
   if (fs.existsSync(contextPath) && fs.statSync(contextPath).size > 100) {
     rawContext = fs.readFileSync(contextPath, 'utf8');

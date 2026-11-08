@@ -10,6 +10,12 @@ export function getBookSlug(chapterSlug = '', meta = {}) {
   const courseStr = String(meta?.course || meta?.book || meta?.courseId || '').toLowerCase();
   const slugStr = String(chapterSlug || '').toLowerCase();
 
+  if (courseStr.includes('coulling_vpa_en') || courseStr.includes('vpa_en') || slugStr.includes('coulling_vpa_en') || slugStr.startsWith('vpa_en_') || slugStr.includes('vpa_en')) {
+    return 'coulling_vpa_en';
+  }
+  if (courseStr.includes('coulling_vpa') || courseStr.includes('vpa') || slugStr.startsWith('vpa_') || slugStr.includes('vpa')) {
+    return 'coulling_vpa';
+  }
   if (courseStr.includes('hull_derivatives_micro_kernel') || slugStr.includes('hull_derivatives_micro_kernel')) {
     return 'hull_derivatives_micro_kernel';
   }
@@ -36,6 +42,8 @@ export function getBookSlug(chapterSlug = '', meta = {}) {
   }
 
   // If path contains course directory name
+  if (slugStr.includes('coulling_vpa_en')) return 'coulling_vpa_en';
+  if (slugStr.includes('coulling_vpa')) return 'coulling_vpa';
   if (slugStr.includes('murphy_technical_analysis_en')) return 'murphy_technical_analysis_en';
   if (slugStr.includes('murphy_technical_analysis')) return 'murphy_technical_analysis';
   if (slugStr.includes('hull_derivatives')) return 'hull_derivatives';
@@ -127,6 +135,8 @@ export function resolveChapterDirectory(targetSlugOrPath, rootDir = process.cwd(
   const bookSlug = getBookSlug(targetSlugOrPath);
   const possibleBooks = [
     bookSlug,
+    'coulling_vpa',
+    'coulling_vpa_en',
     'murphy_technical_analysis',
     'hull_derivatives',
     'classical_mechanics',
