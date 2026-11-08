@@ -1,0 +1,409 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch20_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Value at Risk (VaR), Expected Shortfall (CVaR), Historical Simulation, Volatility Updating, and Basel Backtesting",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "Unlocking Value at Risk & Coherence Failures",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A risk manager defines Value at Risk (VaR): the dollar loss V not exceeded with confidence X over N days ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The mentor reviews Artzner's coherent risk measure axioms: monotonicity, translation invariance, positive homogeneity, and subadditivity ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "They discover VaR's fatal flaw: it fails subadditivity, meaning portfolio diversification can be penalized ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Historical Simulation & Table 20.1 Metrics by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display Table 20.1 VaR metric: 5th worst loss across 500 historical days ($10M equity + $5M FX) gives 99% 1-day VaR of $253,385 ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display Expected Shortfall metric: arithmetic average of the 5 worst losses ($253,385 to $320,905) yields an ES of $282,204 ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 20 Part 1 Roadmap: 4 Risk Management Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-05",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: VaR & Subadditivity — Confidence horizons and coherence failure ([fact-01], [fact-02]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Expected Shortfall & FRTB — Measuring tail severity and Basel's 97.5% ES adoption ([fact-03], [fact-04]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Historical Simulation & Volatility Updating — M scenarios and Hull-White scaling r_t* = r_t * (sigma_current / sigma_t) ([fact-05], [fact-09]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Backtesting & Tail Risk — Rogue trader exploitation and Basel Traffic Light systems ([fact-10], [fact-11]).",
+          "sourceFactIds": [
+            "fact-10",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Value at Risk (VaR) vs. Expected Shortfall (ES / CVaR)",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare VaR Threshold: measures the point loss cutoff but ignores the magnitude of catastrophic losses beyond the cutoff, vulnerable to rogue trader exploitation ([fact-01], [fact-10]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Expected Shortfall: averages all losses exceeding VaR, satisfying subadditivity and directly measuring tail severity ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Hull-White Volatility-Weighted Historical Simulation",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Equal-Weighting Flaw: standard historical simulation treats past volatile periods identically to calm periods ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Volatility Scaling Formula: r_t* = r_t * (sigma_current / sigma_t) scaling past returns to match current market volatility environments ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Business Snapshot 20.1: Basel FRTB Transition to Expected Shortfall",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Traditional Standard: Basel Committee's legacy 10-day 99% VaR metric ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine FRTB Shift: adopting 10-day 97.5% Expected Shortfall to capture tail fatness and cliff risk while aligning capital requirements ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Square-Root-of-Time Scaling vs. Volatility Clustering Reality",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance i.i.d. Normal Assumption: VaR_N = VaR_1 * sqrt(N) offering clean analytical simplicity for multi-day scaling ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Volatility Clustering: serial correlation and regime persistence invalidate the square-root rule, severely underestimating tail risk ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Scenario Loss Distribution & Expected Shortfall Tail Integration",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Loss Distribution Density f(L): illustrating confidence threshold VaR and tail region integration ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Table 20.1 Scenario Average: arithmetic mean of the 5 worst losses ($282,204) exceeding VaR ($253,385) ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Basel Backtesting Traffic Light System",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Green Zone (0-4 exceptions): internal 99% 1-day VaR model accepted with no multiplicative capital penalty ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Yellow (5-9) & Red Zones (10+ exceptions): capital penalty multipliers increase from 3 to 4, or model is outright rejected ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Expected Shortfall & Backtesting Zones",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Calculate Expected Shortfall from Table 20.1 scenario losses ($282,204 average) ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Identify Basel backtesting categories (Green 0-4, Yellow 5-9, Red 10+) ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Institutional Risk Management Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-09",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The risk manager audits regulatory compliance: verify FRTB 10-day 97.5% Expected Shortfall integration across trading desks ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The quantitative analyst checks simulation integrity: ensure Hull-White volatility scaling r_t* and 250-day backtesting traffic light tracking ([fact-09], [fact-11]).",
+          "sourceFactIds": [
+            "fact-09",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Value at Risk & Expected Shortfall",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-07",
+        "fact-09",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: VaR confidence horizon definition ([fact-01]), subadditivity coherence failure ([fact-02]), Expected Shortfall tail severity measure ([fact-03]), and FRTB regulatory evolution ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Historical simulation scenarios ([fact-05]), Table 20.1 numerical calculations ($282,204 ES) ([fact-07]), Hull-White volatility updating r_t* ([fact-09]), and Basel Traffic Light backtesting ([fact-11]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-07",
+            "fact-09",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Value at Risk (VaR) ([fact-01]): The dollar loss amount V not exceeded with confidence X over N days.",
+    "2. Subadditivity Failure ([fact-02]): VaR fails the subadditivity axiom, meaning combined portfolio VaR can exceed the sum of individual VaRs.",
+    "3. Expected Shortfall (ES) ([fact-03]): Coherent risk measure quantifying expected loss conditional on exceeding VaR.",
+    "4. FRTB Regulatory Shift ([fact-04]): Basel Committee replaced 10-day 99% VaR with 10-day 97.5% Expected Shortfall to capture tail risk.",
+    "5. Historical Simulation ([fact-05]): Subjects current portfolio to actual percentage price changes observed over past M trading days.",
+    "6. Table 20.1 Calculation ([fact-07]): Average of the 5 worst scenario losses yields an Expected Shortfall of $282,204.",
+    "7. Hull-White Volatility Updating ([fact-09]): Scaled historical returns r_t* = r_t * (sigma_current / sigma_t) capture current elevated volatility.",
+    "8. Basel Backtesting ([fact-11]): Validates 99% 1-day VaR models over 250 trading days using Green, Yellow, and Red Traffic Light zones."
+  ],
+  "bottomTakeaway": "While Value at Risk provides a baseline percentile loss, Expected Shortfall offers a coherent measure of tail risk that underpins modern FRTB capital frameworks and historical simulation risk management ([fact-02], [fact-03], [fact-04], [fact-05])."
+}

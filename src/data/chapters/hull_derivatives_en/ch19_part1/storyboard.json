@@ -1,0 +1,407 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch19_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Volatility Smiles: Currency U-Shaped Smiles, Equity Skews, Crashophobia, Breeden-Litzenberger Risk-Neutral Distributions, Volatility Surfaces, and Advanced Stochastic Models",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Breakdown of Constant Volatility",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A quantitative researcher investigates why market option prices deviate from flat BSM theoretical values; the mentor defines implied volatility ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "If BSM held perfectly, implied volatility would be constant across all strikes $K$ and maturities $T$ ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "The mentor reviews put-call parity: European calls and puts with identical strike and maturity must share the exact same implied volatility to prevent arbitrage ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Currency Smile & Volatility Benchmarks by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display Table 19.1 FX volatility smile metrics: ATM options trade at 13.5% implied volatility ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display OTM tail metrics: 0.25 delta OTM calls at 14.1%, 0.25 delta OTM puts at 14.2%, and extreme 0.10 delta tails reaching 15.1% implied volatility ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 19 Part 1 Roadmap: 4 Volatility Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-06",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Implied Volatility & Parity — BSM parameter definition and put-call parity equivalence ([fact-01], [fact-02]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Smiles vs. Skews — Currency U-shaped smiles versus downward-sloping equity volatility skews ([fact-03], [fact-04]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Economic Drivers — Leverage effect and Business Snapshot 19.2 'Crashophobia' post-1987 ([fact-05], [fact-06]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Surfaces & Advanced Models — Breeden-Litzenberger densities, 3D volatility surfaces $\\sigma(K,T)$, Dupire, and Heston models ([fact-07], [fact-09], [fact-11]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-09",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Currency U-Shaped Smile vs. Equity Downward Skew",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Currency Smiles: symmetric U-shaped curves where both deep OTM puts and calls trade at higher implied volatilities due to leptokurtic FX distributions ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Equity Skews: downward-sloping smirks where low strike OTM puts trade much higher than ATM options, which trade higher than OTM calls ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Breeden-Litzenberger Risk-Neutral Densities",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Pricing Curvature: extracting risk-neutral probability density function $g(K)$ from call price second derivatives across strikes ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Formula: $g(K) = e^{rT} \frac{\\partial^2 c}{\\partial K^2}$, proving market distributions differ from lognormal whenever call prices exhibit curvature non-linearities ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Business Snapshot 19.2: The Post-1987 'Crashophobia' Shift",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Pre-1987 Era: equity volatility smiles were virtually flat prior to the October 19, 1987 stock market crash (Dow down 22.6%) ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Post-Crash Permanent Shift: institutional managers permanently bid up deep OTM index put options to protect against catastrophic market plunges ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Flat BSM Model vs. Strike-Specific Volatility Surface Pricing",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Flat BSM Model: simple to implement but produces severely miscalculated hedge ratios in the presence of volatility smiles ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Advanced Models: Dupire local volatility and Heston stochastic volatility models successfully calibrate to market smiles and correct Greek sensitivities ([fact-10], [fact-11]).",
+          "sourceFactIds": [
+            "fact-10",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Volatility Surface $\\sigma(K, T)$ Mapping Across Strikes and Maturities",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Smile Dimension: volatility smile across strike prices $K$ capturing strike-dependent pricing anomalies ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Term Structure Dimension: volatility term structure across expiration maturities $T$ forming a complete 3D continuous map $\\sigma(K, T)$ ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Advanced Stochastic & Local Volatility Frameworks",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Dupire's Local Volatility Model: treating volatility as a deterministic function of asset price and time $\\sigma(S, t)$ ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Heston's Stochastic Volatility Model: modeling volatility itself as a mean-reverting diffusion process $dv = \\kappa(\theta - v)dt + \\xi\\sqrt{v}dz_v$ ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Put-Call Parity Implied Vol & Crashophobia",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Verify why put-call parity requires identical implied volatility for calls and puts at the same strike and maturity ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Explain how the 1987 stock market crash and 'Crashophobia' transformed equity volatility smiles from flat to downward-sloping skews ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Volatility Smile Pricing & Risk Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The quant reviews surface interpolation: verify 3D volatility surface $\\sigma(K, T)$ lookup for non-standard OTC and exotic derivatives ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The risk manager audits Greek adjustments: ensure strike-specific implied volatility $\\sigma(K)$ and $\frac{\\partial \\sigma}{\\partial S}$ sensitivities are incorporated into hedging books ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Volatility Smiles & Advanced Models",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Implied volatility BSM definition ([fact-01]), put-call parity equal implied volatility rule ([fact-02]), currency U-shaped smiles ([fact-03]), and equity downward skews ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Leverage effect debt-to-equity driver ([fact-05]), Crashophobia post-1987 crash permanent skew ([fact-06]), Breeden-Litzenberger risk-neutral density extraction ([fact-07]), and volatility surface mapping $\\sigma(K, T)$ ([fact-09]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06",
+            "fact-07",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Implied Volatility Definition ([fact-01]): The volatility parameter equating BSM theoretical price to market price, which would be constant if BSM held perfectly.",
+    "2. Put-Call Parity Equality ([fact-02]): European calls and puts sharing identical strike $K$ and maturity $T$ must have the exact same implied volatility.",
+    "3. Currency U-Shaped Smiles ([fact-03]): Foreign exchange options display symmetric U-shaped smiles due to leptokurtic exchange rate distributions with fat tails.",
+    "4. Equity Volatility Skews ([fact-04]): Stocks and indices exhibit downward-sloping skews where OTM puts trade at substantially higher implied volatilities than OTM calls.",
+    "5. Leverage Effect Driver ([fact-05]): Falling stock prices increase financial leverage and equity risk, raising volatility and producing negative skewness.",
+    "6. Crashophobia Post-1987 ([fact-06]): Pre-1987 flat smiles were permanently transformed by persistent institutional demand for deep OTM index put crash protection.",
+    "7. Breeden-Litzenberger Densities ([fact-07]): Extracts risk-neutral probability density functions directly from call price second derivatives across strikes: $g(K) = e^{rT} \frac{\\partial^2 c}{\\partial K^2}$.",
+    "8. Volatility Surfaces ([fact-09]): Combines strike smiles and term structures into a 3D continuous map $\\sigma(K, T)$ for pricing OTC and exotic derivatives."
+  ],
+  "bottomTakeaway": "Real-world markets depart systematically from flat BSM assumptions, forming currency U-shaped smiles and equity skews driven by leverage and Crashophobia, which are modeled via volatility surfaces and advanced stochastic frameworks ([fact-03], [fact-04], [fact-06], [fact-09])."
+}

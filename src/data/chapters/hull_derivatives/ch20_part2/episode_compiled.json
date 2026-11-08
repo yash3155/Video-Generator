@@ -1,0 +1,1515 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives",
+    "chapter": "CHAPTER 20 · PART 2",
+    "chapterTitle": "Model-Building VaR & Volatility Updating",
+    "domain": "finance",
+    "primaryColor": "#C86D51",
+    "accentColor": "#0D9488",
+    "narrationLanguage": "hi-IN-devanagari"
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "Origins: Multivariate Model-Building Assumptions",
+      "template": "chat_story",
+      "badge": "Market Desk · Historical Origins",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "शर्मा जी, मॉडल-बिल्डिंग अप्रोच में पोर्टफोलियो वार निकालने के लिए क्या मान्यताएं माननी पड़ती हैं?",
+          "en_subtitle": "Raju asks: Sharma ji, how did derivative contracts and risk management actually begin?",
+          "en_narration": "Raju asks how derivative contracts and risk management originated.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju examines the origin of price risk —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji, how did derivatives and risk transfer begin in market history?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji, how did derivatives and risk transfer begin in market history?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present the core human survival and price uncertainty dilemma.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "Sharma ji, model-building approach me portfolio VaR nikaalne ke liye kya assumptions lene padte hain?",
+          "narrationHash": "cff69b60f004340d",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b01.mp3",
+          "audioDurationSec": 7.66,
+          "durationInFrames": 242,
+          "subtitlePhrases": [
+            {
+              "text": "Raju asks: Sharma ji,",
+              "startMs": 0,
+              "endMs": 1892
+            },
+            {
+              "text": "how did derivative contracts and risk management actually begin?",
+              "startMs": 1892,
+              "endMs": 7660
+            }
+          ]
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "राजू, हम मानते हैं कि सभी एसेट्स के डेली रिटर्न्स मल्टीवैरिएट नॉर्मल डिस्ट्रीब्यूशन का पालन करते हैं!",
+          "en_subtitle": "Sharma ji explains: When producers and buyers face price uncertainty, forward contracts are born.",
+          "en_narration": "Sharma ji explains that price uncertainty gave rise to forward contracts.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji explains bilateral commitments —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "When producers and buyers need price certainty, bilateral forward commitments are born.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "When producers and buyers need price certainty, bilateral forward commitments are born.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Establish forward commitments as mutual price risk hedges.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "Raju, hum assume karte hain ki sabhi assets ke daily returns multivariate normal distribution follow karte hain!",
+          "narrationHash": "c0f8abc5c708f94d",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b02.mp3",
+          "audioDurationSec": 8.21,
+          "durationInFrames": 260,
+          "subtitlePhrases": [
+            {
+              "text": "Sharma ji explains: When producers and buyers face price uncertainty,",
+              "startMs": 0,
+              "endMs": 5901
+            },
+            {
+              "text": "forward contracts are born.",
+              "startMs": 5901,
+              "endMs": 8210
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Historical Simulation vs Parametric Model-Building",
+      "template": "tug_of_war",
+      "badge": "Structural Conflict · Hedger vs Speculator",
+      "beats": [
+        {
+          "id": "b03",
+          "hindi_tts": "हिस्टोरिकल सिमुलेशन डिस्ट्रीब्यूशन का कोई फॉर्मूला नहीं थोपता, जबकि मॉडल-बिल्डिंग फास्ट एनालिटिकल फॉर्मूले प्रदान करता है।",
+          "en_subtitle": "One party hedges downside price drop, while the other protects against rising procurement costs.",
+          "en_narration": "One side hedges falling prices while the counterparty hedges rising costs.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftLabel": "Farmer / Producer (Downside Protection)",
+            "rightLabel": "Processor / Miller (Upside Ceiling)",
+            "currentTension": 50
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Downside Protection",
+              "rightLabel": "Upside Ceiling",
+              "tension": 50
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate opposing economic motivations meeting in a forward contract.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "Historical simulation distribution assumption nahi maangta, jabki model-building fast analytical formulas deta hai.",
+          "narrationHash": "fdeeb90bfb11d638",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b03.mp3",
+          "audioDurationSec": 9.6,
+          "durationInFrames": 300,
+          "subtitlePhrases": [
+            {
+              "text": "One party hedges downside price drop,",
+              "startMs": 0,
+              "endMs": 3739
+            },
+            {
+              "text": "while the other protects against rising procurement costs.",
+              "startMs": 3739,
+              "endMs": 9600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "Core Architecture: 4 Pillars of Parametric Risk Modeling",
+      "template": "progressive_cards",
+      "badge": "Roadmap · 4 Structural Pillars",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "हम चार मुख्य विषयों पर चर्चा करेंगे: कोवैरिएंस मैट्रिक्स, डेल्टा-गामा मॉडल, ईडब्ल्यूएमए, और गार्च वोलैटिलिटी फोरकास्टिंग।",
+          "en_subtitle": "In this chapter, we master four structural pillars: architecture, payoff math, liquidity, and systemic risk.",
+          "en_narration": "We explore architecture, mathematical payoffs, liquidity, and systemic risk.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "1. Variance-Covariance",
+                "body": "Analytically aggregating correlated asset risks via covariance matrix w^T Sigma w."
+              },
+              {
+                "title": "2. Delta-Gamma Expansion",
+                "body": "Taylor series capturing option curvature Gamma alongside linear Delta."
+              },
+              {
+                "title": "3. EWMA RiskMetrics",
+                "body": "Exponential variance updating with decay factor lambda = 0.94."
+              },
+              {
+                "title": "4. GARCH(1,1)",
+                "body": "Mean-reverting volatility forecasting toward long-term variance rate V_L."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cards": [
+                {
+                  "title": "1. Variance-Covariance",
+                  "body": "Analytically aggregating correlated asset risks via covariance matrix w^T Sigma w."
+                },
+                {
+                  "title": "2. Delta-Gamma Expansion",
+                  "body": "Taylor series capturing option curvature Gamma alongside linear Delta."
+                },
+                {
+                  "title": "3. EWMA RiskMetrics",
+                  "body": "Exponential variance updating with decay factor lambda = 0.94."
+                },
+                {
+                  "title": "4. GARCH(1,1)",
+                  "body": "Mean-reverting volatility forecasting toward long-term variance rate V_L."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present structural roadmap of four learning pillars.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "text": "Hum chaar mukhya vishayo par charcha karenge: covariance matrix, delta-gamma model, EWMA, aur GARCH volatility forecasting.",
+          "narrationHash": "246fee61dd4b24a1",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b04.mp3",
+          "audioDurationSec": 9.62,
+          "durationInFrames": 301,
+          "subtitlePhrases": [
+            {
+              "text": "In this chapter,",
+              "startMs": 0,
+              "endMs": 1480
+            },
+            {
+              "text": "we master four structural pillars: architecture,",
+              "startMs": 1480,
+              "endMs": 5920
+            },
+            {
+              "text": "payoff math,",
+              "startMs": 5920,
+              "endMs": 7030
+            },
+            {
+              "text": "liquidity,",
+              "startMs": 7030,
+              "endMs": 7955
+            },
+            {
+              "text": "and systemic risk.",
+              "startMs": 7955,
+              "endMs": 9620
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Linear Delta-Normal vs Quadratic Delta-Gamma Approximation",
+      "template": "split_comparison",
+      "badge": "Market Structure · Bilateral vs Centralized",
+      "beats": [
+        {
+          "id": "b05",
+          "hindi_tts": "लीनियर मॉडल ऑप्शंस के कर्वेचर को छोड़ देता है, जबकि डेल्टा-गामा अप्रोच सेकंड डेरिवेटिव गामा को जोड़कर कॉन्वेक्स रिस्क को पकड़ती है।",
+          "en_subtitle": "Exchange futures are strictly standardized, while OTC contracts are bilaterally customized.",
+          "en_narration": "Exchange futures are standardized while OTC contracts are customized.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Exchange-Traded Futures",
+            "rightTitle": "Over-the-Counter (OTC)",
+            "leftPoints": [
+              "Standardized contract sizes",
+              "Central clearinghouse (CCP)",
+              "Zero bilateral default risk"
+            ],
+            "rightPoints": [
+              "Tailored specifications",
+              "Bilateral counterparty risk",
+              "Direct negotiation"
+            ],
+            "left": {
+              "title": "Linear (Delta-Normal) Model",
+              "items": [
+                "Approximation: Delta P = sum delta_i * Delta S_i",
+                "Fast and closed-form normal distribution",
+                "Fails on options: completely ignores gamma curvature"
+              ]
+            },
+            "right": {
+              "title": "Quadratic (Delta-Gamma) Model",
+              "items": [
+                "Taylor expansion: delta*Delta S + 0.5*Gamma*(Delta S)^2 + Theta*Delta t",
+                "Captures non-linear option convexities and jump risks",
+                "Requires Cornish-Fisher or Monte Carlo for exact percentiles"
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Futures",
+                "points": [
+                  "Standardized",
+                  "CCP Cleared"
+                ]
+              },
+              "rightColumn": {
+                "title": "OTC Forwards",
+                "points": [
+                  "Customized",
+                  "Bilateral Risk"
+                ]
+              },
+              "left": {
+                "title": "Linear (Delta-Normal) Model",
+                "items": [
+                  "Approximation: Delta P = sum delta_i * Delta S_i",
+                  "Fast and closed-form normal distribution",
+                  "Fails on options: completely ignores gamma curvature"
+                ]
+              },
+              "right": {
+                "title": "Quadratic (Delta-Gamma) Model",
+                "items": [
+                  "Taylor expansion: delta*Delta S + 0.5*Gamma*(Delta S)^2 + Theta*Delta t",
+                  "Captures non-linear option convexities and jump risks",
+                  "Requires Cornish-Fisher or Monte Carlo for exact percentiles"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Contrast exchange standardization with OTC customization.",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          },
+          "text": "Linear model options ke curvature ko chhod deta hai, jabki delta-gamma approximation second derivative gamma ko jodkar convex risk capture karta hai.",
+          "narrationHash": "ee3474915412ed23",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b05.mp3",
+          "audioDurationSec": 10.82,
+          "durationInFrames": 338,
+          "subtitlePhrases": [
+            {
+              "text": "Exchange futures are strictly standardized,",
+              "startMs": 0,
+              "endMs": 5170
+            },
+            {
+              "text": "while OTC contracts are bilaterally customized.",
+              "startMs": 5170,
+              "endMs": 10820
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Two-Asset Correlation & Portfolio Standard Deviation Formula",
+      "template": "progressive_cards",
+      "badge": "Global Volume · BIS Market Data",
+      "beats": [
+        {
+          "id": "b06",
+          "hindi_tts": "दो एसेट्स के पोर्टफोलियो की स्टैंडर्ड डेविएशन कोरिलेशन कोएफिशिएंट रो पर निर्भर करती है और 99 परसेंट वार 2.326 गुना सिग्मा पी होती है।",
+          "en_subtitle": "Globally, the OTC market exceeds $630 trillion in notional principal, dwarfing exchange volumes.",
+          "en_narration": "The global OTC market exceeds $630 trillion, dwarfing exchange volumes.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "OTC Market Notional",
+                "desc": "$630+ Trillion global bilateral outstanding"
+              },
+              {
+                "title": "Exchange Market Notional",
+                "desc": "$65 Trillion centralized standardized volume"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "OTC Market",
+                  "desc": "$630T Notional"
+                },
+                {
+                  "title": "Exchange Market",
+                  "desc": "$65T Notional"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate immense macroeconomic scale of OTC markets.",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "text": "Do assets ke portfolio ki standard deviation correlation coefficient rho par depend karti hai aur 99 percent VaR 2.326 guna sigma P hoti hai.",
+          "narrationHash": "27a145339f0492bd",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b06.mp3",
+          "audioDurationSec": 12.43,
+          "durationInFrames": 385,
+          "subtitlePhrases": [
+            {
+              "text": "Globally,",
+              "startMs": 0,
+              "endMs": 1190
+            },
+            {
+              "text": "the OTC market exceeds $630 trillion in notional principal,",
+              "startMs": 1190,
+              "endMs": 8992
+            },
+            {
+              "text": "dwarfing exchange volumes.",
+              "startMs": 8992,
+              "endMs": 12430
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Hull Section 20.3: Microsoft & AT&T Portfolio Diversification Benefit",
+      "template": "formula_breakdown",
+      "badge": "Quantitative Proof · Terminal Payoff",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "हल के उदाहरण में माइक्रोसॉफ्ट और एटीएंडटी के अलग-अलग वार का जोड़ 581,500 डॉलर था, लेकिन कोरिलेशन 0.3 होने से पोर्टफोलियो वार सिर्फ 496,600 डॉलर आया।",
+          "en_subtitle": "At terminal maturity, gross payoff is defined as the spot price minus strike price.",
+          "en_narration": "At expiration, long payoff equals spot price minus the delivery strike price.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Terminal Long Payoff",
+            "expression": "S_t - K",
+            "variables": [
+              {
+                "symbol": "S_t",
+                "label": "Spot asset price at expiration",
+                "unit": "₹"
+              },
+              {
+                "symbol": "K",
+                "label": "Agreed delivery strike price",
+                "unit": "₹"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Terminal Long Payoff",
+              "expression": "S_t - K",
+              "variables": [
+                {
+                  "symbol": "S_t",
+                  "label": "Spot asset price at expiration",
+                  "unit": "₹"
+                },
+                {
+                  "symbol": "K",
+                  "label": "Agreed delivery strike price",
+                  "unit": "₹"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Define terminal long linear payoff formula.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "text": "हल के उदाहरण में माइक्रोसॉफ्ट और एटीएंडटी के अलग-अलग वार का जोड़ 581,500 डॉलर था, लेकिन कोरिलेशन 0.3 होने से पोर्टफोलियो वार सिर्फ 496,600 डॉलर आया।",
+          "narrationHash": "01d0521d2b5fc981",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b07.mp3",
+          "audioDurationSec": 16.27,
+          "durationInFrames": 501,
+          "subtitlePhrases": [
+            {
+              "text": "At terminal maturity,",
+              "startMs": 0,
+              "endMs": 4167
+            },
+            {
+              "text": "gross payoff is defined as the spot price minus strike price.",
+              "startMs": 4167,
+              "endMs": 16270
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "EWMA Decay vs GARCH(1,1) Mean-Reversion Architecture",
+      "template": "split_comparison",
+      "badge": "Core Invariant · Payoff vs Profit",
+      "beats": [
+        {
+          "id": "b08",
+          "hindi_tts": "ईडब्ल्यूएमए में कोई लॉन्ग-रन मीन रिवर्जन नहीं होता, जबकि गार्च मॉडल वोलैटिलिटी को लॉन्ग-टर्म एवरेज की तरफ वापस खींचता है।",
+          "en_subtitle": "Always distinguish: Payoff is terminal cashflow; Profit deducts initial premium paid.",
+          "en_narration": "Payoff is gross terminal cashflow, while profit subtracts initial premium paid.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Gross Payoff",
+            "rightTitle": "Net Trading Profit",
+            "leftPoints": [
+              "Terminal cashflow at expiration",
+              "Ignores upfront premium paid",
+              "Always >= 0 for options"
+            ],
+            "rightPoints": [
+              "Terminal payoff minus initial premium",
+              "Accounts for capital outlay",
+              "Negative if price stays flat"
+            ],
+            "left": {
+              "title": "EWMA Model (RiskMetrics)",
+              "items": [
+                "sigma_n^2 = lambda*sigma_{n-1}^2 + (1-lambda)*u_{n-1}^2",
+                "No long-run mean reversion",
+                "Simpler parameterization (lambda = 0.94)"
+              ]
+            },
+            "right": {
+              "title": "GARCH(1,1) Model",
+              "items": [
+                "sigma_n^2 = gamma*V_L + alpha*u_{n-1}^2 + beta*sigma_{n-1}^2",
+                "Explicit mean-reversion toward long-run variance V_L",
+                "Produces upward or downward sloping volatility term structures"
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Gross Payoff",
+                "points": [
+                  "Terminal Cashflow",
+                  "Ignores Premium"
+                ]
+              },
+              "rightColumn": {
+                "title": "Net Profit",
+                "points": [
+                  "Payoff - Premium",
+                  "True Economic P&L"
+                ]
+              },
+              "left": {
+                "title": "EWMA Model (RiskMetrics)",
+                "items": [
+                  "sigma_n^2 = lambda*sigma_{n-1}^2 + (1-lambda)*u_{n-1}^2",
+                  "No long-run mean reversion",
+                  "Simpler parameterization (lambda = 0.94)"
+                ]
+              },
+              "right": {
+                "title": "GARCH(1,1) Model",
+                "items": [
+                  "sigma_n^2 = gamma*V_L + alpha*u_{n-1}^2 + beta*sigma_{n-1}^2",
+                  "Explicit mean-reversion toward long-run variance V_L",
+                  "Produces upward or downward sloping volatility term structures"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Strictly enforce the Payoff vs Profit distinction.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "text": "ईडब्ल्यूएमए में कोई लॉन्ग-रन मीन रिवर्जन नहीं होता, जबकि गार्च मॉडल वोलैटिलिटी को लॉन्ग-टर्म एवरेज की तरफ वापस खींचता है।",
+          "narrationHash": "54531d598206e699",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b08.mp3",
+          "audioDurationSec": 10.06,
+          "durationInFrames": 315,
+          "subtitlePhrases": [
+            {
+              "text": "Always distinguish: Payoff is terminal cashflow;",
+              "startMs": 0,
+              "endMs": 5749
+            },
+            {
+              "text": "Profit deducts initial premium paid.",
+              "startMs": 5749,
+              "endMs": 10060
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "GARCH(1,1) Volatility Forecasting & Term Structure",
+      "template": "progressive_cards",
+      "badge": "Case Study · Lehman Brothers 2008",
+      "beats": [
+        {
+          "id": "b09",
+          "hindi_tts": "गार्च मॉडल में अगर करेंट वोलैटिलिटी औसत से ज्यादा है तो टर्म स्ट्रक्चर डाउनवर्ड-स्लोपिंग होता है, और कम होने पर अपवर्ड-स्लोपिंग होता है।",
+          "en_subtitle": "In 2008, Lehman held over $600 billion in uncollateralized OTC positions, freezing the banking system.",
+          "en_narration": "In 2008, Lehman held $600 billion in OTC positions, triggering systemic contagion.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "Current Vol > Long-Run Vol",
+                "body": "Term structure is downward sloping; future expected volatility drops toward V_L."
+              },
+              {
+                "title": "Current Vol < Long-Run Vol",
+                "body": "Term structure is upward sloping; future expected volatility rises toward V_L."
+              },
+              {
+                "title": "Reversion Speed 1 - alpha - beta",
+                "body": "Governs how rapidly volatility shocks dissipate across forward horizons."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "Current Vol > Long-Run Vol",
+                  "body": "Term structure is downward sloping; future expected volatility drops toward V_L."
+                },
+                {
+                  "title": "Current Vol < Long-Run Vol",
+                  "body": "Term structure is upward sloping; future expected volatility rises toward V_L."
+                },
+                {
+                  "title": "Reversion Speed 1 - alpha - beta",
+                  "body": "Governs how rapidly volatility shocks dissipate across forward horizons."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate systemic counterparty contagion in uncollateralized OTC markets.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-05"
+              ]
+            }
+          },
+          "text": "गार्च मॉडल में अगर करेंट वोलैटिलिटी औसत से ज्यादा है तो टर्म स्ट्रक्चर डाउनवर्ड-स्लोपिंग होता है, और कम होने पर अपवर्ड-स्लोपिंग होता है।",
+          "narrationHash": "697c94fa78344515",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b09.mp3",
+          "audioDurationSec": 10.94,
+          "durationInFrames": 341,
+          "subtitlePhrases": [
+            {
+              "text": "In 2008,",
+              "startMs": 0,
+              "endMs": 875
+            },
+            {
+              "text": "Lehman held over $600 billion in uncollateralized OTC positions,",
+              "startMs": 875,
+              "endMs": 7877
+            },
+            {
+              "text": "freezing the banking system.",
+              "startMs": 7877,
+              "endMs": 10940
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "EWMA Recursive Variance Updating (RiskMetrics lambda=0.94)",
+      "template": "formula_breakdown",
+      "badge": "Balance Sheet Risk · Leverage Math",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "रिस्कमेट्रिक्स ईडब्ल्यूएमए फॉर्मूला लैम्ब्डा 0.94 के साथ पुराने वोलैटिलिटी डेटा को एक्सपोनेंशियल वेट देता है।",
+          "en_subtitle": "At thirty-one to one leverage, just a 3.2% decline in assets completely wipes out shareholder equity.",
+          "en_narration": "At 31 to 1 leverage, a 3.2% decline in assets wipes out shareholder equity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Leverage Multipliers & Equity Wipeout",
+            "expression": "L = \\text{Assets} / \\text{Equity}",
+            "variables": [
+              {
+                "symbol": "L",
+                "label": "Balance sheet leverage ratio (31:1)",
+                "unit": "ratio"
+              },
+              {
+                "symbol": "\\Delta Equity",
+                "label": "\\Delta Assets \\times L",
+                "unit": "%"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Leverage Multipliers & Equity Wipeout",
+              "expression": "L = \\text{Assets} / \\text{Equity}",
+              "variables": [
+                {
+                  "symbol": "L",
+                  "label": "Leverage ratio",
+                  "unit": "ratio"
+                },
+                {
+                  "symbol": "\\Delta Equity",
+                  "label": "Change in equity",
+                  "unit": "%"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Prove mathematically how high leverage accelerates balance-sheet bankruptcy.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "रिस्कमेट्रिक्स ईडब्ल्यूएमए फॉर्मूला लैम्ब्डा 0.94 के साथ पुराने वोलैटिलिटी डेटा को एक्सपोनेंशियल वेट देता है।",
+          "narrationHash": "f93567bd147f3630",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b10.mp3",
+          "audioDurationSec": 9.98,
+          "durationInFrames": 312,
+          "subtitlePhrases": [
+            {
+              "text": "At thirty-one to one leverage,",
+              "startMs": 0,
+              "endMs": 2994
+            },
+            {
+              "text": "just a 3.2% decline in assets completely wipes out shareholder equity.",
+              "startMs": 2994,
+              "endMs": 9980
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall Challenge",
+      "template": "interactive_quiz",
+      "badge": "Concept Verification · Active Recall",
+      "beats": [
+        {
+          "id": "b11",
+          "hindi_tts": "सोचिए कि लीनियर डेल्टा-नॉर्मल वार मॉडल ऐसे ऑप्शन पोर्टफोलियो में भारी नुकसान को कम क्यों आंकता है जहां गामा बहुत ज्यादा हो?",
+          "en_subtitle": "If a trader takes an unhedged leveraged position, what is the immediate structural risk?",
+          "en_narration": "What is the primary risk of an unhedged highly leveraged market position?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "question": "Why does the linear delta-normal VaR model severely underestimate risk when applied to option portfolios with large positive or negative gamma?",
+            "options": [
+              "A: Linear delta models ignore non-linear curvature, failing to capture extreme payoffs during large price jumps",
+              "B: Option trading is prohibited under Basel regulations unless variance-covariance models are used",
+              "C: Delta values can only be computed for forward contracts and are mathematically undefined for options",
+              "D: The linear model assumes zero interest rates which invalidates option dividend adjustments"
+            ],
+            "showThinkingSpinner": false,
+            "answer": ""
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "Why does the linear delta-normal VaR model severely underestimate risk when applied to option portfolios with large positive or negative gamma?",
+              "options": [
+                "A: Linear delta models ignore non-linear curvature, failing to capture extreme payoffs during large price jumps",
+                "B: Option trading is prohibited under Basel regulations unless variance-covariance models are used",
+                "C: Delta values can only be computed for forward contracts and are mathematically undefined for options",
+                "D: The linear model assumes zero interest rates which invalidates option dividend adjustments"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Test understanding of leverage depletion and margin call dynamics.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "सोचिए कि लीनियर डेल्टा-नॉर्मल वार मॉडल ऐसे ऑप्शन पोर्टफोलियो में भारी नुकसान को कम क्यों आंकता है जहां गामा बहुत ज्यादा हो?",
+          "narrationHash": "1757df8c053e4fa3",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b11.mp3",
+          "audioDurationSec": 9.74,
+          "durationInFrames": 305,
+          "subtitlePhrases": [
+            {
+              "text": "If a trader takes an unhedged leveraged position,",
+              "startMs": 0,
+              "endMs": 5486
+            },
+            {
+              "text": "what is the immediate structural risk?",
+              "startMs": 5486,
+              "endMs": 9740
+            }
+          ]
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "विचार कीजिए कि क्या ऑप्शन प्राइसिंग में सेकंड डेरिवेटिव कर्वेचर को नजरअंदाज करना खतरनाक हो सकता है।",
+          "en_subtitle": "Think carefully... Can a leveraged position survive without adequate margin capital?",
+          "en_narration": "Pause and consider the margin mechanics.",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "question": "Why does the linear delta-normal VaR model severely underestimate risk when applied to option portfolios with large positive or negative gamma?",
+            "showThinkingSpinner": true,
+            "answer": "",
+            "options": [
+              "A: Linear delta models ignore non-linear curvature, failing to capture extreme payoffs during large price jumps",
+              "B: Option trading is prohibited under Basel regulations unless variance-covariance models are used",
+              "C: Delta values can only be computed for forward contracts and are mathematically undefined for options",
+              "D: The linear model assumes zero interest rates which invalidates option dividend adjustments"
+            ]
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "showThinkingSpinner": true,
+              "question": "Why does the linear delta-normal VaR model severely underestimate risk when applied to option portfolios with large positive or negative gamma?",
+              "options": [
+                "A: Linear delta models ignore non-linear curvature, failing to capture extreme payoffs during large price jumps",
+                "B: Option trading is prohibited under Basel regulations unless variance-covariance models are used",
+                "C: Delta values can only be computed for forward contracts and are mathematically undefined for options",
+                "D: The linear model assumes zero interest rates which invalidates option dividend adjustments"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Engage active recall cognitive processing pause.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "विचार कीजिए कि क्या ऑप्शन प्राइसिंग में सेकंड डेरिवेटिव कर्वेचर को नजरअंदाज करना खतरनाक हो सकता है।",
+          "narrationHash": "b49cb94b0254a023",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b12.mp3",
+          "audioDurationSec": 8.4,
+          "durationInFrames": 348,
+          "subtitlePhrases": [
+            {
+              "text": "Think carefully... Can a leveraged position",
+              "startMs": 0,
+              "endMs": 4352
+            },
+            {
+              "text": "survive without adequate margin capital?",
+              "startMs": 4352,
+              "endMs": 8400
+            }
+          ]
+        },
+        {
+          "id": "b13",
+          "hindi_tts": "सही उत्तर ए है। लीनियर मॉडल सिर्फ पहली ढलान को देखता है, इसलिए बड़े मार्केट जंप में डेल्टा-गामा मॉडल जरूरी होता है।",
+          "en_subtitle": "Correct answer is B! Insufficient margin triggers immediate forced liquidation.",
+          "en_narration": "Correct answer is B: Insufficient margin triggers immediate forced liquidation.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "question": "Why does the linear delta-normal VaR model severely underestimate risk when applied to option portfolios with large positive or negative gamma?",
+            "showThinkingSpinner": false,
+            "answer": "A: Linear delta models ignore non-linear curvature, failing to capture extreme payoffs during large price jumps",
+            "correctIndex": 1,
+            "options": [
+              "A: Linear delta models ignore non-linear curvature, failing to capture extreme payoffs during large price jumps",
+              "B: Option trading is prohibited under Basel regulations unless variance-covariance models are used",
+              "C: Delta values can only be computed for forward contracts and are mathematically undefined for options",
+              "D: The linear model assumes zero interest rates which invalidates option dividend adjustments"
+            ]
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "answer": "A: Linear delta models ignore non-linear curvature, failing to capture extreme payoffs during large price jumps",
+              "correctIndex": 1,
+              "question": "Why does the linear delta-normal VaR model severely underestimate risk when applied to option portfolios with large positive or negative gamma?",
+              "options": [
+                "A: Linear delta models ignore non-linear curvature, failing to capture extreme payoffs during large price jumps",
+                "B: Option trading is prohibited under Basel regulations unless variance-covariance models are used",
+                "C: Delta values can only be computed for forward contracts and are mathematically undefined for options",
+                "D: The linear model assumes zero interest rates which invalidates option dividend adjustments"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce correct understanding of daily variation settlement.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "सही उत्तर ए है। लीनियर मॉडल सिर्फ पहली ढलान को देखता है, इसलिए बड़े मार्केट जंप में डेल्टा-गामा मॉडल जरूरी होता है।",
+          "narrationHash": "77973972ee0dc72e",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b13.mp3",
+          "audioDurationSec": 11.21,
+          "durationInFrames": 350,
+          "subtitlePhrases": [
+            {
+              "text": "Correct answer is B! Insufficient",
+              "startMs": 0,
+              "endMs": 4743
+            },
+            {
+              "text": "margin triggers immediate forced liquidation.",
+              "startMs": 4743,
+              "endMs": 11210
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Trading Desk Execution Rules",
+      "template": "chat_story",
+      "badge": "Practical Synthesis · Senior Trader Desk",
+      "beats": [
+        {
+          "id": "b14",
+          "hindi_tts": "शर्मा जी, ट्रेडिंग डेस्क पर वार मॉडल को वैलिडेट करने के लिए बैकटेस्टिंग कैसे की जाती है?",
+          "en_subtitle": "Raju notes: To survive, understanding margin and settlement rules comes before taking leverage.",
+          "en_narration": "Raju realizes that understanding settlement rules precedes taking leverage.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju summarizes risk discipline —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "So margin buffer and settlement discipline matter more than aggressive positioning!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Margin buffer and settlement discipline matter more than aggressive positioning!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize operational risk discipline before directional speculation.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Sharma ji, trading desk par VaR model ko validate karne ke liye backtesting kaise ki jaati hai?",
+          "narrationHash": "4d2a85f68580bf3e",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b14.mp3",
+          "audioDurationSec": 7.15,
+          "durationInFrames": 227,
+          "subtitlePhrases": [
+            {
+              "text": "Raju notes: To survive,",
+              "startMs": 0,
+              "endMs": 1749
+            },
+            {
+              "text": "understanding margin and settlement rules comes before taking leverage.",
+              "startMs": 1749,
+              "endMs": 7150
+            }
+          ]
+        },
+        {
+          "id": "b15",
+          "hindi_tts": "राजू, हम पिछले 250 दिनों के एक्सेप्शन्स गिनते हैं और क्यूपिक टेस्ट से चेक करते हैं कि मॉडल फेल तो नहीं हो रहा!",
+          "en_subtitle": "Sharma ji confirms: Exactly! Disciplined traders protect capital before predicting market direction.",
+          "en_narration": "Sharma ji confirms that capital protection precedes directional bets.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji delivers core trading maxim —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Disciplined market participants protect capital buffers before guessing price direction.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Disciplined market participants protect capital buffers before guessing price direction.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Affirm risk management as the paramount prerequisite for trading longevity.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Raju, hum pichhle 250 dino ke exceptions count karte hain aur Kupiec test se check karte hain ki model fail toh nahi ho raha!",
+          "narrationHash": "e7f6fa3eec78e84c",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b15.mp3",
+          "audioDurationSec": 8.98,
+          "durationInFrames": 283,
+          "subtitlePhrases": [
+            {
+              "text": "Sharma ji confirms: Exactly!",
+              "startMs": 0,
+              "endMs": 2566
+            },
+            {
+              "text": "Disciplined traders protect capital",
+              "startMs": 2566,
+              "endMs": 5773
+            },
+            {
+              "text": "before predicting market direction.",
+              "startMs": 5773,
+              "endMs": 8980
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "The Whole Picture: 8 Core Principles",
+      "template": "summary_thread",
+      "badge": "Master Review · 8 Inviolable Rules",
+      "beats": [
+        {
+          "id": "b16",
+          "hindi_tts": "आइए मॉडल-बिल्डिंग वार और वोलैटिलिटी अपडेटिंग के आठ मुख्य सिद्धांतों को दोहराएं।",
+          "en_subtitle": "Let us review the eight foundational principles established in this lesson.",
+          "en_narration": "Let us review the eight foundational principles of this lesson.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+              "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+              "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+              "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+              "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+              "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+                "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+                "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+                "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+                "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+                "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                0,
+                0
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present executive overview of the 8 chapter rules.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "text": "Aaiye Model-Building VaR aur Volatility Updating ke aath mukhya siddhanton ko dohraayein.",
+          "narrationHash": "611f0134cd6b19ff",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b16.mp3",
+          "audioDurationSec": 6.43,
+          "durationInFrames": 205,
+          "subtitlePhrases": [
+            {
+              "text": "Let us review the eight foundational",
+              "startMs": 0,
+              "endMs": 3128
+            },
+            {
+              "text": "principles established in this lesson.",
+              "startMs": 3128,
+              "endMs": 6430
+            }
+          ]
+        },
+        {
+          "id": "b17",
+          "hindi_tts": "नियम एक और दो: मॉडल-बिल्डिंग मल्टीवैरिएट नॉर्मल डिस्ट्रीब्यूशन मानती है और कोरिलेशन से डाइवर्सिफिकेशन बेनिफिट मिलता है।",
+          "en_subtitle": "First and second: Derivatives derive value from underlyings, and futures are standardized on exchanges.",
+          "en_narration": "Rules 1 and 2: Derivatives derive value from underlyings, and futures are standardized.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+              "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+              "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+              "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+              "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+              "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+                "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+                "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+                "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+                "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+                "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                2
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 1 and 2.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "text": "Niyam 1 aur 2: Model-building multivariate normal distribution assume karta hai aur correlation se diversification benefit milta hai.",
+          "narrationHash": "97880caa3db82652",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b17.mp3",
+          "audioDurationSec": 9.58,
+          "durationInFrames": 300,
+          "subtitlePhrases": [
+            {
+              "text": "First and second: Derivatives derive value from underlyings,",
+              "startMs": 0,
+              "endMs": 5635
+            },
+            {
+              "text": "and futures are standardized on exchanges.",
+              "startMs": 5635,
+              "endMs": 9580
+            }
+          ]
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "नियम तीन और चार: लीनियर डेल्टा मॉडल ऑप्शंस में फेल होता है, इसलिए क्वाड्रेटिक डेल्टा-गामा टेलर एक्सपेंशन जरूरी है।",
+          "en_subtitle": "Third and fourth: OTC contracts carry bilateral counterparty risk, and payoff is defined by the strike price.",
+          "en_narration": "Rules 3 and 4: OTC carries counterparty risk, and payoff depends on strike.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+              "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+              "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+              "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+              "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+              "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+                "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+                "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+                "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+                "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+                "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                3,
+                4
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 3 and 4.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "text": "Niyam 3 aur 4: Linear delta model options me fail hota hai, isliye quadratic delta-gamma Taylor expansion zaroori hai.",
+          "narrationHash": "6afff15e66240ba2",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b18.mp3",
+          "audioDurationSec": 9.84,
+          "durationInFrames": 308,
+          "subtitlePhrases": [
+            {
+              "text": "Third and fourth: OTC contracts carry bilateral counterparty risk,",
+              "startMs": 0,
+              "endMs": 6013
+            },
+            {
+              "text": "and payoff is defined by the strike price.",
+              "startMs": 6013,
+              "endMs": 9840
+            }
+          ]
+        },
+        {
+          "id": "b19",
+          "hindi_tts": "नियम पांच और छह: रिस्कमेट्रिक्स ईडब्ल्यूएमए लैम्ब्डा 0.94 के साथ वैरियेंस अपडेट करता है जबकि गार्च मीन-रिवर्जन पकड़ता है।",
+          "en_subtitle": "Fifth and sixth: Clearinghouses enforce variation margin, and high leverage rapidly depletes equity.",
+          "en_narration": "Rules 5 and 6: Margin protects clearinghouses, while leverage depletes equity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+              "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+              "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+              "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+              "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+              "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+                "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+                "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+                "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+                "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+                "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                5,
+                6
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 5 and 6.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Niyam 5 aur 6: RiskMetrics EWMA lambda 0.94 ke saath variance update karta hai jabki GARCH mean-reversion capture karta hai.",
+          "narrationHash": "3590ae9227554322",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b19.mp3",
+          "audioDurationSec": 11.64,
+          "durationInFrames": 362,
+          "subtitlePhrases": [
+            {
+              "text": "Fifth and sixth: Clearinghouses enforce variation margin,",
+              "startMs": 0,
+              "endMs": 6702
+            },
+            {
+              "text": "and high leverage rapidly depletes equity.",
+              "startMs": 6702,
+              "endMs": 11640
+            }
+          ]
+        },
+        {
+          "id": "b20",
+          "hindi_tts": "नियम सात और आठ: क्यूपिक बैकटेस्टिंग एक्सेप्शन्स वेरीफाई करती है और क्राइसिस में कोरिलेशन 1.0 के करीब पहुंच जाती हैं।",
+          "en_subtitle": "Seventh and eighth: Bilateral exposure requires collateral, and never confuse gross payoff with net profit.",
+          "en_narration": "Rules 7 and 8: Collateralize bilateral risk, and never confuse payoff with profit.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "steps": [
+              "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+              "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+              "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+              "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+              "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+              "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+                "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+                "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+                "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+                "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+                "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                7,
+                8
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 7 and 8 with dedicated focus.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "text": "Niyam 7 aur 8: Kupiec backtesting exceptions verify karti hai aur crisis me correlations 1.0 ke kareeb pahunch jati hain.",
+          "narrationHash": "19ff8d7ea3be2551",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b20.mp3",
+          "audioDurationSec": 10.75,
+          "durationInFrames": 336,
+          "subtitlePhrases": [
+            {
+              "text": "Seventh and eighth: Bilateral exposure requires collateral,",
+              "startMs": 0,
+              "endMs": 5983
+            },
+            {
+              "text": "and never confuse gross payoff with net profit.",
+              "startMs": 5983,
+              "endMs": 10750
+            }
+          ]
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "यह आठ नियम क्वांटिटेटिव रिस्क मॉडलिंग के सर्वश्रेष्ठ सिद्धांत हैं।",
+          "en_subtitle": "These eight principles form the enduring foundation for trading discipline across global markets.",
+          "en_narration": "These eight rules form the foundation of trading discipline.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "steps": [
+              "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+              "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+              "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+              "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+              "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+              "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The model-building approach (also known as the variance-covariance approach) calculates portfolio risk paramet",
+                "2. For a two-asset portfolio with positions X and Y, individual volatilities sigma_X and sigma_Y, and correlation",
+                "3. For portfolios containing options and derivatives, the linear model approximates the portfolio value change De",
+                "4. To capture option curvature, the quadratic model uses the second-order Taylor series expansion: Delta P = delt",
+                "5. In Hull Section 20.3, a portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT",
+                "6. The Exponentially Weighted Moving Average (EWMA) model (standardized in J.P. Morgan's 1996 RiskMetrics) update",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display comprehensive whole-chapter synthesis overview.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Yeh aath niyam quantitative risk modeling ke sarvashrestha siddhant hain.",
+          "narrationHash": "eee89fb195f46511",
+          "audioFile": "audio/hull_derivatives/ch20_part2/b21.mp3",
+          "audioDurationSec": 5.93,
+          "durationInFrames": 193,
+          "subtitlePhrases": [
+            {
+              "text": "These eight principles form the",
+              "startMs": 0,
+              "endMs": 1935
+            },
+            {
+              "text": "enduring foundation for trading discipline",
+              "startMs": 1935,
+              "endMs": 4557
+            },
+            {
+              "text": "across global markets.",
+              "startMs": 4557,
+              "endMs": 5930
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

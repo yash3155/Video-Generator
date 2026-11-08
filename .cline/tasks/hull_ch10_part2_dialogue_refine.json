@@ -1,0 +1,20 @@
+{
+  "taskId": "hull_ch10_part2_dialogue_refine",
+  "courseId": "hull_derivatives",
+  "chapterId": "ch10_part2",
+  "category": "MECHANICAL_DIALOGUE_INTEGRATION",
+  "executionMode": "deterministic_worker",
+  "instructions": [
+    "Verify that Scene 0 and Scene 10 in both Hindi and English episode_raw.json have valid character personas (Raju/Sharma ji for Hindi, Alex/Marcus for English).",
+    "Verify that all visual UI text strings (ui_state.messages, visual.data.messages) use Latin characters.",
+    "Verify that all subtitle phrases are <= 16 words per beat.",
+    "Verify that interactive quiz questions contain >= 18 words scenario in both visual.data.question and ui_state.question.",
+    "Run node scripts/validate_episode.mjs on both directories before final sign-off."
+  ],
+  "targetFiles": [
+    "src/data/chapters/hull_derivatives/ch10_part2/episode_raw.json",
+    "src/data/chapters/hull_derivatives_en/ch10_part2/episode_raw.json"
+  ],
+  "verificationCommand": "node scripts/validate_episode.mjs --dir=src/data/chapters/hull_derivatives/ch10_part2 && node scripts/validate_episode.mjs --dir=src/data/chapters/hull_derivatives_en/ch10_part2"
+}
+

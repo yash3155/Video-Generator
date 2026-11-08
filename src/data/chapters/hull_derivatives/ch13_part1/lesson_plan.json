@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch13_part1",
+  "title": "Lognormal Stock Price Distributions, Return Compounding, Volatility Estimation, and Black-Scholes Foundations",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Basic understanding of continuous compounding and natural logarithms",
+    "Standard deviation and variance of statistical samples",
+    "European option payoffs and premium structures"
+  ],
+  "learningOutcomes": [
+    "Explain why stock prices follow a lognormal distribution and how Ito's lemma convexity drag adjusts log return drift ([fact-01], [fact-02]).",
+    "Differentiate arithmetic average returns from true geometric compounding and calculate mutual fund return distortions ([fact-04], [fact-05]).",
+    "Estimate annualized volatility sigma from sample standard deviation s using the 252 trading day convention ([fact-06], [fact-07], [fact-08]).",
+    "Distinguish terminal gross payoff from net trading profit and understand the core market assumptions of the Black-Scholes-Merton model ([fact-09], [fact-10], [fact-11])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Geometric Brownian Motion and Lognormal Stock Prices",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Arithmetic vs. Geometric Return Distortion",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-04",
+        "fact-05"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Volatility Estimation and the 252 Trading Day Convention",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Black-Scholes Assumptions and Payoff vs. Profit",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-09",
+        "fact-10",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-04",
+      "authorRebuttal": "Arithmetic averages severely distort true wealth compounding because volatility creates a drag; a sequence of gains and losses can yield a positive arithmetic average while resulting in zero net geometric return ([fact-04], [fact-05])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-08",
+      "authorRebuttal": "Kenneth French's 1980 study proved that weekend variance is only slightly higher than weekday variance, demonstrating that active trading activity itself—not the passage of calendar time—drives volatility ([fact-08])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-09",
+      "authorRebuttal": "Gross payoff ignores the initial premium paid to acquire the option; net trading profit is strictly defined as Terminal Gross Payoff minus Premium paid ([fact-09])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "An investor's portfolio starts at $100.00, gains 100% in year 1 to $200.00, and loses 50% in year 2 back to $100.00. Separately, daily stock prices produce a sample standard deviation of daily log returns s = 0.0132 (1.32%).",
+    "testedFactIds": [
+      "fact-04",
+      "fact-05",
+      "fact-06",
+      "fact-07"
+    ],
+    "question": "1) What is the arithmetic mean return versus the true geometric compound return? 2) What is the annualized volatility sigma assuming 252 trading days?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Continuously compounded stock returns are normally distributed, making stock prices lognormally distributed and ensuring equity values never drop below zero ([fact-01], [fact-02]).",
+    "Arithmetic return averages upwardly bias performance by sigma^2 / 2, requiring geometric compounding for accurate wealth evaluation ([fact-04], [fact-05]).",
+    "Annualized volatility estimated over 252 trading days and rigorous BSM market assumptions form the bedrock of continuous-time option pricing ([fact-06], [fact-07], [fact-08], [fact-10], [fact-11])."
+  ]
+}

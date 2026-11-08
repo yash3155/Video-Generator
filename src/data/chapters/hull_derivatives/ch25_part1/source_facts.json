@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch25_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-08T07:21:56.778Z",
+  "bookTitle": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "generalAssumptions": [
+    "Derivative catastrophes almost universally stem from organizational failures, lack of independent oversight, flawed compensation incentives, or rogue trading rather than simple bad market luck.",
+    "Strict separation of front-office execution from back-office trade confirmation and settlement is the non-negotiable cornerstone of institutional risk control.",
+    "Marking to market must be executed daily by independent middle-office risk managers using third-party verification, never relying on trader self-reporting.",
+    "Stress testing and scenario analysis must supplement VaR to capture catastrophic low-probability tail risks and liquidity wipeouts."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Definition of Operational Risk and Rogue Trading in Derivatives",
+      "statement": "Operational risk in derivatives is defined as the risk of catastrophic financial loss resulting from inadequate or failed internal processes, unauthorized rogue trading, flawed model implementation, or breakdown of internal controls such as the segregation of duties between trading execution and back-office settlement.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part1",
+        "excerpt": "Operational risk includes rogue trading, lack of controls, and failure to separate front and back office functions.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "operational_risk",
+        "definition",
+        "internal_controls",
+        "segregation_of_duties"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "market_rule",
+      "topic": "Mandatory Independent Mark-to-Market",
+      "statement": "All trading positions must be marked to market daily without exception by back-office accounting staff using independent broker quotes or audited pricing models. Front-office traders must never be permitted to value their own complex positions or maintain discretionary off-ledger reserve accounts.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part1",
+        "excerpt": "Mark to market without exception. It is dangerous to allow traders to value their own positions or hide losses in reserve accounts.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "mark_to_market",
+        "back_office",
+        "independent_pricing",
+        "reserve_accounts"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "market_rule",
+      "topic": "The Outperformance Fallacy (High Return Means High Risk)",
+      "statement": "Traders generating consistently superior returns over long periods must not be assumed to possess mystical market foresight; in derivatives, abnormal outperformance almost always reflects the unacknowledged accumulation of catastrophic short option tail risk or hidden leverage.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part1",
+        "excerpt": "Do not assume that high returns mean high trading skill. In derivatives, high returns usually mean high risks that have not yet materialized.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "outperformance_fallacy",
+        "tail_risk",
+        "short_volatility",
+        "leverage"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "case_study",
+      "topic": "Barings Bank Collapse (1995) — The Ultimate Segregation of Duties Failure",
+      "statement": "Nick Leeson caused the bankruptcy of 233-year-old Barings Bank with a £827 million ($1.4 billion) loss in 1995 through unhedged Nikkei 225 index futures and short straddles because he simultaneously managed front-office trading and back-office settlement in Singapore, hiding massive losses in error account 88888.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part1",
+        "excerpt": "Nick Leeson at Barings Bank controlled both the trading desk and the back office in Singapore, allowing him to hide $1.4 billion in losses in account 88888.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "barings_bank",
+        "nick_leeson",
+        "segregation_of_duties",
+        "account_88888"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "numerical_example",
+      "topic": "Barings Bank Loss Breakdown and Contract Sizing",
+      "statement": "Nick Leeson held over 27,000 long Nikkei 225 futures contracts (contract multiplier of 500 Japanese Yen per index point on SIMEX) representing over $7,000,000,000 in nominal exposure, alongside unhedged short straddles. When the Kobe earthquake struck and the Nikkei plummeted 15%, cumulative margin calls wiped out Barings' entire £440,000,000 equity base, generating a net loss of £827,000,000 ($1,400,000,000 USD).",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part1",
+        "excerpt": "Leeson accumulated 27,000 contracts on SIMEX with huge short straddle positions, losing 1.4 billion dollars when the Nikkei dropped.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "barings_numerical",
+        "nikkei_multiplier",
+        "contract_size",
+        "margin_wipeout"
+      ],
+      "numericalDetails": {
+        "values": {
+          "contractsHeld": 27000,
+          "contractMultiplier": 500,
+          "nominalExposureUSD": 7000000000,
+          "equityBaseGBP": 440000000,
+          "totalLossGBP": 827000000,
+          "totalLossUSD": 1400000000
+        },
+        "units": "$ USD",
+        "contractSize": 500,
+        "context": "Barings Bank bankruptcy loss breakdown from unauthorized SIMEX Nikkei 225 index futures and short straddles"
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "explanation": "Short straddles collected limited upfront option premiums but exposed Barings to infinite uncapped downside loss when the Nikkei dropped 15% post-Kobe earthquake."
+      }
+    },
+    {
+      "id": "fact-06",
+      "category": "case_study",
+      "topic": "Société Générale (2008) — Fictitious Trade Offsetting",
+      "statement": "Jérôme Kerviel accumulated unauthorized European equity index futures positions of €50 billion at Société Générale in 2008, generating a €4.9 billion loss when unwound during market turbulence; he bypassed internal controls by entering offsetting fictitious forward transactions using insider knowledge from his previous middle-office compliance role.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part1",
+        "excerpt": "Jérôme Kerviel at Société Générale amassed unauthorized positions of 50 billion euros by entering fake offsetting trades, resulting in a 4.9 billion euro loss.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "socgen",
+        "jerome_kerviel",
+        "fictitious_trades",
+        "unauthorized_exposure"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "case_study",
+      "topic": "Allied Irish Banks / Allfirst (2002) — Fabricated Option Hedges",
+      "statement": "Currency trader John Rusnak generated $691 million in losses at Allfirst (subsidiary of Allied Irish Bank) by entering fraudulent, non-existent foreign exchange option contracts into the risk system to falsely show that his huge directional currency forward bets were fully hedged.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part1",
+        "excerpt": "John Rusnak at Allied Irish Bank hid $691 million in losses by creating fake options to make unhedged currency forward trades appear hedged.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "allied_irish",
+        "john_rusnak",
+        "fake_options",
+        "forex_fraud"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "case_study",
+      "topic": "Long-Term Capital Management (LTCM, 1998) — Excessive Leverage and Liquidity Meltdown",
+      "statement": "Hedge fund LTCM lost $4.6 billion in 1998 when its relative-value convergence arbitrage trades were leveraged at 25:1 on balance sheet and over $1 trillion in off-balance-sheet swap notionals; following the Russian sovereign default, global liquidity dried up, yield spreads widened violently rather than converging, and margin calls forced emergency liquidation.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part1",
+        "excerpt": "LTCM had 25 to 1 balance sheet leverage and over 1 trillion dollars in derivatives notionals. When Russia defaulted, liquidity dried up and spreads widened.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "ltcm",
+        "excessive_leverage",
+        "liquidity_risk",
+        "convergence_arbitrage"
+      ]
+    },
+    {
+      "id": "fact-09",
+      "category": "market_rule",
+      "topic": "Terminal Payoff versus Net Trading Profit Invariant",
+      "statement": "In all derivative risk reporting, risk managers must strictly distinguish between gross terminal payoff and net economic profit: Gross Payoff represents terminal cashflow upon contract expiration max(S - K, 0), whereas Net Trading Profit explicitly deducts the initial option premium paid, satisfying the invariant Profit = Payoff - Premium.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part1",
+        "excerpt": "Always distinguish payoff from profit. Payoff is the cash received at maturity; profit subtracts the premium and financing costs.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "payoff_vs_profit",
+        "accounting_invariant",
+        "net_profit",
+        "risk_reporting"
+      ]
+    },
+    {
+      "id": "fact-10",
+      "category": "market_rule",
+      "topic": "Comprehensive Stress Testing and Scenario Analysis",
+      "statement": "Value at Risk (VaR) models evaluate potential losses under normal market distributions but fail during extreme tail events; financial institutions must enforce rigorous stress testing that models catastrophic scenarios (such as 1987 Black Monday, 1998 Russian default, and 2008 Lehman collapse) including asset illiquidity and margin call spikes.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part1",
+        "excerpt": "Stress testing and scenario analysis must accompany VaR. Models must simulate market freeze, widening spreads, and liquidity collapse.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "stress_testing",
+        "scenario_analysis",
+        "tail_risk",
+        "liquidity_freeze"
+      ]
+    }
+  ]
+}

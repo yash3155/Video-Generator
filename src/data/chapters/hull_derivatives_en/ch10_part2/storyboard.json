@@ -1,0 +1,416 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch10_part2",
+  "course": "Technical Analysis of the Financial Markets (John J. Murphy)",
+  "chapterTitle": "Put-Call Parity, Arbitrage Strategies, Merton's Capital Structure Model, and Early Exercise Properties",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Put-Call Parity Equation",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A quantitative trader notices that European calls and puts on the same non-dividend-paying stock with strike K and maturity T must obey Put-Call Parity: c + K*e^(-rT) = p + S_0 ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "A mentor explains the replication proof using two portfolios: Portfolio A (1 call + cash K*e^(-rT)) and Portfolio B (1 put + 1 stock share) ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "They verify that both portfolios yield the exact same terminal payoff max(S_T, K) at expiration T in all market states, enforcing parity via the Law of One Price ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Replication Cash Flows at Expiration T",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display Portfolio A terminal cash flows at T: if S_T > K, call pays (S_T - K) + K = S_T; if S_T <= K, call pays 0 + K = K ([fact-01], [fact-02]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display Portfolio B terminal cash flows at T: if S_T > K, stock is worth S_T and put is 0; if S_T <= K, put exercises stock to K, matching Portfolio A's max(S_T, K) payoff exactly ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 10 Part 2 Roadmap: 4 Core Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-05",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Put-Call Parity & Replication — Mathematical parity equation and Law of One Price proof using Portfolios A and B ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Arbitrage Execution — Fiduciary Call and Reversal arbitrage steps when parity is violated ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Merton's Capital Structure Model — Corporate equity as a call option and debt as a risk-free bond minus a put ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Early Exercise Properties — Why American calls are never exercised early (C = c) while deep-ITM American puts can be ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Fiduciary Call Arbitrage vs. Reversal Arbitrage",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Fiduciary Call Arbitrage (when c + K*e^(-rT) > p + S_0): sell call, buy put, buy stock, borrow discounted strike K*e^(-rT) to lock in positive upfront cash ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Reversal Arbitrage (when c + K*e^(-rT) < p + S_0): buy call, sell put, short stock, lend/invest discounted strike K*e^(-rT) to lock in riskless cash profit ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Arbitrage Liability Cancellation at Expiration T",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Show Fiduciary Call expiration mechanics: loan repayment of -K is perfectly offset by +K from short call exercise (if S_T > K) or long put exercise (if S_T <= K), leaving zero net liability ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Show Reversal expiration mechanics: investment grows to +K, which exactly pays -K to buy stock and close short stock position via long call or short put assignment ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Merton's Model: Equity as a Call & Debt as Bond Minus Put",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Equity Payoff E_T = max(V_T - D, 0): equity is a European call on firm assets V with strike D, defaulting to 0 if V_T <= D due to limited liability ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Debt Payoff min(V_T, D) = D - max(D - V_T, 0): corporate debt equals a risk-free bond paying D minus a short European put on firm value V with strike D ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "American Call Early Exercise Prohibition (C = c)",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Analyze Reason 1 (Time Value of Money): delaying strike payment K until T earns risk-free interest over (T - t), making waiting superior to early exercise ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Analyze Reason 2 & 3 (Downside Insurance & Selling Dominance): holding calls provides downside protection, and since C >= c >= S_t - K*e^(-r(T-t)) > S_t - K, selling the call in the market always yields more than early exercise ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "American Put Early Exercise: Time Value vs. Insurance Value",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Illustrate the tug-of-war for American puts: Benefit of early exercise (immediate receipt of cash strike K to earn risk-free interest) versus Cost (forfeiting downside insurance value if stock rebounds) ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Show that when stock price S_0 drops deep ITM near zero below critical barrier S*, insurance value becomes negligible, making early exercise optimal ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Terminal Payoff Symmetry Across Parity and Merton Models",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-05",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot max(S_T, K) payoff for Put-Call Parity replication portfolios A and B, demonstrating identical terminal value across all spot prices ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Merton's capital structure curves: equity call max(V_T - D, 0) alongside debt payoff min(V_T, D) across firm asset values V_T ([fact-05], [fact-06]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Parity Arbitrage & Merton Payoffs",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-05",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Evaluate c + K*e^(-rT) vs p + S_0 to detect overpriced calls and execute Fiduciary Call Arbitrage for riskless upfront profit ([fact-01], [fact-03]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Calculate Merton equity call payoff max(V_T - D, 0) and explain why American calls are never exercised early (C = c) ([fact-05], [fact-07]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Derivatives Auditor & Parity Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The auditor reviews the parity checklist: check if c + K*e^(-rT) equals p + S_0; if overpriced, execute Fiduciary Call Arbitrage; if underpriced, execute Reversal Arbitrage ([fact-01], [fact-03], [fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The auditor completes the review with corporate and exercise checks: model firm equity as max(V_T - D, 0) and debt as bond minus put; confirm American calls are never exercised early (C = c) while deep-ITM American puts can be ([fact-05], [fact-07], [fact-08]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Parity, Arbitrage, Merton & Early Exercise",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Put-Call Parity formula c + K*e^(-rT) = p + S_0 ([fact-01]), replication proof via Portfolios A and B yielding max(S_T, K) ([fact-02]), Fiduciary Call Arbitrage for overpriced calls ([fact-03]), and Reversal Arbitrage for underpriced calls ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Merton's model viewing equity as a call option max(V_T - D, 0) ([fact-05]), corporate debt as a bond minus a put ([fact-06]), why American calls are never exercised early (C = c) ([fact-07]), and early exercise conditions for American puts near zero ([fact-08]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06",
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Put-Call Parity Equation ([fact-01]): For European options on non-dividend-paying stock, c + K*e^(-rT) = p + S_0 links call and put prices through discounted strike present value.",
+    "2. Replication Law of One Price ([fact-02]): Portfolio A (call + discounted cash) and Portfolio B (put + stock) both yield identical terminal payoff max(S_T, K) at maturity T.",
+    "3. Fiduciary Call Arbitrage ([fact-03]): When c + K*e^(-rT) > p + S_0, shorting the call, buying the put, buying the stock, and borrowing the discounted strike locks in riskless upfront profit.",
+    "4. Reversal Arbitrage ([fact-04]): When c + K*e^(-rT) < p + S_0, buying the call, shorting the put, shorting the stock, and lending the discounted strike locks in riskless cash profit.",
+    "5. Merton's Equity Call Model ([fact-05]): Corporate equity is structured as a European call option on firm asset value V with strike D, defaulting to 0 if V_T <= D due to limited liability.",
+    "6. Merton's Debt as Bond Minus Put ([fact-06]): Corporate debt payoff min(V_T, D) is economically equivalent to a risk-free bond paying D minus a short European put on firm value V.",
+    "7. American Call Early Exercise Prohibition ([fact-07]): American calls on non-dividend stocks are never exercised early (C = c) due to time value of money, insurance value, and the dominance of selling over exercising.",
+    "8. American Put Early Exercise Conditions ([fact-08]): Deep-in-the-money American puts can be optimal to exercise early when spot price approaches zero below critical barrier S*."
+  ],
+  "bottomTakeaway": "Put-Call Parity links European options through arbitrage replication portfolios, Merton's model frames corporate capital structure as asset options, and non-dividend American calls are never exercised early unlike deep-ITM puts ([fact-01], [fact-02], [fact-03], [fact-04], [fact-05], [fact-06], [fact-07], [fact-08])."
+}

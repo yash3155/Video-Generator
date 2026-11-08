@@ -1,0 +1,148 @@
+Here is the breakdown of the facts, definitions, formulas, arbitrage replication proofs, and rules from **Chapter 10 ("Properties of Stock Options")** of John C. Hull's *Fundamentals of Futures and Options Markets* [1, 2].
+
+---
+
+### 1. Put-Call Parity Formula for European Options on Non-Dividend-Paying Stock
+
+**Put-Call Parity** defines a fundamental relationship between the price of a European call option (\\(c\\)) and a European put option (\\(p\\)) having the same strike price (\\(K\\)), maturity date (\\(T\\)), and underlying stock (\\(S_0\\)) paying no dividends [1, 2].
+
+#### **Formula**
+\\[c + K e^{-rT} = p + S_0\\]
+
+*Where:*
+* **\\(c\\)**: Current price of the European call option [1, 2]
+* **\\(p\\)**: Current price of the European put option [1, 2]
+* **\\(S_0\\)**: Current price of the underlying stock [1, 2]
+* **\\(K\\)**: Strike / exercise price of the options [1-3]
+* **\\(r\\)**: Risk-free continuously compounded interest rate [1, 2]
+* **\\(T\\)**: Time to expiration in years [1-3]
+* **\\(K e^{-rT}\\)**: Present value of the strike price discounted at the risk-free rate [1, 2]
+
+---
+
+#### **Replication Proof (Law of One Price)**
+To prove the parity formula, consider two distinct portfolios constructed at time \\(t = 0\\) [1, 2, 4]:
+
+* **Portfolio A**: **1 European Call Option (\\(c\\)) + Cash of \\(K e^{-rT}\\)** (or a risk-free zero-coupon bond paying \\(K\\) at maturity \\(T\\)) [1, 2, 4].
+* **Portfolio B**: **1 European Put Option (\\(p\\)) + 1 Share of Underlying Stock (\\(S_0\\))** [1, 2, 4].
+
+#### **Payoff at Expiration \\(T\\):**
+1. **If \\(S_T > K\\) (Stock price exceeds strike at expiration):**
+   * **Portfolio A**: The call option is in-the-money and exercised, yielding \\(S_T - K\\). The invested cash \\(K e^{-rT}\\) grows at rate \\(r\\) to \\(K\\). Total value = \\((S_T - K) + K = S_T\\) [1, 2].
+   * **Portfolio B**: The put option expires worthless (\\(0\\)). The share of stock is worth \\(S_T\\). Total value = \\(S_T\\) [1, 2].
+2. **If \\(S_T \le K\\) (Stock price is at or below strike at expiration):**
+   * **Portfolio A**: The call option expires worthless (\\(0\\)). The cash grows at rate \\(r\\) to \\(K\\). Total value = \\(K\\) [1, 2].
+   * **Portfolio B**: The put option is exercised, allowing the share to be sold for \\(K\\). Total value = \\(K\\) [1, 2].
+
+**Conclusion**: In both scenarios, both portfolios yield the exact same terminal payoff of **\\(\max(S_T, K)\\)** at time \\(T\\). Under the no-arbitrage principle, two portfolios guaranteeing identical future payoffs in all market states must cost the same today. Hence, **\\(c + K e^{-rT} = p + S_0\\)** [1, 2, 4].
+
+---
+
+### 2. Complete Arbitrage Portfolios and Steps When Parity is Violated
+
+When Put-Call Parity does not hold, arbitrageurs can lock in a riskless profit with zero net risk [1, 2, 5].
+
+---
+
+#### **Case 1: \\(c + K e^{-rT} > p + S_0\\) (Call + Discounted Strike is Overpriced)**
+
+When the call option is overpriced relative to the put and stock, traders execute a **Fiduciary Call Arbitrage** [1, 2].
+
+#### **Arbitrage Steps at Time \\(t = 0\\):**
+1. **Sell (short) the European call option** at price \\(c\\) *(Cash inflow: \\(+c\\))* [1, 2].
+2. **Buy the European put option** at price \\(p\\) *(Cash outflow: \\(-p\\))* [1, 2].
+3. **Buy 1 share of stock** at price \\(S_0\\) *(Cash outflow: \\(-S_0\\))* [1, 2].
+4. **Borrow \\(K e^{-rT}\\)** at the risk-free rate \\(r\\) *(Cash inflow: \\(+K e^{-rT}\\))* [1, 2].
+
+* **Initial Riskless Net Cash Profit at \\(t = 0\\)**:
+  \\[\text{Upfront Profit} = (c + K e^{-rT}) - (p + S_0) > 0\\]
+
+#### **Cash Flows at Expiration \\(T\\):**
+* **Repay the loan**: \\(K e^{-rT} \cdot e^{rT} = K\\) *(Cash outflow: \\(-K\\))* [1, 2].
+* **If \\(S_T > K\\)**: The short call is exercised against you. You deliver the stock and receive \\(K\\) *(Cash inflow: \\(+K\\))*. Net cash flow = \\(+K - K = 0\\) [1, 2].
+* **If \\(S_T \le K\\)**: You exercise your long put, selling the stock for \\(K\\) *(Cash inflow: \\(+K\\))*. Net cash flow = \\(+K - K = 0\\) [1, 2].
+
+**Result**: All future liabilities cancel out to \\(0\\), leaving the initial positive cash profit intact [1, 2].
+
+---
+
+#### **Case 2: \\(c + K e^{-rT} < p + S_0\\) (Call + Discounted Strike is Underpriced)**
+
+When the call option is underpriced relative to the put and stock, traders execute a **Reversal / Reverse Conversion Arbitrage** [1, 2].
+
+#### **Arbitrage Steps at Time \\(t = 0\\):**
+1. **Buy the European call option** at price \\(c\\) *(Cash outflow: \\(-c\\))* [1, 2].
+2. **Sell (short) the European put option** at price \\(p\\) *(Cash inflow: \\(+p\\))* [1, 2].
+3. **Short-sell 1 share of stock** at price \\(S_0\\) *(Cash inflow: \\(+S_0\\))* [1, 2].
+4. **Lend (invest) \\(K e^{-rT}\\)** at the risk-free rate \\(r\\) *(Cash outflow: \\(-K e^{-rT}\\))* [1, 2].
+
+* **Initial Riskless Net Cash Profit at \\(t = 0\\)**:
+  \\[\text{Upfront Profit} = (p + S_0) - (c + K e^{-rT}) > 0\\]
+
+#### **Cash Flows at Expiration \\(T\\):**
+* **Collect the loan proceeds**: \\(K e^{-rT} \cdot e^{rT} = K\\) *(Cash inflow: \\(+K\\))* [1, 2].
+* **If \\(S_T > K\\)**: You exercise your long call to buy 1 share at \\(K\\) *(Cash outflow: \\(-K\\))* and close your short stock position. Net cash flow = \\(+K - K = 0\\) [1, 2].
+* **If \\(S_T \le K\\)**: The short put is exercised against you, requiring you to buy 1 share at \\(K\\) *(Cash outflow: \\(-K\\))* to close your short stock position. Net cash flow = \\(+K - K = 0\\) [1, 2].
+
+**Result**: All future liabilities cancel out to \\(0\\), locking in the initial positive cash profit [1, 2].
+
+---
+
+### 3. Capital Structure as Options (Merton's Model - Snapshot 10.1)
+
+In Robert Merton's model (Business Snapshot 10.1), a company's capital structure is framed using option pricing principles [1, 2]:
+
+* **Firm Value (\\(V_T\\))**: Total market value of the firm's assets at time \\(T\\) [1, 2].
+* **Debt (\\(D\\) or \\(K\\))**: A single zero-coupon bond with face value \\(D\\) maturing at time \\(T\\) [1, 2].
+
+#### **1. Equity as a Call Option on Firm Value**
+* **Equity Payoff at Maturity \\(T\\)**:
+  \\[E_T = \max(V_T - D, 0)\\]
+* **Interpretation**: **Equity is a European call option on the total assets of the firm (\\(V\\))** with a strike price equal to the face value of the firm's debt (\\(D\\)) [1, 2].
+  * If \\(V_T > D\\), equity holders pay off the debt \\(D\\) (exercise the option) and retain the remaining value \\(V_T - D\\) [1, 2].
+  * If \\(V_T \le D\\), equity holders default, declare bankruptcy, and hand over all firm assets to debt holders, walking away with \\(0\\) payoff (due to limited liability) [1, 2].
+
+#### **2. Debt as a Position in Firm Assets and Options**
+* **Debt Payoff at Maturity \\(T\\)**:
+  \\[\text{Payoff to Debt Holders} = \min(V_T, D) = D - \max(D - V_T, 0)\\]
+* **Interpretation**: Owning corporate debt is economically equivalent to **holding a risk-free bond paying \\(D\\) and writing a European put option on the firm's value (\\(V\\))** with strike price \\(D\\) [1, 2].
+
+---
+
+### 4. Proof: Why American Calls on Non-Dividend-Paying Stocks Should NEVER Be Exercised Early
+
+For an American call option on a stock paying no dividends, **\\(C = c\\)**—meaning the American call has the exact same value as its European counterpart, and **early exercise is never optimal** [1, 2, 6].
+
+#### **1. Time Value of Money (Delaying Payment of the Strike)**
+Exercising a call option early at time \\(t < T\\) requires paying the strike price \\(K\\) immediately [1, 2, 6]. By waiting until expiration \\(T\\), the holder retains \\(K\\) in cash and earns risk-free interest on it over the remaining period \\((T-t)\\) [1, 2, 6].
+
+#### **2. Insurance Value Against Stock Price Downside**
+Holding the call option provides **downside protection**. If the stock price drops severely below \\(K\\) between time \\(t\\) and \\(T\\), the call holder simply lets the option expire worthless, avoiding stock losses [1, 2, 6]. Exercising early converts the option into actual stock ownership (\\(S_t\\)), exposing the holder to full downside risk below \\(K\\) [1, 2, 6].
+
+#### **3. Dominance of Selling over Exercising**
+Before expiration, an American call option's market price \\(C\\) is strictly higher than its intrinsic value (\\(S_t - K\\)):
+\\[C \ge c \ge S_t - K e^{-r(T-t)} > S_t - K \quad (\text{for } r > 0, T > t)\\]
+
+Because the option carries positive time value, an investor wishing to liquidate a long call position will **always achieve a higher payout by selling the option in the market** than by exercising it early [1, 2, 6].
+
+---
+
+### 5. Early Exercise Conditions for American Puts
+
+Unlike American calls, **American put options on non-dividend-paying stocks CAN be optimal to exercise early** prior to expiration [1, 2].
+
+#### **1. Economic Trade-off**
+* **Benefit of Early Exercise**: Immediate receipt of cash strike \\(K\\) at time \\(t\\), which can be invested to earn risk-free interest over the remaining life \\((T - t)\\) [1, 2].
+* **Cost of Early Exercise**: Forfeiture of the option's insurance value (the possibility that the stock price \\(S\\) might rise back above \\(K\\)) [1, 2].
+
+#### **2. Threshold Condition for Early Exercise**
+Early exercise becomes optimal when the stock price \\(S_0\\) is **sufficiently deep in the money** (nearing \\(0\\)) [1, 2, 7]. 
+
+* Because stock prices cannot fall below zero (\\(S \ge 0\\)), the maximum potential payoff of a put is capped at \\(K\\) [1, 2, 7].
+* When \\(S_0\\) drops close to \\(0\\), further stock price drops are negligible, making the option's remaining downside insurance value nearly zero [1, 2].
+* Under these conditions, the **time value of money on receiving \\(K\\) immediately outweighs any remaining insurance value** [1, 2].
+* Mathematically, if \\(S_0\\) drops below a critical barrier \\(S^*\\), immediate exercise yields \\(K - S_0\\), which exceeds the value of holding the put until maturity \\(T\\) [1, 2].
+
+---
+
+📈 *Would you like to explore numerical examples of Put-Call Parity arbitrage, or build a study guide or flashcards on option pricing properties?*

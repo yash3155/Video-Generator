@@ -1,0 +1,277 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch10_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-08T05:04:42.286Z",
+  "bookTitle": "Technical Analysis of the Financial Markets (John J. Murphy)",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "The Six Quantifiable Factors Affecting Stock Option Prices",
+      "statement": "The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prevailing market price of the underlying common stock; (2) Strike Price (K), the fixed exercise price; (3) Time to Expiration (T), the duration remaining until maturity; (4) Volatility (sigma), the expected variability or standard deviation of underlying stock returns over the option's life; (5) Risk-Free Interest Rate (r), the risk-free return corresponding to maturity (typically the 90-day Treasury bill rate); and (6) Expected Dividends (D), the expected cash dividend payments during the option's life.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part1",
+        "excerpt": "The price of a stock option is determined by six quantifiable factors related to the underlying stock and the option's contract terms",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-02",
+      "category": "claim",
+      "topic": "Directional Effects of Current Stock Price (S_0) and Strike Price (K)",
+      "statement": "An increase in the current stock price (S_0) increases European and American call values (+) and decreases European and American put values (-). Conversely, an increase in the strike price (K) decreases call option prices (-) and increases put option prices (+).",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part1",
+        "excerpt": "An increase in stock price increases European and American call values (+) and decreases European and American put values (-)",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-03",
+      "category": "claim",
+      "topic": "Directional Effects of Time to Expiration (T), Time Decay (Theta), and Volatility (sigma)",
+      "statement": "A longer time to expiration (T) increases American call and put values (+) because the holder retains all exercise rights for a longer window, and generally increases European call and put values (+), though extreme conditions such as high dividends or interest rates can occasionally cause European exceptions; as time passes (T decreases), options experience time decay (Theta) that erodes extrinsic/time value. Higher volatility (sigma) expands the range of potential outcomes, increasing both call values (+) and put values (+) across European and American styles.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part1",
+        "excerpt": "Higher volatility expands the range of potential outcomes, making extreme stock movements more likely. Consequently, increased volatility increases both call values (+) and put values (+)",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-04",
+      "category": "claim",
+      "topic": "Directional Effects of Risk-Free Interest Rate (r) and Expected Dividends (D)",
+      "statement": "Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and increase the carrying return on stock short sales, thereby increasing European and American call values (+) and decreasing European and American put values (-). Because a stock's spot price drops by approximately the dividend amount when it goes ex-dividend, expected cash dividends (D) decrease call option values (-) and increase put option values (+).",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part1",
+        "excerpt": "Higher interest rates reduce the present value of the strike price payable in the future and increase the carrying return on stock short sales. Thus, higher interest rates increase call values (+) and decrease put values (-)",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-05",
+      "category": "formula",
+      "topic": "Intrinsic Value and Time Value (Extrinsic Value) Formulas",
+      "statement": "Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for calls and max(K - S_0, 0) for puts. Time Value (Extrinsic Value) is the option premium amount exceeding intrinsic value, given by Time Value Premium = Option Price - Intrinsic Value.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part1",
+        "excerpt": "Time Value Premium = Option Price - Intrinsic Value",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Option Intrinsic Value and Time Value Premium",
+        "latex": "\\text{Intrinsic Value}_{\\text{Call}} = \\max(S_0 - K, 0), \\quad \\text{Intrinsic Value}_{\\text{Put}} = \\max(K - S_0, 0), \\quad \\text{Time Value Premium} = \\text{Option Price} - \\text{Intrinsic Value}",
+        "variables": [
+          {
+            "symbol": "S_0",
+            "definition": "Current market price of the underlying common stock",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Fixed strike or exercise price of the option",
+            "unit": "$"
+          },
+          {
+            "symbol": "\\text{Option Price}",
+            "definition": "Total market premium of the call or put option",
+            "unit": "$"
+          },
+          {
+            "symbol": "\\text{Intrinsic Value}",
+            "definition": "Immediate exercise value of the option",
+            "unit": "$"
+          }
+        ]
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "max(S_0 - K, 0) for Call; max(K - S_0, 0) for Put",
+        "formulaProfit": "Immediate Exercise Payoff - Option Price = -Time Value Premium",
+        "premiumConsidered": true,
+        "explanation": "Intrinsic value measures immediate gross exercise payoff, whereas the total Option Price includes the Time Value Premium above intrinsic value."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-06",
+      "category": "formula",
+      "topic": "Put-Call Equilibrium and Carrying Cost Relationship",
+      "statement": "Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to Call Price + K - S_0 - Put Price + D - Carrying Cost = 0, which also expresses the put time value premium as Put Time Value Premium = Call Price + D - Carrying Cost.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part1",
+        "excerpt": "Call Price + K - S_0 - Put Price + D - Carrying Cost = 0",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Put-Call Equilibrium and Put Time Value Premium",
+        "latex": "\\text{Call Price} + K - S_0 - \\text{Put Price} + D - \\text{Carrying Cost} = 0, \\quad \\text{Put Time Value Premium} = \\text{Call Price} + D - \\text{Carrying Cost}",
+        "variables": [
+          {
+            "symbol": "\\text{Call Price}",
+            "definition": "Market price of the call option",
+            "unit": "$"
+          },
+          {
+            "symbol": "\\text{Put Price}",
+            "definition": "Market price of the put option",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Strike price of the options",
+            "unit": "$"
+          },
+          {
+            "symbol": "S_0",
+            "definition": "Current price of the underlying stock",
+            "unit": "$"
+          },
+          {
+            "symbol": "D",
+            "definition": "Expected cash dividends during the life of the option",
+            "unit": "$"
+          },
+          {
+            "symbol": "\\text{Carrying Cost}",
+            "definition": "Interest carrying charge over the option's life",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-07",
+      "category": "case_study",
+      "topic": "Discount Call Option Arbitrage Case Study (Stock XYZ January 40 Call)",
+      "statement": "When Stock XYZ is bid at $50 and a January call with strike K = $40 is offered at a discount price of $9.80 (below its intrinsic value of $50 - $40 = $10.00), an arbitrageur executes three steps: (1) buy the January 40 call for $9.80, (2) short sell Stock XYZ at $50, and (3) exercise the call to buy XYZ at $40. The short stock transaction yields a $10.00 gross payoff ($50 - $40), and deducting the $9.80 call purchase price locks in a riskless net profit of $0.20 per share.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part1",
+        "excerpt": "Stock XYZ is bid at $50. A January call with strike K = $40 is offered at a discount price of $9.80 (intrinsic value is 50 - 40 = $10)",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "stockBidPrice": 50,
+          "strike": 40,
+          "intrinsicValue": 10,
+          "callOfferPrice": 9.8,
+          "discountAmount": 0.2,
+          "grossExercisePayoff": 10,
+          "risklessNetProfit": 0.2
+        },
+        "units": "$",
+        "context": "Arbitrage execution on Stock XYZ when a January K = $40 call trades at $9.80 while the stock is bid at $50."
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "S_0 - K = 50 - 40 = 10.00",
+        "formulaProfit": "(S_0 - K) - Call Price = 10.00 - 9.80 = 0.20",
+        "premiumConsidered": true,
+        "explanation": "Exercising the call against the short stock sale yields a $10.00 gross payoff, while deducting the $9.80 call premium paid yields a riskless net arbitrage profit of $0.20."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-08",
+      "category": "case_study",
+      "topic": "Discount Put Option Arbitrage Case Study (Stock XYZ July 50 Put)",
+      "statement": "When Stock XYZ trades at $40 and a July put with strike K = $50 sells for $9.75 (a $0.25 discount below its intrinsic value of $50 - $40 = $10.00), an arbitrageur executes three steps: (1) buy the July 50 put for $9.75, (2) buy XYZ common stock at $40, and (3) exercise the put to sell XYZ stock at $50. The stock trade generates a $10.00 gross payoff ($50 - $40), and deducting the $9.75 put cost locks in a riskless net profit of $0.25 per share.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part1",
+        "excerpt": "Stock XYZ is trading at $40. A July put with strike K = $50 sells for $9.75 (a $0.25 discount below its intrinsic value of $10)",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "stockPrice": 40,
+          "strike": 50,
+          "intrinsicValue": 10,
+          "putPrice": 9.75,
+          "discountAmount": 0.25,
+          "grossExercisePayoff": 10,
+          "risklessNetProfit": 0.25
+        },
+        "units": "$",
+        "context": "Arbitrage execution on Stock XYZ when a July K = $50 put trades at $9.75 while the stock trades at $40."
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "K - S_0 = 50 - 40 = 10.00",
+        "formulaProfit": "(K - S_0) - Put Price = 10.00 - 9.75 = 0.25",
+        "premiumConsidered": true,
+        "explanation": "Buying the stock at $40 and exercising the $50 put yields a $10.00 gross payoff, and subtracting the $9.75 put premium paid leaves a riskless net profit of $0.25."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-09",
+      "category": "formula",
+      "topic": "Upper and Lower No-Arbitrage Bounds for European and American Options",
+      "statement": "No-arbitrage pricing bounds establish Call Upper Bounds of c <= S_0 and C <= S_0, Put Upper Bounds of p <= K*e^(-rT) and P <= K, a European Call Lower Bound of c >= max(S_0 - K*e^(-rT), 0), and a European Put Lower Bound of p >= max(K*e^(-rT) - S_0, 0).",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part1",
+        "excerpt": "Call Upper Bounds: c \\le S_0 and C \\le S_0 ... Put Upper Bounds: p \\le K e^{-rT} and P \\le K ... European Call Lower Bound: c \\ge \\max(S_0 - K e^{-rT}, 0) ... European Put Lower Bound: p \\ge \\max(K e^{-rT} - S_0, 0)",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "No-Arbitrage Upper and Lower Option Pricing Bounds",
+        "latex": "c \\le S_0, \\; C \\le S_0, \\; p \\le K e^{-rT}, \\; P \\le K, \\; c \\ge \\max(S_0 - K e^{-rT}, 0), \\; p \\ge \\max(K e^{-rT} - S_0, 0)",
+        "variables": [
+          {
+            "symbol": "c, C",
+            "definition": "European call price (c) and American call price (C)",
+            "unit": "$"
+          },
+          {
+            "symbol": "p, P",
+            "definition": "European put price (p) and American put price (P)",
+            "unit": "$"
+          },
+          {
+            "symbol": "S_0",
+            "definition": "Current stock price",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Option strike price",
+            "unit": "$"
+          },
+          {
+            "symbol": "r",
+            "definition": "Continuously compounded risk-free interest rate",
+            "unit": "rate"
+          },
+          {
+            "symbol": "T",
+            "definition": "Time to expiration",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": []
+    }
+  ],
+  "generalAssumptions": [
+    "The risk-free interest rate (r) used in option pricing corresponds to the option's maturity, typically benchmarked to the 90-day Treasury bill rate.",
+    "When an underlying stock goes ex-dividend, its spot market price drops by approximately the amount of the cash dividend payment (D).",
+    "If an American-style call or put trades at a discount below its immediate intrinsic value, arbitrageurs can simultaneously trade the underlying stock and immediately exercise the option to lock in a riskless net profit."
+  ]
+}

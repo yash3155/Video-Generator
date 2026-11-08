@@ -1,0 +1,461 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch09_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Mechanics of Options Markets: Payoffs, Moneyness, and Contract Adjustments",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The $2,900 Google Bet: Payoff vs. Profit",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A novice trader celebrates buying 1 December call contract (100 shares) on Google with strike price K = $550 at a premium of c = $29.00 per share, paying an upfront outlay of $2,900 ([fact-01], [fact-05]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "A senior mentor points out that the call gives the right, but not the obligation, to buy 100 shares at $550, and asks what happens if Google finishes at S_T = $600 versus S_T <= $550 at expiration ([fact-01], [fact-05]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "They compare the two outcomes: at S_T = $600, gross payoff is $5,000 but net profit is +$2,100 after the $2,900 premium; at S_T <= $550, gross payoff is $0 and net loss is capped at -$2,900 ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Asymmetric Risk by the Numbers: Google Call vs. Put",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-06",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display the standard North American contract multiplier of 100 shares per option contract alongside the $2,900 upfront outlay (100 * $29.00) and +$2,100 net profit at S_T = $600 for the Google K = $550 long call ([fact-05], [fact-08]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Contrast with selling 1 September put contract (100 shares) on Google at strike K = $525 and bid premium p = $22.40: an upfront inflow of +$2,240 turns into a -$4,500 gross loss and -$2,260 net loss when S_T drops to $480 ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 9 Part 1 Roadmap: 4 Core Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-07",
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Option Definitions & Styles — Call vs. Put rights without obligation, strike K, expiration T, premium c or p, and European vs. American exercise rules ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: The Four Payoff & Profit Profiles — Mathematical formulas and risk bounds for Long Call, Short Call, Long Put, and Short Put ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Moneyness & Exchange Rules — ITM, ATM, OTM classifications, 100-share lots, expiration cycles, strike intervals, and position/exercise limits ([fact-07], [fact-08]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Corporate Action Adjustments — N-for-M stock splits, stock dividends, and special cash dividends ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Calls vs. Puts and European vs. American Exercise",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Call Options (right to buy underlying at strike K, paying premium c) against Put Options (right to sell underlying at strike K, paying premium p), emphasizing that holders have rights while writers carry obligations ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare European Options (exercisable only on expiration date T) with American Options (exercisable at any time during the contract's life up to and including T) ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Compare Moneyness states across Calls and Puts: In-the-Money (S > K for call, S < K for put; positive intrinsic value > 0), At-the-Money (S = K; zero intrinsic value), and Out-of-the-Money (S < K for call, S > K put; zero intrinsic value = 0) ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Visualizing the Four Basic Option Payoff & Profit Curves",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Long Call gross payoff max(S_T - K, 0) and net profit max(S_T - K, 0) - c using the Google K = $550, c = $29.00 example: flat -$2,900 loss for S_T <= $550, rising dollar-for-dollar to +$2,100 net profit at S_T = $600 with uncapped upside ([fact-02], [fact-05]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Short Call gross payoff -max(S_T - K, 0) and net profit c - max(S_T - K, 0), showing maximum gain capped at +c and uncapped downside loss as S_T rises above K ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Plot Long Put profit max(K - S_T, 0) - p (max loss p, max gain K - p at S_T = 0) and Short Put profit p - max(K - S_T, 0) using the Google K = $525, p = $22.40 case: +$2,240 max profit for S_T >= $525 and -$2,260 net loss at S_T = $480 ([fact-04], [fact-06]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Deconstructing Gross Payoff vs. Net Profit Equations",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-03",
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Call Equations: Long Call Payoff = max(S_T - K, 0) and Profit = max(S_T - K, 0) - c versus Short Call Payoff = -max(S_T - K, 0) and Profit = c - max(S_T - K, 0) ([fact-02], [fact-03]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Put Equations: Long Put Payoff = max(K - S_T, 0) and Profit = max(K - S_T, 0) - p versus Short Put Payoff = -max(K - S_T, 0) and Profit = p - max(K - S_T, 0), showing bounds at S_T = 0 of K - p and p - K ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Market Sides & Regulatory Guardrails: Position and Exercise Limits",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pit the Bullish Side of the market (Long Calls + Short Puts) against the Bearish Side of the market (Short Calls + Long Puts) to illustrate how exchanges define same-side exposure ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Show how tiered Position Limits (250,000, 75,000, or 25,000 standard 100-share contracts based on volume and float) and equal 5-consecutive-business-day Exercise Limits prevent market corners and squeezes ([fact-08], [fact-09]).",
+          "sourceFactIds": [
+            "fact-08",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "N-for-M Stock Split and Stock Dividend Adjustment Mechanics",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "State the foundational rule: exchange-traded options are not adjusted for ordinary cash dividends, but are adjusted for N-for-M stock splits using the new strike formula K* = K * (M/N) ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Contrast Round-Lot Splits (e.g., 2-for-1: contracts increase by N/M, so 5 contracts at K=$60 become 10 contracts at K*=$30, each covering 100 shares) with Non-Round-Lot Splits (e.g., 3-for-2: contracts stay unchanged, strike K=$60 becomes K*=$40, and shares per contract become 100 * (3/2) = 150 shares) ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Show that an x% stock dividend is treated identically to a (1 + x/100)-for-1 split, adjusting shares per contract to 100 * (1 + x/100) and strike to K* = K / (1 + x/100) ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Case Study Comparison: Ordinary Dividends vs. Splits vs. Gucci's $13.50 Special Dividend",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08",
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare strike price and share deliverables across standard contracts (100 shares, expiration on third Friday across Jan/Apr/Jul/Oct, Feb/May/Aug/Nov, or Mar/Jun/Sep/Dec cycles, $2.50/$5.00/$10.00 strike intervals) when an ordinary cash dividend occurs: 0% adjustment ([fact-08], [fact-10]).",
+          "sourceFactIds": [
+            "fact-08",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Business Snapshot 9.1 (2000–2001 LVMH vs. PPR takeover battle for Gucci Group NV): when Gucci declared an extraordinary $13.50 per share special cash dividend, the OCC reduced option strike prices by $13.50 to prevent penalizing call holders or unfairly rewarding put holders ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Split Adjustments & Short Put Losses",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-06",
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Present Part 1 of the quiz: Calculate the new strike K* and shares per contract for a K = $60 option after a 3-for-2 stock split and a regular cash dividend, confirming K* = $40, 150 shares per contract, and no adjustment for the regular cash dividend ([fact-10], [fact-11]).",
+          "sourceFactIds": [
+            "fact-10",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Present Part 2 of the quiz: Calculate the gross loss and net loss for selling 1 September Google put contract (100 shares, K = $525, p = $22.40) when S_T = $480, verifying the -$4,500 gross loss and -$2,260 net loss after the $2,240 premium inflow ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Pre-Trade Audit Checklist for Options Traders",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-07",
+        "fact-08",
+        "fact-09",
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The trader and mentor review a pre-trade checklist: verify whether the contract is a Call or Put, European or American, its Moneyness state (ITM, ATM, OTM), and the 100-share multiplier across $2.50, $5.00, or $10.00 strike intervals expiring on the third Friday ([fact-01], [fact-07], [fact-08]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "They complete the checklist by checking same-side position and 5-day exercise limits (Bullish: Long Calls + Short Puts; Bearish: Short Calls + Long Puts) and verifying how upcoming stock splits, stock dividends, or special dividends like Gucci's $13.50 payout will adjust K* and contract deliverables ([fact-09], [fact-10], [fact-11]).",
+          "sourceFactIds": [
+            "fact-09",
+            "fact-10",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Mechanics of Options Markets",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08",
+        "fact-09",
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Option rights vs. obligations and exercise styles ([fact-01]), Long/Short Call payoff and profit equations ([fact-02], [fact-03]), Long/Short Put equations ([fact-04]), and the Google 100-share numerical case studies ([fact-05], [fact-06]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04",
+            "fact-05",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: ITM/ATM/OTM moneyness rules ([fact-07]), North American contract specs ([fact-08]), same-side position and 5-day exercise limits ([fact-09]), and N-for-M split, stock dividend, and Gucci special dividend adjustments ([fact-10], [fact-11]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08",
+            "fact-09",
+            "fact-10",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Option Fundamentals ([fact-01]): Call options grant the right to buy and put options grant the right to sell at strike price K by expiration T for an upfront premium (c or p), with European options exercisable only at T and American options exercisable at any time up to T.",
+    "2. Call Payoff & Profit Profiles ([fact-02], [fact-03]): A long call has gross payoff max(S_T - K, 0) and net profit max(S_T - K, 0) - c (capped loss c, uncapped upside), whereas a short call has gross payoff -max(S_T - K, 0) and net profit c - max(S_T - K, 0) (capped gain c, uncapped downside loss).",
+    "3. Put Payoff & Profit Profiles ([fact-04]): A long put yields gross payoff max(K - S_T, 0) and net profit max(K - S_T, 0) - p (max loss p, max gain K - p at S_T = 0), while a short put yields gross payoff -max(K - S_T, 0) and net profit p - max(K - S_T, 0) (max gain p, max loss p - K at S_T = 0).",
+    "4. Real-World 100-Share Case Studies ([fact-05], [fact-06]): Buying 1 Google call (K = $550, c = $29.00, $2,900 outlay) nets +$2,100 profit at S_T = $600 ($5,000 payoff) or -$2,900 at S_T <= $550; selling 1 Google put (K = $525, p = $22.40, $2,240 inflow) nets +$2,240 for S_T >= $525 or a -$2,260 net loss (-$4,500 gross loss) at S_T = $480.",
+    "5. Moneyness Classifications ([fact-07]): Options are In-the-Money (ITM, positive intrinsic value > 0) when S > K for calls or S < K for puts, At-the-Money (ATM, zero intrinsic value) when S = K, and Out-of-the-Money (OTM, zero intrinsic value = 0) when S < K for calls or S > K for puts.",
+    "6. Exchange Contract Specifications ([fact-08]): Standard North American stock options cover 100 shares, expire on the third Friday of the expiration month across four-month cycles (Jan/Apr/Jul/Oct, Feb/May/Aug/Nov, Mar/Jun/Sep/Dec) plus two nearest months, and use $2.50, $5.00, or $10.00 strike intervals.",
+    "7. Position and Exercise Limits ([fact-09]): Tiered position limits (e.g., 250,000, 75,000, or 25,000 contracts) cap same-side market exposure (Bullish: Long Calls + Short Puts; Bearish: Short Calls + Long Puts), while equal exercise limits cap exercises across 5 consecutive business days to prevent corners or squeezes.",
+    "8. Corporate Action Adjustments ([fact-10], [fact-11]): Options ignore ordinary cash dividends but adjust for N-for-M splits via K* = K * (M/N) (scaling contracts by N/M for round lots or shares per contract to 100 * (N/M) for non-round lots), stock dividends as (1 + x/100)-for-1 splits, and extraordinary special dividends like Gucci Group NV's $13.50 payout."
+  ],
+  "bottomTakeaway": "Mastering options mechanics requires distinguishing gross exercise payoff from net profit after premium, tracking moneyness and same-side position limits across 100-share contracts, and applying exact OCC strike and deliverable adjustments for stock splits, stock dividends, and special cash dividends ([fact-01], [fact-02], [fact-04], [fact-07], [fact-08], [fact-09], [fact-10], [fact-11])."
+}

@@ -1,0 +1,415 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch14_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Employee Stock Options (ESOs): Mechanics, Vesting, Dilution, Backdating Scandals, and Hull-White Valuation",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Unique Structure of Employee Stock Options",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A corporate finance student asks how employee stock options differ from listed exchange options; the mentor highlights non-transferability and 10-year maturities ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "They examine vesting mechanisms: cliff vesting (100% at once) versus graded vesting (incremental annual tranches) ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "The mentor discusses the moral hazard of asymmetric payoffs, where managers enjoy unlimited upside but zero downside, encouraging high-variance gambles ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "ESO Valuation & Overstatement Metrics by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display standard 10-year Black-Scholes valuation: $25.96 per share ($2,596 per 100-share contract) for an at-the-money ESO with S0 = $50 and sigma = 30% ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display Hull-White model valuation: incorporating early exercise multiple M = 1.5 ($75 threshold) and forfeiture rate lambda = 4% drops fair value to $18.60 per share, proving BSM overstates costs by over 39% ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 14 Part 1 Roadmap: 4 Core Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-04",
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: ESO Mechanics — Non-transferability, vesting periods (cliff/graded), and moral hazard incentives ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Accounting & Dilution — FAS 123R (ASC 718) expensing, EPS share dilution, and Lie's backdating scandals ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Executive Risk Aversion — Undiversified wealth driving early exercise well prior to expiration ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Hull-White Lattices — Binomial binomial pricing incorporating exercise multiple M and forfeiture rate lambda ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Cliff Vesting vs. Graded Vesting Mechanisms",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Cliff Vesting: 100% of options vest simultaneously at a single future date (e.g., exactly 3 years post-grant); departing early forfeits everything ([fact-01], [fact-02]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Graded Vesting: equal tranches vest incrementally over consecutive years (e.g., 25% vesting annually across 4 years) ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Hull-White ESO Valuation Adjustments",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Early Exercise Boundary: at any node after t_vest, if stock price S >= M * K (e.g., $75), employee exercises immediately ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Forfeiture Adjustment: constant annual departure rate lambda applied across binomial tree steps to capture employee turnover ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Business Snapshot 14.1: Share Dilution & EPS Impact",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Exchange-Traded Option Settlement: settled with existing shares in secondary markets without altering corporate share counts ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine ESO Exercise Dilution: issuing newly minted shares expands total outstanding share base, directly diluting future Earnings Per Share (EPS) unless offset by share repurchases ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Standard BSM Overvaluation vs. Hull-White Realism",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07",
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Standard BSM: assumes holding to 10-year maturity and unlimited risk tolerance, producing inflated values like $25.96 ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Hull-White Realism: reflects executive risk aversion and early exercise at multiple M, reducing fair value to $18.60 and correcting 39% overstatement ([fact-07], [fact-08], [fact-10]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Employee Terminal Gross Payoff vs. Corporate Treasury Net Cost",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Employee Gross Cash Payoff: max(S_T - K, 0) upon exercise with $0.00 out-of-pocket cash premium paid ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Corporate Treasury Perspective: Net economic cost equals payoff minus amortized grant-date fair market value per share ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Corporate Scandals: Backdating & Spring Loading",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-06",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Option Backdating (Lie 2005): retroactively selecting historical grant dates when stock prices were at cyclic lows to give executives instant in-the-money value unrecorded as expense ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Spring Loading & Post-Termination Windows: granting options right before positive announcements, and enforcing 60-90 day post-resignation exercise limits ([fact-06], [fact-11]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: BSM Overstatement & Early Exercise",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07",
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Explain why standard BSM overvalues ESOs by over 39% compared to Hull-White ($25.96 vs $18.60) ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Describe how executive risk aversion and early exercise multiple M dictate binomial tree exercise boundaries ([fact-07], [fact-10]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "ESO Corporate Governance & Valuation Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-05",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The corporate auditor reviews accounting compliance: verify FAS 123R (ASC 718) grant-date fair value amortization and EPS dilution tracking ([fact-04], [fact-05]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The valuation quant checks binomial parameters: calibrate Hull-White early exercise multiple M and forfeiture rate lambda ([fact-07], [fact-08]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Employee Stock Options",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: ESO non-transferability and 10-year maturity ([fact-01]), cliff and graded vesting mechanisms ([fact-02]), asymmetric call payoff moral hazard ([fact-03]), and FAS 123R / ASC 718 fair value expensing ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: EPS dilution from newly minted shares ([fact-05]), Erik Lie's backdating scandals ([fact-06]), Hull-White early exercise multiple M and forfeiture rate lambda ([fact-07]), and BSM valuation overstatement correction ($25.96 down to $18.60) ([fact-08]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06",
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. ESO Structure ([fact-01]): Non-transferable call options granted with up to 10-year maturities, requiring vesting and forfeiting upon departure.",
+    "2. Vesting Mechanisms ([fact-02]): Cliff vesting (100% at once) and graded vesting (incremental annual tranches across years).",
+    "3. Moral Hazard ([fact-03]): Asymmetric call payoffs incentivize executives to take excessive leverage and high-variance corporate gambles.",
+    "4. Accounting Expensing ([fact-04]): FAS 123R (ASC 718) and IFRS 2 mandate grant-date fair value expensing amortized pro-rata over vesting.",
+    "5. Share Dilution ([fact-05]): ESO exercises require newly minted common stock, expanding share counts and diluting future Earnings Per Share (EPS).",
+    "6. Backdating Scandals ([fact-06]): Erik Lie (2005) exposed retroactive backdating to cyclic stock lows and spring loading before positive announcements.",
+    "7. Hull-White Valuation ([fact-07]): Incorporates early exercise multiple M (S >= M*K) and employee forfeiture rates lambda into binomial trees.",
+    "8. BSM Overstatement Correction ([fact-08]): Hull-White valuation reduces ESO fair value from $25.96 (BSM) to $18.60, correcting a 39% overstatement due to early exercise."
+  ],
+  "bottomTakeaway": "Employee stock options require specialized binomial valuation models like Hull-White to account for early exercise and forfeiture, correcting standard Black-Scholes overstatements while managing accounting expensing and EPS dilution ([fact-01], [fact-04], [fact-05], [fact-07], [fact-08])."
+}

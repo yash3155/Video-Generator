@@ -1,0 +1,418 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch12_part2",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Two-Step and Multi-Step Binomial Trees: American Options, Early Exercise, Volatility Matching, and Continuous Dividends",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "Expanding to Multi-Period Trees & Early Exercise",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-05",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A quantitative trader expands the binomial model to two steps (dt = T/2), creating up-up, up-down, and down-down terminal states ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The mentor explains that American options introduce a critical choice at every node: compare immediate early exercise against continuation value ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "They examine Hull's benchmark put example where early exercise becomes optimal at node C, generating a $0.90 early exercise premium ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Two-Step Binomial Put Valuation by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display Hull's benchmark metrics (S0 = $50, K = $52, r = 5%, T = 2 years, u = 1.2, d = 0.8, p = 0.6282): European call initial value $7.14 per share ($714 contract) ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display American put metrics: node C intrinsic value $12.00 exceeds continuation value $9.463, setting American put value to $5.09 ($0.90 premium over European put) and net profit to $6.91 per share ($691 contract) ([fact-06], [fact-07]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 12 Part 2 Roadmap: 4 Advanced Lattice Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-05",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Two-Step Lattices — Multi-period stock branching (dt = T/2) and backward induction node discounting ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Dynamic Delta & Early Exercise — Recalculating node Deltas and evaluating max(Intrinsic, Continuation) ([fact-03], [fact-05]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Volatility & Dividend Adjustments — Cox-Ross-Rubinstein sigma matching and continuous dividend drift r - q ([fact-08], [fact-10]).",
+          "sourceFactIds": [
+            "fact-08",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Black-Scholes Convergence & Jump Risks — CLT limiting distributions and Black Monday slippage ([fact-09], [fact-11]).",
+          "sourceFactIds": [
+            "fact-09",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "American Put Early Exercise: Node B vs. Node C",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Node B (S = $60, OTM): continuation value $1.414 exceeds intrinsic value $0.00, so holding is optimal (no early exercise) ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Node C (S = $40, deep ITM): intrinsic value $12.00 exceeds continuation value $9.463, making immediate early exercise optimal ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Backward Induction and Dynamic Delta Formulas",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-03",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Node Valuation Formula: f = exp(-r*dt) * [p * fu + (1 - p) * fd] discounting risk-neutral expected payoffs ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Dynamic Delta and CRR Volatility: Delta = (fu - fd) / (S_up - S_down) and u = exp(sigma * sqrt(dt)) ([fact-03], [fact-08]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Continuous Dividend Yield Adjustments in Risk-Neutral Probabilities",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine standard risk-neutral drift r: used when underlying stock pays zero dividends ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine continuous dividend yield q adjustment: risk-neutral drift becomes r - q, modifying probability parameter to p = (exp((r - q)*dt) - d) / (u - d) ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Immediate Exercise Value vs. Continuation Value",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Immediate Exercise: captures cash payoff K - S immediately but forfeits time value and remaining optionality ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Continuation Value: discounts future node expectations exp(-r*dt)*[p*fu + (1-p)*fd]; early exercise occurs only when intrinsic value dominates ([fact-05], [fact-06]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Two-Step Tree Lattice Branching & Terminal Payoff Nodes",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Two-Step Stock Tree branching: S0 = $50 branching to $60 and $40 at step 1, and $72, $48, $32 at step 2 ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot American Put Node Values: terminal step 2 payoffs ($0, $4, $20), step 1 node values ($1.414 and $12.00 early exercise), discounting back to initial $5.09 ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Gross Payoff vs. Net Trading Profit Breakdown",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Gross Cash Payoff: Immediate cash received upon exercising the option contract (e.g., K - S = $12.00) ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Net Trading Profit: Final profit realized after subtracting initial premium paid (Profit = Payoff - Premium = $12.00 - $5.09 = $6.91) ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: American Early Exercise & Net Profit",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Explain why early exercise is optimal at node C ($12.00 intrinsic value vs $9.463 continuation value) ([fact-05], [fact-06]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Calculate net trading profit ($6.91 per share) for an American put purchased at $5.09 and exercised early at $12.00 payoff ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Multi-Step Lattice & Jump Risk Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-08",
+        "fact-09",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The quant reviews lattice parameters: verify CRR volatility matching u = exp(sigma * sqrt(dt)) and step convergence as N -> infinity ([fact-08], [fact-09]).",
+          "sourceFactIds": [
+            "fact-08",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The risk manager audits market assumptions: guard against discrete jump risks and delta hedging slippage during market crashes like Black Monday ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Two-Step and Multi-Step Binomial Trees",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Two-step stock branching dt = T/2 ([fact-01]), backward induction node valuation f = exp(-r*dt)*[p*fu+(1-p)*fd] ([fact-02]), dynamic node Delta recalculation ([fact-03]), and American early exercise max(Intrinsic, Continuation) rule ([fact-05]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: American put early exercise premium ($5.09 vs $4.19) ([fact-06]), net trading profit Profit = Payoff - Premium paid ([fact-07]), CRR volatility parameterization u = exp(sigma * sqrt(dt)) ([fact-08]), and continuous dividend yield drift adjustments r - q ([fact-10]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07",
+            "fact-08",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Two-Step Stock Trees ([fact-01]): Model stock price paths over two discrete time intervals dt = T/2, branching into up-up, up-down, and down-down terminal states.",
+    "2. Backward Induction Valuation ([fact-02]): Value intermediate and initial nodes by discounting risk-neutral expected payoffs from the next period: f = exp(-r*dt) * [p * fu + (1 - p) * fd].",
+    "3. Dynamic Delta Recalculation ([fact-03]): Hedge ratios evolve across nodes as stock prices change, requiring Delta to be recalculated at every node as Delta = (fu - fd) / (S_up - S_down).",
+    "4. American Early Exercise Rule ([fact-05]): At every node, compare immediate intrinsic value against continuation value, setting node value to max(Immediate Exercise Value, Continuation Value).",
+    "5. Early Exercise Premium ([fact-06]): Hull's American put example yields $5.09 compared to $4.19 for European puts, demonstrating optimal early exercise at node C ($12.00 intrinsic value vs $9.463 continuation value).",
+    "6. Net Trading Profit ([fact-07]): Distinguish gross payoff from net profit: Profit = Payoff - Premium paid (e.g., $12.00 payoff - $5.09 premium = $6.91 net profit per share).",
+    "7. Volatility Matching ([fact-08]): Cox-Ross-Rubinstein set u = exp(sigma * sqrt(dt)) and d = 1/u to match continuous-time stock volatility sigma and variance.",
+    "8. Dividend Yield Adjustments ([fact-10]): Continuous dividend yields q adjust the risk-neutral drift to r - q, modifying the probability parameter to p = (exp((r - q)*dt) - d) / (u - d)."
+  ],
+  "bottomTakeaway": "Two-step binomial trees enable backward induction valuation and optimal American option early exercise, aligning discrete lattices with continuous volatility sigma, dividend yields q, and Black-Scholes convergence ([fact-01], [fact-02], [fact-05], [fact-06], [fact-08], [fact-10])."
+}

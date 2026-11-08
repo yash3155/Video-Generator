@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "taskId": "hull_ch09_part1_dialogue_refine",
+  "category": "MECHANICAL_DEV",
+  "assignedWorker": "cline",
+  "objective": "Enrich Scene 0 and Scene 10 dialogue for John C. Hull Chapter 9 Part 1 with options moneyness and payoff terminology (Raju & Sharma ji in Hindi, Alex & Marcus in English)",
+  "inputFiles": [
+    "src/data/chapters/hull_derivatives/ch09_part1/source_facts.json",
+    "src/data/chapters/hull_derivatives/ch09_part1/lesson_plan.json"
+  ],
+  "outputFiles": [
+    "src/data/chapters/hull_derivatives/ch09_part1/episode_raw.json",
+    "src/data/chapters/hull_derivatives_en/ch09_part1/episode_raw.json"
+  ],
+  "constraints": [
+    "Preserve all existing schema validations and Zod constraints",
+    "Do NOT use external @google/genai SDK or API keys",
+    "Ensure all generated JavaScript is valid ES module format",
+    "Ensure all dialogue conforms to John C. Hull Chapter 9 options mechanics",
+    "Do not exceed 16 words per subtitle beat",
+    "Preserve all schema validation rules"
+  ],
+  "validationCommand": "node scripts/validate_episode.mjs --dir=src/data/chapters/hull_derivatives/ch09_part1",
+  "status": "PENDING",
+  "createdAt": "2026-11-08T04:39:07.019Z"
+}

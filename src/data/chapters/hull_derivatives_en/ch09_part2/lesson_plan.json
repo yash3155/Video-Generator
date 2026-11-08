@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch09_part2",
+  "title": "Options Trading Mechanics: Market Makers, Margin Requirements, OCC Clearing, and Corporate Equity Derivatives",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Call and put option definitions, strike price (K), stock price (S), and option premium (C or P)",
+    "Moneyness classifications: In-the-Money (ITM), At-the-Money (ATM), and Out-of-the-Money (OTM)",
+    "Standard 100-share North American stock option contract specifications"
+  ],
+  "learningOutcomes": [
+    "Explain the role of option exchange market makers, two-sided bid-offer quotes, percentage spread economics, and quote-splitting on multi-leg spread trades ([fact-01]).",
+    "Calculate initial margin requirements for naked (uncovered) call and put writers using the dual-formula maximum rules across ITM, ATM, OTM, and deep OTM scenarios ([fact-02], [fact-03], [fact-04], [fact-05]).",
+    "Describe daily mark-to-market collateral recomputation, margin calls, and excess collateral release for uncovered option writers ([fact-06]).",
+    "Trace the Options Clearing Corporation (OCC) clearing guarantee, exercise notice assignment methods (random, FIFO, equitable), automatic expiration exercise, and same-side position and 5-day exercise limits ([fact-07], [fact-08]).",
+    "Differentiate exchange-traded options from corporate-issued warrants, Employee Stock Options (ESOs), and convertible bonds with respect to issuer identity, maturity, transferability, and share dilution ([fact-09], [fact-10])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Market Makers and Bid-Offer Spread Mechanics",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Margin Requirements and Daily Mark-to-Market for Naked Option Writers",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "The Options Clearing Corporation (OCC), Assignment, and Market Concentration Limits",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-07",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Warrants, Employee Stock Options (ESOs), Convertibles, and Equity Dilution",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-09",
+        "fact-10"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-04",
+      "authorRebuttal": "While a naked call's minimum margin floor uses 10% of the underlying stock value (C + 0.10*S) ([fact-02]), a naked put's minimum margin floor uses 10% of the total strike price value (P + 0.10*K) ([fact-04]). In the $50 ATM put example with P = $400 and K = $5,000, the minimum floor check is $400 + 0.10($5,000) = $900, which is compared against the primary formula result of $1,400 ([fact-05])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-10",
+      "authorRebuttal": "Exchange-traded options are issued by the OCC and settled strictly by transferring existing shares between secondary-market traders, so no new corporate shares are created and zero dilution of equity or EPS occurs ([fact-07], [fact-10]). Dilution only occurs when corporate-issued instruments—warrants, Employee Stock Options (ESOs), or convertible bonds—are exercised or converted, forcing the corporation to issue brand-new common shares ([fact-09], [fact-10])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-06",
+      "authorRebuttal": "Naked option positions are marked to market every single day using daily closing prices ([fact-06]). If the underlying stock moves adversely against the writer, required collateral increases and triggers a margin call; if the stock moves favorably, excess collateral is released back to the writer's margin account ([fact-06])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A trader writes 1 naked XYZ July 50 call contract (100 shares, strike K = $5,000) when XYZ stock trades at $46 per share (S = $4,600) and the call premium is $2.00 per share (C = $200). The next day, XYZ stock surges to $55 per share (S = $5,500) and the call price rises to $7.00 (C = $700). Meanwhile, the company also has corporate warrants outstanding that are exercised by warrant holders.",
+    "testedFactIds": [
+      "fact-02",
+      "fact-03",
+      "fact-06",
+      "fact-09",
+      "fact-10"
+    ],
+    "question": "1) What is the trader's initial margin requirement at $46, how much additional collateral is required after the daily mark-to-market move to $55, and how much of the initial premium C can be applied toward collateral? 2) Does either the XYZ exchange-traded call or the corporate warrant exercise dilute the company's EPS?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Option exchange market makers provide continuous two-sided liquidity (Bid and Offer) strictly for their own accounts, earning the bid-offer spread (Offer - Bid) to compensate for inventory risk ([fact-01]).",
+    "Uncovered option writers must post initial margin equal to max(C + 0.20*S - OTM, C + 0.10*S) for calls and max(P + 0.20*S - OTM, P + 0.10*K) for puts—applying the upfront premium toward collateral—and are subject to daily mark-to-market recomputation ([fact-02], [fact-03], [fact-04], [fact-05], [fact-06]).",
+    "The OCC guarantees all exchange-listed options, manages random/FIFO exercise assignments, auto-exercises ITM options at expiration, and enforces same-side position/exercise limits ([fact-07], [fact-08]), whereas corporate-issued warrants, ESOs, and convertibles create new shares upon exercise and dilute existing shareholders ([fact-09], [fact-10])."
+  ]
+}

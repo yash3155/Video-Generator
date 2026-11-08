@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch10_part2",
+  "title": "Put-Call Parity, Arbitrage Strategies, Merton's Capital Structure Model, and Early Exercise Properties",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Definitions of European and American call and put options",
+    "Concept of present value discounting via continuously compounded risk-free rate r",
+    "Short selling mechanics and risk-free borrowing/lending"
+  ],
+  "learningOutcomes": [
+    "Formulate Put-Call Parity for non-dividend-paying European options (c + K*e^(-rT) = p + S_0) and explain its replication proof using Portfolios A and B ([fact-01], [fact-02]).",
+    "Execute Fiduciary Call Arbitrage and Reversal Arbitrage when Put-Call Parity is violated ([fact-03], [fact-04]).",
+    "Apply Merton's structural model to view corporate equity as a call option on firm assets and corporate debt as a risk-free bond minus a short put ([fact-05], [fact-06]).",
+    "Determine why American calls on non-dividend-paying stocks are never exercised early (C = c) and analyze the conditions for early exercise of American puts ([fact-07], [fact-08])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Put-Call Parity and the Law of One Price Replication Proof",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Arbitrage Execution When Put-Call Parity Is Violated",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Merton's Capital Structure Model: Corporate Debt and Equity as Options",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-05",
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Early Exercise Optimality: American Calls vs. American Puts",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-07",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-07",
+      "authorRebuttal": "Exercising an American call early forfeits the option's remaining time value and downside insurance protection while prematurely paying the strike price K ([fact-07]). Because an American call's market price strictly exceeds its intrinsic value (C >= c >= S_t - K*e^(-r(T-t)) > S_t - K), selling the option in the market always yields a higher cash payout than exercising early ([fact-07])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-05",
+      "authorRebuttal": "Due to limited liability, corporate equity acts as a call option on firm assets with a strike equal to debt face value D ([fact-05]). If firm value V_T falls below D, shareholders default and walk away with a payoff of zero rather than paying out-of-pocket liabilities ([fact-05])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-03",
+      "authorRebuttal": "Fiduciary Call arbitrage is entirely riskless because all future terminal liabilities perfectly cancel out regardless of whether S_T > K or S_T <= K ([fact-03]). The initial net cash profit locked in at t = 0 remains intact with zero net risk ([fact-03])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A European call option and European put option share the same strike K = $50, maturity T = 1 year, and underlying non-dividend stock S_0 = $48. The continuously compounded risk-free rate is r = 5% (with e^(-r*1) approx 0.9512). The call trades at c = $6.00 and the put trades at p = $3.00. Meanwhile, a levered firm has zero-coupon debt maturing at T with face value D = $100 million.",
+    "testedFactIds": [
+      "fact-01",
+      "fact-03",
+      "fact-05"
+    ],
+    "question": "1) Does Put-Call Parity hold, and if not, which arbitrage strategy should be executed to lock in riskless profit? 2) In Merton's model, what is the terminal payoff to equity holders if firm asset value V_T is $120 million versus $80 million?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Put-Call Parity (c + K*e^(-rT) = p + S_0) is enforced by the Law of One Price through identical terminal payoffs max(S_T, K) across Portfolios A and B ([fact-01], [fact-02]).",
+    "Parity violations trigger riskless arbitrage—Fiduciary Call Arbitrage when calls are overpriced ([fact-03]) or Reversal Arbitrage when calls are underpriced ([fact-04]).",
+    "Merton's model frames corporate equity as a call option on firm assets and debt as a risk-free bond minus a short put ([fact-05], [fact-06]), while American calls on non-dividend stocks are never exercised early (C = c) unlike deep-ITM American puts ([fact-07], [fact-08])."
+  ]
+}

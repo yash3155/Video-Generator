@@ -1,0 +1,328 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch12_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-08T05:49:48.311Z",
+  "bookTitle": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "generalAssumptions": [
+    "Stock price follows a discrete one-step binomial process over time interval T.",
+    "Frictionless financial markets with zero transaction costs and no short-selling restrictions.",
+    "Constant risk-free borrowing and lending interest rate r with continuous compounding."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "One-Step Binomial Model Framework",
+      "statement": "In a one-step binomial model over interval T, a stock price S0 either moves up to S0*u or down to S0*d (where d < exp(rT) < u), producing derivative payoffs fu and fd. Standard option contracts represent 100 shares of the underlying equity.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch12_part1",
+        "excerpt": "A one-step binomial model assumes that a stock price currently S0 moves up to S0*u or down to S0*d over time T",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "binomial_tree",
+        "one_step",
+        "discrete_model"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "definition",
+      "topic": "The No-Arbitrage Delta Hedge Portfolio",
+      "statement": "A riskless portfolio is formed by taking a long position in Delta shares of the stock and a short position in 1 call option contract. Setting the portfolio value equal in both up and down states makes it completely risk-free, eliminating market uncertainty.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch12_part1",
+        "excerpt": "Consider a portfolio consisting of a long position in Delta shares and a short position in one option. The value of Delta is chosen so that the portfolio is riskless",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "delta_hedging",
+        "riskless_portfolio",
+        "arbitrage"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "formula",
+      "topic": "Delta Hedge Ratio Formula",
+      "statement": "The exact hedge ratio Delta equals the spread in derivative payoffs divided by the spread in stock prices: Delta = (fu - fd) / (S0*u - S0*d). Delta represents the rate of change of option value with respect to stock price.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch12_part1",
+        "excerpt": "Delta = (fu - fd) / (S0*u - S0*d). This is the ratio of the change in the option price to the change in the stock price",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Delta Hedge Ratio",
+        "latex": "\\Delta = \\frac{f_u - f_d}{S_0 u - S_0 d}",
+        "variables": [
+          {
+            "symbol": "f_u",
+            "definition": "Option payoff in up state",
+            "unit": "$"
+          },
+          {
+            "symbol": "f_d",
+            "definition": "Option payoff in down state",
+            "unit": "$"
+          },
+          {
+            "symbol": "S_0 u",
+            "definition": "Stock price in up state",
+            "unit": "$"
+          },
+          {
+            "symbol": "S_0 d",
+            "definition": "Stock price in down state",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "delta",
+        "hedge_ratio",
+        "formula"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "formula",
+      "topic": "No-Arbitrage Option Pricing Equation",
+      "statement": "Because the hedged portfolio is riskless, it must earn the risk-free interest rate r: S0*Delta - f = (S0*u*Delta - fu) * exp(-rT). Crucially, terminal Gross Payoff equals fu or fd, while Net Profit equals Payoff minus initial option premium paid: Profit = Payoff - Premium paid.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch12_part1",
+        "excerpt": "A riskless portfolio must earn the risk-free interest rate r, otherwise arbitrage opportunities exist. Option profit equals payoff minus premium paid",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "No-Arbitrage Portfolio Value",
+        "latex": "S_0 \\Delta - f = (S_0 u \\Delta - f_u) e^{-rT}, \\quad \\text{Profit} = \\text{Payoff} - f",
+        "variables": [
+          {
+            "symbol": "S_0 \\Delta - f",
+            "definition": "Cost of portfolio today",
+            "unit": "$"
+          },
+          {
+            "symbol": "e^{-rT}",
+            "definition": "Risk-free discount factor",
+            "unit": "dimensionless"
+          }
+        ]
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "Payoff = max(S_T - K, 0)",
+        "formulaProfit": "Profit = Payoff - Premium paid"
+      },
+      "tags": [
+        "no_arbitrage",
+        "pricing_formula"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "definition",
+      "topic": "The Risk-Neutral Valuation Principle",
+      "statement": "The risk-neutral valuation principle proves that option prices derived from no-arbitrage arguments do not depend on the risk preferences of market participants. All assets can be assumed to earn the risk-free rate r, and expected future cash flows are discounted at r.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch12_part1",
+        "excerpt": "Risk-neutral valuation is a very important general result: derivative prices do not depend on risk preferences",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "risk_neutral",
+        "valuation_principle"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "formula",
+      "topic": "Risk-Neutral Probability Equation",
+      "statement": "The risk-neutral probability p of an up movement is p = (exp(rT) - d) / (u - d), and the probability of a down movement is 1 - p. p is not the real-world probability, but an artificial probability distribution under which stock price growth matches the risk-free rate.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch12_part1",
+        "excerpt": "p = (exp(rT) - d) / (u - d) is the probability of an up movement in a risk-neutral world",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Risk-Neutral Up Probability",
+        "latex": "p = \\frac{e^{rT} - d}{u - d}, \\quad 1 - p = \\frac{u - e^{rT}}{u - d}",
+        "variables": [
+          {
+            "symbol": "p",
+            "definition": "Risk-neutral probability of upward step",
+            "unit": "probability"
+          },
+          {
+            "symbol": "u",
+            "definition": "Upward price multiplier",
+            "unit": "multiplier"
+          },
+          {
+            "symbol": "d",
+            "definition": "Downward price multiplier",
+            "unit": "multiplier"
+          },
+          {
+            "symbol": "r",
+            "definition": "Continuous risk-free interest rate",
+            "unit": "1/year"
+          }
+        ]
+      },
+      "tags": [
+        "risk_neutral_probability",
+        "formula"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "formula",
+      "topic": "Binomial Option Valuation Formula",
+      "statement": "The theoretical price of a derivative option in a one-step binomial tree is f = exp(-rT) * [p * fu + (1 - p) * fd]. It represents the discounted expected value of the payoff in a risk-neutral world.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch12_part1",
+        "excerpt": "f = exp(-rT) * [p * fu + (1 - p) * fd] gives the value of the option today",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Binomial Option Price",
+        "latex": "f = e^{-rT} \\left[ p f_u + (1 - p) f_d \\right]",
+        "variables": [
+          {
+            "symbol": "f",
+            "definition": "Fair option price today",
+            "unit": "$"
+          },
+          {
+            "symbol": "p",
+            "definition": "Risk-neutral probability",
+            "unit": "probability"
+          },
+          {
+            "symbol": "f_u",
+            "definition": "Payoff in up node",
+            "unit": "$"
+          },
+          {
+            "symbol": "f_d",
+            "definition": "Payoff in down node",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": [
+        "option_price",
+        "binomial_formula"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "claim",
+      "topic": "Irrelevance of Subjective Expected Return mu",
+      "statement": "The expected return of the stock mu and subjective probabilities of price movement do not appear in the option valuation formula. Investors with entirely different risk tolerances and price forecasts must agree on the identical option price to prevent arbitrage.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch12_part1",
+        "excerpt": "The expected return on the stock does not appear in the option price formula. Two investors with different expectations must agree on option value",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "subjective_probabilities",
+        "risk_tolerance",
+        "no_arbitrage"
+      ]
+    },
+    {
+      "id": "fact-09",
+      "category": "case_study",
+      "topic": "Arbitrage Exploitation of Mispriced Options",
+      "statement": "If the market price of an option diverges from f = exp(-rT)*[p*fu + (1-p)*fd], an arbitrageur locks in guaranteed upfront cash: if the option is overpriced, sell the option, buy Delta shares, and borrow; if underpriced, buy the option, short Delta shares, and invest at the risk-free rate.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch12_part1",
+        "excerpt": "If the option is not priced at f, arbitrageurs can lock in riskless profit by creating the replicating portfolio and trading the option",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "arbitrage_mechanism",
+        "mispricing",
+        "case_study"
+      ]
+    },
+    {
+      "id": "fact-10",
+      "category": "numerical_example",
+      "topic": "Hull One-Step Binomial Delta Hedge Calculation",
+      "statement": "A stock is priced at $20.00. In 3 months (T = 0.25 years), it moves up to $22.00 (u = 1.10) or down to $18.00 (d = 0.90). A European call with strike K = $21.00 pays fu = $1.00 or fd = $0.00. Delta = (1.00 - 0.00) / (22.00 - 18.00) = 0.25 shares per option (25 shares per 100-share contract). At expiration, the portfolio of 0.25 shares minus 1 call is worth exactly $4.50 in both states.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch12_part1",
+        "excerpt": "Consider a 3-month call with strike $21 on a $20 stock moving to $22 or $18. Delta = (1 - 0)/(22 - 18) = 0.25",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "stockSpot": 20,
+          "stockUp": 22,
+          "stockDown": 18,
+          "strike": 21,
+          "callUp": 1,
+          "callDown": 0,
+          "delta": 0.25,
+          "contractSize": 100,
+          "portfolioTerminalValue": 4.5
+        },
+        "units": "$",
+        "contractSize": 100,
+        "context": "Hull Section 12.1 Delta hedging riskless portfolio arithmetic."
+      },
+      "tags": [
+        "numerical_example",
+        "delta_calculation"
+      ]
+    },
+    {
+      "id": "fact-11",
+      "category": "numerical_example",
+      "topic": "Hull Risk-Neutral Option Valuation Calculation",
+      "statement": "Given S0 = $20.00, u = 1.10, d = 0.90, r = 12% per annum, and T = 0.25: exp(rT) = exp(0.03) = 1.03045. Risk-neutral probability p = (1.03045 - 0.90) / (1.10 - 0.90) = 0.6523, and 1 - p = 0.3477. The call option price is f = exp(-0.03) * [0.6523 * $1.00 + 0.3477 * $0.00] = 0.97045 * 0.6523 = $0.633 per share ($63.30 per 100-share contract).",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch12_part1",
+        "excerpt": "p = (1.0305 - 0.90)/(1.10 - 0.90) = 0.6523. f = exp(-0.03) * (0.6523 * 1 + 0.3477 * 0) = $0.633",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "stockSpot": 20,
+          "u": 1.1,
+          "d": 0.9,
+          "r": 0.12,
+          "T": 0.25,
+          "exp_rT": 1.03045,
+          "p": 0.6523,
+          "one_minus_p": 0.3477,
+          "callPrice": 0.633,
+          "contractSize": 100
+        },
+        "units": "$",
+        "contractSize": 100,
+        "context": "Hull Section 12.2 risk-neutral valuation and probability computation."
+      },
+      "tags": [
+        "numerical_example",
+        "risk_neutral_calculation"
+      ]
+    }
+  ]
+}

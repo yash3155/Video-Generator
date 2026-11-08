@@ -1,0 +1,1165 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives_en",
+    "chapter": "CHAPTER 21 · PART 1",
+    "chapterTitle": "Interest Rate Options & Swaptions",
+    "domain": "finance",
+    "primaryColor": "#0F766E",
+    "accentColor": "#F59E0B",
+    "narrationLanguage": "en-US"
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "Origins: Embedded Bond Options & Callable Debt",
+      "template": "chat_story",
+      "badge": "Market Desk · Historical Origins",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "राजू पूछता है, शर्मा जी! इस वित्तीय बाजार में कांट्रैक्ट्स और रिस्क मैनेजमेंट की वास्तविक शुरुआत कैसे हुई?",
+          "en_subtitle": "Sharma ji, how do embedded bond options differ from standalone exchange-traded interest rate options?",
+          "en_narration": "Sharma ji, how do embedded bond options differ from standalone exchange-traded interest rate options?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju examines the origin of price risk —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji, how did derivatives and risk transfer begin in market history?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji, how did derivatives and risk transfer begin in market history?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present the core human survival and price uncertainty dilemma.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "Sharma ji, how do embedded bond options differ from standalone exchange-traded interest rate options?",
+          "dialogue": "Sharma ji, how do embedded bond options differ from standalone exchange-traded interest rate options?"
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "शर्मा जी समझाते हैं, जब उत्पादक और खरीदार भविष्य के मूल्य उतार-चढ़ाव से बचना चाहते हैं, तब फॉरवर्ड कांट्रैक्ट्स जन्म लेते हैं।",
+          "en_subtitle": "Raju, callable bonds contain an embedded issuer right to redeem debt early when market yields decline!",
+          "en_narration": "Raju, callable bonds contain an embedded issuer right to redeem debt early when market yields decline!",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji explains bilateral commitments —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "When producers and buyers need price certainty, bilateral forward commitments are born.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "When producers and buyers need price certainty, bilateral forward commitments are born.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Establish forward commitments as mutual price risk hedges.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "Raju, callable bonds contain an embedded issuer right to redeem debt early when market yields decline!",
+          "dialogue": "Raju, callable bonds contain an embedded issuer right to redeem debt early when market yields decline!"
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Clean Quoted Prices vs Dirty Cash Forward Prices",
+      "template": "tug_of_war",
+      "badge": "Structural Conflict · Hedger vs Speculator",
+      "beats": [
+        {
+          "id": "b03",
+          "hindi_tts": "बाजार में एक पक्ष मूल्य में गिरावट से सुरक्षा चाहता है, जबकि दूसरा पक्ष मूल्य वृद्धि के जोखिम को सीमित करना चाहता है।",
+          "en_subtitle": "While markets quote clean prices excluding accrued interest, option valuation strictly operates on the dirty cash price.",
+          "en_narration": "While markets quote clean prices excluding accrued interest, option valuation strictly operates on the dirty cash price.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftLabel": "Farmer / Producer (Downside Protection)",
+            "rightLabel": "Processor / Miller (Upside Ceiling)",
+            "currentTension": 50
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Downside Protection",
+              "rightLabel": "Upside Ceiling",
+              "tension": 50
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate opposing economic motivations meeting in a forward contract.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "While markets quote clean prices excluding accrued interest, option valuation strictly operates on the dirty cash price.",
+          "dialogue": "While markets quote clean prices excluding accrued interest, option valuation strictly operates on the dirty cash price."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "Core Architecture: 4 Pillars of Interest Rate Options",
+      "template": "progressive_cards",
+      "badge": "Roadmap · 4 Structural Pillars",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "इस अध्याय में हम चार महत्वपूर्ण स्तंभों को समझेंगे: बाजार संरचना, गणितीय पेऑफ, लिक्विडिटी और सिस्टमिक जोखिम।",
+          "en_subtitle": "We explore four foundational pillars: European bond options, interest rate caps, floors, and swaptions.",
+          "en_narration": "We explore four foundational pillars: European bond options, interest rate caps, floors, and swaptions.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "1. Bond Options",
+                "body": "European calls and puts on coupon bonds valued via Black's forward cash model."
+              },
+              {
+                "title": "2. Interest Rate Caps",
+                "body": "Portfolios of caplets protecting borrowers against rising floating rates."
+              },
+              {
+                "title": "3. Interest Rate Floors",
+                "body": "Portfolios of floorlets protecting lenders against declining floating yields."
+              },
+              {
+                "title": "4. Swaptions",
+                "body": "Options to enter into fixed-for-floating interest rate swaps at predetermined strike rates."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cards": [
+                {
+                  "title": "1. Bond Options",
+                  "body": "European calls and puts on coupon bonds valued via Black's forward cash model."
+                },
+                {
+                  "title": "2. Interest Rate Caps",
+                  "body": "Portfolios of caplets protecting borrowers against rising floating rates."
+                },
+                {
+                  "title": "3. Interest Rate Floors",
+                  "body": "Portfolios of floorlets protecting lenders against declining floating yields."
+                },
+                {
+                  "title": "4. Swaptions",
+                  "body": "Options to enter into fixed-for-floating interest rate swaps at predetermined strike rates."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present structural roadmap of four learning pillars.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "text": "We explore four foundational pillars: European bond options, interest rate caps, floors, and swaptions.",
+          "dialogue": "We explore four foundational pillars: European bond options, interest rate caps, floors, and swaptions."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Interest Rate Caps (Caplets) vs Interest Rate Floors (Floorlets)",
+      "template": "split_comparison",
+      "badge": "Market Structure · Bilateral vs Centralized",
+      "beats": [
+        {
+          "id": "b05",
+          "hindi_tts": "एक्सचेंज ट्रेडेड फ्यूचर्स पूरी तरह से मानकीकृत होते हैं, जबकि ओटीसी फॉरवर्ड्स दोनों पक्षों की आवश्यकतानुसार कस्टमाइज किए जाते हैं।",
+          "en_subtitle": "An interest rate cap protects borrowers against rate spikes, while a floor provides lenders a guaranteed minimum yield.",
+          "en_narration": "An interest rate cap protects borrowers against rate spikes, while a floor provides lenders a guaranteed minimum yield.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Exchange-Traded Futures",
+            "rightTitle": "Over-the-Counter (OTC)",
+            "leftPoints": [
+              "Standardized contract sizes",
+              "Central clearinghouse (CCP)",
+              "Zero bilateral default risk"
+            ],
+            "rightPoints": [
+              "Tailored specifications",
+              "Bilateral counterparty risk",
+              "Direct negotiation"
+            ],
+            "left": {
+              "title": "Interest Rate Cap (Caplets)",
+              "items": [
+                "Payoff: delta * L * max(R - R_K, 0)",
+                "Protects floating-rate borrowers against rising benchmark yields",
+                "Portfolio of European call options on future forward rates"
+              ]
+            },
+            "right": {
+              "title": "Interest Rate Floor (Floorlets)",
+              "items": [
+                "Payoff: delta * L * max(R_K - R, 0)",
+                "Protects floating-rate lenders against falling benchmark yields",
+                "Portfolio of European put options on future forward rates"
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Futures",
+                "points": [
+                  "Standardized",
+                  "CCP Cleared"
+                ]
+              },
+              "rightColumn": {
+                "title": "OTC Forwards",
+                "points": [
+                  "Customized",
+                  "Bilateral Risk"
+                ]
+              },
+              "left": {
+                "title": "Interest Rate Cap (Caplets)",
+                "items": [
+                  "Payoff: delta * L * max(R - R_K, 0)",
+                  "Protects floating-rate borrowers against rising benchmark yields",
+                  "Portfolio of European call options on future forward rates"
+                ]
+              },
+              "right": {
+                "title": "Interest Rate Floor (Floorlets)",
+                "items": [
+                  "Payoff: delta * L * max(R_K - R, 0)",
+                  "Protects floating-rate lenders against falling benchmark yields",
+                  "Portfolio of European put options on future forward rates"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Contrast exchange standardization with OTC customization.",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          },
+          "text": "An interest rate cap protects borrowers against rate spikes, while a floor provides lenders a guaranteed minimum yield.",
+          "dialogue": "An interest rate cap protects borrowers against rate spikes, while a floor provides lenders a guaranteed minimum yield."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Black's 1976 Caplet Pricing Formula",
+      "template": "progressive_cards",
+      "badge": "Global Volume · BIS Market Data",
+      "beats": [
+        {
+          "id": "b06",
+          "hindi_tts": "वैश्विक स्तर पर ओटीसी बाजार का आकार छह सौ तीस ट्रिलियन डॉलर से अधिक है, जो एक्सचेंज बाजार से लगभग दस गुना बड़ा है।",
+          "en_subtitle": "Black's caplet formula prices interest rate call options using the lognormal forward rate distribution and discount factors.",
+          "en_narration": "Black's caplet formula prices interest rate call options using the lognormal forward rate distribution and discount factors.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "OTC Market Notional",
+                "desc": "$630+ Trillion global bilateral outstanding"
+              },
+              {
+                "title": "Exchange Market Notional",
+                "desc": "$65 Trillion centralized standardized volume"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "OTC Market",
+                  "desc": "$630T Notional"
+                },
+                {
+                  "title": "Exchange Market",
+                  "desc": "$65T Notional"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate immense macroeconomic scale of OTC markets.",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "text": "Black's caplet formula prices interest rate call options using the lognormal forward rate distribution and discount factors.",
+          "dialogue": "Black's caplet formula prices interest rate call options using the lognormal forward rate distribution and discount factors."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Business Snapshot 21.1: US Mortgage Prepayment Negative Convexity",
+      "template": "formula_breakdown",
+      "badge": "Quantitative Proof · Terminal Payoff",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "मैच्योरिटी पर लॉन्ग पोजीशन का ग्रॉस पेऑफ वर्तमान स्पॉट प्राइस और स्ट्राइक प्राइस का अंतर होता है।",
+          "en_subtitle": "In Business Snapshot 21.1, homeowner mortgage prepayment rights without penalty introduce severe negative convexity for MBS investors.",
+          "en_narration": "In Business Snapshot 21.1, homeowner mortgage prepayment rights without penalty introduce severe negative convexity for MBS investors.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Terminal Long Payoff",
+            "expression": "S_t - K",
+            "variables": [
+              {
+                "symbol": "S_t",
+                "label": "Spot asset price at expiration",
+                "unit": "₹"
+              },
+              {
+                "symbol": "K",
+                "label": "Agreed delivery strike price",
+                "unit": "₹"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Terminal Long Payoff",
+              "expression": "S_t - K",
+              "variables": [
+                {
+                  "symbol": "S_t",
+                  "label": "Spot asset price at expiration",
+                  "unit": "₹"
+                },
+                {
+                  "symbol": "K",
+                  "label": "Agreed delivery strike price",
+                  "unit": "₹"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Define terminal long linear payoff formula.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "text": "In Business Snapshot 21.1, homeowner mortgage prepayment rights without penalty introduce severe negative convexity for MBS investors.",
+          "dialogue": "In Business Snapshot 21.1, homeowner mortgage prepayment rights without penalty introduce severe negative convexity for MBS investors."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "Put-Call Parity Equivalence: Cap Minus Floor Equals Plain Vanilla Swap",
+      "template": "split_comparison",
+      "badge": "Core Invariant · Payoff vs Profit",
+      "beats": [
+        {
+          "id": "b08",
+          "hindi_tts": "हमेशा याद रखें, पेऑफ केवल टर्मिनल कैशफ्लो है, जबकि नेट प्रॉफिट में शुरुआत में चुकाया गया प्रीमियम घटाया जाता है।",
+          "en_subtitle": "By put-call parity, a long cap combined with a short floor at identical strike rates replicates an interest rate swap.",
+          "en_narration": "By put-call parity, a long cap combined with a short floor at identical strike rates replicates an interest rate swap.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Gross Payoff",
+            "rightTitle": "Net Trading Profit",
+            "leftPoints": [
+              "Terminal cashflow at expiration",
+              "Ignores upfront premium paid",
+              "Always >= 0 for options"
+            ],
+            "rightPoints": [
+              "Terminal payoff minus initial premium",
+              "Accounts for capital outlay",
+              "Negative if price stays flat"
+            ],
+            "left": {
+              "title": "Put-Call Parity Equivalence",
+              "items": [
+                "Cap - Floor = Plain Vanilla Interest Rate Swap",
+                "Long cap (calls) + Short floor (puts) at rate R_K",
+                "Replicates paying fixed R_K and receiving floating rate R"
+              ]
+            },
+            "right": {
+              "title": "Synthetic Swap Arbitrage",
+              "items": [
+                "If Cap - Floor > Swap, sell cap, buy floor, receive fixed",
+                "If Cap - Floor < Swap, buy cap, sell floor, pay fixed",
+                "Enforces exact no-arbitrage pricing across OTC desk"
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Gross Payoff",
+                "points": [
+                  "Terminal Cashflow",
+                  "Ignores Premium"
+                ]
+              },
+              "rightColumn": {
+                "title": "Net Profit",
+                "points": [
+                  "Payoff - Premium",
+                  "True Economic P&L"
+                ]
+              },
+              "left": {
+                "title": "Put-Call Parity Equivalence",
+                "items": [
+                  "Cap - Floor = Plain Vanilla Interest Rate Swap",
+                  "Long cap (calls) + Short floor (puts) at rate R_K",
+                  "Replicates paying fixed R_K and receiving floating rate R"
+                ]
+              },
+              "right": {
+                "title": "Synthetic Swap Arbitrage",
+                "items": [
+                  "If Cap - Floor > Swap, sell cap, buy floor, receive fixed",
+                  "If Cap - Floor < Swap, buy cap, sell floor, pay fixed",
+                  "Enforces exact no-arbitrage pricing across OTC desk"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Strictly enforce the Payoff vs Profit distinction.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "text": "By put-call parity, a long cap combined with a short floor at identical strike rates replicates an interest rate swap.",
+          "dialogue": "By put-call parity, a long cap combined with a short floor at identical strike rates replicates an interest rate swap."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "Hull Section 21.2: Valuation of a 1-Year SOFR/LIBOR Caplet",
+      "template": "progressive_cards",
+      "badge": "Case Study · Lehman Brothers 2008",
+      "beats": [
+        {
+          "id": "b09",
+          "hindi_tts": "दो हजार आठ में लेहमैन ब्रदर्स के पास छह सौ बिलियन डॉलर के अनक्लेयर्ड ओटीसी डेरिवेटिव्स थे, जिससे पूरी वित्तीय प्रणाली फ्रीज हो गई।",
+          "en_subtitle": "In Hull Section 21.2, Black's model prices a 1-year in-the-money caplet on $10 million principal at exactly $23,980.",
+          "en_narration": "In Hull Section 21.2, Black's model prices a 1-year in-the-money caplet on $10 million principal at exactly $23,980.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "$10M Principal Caplet",
+                "body": "1-year reset date, 1.25-year payment date on 3-month benchmark rate."
+              },
+              {
+                "title": "Forward 5.0% vs Strike 4.0%",
+                "body": "In-the-money forward rate with 20% Black volatility and 5% discount rate."
+              },
+              {
+                "title": "Caplet Value: $23,980",
+                "body": "Black formula d_1=1.2157, d_2=1.0157 yields exact market valuation."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "$10M Principal Caplet",
+                  "body": "1-year reset date, 1.25-year payment date on 3-month benchmark rate."
+                },
+                {
+                  "title": "Forward 5.0% vs Strike 4.0%",
+                  "body": "In-the-money forward rate with 20% Black volatility and 5% discount rate."
+                },
+                {
+                  "title": "Caplet Value: $23,980",
+                  "body": "Black formula d_1=1.2157, d_2=1.0157 yields exact market valuation."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate systemic counterparty contagion in uncollateralized OTC markets.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-05"
+              ]
+            }
+          },
+          "text": "In Hull Section 21.2, Black's model prices a 1-year in-the-money caplet on $10 million principal at exactly $23,980.",
+          "dialogue": "In Hull Section 21.2, Black's model prices a 1-year in-the-money caplet on $10 million principal at exactly $23,980."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "Black's European Bond Option Formula (Forward Dirty Price)",
+      "template": "formula_breakdown",
+      "badge": "Balance Sheet Risk · Leverage Math",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "इकतीस गुना लेवरेज पर एसेट्स में केवल सवा तीन परसेंट की गिरावट पूरे शेयरहोल्डर इक्विटी को शून्य कर देती है।",
+          "en_subtitle": "Black's bond option formula evaluates calls and puts on coupon bonds using the forward dirty cash price F_0.",
+          "en_narration": "Black's bond option formula evaluates calls and puts on coupon bonds using the forward dirty cash price F_0.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Leverage Multipliers & Equity Wipeout",
+            "expression": "L = \\text{Assets} / \\text{Equity}",
+            "variables": [
+              {
+                "symbol": "L",
+                "label": "Balance sheet leverage ratio (31:1)",
+                "unit": "ratio"
+              },
+              {
+                "symbol": "\\Delta Equity",
+                "label": "\\Delta Assets \\times L",
+                "unit": "%"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Leverage Multipliers & Equity Wipeout",
+              "expression": "L = \\text{Assets} / \\text{Equity}",
+              "variables": [
+                {
+                  "symbol": "L",
+                  "label": "Leverage ratio",
+                  "unit": "ratio"
+                },
+                {
+                  "symbol": "\\Delta Equity",
+                  "label": "Change in equity",
+                  "unit": "%"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Prove mathematically how high leverage accelerates balance-sheet bankruptcy.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Black's bond option formula evaluates calls and puts on coupon bonds using the forward dirty cash price F_0.",
+          "dialogue": "Black's bond option formula evaluates calls and puts on coupon bonds using the forward dirty cash price F_0."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall Challenge",
+      "template": "interactive_quiz",
+      "badge": "Concept Verification · Active Recall",
+      "beats": [
+        {
+          "id": "b11",
+          "hindi_tts": "यदि एक ट्रेडर बिना हेजिंग के अत्यधिक लेवरेज पोजीशन लेता है और बाजार विपरीत दिशा में जाता है, तो सबसे बड़ा प्राथमिक जोखिम क्या है?",
+          "en_subtitle": "Why does combining a long position in an interest rate cap with a short position in an interest rate floor replicate a swap?",
+          "en_narration": "Why does combining a long position in an interest rate cap with a short position in an interest rate floor replicate a swap?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "question": "Why does combining a long position in an interest rate cap with a short position in an interest rate floor replicate a swap?",
+            "options": [
+              "A: Put-call parity guarantees that long calls plus short puts at strike R_K equate to paying fixed and receiving floating",
+              "B: Central bank regulations require caps and floors to cancel each other out on balance sheets",
+              "C: Caplets and floorlets have zero volatility and therefore always equal fixed rate cash flows",
+              "D: Interest rate floors cannot be traded unless backed by an identical offsetting caplet contract"
+            ],
+            "showThinkingSpinner": false,
+            "answer": ""
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "Why does combining a long position in an interest rate cap with a short position in an interest rate floor replicate a swap?",
+              "options": [
+                "A: Put-call parity guarantees that long calls plus short puts at strike R_K equate to paying fixed and receiving floating",
+                "B: Central bank regulations require caps and floors to cancel each other out on balance sheets",
+                "C: Caplets and floorlets have zero volatility and therefore always equal fixed rate cash flows",
+                "D: Interest rate floors cannot be traded unless backed by an identical offsetting caplet contract"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Test understanding of leverage depletion and margin call dynamics.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Why does combining a long position in an interest rate cap with a short position in an interest rate floor replicate a swap?",
+          "dialogue": "Why does combining a long position in an interest rate cap with a short position in an interest rate floor replicate a swap?"
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "सोचिए... क्या मार्जिन बफर के बिना पोजीशन सर्वाइव कर सकती है?",
+          "en_subtitle": "Pause and consider how put-call parity enforces identical cash flows between option combinations and swap legs.",
+          "en_narration": "Pause and consider how put-call parity enforces identical cash flows between option combinations and swap legs.",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "question": "Why does combining a long position in an interest rate cap with a short position in an interest rate floor replicate a swap?",
+            "showThinkingSpinner": true,
+            "answer": "",
+            "options": [
+              "A: Put-call parity guarantees that long calls plus short puts at strike R_K equate to paying fixed and receiving floating",
+              "B: Central bank regulations require caps and floors to cancel each other out on balance sheets",
+              "C: Caplets and floorlets have zero volatility and therefore always equal fixed rate cash flows",
+              "D: Interest rate floors cannot be traded unless backed by an identical offsetting caplet contract"
+            ]
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "showThinkingSpinner": true,
+              "question": "Why does combining a long position in an interest rate cap with a short position in an interest rate floor replicate a swap?",
+              "options": [
+                "A: Put-call parity guarantees that long calls plus short puts at strike R_K equate to paying fixed and receiving floating",
+                "B: Central bank regulations require caps and floors to cancel each other out on balance sheets",
+                "C: Caplets and floorlets have zero volatility and therefore always equal fixed rate cash flows",
+                "D: Interest rate floors cannot be traded unless backed by an identical offsetting caplet contract"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Engage active recall cognitive processing pause.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Pause and consider how put-call parity enforces identical cash flows between option combinations and swap legs.",
+          "dialogue": "Pause and consider how put-call parity enforces identical cash flows between option combinations and swap legs."
+        },
+        {
+          "id": "b13",
+          "hindi_tts": "सही उत्तर बी है! अपर्याप्त मार्जिन पर ब्रोकर या एक्सचेंज तुरंत पोजीशन को लिक्विडेट कर देता है।",
+          "en_subtitle": "Correct answer is A: Put-call parity dictates that long caplet calls plus short floorlet puts precisely match swap payment obligations.",
+          "en_narration": "Correct answer is A: Put-call parity dictates that long caplet calls plus short floorlet puts precisely match swap payment obligations.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "question": "Why does combining a long position in an interest rate cap with a short position in an interest rate floor replicate a swap?",
+            "showThinkingSpinner": false,
+            "answer": "A: Put-call parity guarantees that long calls plus short puts at strike R_K equate to paying fixed and receiving floating",
+            "correctIndex": 1,
+            "options": [
+              "A: Put-call parity guarantees that long calls plus short puts at strike R_K equate to paying fixed and receiving floating",
+              "B: Central bank regulations require caps and floors to cancel each other out on balance sheets",
+              "C: Caplets and floorlets have zero volatility and therefore always equal fixed rate cash flows",
+              "D: Interest rate floors cannot be traded unless backed by an identical offsetting caplet contract"
+            ]
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "answer": "A: Put-call parity guarantees that long calls plus short puts at strike R_K equate to paying fixed and receiving floating",
+              "correctIndex": 1,
+              "question": "Why does combining a long position in an interest rate cap with a short position in an interest rate floor replicate a swap?",
+              "options": [
+                "A: Put-call parity guarantees that long calls plus short puts at strike R_K equate to paying fixed and receiving floating",
+                "B: Central bank regulations require caps and floors to cancel each other out on balance sheets",
+                "C: Caplets and floorlets have zero volatility and therefore always equal fixed rate cash flows",
+                "D: Interest rate floors cannot be traded unless backed by an identical offsetting caplet contract"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce correct understanding of daily variation settlement.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Correct answer is A: Put-call parity dictates that long caplet calls plus short floorlet puts precisely match swap payment obligations.",
+          "dialogue": "Correct answer is A: Put-call parity dictates that long caplet calls plus short floorlet puts precisely match swap payment obligations."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Trading Desk Execution Rules",
+      "template": "chat_story",
+      "badge": "Practical Synthesis · Senior Trader Desk",
+      "beats": [
+        {
+          "id": "b14",
+          "hindi_tts": "राजू कहता है, इसका अर्थ यह है कि बाजार में टिके रहने के लिए लेवरेज से पहले मार्जिन और सेटलमेंट को समझना अनिवार्य है।",
+          "en_subtitle": "Sharma ji, how did European negative interest rates disrupt standard lognormal Black swaption models?",
+          "en_narration": "Sharma ji, how did European negative interest rates disrupt standard lognormal Black swaption models?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju summarizes risk discipline —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "So margin buffer and settlement discipline matter more than aggressive positioning!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Margin buffer and settlement discipline matter more than aggressive positioning!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize operational risk discipline before directional speculation.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Sharma ji, how did European negative interest rates disrupt standard lognormal Black swaption models?",
+          "dialogue": "Sharma ji, how did European negative interest rates disrupt standard lognormal Black swaption models?"
+        },
+        {
+          "id": "b15",
+          "hindi_tts": "शर्मा जी पुष्टि करते हैं, बिल्कुल! सफल ट्रेडर्स दिशा का अनुमान लगाने से पहले अपनी पूंजी की सुरक्षा सुनिश्चित करते हैं।",
+          "en_subtitle": "Raju, because lognormal models cannot accept negative rates, quantitative desks transitioned to Bachelier normal models!",
+          "en_narration": "Raju, because lognormal models cannot accept negative rates, quantitative desks transitioned to Bachelier normal models!",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji delivers core trading maxim —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Disciplined market participants protect capital buffers before guessing price direction.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Disciplined market participants protect capital buffers before guessing price direction.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Affirm risk management as the paramount prerequisite for trading longevity.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Raju, because lognormal models cannot accept negative rates, quantitative desks transitioned to Bachelier normal models!",
+          "dialogue": "Raju, because lognormal models cannot accept negative rates, quantitative desks transitioned to Bachelier normal models!"
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "The Whole Picture: 8 Core Principles",
+      "template": "summary_thread",
+      "badge": "Master Review · 8 Inviolable Rules",
+      "beats": [
+        {
+          "id": "b16",
+          "hindi_tts": "आइए पूरे अध्याय के आठ बुनियादी सिद्धांतों की एक व्यवस्थित समीक्षा करें।",
+          "en_subtitle": "Let us review the eight core principles of interest rate options and swaptions.",
+          "en_narration": "Let us review the eight core principles of interest rate options and swaptions.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+              "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+              "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+              "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+              "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+              "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+                "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+                "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+                "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+                "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+                "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                0,
+                0
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present executive overview of the 8 chapter rules.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "text": "Let us review the eight core principles of interest rate options and swaptions.",
+          "dialogue": "Let us review the eight core principles of interest rate options and swaptions."
+        },
+        {
+          "id": "b17",
+          "hindi_tts": "पहले और दूसरे नियम के अनुसार, डेरिवेटिव्स अंतर्निहित संपत्ति से मूल्य लेते हैं और फ्यूचर्स एक्सचेंज पर मानकीकृत होते हैं।",
+          "en_subtitle": "Rules 1 and 2: Callable bonds contain embedded issuer rights, and bond options evaluate dirty forward prices.",
+          "en_narration": "Rules 1 and 2: Callable bonds contain embedded issuer rights, and bond options evaluate dirty forward prices.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+              "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+              "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+              "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+              "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+              "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+                "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+                "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+                "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+                "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+                "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                2
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 1 and 2.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "text": "Rules 1 and 2: Callable bonds contain embedded issuer rights, and bond options evaluate dirty forward prices.",
+          "dialogue": "Rules 1 and 2: Callable bonds contain embedded issuer rights, and bond options evaluate dirty forward prices."
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "तीसरे और चौथे नियम के अनुसार, ओटीसी में काउंटरपार्टी रिस्क रहता है और पेऑफ में हमेशा स्ट्राइक प्राइस का महत्व होता है।",
+          "en_subtitle": "Rules 3 and 4: Caps consist of caplet call portfolios protecting floating-rate borrowers against yield spikes.",
+          "en_narration": "Rules 3 and 4: Caps consist of caplet call portfolios protecting floating-rate borrowers against yield spikes.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+              "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+              "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+              "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+              "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+              "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+                "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+                "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+                "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+                "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+                "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                3,
+                4
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 3 and 4.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "text": "Rules 3 and 4: Caps consist of caplet call portfolios protecting floating-rate borrowers against yield spikes.",
+          "dialogue": "Rules 3 and 4: Caps consist of caplet call portfolios protecting floating-rate borrowers against yield spikes."
+        },
+        {
+          "id": "b19",
+          "hindi_tts": "पांचवें और छठे नियम के तहत, क्लीयरिंगहाउस वेरिएशन मार्जिन से रिस्क कम करता है और लेवरेज इक्विटी को तेजी से घटा सकता है।",
+          "en_subtitle": "Rules 5 and 6: Floors consist of floorlet put portfolios guaranteeing a minimum return to floating lenders.",
+          "en_narration": "Rules 5 and 6: Floors consist of floorlet put portfolios guaranteeing a minimum return to floating lenders.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+              "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+              "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+              "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+              "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+              "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+                "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+                "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+                "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+                "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+                "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                5,
+                6
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 5 and 6.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Rules 5 and 6: Floors consist of floorlet put portfolios guaranteeing a minimum return to floating lenders.",
+          "dialogue": "Rules 5 and 6: Floors consist of floorlet put portfolios guaranteeing a minimum return to floating lenders."
+        },
+        {
+          "id": "b20",
+          "hindi_tts": "सातवें और आठवें नियम के अनुसार, बायलेटरल पोजीशन में कोलेटरल अनिवार्य है और ग्रॉस पेऑफ को कभी नेट प्रॉफिट न समझें।",
+          "en_subtitle": "Rules 7 and 8: Cap minus floor replicates an interest rate swap, and swaptions provide flexible fixed-floating options.",
+          "en_narration": "Rules 7 and 8: Cap minus floor replicates an interest rate swap, and swaptions provide flexible fixed-floating options.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "steps": [
+              "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+              "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+              "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+              "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+              "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+              "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+                "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+                "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+                "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+                "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+                "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                7,
+                8
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 7 and 8 with dedicated focus.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "text": "Rules 7 and 8: Cap minus floor replicates an interest rate swap, and swaptions provide flexible fixed-floating options.",
+          "dialogue": "Rules 7 and 8: Cap minus floor replicates an interest rate swap, and swaptions provide flexible fixed-floating options."
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "यह आठ नियम किसी भी डेरिवेटिव्स और फाइनेंशियल मार्केट में अनुशासन और सफलता की वास्तविक नींव हैं।",
+          "en_subtitle": "These eight rules underpin institutional fixed-income risk management and balance-sheet immunization.",
+          "en_narration": "These eight rules underpin institutional fixed-income risk management and balance-sheet immunization.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "steps": [
+              "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+              "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+              "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+              "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+              "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+              "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Many bonds contain embedded interest rate options: a callable bond grants the issuing corporation the right to",
+                "2. Black's 1976 model values a European call option on a coupon-bearing bond using forward bond price F_0: c = e^",
+                "3. In bond markets, price quotes are clean prices that exclude accrued interest: Cash Price (Dirty Price) = Quote",
+                "4. An interest rate cap is an over-the-counter derivative designed to protect floating-rate borrowers against ris",
+                "5. For principal L, reset date t_k, and payment date t_{k+1} with accrual fraction delta_k = t_{k+1} - t_k, the c",
+                "6. An interest rate floor provides insurance to floating-rate lenders against falling interest rates below floor ",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display comprehensive whole-chapter synthesis overview.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "These eight rules underpin institutional fixed-income risk management and balance-sheet immunization.",
+          "dialogue": "These eight rules underpin institutional fixed-income risk management and balance-sheet immunization."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,435 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch11_part2",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Advanced Option Volatility and Time Decay Strategies: Calendar Spreads, Straddles, Strangles, Strips, and Straps",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Earnings Volatility Trap",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-09",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A retail trader buys a long straddle before a major tech earnings report, expecting a massive stock price explosion ([fact-03], [fact-10]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The stock moves significantly, but the trader is shocked to see their option position lose money instead of gaining ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "The mentor explains Business Snapshot 11.2: implied volatility crush caused option values to collapse immediately post-announcement ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Straddle vs. Strangle Metrics by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-08",
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display $50 Straddle metrics: buying call ($4) and put ($3) for $7 total debit ($700 per contract), downside break-even $43, upside break-even $57, and max loss $700 at S_T = $50 ([fact-04], [fact-10]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display Strangle metrics: stock at $50, buying Oct 45 put ($2) and Oct 55 call ($1.50) for $3.50 total debit ($350 per contract), downside break-even $41.50, upside break-even $58.50, and max loss $350 between $45 and $55 ([fact-08], [fact-11]).",
+          "sourceFactIds": [
+            "fact-08",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 11 Part 2 Roadmap: 4 Volatility Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Calendar Spreads — Exploiting faster near-term theta decay across T1 and T2 expirations ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Straddles — Bottom and top straddles capturing large price movements with break-evens and IV crush awareness ([fact-03], [fact-05]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Strips and Straps — Asymmetric volatility bets favoring downside (1C, 2P) or upside (2C, 1P) ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Strangles — Cheaper OTM option combinations requiring larger underlying moves for profitability ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Calendar Spreads: Strike Alignment & Theta Decay",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Calendar Spread mechanics: selling short-dated T1 and buying long-dated T2 at strike K to capture faster near-term time decay (theta) ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare strike alignment options: neutral spreads (K near S0), bullish spreads (K > S0), and bearish spreads (K < S0), aiming for maximum profit when asset price settles at K at T1 ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Long Straddle Payoff Profile & Break-Even Analysis",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-04",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Long Straddle terminal gross payoff max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K| ([fact-03], [fact-04]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Incorporate numerical example (K = $50, total debit $7): show maximum loss of $700 at S_T = $50, downside break-even at $43, upside break-even at $57, and net profit of $800 if stock reaches $65 ([fact-04], [fact-10]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Volatility Matrix: Straddles vs. Strangles vs. Strips/Straps",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Straddles & Strangles: Bottom straddles (long call + long put at K) vs Bottom strangles (OTM put K1 + OTM call K2, lower cost but larger move required) ([fact-03], [fact-07], [fact-08]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Strips & Straps: Strips (1 call, 2 puts for bearish volatility) and Straps (2 calls, 1 put for bullish volatility) ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Business Snapshot 11.2: Implied Volatility Crush Mechanics",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine pre-earnings implied volatility surge: options become exceptionally expensive due to expected uncertainty before announcements ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare with post-announcement volatility plunge: IV collapses immediately, crushing option values even when the underlying stock moves substantially ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Long Straddle vs. Short Straddle Risk-Reward Balance",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Long Straddle (capped maximum loss equal to total premium paid c + p; uncapped profit potential on large price moves) ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Short Straddle (capped maximum profit equal to collected premium c + p if S_T = K; unlimited risk on severe price movements in either direction) ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Volatility Strategy Classification Summary",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-06",
+        "fact-07",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Time Decay & Neutral Volatility: Calendar spreads exploit theta decay; Straddles and strangles trade pure volatility without directional bias ([fact-01], [fact-03], [fact-07]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-03",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Asymmetry & Earnings: Strips/straps tilt volatility views; Earnings straddles require guarding against IV crush ([fact-06], [fact-09]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Straddle Break-Evens & Strangle Costs",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-08",
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Calculate break-evens ($43, $57) and max loss ($700) for buying a $50 call ($4) and put ($3) ([fact-04], [fact-10]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Calculate break-evens ($41.50, $58.50) and max loss ($350) for buying an Oct 45 put ($2) and Oct 55 call ($1.50) ([fact-08], [fact-11]).",
+          "sourceFactIds": [
+            "fact-08",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Volatility Trader's Execution Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-07",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The trader reviews structure selection: choose calendar spreads for theta decay or straddles/strangles for explosive volatility breaks ([fact-01], [fact-03], [fact-07]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-03",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The trader audits event risks: check earnings calendars to avoid IV crush traps before executing long straddle positions ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Advanced Volatility Strategies",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Calendar spreads exploiting T1/T2 theta decay ([fact-01], [fact-02]), long straddle gross payoff max(S_T - K, 0) + max(K - S_T, 0) ([fact-03], [fact-04]), short straddle unlimited risk ([fact-05]), and implied volatility crush in earnings announcements ([fact-09]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04",
+            "fact-05",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Asymmetric strips (1C, 2P) and straps (2C, 1P) ([fact-06]), OTM strangles reducing initial cost ([fact-07]), strangle net profit break-even calculations ([fact-08]), and overall risk management across volatility setups.",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Calendar Spreads ([fact-01], [fact-02]): Sell short-dated T1 and buy long-dated T2 at strike K to exploit faster near-term theta decay across neutral, bullish, or bearish strikes.",
+    "2. Long Straddles ([fact-03], [fact-10]): Buy a European call and put at same strike K and maturity T, yielding terminal gross payoff |S_T - K| and requiring moves beyond total premium c + p.",
+    "3. Long Straddle Metrics ([fact-04], [fact-10]): For K = $50, call $4, put $3 ($7 total debit), downside break-even is $43, upside break-even is $57, and max loss is $700 at S_T = $50.",
+    "4. Short Straddles ([fact-05]): Sell a call and put at strike K, collecting maximum profit c + p if S_T = K but facing unlimited risk on large price movements.",
+    "5. Volatility Crush Risk ([fact-09]): Business Snapshot 11.2 highlights how pre-earnings IV surges and post-announcement collapses can crush option values despite large stock moves.",
+    "6. Strips and Straps ([fact-06]): Use strips (1 call, 2 puts) for bearish volatility views or straps (2 calls, 1 put) for bullish volatility views.",
+    "7. Bottom Strangles ([fact-07], [fact-11]): Buy OTM put K1 and OTM call K2 (K1 < K2) to lower initial cost, requiring larger underlying moves for profitability.",
+    "8. Strangle Metrics ([fact-08], [fact-11]): Strangle break-evens equal K2 + Net Debit and K1 - Net Debit, with maximum loss equal to net debit paid realized between K1 and K2."
+  ],
+  "bottomTakeaway": "Advanced volatility strategies harness calendar time decay and multi-option straddles, strangles, strips, and straps, requiring careful management against implied volatility crush around earnings events ([fact-01], [fact-02], [fact-03], [fact-04], [fact-05], [fact-06], [fact-07], [fact-08], [fact-09])."
+}

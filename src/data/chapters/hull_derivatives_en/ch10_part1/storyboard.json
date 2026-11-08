@@ -1,0 +1,439 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch10_part1",
+  "course": "Technical Analysis of the Financial Markets (John J. Murphy)",
+  "chapterTitle": "Properties of Stock Options: The Six Pricing Factors, Intrinsic vs. Time Value, and Arbitrage Bounds",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Free Money Glitch: Spotting a Discount Call Option",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A trader spots Stock XYZ bid at $50 while a January call with strike K = $40 is offered at just $9.80, even though its immediate intrinsic value max(S_0 - K, 0) is $50 - $40 = $10.00 ([fact-05], [fact-07]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "A senior quant explains the 3-step riskless arbitrage execution: (1) buy the January 40 call for $9.80, (2) short sell Stock XYZ at $50, and (3) immediately exercise the call to buy XYZ at $40 ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "They tally the cash flows: covering the $50 short sale with the $40 call exercise yields a $10.00 gross payoff, and deducting the $9.80 call price locks in a riskless net profit of $0.20 per share ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Arbitrage & Pricing by the Numbers: Discount Call vs. Discount Put",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display the 6 quantifiable pricing factors (S_0, K, T, sigma, r benchmarked to the 90-day T-bill rate, and D) alongside the Stock XYZ January 40 Call arbitrage metrics: $50 stock bid, $40 strike, $10.00 intrinsic value, $9.80 call price, and +$0.20 locked-in riskless net profit ([fact-01], [fact-07]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display the Stock XYZ July 50 Put arbitrage metrics: $40 stock price, $50 strike, $10.00 intrinsic value, $9.75 put price ($0.25 discount), and +$0.25 locked-in riskless net profit ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 10 Part 1 Roadmap: 4 Valuation Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: The Six Option Pricing Factors — Current Stock Price (S_0), Strike Price (K), Time to Expiration (T), Volatility (sigma), Risk-Free Rate (r), and Expected Dividends (D) ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Directional Sensitivities — How increasing each of the six factors shifts European and American call and put prices (+) or (-) ([fact-02], [fact-03], [fact-04]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Intrinsic Value, Time Value & Equilibrium — Decomposing option price and enforcing Put-Call Equilibrium with dividends and carrying costs ([fact-05], [fact-06]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Discount Arbitrage & Formal Bounds — Executing riskless discount call/put arbitrage and establishing upper and lower no-arbitrage pricing bounds ([fact-07], [fact-08], [fact-09]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Directional Tug: How S_0, K, r, and D Move Calls vs. Puts",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare the opposing effects of Current Stock Price S_0 (+ for European and American calls, - for puts) against Strike Price K (- for calls, + for puts) ([fact-01], [fact-02]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Risk-Free Interest Rate r (typically the 90-day T-bill rate; reduces PV of strike K and raises short-sale carry, so + for calls and - for puts) against Expected Dividends D (ex-dividend spot price drop decreases calls - and increases puts +) ([fact-01], [fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Volatility Expansion vs. Time Decay (Theta)",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Show how higher Volatility (sigma—standard deviation of stock returns) and longer Time to Expiration (T) both pull European and American call and put values upward (+), noting that European options can occasionally see exceptions under extreme dividends or interest rates ([fact-01], [fact-03]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pit Volatility expansion (+sigma) against the passage of time (-T), illustrating how Time Decay (Theta) steadily erodes an option's extrinsic/time value as expiration approaches ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Intrinsic Value, Time Value, and Put-Call Carrying Cost Equilibrium",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Intrinsic Value = max(S_0 - K, 0) for calls and max(K - S_0, 0) for puts, and define Time Value Premium = Option Price - Intrinsic Value ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down the Put-Call Equilibrium equation: Call Price + K - S_0 - Put Price + D - Carrying Cost = 0, and rearrange to isolate Put Time Value Premium = Call Price + D - Carrying Cost ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Step-by-Step Arbitrage Execution: Discount Call vs. Discount Put",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare the bars for the Stock XYZ Discount Call Arbitrage (S_0 = $50, Jan K = $40): $10.00 intrinsic value vs. $9.80 call cost, executing (1) buy Jan 40 call at $9.80, (2) short XYZ at $50, (3) exercise call at $40 to capture +$0.20 riskless net profit ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare the bars for the Stock XYZ Discount Put Arbitrage (S_0 = $40, July K = $50): $10.00 intrinsic value vs. $9.75 put cost, executing (1) buy July 50 put at $9.75, (2) buy XYZ stock at $40, (3) exercise put at $50 to capture +$0.25 riskless net profit ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "No-Arbitrage Upper and Lower Pricing Bounds for Calls and Puts",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Deconstruct the Upper Bounds: European and American calls can never exceed the current stock price (c <= S_0 and C <= S_0); American puts cannot exceed the strike price (P <= K), and European puts cannot exceed the present value of the strike (p <= K*e^(-rT)) ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Deconstruct the Lower Bounds for European options: European Call Lower Bound c >= max(S_0 - K*e^(-rT), 0) and European Put Lower Bound p >= max(K*e^(-rT) - S_0, 0) ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Mapping Option Price Curves Between Upper and Lower Bounds",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-05",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Call Option value against S_0: bounded above by the 45-degree stock line (c, C <= S_0) and bounded below by the European lower bound max(S_0 - K*e^(-rT), 0) and intrinsic value max(S_0 - K, 0), showing Time Value Premium as the vertical gap above intrinsic value ([fact-02], [fact-05], [fact-09]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-05",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Put Option value against S_0: decreasing as S_0 rises (-), bounded above by P <= K (or p <= K*e^(-rT) for European puts) and bounded below by p >= max(K*e^(-rT) - S_0, 0) and intrinsic value max(K - S_0, 0) ([fact-02], [fact-05], [fact-09]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-05",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Discount Put Arbitrage & Factor Shocks",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-05",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Given Stock XYZ at $40 and a July K = $50 put selling for $9.75, verify the $10.00 intrinsic value, the 3-step arbitrage trade (buy put at $9.75, buy stock at $40, exercise put at $50), and the +$0.25 riskless net profit ([fact-05], [fact-08]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Identify the exact directional impact on calls and puts when the risk-free rate r rises (+ call, - put) versus when expected cash dividends D rise (- call, + put) ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Quant Valuation & Arbitrage Screening Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The trader and quant mentor review the 6-factor pre-trade checklist: check S_0 (+ call / - put), K (- call / + put), T and Theta decay (+ value / erodes time value), Volatility sigma (+ call / + put), 90-day T-bill rate r (+ call / - put), and Expected Dividends D (- call / + put) ([fact-01], [fact-02], [fact-03], [fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "They complete the audit by verifying Time Value Premium = Option Price - Intrinsic Value, checking Put-Call Equilibrium (Call Price + K - S_0 - Put Price + D - Carrying Cost = 0), and confirming that prices sit inside the formal bounds c, C <= S_0, p <= K*e^(-rT), P <= K, c >= max(S_0 - K*e^(-rT), 0), and p >= max(K*e^(-rT) - S_0, 0) ([fact-05], [fact-06], [fact-09]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Properties of Stock Options",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: The six quantifiable pricing factors ([fact-01]), directional effects of S_0 and K ([fact-02]), directional effects of T, Theta decay, and Volatility sigma ([fact-03]), and directional effects of r and D ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Intrinsic vs. Time Value formulas ([fact-05]), Put-Call Equilibrium with carrying costs ([fact-06]), the Stock XYZ discount call (+$0.20) and discount put (+$0.25) arbitrage case studies ([fact-07], [fact-08]), and formal no-arbitrage upper and lower pricing bounds ([fact-09]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06",
+            "fact-07",
+            "fact-08",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Six Option Pricing Factors ([fact-01]): Stock option prices are governed by Current Stock Price (S_0), Strike Price (K), Time to Expiration (T), Volatility (sigma), Risk-Free Interest Rate (r, typically the 90-day Treasury bill rate), and Expected Dividends (D).",
+    "2. Stock Price & Strike Price Effects ([fact-02]): Increasing the stock price (S_0) increases European and American call values (+) and decreases put values (-), while increasing the strike price (K) decreases call values (-) and increases put values (+).",
+    "3. Time to Expiration, Theta & Volatility ([fact-03]): Longer time to expiration (T) increases American call and put values (+) and generally increases European option values (+, with rare high-dividend or interest-rate exceptions) while the passage of time causes Theta decay; higher volatility (sigma) increases all call and put values (+).",
+    "4. Interest Rate & Dividend Effects ([fact-04]): A higher risk-free rate (r) lowers the present value of K and increases short-sale carrying returns, boosting calls (+) and reducing puts (-); expected cash dividends (D) cause ex-dividend stock price drops, reducing calls (-) and boosting puts (+).",
+    "5. Intrinsic Value vs. Time Value ([fact-05]): Intrinsic value equals max(S_0 - K, 0) for calls and max(K - S_0, 0) for puts, while Time Value Premium (extrinsic value) equals Option Price - Intrinsic Value.",
+    "6. Put-Call Equilibrium & Carrying Costs ([fact-06]): Arbitrage enforces Call Price + K - S_0 - Put Price + D - Carrying Cost = 0, meaning Put Time Value Premium = Call Price + D - Carrying Cost.",
+    "7. Discount Call & Put Arbitrage Case Studies ([fact-07], [fact-08]): Buying an XYZ Jan 40 call at $9.80, shorting XYZ at $50, and exercising at $40 locks in +$0.20 riskless net profit; buying an XYZ July 50 put at $9.75, buying XYZ at $40, and exercising at $50 locks in +$0.25 riskless net profit.",
+    "8. Formal No-Arbitrage Bounds ([fact-09]): Option prices must obey Call Upper Bounds (c <= S_0, C <= S_0), Put Upper Bounds (p <= K*e^(-rT), P <= K), the European Call Lower Bound c >= max(S_0 - K*e^(-rT), 0), and the European Put Lower Bound p >= max(K*e^(-rT) - S_0, 0)."
+  ],
+  "bottomTakeaway": "Option valuation rests on six quantifiable inputs (S_0, K, T, sigma, r, D), separating intrinsic exercise value from extrinsic time value via put-call carrying cost equilibrium, and enforcing strict upper and lower no-arbitrage pricing bounds ([fact-01], [fact-02], [fact-03], [fact-04], [fact-05], [fact-06], [fact-07], [fact-08], [fact-09])."
+}

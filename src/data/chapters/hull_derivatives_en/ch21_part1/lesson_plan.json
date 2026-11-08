@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch21_part1",
+  "title": "Interest Rate Derivatives: Bond Options, Caps, Floors, Collars, Swaptions, and Black's Model",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Black's 1976 model for futures and options",
+    "Clean versus dirty bond pricing and accrued interest mechanics",
+    "Interest rate swaps and forward rate agreements"
+  ],
+  "learningOutcomes": [
+    "Value European options on coupon-bearing bonds using Black's model with forward dirty bond prices ([fact-02], [fact-03]).",
+    "Analyze embedded options in corporate bonds and mortgage-backed securities (callable, putable, and MBS negative convexity) ([fact-01], [fact-11]).",
+    "Deconstruct interest rate caps and floors into portfolios of European caplets and floorlets ([fact-04], [fact-05], [fact-06], [fact-09]).",
+    "Construct zero-cost interest rate collars and verify cap-floor-swap put-call parity relationships ([fact-07], [fact-08]).",
+    "Evaluate swaptions (payer vs. receiver) and the impact of negative interest rates post-2015 on lognormal Black models ([fact-10], [fact-11])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Embedded Bond Options and Black's Bond Pricing Model",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Interest Rate Caps, Floors, and Caplet Valuations",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-09"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Interest Rate Collars and Cap-Floor-Swap Parity",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-07",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Swaptions and Market Realities: Negative Rates & Prepayments",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-10",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-03",
+      "authorRebuttal": "Black's formula strictly operates on the dirty cash forward price $F_0$; failing to account for accrued interest at exercise leads to severe mispricing ([fact-03])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-08",
+      "authorRebuttal": "Put-call parity establishes that a long cap combined with a short floor is mathematically equivalent to an interest rate swap ($\text{Cap} - \text{Floor} = \text{Swap}$) ([fact-08])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-11",
+      "authorRebuttal": "Post-2015 European negative interest rates broke standard lognormal Black models because the logarithm of negative forward rates is undefined, forcing the adoption of shifted Black and Bachelier normal models ([fact-11])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A 3-month caplet resets at $t_1 = 1.0$ year and pays at $t_2 = 1.25$ years on notional $L = \\$10,000,000$. Forward rate $F_1 = 5.0\\%$, cap strike $R_K = 4.0\\%$, accrual $\\delta = 0.25$ years, volatility $\\sigma = 20\\%$, and discount rate $r = 5.0\\%$. Separately, a zero-cost collar combines a cap and a floor.",
+    "testedFactIds": [
+      "fact-08",
+      "fact-09"
+    ],
+    "question": "1) What is the value of this caplet under Black's model? 2) What financial instrument is synthetically replicated by holding a long cap and short floor at identical strike rates?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Embedded bond options and coupon bond options are priced via Black's model using cash (dirty) forward prices and accrued interest adjustments ([fact-01], [fact-02], [fact-03]).",
+    "Interest rate caps and floors consist of portfolios of European caplets and floorlets, combining to form zero-cost collars and replicating swaps ([fact-04], [fact-05], [fact-06], [fact-07], [fact-08]).",
+    "Swaptions, MBS prepayment negative convexity, and negative interest rate regimes shape modern fixed-income derivatives pricing ([fact-10], [fact-11])."
+  ]
+}

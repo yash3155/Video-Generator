@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch15_part1",
+  "title": "Stock Index Options, Currency Options, Portfolio Insurance, and Dividend Adjustments",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Black-Scholes-Merton European call and put pricing formulas",
+    "Continuous compounding and present value discounting",
+    "Put-Call Parity and no-arbitrage principles"
+  ],
+  "learningOutcomes": [
+    "Explain index option cash settlement mechanics and $100 contract multipliers ([fact-01]).",
+    "Incorporate continuous dividend yields q into generalized BSM formulas and put-call parity ([fact-02], [fact-03], [fact-04]).",
+    "Calculate portfolio insurance hedge ratios for portfolios with beta different from 1.0 ([fact-06], [fact-07]).",
+    "Price European currency options using the Garman-Kohlhagen framework with foreign interest rate rf ([fact-08], [fact-09]).",
+    "Evaluate long-term equity underperformance insurance costs and net return calculations ([fact-10], [fact-11])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Stock Index Options and Continuous Dividend Adjustments",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Portfolio Insurance and Beta Hedging",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-06",
+        "fact-07",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Currency Options and the Garman-Kohlhagen Framework",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-08",
+        "fact-09"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Long-Term Equity Guarantees and Valuation Realities",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-10"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-01",
+      "authorRebuttal": "Because an index cannot be physically delivered, index options trigger cash settlement based entirely on the net difference between the strike and index settlement value (SET) ([fact-01])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-10",
+      "authorRebuttal": "As Hull proves in Business Snapshot 15.1, long-term put protection remains surprisingly expensive because volatility uncertainty sigma * sqrt(T) continues growing with horizon length T ([fact-10])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-11",
+      "authorRebuttal": "Net trading profit must account for the time value of money by compounding the initial premium paid at the risk-free rate: Profit = Payoff - Premium paid * e^(r*T) ([fact-11])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A portfolio manager manages an equity portfolio valued at $10,000,000 with a portfolio beta of beta = 1.5. The S&P 500 index level is I = 4,000. Separately, a European call on British pounds has spot S0 = 1.6000 USD, strike K = 1.6000 USD, r = 6%, rf = 8%, sigma = 15%, T = 1 year.",
+    "testedFactIds": [
+      "fact-07",
+      "fact-08"
+    ],
+    "question": "1) How many index put contracts are required to hedge the portfolio? 2) What is the economic rationale for replacing continuous dividend q with foreign rate rf in currency options?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Index options feature $100 multipliers and settle in cash against index settlement value (SET) without physical delivery ([fact-01]).",
+    "Continuous dividend yields q and foreign risk-free rates rf adjust BSM pricing by replacing S0 with prepaid forward values S0 * e^(-q*T) ([fact-02], [fact-08]).",
+    "Portfolio insurance requires beta-adjusted contract sizing (N = beta * (P / (100 * I))) and proper compounding of option premiums to calculate true net trading profit ([fact-07], [fact-11])."
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch12_part2",
+  "title": "Two-Step and Multi-Step Binomial Trees: American Options, Early Exercise, Volatility Matching, and Continuous Dividends",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "One-step binomial pricing model, Delta hedging, and risk-neutral probability p",
+    "Option terminal payoffs and present value discounting",
+    "Basic concepts of volatility and continuous compounding"
+  ],
+  "learningOutcomes": [
+    "Construct a two-step binomial stock tree and backward-induction option valuation pricing framework ([fact-01], [fact-02]).",
+    "Calculate dynamic node Deltas and evaluate early exercise optimal boundaries for American options versus European options ([fact-03], [fact-05], [fact-06]).",
+    "Differentiate terminal gross cash payoffs from net trading profit (Profit = Payoff - Premium paid) ([fact-07]).",
+    "Apply Cox-Ross-Rubinstein volatility matching formulas and adjust risk-neutral probabilities for continuous dividend yields q ([fact-08], [fact-10]).",
+    "Understand multi-step convergence to Black-Scholes-Merton and recognize discrete jump risks during market crashes ([fact-09], [fact-11])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Two-Step Binomial Trees and Backward Induction Valuation",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Dynamic Delta Recalculation and American Option Early Exercise",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-05",
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Terminal Payoffs vs. Net Trading Profit",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-07"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Volatility Matching, Dividend Yields, and Black-Scholes Convergence",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-08",
+        "fact-09",
+        "fact-10",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-05",
+      "authorRebuttal": "Early exercise is only optimal when the immediate intrinsic value exceeds the continuation value discounted from future nodes (max(Intrinsic, Continuation)). As shown at node B in Hull's example, holding an in-the-money option can retain higher time and continuation value than exercising prematurely ([fact-05], [fact-06])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-07",
+      "authorRebuttal": "Gross cash payoff (e.g., K - S) does not account for the initial premium paid to purchase the option. Net trading profit is strictly defined as Payoff minus Premium paid ([fact-07])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-03",
+      "authorRebuttal": "Because stock prices evolve and branch across nodes, Delta changes dynamically at every intermediate node and must be recalculated as Delta = (fu - fd) / (S_up - S_down) ([fact-03])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "Consider Hull's two-step American put option example with S0 = $50, K = $52, r = 5% per annum, T = 2 years, dt = 1 year, u = 1.2, d = 0.8, and risk-neutral probability p = 0.6282. At maturity (step 2), node C (down-down) has stock price $32 and put payoff $20, while step 1 node C has stock price $40 with continuation value $9.463 and initial option premium P0 = $5.09.",
+    "testedFactIds": [
+      "fact-05",
+      "fact-06",
+      "fact-07"
+    ],
+    "question": "1) Why is early exercise optimal at step 1 node C (S = $40)? 2) What is the net trading profit if the American put is exercised early at node C?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Two-step binomial trees evaluate options by recursively discounting risk-neutral expected payoffs across intermediate and terminal nodes using backward induction ([fact-01], [fact-02]).",
+    "American options require evaluating max(Immediate Exercise Value, Continuation Value) at every node, generating an early exercise premium (e.g., $5.09 vs $4.19 for American vs European puts) ([fact-05], [fact-06]).",
+    "Cox-Ross-Rubinstein parameterization matches volatility sigma and adjusts for continuous dividend yields q, converging smoothly to Black-Scholes-Merton while remaining vulnerable to discrete jump risks ([fact-08], [fact-09], [fact-10], [fact-11])."
+  ]
+}

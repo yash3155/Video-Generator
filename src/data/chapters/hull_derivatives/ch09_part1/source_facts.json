@@ -1,0 +1,323 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch09_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-08T04:33:46.027Z",
+  "bookTitle": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Option Contract, Call vs. Put, and Exercise Styles",
+      "statement": "An option contract gives its holder the right, but not the obligation, to buy (call option) or sell (put option) an underlying asset at a predetermined strike price (K) by an expiration date (T) in exchange for an upfront premium (c or p). European options can be exercised only on the expiration date (T), whereas American options can be exercised at any time during their life up to and including expiration.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch09_part1",
+        "excerpt": "An option is a financial derivative giving its holder the right, but not the obligation, to buy or sell an underlying asset by a specified date at a predetermined price",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-02",
+      "category": "formula",
+      "topic": "Long Call Payoff and Net Profit",
+      "statement": "For a long call position, the gross payoff at expiration is max(S_T - K, 0) and the net profit is max(S_T - K, 0) - c. The maximum loss is capped at the call premium paid (c), while potential upside gain is theoretically uncapped as S_T approaches infinity.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch09_part1",
+        "excerpt": "Maximum loss is capped at the premium paid (c); potential upside gain is theoretically uncapped as S_T \\to \\infty",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Long Call Gross Payoff and Net Profit",
+        "latex": "\\text{Payoff} = \\max(S_T - K, 0), \\quad \\text{Profit} = \\max(S_T - K, 0) - c",
+        "variables": [
+          {
+            "symbol": "S_T",
+            "definition": "Market price of the underlying stock at expiration time T",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Strike or exercise price",
+            "unit": "$"
+          },
+          {
+            "symbol": "c",
+            "definition": "Call option premium paid per share",
+            "unit": "$"
+          }
+        ]
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "max(S_T - K, 0)",
+        "formulaProfit": "max(S_T - K, 0) - c",
+        "premiumConsidered": true,
+        "explanation": "Gross payoff measures immediate exercise value at expiration without initial cost, whereas net profit deducts the upfront call premium (c) paid."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-03",
+      "category": "formula",
+      "topic": "Short Call Payoff and Net Profit",
+      "statement": "For a short call position (writing a call), the gross payoff is -max(S_T - K, 0) and the net profit is c - max(S_T - K, 0). The maximum gain is capped at the premium received (c), while potential downside loss is theoretically uncapped as S_T increases.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch09_part1",
+        "excerpt": "Maximum gain is capped at the premium received (c); potential downside loss is theoretically uncapped as S_T increases",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Short Call Gross Payoff and Net Profit",
+        "latex": "\\text{Payoff} = -\\max(S_T - K, 0), \\quad \\text{Profit} = c - \\max(S_T - K, 0)",
+        "variables": [
+          {
+            "symbol": "S_T",
+            "definition": "Market price of the underlying stock at expiration time T",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Strike or exercise price",
+            "unit": "$"
+          },
+          {
+            "symbol": "c",
+            "definition": "Call option premium received per share",
+            "unit": "$"
+          }
+        ]
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "-max(S_T - K, 0)",
+        "formulaProfit": "c - max(S_T - K, 0)",
+        "premiumConsidered": true,
+        "explanation": "Gross payoff reflects the obligation at expiration (-max(S_T - K, 0)), while net profit adds the initial call premium (c) received at inception."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-04",
+      "category": "formula",
+      "topic": "Long Put and Short Put Payoff and Net Profit",
+      "statement": "For a long put, gross payoff is max(K - S_T, 0) and net profit is max(K - S_T, 0) - p, with maximum loss capped at p and maximum gain of K - p when S_T = 0. For a short put, gross payoff is -max(K - S_T, 0) and net profit is p - max(K - S_T, 0), with maximum gain capped at p and maximum loss of p - K when S_T = 0.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch09_part1",
+        "excerpt": "Maximum loss is capped at the premium paid (p); maximum gain occurs if S_T = 0, yielding K - p",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Long and Short Put Payoff and Net Profit",
+        "latex": "\\text{Long Put Profit} = \\max(K - S_T, 0) - p, \\quad \\text{Short Put Profit} = p - \\max(K - S_T, 0)",
+        "variables": [
+          {
+            "symbol": "S_T",
+            "definition": "Market price of the underlying stock at expiration time T",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Strike or exercise price",
+            "unit": "$"
+          },
+          {
+            "symbol": "p",
+            "definition": "Put option premium per share",
+            "unit": "$"
+          }
+        ]
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "max(K - S_T, 0)",
+        "formulaProfit": "max(K - S_T, 0) - p",
+        "premiumConsidered": true,
+        "explanation": "Gross payoff reflects the intrinsic value at expiration max(K - S_T, 0), whereas net profit accounts for the initial put premium (p) paid or received."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-05",
+      "category": "numerical_example",
+      "topic": "Long Call Numerical Example on Google",
+      "statement": "Buying 1 December call contract (100 shares) on Google with strike K = $550 at premium c = $29.00 requires an upfront outlay of $2,900. If S_T = $600 at expiration, the gross payoff is $5,000 and the net profit is +$2,100. If S_T <= $550, the gross payoff is $0 and the net loss is -$2,900.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch09_part1",
+        "excerpt": "An investor buys 1 contract (100 shares) of a December call option on Google with strike price K = $550 at premium c = $29.00 per share",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "contracts": 1,
+          "sharesPerContract": 100,
+          "strike": 550,
+          "premium": 29,
+          "upfrontOutlay": 2900,
+          "scenarioA_ST": 600,
+          "scenarioA_grossPayoff": 5000,
+          "scenarioA_netProfit": 2100,
+          "scenarioB_maxST": 550,
+          "scenarioB_grossPayoff": 0,
+          "scenarioB_netProfit": -2900
+        },
+        "units": "$",
+        "context": "Long 1 December call contract on Google (100 shares) evaluated at expiration prices S_T = $600 and S_T <= $550."
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "100 * max(S_T - 550, 0)",
+        "formulaProfit": "100 * max(S_T - 550, 0) - 2900",
+        "premiumConsidered": true,
+        "explanation": "At S_T = $600, gross exercise payoff is $5,000, and subtracting the $2,900 initial premium outlay yields a net profit of +$2,100."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-06",
+      "category": "numerical_example",
+      "topic": "Short Put Numerical Example on Google",
+      "statement": "Selling 1 September put contract (100 shares) on Google with strike K = $525 at bid price p = $22.40 generates an upfront inflow of $2,240. If S_T >= $525, the option expires unexercised for a net profit of +$2,240. If S_T = $480, the option is exercised, causing a gross loss of $4,500 and a net loss of -$2,260.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch09_part1",
+        "excerpt": "A trader sells 1 contract (100 shares) of a September put option on Google with strike price K = $525 at bid price p = $22.40 per share",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "contracts": 1,
+          "sharesPerContract": 100,
+          "strike": 525,
+          "premium": 22.4,
+          "upfrontInflow": 2240,
+          "scenarioA_minST": 525,
+          "scenarioA_netProfit": 2240,
+          "scenarioB_ST": 480,
+          "scenarioB_grossLoss": -4500,
+          "scenarioB_netLoss": -2260
+        },
+        "units": "$",
+        "context": "Short 1 September put contract on Google (100 shares) evaluated at expiration prices S_T >= $525 and S_T = $480."
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "-100 * max(525 - S_T, 0)",
+        "formulaProfit": "2240 - 100 * max(525 - S_T, 0)",
+        "premiumConsidered": true,
+        "explanation": "At S_T = $480, the gross exercise loss is $4,500, which is partially offset by the $2,240 upfront premium received, resulting in a net loss of -$2,260."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-07",
+      "category": "definition",
+      "topic": "Option Moneyness States (ITM, ATM, OTM)",
+      "statement": "Moneyness defines the relationship between current stock price (S) and strike price (K): In-the-Money (ITM) has positive intrinsic value (> 0) and occurs when S > K for calls or S < K for puts; At-the-Money (ATM) has zero intrinsic value and occurs when S = K for both calls and puts; Out-of-the-Money (OTM) has zero intrinsic value (= 0) and occurs when S < K for calls or S > K for puts.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch09_part1",
+        "excerpt": "Moneyness characterizes the relationship between the current stock price (S) and the option's strike price (K)",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-08",
+      "category": "market_rule",
+      "topic": "North American Exchange-Traded Option Contract Specifications",
+      "statement": "In North America, one standard stock option contract covers 100 shares, expires on the third Friday of the expiration month across fixed four-month cycles (Jan/Apr/Jul/Oct, Feb/May/Aug/Nov, or Mar/Jun/Sep/Dec) plus the two nearest months, and uses strike intervals of $2.50 (low-priced stocks under $25 or $35), $5.00 (stocks between $25 and $200), and $10.00 (higher-priced stocks).",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch09_part1",
+        "excerpt": "In North America, one standard exchange-traded stock option contract covers 100 shares of stock",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-09",
+      "category": "market_rule",
+      "topic": "Position Limits and Exercise Limits",
+      "statement": "Position limits cap the maximum number of option contracts an investor or group can hold on the same side of the market (Bullish: Long Calls + Short Puts; Bearish: Short Calls + Long Puts), tiered at levels such as 250,000, 75,000, or 25,000 contracts based on stock volume and float. Exercise limits equal the position limit and restrict the number of contracts exercised within 5 consecutive business days to prevent market corners or squeezes.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch09_part1",
+        "excerpt": "The maximum number of option contracts that an investor/group can exercise within 5 consecutive business days, set equal to the position limit to prevent market corners or squeezes",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-10",
+      "category": "formula",
+      "topic": "Stock Split and Stock Dividend Adjustments",
+      "statement": "Exchange-traded options are not adjusted for ordinary cash dividends but are adjusted for N-for-M stock splits and stock dividends. In an N-for-M split, the new strike is K* = K * (M/N). For round-lot splits (e.g., 2-for-1), the number of contracts increases by N/M while keeping 100 shares per contract; for non-round-lot splits (e.g., 3-for-2), the number of contracts stays unchanged while shares per contract become 100 * (N/M). An x% stock dividend is adjusted as a (1 + x/100)-for-1 split.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch09_part1",
+        "excerpt": "Exchange-traded options are not adjusted for ordinary cash dividends [34, 35]. However, terms are explicitly adjusted for stock splits and stock dividends",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "N-for-M Stock Split Strike and Deliverable Adjustment",
+        "latex": "K^* = K \\times \\left(\\frac{M}{N}\\right), \\quad \\text{Non-Round Shares per Contract} = 100 \\times \\left(\\frac{N}{M}\\right)",
+        "variables": [
+          {
+            "symbol": "K^*",
+            "definition": "Adjusted strike price after the stock split",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Original strike price prior to the stock split",
+            "unit": "$"
+          },
+          {
+            "symbol": "N",
+            "definition": "New share multiplier in an N-for-M split",
+            "unit": "shares"
+          },
+          {
+            "symbol": "M",
+            "definition": "Old share base in an N-for-M split",
+            "unit": "shares"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-11",
+      "category": "case_study",
+      "topic": "Business Snapshot 9.1: Gucci Group Takeover Special Dividend Adjustment",
+      "statement": "During the 2000–2001 takeover battle between LVMH and PPR, Gucci Group NV declared an extraordinarily large special cash dividend of $13.50 per share. Although standard options are never adjusted for regular cash dividends, the Options Clearing Corporation (OCC) adjusted Gucci option strike prices downward by exact dollar amounts corresponding to the $13.50 special dividend so call holders were not penalized and put holders were not unfairly rewarded on the ex-dividend date.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch09_part1",
+        "excerpt": "As part of the settlement, Gucci declared a massive special cash dividend of $13.50 per share",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "specialCashDividend": 13.5,
+          "strikeReduction": 13.5
+        },
+        "units": "$",
+        "context": "2000-2001 Gucci Group NV takeover settlement between LVMH and PPR involving an OCC special cash dividend option adjustment."
+      },
+      "tags": []
+    }
+  ],
+  "generalAssumptions": [
+    "One standard North American exchange-traded stock option contract covers 100 shares of the underlying stock unless adjusted for a non-round-lot stock split or stock dividend.",
+    "Exchange-traded stock options are not adjusted for ordinary cash dividends, but are explicitly adjusted for stock splits, stock dividends, and extraordinarily large special cash dividends.",
+    "Gross payoff calculations measure only the intrinsic exercise value at expiration (T) and ignore initial option premiums, whereas net profit calculations incorporate the upfront premium (c or p) paid or received without compounding interest on the initial outlay."
+  ]
+}

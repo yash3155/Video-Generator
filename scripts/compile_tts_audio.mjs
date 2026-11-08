@@ -342,7 +342,7 @@ async function synthesizeEdge(beat, maxRetries = 8, targetHash = null, isHashMat
   const hashFilePath = path.join(audioDir, `${beat.id}.hash`);
   const isEn = courseSlug.includes('_en') || (rawMeta?.narrationLanguage && String(rawMeta.narrationLanguage).startsWith('en'));
   const spokenText = isEn
-    ? (beat.en_narration || beat.en_subtitle || beat.narration || beat.text || beat.hindi_tts || '')
+    ? (beat.dialogue || beat.text || beat.en_narration || beat.en_subtitle || beat.narration || beat.hindi_tts || '')
     : sanitizeForHindiTTS(beat.hindi_tts);
 
   const isValidExisting = fs.existsSync(filePath) && fs.statSync(filePath).size > 1000;
@@ -542,8 +542,11 @@ async function run() {
       beat.durationInFrames = Math.max(15, Math.ceil((totalMs / 1000) * FPS));
 
       // Phase 2B: Generate phrase-level subtitle alignment data
+      const subtitleText = isEn
+        ? (beat.dialogue || beat.text || beat.en_subtitle || beat.en_narration || '')
+        : (beat.en_subtitle || beat.text || beat.hindi_tts || '');
       beat.subtitlePhrases = segmentSubtitleIntoPhrases(
-        beat.en_subtitle,
+        subtitleText,
         beat.audioDurationSec
       );
 

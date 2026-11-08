@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives_en",
+    "chapter": "CHAPTER 9 · PART 2",
+    "chapterTitle": "Chapter 9 Part 2: Market Makers & Bid-Offer Spreads, Margin Requirements for Option Writers, The Options Clearing Corporation (OCC), Warrants, Employee Stock Options, and Convertible Bonds.",
+    "domain": "finance",
+    "primaryColor": "#0F766E",
+    "accentColor": "#F59E0B",
+    "narrationLanguage": "en-US"
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "The Option Writer Margin Shock",
+      "template": "chat_story",
+      "badge": "Desk Dilemma · Writing & Margin",
+      "beats": [
+        {
+          "id": "b01",
+          "en_tts": "Marcus, I'll write naked call options to capture easy premium from bid-ask spreads!",
+          "en_subtitle": "Marcus, I'll write naked call options to capture easy premium from bid-ask spreads!",
+          "en_narration": "Marcus, I'll write naked call options to capture easy premium from bid-ask spreads!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Alex plans to collect option premium —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Marcus, I'll write naked call options to capture easy premium from bid-ask spreads!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Marcus, I'll write naked call options to capture easy premium from bid-ask spreads!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce option writing margin collateral and OCC daily settlement risk.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b02",
+          "en_tts": "Careful, Alex! Option writing demands twenty percent stock margin plus premium and daily mark-to-market.",
+          "en_subtitle": "Careful! Option writing demands 20% stock margin plus premium and daily mark-to-market.",
+          "en_narration": "Careful! Option writing demands 20% stock margin plus premium and daily mark-to-market.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Marcus explains OCC margin collateral rules —"
+            ],
+            "messages": [
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Careful! Option writing demands 20% stock margin plus premium and daily mark-to-market.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "Careful! Option writing demands 20% stock margin plus premium and daily mark-to-market.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce option writing margin collateral and OCC daily settlement risk.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b03",
+          "en_tts": "Wait, so if the stock rallies, OCC clearing rules trigger an immediate margin call?",
+          "en_subtitle": "Wait, so if the stock rallies, OCC rules trigger an immediate margin call?",
+          "en_narration": "Wait, so if the stock rallies, OCC rules trigger an immediate margin call?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Alex plans to collect option premium —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Wait, so if the stock rallies, OCC rules trigger an immediate margin call?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Wait, so if the stock rallies, OCC rules trigger an immediate margin call?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce option writing margin collateral and OCC daily settlement risk.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Conflicting Market Interests",
+      "template": "tug_of_war",
+      "badge": "Structural Conflict · Hedger vs Speculator",
+      "beats": [
+        {
+          "id": "b03",
+          "hindi_tts": "बाजार में एक पक्ष मूल्य में गिरावट से सुरक्षा चाहता है, जबकि दूसरा पक्ष मूल्य वृद्धि के जोखिम को सीमित करना चाहता है।",
+          "en_subtitle": "One party hedges downside price drop, while the other protects against rising procurement costs.",
+          "en_narration": "One side hedges falling prices while the counterparty hedges rising costs.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftLabel": "Farmer / Producer (Downside Protection)",
+            "rightLabel": "Processor / Miller (Upside Ceiling)",
+            "currentTension": 50
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Downside Protection",
+              "rightLabel": "Upside Ceiling",
+              "tension": 50
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate opposing economic motivations meeting in a forward contract.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "The Core Architecture Roadmap",
+      "template": "progressive_cards",
+      "badge": "Roadmap · 4 Structural Pillars",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "इस अध्याय में हम चार महत्वपूर्ण स्तंभों को समझेंगे: बाजार संरचना, गणितीय पेऑफ, लिक्विडिटी और सिस्टमिक जोखिम।",
+          "en_subtitle": "In this chapter, we master four structural pillars: architecture, payoff math, liquidity, and systemic risk.",
+          "en_narration": "We explore architecture, mathematical payoffs, liquidity, and systemic risk.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "Market Architecture",
+                "desc": "Exchange vs Over-The-Counter mechanisms"
+              },
+              {
+                "title": "Payoff Math",
+                "desc": "Terminal gross payoff versus net profit"
+              },
+              {
+                "title": "Liquidity & Margining",
+                "desc": "Daily settlement and capital buffers"
+              },
+              {
+                "title": "Systemic Risk",
+                "desc": "Counterparty exposure and clearinghouse reforms"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cards": [
+                {
+                  "title": "Market Architecture",
+                  "desc": "Exchange vs OTC mechanisms"
+                },
+                {
+                  "title": "Payoff Math",
+                  "desc": "Gross payoff versus net profit"
+                },
+                {
+                  "title": "Liquidity & Margining",
+                  "desc": "Daily settlement buffers"
+                },
+                {
+                  "title": "Systemic Risk",
+                  "desc": "Counterparty default mitigation"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present structural roadmap of four learning pillars.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Exchange Standardization vs OTC Flexibility",
+      "template": "split_comparison",
+      "badge": "Market Structure · Bilateral vs Centralized",
+      "beats": [
+        {
+          "id": "b05",
+          "hindi_tts": "एक्सचेंज ट्रेडेड फ्यूचर्स पूरी तरह से मानकीकृत होते हैं, जबकि ओटीसी फॉरवर्ड्स दोनों पक्षों की आवश्यकतानुसार कस्टमाइज किए जाते हैं।",
+          "en_subtitle": "Exchange futures are strictly standardized, while OTC contracts are bilaterally customized.",
+          "en_narration": "Exchange futures are standardized while OTC contracts are customized.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Exchange-Traded Futures",
+            "rightTitle": "Over-the-Counter (OTC)",
+            "leftPoints": [
+              "Standardized contract sizes",
+              "Central clearinghouse (CCP)",
+              "Zero bilateral default risk"
+            ],
+            "rightPoints": [
+              "Tailored specifications",
+              "Bilateral counterparty risk",
+              "Direct negotiation"
+            ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Futures",
+                "points": [
+                  "Standardized",
+                  "CCP Cleared"
+                ]
+              },
+              "rightColumn": {
+                "title": "OTC Forwards",
+                "points": [
+                  "Customized",
+                  "Bilateral Risk"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Contrast exchange standardization with OTC customization.",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Global Derivatives Notional Scale",
+      "template": "progressive_cards",
+      "badge": "Global Volume · BIS Market Data",
+      "beats": [
+        {
+          "id": "b06",
+          "hindi_tts": "वैश्विक स्तर पर ओटीसी बाजार का आकार छह सौ तीस ट्रिलियन डॉलर से अधिक है, जो एक्सचेंज बाजार से लगभग दस गुना बड़ा है।",
+          "en_subtitle": "Globally, the OTC market exceeds $630 trillion in notional principal, dwarfing exchange volumes.",
+          "en_narration": "The global OTC market exceeds $630 trillion, dwarfing exchange volumes.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "OTC Market Notional",
+                "desc": "$630+ Trillion global bilateral outstanding"
+              },
+              {
+                "title": "Exchange Market Notional",
+                "desc": "$65 Trillion centralized standardized volume"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "OTC Market",
+                  "desc": "$630T Notional"
+                },
+                {
+                  "title": "Exchange Market",
+                  "desc": "$65T Notional"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate immense macroeconomic scale of OTC markets.",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Terminal Payoff Mechanics",
+      "template": "formula_breakdown",
+      "badge": "Quantitative Proof · Terminal Payoff",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "मैच्योरिटी पर लॉन्ग पोजीशन का ग्रॉस पेऑफ वर्तमान स्पॉट प्राइस और स्ट्राइक प्राइस का अंतर होता है।",
+          "en_subtitle": "At terminal maturity, gross payoff is defined as the spot price minus strike price.",
+          "en_narration": "At expiration, long payoff equals spot price minus the delivery strike price.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Terminal Long Payoff",
+            "expression": "S_t - K",
+            "variables": [
+              {
+                "symbol": "S_t",
+                "label": "Spot asset price at expiration",
+                "unit": "₹"
+              },
+              {
+                "symbol": "K",
+                "label": "Agreed delivery strike price",
+                "unit": "₹"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Terminal Long Payoff",
+              "expression": "S_t - K",
+              "variables": [
+                {
+                  "symbol": "S_t",
+                  "label": "Spot asset price at expiration",
+                  "unit": "₹"
+                },
+                {
+                  "symbol": "K",
+                  "label": "Agreed delivery strike price",
+                  "unit": "₹"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Define terminal long linear payoff formula.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "Gross Payoff versus Net Trading Profit",
+      "template": "split_comparison",
+      "badge": "Core Invariant · Payoff vs Profit",
+      "beats": [
+        {
+          "id": "b08",
+          "hindi_tts": "हमेशा याद रखें, पेऑफ केवल टर्मिनल कैशफ्लो है, जबकि नेट प्रॉफिट में शुरुआत में चुकाया गया प्रीमियम घटाया जाता है।",
+          "en_subtitle": "Always distinguish: Payoff is terminal cashflow; Profit deducts initial premium paid.",
+          "en_narration": "Payoff is gross terminal cashflow, while profit subtracts initial premium paid.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Gross Payoff",
+            "rightTitle": "Net Trading Profit",
+            "leftPoints": [
+              "Terminal cashflow at expiration",
+              "Ignores upfront premium paid",
+              "Always >= 0 for options"
+            ],
+            "rightPoints": [
+              "Terminal payoff minus initial premium",
+              "Accounts for capital outlay",
+              "Negative if price stays flat"
+            ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Gross Payoff",
+                "points": [
+                  "Terminal Cashflow",
+                  "Ignores Premium"
+                ]
+              },
+              "rightColumn": {
+                "title": "Net Profit",
+                "points": [
+                  "Payoff - Premium",
+                  "True Economic P&L"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Strictly enforce the Payoff vs Profit distinction.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "Systemic Risk & Bilateral Contagion",
+      "template": "progressive_cards",
+      "badge": "Case Study · Lehman Brothers 2008",
+      "beats": [
+        {
+          "id": "b09",
+          "hindi_tts": "दो हजार आठ में लेहमैन ब्रदर्स के पास छह सौ बिलियन डॉलर के अनक्लेयर्ड ओटीसी डेरिवेटिव्स थे, जिससे पूरी वित्तीय प्रणाली फ्रीज हो गई।",
+          "en_subtitle": "In 2008, Lehman held over $600 billion in uncollateralized OTC positions, freezing the banking system.",
+          "en_narration": "In 2008, Lehman held $600 billion in OTC positions, triggering systemic contagion.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "Bilateral Gridlock",
+                "desc": "No central clearing meant counterparties could not assess exposures"
+              },
+              {
+                "title": "Post-Crisis Reform",
+                "desc": "G20 mandate required standardized OTC clearing through CCPs"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "Lehman Collapse",
+                  "desc": "$600B OTC Network"
+                },
+                {
+                  "title": "Regulatory Response",
+                  "desc": "Mandatory Central Clearing"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate systemic counterparty contagion in uncollateralized OTC markets.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-05"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "Leverage Multipliers & Equity Depletion",
+      "template": "formula_breakdown",
+      "badge": "Balance Sheet Risk · Leverage Math",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "इकतीस गुना लेवरेज पर एसेट्स में केवल सवा तीन परसेंट की गिरावट पूरे शेयरहोल्डर इक्विटी को शून्य कर देती है।",
+          "en_subtitle": "At thirty-one to one leverage, just a 3.2% decline in assets completely wipes out shareholder equity.",
+          "en_narration": "At 31 to 1 leverage, a 3.2% decline in assets wipes out shareholder equity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Leverage Multipliers & Equity Wipeout",
+            "expression": "L = \\text{Assets} / \\text{Equity}",
+            "variables": [
+              {
+                "symbol": "L",
+                "label": "Balance sheet leverage ratio (31:1)",
+                "unit": "ratio"
+              },
+              {
+                "symbol": "\\Delta Equity",
+                "label": "\\Delta Assets \\times L",
+                "unit": "%"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Leverage Multipliers & Equity Wipeout",
+              "expression": "L = \\text{Assets} / \\text{Equity}",
+              "variables": [
+                {
+                  "symbol": "L",
+                  "label": "Leverage ratio",
+                  "unit": "ratio"
+                },
+                {
+                  "symbol": "\\Delta Equity",
+                  "label": "Change in equity",
+                  "unit": "%"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Prove mathematically how high leverage accelerates balance-sheet bankruptcy.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall Scenario",
+      "template": "interactive_quiz",
+      "badge": "Concept Verification · Active Recall",
+      "beats": [
+        {
+          "id": "b11",
+          "hindi_tts": "यदि एक ट्रेडर बिना हेजिंग के अत्यधिक लेवरेज पोजीशन लेता है और बाजार विपरीत दिशा में जाता है, तो सबसे बड़ा प्राथमिक जोखिम क्या है?",
+          "en_subtitle": "If a trader takes an unhedged leveraged position, what is the immediate structural risk?",
+          "en_narration": "What is the primary risk of an unhedged highly leveraged market position?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "question": "When an institutional investor writes a naked uncovered call option on stock, how does the Options Clearing Corporation calculate the required initial margin collateral?",
+            "options": [
+              "A) Guaranteed price recovery at expiration",
+              "B) Immediate margin call and total equity liquidation",
+              "C) Elimination of counterparty default risk",
+              "D) Automatic contract conversion to equity"
+            ],
+            "showThinkingSpinner": false,
+            "answer": ""
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "When an institutional investor writes a naked uncovered call option on stock, how does the Options Clearing Corporation calculate the required initial margin collateral?",
+              "options": [
+                "A) Guaranteed price recovery at expiration",
+                "B) Immediate margin call and total equity liquidation",
+                "C) Elimination of counterparty default risk",
+                "D) Automatic contract conversion to equity"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Test understanding of leverage depletion and margin call dynamics.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "सोचिए... क्या मार्जिन बफर के बिना पोजीशन सर्वाइव कर सकती है?",
+          "en_subtitle": "Think carefully... Can a leveraged position survive without adequate margin capital?",
+          "en_narration": "Pause and consider the margin mechanics.",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "question": "When an institutional investor writes a naked uncovered call option on stock, how does the Options Clearing Corporation calculate the required initial margin collateral?",
+            "showThinkingSpinner": true,
+            "answer": ""
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "showThinkingSpinner": true,
+              "question": "When an institutional investor writes a naked uncovered call option on stock, how does the Options Clearing Corporation calculate the required initial margin collateral?"
+            },
+            "semantics": {
+              "teachingObjective": "Engage active recall cognitive processing pause.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b13",
+          "hindi_tts": "सही उत्तर बी है! अपर्याप्त मार्जिन पर ब्रोकर या एक्सचेंज तुरंत पोजीशन को लिक्विडेट कर देता है।",
+          "en_subtitle": "Correct answer is B! Insufficient margin triggers immediate forced liquidation.",
+          "en_narration": "Correct answer is B: Insufficient margin triggers immediate forced liquidation.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "question": "When an institutional investor writes a naked uncovered call option on stock, how does the Options Clearing Corporation calculate the required initial margin collateral?",
+            "showThinkingSpinner": false,
+            "answer": "B) Immediate margin call and total equity liquidation. Clearinghouses mandate daily variation margin to prevent systemic default.",
+            "correctIndex": 1
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "answer": "B) Immediate margin call and total equity liquidation.",
+              "correctIndex": 1,
+              "question": "When an institutional investor writes a naked uncovered call option on stock, how does the Options Clearing Corporation calculate the required initial margin collateral?"
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce correct understanding of daily variation settlement.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Practical Application: Corporate Warrants vs Exchange Options",
+      "template": "chat_story",
+      "badge": "Desk Debrief · Equity Dilution",
+      "beats": [
+        {
+          "id": "b31",
+          "en_tts": "Marcus, why do corporations issue warrants and ESOs instead of regular exchange-traded options?",
+          "en_subtitle": "Marcus, why do corporations issue warrants and ESOs instead of exchange-traded options?",
+          "en_narration": "Marcus, why do corporations issue warrants and ESOs instead of exchange-traded options?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Alex compares warrants with exchange options —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Marcus, why do corporations issue warrants and ESOs instead of exchange-traded options?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Marcus, why do corporations issue warrants and ESOs instead of exchange-traded options?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Distinguish dilutive corporate warrants and ESOs from exchange-traded options.",
+              "sourceFactIds": [
+                "fact-08",
+                "fact-09"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b32",
+          "en_tts": "Warrants and ESOs issue new shares, diluting equity while injecting fresh capital into the firm.",
+          "en_subtitle": "Warrants and ESOs issue new shares, diluting equity while injecting fresh corporate capital.",
+          "en_narration": "Warrants and ESOs issue new shares, diluting equity while injecting fresh corporate capital.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Marcus explains dilution and capital injection —"
+            ],
+            "messages": [
+              {
+                "sender": "Marcus",
+                "avatar": "M",
+                "text": "Warrants and ESOs issue new shares, diluting equity while injecting fresh corporate capital.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Marcus",
+                  "avatar": "M",
+                  "text": "Warrants and ESOs issue new shares, diluting equity while injecting fresh corporate capital.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Distinguish dilutive corporate warrants and ESOs from exchange-traded options.",
+              "sourceFactIds": [
+                "fact-08",
+                "fact-09"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b33",
+          "en_tts": "Got it! Exchange-traded options are zero-sum contracts cleared by the OCC without dilution.",
+          "en_subtitle": "Got it! Exchange-traded options are zero-sum contracts cleared by the OCC without dilution.",
+          "en_narration": "Got it! Exchange-traded options are zero-sum contracts cleared by the OCC without dilution.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Alex compares warrants with exchange options —"
+            ],
+            "messages": [
+              {
+                "sender": "Alex",
+                "avatar": "A",
+                "text": "Got it! Exchange-traded options are zero-sum contracts cleared by the OCC without dilution.",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Alex",
+                  "avatar": "A",
+                  "text": "Got it! Exchange-traded options are zero-sum contracts cleared by the OCC without dilution.",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Distinguish dilutive corporate warrants and ESOs from exchange-traded options.",
+              "sourceFactIds": [
+                "fact-08",
+                "fact-09"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "The Whole Picture: 8 Core Principles",
+      "template": "summary_thread",
+      "badge": "Master Review · 8 Inviolable Rules",
+      "beats": [
+        {
+          "id": "b16",
+          "hindi_tts": "आइए पूरे अध्याय के आठ बुनियादी सिद्धांतों की एक व्यवस्थित समीक्षा करें।",
+          "en_subtitle": "Let us review the eight foundational principles established in this lesson.",
+          "en_narration": "Let us review the eight foundational principles of this lesson.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+              "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+              "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+              "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+              "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+              "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+                "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+                "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+                "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+                "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+                "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                0,
+                0
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present executive overview of the 8 chapter rules.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b17",
+          "hindi_tts": "पहले और दूसरे नियम के अनुसार, डेरिवेटिव्स अंतर्निहित संपत्ति से मूल्य लेते हैं और फ्यूचर्स एक्सचेंज पर मानकीकृत होते हैं।",
+          "en_subtitle": "First and second: Derivatives derive value from underlyings, and futures are standardized on exchanges.",
+          "en_narration": "Rules 1 and 2: Derivatives derive value from underlyings, and futures are standardized.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+              "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+              "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+              "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+              "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+              "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+                "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+                "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+                "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+                "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+                "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                2
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 1 and 2.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "तीसरे और चौथे नियम के अनुसार, ओटीसी में काउंटरपार्टी रिस्क रहता है और पेऑफ में हमेशा स्ट्राइक प्राइस का महत्व होता है।",
+          "en_subtitle": "Third and fourth: OTC contracts carry bilateral counterparty risk, and payoff is defined by the strike price.",
+          "en_narration": "Rules 3 and 4: OTC carries counterparty risk, and payoff depends on strike.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+              "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+              "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+              "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+              "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+              "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+                "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+                "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+                "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+                "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+                "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                3,
+                4
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 3 and 4.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b19",
+          "hindi_tts": "पांचवें और छठे नियम के तहत, क्लीयरिंगहाउस वेरिएशन मार्जिन से रिस्क कम करता है और लेवरेज इक्विटी को तेजी से घटा सकता है।",
+          "en_subtitle": "Fifth and sixth: Clearinghouses enforce variation margin, and high leverage rapidly depletes equity.",
+          "en_narration": "Rules 5 and 6: Margin protects clearinghouses, while leverage depletes equity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+              "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+              "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+              "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+              "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+              "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+                "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+                "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+                "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+                "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+                "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                5,
+                6
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 5 and 6.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b20",
+          "hindi_tts": "सातवें और आठवें नियम के अनुसार, बायलेटरल पोजीशन में कोलेटरल अनिवार्य है और ग्रॉस पेऑफ को कभी नेट प्रॉफिट न समझें।",
+          "en_subtitle": "Seventh and eighth: Bilateral exposure requires collateral, and never confuse gross payoff with net profit.",
+          "en_narration": "Rules 7 and 8: Collateralize bilateral risk, and never confuse payoff with profit.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "steps": [
+              "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+              "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+              "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+              "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+              "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+              "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+                "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+                "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+                "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+                "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+                "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                7,
+                8
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 7 and 8 with dedicated focus.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "यह आठ नियम किसी भी डेरिवेटिव्स और फाइनेंशियल मार्केट में अनुशासन और सफलता की वास्तविक नींव हैं।",
+          "en_subtitle": "These eight principles form the enduring foundation for trading discipline across global markets.",
+          "en_narration": "These eight rules form the foundation of trading discipline.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "steps": [
+              "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+              "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+              "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+              "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+              "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+              "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which",
+                "2. For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin",
+                "3. For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and",
+                "4. For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin ",
+                "5. When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike",
+                "6. Naked option positions are marked to market daily by recomputing required collateral each day using closing pr",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display comprehensive whole-chapter synthesis overview.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

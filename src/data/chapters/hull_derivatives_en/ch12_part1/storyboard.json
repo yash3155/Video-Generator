@@ -1,0 +1,434 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch12_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "The One-Step Binomial Model: Delta Hedging, Risk-Neutral Valuation, and Arbitrage Pricing",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "Eliminating Market Risk with Binomial Trees",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A quantitative analyst introduces a one-step binomial tree where stock S0 = $20 moves up to $22 or down to $18 over interval T = 0.25 years ([fact-01], [fact-10]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The analyst explains how to form a riskless portfolio by taking a long position in Delta shares and a short position in 1 call option contract ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "By setting portfolio values equal in both up and down states, all market uncertainty is completely eliminated ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Binomial Valuation Metrics by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display Delta calculation: spread in derivative payoffs ($1.00 - $0.00) divided by spread in stock prices ($22.00 - $18.00) equals Delta = 0.25 shares per option (25 shares per 100-share contract) ([fact-03], [fact-10]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display risk-neutral pricing metrics at r = 12% and T = 0.25: exp(rT) = 1.03045, up probability p = 0.6523, yielding theoretical call price f = $0.633 per share ($63.30 per contract) ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 12 Part 1 Roadmap: 4 Core Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-05",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Binomial Framework — One-step stock tree (S0*u vs S0*d) and 100-share contract conventions ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Delta Hedging — Riskless portfolio construction and hedge ratio Delta = (fu - fd) / (S0*u - S0*d) ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Risk-Neutral Valuation — Artificial probability p and discounted expected payoff f = exp(-rT)*[p*fu + (1-p)*fd] ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Arbitrage Enforcement — Locking in guaranteed cash when market prices diverge from theory ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Riskless Portfolio Present Value vs. Terminal Parity",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-04",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Hedged Portfolio setup: long 0.25 shares and short 1 call option worth exactly $4.50 in both up and down states at expiration ([fact-02], [fact-10]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Present Value discounting: S0*Delta - f = (S0*u*Delta - fu) * exp(-rT), ensuring the risk-free rate r is earned on the hedged position ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Delta and Risk-Neutral Probability Formulas",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Delta Formula: Delta = (fu - fd) / (S0*u - S0*d), representing option price sensitivity to underlying stock movements ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Risk-Neutral Probability and Pricing: p = (exp(rT) - d) / (u - d) and f = exp(-rT) * [p * fu + (1 - p) * fd] ([fact-06], [fact-07]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Arbitrage Execution: Overpriced vs. Underpriced Options",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Overpriced Option strategy: sell the option, buy Delta shares, and borrow to lock in guaranteed upfront cash ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Underpriced Option strategy: buy the option, short Delta shares, and invest at the risk-free rate r to capture riskless profit ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Risk Preferences vs. Arbitrage-Free Pricing",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Investor Risk Preferences: show that expected stock return mu and subjective probabilities do not appear in option valuation formulas ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Market Consensus: investors with completely different risk tolerances and forecasts must agree on identical option price f to prevent arbitrage ([fact-05], [fact-08]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Step-by-Step One-Step Binomial Valuation Workflow",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Step 1 & 2 — Define Tree & Payoffs: specify S0, u, d, T, and resulting derivative payoffs fu and fd ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Step 3 & 4 — Compute Delta & Probability: calculate Delta = (fu - fd) / (S0*u - S0*d) and risk-neutral probability p = (exp(rT) - d) / (u - d) ([fact-03], [fact-06]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Step 5 — Discount Expectation: compute theoretical price f = exp(-rT) * [p * fu + (1 - p) * fd] ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Binomial Tree State Payoffs and Hedged Portfolio Consistency",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Up State vs Down State stock prices ($22 vs $18) and corresponding call payoffs ($1.00 vs $0.00) ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot hedged portfolio value (0.25 shares minus 1 call) showing identical terminal value of exactly $4.50 in both states ([fact-02], [fact-10]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Delta & Binomial Option Pricing",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-07",
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Calculate Delta (0.25) for a stock moving from $20 to $22 or $18 with option payoffs $1.00 and $0.00 ([fact-03], [fact-10]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Compute risk-neutral probability p (0.6523) and theoretical price f ($0.633) given r = 12% and T = 0.25 ([fact-07], [fact-11]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Binomial Model Quant & Arbitrage Auditor Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-07",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The quant reviews model inputs: check stock tree parameters S0, u, d, T, risk-free rate r, and contract size (100 shares) ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The auditor checks pricing and arbitrage: compute Delta and theoretical price f = exp(-rT)*[p*fu + (1-p)*fd]; if market price diverges, execute arbitrage trade ([fact-03], [fact-07], [fact-09]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-07",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: One-Step Binomial Model",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: One-step binomial stock tree S0*u vs S0*d ([fact-01]), riskless portfolio formation combining Delta shares and short calls ([fact-02]), hedge ratio Delta formula ([fact-03]), and present value risk-free earnings equation ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Risk-neutral valuation principle independence from risk preferences ([fact-05]), artificial probability p formula ([fact-06]), theoretical pricing formula f = exp(-rT)*[p*fu + (1-p)*fd] ([fact-07]), and arbitrage execution on mispriced options ([fact-09]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06",
+            "fact-07",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Binomial Stock Tree ([fact-01]): Stock price S0 moves up to S0*u or down to S0*d over interval T, with standard contracts representing 100 shares.",
+    "2. Riskless Hedging ([fact-02]): Combining a long position in Delta shares and a short position in 1 call option eliminates market uncertainty by equating portfolio values in both states.",
+    "3. Hedge Ratio Delta ([fact-03]): Delta equals the payoff spread divided by stock price spread: Delta = (fu - fd) / (S0*u - S0*d).",
+    "4. Risk-Free Return ([fact-04]): The hedged portfolio must earn the risk-free interest rate r: S0*Delta - f = (S0*u*Delta - fu) * exp(-rT).",
+    "5. Risk-Neutral Valuation ([fact-05]): Option prices derived by no-arbitrage do not depend on investor risk preferences or expected return mu.",
+    "6. Risk-Neutral Probability ([fact-06]): Artificial up probability p = (exp(rT) - d) / (u - d) aligns expected stock growth with the risk-free rate.",
+    "7. Theoretical Option Pricing ([fact-07]): The option price equals the discounted expected payoff in a risk-neutral world: f = exp(-rT) * [p * fu + (1 - p) * fd].",
+    "8. Arbitrage Enforcement ([fact-09]): Divergences between market option prices and theoretical price f enable arbitrageurs to lock in guaranteed upfront cash."
+  ],
+  "bottomTakeaway": "The one-step binomial model demonstrates that option pricing requires no subjective risk preferences, using Delta hedging and risk-neutral probabilities p to enforce exact arbitrage-free valuations ([fact-01], [fact-02], [fact-03], [fact-05], [fact-07])."
+}

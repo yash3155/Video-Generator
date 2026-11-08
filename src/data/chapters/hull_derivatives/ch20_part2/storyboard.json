@@ -1,0 +1,410 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch20_part2",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "The Model-Building Approach, Linear/Quadratic Delta-Gamma VaR, EWMA, GARCH(1,1), Kupiec Backtesting, and LTCM",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Variance-Covariance Model & Diversification",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A risk manager introduces the model-building approach, assuming multivariate normal asset daily returns ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Portfolio variance is computed parametrically as $\\sigma_P^2 = w^T \\Sigma w$ ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "The mentor explains 99% VaR scaling: $VaR_{99} = 2.326 \\sigma_P$ for a given portfolio standard deviation ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Microsoft & AT&T Portfolio Diversification by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display individual VaR metrics: Microsoft ($10M) 99% VaR is $465,200; AT&T ($5M) 99% VaR is $116,300 (sum equals $581,500) ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display portfolio VaR metric: with correlation 0.3, combined portfolio 99% VaR is $496,600, yielding an exact diversification benefit of $84,900 ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 20 Part 2 Roadmap: 4 Quantitative Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-06",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Variance-Covariance — Multivariate normal portfolio variance and diversification benefits ([fact-01], [fact-05]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Delta-Gamma Models — Linear delta approximation versus quadratic Taylor series Gamma curvature ([fact-03], [fact-04]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: EWMA & GARCH(1,1) — Exponential smoothing and mean-reverting volatility term structures ([fact-06], [fact-07], [fact-08]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Backtesting & LTCM — Kupiec POF likelihood ratio tests and 1998 correlation panic failures ([fact-09], [fact-10]).",
+          "sourceFactIds": [
+            "fact-09",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Linear Delta Model vs. Quadratic Delta-Gamma Model",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Linear Delta Model: $\\Delta P = \\sum \\delta_i \\Delta S_i$, computationally fast but ignores non-linear option curvature ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Quadratic Delta-Gamma Model: incorporates second-order Gamma term $\frac{1}{2}\\Gamma(\\Delta S)^2$ to prevent catastrophic option risk underestimation ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing EWMA & GARCH(1,1) Volatility Updating",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down EWMA Formula: $\\sigma_n^2 = \\lambda \\sigma_{n-1}^2 + (1-\\lambda) u_{n-1}^2$ using decay factor $\\lambda = 0.94$ for daily data ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down GARCH(1,1) Formula: $\\sigma_n^2 = \\omega + \\alpha u_{n-1}^2 + \beta \\sigma_{n-1}^2$ incorporating mean reversion toward long-run variance $V_L$ ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "GARCH(1,1) Volatility Term Structure Mean Reversion",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Elevated Volatility: when current volatility exceeds long-run average $V_L$, the term structure is downward-sloping ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Depressed Volatility: when current volatility is below $V_L$, expected future variance reverts upward, creating an upward-sloping term structure ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Historical Simulation vs. Model-Building Approach",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Historical Simulation: requires no distributional assumptions and captures fat tails, but cannot adapt quickly to sudden volatility shifts ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Model-Building Approach: enables rapid analytical computation and volatility updating (EWMA/GARCH), but is vulnerable to distribution misspecification ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Portfolio Diversification & Correlation Benefit Curve",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Individual VaR Sum: $581,500 combined sum for Microsoft and AT&T positions ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Diversified Portfolio VaR: $496,600 actual portfolio risk reflecting correlation 0.3 and yielding an $84,900 diversification benefit ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Case Study: The 1998 LTCM Collapse & Correlation Breakdown",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Correlation Jump to 1.0: traditional variance-covariance models failed during market panic because asset correlations surged toward 1.0 ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "10-Sigma Flight-to-Liquidity: normal distribution assumptions severely understated extreme panic shocks, leading to LTCM's catastrophic collapse ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Diversification Benefit & EWMA",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Calculate the exact diversification benefit ($84,900) for the Microsoft and AT&T portfolio example ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: State the EWMA recursive volatility updating formula and standard decay factor lambda ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Model-Building Risk Management Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-04",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The risk manager audits covariance matrices: verify multivariate normal assumptions $w^T \\Sigma w$ and check option books for Delta-Gamma quadratic coverage ([fact-01], [fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The quant reviews backtesting integrity: execute Kupiec's POF likelihood ratio tests to validate exception rates against theoretical probabilities ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Model-Building Approach & Volatility",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-09",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Variance-covariance multivariate normal portfolio variance $\\sigma_P^2 = w^T \\Sigma w$ ([fact-01]), Microsoft/AT&T diversification benefit ($84,900) ([fact-05]), linear delta approximation ([fact-03]), and quadratic delta-gamma curvature ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-03",
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: EWMA exponential smoothing ($\\lambda = 0.94$) ([fact-06]), GARCH(1,1) mean reversion term structures ([fact-07], [fact-08]), Kupiec POF backtesting ([fact-09]), and LTCM 1998 correlation panic collapse ([fact-10]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07",
+            "fact-08",
+            "fact-09",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Model-Building Approach ([fact-01]): Calculates parametric portfolio risk assuming multivariate normal asset returns via $\\sigma_P^2 = w^T \\Sigma w$.",
+    "2. Diversification Benefit ([fact-05]): Combining Microsoft and AT&T reduces total 99% VaR to $496,600 compared to the $581,500 sum of individual VaRs.",
+    "3. Linear Delta Model ([fact-03]): Approximates derivatives value changes using Delta, but ignores option curvature.",
+    "4. Quadratic Delta-Gamma Model ([fact-04]): Incorporates second-order Taylor series expansions to capture convex option curvature.",
+    "5. EWMA Model ([fact-06]): Updates variance recursively with exponential decay ($\\lambda = 0.94$) giving more weight to recent market shocks.",
+    "6. GARCH(1,1) Model ([fact-07], [fact-08]): Incorporates mean reversion toward long-run variance $V_L$, determining upward or downward volatility term structures.",
+    "7. Kupiec POF Test ([fact-09]): Statistically validates VaR model exception rates against theoretical failure probabilities.",
+    "8. LTCM Collapse ([fact-10]): 1998 market panic caused historical correlations to surge toward 1.0, invalidating normal distribution assumptions."
+  ],
+  "bottomTakeaway": "The model-building approach enables rapid parametric VaR and covariance calculations, which must be augmented with quadratic Delta-Gamma approximations and EWMA/GARCH volatility updating to withstand market panics like LTCM ([fact-01], [fact-04], [fact-06], [fact-10])."
+}

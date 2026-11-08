@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch17_part1",
+  "title": "Greeks and Delta Hedging: Naked Positions, Stop-Loss Trading, Dynamic Rebalancing, and Gamma Risk",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Black-Scholes-Merton European option pricing formulas and normal distribution",
+    "Option Delta definition and sensitivity to underlying asset prices",
+    "Interest rate compounding and present value discounting"
+  ],
+  "learningOutcomes": [
+    "Evaluate the risks of naked option writing, covered stock positions, and stop-loss trading leakage ([fact-01], [fact-02]).",
+    "Calculate option Delta for calls, puts, and dividend-paying assets ([fact-03]).",
+    "Construct and dynamically rebalance delta-neutral portfolios for institutional option writing ([fact-04], [fact-05]).",
+    "Analyze rebalancing friction, transaction costs, and tolerance bands in real-world trading ([fact-06]).",
+    "Define the major Greeks (Delta, Gamma, Theta, Vega, Rho) and use second-order Taylor series approximations to manage Gamma risk ([fact-07], [fact-08], [fact-09])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Naked, Covered, and Stop-Loss Hedging Pitfalls",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Delta Calculation and Dynamic Delta Neutrality",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "The Greeks: Delta, Gamma, Theta, Vega, and Rho",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-07",
+        "fact-08",
+        "fact-09"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Hedging Cost Equivalency and Net Trading Profit",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-10",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-02",
+      "authorRebuttal": "Stop-loss strategies suffer from severe transaction costs and guaranteed cash leakage because volatile markets cause frequent whipsaws around the strike price, forcing traders to repeatedly buy high and sell low ([fact-02])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-10",
+      "authorRebuttal": "In a BSM arbitrage-free market, the expected cumulative cost of dynamic delta hedging exactly equals the upfront option premium received; delta hedging transforms risk into rebalancing and transaction friction rather than free alpha ([fact-10])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-08",
+      "authorRebuttal": "Delta is a linear approximation valid only for infinitesimal price moves. Large discrete jumps change Delta itself due to Gamma curvature, creating non-linear P&L drift that requires Gamma management ([fact-08], [fact-09])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A financial institution writes 100,000 European call options with K = $50, S0 = $49, r = 5%, sigma = 20%, and T = 20 weeks. The initial option delta is 0.522, requiring the bank to buy 52,200 shares at $49 ($2,557,800). By week 1, the stock drops to $48.12, and delta drops to 0.458.",
+    "testedFactIds": [
+      "fact-05",
+      "fact-10"
+    ],
+    "question": "1) How many shares must the bank buy or sell at week 1 to restore delta neutrality? 2) Why does dynamic delta hedging fail to generate risk-free alpha?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Naive hedging strategies like naked writing and stop-loss trading expose institutions to catastrophic losses and severe rebalancing leakage ([fact-01], [fact-02]).",
+    "Dynamic delta neutrality requires continuously adjusting share holdings ($Q \\cdot \\Delta$) as asset prices and time evolve ([fact-04], [fact-05]).",
+    "Delta hedging is a linear approximation that leaves portfolios exposed to non-linear Gamma curvature, requiring second-order risk management and tolerance bands ([fact-06], [fact-08], [fact-09])."
+  ]
+}

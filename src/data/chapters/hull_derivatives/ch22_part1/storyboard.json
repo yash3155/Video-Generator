@@ -1,0 +1,408 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch22_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Exotic Options: Packages, Chooser Options, Barrier Options, Binary Options, Lookbacks, Asian Options, and Static Replication",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "Introduction to Exotic Options & Chooser Structures",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A corporate treasurer asks why companies use exotic options instead of vanilla contracts; the mentor cites customized hedges and lower costs ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "They examine chooser options ('as-you-like-it'), granting the right at future date $T_1$ to choose a call or put expiring at $T_2$ ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "The chooser value equals a European call plus a European put with adjusted strike expiring at $T_1$ ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Asian Call vs. Vanilla European Call by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display Asian Call Benchmark ($S_0 = \\$50, K = \\$50, r = 10\\%, \\sigma = 40\\%$): effective adjusted volatility of $\\sigma/\\sqrt{3} = 23.09\\%$ ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display Pricing Comparison: analytic geometric Asian call price is $\\$5.62$, compared to $\\$9.64$ for a standard plain vanilla European call ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 22 Part 1 Roadmap: 4 Exotic Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-04",
+        "fact-07",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Packages & Choosers — Customized OTC structures and 'as-you-like-it' options ([fact-01], [fact-03]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Barriers & Binaries — Knock-in/out in-out parity and cash/asset-or-nothing payouts ([fact-04], [fact-05]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Lookbacks & Asians — Path-dependent extreme timing versus variance-dampening price averaging ([fact-06], [fact-07]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Swaps Disasters & Static Replication — P&G leveraged swap loss and boundary replication ([fact-09], [fact-10]).",
+          "sourceFactIds": [
+            "fact-09",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Knock-In Options vs. Knock-Out Options & In-Out Parity",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Knock-In Options: become active only if asset price touches barrier level $H$ during option life ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Knock-Out Options: extinguish immediately if barrier $H$ is touched; In-Out Parity dictates $\text{Knock-In} + \text{Knock-Out} = \text{Vanilla}$ ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Cash-or-Nothing and Asset-or-Nothing Binaries",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Cash-or-Nothing Formula: $c_{\text{cash}} = Q e^{-rT} N(d_2)$ paying fixed cash amount $Q$ if $S_T > K$ ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Asset-or-Nothing Formula: $c_{\text{asset}} = S_0 N(d_1)$ paying asset value $S_T$ if $S_T > K$; vanilla call equals asset-or-nothing minus $K$ times cash-or-nothing ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Business Snapshot 22.4: Procter & Gamble's Leveraged Swap Disaster",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Structured Swap Design: P&G's 5-year $\\$200$M swap with Bankers Trust tied floating rates to 30-year Treasury and 5-year CMT yields ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Rate Shock Collapse: when Fed Chairman Alan Greenspan raised rates in 1994, non-linear leverage exploded, forcing a $\\$157$M pre-tax charge ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Lookback Extreme Path Timing vs. Asian Price Averaging",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Lookback Options: absolute market timing ($S_{\\min}$ or $S_{\\max}$) yielding ideal payouts but commanding massive premium costs ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Asian Options: price averaging dampens variance, reducing option costs below vanilla levels and eliminating expiration manipulation risks ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Asian Call Payoff Profile $\\max(S_{\text{avg}} - K, 0)$ & Premium Discount",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Asian Payoff: $\\max(S_{\text{avg}} - K, 0)$ based on average asset prices observed across reset dates ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Premium Comparison: Asian call price $\\$5.62$ reflecting variance dampening compared to $\\$9.64$ vanilla call ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Static Options Replication & Nonstandard Swaps",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Static Options Replication (Derman, Ergener, Kani): hedging exotics by matching boundary payoffs with standard European vanilla portfolios ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Nonstandard Swaps: compounding, amortizing, accreting, and differential (diff) swaps engineered for specialized corporate funding ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Asian Option Discount & P&G Swap Loss",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Explain why Asian options are cheaper than vanilla options (variance dampening) and verify benchmark prices ($\\$5.62$ vs $\\$9.64$) ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Detail P&G's 1993 leveraged swap disaster and the resulting $\\$157$ million pre-tax charge ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Exotic Options Risk Management Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-06",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The risk manager audits barrier options: verify in-out parity relationships ($\text{Knock-In} + \text{Knock-Out} = \text{Vanilla}$) across trading books ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The quant checks static replication: confirm boundary payoff matching for lookbacks and exotics to eliminate continuous rebalancing slippage ([fact-06], [fact-10]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Exotic Options & Structured Swaps",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-07",
+        "fact-08",
+        "fact-09",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Corporate exotics motivations ([fact-01]), chooser options as call-plus-put portfolios ([fact-03]), barrier in-out parity $\text{Knock-In} + \text{Knock-Out} = \text{Vanilla}$ ([fact-04]), and binary cash/asset-or-nothing formulas ([fact-05]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-03",
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Asian variance dampening ([fact-07]), benchmark Asian pricing ($\\$5.62$ vs $\\$9.64$) ([fact-08]), P&G $\\$157$M leveraged swap charge ([fact-09]), and static options replication boundary hedging ([fact-10]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08",
+            "fact-09",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Exotic Motivations ([fact-01]): Tailored OTC contracts providing cheaper corporate hedges and customized cash-flow matching.",
+    "2. Chooser Options ([fact-03]): 'As-you-like-it' options granting the right to choose a call or put at $T_1$, valued as call plus put.",
+    "3. Barrier In-Out Parity ([fact-04]): $\text{Knock-In} + \text{Knock-Out} = \text{Vanilla}$ guarantees vanilla replication.",
+    "4. Binary Options ([fact-05]): Discontinuous cash-or-nothing and asset-or-nothing payoffs linked to cumulative normal probabilities.",
+    "5. Lookback Options ([fact-06]): Path-dependent contracts leveraging extreme minimums ($S_{\\min}$) or maximums ($S_{\\max}$).",
+    "6. Asian Options ([fact-07], [fact-08]): Price averaging dampens variance, reducing 1-year option prices from $\\$9.64$ (vanilla) to $\\$5.62$.",
+    "7. P&G Swap Disaster ([fact-09]): Leveraged CMT interest rate swaps triggered a $\\$157$M pre-tax charge during the 1994 rate hike.",
+    "8. Static Replication ([fact-10]): Hedging exotic boundary payoffs with standard vanilla portfolios to eliminate continuous rebalancing costs."
+  ],
+  "bottomTakeaway": "Exotic options and structured swaps offer customized corporate hedging and variance-dampening benefits (such as Asian price averaging), managed efficiently via in-out parity and static options replication ([fact-01], [fact-04], [fact-07], [fact-10])."
+}

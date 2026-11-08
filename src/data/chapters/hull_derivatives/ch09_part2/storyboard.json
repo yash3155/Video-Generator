@@ -1,0 +1,461 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch09_part2",
+  "course": "Technical Analysis of the Financial Markets (John J. Murphy)",
+  "chapterTitle": "Options Trading Mechanics: Market Makers, Margin Requirements, OCC Clearing, and Corporate Equity Derivatives",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Hidden Cost of Trading & Writing Naked Calls",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A retail trader notices a wide gap between the Bid price (where the market maker buys) and Offer/Ask price (where the market maker sells) on an option chain; a mentor explains that market makers trade exclusively for their own accounts and earn the bid-offer spread (Offer - Bid) for bearing inventory risk ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The trader then decides to write 1 naked XYZ July 50 call contract (100 shares) at a stock price of $50 (ATM) for a $4.00 ($400) premium, assuming they just pocket $400 with no collateral needed ([fact-02], [fact-03]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "The mentor reveals the initial margin rule max(C + 0.20*S - OTM, C + 0.10*S): at $50 ATM, the broker requires $1,400 in total margin ($1,000 + $400 - $0), though the $400 premium received can be applied directly toward that collateral ([fact-02], [fact-03]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Naked Call Margin Across 4 Stock Price Regimes (XYZ July 50 Call)",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-03",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display the four XYZ July 50 Call (100 shares) margin tiers: $1,800 when ITM at S=$55 (C=$700, 20% S=$1,100, OTM=$0) and $1,400 when ATM at S=$50 (C=$400, 20% S=$1,000, OTM=$0) ([fact-02], [fact-03]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Contrast with OTM regimes and daily mark-to-market: $720 when OTM at S=$46 (C=$200, 20% S=$920, OTM=$400) and $400 minimum floor when Deep OTM at S=$40 (C=$100, 10% S floor = $400), recomputed every day at closing prices ([fact-02], [fact-03], [fact-06]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 9 Part 2 Roadmap: 4 Institutional Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-04",
+        "fact-06",
+        "fact-07",
+        "fact-08",
+        "fact-09",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Market Makers & Bid-Offer Spreads — Two-sided continuous quotes, proprietary accounts, percentage spread costs, and floor brokers splitting the quote ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Naked Writer Margin & Daily Mark-to-Market — Dual-formula collateral rules for uncovered calls and puts plus daily closing price recomputation ([fact-02], [fact-04], [fact-06]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-04",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: OCC Clearing, Assignment & Limits — Central counterparty guarantee, random/FIFO exercise assignment, automatic ITM exercise, and same-side position/exercise limits ([fact-07], [fact-08]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Corporate Equity Derivatives & Dilution — Warrants, Employee Stock Options (ESOs), and Convertible Bonds versus non-dilutive OCC exchange-traded options ([fact-09], [fact-10]).",
+          "sourceFactIds": [
+            "fact-09",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Market Maker Quotes & Multi-Leg Quote Splitting",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare the Bid Price (price at which the market maker buys and a trader sells) against the Offer/Ask Price (price at which the market maker sells and a trader buys), defining Spread = Offer - Bid ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Contrast Market Makers (trade exclusively for their own accounts to provide liquidity and absorb inventory risk, never handling public customer orders) with Floor Brokers executing spread trades by 'splitting the quote' between bid and offer to lower trader execution costs ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Naked Call vs. Naked Put Margin Formulas",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-04",
+        "fact-05",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Naked Call Initial Margin: Margin_Call = max(C + 0.20*S - OTM, C + 0.10*S), where C is total call premium, S is 100 * stock price, OTM = max(0, Strike - Stock) * 100, and premium C applies directly toward collateral ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Naked Put Initial Margin: Margin_Put = max(P + 0.20*S - OTM, P + 0.10*K), where P is total put premium, K is 100 * strike price, and OTM = max(0, Stock - Strike) * 100; demonstrate with the S=$50, K=$50, P=$400 6-month put example yielding max($1,000 + $400 - $0, $400 + $500) = $1,400 ([fact-04], [fact-05]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Explain the Daily Mark-to-Market Rule: required collateral is recomputed daily using closing prices, triggering margin calls on adverse stock moves and releasing excess collateral on favorable moves ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Collateral Escalation: XYZ July 50 Call & $50 Put Scenarios",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare total required margin bars across the four XYZ July 50 Call stock prices: $40 Deep OTM ($400 via 10% S floor), $46 OTM ($720 via $920 + $200 - $400), $50 ATM ($1,400 via $1,000 + $400 - $0), and $55 ITM ($1,800 via $1,100 + $700 - $0) ([fact-02], [fact-03]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare the 6-month $50 ATM Naked Put at S=$50, P=$400: primary formula bar at $1,400 ($1,000 + $400 - $0) racing ahead of the minimum floor bar at $900 ($400 + 10% of $5,000 strike K) ([fact-04], [fact-05]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Inside the OCC: Central Guaranty, Exercise Assignment & Auto-Exercise",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Step 1 — OCC Counterparty Guarantee: The Options Clearing Corporation acts as central issuer, clearinghouse, and guarantor—stepping in as buyer to every seller and seller to every buyer to eliminate credit risk and enable secondary trading ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Step 2 — Exercise Notice & Firm Assignment: When an option holder instructs their broker to exercise, the broker submits an exercise notice to the OCC, which randomly selects a clearing member brokerage firm with open short positions in that series ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Step 3 — Customer Assignment & Automatic Exercise: The assigned firm selects a short customer via random selection, First-In First-Out (FIFO), or another exchange-approved equitable method; at expiration, the OCC automatically exercises any option ITM by a specified threshold (e.g., 3/4-point or $0.01) unless instructed otherwise ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Same-Side Market Control: Position Limits vs. 5-Day Exercise Limits",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Illustrate the tug-of-war between the Bullish Side of the market (Long Calls + Short Puts) and the Bearish Side of the market (Short Calls + Long Puts), showing how exchanges aggregate same-side contracts across related accounts acting in concert ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Detail the volume and market-capitalization Position Limit tiers (250,000; 75,000; 60,000; 31,500; 22,500; or 13,500 contracts) and the 5-consecutive-business-day Exercise Limit designed to prevent cornering the underlying stock ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Exchange-Traded Options vs. Warrants, ESOs & Convertible Bonds",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Define the three corporate-issued instruments: Warrants (long-term corporate call options paid in full with no margin borrowing value), Employee Stock Options / ESOs (non-transferable compensation call options with vesting schedules), and Convertible Bonds/Preferreds (debt or preferred stock combining a fixed-income yield floor with an embedded common-stock call option) ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Contrast Exchange-Traded Options (OCC-issued, short maturities up to 9 months or 2-3 year LEAPS, freely traded, transferring existing secondary shares with zero dilution) against Warrants, ESOs, and Convertibles (corporation-issued, typically 5 to 10+ year maturities, creating brand-new shares upon exercise/conversion that dilute equity percentage and EPS) ([fact-09], [fact-10]).",
+          "sourceFactIds": [
+            "fact-09",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Margin Calls & Share Dilution",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-03",
+        "fact-06",
+        "fact-09",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Compute the initial margin for writing 1 naked XYZ July 50 call at S=$46, C=$2.00 ($200) and the daily mark-to-market margin call when XYZ jumps to S=$55, C=$7.00 ($700), confirming $720 initial margin ($200 premium applied) rising to $1,800 (+$1,080 margin call) ([fact-02], [fact-03], [fact-06]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Determine whether exercising the exchange-traded XYZ call or exercising corporate warrants dilutes existing shareholders' EPS, confirming that only corporate warrants, ESOs, and convertibles issue new shares and cause EPS dilution ([fact-09], [fact-10]).",
+          "sourceFactIds": [
+            "fact-09",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Option Writer & Investor Operational Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-04",
+        "fact-06",
+        "fact-07",
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The trader and mentor review execution and margin rules: check the market maker's Bid-Offer spread (or split the quote on multi-leg spreads), calculate naked call/put initial margin using the 20% S vs. 10% S (or 10% K) floor formulas, and prepare for daily closing-price mark-to-market adjustments ([fact-01], [fact-02], [fact-04], [fact-06]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-04",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "They verify clearing and instrument rules: remember OCC random/FIFO assignment and automatic ITM expiration exercise (3/4-point or $0.01 threshold), stay within same-side position and 5-day exercise limits, and account for EPS dilution when evaluating corporate warrants, ESOs, or convertibles versus non-dilutive OCC options ([fact-07], [fact-08], [fact-10]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Options Trading, Margins, OCC & Corporate Derivatives",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08",
+        "fact-09",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Market makers and bid-offer spreads ([fact-01]), naked call margin formula and XYZ July 50 call numerical cases ([fact-02], [fact-03]), naked put margin formula and $50 ATM put example ([fact-04], [fact-05]), and daily mark-to-market collateral recomputation ([fact-06]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04",
+            "fact-05",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: OCC central clearing guarantee and assignment/auto-exercise procedures ([fact-07]), same-side position and 5-day exercise limits ([fact-08]), definitions of warrants, ESOs, and convertible bonds ([fact-09]), and secondary-market non-dilution vs. corporate share issuance dilution ([fact-10]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08",
+            "fact-09",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Market Makers & Bid-Offer Spreads ([fact-01]): Market makers quote continuous two-sided Bid (buy) and Offer/Ask (sell) prices exclusively for their own accounts, earning the Bid-Offer spread (Offer - Bid)—which is higher in percentage terms than on stocks—while floor brokers try to split the quote on spread trades.",
+    "2. Naked Call Initial Margin ([fact-02], [fact-03]): Writing an uncovered 100-share call requires Margin_Call = max(C + 0.20*S - OTM, C + 0.10*S) with premium C applied toward collateral; for an XYZ July 50 call, margin is $1,800 at $55 ITM, $1,400 at $50 ATM, $720 at $46 OTM, and $400 at $40 Deep OTM (10% S floor).",
+    "3. Naked Put Initial Margin ([fact-04], [fact-05]): Writing an uncovered 100-share put requires Margin_Put = max(P + 0.20*S - OTM, P + 0.10*K); for a 6-month $50 put at S=$50 and P=$400, the primary formula ($1,000 + $400 - $0 = $1,400) exceeds the minimum floor ($400 + $500 = $900) for a $1,400 requirement.",
+    "4. Daily Mark-to-Market Collateral Rules ([fact-06]): Uncovered option positions are marked to market daily using closing prices, triggering margin calls for additional collateral when the underlying stock moves adversely and releasing excess collateral when it moves favorably.",
+    "5. OCC Clearing Guarantee & Assignment ([fact-07]): The Options Clearing Corporation (OCC) eliminates counterparty credit risk by acting as buyer to every seller and seller to every buyer, assigning exercise notices randomly to clearing firms, which assign short customers via random selection, FIFO, or another approved equitable method.",
+    "6. OCC Automatic Exercise at Expiration ([fact-07]): To protect long holders from oversight, the OCC automatically exercises any expiring option that is in-the-money by a specified threshold (such as 3/4-point or $0.01) unless the holder explicitly instructs their broker not to exercise.",
+    "7. Position Limits & 5-Day Exercise Limits ([fact-08]): Exchanges cap same-side market exposure (Bullish: Long Calls + Short Puts; Bearish: Short Calls + Long Puts) across volume and market-cap tiers (250,000; 75,000; 60,000; 31,500; 22,500; or 13,500 contracts) and restrict exercises over 5 consecutive business days to prevent market corners.",
+    "8. Warrants, ESOs, Convertibles & Equity Dilution ([fact-09], [fact-10]): Unlike OCC exchange-traded options (up to 9 months or 2-3 year LEAPS) that transfer existing shares with zero dilution, corporate-issued warrants, non-transferable ESOs, and convertible bonds (typically 5 to 10+ year maturities) require issuing brand-new common shares upon exercise or conversion, diluting existing shareholders' equity and EPS."
+  ],
+  "bottomTakeaway": "Options market integrity relies on market makers supplying two-sided liquidity, uncovered writers posting daily marked-to-market collateral under dual-formula floors, the OCC guaranteeing trades and managing random/FIFO assignments and same-side limits, and investors distinguishing non-dilutive secondary OCC options from dilutive corporate warrants, ESOs, and convertibles ([fact-01], [fact-02], [fact-04], [fact-06], [fact-07], [fact-08], [fact-09], [fact-10])."
+}

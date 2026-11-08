@@ -1,0 +1,420 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch13_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Lognormal Stock Price Distributions, Return Compounding, Volatility Estimation, and Black-Scholes Foundations",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Lognormal Nature of Stock Prices",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A quantitative researcher explores geometric Brownian motion and continuously compounded returns ln(S_T / S_0) over horizon T ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The researcher notes that because ln(S_T) is normal, stock price S_T follows a lognormal distribution, ensuring prices can never drop below zero ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "The mentor explains Ito's Lemma convexity drag (-sigma^2 / 2) adjusting return drift between arithmetic and geometric growth ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Return Compounding & Volatility Metrics by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-05",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display mutual fund distortion metrics: +100% gain followed by -50% loss yields +25% arithmetic mean but 0.0% true geometric compound return ([fact-04], [fact-05]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display volatility annualization metrics: daily standard deviation s = 0.0132 scaled by sqrt(252) yields 21.0% annualized volatility sigma ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 13 Part 1 Roadmap: 4 Foundational Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-04",
+        "fact-06",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Lognormal Distributions — Brownian motion, ln(S_T/S_0) normality, and Ito's Lemma convexity drag ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Return Distortions — Arithmetic vs. geometric compounding and mutual fund advertising bias ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Volatility Estimation — Sample standard deviation s, 252 trading days, and French's trading time hypothesis ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: BSM Foundations — Core market assumptions, net profit formulas, and cumulative normal distribution N(x) ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Arithmetic Average Returns vs. True Geometric Compounding",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Arithmetic Average: (+100% - 50%) / 2 = +25% per year, which severely distorts true portfolio performance ([fact-04], [fact-05]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Geometric Compound Return: $100 growing to $200 and back to $100 results in 0.0% net geometric return and continuously compounded return ([fact-04], [fact-05]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Lognormal Distribution & Volatility Formulas",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-03",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Log Price Ratio Distribution: ln(S_T/S_0) ~ N((mu - sigma^2/2)*T, sigma^2 * T) and E[S_T] = S_0 * exp(mu * T) ([fact-02], [fact-03]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Annualized Volatility: s = sqrt((1/(n-1))*sum((u_i - u_bar)^2)) and sigma = s / sqrt(tau) ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Business Snapshot 13.2: Trading Time vs. Calendar Time Volatility",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Calendar Time Hypothesis: if time alone drove volatility, weekend variance (72 hours) should be 3 times weekday variance (24 hours) ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Empirical Reality: Kenneth French (1980) proved weekend variance is only 1.22 times weekday variance, confirming active trading causes volatility ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Arithmetic Upward Bias vs. Geometric Accuracy",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Arithmetic Advertising: fund managers prefer arithmetic averages because they upwardly bias performance by approximately sigma^2 / 2 ([fact-04], [fact-05]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Geometric Reality: risk managers and derivative quants rely strictly on geometric continuously compounded growth for accurate option pricing ([fact-01], [fact-05]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Gross Payoff vs. Net Trading Profit Breakdown",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Terminal Gross Payoff: max(S_T - K, 0) = $10.00 per share ($1,000 per contract) when stock terminates at $60 with strike $50 ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Net Trading Profit: Payoff minus initial premium paid (c0 = $3.50) equals $6.50 per share ($650 per 100-share contract) ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Black-Scholes-Merton Assumptions & Cumulative Normal Function N(x)",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "BSM 6 Core Assumptions: geometric Brownian motion, unrestricted short selling, zero transaction costs, zero dividends, constant r, and continuous trading ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Cumulative Normal Distribution N(x): N(d2) represents exercise probability at maturity and N(d1) represents the adjusted delta hedge ratio ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Compounding Distortion & Volatility",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Contrast arithmetic mean (+25%) with true geometric compound return (0.0%) for a $100 portfolio gaining 100% and losing 50% ([fact-04], [fact-05]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Calculate annualized volatility (21.0%) given daily standard deviation s = 0.0132 and 252 trading days ([fact-06], [fact-07]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Derivatives Risk & Volatility Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-06",
+        "fact-07",
+        "fact-09",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The risk manager audits volatility estimation: verify sample standard deviation s and apply 252 business day annualization factor ([fact-06], [fact-07]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The trader checks BSM compliance and net profits: ensure BSM assumptions hold and calculate net profit as Payoff minus Premium paid ([fact-09], [fact-10]).",
+          "sourceFactIds": [
+            "fact-09",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Lognormal Pricing Foundations",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Lognormal stock price distribution ln(S_T/S_0) normality ([fact-01]), Ito's Lemma convexity drag drift adjustment (-sigma^2/2) ([fact-02]), arithmetic vs geometric return distortions ([fact-04]), and mutual fund performance bias ([fact-05]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Daily volatility estimation sigma = s / sqrt(tau) ([fact-06]), 252 trading days annualization convention ([fact-07]), French's trading time hypothesis validation ([fact-08]), and BSM six core model assumptions ([fact-10]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07",
+            "fact-08",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Lognormal Distribution ([fact-01]): Continuously compounded returns ln(S_T / S_0) are normally distributed, ensuring stock prices S_T are lognormal and never drop below zero.",
+    "2. Ito's Lemma Convexity Drag ([fact-02]): The drift of log prices is adjusted by subtracting sigma^2 / 2 due to convexity between arithmetic and geometric growth.",
+    "3. Arithmetic vs. Geometric Returns ([fact-04], [fact-05]): Arithmetic averages upwardly bias performance by sigma^2 / 2, whereas geometric compounding reflects true wealth changes.",
+    "4. Volatility Estimation ([fact-06]): Annualized volatility sigma is calculated from sample standard deviation s of daily log returns divided by square root of observation interval tau.",
+    "5. 252 Trading Days Convention ([fact-07], [fact-08]): Kenneth French's 1980 study proved trading activity rather than calendar time drives volatility, validating the 252-day annualization factor.",
+    "6. Gross Payoff vs. Net Profit ([fact-09]): Net trading profit equals terminal gross payoff minus initial premium paid (c0).",
+    "7. BSM Market Assumptions ([fact-10]): The Black-Scholes-Merton model assumes geometric Brownian motion, continuous trading, short selling, zero transaction costs, and constant r.",
+    "8. Cumulative Normal Distribution N(x) ([fact-11]): N(d2) represents exercise probability and N(d1) represents the delta hedge ratio adjusted for stock price growth."
+  ],
+  "bottomTakeaway": "Geometric Brownian motion and lognormal stock pricing form the foundation of the Black-Scholes-Merton model, where annualized volatility and risk-neutral pricing govern option valuation ([fact-01], [fact-02], [fact-06], [fact-08], [fact-10])."
+}

@@ -1,0 +1,83 @@
+### **1. The Six Factors Affecting Option Prices**
+
+The price of a stock option is determined by six quantifiable factors related to the underlying stock and the option's contract terms [1]:
+
+1. **Current Stock Price (\\(S_0\\))**: The prevailing market price of the underlying common stock [1].
+2. **Strike Price (\\(K\\))**: The fixed exercise price at which the holder can buy (for a call) or sell (for a put) the underlying asset [1].
+3. **Time to Expiration (\\(T\\))**: The duration remaining until the option contract reaches maturity [2].
+4. **Volatility (\\(\sigma\\))**: The expected variability or standard deviation of the underlying stock returns over the life of the option [2].
+5. **Risk-Free Interest Rate (\\(r\\))**: The risk-free rate of return corresponding to the option's maturity (typically the 90-day Treasury bill rate) [2-5].
+6. **Expected Dividends (\\(D\\))**: The expected cash dividend payments made by the underlying stock during the life of the option [2-4].
+
+---
+
+### **2. Effect of Each Factor on Option Prices**
+
+The directional impact of increasing each factor on option values is detailed across the textbook materials as follows:
+
+* **Current Stock Price (\\(S_0\\))**: An increase in stock price **increases European and American call values (+)** and **decreases European and American put values (-)** [6-8].
+* **Strike Price (\\(K\\))**: An increase in strike price **decreases call option prices (-)** and **increases put option prices (+)** [9, 10].
+* **Time to Expiration (\\(T\\))**: Generally, a longer time to expiration **increases American call and put values (+)** because the holder retains all exercise rights for a longer window [9, 10]. For European options, longer maturity usually increases value (**+**), though extreme conditions (such as high dividends or interest rates) can occasionally cause exceptions [6]. As time passes (\\(T\\) decreases), options experience time decay (\\(\Theta\\)), eroding extrinsic/time value [4, 6, 11].
+* **Volatility (\\(\sigma\\))**: Higher volatility expands the range of potential outcomes, making extreme stock movements more likely. Consequently, increased volatility **increases both call values (+)** and **put values (+)** [6, 12, 13].
+* **Risk-Free Rate (\\(r\\))**: Higher interest rates reduce the present value of the strike price payable in the future and increase the carrying return on stock short sales. Thus, higher interest rates **increase call values (+)** and **decrease put values (-)** [3-6, 12, 14].
+* **Expected Dividends (\\(D\\))**: When a stock goes ex-dividend, its spot price drops by approximately the dividend amount. Therefore, expected cash dividends **decrease call option values (-)** and **increase put option values (+)** [3, 4, 6, 8, 15-18].
+
+#### **Directional Summary Table**
+| Factor | Variable | European Call (\\(c\\)) | European Put (\\(p\\)) | American Call (\\(C\\)) | American Put (\\(P\\)) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Current Stock Price** | \\(S_0\\) | **+** [6] | **-** [6] | **+** [6] | **-** [6] |
+| **Strike Price** | \\(K\\) | **-** [9] | **+** [9] | **-** [9] | **+** [9] |
+| **Time to Expiration** | \\(T\\) | **+** [9] | **+** [9] | **+** [9] | **+** [9] |
+| **Volatility** | \\(\sigma\\) | **+** [6, 12] | **+** [6] | **+** [6, 12] | **+** [6] |
+| **Risk-Free Interest Rate** | \\(r\\) | **+** [6, 12] | **-** [6, 14] | **+** [6, 12] | **-** [6, 14] |
+| **Expected Dividends** | \\(D\\) | **-** [3, 15] | **+** [8, 15] | **-** [3, 15] | **+** [8, 15] |
+
+---
+
+### **3. Arbitrage Relations, Formulas, and Case Studies**
+
+#### **Definitions & Pricing Components**
+* **Intrinsic Value**: The value realized if an option were exercised immediately [2].
+  * For calls: \\(\max(S_0 - K, 0)\\) [19]
+  * For puts: \\(\max(K - S_0, 0)\\) [19]
+* **Time Value (Extrinsic Value)**: The premium amount exceeding intrinsic value [11, 19-21]:
+  \\[\text{Time Value Premium} = \text{Option Price} - \text{Intrinsic Value} \quad [19, 20]\\]
+
+#### **Put-Call Equilibrium and Carrying Charges**
+Arbitrage processes enforce strict pricing relationships between calls, puts, and underlying stocks [22-25]:
+\\[\text{Call Price} + K - S_0 - \text{Put Price} + D - \text{Carrying Cost} = 0 \quad [26, 27]\\]
+\\[\text{Put Time Value Premium} = \text{Call Price} + D - \text{Carrying Cost} \quad [28]\\]
+
+#### **Numerical Arbitrage Case Studies**
+
+1. **Discount Call Option Arbitrage Case Study** [29]:
+   * **Market Data**: Stock XYZ is bid at \\(\$50\\). A January call with strike \\(K = \$40\\) is offered at a discount price of \\(\$9.80\\) (intrinsic value is \\(50 - 40 = \$10\\)) [29].
+   * **Arbitrage Execution**:
+     1. Buy the January 40 call for \\(\$9.80\\) [29].
+     2. Short sell stock XYZ at \\(\$50\\) [29].
+     3. Exercise the call to buy XYZ at \\(\$40\\) [29].
+   * **Outcome**: The short stock transaction yields \\(\$10\\) profit (\\(50 - 40\\)). Deducting the \\(\$9.80\\) call purchase price leaves a locked-in riskless net profit of **\\(\$0.20\\)** [29].
+
+2. **Discount Put Option Arbitrage Case Study** [30]:
+   * **Market Data**: Stock XYZ is trading at \\(\$40\\). A July put with strike \\(K = \$50\\) sells for \\(\$9.75\\) (a \\(\$0.25\\) discount below its intrinsic value of \\(\$10\\)) [30].
+   * **Arbitrage Execution**:
+     1. Buy the July 50 put for \\(\$9.75\\) [30].
+     2. Buy XYZ common stock at \\(\$40\\) [30].
+     3. Exercise the put to sell XYZ stock at \\(\$50\\) [30].
+   * **Outcome**: The stock trade generates a \\(\$10\\) profit (\\(50 - 40\\)). Deducting the \\(\$9.75\\) put cost leaves a locked-in riskless net profit of **\\(\$0.25\\)** [30].
+
+---
+
+### **Missing Content from the Textbook Sources**
+
+While the uploaded table of contents for John C. Hull's *Fundamentals of Futures and Options Markets* includes Chapter 10 ("Properties of Stock Options") [31], the uploaded excerpt does not contain the full body text of Chapter 10. Specifically, the formal **Portfolio A / Portfolio B no-arbitrage portfolio proofs** for:
+* **Call Upper Bounds**: \\(c \le S_0\\) and \\(C \le S_0\\)
+* **Put Upper Bounds**: \\(p \le K e^{-rT}\\) and \\(P \le K\\)
+* **European Call Lower Bound**: \\(c \ge \max(S_0 - K e^{-rT}, 0)\\)
+* **European Put Lower Bound**: \\(p \ge \max(K e^{-rT} - S_0, 0)\\)
+
+are absent from the uploaded source files [31].
+
+---
+
+🔍 *Would you like me to conduct web research to retrieve the exact Portfolio A / Portfolio B arbitrage proofs and full mathematical derivations for Chapter 10 directly from Hull's textbook?*

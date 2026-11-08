@@ -1,0 +1,420 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch13_part2",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "The Black-Scholes-Merton Pricing Model, Greeks, Implied Volatility, and Dividend Adjustments",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "Unlocking the Black-Scholes Formula",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A quantitative analyst introduces the Black-Scholes-Merton European call formula: c = S0 * N(d1) - K * exp(-r * T) * N(d2) ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The mentor explains the two economic components: expected stock present value conditional on S_T > K versus strike present value ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "They review Hull's benchmark example (S0 = $42, K = $40, r = 10%, sigma = 20%, T = 0.5) yielding call price $4.76 and put price $0.81 ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "BSM Benchmark Valuation Metrics by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-05",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display standardized variables: d1 = 0.7693, d2 = 0.6279, cumulative probabilities N(d1) = 0.7791 and N(d2) = 0.7350 ([fact-03], [fact-05]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display option pricing & profit metrics: European call price $4.76 ($476 contract), put price $0.81 ($81 contract), and net trading profit $5.24 per share ($524 contract) at S_T = $50 ([fact-05], [fact-09]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 13 Part 2 Roadmap: 4 Core Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-04",
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: BSM Formulas — European call and put equations and standardized variables d1 and d2 ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Probabilistic Meaning — N(d2) as exercise probability and N(d1) as dynamic Delta hedge ratio ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Implied Volatility — Newton-Raphson root-finding and the CBOE VIX Index fear gauge ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Dividends & Early Exercise — Continuous yield adjustments q and American call ex-dividend rules ([fact-07], [fact-08]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Call vs. Put BSM Pricing & Put-Call Parity",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare European Call formula: c = S0 * N(d1) - K * exp(-r * T) * N(d2) ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare European Put formula: p = K * exp(-r * T) * N(-d2) - S0 * N(-d1), linked via generalized Put-Call Parity with continuous dividends ([fact-02], [fact-11]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Standardized Variables d1 and d2",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down d1 Formula: d1 = [ln(S0 / K) + (r + sigma^2 / 2) * T] / [sigma * sqrt(T)], measuring log strike distance from expected stock price ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down d2 and Probabilities: d2 = d1 - sigma * sqrt(T), with N(d2) as exercise probability and N(d1) as Delta ([fact-03], [fact-04]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Implied Volatility Root-Finding & CBOE VIX Index",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Implied Volatility: solving for sigma where BSM theoretical price equals active market price using Newton-Raphson iteration ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine CBOE VIX Index: aggregating implied volatilities across 30-day S&P 500 options as a real-time market fear gauge ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Holding American Calls vs. Early Exercise Before Ex-Dividend",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Holding Calls: non-dividend American calls are never exercised early because holding preserves time value and insurance against price drops ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Early Exercise: dividend-paying stocks warrant early exercise immediately prior to ex-dividend date t1 if dividend D exceeds interest lost on strike K ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "BSM Call Terminal Gross Payoff vs. Net Trading Profit",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Terminal Gross Payoff: max(S_T - K, 0) = $10.00 per share ($1,000 per contract) when stock finishes at $50 with strike $40 ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Net Trading Profit: Payoff minus initial premium paid (c0 = $4.76) equals $5.24 per share ($524 per 100-share contract) ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Continuous Dividend Yield Adjustments in BSM Formulas",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07",
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Generalized BSM Formulas: stock price discounted at expiration becomes S0 * exp(-q * T) for continuous dividend yield q ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Fischer Black's Approximation & Put-Call Parity: fast institutional proxy for discrete dividends, alongside generalized Put-Call Parity c + K*exp(-r*T) = p + S0*exp(-q*T) ([fact-10], [fact-11]).",
+          "sourceFactIds": [
+            "fact-10",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: N(d2), Delta, and Net Profit",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-05",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Identify the probabilistic meaning of N(d2) (73.50%) and N(d1) (0.7791 Delta) in Hull's benchmark example ([fact-04], [fact-05]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Calculate net trading profit ($5.24 per share) for a call purchased at $4.76 and terminating at $50.00 ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "BSM Pricing & Derivatives Risk Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The quant reviews BSM inputs: verify stock price S0, strike K, risk-free rate r, volatility sigma, maturity T, and continuous dividend yield q ([fact-01], [fact-07]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The risk manager audits market consensus and early exercise: check implied volatility via VIX and verify American call ex-dividend boundaries ([fact-06], [fact-08]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Black-Scholes-Merton Pricing Model",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: BSM European call formula S0*N(d1) - K*exp(-r*T)*N(d2) ([fact-01]), put formula K*exp(-r*T)*N(-d2) - S0*N(-d1) ([fact-02]), standardized variables d1 and d2 ([fact-03]), and N(d2) exercise probability versus N(d1) Delta ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Hull's benchmark example valuation ($4.76 call) ([fact-05]), implied volatility root-finding and VIX index ([fact-06]), generalized continuous dividend yield BSM formulas ([fact-07]), and net trading profit calculation ([fact-09]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06",
+            "fact-07",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. BSM European Call Formula ([fact-01]): c = S0 * N(d1) - K * exp(-r * T) * N(d2) represents expected present value of stock conditional on exercise minus strike present value.",
+    "2. BSM European Put Formula ([fact-02]): p = K * exp(-r * T) * N(-d2) - S0 * N(-d1), linked via Put-Call Parity.",
+    "3. Standardized Variables d1 and d2 ([fact-03]): Measure standard deviations of log strike from expected terminal stock price.",
+    "4. Probabilistic Meanings ([fact-04]): N(d2) is the exact risk-neutral exercise probability P(S_T > K), and N(d1) is the dynamic Delta hedge ratio dc/dS0.",
+    "5. Benchmark Example ([fact-05]): For S0 = $42, K = $40, r = 10%, sigma = 20%, T = 0.5, European call price is $4.76 and put price is $0.81.",
+    "6. Implied Volatility and VIX ([fact-06]): Volatility equating theoretical BSM price to market price, aggregated across 30-day S&P 500 options into the CBOE VIX Index.",
+    "7. Continuous Dividend Yields ([fact-07]): Stock discounted at expiration becomes S0 * exp(-q * T), generalizing BSM formulas and Put-Call Parity.",
+    "8. American Call Early Exercise & Net Profit ([fact-08], [fact-09]): American calls warrant early exercise before ex-dividend date t1 if D > K * [1 - exp(-r * (T - t1))], and net trading profit equals Gross Payoff minus Premium paid."
+  ],
+  "bottomTakeaway": "The Black-Scholes-Merton model provides closed-form European option pricing through cumulative normal probabilities N(d1) and N(d2), governed by implied volatility and generalized for continuous dividend yields ([fact-01], [fact-04], [fact-06], [fact-07])."
+}

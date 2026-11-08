@@ -1,0 +1,209 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch25_part2",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-08T07:23:04.359Z",
+  "bookTitle": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "generalAssumptions": [
+    "Corporate treasury departments must operate strictly as risk-mitigation cost centers to insulate operating cash flows, never as speculative profit centers chasing yield.",
+    "Nonfinancial corporations must never enter complex structured derivatives whose risks cannot be independently modeled and stress-tested in-house.",
+    "Financial institutions must manage liquidity risk separately from accounting solvency, maintaining unencumbered cash buffers for severe margin and collateral calls.",
+    "Legal capacity and counterparty authority (*ultra vires*) must be vetted independently prior to entering bilateral OTC derivatives."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Definition of Corporate Treasury Hedging vs Speculative Arbitrage",
+      "statement": "Corporate hedging is defined as the strategic execution of derivative transactions designed to neutralize or reduce pre-existing commercial operating exposures (such as foreign exchange fluctuations, commodity inputs, or floating debt), whereas speculation actively creates new unhedged market risks to earn trading profits.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part2",
+        "excerpt": "The role of the corporate treasury is to hedge operational risks, not to act as a profit center making speculative bets.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "treasury_hedging",
+        "speculation_definition",
+        "cost_center",
+        "operational_risk"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "market_rule",
+      "topic": "Treasury Departments as Cost Centers, Not Profit Centers",
+      "statement": "Nonfinancial corporations must structure their treasury departments strictly as cost centers evaluated on risk-reduction efficacy; evaluating treasurers as profit centers creates a perverse incentive to enter leveraged, asymmetric exotic derivatives to artificially lower borrowing costs.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part2",
+        "excerpt": "Treasuries should be cost centers, not profit centers. When treasurers are judged on profits, they take on speculative risks.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "cost_center_rule",
+        "treasury_governance",
+        "profit_center_hazard"
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "case_study",
+      "topic": "Procter & Gamble (1994) — Leveraged CMT and Bundesbank Swaps",
+      "statement": "Procter & Gamble lost $157 million in 1994 on leveraged interest rate and currency swap contracts structured by Bankers Trust, where P&G received floating sub-commercial paper rates in exchange for bearing 5x leveraged downside exposure to 30-year Constant Maturity Treasury yields and German Bundesbank rates.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part2",
+        "excerpt": "Procter & Gamble lost $157 million on leveraged swaps with Bankers Trust where they bet on interest rates staying low.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "procter_gamble",
+        "bankers_trust",
+        "leveraged_swaps",
+        "cmt"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "numerical_example",
+      "topic": "Orange County Bankruptcy (1994) — Repo Leverage and Inverse Floaters",
+      "statement": "Treasurer Robert Citron leveraged Orange County's $7.5 billion investment pool into over $20,000,000,000 in nominal holdings using reverse repurchase (repo) agreements to purchase leveraged inverse floaters; when the Federal Reserve raised rates 300 basis points in 1994, repo lenders demanded $1.7 billion in collateral, forcing Orange County into Chapter 9 bankruptcy with $1,700,000,000 in net losses.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part2",
+        "excerpt": "Orange County lost $1.7 billion when Robert Citron leveraged a $7.5 billion portfolio into $20 billion using repo agreements.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "orange_county",
+        "repo_leverage",
+        "inverse_floaters",
+        "collateral_calls"
+      ],
+      "numericalDetails": {
+        "values": {
+          "originalPoolUSD": 7500000000,
+          "leveragedHoldingsUSD": 20000000000,
+          "rateHikeBps": 300,
+          "totalLossUSD": 1700000000
+        },
+        "units": "$ USD",
+        "contractSize": 1,
+        "context": "Orange County municipal investment pool bankruptcy under Federal Reserve rate hikes"
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "explanation": "Inverse floaters yielded high initial coupon cashflows (payoffs), but produced catastrophic capital losses (net profit destruction) when interest rates climbed."
+      }
+    },
+    {
+      "id": "fact-05",
+      "category": "case_study",
+      "topic": "Metallgesellschaft (1993) — Stack-and-Roll Hedging and Liquidity Exhaustion",
+      "statement": "German conglomerate Metallgesellschaft lost $1.3 billion in 1993 after selling 10-year fixed-price heating oil and gasoline supply contracts and hedging the exposure with short-term energy futures rolled forward monthly ('stack-and-roll'); when oil prices fell and backwardation shifted to contango, negative roll yield and billions in daily exchange margin calls drained liquidity.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part2",
+        "excerpt": "Metallgesellschaft lost $1.3 billion using a stack-and-roll hedging strategy. Contango caused negative roll yield and massive margin calls.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "metallgesellschaft",
+        "stack_and_roll",
+        "contango",
+        "margin_exhaustion"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "case_study",
+      "topic": "Hammersmith and Fulham (1989) — Legal Capacity and Ultra Vires",
+      "statement": "The London borough council of Hammersmith & Fulham entered hundreds of speculative interest rate swaps betting against UK rate rises; when rates rose and banks demanded payment, the UK House of Lords declared all municipal swap contracts null and void (*ultra vires*), resulting in hundreds of millions in uncollectible losses for major international dealer banks.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part2",
+        "excerpt": "The House of Lords ruled that Hammersmith and Fulham had no legal authority to enter swap contracts, voiding them ultra vires.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "hammersmith_fulham",
+        "ultra_vires",
+        "legal_risk",
+        "municipal_swaps"
+      ]
+    },
+    {
+      "id": "fact-07",
+      "category": "market_rule",
+      "topic": "Liquidity Risk vs Capital Solvency Invariant",
+      "statement": "Financial institutions must decouple liquidity risk from paper accounting solvency: an institution holding fundamentally sound long-term assets can be forced into liquidation if it lacks liquid cash reserves to satisfy intra-day margin calls and collateral adjustments during market dislocations.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part2",
+        "excerpt": "Liquidity risk must be managed separately from solvency. Cash is needed to meet daily margin calls, regardless of long-term value.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "liquidity_risk",
+        "solvency",
+        "cash_buffers",
+        "variation_margin"
+      ]
+    },
+    {
+      "id": "fact-08",
+      "category": "market_rule",
+      "topic": "Terminal Payoff versus Net Trading Profit Invariant",
+      "statement": "Corporate boards must require treasury performance reports to explicitly distinguish between gross contract payoff and net economic profit: Gross Payoff evaluates terminal option cashflow max(S - K, 0), whereas Net Economic Profit subtracts initial premiums and funding costs, enforcing the invariant Profit = Payoff - Premium.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part2",
+        "excerpt": "Always distinguish payoff from profit. Payoff is gross cash flow at expiration; profit subtracts upfront cost and financing charges.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "payoff_vs_profit",
+        "accounting_invariant",
+        "profit_equals_payoff_minus_premium"
+      ]
+    },
+    {
+      "id": "fact-09",
+      "category": "market_rule",
+      "topic": "Prohibition on Speculating Through Complex Exotic Derivatives",
+      "statement": "Nonfinancial corporations must establish corporate bylaws strictly prohibiting the use of asymmetric, leveraged exotic derivative contracts (such as knock-out options, range accruals, or ratio forwards) that offer modest upfront savings in exchange for uncapped disaster losses if underlying prices cross barrier thresholds.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part2",
+        "excerpt": "Corporations should avoid complex exotic structures where small benefits are traded for catastrophic downside risks.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "exotic_derivatives",
+        "prohibition",
+        "corporate_governance",
+        "barrier_risks"
+      ]
+    },
+    {
+      "id": "fact-10",
+      "category": "market_rule",
+      "topic": "Scenario Analysis and Liquidity Stress Testing",
+      "statement": "Financial institutions and corporate treasuries must conduct regular multi-factor stress tests simulating extreme interest rate shocks, credit spread blowouts, and basis breakdowns across combined cash and derivative portfolios, ensuring cash buffers can withstand at least 30 days of market freeze.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch25_part2",
+        "excerpt": "Stress tests must model extreme shocks and liquidity freeze to ensure survival during severe market crises.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "stress_testing",
+        "scenario_analysis",
+        "liquidity_buffer",
+        "30_day_survival"
+      ]
+    }
+  ]
+}

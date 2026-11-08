@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch11_part2",
+  "title": "Advanced Option Volatility and Time Decay Strategies: Calendar Spreads, Straddles, Strangles, Strips, and Straps",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Basic understanding of European calls, puts, strike price K, and expiration date T",
+    "Option premium components (intrinsic value and time/extrinsic value)",
+    "Time decay (Theta) and implied volatility concepts"
+  ],
+  "learningOutcomes": [
+    "Analyze calendar spreads by exploiting faster near-term time decay (theta) across different expiration dates (T1 < T2) ([fact-01], [fact-02]).",
+    "Calculate terminal payoffs, net profits, break-even points, and maximum risks for long and short straddles ([fact-03], [fact-04], [fact-05], [fact-10]).",
+    "Differentiate directional volatility views using asymmetric strips (1 call, 2 puts) and straps (2 calls, 1 put) ([fact-06]).",
+    "Evaluate out-of-the-money strangles (K1 < K2) in terms of lower initial costs versus larger required price movements ([fact-07], [fact-08], [fact-11]).",
+    "Identify implied volatility crush risks around earnings announcements using Business Snapshot 11.2 ([fact-09])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Calendar Spreads and Time Decay (Theta)",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Straddles: Bottom Straddles, Top Straddles, and Numerical Cases",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-09",
+        "fact-10"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Asymmetric Volatility Views: Strips and Straps",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Strangles and Numerical Cost Comparisons",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-07",
+        "fact-08",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-04",
+      "authorRebuttal": "A long straddle requires a price movement that exceeds the total initial premium paid (c + p). If the stock moves but stays within the break-even boundaries K - (c + p) and K + (c + p), the position will still suffer a net loss due to the upfront debit paid ([fact-04], [fact-10])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-09",
+      "authorRebuttal": "As demonstrated in Business Snapshot 11.2, implied volatility typically surges prior to earnings and collapses immediately afterward (volatility crush), which can cause option values to plummet even when the stock makes a substantial price move ([fact-09])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-07",
+      "authorRebuttal": "While a strangle is cheaper to construct because its options are out-of-the-money (K1 < K2), it requires a significantly larger movement in the underlying asset before any profit is realized compared to an at-the-money straddle ([fact-07])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "An investor buys a 6-month call at $4.00 and a 6-month put at $3.00 with common strike K = $50.00 (total debit $7.00 per share, or $700 per 100-share contract). Separately, another investor buys an October 45 put for $2.00 and an October 55 call for $1.50 (total cost $3.50 per share) when the stock trades at $50.00.",
+    "testedFactIds": [
+      "fact-04",
+      "fact-08",
+      "fact-10",
+      "fact-11"
+    ],
+    "question": "1) What are the downside and upside break-even points and maximum loss for the $50 straddle? 2) What are the downside and upside break-even points and maximum loss for the strangle?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Calendar spreads exploit the differential in time decay (theta) between short-dated and long-dated options across neutral, bullish, or bearish strikes ([fact-01], [fact-02]).",
+    "Straddles and strangles allow volatility-based trading without directional bias, though long positions require overcoming total premium debits while short positions face extreme or unlimited risk ([fact-03], [fact-04], [fact-05], [fact-07], [fact-08]).",
+    "Traders must account for implied volatility crush around earnings announcements, where option price collapses can neutralize even large underlying price moves ([fact-09])."
+  ]
+}

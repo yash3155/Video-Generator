@@ -16,7 +16,7 @@ export async function checkArgonPreflight(rootDir = process.cwd()) {
   }
 
   const proxyBase = process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001';
-  const healthUrl = proxyBase.replace(/\/v1\/chat\/completions\/?$/, '').replace(/\/+$/, '') + '/health';
+  const healthUrl = proxyBase.replace(/\/v1(\/chat\/completions)?\/?$/, '').replace(/\/+$/, '') + '/health';
 
   // 1. Direct health check
   try {

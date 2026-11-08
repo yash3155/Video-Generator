@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch20_part1",
+  "title": "Value at Risk (VaR), Expected Shortfall (CVaR), Historical Simulation, Volatility Updating, and Basel Backtesting",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Probability distributions, descriptive statistics, and percentile calculations",
+    "Portfolio variance, covariance, and risk management basics",
+    "Regulatory frameworks and trading book capitalization"
+  ],
+  "learningOutcomes": [
+    "Define Value at Risk (VaR) and explain why it fails the subadditivity condition as a coherent risk measure ([fact-01], [fact-02]).",
+    "Calculate Expected Shortfall (ES / CVaR) as a coherent measure of catastrophic tail loss severity ([fact-03]).",
+    "Execute historical simulation and Hull-White volatility-weighted scenario scaling across historical trading days ([fact-05], [fact-06], [fact-07], [fact-09]).",
+    "Apply the square-root-of-time scaling rule and examine FRTB regulatory shifts toward Expected Shortfall ([fact-04], [fact-08]).",
+    "Evaluate Basel backtesting Traffic Light systems and rogue trader tail-risk exploitation ([fact-10], [fact-11])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Value at Risk (VaR) Definition and Coherence Failure",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Expected Shortfall (CVaR) and FRTB Regulatory Evolution",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Historical Simulation, Table 20.1 Calculations, and Volatility Updating",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-09"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Time Scaling, Rogue Trader Exploitation, and Basel Backtesting",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-08",
+        "fact-10",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-02",
+      "authorRebuttal": "VaR fails the subadditivity condition for asymmetric return distributions, meaning the VaR of a combined portfolio can actually exceed the sum of individual VaRs, penalizing diversification ([fact-02])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-08",
+      "authorRebuttal": "The square-root-of-time rule assumes i.i.d. normal daily returns with zero mean; when markets exhibit volatility clustering, regime persistence, or serial autocorrelation, the rule significantly underestimates multi-day tail risk ([fact-08])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-10",
+      "authorRebuttal": "VaR completely ignores the magnitude of losses beyond the confidence cutoff; rogue traders can exploit this blind spot by writing deep OTM puts that show zero VaR violations until an extreme tail event causes insolvency ([fact-10])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A portfolio composed of $10 million equity and $5 million foreign exchange is evaluated across 500 historical trading days. The sorted scenario losses reveal that the 5th worst loss (99% 1-day VaR) is $253,385, and the 5 worst losses are $253,385, $260,110, $275,420, $301,200, and $320,905.",
+    "testedFactIds": [
+      "fact-02",
+      "fact-07"
+    ],
+    "question": "1) What is the Calculated Expected Shortfall (CVaR) for this portfolio? 2) Why does VaR fail as a coherent risk measure?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Value at Risk quantifies maximum expected loss at confidence level X, but fails subadditivity as a coherent risk measure ([fact-01], [fact-02]).",
+    "Expected Shortfall (CVaR) directly measures the severity of catastrophic tail losses and forms the core of the Basel FRTB regulatory framework ([fact-03], [fact-04]).",
+    "Historical simulation combined with volatility updating (Hull-White) and rigorous 250-day Basel backtesting provides robust institutional risk oversight ([fact-05], [fact-09], [fact-11])."
+  ]
+}

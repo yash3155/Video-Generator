@@ -1,0 +1,412 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch15_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Stock Index Options, Currency Options, Portfolio Insurance, and Dividend Adjustments",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "Index Options & Cash Settlement Mechanics",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A portfolio manager asks how index options like S&P 500 (SPX) settle since you cannot physically deliver an entire stock index ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The mentor explains cash settlement: exercise triggers a cash payment based on the difference between strike and index settlement value (SET) ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Each standard index option contract incorporates a $100 multiplier, scaling cash flows for institutional and retail portfolios ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Index & Currency Option Benchmarks by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display Index Option Benchmark (S0 = 1000, K = 1000, r = 5%, q = 2%, sigma = 20%, T = 0.5): yields call price c = $51.83 per share ($5,183 per contract) ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display Currency Option Benchmark (GBP call, S0 = 1.60, K = 1.60, r = 6%, rf = 8%, sigma = 15%, T = 1): yields call price c = $0.0431 per GBP ($4,310 per 100,000 GBP contract) ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 15 Part 1 Roadmap: 4 Core Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Index Options — Cash settlement mechanics and $100 contract multipliers ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Dividend Adjustments — Prepaid forward price S0 * e^(-q*T) and generalized BSM formulas ([fact-02], [fact-03]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Portfolio Insurance — Beta-adjusted contract sizing N = beta * (P / (100 * I)) ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Currency Options — Garman-Kohlhagen framework substituting rf for q ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Stock Pricing vs. Continuous Dividend Yield Adjustment",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-03",
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Zero-Dividend Stock: underlying stock price is simply S0 in standard BSM formulas ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Continuous Dividend Yield q: S0 is replaced by prepaid forward price S0 * e^(-q*T) in generalized BSM formulas and put-call parity c + K*e^(-r*T) = p + S0*e^(-q*T) ([fact-02], [fact-03], [fact-04]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Beta-Adjusted Portfolio Insurance Formulas",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Floor Protection: purchasing index put options establishes an absolute minimum portfolio floor while preserving upside ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Beta Sizing Formula: N = beta * (P / (100 * I)), requiring 50% more contracts when portfolio beta equals 1.5 ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Business Snapshot 15.1: Long-Term Stock Guarantees",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Popular Claim: belief that stocks are guaranteed to outperform bonds over long horizons like 20-30 years due to expected drift ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Put Option Reality: Hull proves put protection cost does NOT vanish as T increases because volatility uncertainty sigma * sqrt(T) continues growing ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Gross Protection Payoff vs. Compounded Net Return",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Gross Payoff: terminal protection equals max(K - S_T, 0), providing nominal downside cash recovery ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Net Trading Profit: strictly defined as payoff minus initial premium compounded at risk-free rate (Payoff - Premium paid * e^(r*T)), avoiding fatal budgeting errors ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Garman-Kohlhagen Currency Option Pricing Structure",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Foreign Currency Yield: foreign interest rate rf acts as continuous dividend yield q in BSM pricing formulas ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot GBP Call Pricing Profile: spot 1.60, domestic rate 6%, foreign rate 8%, yielding $0.0431 per GBP option value ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Generalized Put-Call Parity & Currency Equivalences",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Generalized Put-Call Parity: c + K*e^(-r*T) = p + S0*e^(-q*T) enforcing synthetic arbitrage bounds for dividend-paying assets ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Garman-Kohlhagen Parity: replacing q with rf adapts parity directly for foreign exchange spot and option markets ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Beta Hedging & Currency Options",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07",
+        "fact-08",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Calculate the number of put contracts for a $10M portfolio with beta 1.5 at index 4,000 (37.5 contracts) ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Explain why foreign interest rate rf replaces continuous dividend yield q in currency option pricing ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Index & Currency Options Execution Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The risk manager audits contract specifications: confirm $100 index multipliers and cash settlement against SET ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The portfolio manager checks hedging parameters: verify continuous dividend yields q, beta hedge sizing N, and Garman-Kohlhagen currency inputs rf ([fact-03], [fact-07], [fact-08]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Index & Currency Options",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-07",
+        "fact-08",
+        "fact-10",
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Index cash settlement and $100 multipliers ([fact-01]), continuous dividend yield prepaid forward substitution S0 * e^(-q*T) ([fact-02]), generalized BSM formulas ([fact-03]), and dividend put-call parity ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Beta-adjusted portfolio insurance sizing N = beta * (P / (100 * I)) ([fact-07]), Garman-Kohlhagen currency option pricing with rf ([fact-08]), long-term volatility uncertainty in guarantees ([fact-10]), and compounded net profit calculations ([fact-11]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08",
+            "fact-10",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Index Option Cash Settlement ([fact-01]): Index options feature $100 multipliers and settle in cash against index settlement value (SET).",
+    "2. Prepaid Forward Pricing ([fact-02]): Continuous dividend yields q reduce effective stock price from S0 to S0 * e^(-q*T) in all valuation formulas.",
+    "3. Generalized BSM Formulas ([fact-03]): Incorporate continuous dividend yields into cumulative normal probabilities N(d1) and N(d2).",
+    "4. Dividend Put-Call Parity ([fact-04]): c + K*e^(-r*T) = p + S0*e^(-q*T) establishes synthetic arbitrage bounds.",
+    "5. Portfolio Insurance Sizing ([fact-07]): Beta-adjusted hedge contracts require N = beta * (P / (100 * I)) to neutralize systematic market risk.",
+    "6. Garman-Kohlhagen Model ([fact-08]): Foreign currency options substitute foreign risk-free rate rf for continuous dividend yield q.",
+    "7. Long-Term Guarantees ([fact-10]): Long-term underperformance insurance remains costly because volatility uncertainty sigma * sqrt(T) continues growing.",
+    "8. Net Trading Profit ([fact-11]): True net profit requires compounding initial put premiums at the risk-free rate: Profit = Payoff - Premium paid * e^(r*T)."
+  ],
+  "bottomTakeaway": "Stock index and currency options generalize the Black-Scholes-Merton model through prepaid forward price adjustments and foreign risk-free rates, enabling precise beta-adjusted portfolio insurance and cash-settled risk management ([fact-01], [fact-03], [fact-07], [fact-08])."
+}

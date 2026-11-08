@@ -272,7 +272,7 @@ async function callGeminiArgonDirect(fullPrompt) {
 async function ensureProxyRunning() {
   const proxyHealthUrl =
     (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001')
-      .replace(/\/v1\/chat\/completions\/?$/, '')
+      .replace(/\/v1(\/chat\/completions)?\/?$/, '')
       .replace(/\/+$/, '') + '/health';
 
   try {

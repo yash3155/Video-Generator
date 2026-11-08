@@ -1,0 +1,214 @@
+import fs from 'fs';
+import path from 'path';
+
+const ch22Facts = {
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch22_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": new Date().toISOString(),
+  "bookTitle": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "generalAssumptions": [
+    "Exotic options are customized over-the-counter derivative contracts designed to meet specific corporate hedging needs or lower option premium costs.",
+    "Barrier options depend on whether the asset price touches a barrier level H during the option life, satisfying in-out parity.",
+    "Asian options base payoffs on the average asset price over time, significantly reducing option premiums and preventing market manipulation.",
+    "Nonstandard leveraged swaps introduce explosive non-linear payoff risks when interest rate spreads widen beyond predetermined corridors."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Taxonomy of Exotic Options and Corporate Hedging Rationale",
+      "statement": "Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded options in their payoff structures, strike determination, or path dependency. Corporations use them because they provide cheaper customized hedges, better match underlying cash flows, and reflect specific corporate accounting or regulatory requirements.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch22_part1",
+        "excerpt": "Exotic options are nonstandard options created by financial institutions for corporate clients. They often cost less than vanilla options and better match corporate hedging needs.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": ["exotic_options_taxonomy", "otc_customization", "cost_reduction"]
+    },
+    {
+      "id": "fact-02",
+      "category": "definition",
+      "topic": "Packages, Forward Start Options, and Compound Options",
+      "statement": "Packages are structured portfolios of standard European options. A forward start option is paid for today but starts at a future date T_1 with its strike automatically set at the prevailing asset price S(T_1). A compound option is an option on an option (such as a call on a call or a put on a call), valued analytically using Geske's 1979 bivariate normal distribution.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch22_part1",
+        "excerpt": "A forward start option is an option that will start at some future time. Compound options are options on options, with four varieties: call on call, put on call, call on put, and put on put.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": ["forward_start", "compound_options", "geske_formula", "packages"]
+    },
+    {
+      "id": "fact-03",
+      "category": "definition",
+      "topic": "Chooser Options (As-You-Like-It Options)",
+      "statement": "A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date T_1 to decide whether the contract becomes a European call option or a European put option with predetermined strike K and expiration date T_2. Its value equals a European call plus a European put with strike K*e^(-r(T_2-T_1)) expiring at T_1.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch22_part1",
+        "excerpt": "A chooser option has the feature that after a specified period of time the buyer can choose whether the option is a call or a put.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": ["chooser_option", "as_you_like_it", "put_call_choice"]
+    },
+    {
+      "id": "fact-04",
+      "category": "formula",
+      "topic": "Barrier Options and the In-Out Parity Principle",
+      "statement": "Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during option life: knock-in options become active only if touched, while knock-out options extinguish if touched. Because holding both contracts simultaneously guarantees payoff regardless of whether H is breached, In-Out Parity strictly holds: Knock-In Price + Knock-Out Price = Vanilla Option Price.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch22_part1",
+        "excerpt": "A barrier option is an option where the payoff depends on whether the underlying asset price reaches a certain level during a certain period. The in-out parity states: Price of in option + Price of out option = Price of vanilla option.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": ["barrier_options", "in_out_parity", "knock_in_knock_out"],
+      "formulaDetails": {
+        "name": "Barrier In-Out Parity Law",
+        "latex": "c_{\\text{knock-in}} + c_{\\text{knock-out}} = c_{\\text{vanilla}}, \\quad p_{\\text{knock-in}} + p_{\\text{knock-out}} = p_{\\text{vanilla}}",
+        "variables": [
+          { "symbol": "c_{\\text{knock-in}}", "definition": "Price of European knock-in call option", "unit": "currency ($)" },
+          { "symbol": "c_{\\text{knock-out}}", "definition": "Price of European knock-out call option", "unit": "currency ($)" },
+          { "symbol": "c_{\\text{vanilla}}", "definition": "Price of standard plain vanilla European call option", "unit": "currency ($)" }
+        ]
+      }
+    },
+    {
+      "id": "fact-05",
+      "category": "formula",
+      "topic": "Binary (Digital) Options: Cash-or-Nothing vs Asset-or-Nothing",
+      "statement": "Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_T > K and zero otherwise, valued as c_{cash} = Q * e^(-rT) * N(d_2). An asset-or-nothing call pays the asset value S_T if S_T > K and zero otherwise, valued as c_{asset} = S_0 * N(d_1). Standard vanilla call equals asset-or-nothing call minus K times cash-or-nothing call with Q=1.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch22_part1",
+        "excerpt": "A cash-or-nothing option pays off a predetermined cash amount if the asset price ends up above the strike price. An asset-or-nothing option pays off an amount equal to the asset price.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": ["binary_options", "cash_or_nothing", "asset_or_nothing", "digital_discontinuity"],
+      "formulaDetails": {
+        "name": "Binary Option Valuation Formulas",
+        "latex": "c_{\\text{cash}} = Q e^{-rT} N(d_2), \\quad c_{\\text{asset}} = S_0 N(d_1), \\quad c_{\\text{vanilla}} = c_{\\text{asset}} - K \\cdot \\frac{c_{\\text{cash}}}{Q}",
+        "variables": [
+          { "symbol": "c_{\\text{cash}}", "definition": "Cash-or-nothing European call price", "unit": "currency ($)" },
+          { "symbol": "Q", "definition": "Fixed cash payout amount", "unit": "currency ($)" },
+          { "symbol": "c_{\\text{asset}}", "definition": "Asset-or-nothing European call price", "unit": "currency ($)" },
+          { "symbol": "S_0", "definition": "Current underlying asset price", "unit": "currency ($)" },
+          { "symbol": "N(d_1)", "definition": "Cumulative normal probability multiplier", "unit": "dimensionless" },
+          { "symbol": "N(d_2)", "definition": "Risk-neutral probability of finishing in the money", "unit": "dimensionless" }
+        ]
+      }
+    },
+    {
+      "id": "fact-06",
+      "category": "definition",
+      "topic": "Lookback Options: Floating Strike and Fixed Strike",
+      "statement": "Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract life. A floating strike lookback call pays max(S_T - S_{min}, 0), permitting the holder to retroactively purchase the asset at its absolute lowest price; a fixed strike lookback call pays max(S_{max} - K, 0). Because maximum lookback path dependency provides ideal market timing, lookbacks carry substantially higher premiums than vanilla options.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch22_part1",
+        "excerpt": "The payoffs from lookback options depend on the maximum or minimum asset price reached during the life of the option.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": ["lookback_options", "floating_strike", "fixed_strike", "path_dependency"]
+    },
+    {
+      "id": "fact-07",
+      "category": "claim",
+      "topic": "Asian Options: Average Price Hedges and Volatility Damping",
+      "statement": "Asian options have payoffs dictated by the average asset price S_avg observed across designated reset dates over the option life: an average price call pays max(S_avg - K, 0). Because averaging dampens price variance (volatility of an average is strictly less than volatility of the endpoint asset), Asian options are cheaper than vanilla options and eliminate market manipulation risks at expiration.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch22_part1",
+        "excerpt": "Asian options are options where the payoff is based on the average price of the asset during some or all of the life of the option. The averaging feature reduces the option price.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": ["asian_options", "average_price_options", "volatility_damping", "manipulation_defense"]
+    },
+    {
+      "id": "fact-08",
+      "category": "numerical_example",
+      "topic": "Hull Section 22.8: Asian Option Geometric vs Arithmetic Average Pricing",
+      "statement": "In Hull Section 22.8, a 1-year Asian call with spot S_0 = $50, strike K = $50, risk-free rate r = 10%, continuous dividend yield q = 0, and volatility sigma = 40% with continuous averaging yields an effective adjusted volatility of sigma / sqrt(3) = 23.09% and effective dividend yield of (r + sigma^2/6)/2 = 6.33%. The analytic geometric Asian call price is $5.62, compared to $9.64 for a standard plain vanilla European call. Profit = Payoff - Premium paid.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch22_part1",
+        "excerpt": "Consider a geometric Asian option with S0=50, K=50, r=0.10, vol=0.40. The volatility parameter becomes 0.40/sqrt(3)=0.2309, yielding an Asian call value of $5.62 versus $9.64 for vanilla.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": ["numerical_asian_call", "section_22_8", "geometric_averaging_discount"],
+      "numericalDetails": {
+        "values": {
+          "spotPrice": 50,
+          "strikePrice": 50,
+          "riskFreeRate": 0.10,
+          "volatility": 0.40,
+          "adjustedVol": 0.2309,
+          "asianCallPrice": 5.62,
+          "vanillaCallPrice": 9.64,
+          "costSavings": 4.02
+        },
+        "units": "$",
+        "contractSize": 100,
+        "context": "Hull Section 22.8 continuous geometric averaging Asian option valuation"
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "max(S_avg - K, 0)",
+        "formulaProfit": "max(S_avg - K, 0) - c"
+      }
+    },
+    {
+      "id": "fact-09",
+      "category": "case_study",
+      "topic": "Procter & Gamble's $157M Bizarre Leveraged Swap Disaster (Business Snapshot 22.4)",
+      "statement": "In Business Snapshot 22.4, Hull details how Procter & Gamble entered into a 5-year $200 million leveraged interest rate swap with Bankers Trust in 1993. The floating leg paid 30-day commercial paper rate minus 75 basis points plus max[0, (5-year CMT yield / 5.78% * 30-year Treasury yield) - 5-year CMT yield]. When Federal Reserve Chairman Alan Greenspan raised interest rates in early 1994, the non-linear leverage factor exploded, forcing P&G to take a $157 million pre-tax charge.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch22_part1",
+        "excerpt": "In 1993, Procter & Gamble entered into a swap with Bankers Trust where payments were tied to a complex formula. When interest rates rose, P&G lost $157 million.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": ["pg_swap_disaster", "snapshot_22_4", "bankers_trust", "leveraged_swaps"]
+    },
+    {
+      "id": "fact-10",
+      "category": "claim",
+      "topic": "Static Options Replication Method (Derman, Ergener, and Kani)",
+      "statement": "Derman, Ergener, and Kani (1995) developed static options replication to hedge exotic options without continuous delta rebalancing. By identifying a portfolio of standard European vanilla options that matches the exotic option's boundary payoff along the critical boundary H, the portfolio replicates the exotic claim interior to the boundary, eliminating gamma and vega rebalancing costs.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch22_part1",
+        "excerpt": "Static options replication involves searching for a portfolio of actively traded vanilla options that approximately replicates the exotic option on the boundary.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": ["static_replication", "derman_ergener_kani", "boundary_matching", "delta_hedging_alternative"]
+    },
+    {
+      "id": "fact-11",
+      "category": "claim",
+      "topic": "Nonstandard Swaps Architecture: Compounding, Accreting, and Diff Swaps",
+      "statement": "Financial institutions engineer nonstandard swaps to accommodate specialized funding structures: compounding swaps allow interest to compound rather than pay periodically; amortizing swaps decrease notional principal to match debt payoff schedules; accreting swaps increase principal over time; and differential swaps (diff swaps) pay the interest rate of one currency on the notional principal denominated in a different currency.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch22_part1",
+        "excerpt": "Swaps can have nonstandard features. Compounding swaps compound interest; amortizing swaps have decreasing principal; diff swaps pay the interest rate of one currency in another currency.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": ["nonstandard_swaps", "compounding_swaps", "diff_swaps", "amortizing_swaps"]
+    }
+  ]
+};
+
+const dirs = [
+  "src/data/chapters/hull_derivatives/ch22_part1",
+  "src/data/chapters/hull_derivatives_en/ch22_part1"
+];
+
+for (const d of dirs) {
+  fs.mkdirSync(d, { recursive: true });
+  fs.writeFileSync(path.join(d, "source_facts.json"), JSON.stringify(ch22Facts, null, 2), "utf8");
+  console.log(`Wrote exact source_facts.json to ${d}`);
+}

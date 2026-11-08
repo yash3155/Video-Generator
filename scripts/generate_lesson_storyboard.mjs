@@ -189,7 +189,7 @@ export async function generateLessonAndStoryboard(targetDir, options = {}) {
     .map((f) => `- [${f.id}] (${f.category}): ${f.statement} (Citation: ${f.sourceCitation?.book || ''})`)
     .join('\n');
 
-  const proxyHealthUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001').replace(/\/v1\/chat\/completions\/?$/, '').replace(/\/+$/, '') + '/health';
+  const proxyHealthUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001').replace(/\/v1(\/chat\/completions)?\/?$/, '').replace(/\/+$/, '') + '/health';
   let proxyAvailable = false;
   try {
     const pRes = await fetch(proxyHealthUrl, { signal: AbortSignal.timeout(1000) });
@@ -287,6 +287,11 @@ function robustParseJson(raw) {
   try {
     return JSON.parse(text);
   } catch {}
+  // Sanitize unescaped backslashes in LaTeX strings (e.g. \beta, \sigma, \frac)
+  text = text.replace(/\\(?!["\\/bfnrtu])/g, '\\\\');
+  try {
+    return JSON.parse(text);
+  } catch {}
   // Clean unescaped newlines in JSON strings
   text = text.replace(/:\s*"([^"]*)"/g, (m, p1) => ': "' + p1.replace(/\r?\n/g, '\\n') + '"');
   return JSON.parse(text);
@@ -294,7 +299,9 @@ function robustParseJson(raw) {
 
   let parsedJson = null;
   if (proxyAvailable) {
-    const completionsUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001').replace(/\/+$/, '') + '/v1/chat/completions';
+    const completionsUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001')
+      .replace(/\/v1(\/chat\/completions)?\/?$/, '')
+      .replace(/\/+$/, '') + '/v1/chat/completions';
     let attempts = 0;
     while (attempts < 4) {
       attempts++;

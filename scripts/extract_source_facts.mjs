@@ -49,7 +49,7 @@ export async function extractSourceFacts(targetDir, options = {}) {
   }
 
   // 2. Synthesize structured source_facts.json via Argon Proxy or Gemini Flash
-  const proxyHealthUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001').replace(/\/v1\/chat\/completions\/?$/, '').replace(/\/+$/, '') + '/health';
+  const proxyHealthUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001').replace(/\/v1(\/chat\/completions)?\/?$/, '').replace(/\/+$/, '') + '/health';
   let proxyAvailable = false;
   try {
     const pRes = await fetch(proxyHealthUrl, { signal: AbortSignal.timeout(1000) });
@@ -98,7 +98,9 @@ Return ONLY a valid JSON object adhering to this exact structure:
 
   if (proxyAvailable) {
     console.log(`🧠 [SOURCE-FACTS] Structuring facts via Gemini 4 Argon proxy into strict schema...`);
-    const completionsUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001').replace(/\/+$/, '') + '/v1/chat/completions';
+    const completionsUrl = (process.env.GEMINI_BASE_URL || 'http://127.0.0.1:8001')
+      .replace(/\/v1(\/chat\/completions)?\/?$/, '')
+      .replace(/\/+$/, '') + '/v1/chat/completions';
     let candidateText = null;
     let attempts = 0;
     while (attempts < 3) {
@@ -121,6 +123,8 @@ Return ONLY a valid JSON object adhering to this exact structure:
           const data = await res.json();
           candidateText = data.choices?.[0]?.message?.content;
           if (candidateText) break;
+        } else {
+          console.warn(`⚠️ [SOURCE-FACTS] Proxy status ${res.status}: ${await res.text()}`);
         }
       } catch (err) {
         console.warn(`⚠️ [SOURCE-FACTS] Proxy attempt ${attempts} failed: ${err.message}`);

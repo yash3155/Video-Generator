@@ -1,0 +1,405 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch17_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Greeks and Delta Hedging: Naked Positions, Stop-Loss Trading, Dynamic Rebalancing, and Gamma Risk",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "The Perils of Naked Writing & Stop-Loss Whipsaws",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A risk manager reviews naive option risk management: naked option writing exposes institutions to catastrophic upside losses if stock prices surge ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Covered positions protect against upside but suffer massive equity depletion during market crashes ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "The mentor explains why stop-loss strategies fail: volatile markets cause frequent whipsaws around strike K, forcing severe cash leakage ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Dynamic Delta Rebalancing by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display initial hedging metrics: writing 100,000 calls with Delta 0.522 requires purchasing 52,200 shares at $49 ($2,557,800 total outlay) ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display week 1 rebalancing metrics: stock drops to $48.12, Delta falls to 0.458, prompting the bank to sell 6,400 shares at $48.12 ($307,968 cash inflow) ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 17 Part 1 Roadmap: 4 Risk Management Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-04",
+        "fact-07",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Naive Hedging Failures — Naked, covered, and stop-loss whipsaw cash leakage ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Delta Neutrality — Delta formulas and dynamic share rebalancing ($Q \\cdot \\Delta$) ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: The Greeks & Gamma — Dimensioning risk dimensions and second-order Taylor series P&L approximation ([fact-07], [fact-09]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Hedging Friction & Cost — Cost equivalency rule and net trading profit calculations ([fact-10], [fact-11]).",
+          "sourceFactIds": [
+            "fact-10",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Call Delta vs. Put Delta Formulas & Dividend Adjustments",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Call Delta: Delta_call = N(d1) for non-dividend stocks, adjusting to e^(-q*T)*N(d1) when continuous dividend yield q is present ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Put Delta: Delta_put = N(d1) - 1, representing negative price sensitivity for short put positions ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Second-Order Gamma Taylor Series Approximation",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Linear Term: Delta * delta_S neutralizes small instantaneous price movements ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Curvature & Time Terms: 0.5 * Gamma * (delta_S)^2 and Theta * delta_t capture large discrete moves and time decay ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Real-World Trading Friction: Tolerance Bands vs. Calendar Intervals",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Continuous Rebalancing Myth: continuous hedging is impossible due to trading commissions and bid-ask spreads ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Institutional Tolerance Bands: maintaining target delta bands (e.g., +/- 0.05) or rebalancing at fixed daily closes to balance slippage against friction ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Delta Neutrality vs. Gamma Curvature Exposure",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Delta Protection: neutralizes linear price risk for infinitesimal moves ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Gamma Risk: large discrete price jumps alter Delta itself, creating non-linear portfolio P&L drift that requires Gamma management ([fact-08], [fact-09]).",
+          "sourceFactIds": [
+            "fact-08",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Gross Liquidation Payoff vs. Net Trading Profit",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Gross Liquidation Payoff: option payoff netted against stock liquidation proceeds at expiration ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Net Trading Profit: deducting initial stock financing interest costs, option premium compounded at r, and cumulative transaction commissions ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "The 5 Core Greeks & Their Risk Dimensions",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Delta (dC/dS) & Gamma (d^2C/dS^2): measuring asset price sensitivity and curvature risk ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Theta (dC/dt), Vega (dC/d_sigma), & Rho (dC/dr): measuring time decay, volatility sensitivity, and interest rate risk ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Rebalancing Shares & Cost Equivalency",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Calculate share rebalancing quantity (selling 6,400 shares) when stock drops to $48.12 and Delta falls to 0.458 ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Explain why dynamic delta hedging does not generate free alpha under BSM arbitrage-free assumptions ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Delta Hedging & Greeks Execution Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The risk manager audits delta neutrality: verify Q * Delta share positions and monitor rebalancing triggers against tolerance bands (+/- 0.05) ([fact-04], [fact-06]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The quant checks portfolio Greeks: monitor Delta, Gamma curvature, Theta decay, Vega, and Rho across market shifts ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Greeks and Delta Hedging",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-08",
+        "fact-09",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Naked and covered position risks ([fact-01]), stop-loss trading whipsaw leakage ([fact-02]), Call and Put Delta formulas ([fact-03]), and delta-neutral share sizing Q * Delta ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Dynamic rebalancing mechanics (selling 6,400 shares) ([fact-05]), Gamma risk during large discrete price jumps ([fact-08]), second-order Taylor series approximation ([fact-09]), and hedging cost equivalency to option premium ([fact-10]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-08",
+            "fact-09",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Naive Hedging Pitfalls ([fact-01]): Naked writing exposes institutions to catastrophic losses, while covered positions suffer severe equity drawdowns during market crashes.",
+    "2. Stop-Loss Whipsaws ([fact-02]): Stop-loss strategies accumulate severe transaction costs and cash leakage due to frequent price oscillations around strike K.",
+    "3. Option Delta Formulas ([fact-03]): Delta measures price sensitivity, equal to N(d1) for calls and N(d1) - 1 for puts.",
+    "4. Delta Neutrality Sizing ([fact-04]): Writing Q options requires purchasing Q * Delta underlying shares to neutralize linear price risk.",
+    "5. Dynamic Rebalancing ([fact-05]): As stock prices and time shift, delta changes continuously, requiring periodic share purchases or sales to maintain neutrality.",
+    "6. Real-World Friction ([fact-06]): Institutions use tolerance bands (+/- 0.05) or fixed calendar intervals to balance Gamma slippage against transaction commissions.",
+    "7. Gamma Risk and Taylor Series ([fact-08], [fact-09]): Delta hedging is linear; large discrete price jumps expose portfolios to non-linear Gamma curvature governed by second-order Taylor approximations.",
+    "8. Hedging Cost Equivalency ([fact-10]): The expected present value of cumulative dynamic hedging costs exactly equals the upfront option premium received (no free alpha)."
+  ],
+  "bottomTakeaway": "Dynamic delta hedging transforms option directional exposure into rebalancing and transaction friction, requiring continuous Greek management and Gamma risk control ([fact-04], [fact-07], [fact-09], [fact-10])."
+}

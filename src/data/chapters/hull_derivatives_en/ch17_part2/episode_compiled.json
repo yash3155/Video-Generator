@@ -1,0 +1,1560 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives_en",
+    "chapter": "CHAPTER 17 · PART 2",
+    "chapterTitle": "Advanced Greeks & Portfolio Insurance",
+    "domain": "finance",
+    "primaryColor": "#0F766E",
+    "accentColor": "#F59E0B",
+    "narrationLanguage": "en-US"
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "Origins: Higher-Order Greeks & Market Stability",
+      "template": "chat_story",
+      "badge": "Market Desk · Historical Origins",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "राजू पूछता है, शर्मा जी! इस वित्तीय बाजार में कांट्रैक्ट्स और रिस्क मैनेजमेंट की वास्तविक शुरुआत कैसे हुई?",
+          "en_subtitle": "Dr. Vance, delta neutrality only shields against infinitesimal price moves, leaving trading books completely vulnerable to Gamma curvature and Vega volatility.",
+          "en_narration": "Dr. Vance, delta neutrality only shields against infinitesimal price moves, leaving trading books completely vulnerable to Gamma curvature and Vega volatility.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju examines the origin of price risk —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji, how did derivatives and risk transfer begin in market history?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji, how did derivatives and risk transfer begin in market history?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present the core human survival and price uncertainty dilemma.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "Dr. Vance, delta neutrality only shields against infinitesimal price moves, leaving trading books completely vulnerable to Gamma curvature and Vega volatility.",
+          "narrationHash": "ad0588fb7c967456",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b01.mp3",
+          "audioDurationSec": 10.25,
+          "durationInFrames": 320,
+          "subtitlePhrases": [
+            {
+              "text": "Dr. Vance,",
+              "startMs": 0,
+              "endMs": 653
+            },
+            {
+              "text": "delta neutrality only shields against infinitesimal price moves,",
+              "startMs": 653,
+              "endMs": 4831
+            },
+            {
+              "text": "leaving trading books completely vulnerable to Gamma curvature and Vega volatility.",
+              "startMs": 4831,
+              "endMs": 10250
+            }
+          ]
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "शर्मा जी समझाते हैं, जब उत्पादक और खरीदार भविष्य के मूल्य उतार-चढ़ाव से बचना चाहते हैं, तब फॉरवर्ड कांट्रैक्ट्स जन्म लेते हैं।",
+          "en_subtitle": "Because underlying stock carries zero Gamma and zero Vega, neutralizing these second-order risks requires trading supplementary option contracts.",
+          "en_narration": "Because underlying stock carries zero Gamma and zero Vega, neutralizing these second-order risks requires trading supplementary option contracts.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji explains bilateral commitments —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "When producers and buyers need price certainty, bilateral forward commitments are born.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "When producers and buyers need price certainty, bilateral forward commitments are born.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Establish forward commitments as mutual price risk hedges.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "Because underlying stock carries zero Gamma and zero Vega, neutralizing these second-order risks requires trading supplementary option contracts.",
+          "narrationHash": "d1bc0013d80cb29a",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b02.mp3",
+          "audioDurationSec": 9.38,
+          "durationInFrames": 295,
+          "subtitlePhrases": [
+            {
+              "text": "Because underlying stock carries zero Gamma and zero Vega,",
+              "startMs": 0,
+              "endMs": 3778
+            },
+            {
+              "text": "neutralizing these second-order risks requires trading supplementary option contracts.",
+              "startMs": 3778,
+              "endMs": 9380
+            }
+          ]
+        }
+      ],
+      "concept": "Moving beyond delta to hedge curvature (Gamma), decay (Theta), and volatility (Vega)"
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Delta Neutrality vs Gamma Acceleration Risk",
+      "template": "tug_of_war",
+      "badge": "Structural Conflict · Hedger vs Speculator",
+      "beats": [
+        {
+          "id": "b03",
+          "hindi_tts": "बाजार में एक पक्ष मूल्य में गिरावट से सुरक्षा चाहता है, जबकि दूसरा पक्ष मूल्य वृद्धि के जोखिम को सीमित करना चाहता है।",
+          "en_subtitle": "Even perfectly delta-neutral books suffer devastating losses during market gaps if negative gamma curvature accelerates unhedged.",
+          "en_narration": "Even perfectly delta-neutral books suffer devastating losses during market gaps if negative gamma curvature accelerates unhedged.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftLabel": "Farmer / Producer (Downside Protection)",
+            "rightLabel": "Processor / Miller (Upside Ceiling)",
+            "currentTension": 50
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Downside Protection",
+              "rightLabel": "Upside Ceiling",
+              "tension": 50
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate opposing economic motivations meeting in a forward contract.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "Even perfectly delta-neutral books suffer devastating losses during market gaps if negative gamma curvature accelerates unhedged.",
+          "narrationHash": "9ef5214a8c278546",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b03.mp3",
+          "audioDurationSec": 7.82,
+          "durationInFrames": 247,
+          "subtitlePhrases": [
+            {
+              "text": "Even perfectly delta-neutral books suffer devastating",
+              "startMs": 0,
+              "endMs": 3263
+            },
+            {
+              "text": "losses during market gaps if negative",
+              "startMs": 3263,
+              "endMs": 5541
+            },
+            {
+              "text": "gamma curvature accelerates unhedged.",
+              "startMs": 5541,
+              "endMs": 7820
+            }
+          ]
+        }
+      ],
+      "concept": "Why delta-neutral portfolios suffer sudden losses during market gap moves"
+    },
+    {
+      "segmentIndex": 2,
+      "title": "Core Architecture: 4 Pillars of Advanced Greek Risk Management",
+      "template": "progressive_cards",
+      "badge": "Roadmap · 4 Structural Pillars",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "इस अध्याय में हम चार महत्वपूर्ण स्तंभों को समझेंगे: बाजार संरचना, गणितीय पेऑफ, लिक्विडिटी और सिस्टमिक जोखिम।",
+          "en_subtitle": "We explore four foundational pillars: Gamma curvature mechanics, the Theta-Gamma PDE invariant, Vega hedging, and the 1987 portfolio insurance crash.",
+          "en_narration": "We explore four foundational pillars: Gamma curvature mechanics, the Theta-Gamma PDE invariant, Vega hedging, and the 1987 portfolio insurance crash.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "1. Gamma Curvature",
+                "body": "d^2C/dS^2 measuring Delta's rate of acceleration."
+              },
+              {
+                "title": "2. Theta Decay & PDE",
+                "body": "Theta + 0.5*sigma^2*S^2*Gamma = r*Pi trade-off."
+              },
+              {
+                "title": "3. Vega & Rho Neutrality",
+                "body": "Immunizing books against implied volatility shifts."
+              },
+              {
+                "title": "4. The 1987 Crash",
+                "body": "How synthetic portfolio insurance caused Black Monday."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cards": [
+                {
+                  "title": "1. Gamma Curvature",
+                  "body": "d^2C/dS^2 measuring Delta's rate of acceleration."
+                },
+                {
+                  "title": "2. Theta Decay & PDE",
+                  "body": "Theta + 0.5*sigma^2*S^2*Gamma = r*Pi trade-off."
+                },
+                {
+                  "title": "3. Vega & Rho Neutrality",
+                  "body": "Immunizing books against implied volatility shifts."
+                },
+                {
+                  "title": "4. The 1987 Crash",
+                  "body": "How synthetic portfolio insurance caused Black Monday."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present structural roadmap of four learning pillars.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "text": "We explore four foundational pillars: Gamma curvature mechanics, the Theta-Gamma PDE invariant, Vega hedging, and the 1987 portfolio insurance crash.",
+          "narrationHash": "83e5614add69bae7",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b04.mp3",
+          "audioDurationSec": 11.38,
+          "durationInFrames": 354,
+          "subtitlePhrases": [
+            {
+              "text": "We explore four foundational pillars: Gamma curvature mechanics,",
+              "startMs": 0,
+              "endMs": 4988
+            },
+            {
+              "text": "the Theta-Gamma PDE invariant,",
+              "startMs": 4988,
+              "endMs": 7326
+            },
+            {
+              "text": "Vega hedging,",
+              "startMs": 7326,
+              "endMs": 8339
+            },
+            {
+              "text": "and the 1987 portfolio insurance crash.",
+              "startMs": 8339,
+              "endMs": 11380
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Stock vs Traded Option Hedging Capabilities",
+      "template": "split_comparison",
+      "badge": "Market Structure · Bilateral vs Centralized",
+      "beats": [
+        {
+          "id": "b05",
+          "hindi_tts": "एक्सचेंज ट्रेडेड फ्यूचर्स पूरी तरह से मानकीकृत होते हैं, जबकि ओटीसी फॉरवर्ड्स दोनों पक्षों की आवश्यकतानुसार कस्टमाइज किए जाते हैं।",
+          "en_subtitle": "Because shares possess zero Gamma and zero Vega, neutralizing curvature and volatility strictly requires trading secondary option contracts.",
+          "en_narration": "Because shares possess zero Gamma and zero Vega, neutralizing curvature and volatility strictly requires trading secondary option contracts.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Exchange-Traded Futures",
+            "rightTitle": "Over-the-Counter (OTC)",
+            "leftPoints": [
+              "Standardized contract sizes",
+              "Central clearinghouse (CCP)",
+              "Zero bilateral default risk"
+            ],
+            "rightPoints": [
+              "Tailored specifications",
+              "Bilateral counterparty risk",
+              "Direct negotiation"
+            ],
+            "left": {
+              "title": "Stock-Only Hedging (Delta Neutral)",
+              "items": [
+                "Underlying stock has Gamma = 0 and Vega = 0",
+                "Cannot change portfolio curvature or volatility risk",
+                "Vulnerable to large discrete price jumps"
+              ]
+            },
+            "right": {
+              "title": "Traded Option Hedging (Delta-Gamma-Vega)",
+              "items": [
+                "Traded options possess non-zero Gamma and Vega",
+                "Add wT options: wT = - Gamma_P / Gamma_T",
+                "Re-adjust stock to re-establish Delta neutrality"
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Futures",
+                "points": [
+                  "Standardized",
+                  "CCP Cleared"
+                ]
+              },
+              "rightColumn": {
+                "title": "OTC Forwards",
+                "points": [
+                  "Customized",
+                  "Bilateral Risk"
+                ]
+              },
+              "left": {
+                "title": "Stock-Only Hedging (Delta Neutral)",
+                "items": [
+                  "Underlying stock has Gamma = 0 and Vega = 0",
+                  "Cannot change portfolio curvature or volatility risk",
+                  "Vulnerable to large discrete price jumps"
+                ]
+              },
+              "right": {
+                "title": "Traded Option Hedging (Delta-Gamma-Vega)",
+                "items": [
+                  "Traded options possess non-zero Gamma and Vega",
+                  "Add wT options: wT = - Gamma_P / Gamma_T",
+                  "Re-adjust stock to re-establish Delta neutrality"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Contrast exchange standardization with OTC customization.",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          },
+          "text": "Because shares possess zero Gamma and zero Vega, neutralizing curvature and volatility strictly requires trading secondary option contracts.",
+          "narrationHash": "f28df4a1d89fe78e",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b05.mp3",
+          "audioDurationSec": 9.46,
+          "durationInFrames": 297,
+          "subtitlePhrases": [
+            {
+              "text": "Because shares possess zero Gamma and zero Vega,",
+              "startMs": 0,
+              "endMs": 3267
+            },
+            {
+              "text": "neutralizing curvature and volatility strictly requires trading secondary option contracts.",
+              "startMs": 3267,
+              "endMs": 9460
+            }
+          ]
+        }
+      ],
+      "concept": "Stock has zero gamma and vega; options are mandatory to neutralize curvature"
+    },
+    {
+      "segmentIndex": 4,
+      "title": "The Black-Scholes-Merton PDE Invariant",
+      "template": "progressive_cards",
+      "badge": "Global Volume · BIS Market Data",
+      "beats": [
+        {
+          "id": "b06",
+          "hindi_tts": "वैश्विक स्तर पर ओटीसी बाजार का आकार छह सौ तीस ट्रिलियन डॉलर से अधिक है, जो एक्सचेंज बाजार से लगभग दस गुना बड़ा है।",
+          "en_subtitle": "The Black-Scholes PDE establishes an inescapable physical law: in delta-neutral portfolios, positive gamma curvature is paid for by negative theta decay.",
+          "en_narration": "The Black-Scholes PDE establishes an inescapable physical law: in delta-neutral portfolios, positive gamma curvature is paid for by negative theta decay.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "Fundamental PDE",
+                "body": "Theta + r*S*Delta + 0.5*sigma^2*S^2*Gamma = r*Pi"
+              },
+              {
+                "title": "Delta-Neutral Invariant",
+                "body": "Theta + 0.5*sigma^2*S^2*Gamma = r*Pi when Delta = 0."
+              },
+              {
+                "title": "The Inescapable Trade-Off",
+                "body": "Positive Gamma directly demands negative Theta decay."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "Fundamental PDE",
+                  "body": "Theta + r*S*Delta + 0.5*sigma^2*S^2*Gamma = r*Pi"
+                },
+                {
+                  "title": "Delta-Neutral Invariant",
+                  "body": "Theta + 0.5*sigma^2*S^2*Gamma = r*Pi when Delta = 0."
+                },
+                {
+                  "title": "The Inescapable Trade-Off",
+                  "body": "Positive Gamma directly demands negative Theta decay."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate immense macroeconomic scale of OTC markets.",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "text": "The Black-Scholes PDE establishes an inescapable physical law: in delta-neutral portfolios, positive gamma curvature is paid for by negative theta decay.",
+          "narrationHash": "0c1f23e28ed34704",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b06.mp3",
+          "audioDurationSec": 10.2,
+          "durationInFrames": 318,
+          "subtitlePhrases": [
+            {
+              "text": "The Black-Scholes PDE establishes an inescapable physical law: in delta-neutral portfolios,",
+              "startMs": 0,
+              "endMs": 6107
+            },
+            {
+              "text": "positive gamma curvature is paid for by negative theta decay.",
+              "startMs": 6107,
+              "endMs": 10200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Analytical Gamma & Vega Formulas",
+      "template": "formula_breakdown",
+      "badge": "Quantitative Proof · Terminal Payoff",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "मैच्योरिटी पर लॉन्ग पोजीशन का ग्रॉस पेऑफ वर्तमान स्पॉट प्राइस और स्ट्राइक प्राइस का अंतर होता है।",
+          "en_subtitle": "Both Gamma and Vega peak at-the-money: as maturity approaches, Gamma explodes toward infinity while Vega decays to zero.",
+          "en_narration": "Both Gamma and Vega peak at-the-money: as maturity approaches, Gamma explodes toward infinity while Vega decays to zero.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Terminal Long Payoff",
+            "expression": "S_t - K",
+            "variables": [
+              {
+                "symbol": "S_t",
+                "label": "Spot asset price at expiration",
+                "unit": "₹"
+              },
+              {
+                "symbol": "K",
+                "label": "Agreed delivery strike price",
+                "unit": "₹"
+              }
+            ],
+            "formula": "\\Gamma = \\frac{N'(d_1)}{S_0 \\sigma \\sqrt{T}}, \\quad \\mathcal{V} = S_0 \\sqrt{T} N'(d_1)",
+            "parts": [
+              {
+                "label": "Gamma Curvature",
+                "formula": "\\frac{N'(d_1)}{S_0 \\sigma \\sqrt{T}}",
+                "explanation": "Peaks sharply at-the-money as expiration approaches"
+              },
+              {
+                "label": "Vega Volatility Sensitivity",
+                "formula": "S_0 \\sqrt{T} N'(d_1)",
+                "explanation": "Measures absolute dollar change per 1% change in implied volatility"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Terminal Long Payoff",
+              "expression": "S_t - K",
+              "variables": [
+                {
+                  "symbol": "S_t",
+                  "label": "Spot asset price at expiration",
+                  "unit": "₹"
+                },
+                {
+                  "symbol": "K",
+                  "label": "Agreed delivery strike price",
+                  "unit": "₹"
+                }
+              ],
+              "formula": "\\Gamma = \\frac{N'(d_1)}{S_0 \\sigma \\sqrt{T}}, \\quad \\mathcal{V} = S_0 \\sqrt{T} N'(d_1)",
+              "parts": [
+                {
+                  "label": "Gamma Curvature",
+                  "formula": "\\frac{N'(d_1)}{S_0 \\sigma \\sqrt{T}}",
+                  "explanation": "Peaks sharply at-the-money as expiration approaches"
+                },
+                {
+                  "label": "Vega Volatility Sensitivity",
+                  "formula": "S_0 \\sqrt{T} N'(d_1)",
+                  "explanation": "Measures absolute dollar change per 1% change in implied volatility"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Define terminal long linear payoff formula.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "text": "Both Gamma and Vega peak at-the-money: as maturity approaches, Gamma explodes toward infinity while Vega decays to zero.",
+          "narrationHash": "0951243fd8e662fb",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b07.mp3",
+          "audioDurationSec": 8.4,
+          "durationInFrames": 264,
+          "subtitlePhrases": [
+            {
+              "text": "Both Gamma and Vega peak at-the-money: as maturity approaches,",
+              "startMs": 0,
+              "endMs": 4376
+            },
+            {
+              "text": "Gamma explodes toward infinity while Vega decays to zero.",
+              "startMs": 4376,
+              "endMs": 8400
+            }
+          ]
+        }
+      ],
+      "concept": "Gamma = N'(d1)/(S0*sigma*sqrt(T)), Vega = S0*sqrt(T)*N'(d1)"
+    },
+    {
+      "segmentIndex": 6,
+      "title": "Simultaneous Delta-Gamma-Vega Neutrality",
+      "template": "split_comparison",
+      "badge": "Core Invariant · Payoff vs Profit",
+      "beats": [
+        {
+          "id": "b08",
+          "hindi_tts": "हमेशा याद रखें, पेऑफ केवल टर्मिनल कैशफ्लो है, जबकि नेट प्रॉफिट में शुरुआत में चुकाया गया प्रीमियम घटाया जाता है।",
+          "en_subtitle": "Neutralizing Gamma and Vega simultaneously requires solving a 2x2 linear system of traded options, followed by adjusting underlying stock to re-zero Delta.",
+          "en_narration": "Neutralizing Gamma and Vega simultaneously requires solving a 2x2 linear system of traded options, followed by adjusting underlying stock to re-zero Delta.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Gross Payoff",
+            "rightTitle": "Net Trading Profit",
+            "leftPoints": [
+              "Terminal cashflow at expiration",
+              "Ignores upfront premium paid",
+              "Always >= 0 for options"
+            ],
+            "rightPoints": [
+              "Terminal payoff minus initial premium",
+              "Accounts for capital outlay",
+              "Negative if price stays flat"
+            ],
+            "left": {
+              "title": "Portfolio Risk Exposures",
+              "items": [
+                "Initial Delta = 0, Gamma = -5,000, Vega = -8,000",
+                "Option 1: Gamma = 1.5, Vega = 2.0",
+                "Option 2: Gamma = 0.5, Vega = 3.0"
+              ]
+            },
+            "right": {
+              "title": "Simultaneous System Solution",
+              "items": [
+                "1.5*w1 + 0.5*w2 = 5,000",
+                "2.0*w1 + 3.0*w2 = 8,000",
+                "Result: w1 = 3,143 contracts, w2 = 571 contracts",
+                "Finally trade stock to restore Delta = 0"
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Gross Payoff",
+                "points": [
+                  "Terminal Cashflow",
+                  "Ignores Premium"
+                ]
+              },
+              "rightColumn": {
+                "title": "Net Profit",
+                "points": [
+                  "Payoff - Premium",
+                  "True Economic P&L"
+                ]
+              },
+              "left": {
+                "title": "Portfolio Risk Exposures",
+                "items": [
+                  "Initial Delta = 0, Gamma = -5,000, Vega = -8,000",
+                  "Option 1: Gamma = 1.5, Vega = 2.0",
+                  "Option 2: Gamma = 0.5, Vega = 3.0"
+                ]
+              },
+              "right": {
+                "title": "Simultaneous System Solution",
+                "items": [
+                  "1.5*w1 + 0.5*w2 = 5,000",
+                  "2.0*w1 + 3.0*w2 = 8,000",
+                  "Result: w1 = 3,143 contracts, w2 = 571 contracts",
+                  "Finally trade stock to restore Delta = 0"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Strictly enforce the Payoff vs Profit distinction.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "text": "Neutralizing Gamma and Vega simultaneously requires solving a 2x2 linear system of traded options, followed by adjusting underlying stock to re-zero Delta.",
+          "narrationHash": "d8c1b3d2aa7ef49d",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b08.mp3",
+          "audioDurationSec": 10.49,
+          "durationInFrames": 328,
+          "subtitlePhrases": [
+            {
+              "text": "Neutralizing Gamma and Vega simultaneously requires solving a 2x2 linear system of traded options,",
+              "startMs": 0,
+              "endMs": 6675
+            },
+            {
+              "text": "followed by adjusting underlying stock to re-zero Delta.",
+              "startMs": 6675,
+              "endMs": 10490
+            }
+          ]
+        }
+      ],
+      "concept": "Solving 2x2 linear system to neutralize both Gamma and Vega"
+    },
+    {
+      "segmentIndex": 7,
+      "title": "Synthetic Portfolio Insurance & Procyclical Selling",
+      "template": "progressive_cards",
+      "badge": "Case Study · Lehman Brothers 2008",
+      "beats": [
+        {
+          "id": "b09",
+          "hindi_tts": "दो हजार आठ में लेहमैन ब्रदर्स के पास छह सौ बिलियन डॉलर के अनक्लेयर्ड ओटीसी डेरिवेटिव्स थे, जिससे पूरी वित्तीय प्रणाली फ्रीज हो गई।",
+          "en_subtitle": "Synthetic portfolio insurance forces institutional managers to sell index futures into a falling market, triggering catastrophic procyclical feedback spirals.",
+          "en_narration": "Synthetic portfolio insurance forces institutional managers to sell index futures into a falling market, triggering catastrophic procyclical feedback spirals.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "Synthetic Put Replication",
+                "body": "Replicating put payoff by dynamically shorting futures."
+              },
+              {
+                "title": "Procyclical Negative Delta",
+                "body": "Delta drops toward -1 as market crashes, forcing more sales."
+              },
+              {
+                "title": "Liquidity Overload",
+                "body": "Mass dynamic selling strips bid liquidity during panics."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "Synthetic Put Replication",
+                  "body": "Replicating put payoff by dynamically shorting futures."
+                },
+                {
+                  "title": "Procyclical Negative Delta",
+                  "body": "Delta drops toward -1 as market crashes, forcing more sales."
+                },
+                {
+                  "title": "Liquidity Overload",
+                  "body": "Mass dynamic selling strips bid liquidity during panics."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate systemic counterparty contagion in uncollateralized OTC markets.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-05"
+              ]
+            }
+          },
+          "text": "Synthetic portfolio insurance forces institutional managers to sell index futures into a falling market, triggering catastrophic procyclical feedback spirals.",
+          "narrationHash": "a0f059faf4065448",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b09.mp3",
+          "audioDurationSec": 10.03,
+          "durationInFrames": 314,
+          "subtitlePhrases": [
+            {
+              "text": "Synthetic portfolio insurance forces institutional managers to sell index futures into a falling market,",
+              "startMs": 0,
+              "endMs": 6644
+            },
+            {
+              "text": "triggering catastrophic procyclical feedback spirals.",
+              "startMs": 6644,
+              "endMs": 10030
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "Analytical Theta Time Decay Formula",
+      "template": "formula_breakdown",
+      "badge": "Balance Sheet Risk · Leverage Math",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "इकतीस गुना लेवरेज पर एसेट्स में केवल सवा तीन परसेंट की गिरावट पूरे शेयरहोल्डर इक्विटी को शून्य कर देती है।",
+          "en_subtitle": "Theta quantifies the inevitable daily erosion of option premium, showing how calendar time relentlessly saps option extrinsic value.",
+          "en_narration": "Theta quantifies the inevitable daily erosion of option premium, showing how calendar time relentlessly saps option extrinsic value.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Leverage Multipliers & Equity Wipeout",
+            "expression": "L = \\text{Assets} / \\text{Equity}",
+            "variables": [
+              {
+                "symbol": "L",
+                "label": "Balance sheet leverage ratio (31:1)",
+                "unit": "ratio"
+              },
+              {
+                "symbol": "\\Delta Equity",
+                "label": "\\Delta Assets \\times L",
+                "unit": "%"
+              }
+            ],
+            "formula": "\\Theta_{call} = -\\frac{S_0 N'(d_1) \\sigma}{2\\sqrt{T}} - r K e^{-rT} N(d_2)",
+            "parts": [
+              {
+                "label": "Volatility Time Decay",
+                "formula": "-\\frac{S_0 N'(d_1) \\sigma}{2\\sqrt{T}}",
+                "explanation": "Relentless decay of diffusion uncertainty over elapsed time"
+              },
+              {
+                "label": "Interest Discount Decay",
+                "formula": "-r K e^{-rT} N(d_2)",
+                "explanation": "Loss in present value advantage of delaying strike payment"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Leverage Multipliers & Equity Wipeout",
+              "expression": "L = \\text{Assets} / \\text{Equity}",
+              "variables": [
+                {
+                  "symbol": "L",
+                  "label": "Leverage ratio",
+                  "unit": "ratio"
+                },
+                {
+                  "symbol": "\\Delta Equity",
+                  "label": "Change in equity",
+                  "unit": "%"
+                }
+              ],
+              "formula": "\\Theta_{call} = -\\frac{S_0 N'(d_1) \\sigma}{2\\sqrt{T}} - r K e^{-rT} N(d_2)",
+              "parts": [
+                {
+                  "label": "Volatility Time Decay",
+                  "formula": "-\\frac{S_0 N'(d_1) \\sigma}{2\\sqrt{T}}",
+                  "explanation": "Relentless decay of diffusion uncertainty over elapsed time"
+                },
+                {
+                  "label": "Interest Discount Decay",
+                  "formula": "-r K e^{-rT} N(d_2)",
+                  "explanation": "Loss in present value advantage of delaying strike payment"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Prove mathematically how high leverage accelerates balance-sheet bankruptcy.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Theta quantifies the inevitable daily erosion of option premium, showing how calendar time relentlessly saps option extrinsic value.",
+          "narrationHash": "9fd667dda8f9037c",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b10.mp3",
+          "audioDurationSec": 8.54,
+          "durationInFrames": 269,
+          "subtitlePhrases": [
+            {
+              "text": "Theta quantifies the inevitable daily erosion of option premium,",
+              "startMs": 0,
+              "endMs": 4172
+            },
+            {
+              "text": "showing how calendar time relentlessly saps option extrinsic value.",
+              "startMs": 4172,
+              "endMs": 8540
+            }
+          ]
+        }
+      ],
+      "concept": "Theta_call = -[S0*N'(d1)*sigma]/(2*sqrt(T)) - r*K*e^(-rT)*N(d2)"
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall Challenge",
+      "template": "interactive_quiz",
+      "badge": "Concept Verification · Active Recall",
+      "beats": [
+        {
+          "id": "b11",
+          "hindi_tts": "यदि एक ट्रेडर बिना हेजिंग के अत्यधिक लेवरेज पोजीशन लेता है और बाजार विपरीत दिशा में जाता है, तो सबसे बड़ा प्राथमिक जोखिम क्या है?",
+          "en_subtitle": "How did institutional reliance on synthetic portfolio insurance algorithms directly contribute to the historic 22.6% single-day Dow collapse on Black Monday 1987?",
+          "en_narration": "How did institutional reliance on synthetic portfolio insurance algorithms directly contribute to the historic 22.6% single-day Dow collapse on Black Monday 1987?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "question": "How did institutional reliance on synthetic portfolio insurance algorithms directly contribute to the historic 22.6% single-day Dow collapse on Black Monday 1987?",
+            "options": [
+              "A) Cascading computer-driven delta-hedging programs automatically dumped massive index futures sell orders into illiquid markets, driving prices into a freefall spiral",
+              "B) Commercial clearinghouses completely ran out of physical paper stock certificates",
+              "C) The Federal Reserve increased the federal funds rate by 800 basis points overnight",
+              "D) All options contracts globally converted to cash settlement without exchange approval"
+            ],
+            "showThinkingSpinner": false,
+            "answer": ""
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "How did institutional reliance on synthetic portfolio insurance algorithms directly contribute to the historic 22.6% single-day Dow collapse on Black Monday 1987?",
+              "options": [
+                "A) Cascading computer-driven delta-hedging programs automatically dumped massive index futures sell orders into illiquid markets, driving prices into a freefall spiral",
+                "B) Commercial clearinghouses completely ran out of physical paper stock certificates",
+                "C) The Federal Reserve increased the federal funds rate by 800 basis points overnight",
+                "D) All options contracts globally converted to cash settlement without exchange approval"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Test understanding of leverage depletion and margin call dynamics.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "How did institutional reliance on synthetic portfolio insurance algorithms directly contribute to the historic 22.6% single-day Dow collapse on Black Monday 1987?",
+          "narrationHash": "12b5e854c42f8ea4",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b11.mp3",
+          "audioDurationSec": 11.21,
+          "durationInFrames": 349,
+          "subtitlePhrases": [
+            {
+              "text": "How did institutional reliance on synthetic portfolio insurance",
+              "startMs": 0,
+              "endMs": 4414
+            },
+            {
+              "text": "algorithms directly contribute to the historic 22.6% single-day",
+              "startMs": 4414,
+              "endMs": 8828
+            },
+            {
+              "text": "Dow collapse on Black Monday 1987?",
+              "startMs": 8828,
+              "endMs": 11210
+            }
+          ]
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "सोचिए... क्या मार्जिन बफर के बिना पोजीशन सर्वाइव कर सकती है?",
+          "en_subtitle": "Evaluate the mechanical feedback loop of algorithmic delta selling.",
+          "en_narration": "Evaluate the mechanical feedback loop of algorithmic delta selling.",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "question": "How did institutional reliance on synthetic portfolio insurance algorithms directly contribute to the historic 22.6% single-day Dow collapse on Black Monday 1987?",
+            "showThinkingSpinner": true,
+            "answer": ""
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "showThinkingSpinner": true,
+              "question": "How did institutional reliance on synthetic portfolio insurance algorithms directly contribute to the historic 22.6% single-day Dow collapse on Black Monday 1987?"
+            },
+            "semantics": {
+              "teachingObjective": "Engage active recall cognitive processing pause.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Evaluate the mechanical feedback loop of algorithmic delta selling.",
+          "narrationHash": "f47e56a9ab5b2752",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b12.mp3",
+          "audioDurationSec": 4.75,
+          "durationInFrames": 239,
+          "subtitlePhrases": [
+            {
+              "text": "Evaluate the mechanical feedback loop",
+              "startMs": 0,
+              "endMs": 2663
+            },
+            {
+              "text": "of algorithmic delta selling.",
+              "startMs": 2663,
+              "endMs": 4750
+            }
+          ]
+        },
+        {
+          "id": "b13",
+          "hindi_tts": "सही उत्तर बी है! अपर्याप्त मार्जिन पर ब्रोकर या एक्सचेंज तुरंत पोजीशन को लिक्विडेट कर देता है।",
+          "en_subtitle": "The correct answer is A. Over $75 billion in dynamic insurance dumped futures into crashing markets, triggering a 22.6% single-day collapse.",
+          "en_narration": "The correct answer is A. Over $75 billion in dynamic insurance dumped futures into crashing markets, triggering a 22.6% single-day collapse.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "question": "How did institutional reliance on synthetic portfolio insurance algorithms directly contribute to the historic 22.6% single-day Dow collapse on Black Monday 1987?",
+            "showThinkingSpinner": false,
+            "answer": "B) Immediate margin call and total equity liquidation. Clearinghouses mandate daily variation margin to prevent systemic default.",
+            "correctIndex": 1
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "answer": "B) Immediate margin call and total equity liquidation.",
+              "correctIndex": 1,
+              "question": "How did institutional reliance on synthetic portfolio insurance algorithms directly contribute to the historic 22.6% single-day Dow collapse on Black Monday 1987?"
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce correct understanding of daily variation settlement.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "The correct answer is A. Over $75 billion in dynamic insurance dumped futures into crashing markets, triggering a 22.6% single-day collapse.",
+          "narrationHash": "227385bb8adf1b99",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b13.mp3",
+          "audioDurationSec": 11.88,
+          "durationInFrames": 370,
+          "subtitlePhrases": [
+            {
+              "text": "The correct answer is A. Over $75 billion in dynamic insurance dumped futures into crashing markets,",
+              "startMs": 0,
+              "endMs": 8547
+            },
+            {
+              "text": "triggering a 22.6% single-day collapse.",
+              "startMs": 8547,
+              "endMs": 11880
+            }
+          ]
+        }
+      ],
+      "concept": "Why portfolio insurance exacerbated the 1987 market crash (Snapshot 17.2)"
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Trading Desk Execution Rules",
+      "template": "chat_story",
+      "badge": "Practical Synthesis · Senior Trader Desk",
+      "beats": [
+        {
+          "id": "b14",
+          "hindi_tts": "राजू कहता है, इसका अर्थ यह है कि बाजार में टिके रहने के लिए लेवरेज से पहले मार्जिन और सेटलमेंट को समझना अनिवार्य है।",
+          "en_subtitle": "Dr. Vance, the 1987 crash proved that unbounded dynamic delta selling creates systemic liquidity panics, prompting market circuit breakers.",
+          "en_narration": "Dr. Vance, the 1987 crash proved that unbounded dynamic delta selling creates systemic liquidity panics, prompting market circuit breakers.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju summarizes risk discipline —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "So margin buffer and settlement discipline matter more than aggressive positioning!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Margin buffer and settlement discipline matter more than aggressive positioning!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize operational risk discipline before directional speculation.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Dr. Vance, the 1987 crash proved that unbounded dynamic delta selling creates systemic liquidity panics, prompting market circuit breakers.",
+          "narrationHash": "c50f1fc2244e868d",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b14.mp3",
+          "audioDurationSec": 9.89,
+          "durationInFrames": 309,
+          "subtitlePhrases": [
+            {
+              "text": "Dr. Vance,",
+              "startMs": 0,
+              "endMs": 722
+            },
+            {
+              "text": "the 1987 crash proved that unbounded dynamic delta selling creates systemic liquidity panics,",
+              "startMs": 722,
+              "endMs": 7436
+            },
+            {
+              "text": "prompting market circuit breakers.",
+              "startMs": 7436,
+              "endMs": 9890
+            }
+          ]
+        },
+        {
+          "id": "b15",
+          "hindi_tts": "शर्मा जी पुष्टि करते हैं, बिल्कुल! सफल ट्रेडर्स दिशा का अनुमान लगाने से पहले अपनी पूंजी की सुरक्षा सुनिश्चित करते हैं।",
+          "en_subtitle": "Modern desks mandate simultaneous Gamma and Vega neutrality to ensure survival against extreme tail risk and sudden volatility spikes.",
+          "en_narration": "Modern desks mandate simultaneous Gamma and Vega neutrality to ensure survival against extreme tail risk and sudden volatility spikes.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji delivers core trading maxim —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Disciplined market participants protect capital buffers before guessing price direction.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Disciplined market participants protect capital buffers before guessing price direction.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Affirm risk management as the paramount prerequisite for trading longevity.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Modern desks mandate simultaneous Gamma and Vega neutrality to ensure survival against extreme tail risk and sudden volatility spikes.",
+          "narrationHash": "344084adfa9b51b5",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b15.mp3",
+          "audioDurationSec": 9.05,
+          "durationInFrames": 285,
+          "subtitlePhrases": [
+            {
+              "text": "Modern desks mandate simultaneous Gamma and Vega",
+              "startMs": 0,
+              "endMs": 3291
+            },
+            {
+              "text": "neutrality to ensure survival against extreme tail",
+              "startMs": 3291,
+              "endMs": 6719
+            },
+            {
+              "text": "risk and sudden volatility spikes.",
+              "startMs": 6719,
+              "endMs": 9050
+            }
+          ]
+        }
+      ],
+      "concept": "Business Snapshot 17.2: 1987 Crash and Regulatory Circuit Breakers"
+    },
+    {
+      "segmentIndex": 11,
+      "title": "The Whole Picture: 8 Core Principles",
+      "template": "summary_thread",
+      "badge": "Master Review · 8 Inviolable Rules",
+      "beats": [
+        {
+          "id": "b16",
+          "hindi_tts": "आइए पूरे अध्याय के आठ बुनियादी सिद्धांतों की एक व्यवस्थित समीक्षा करें।",
+          "en_subtitle": "Let us review the eight foundational principles established in this lesson.",
+          "en_narration": "Let us review the eight foundational principles of this lesson.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+              "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+              "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+              "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+              "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+              "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+                "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+                "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+                "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+                "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+                "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                0,
+                0
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present executive overview of the 8 chapter rules.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "839010821fdc3d88",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b16.mp3",
+          "audioDurationSec": 4.15,
+          "durationInFrames": 137,
+          "subtitlePhrases": [
+            {
+              "text": "Let us review the eight foundational",
+              "startMs": 0,
+              "endMs": 2019
+            },
+            {
+              "text": "principles established in this lesson.",
+              "startMs": 2019,
+              "endMs": 4150
+            }
+          ]
+        },
+        {
+          "id": "b17",
+          "hindi_tts": "पहले और दूसरे नियम के अनुसार, डेरिवेटिव्स अंतर्निहित संपत्ति से मूल्य लेते हैं और फ्यूचर्स एक्सचेंज पर मानकीकृत होते हैं।",
+          "en_subtitle": "First and second: Derivatives derive value from underlyings, and futures are standardized on exchanges.",
+          "en_narration": "Rules 1 and 2: Derivatives derive value from underlyings, and futures are standardized.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+              "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+              "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+              "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+              "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+              "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+                "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+                "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+                "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+                "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+                "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                2
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 1 and 2.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "0832a5d8bd90fdb8",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b17.mp3",
+          "audioDurationSec": 6.7,
+          "durationInFrames": 213,
+          "subtitlePhrases": [
+            {
+              "text": "First and second: Derivatives derive value from underlyings,",
+              "startMs": 0,
+              "endMs": 3941
+            },
+            {
+              "text": "and futures are standardized on exchanges.",
+              "startMs": 3941,
+              "endMs": 6700
+            }
+          ]
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "तीसरे और चौथे नियम के अनुसार, ओटीसी में काउंटरपार्टी रिस्क रहता है और पेऑफ में हमेशा स्ट्राइक प्राइस का महत्व होता है।",
+          "en_subtitle": "Third and fourth: OTC contracts carry bilateral counterparty risk, and payoff is defined by the strike price.",
+          "en_narration": "Rules 3 and 4: OTC carries counterparty risk, and payoff depends on strike.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+              "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+              "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+              "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+              "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+              "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+                "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+                "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+                "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+                "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+                "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                3,
+                4
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 3 and 4.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "33a5aab5c31578d3",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b18.mp3",
+          "audioDurationSec": 6.38,
+          "durationInFrames": 204,
+          "subtitlePhrases": [
+            {
+              "text": "Third and fourth: OTC contracts carry bilateral counterparty risk,",
+              "startMs": 0,
+              "endMs": 3899
+            },
+            {
+              "text": "and payoff is defined by the strike price.",
+              "startMs": 3899,
+              "endMs": 6380
+            }
+          ]
+        },
+        {
+          "id": "b19",
+          "hindi_tts": "पांचवें और छठे नियम के तहत, क्लीयरिंगहाउस वेरिएशन मार्जिन से रिस्क कम करता है और लेवरेज इक्विटी को तेजी से घटा सकता है।",
+          "en_subtitle": "Fifth and sixth: Clearinghouses enforce variation margin, and high leverage rapidly depletes equity.",
+          "en_narration": "Rules 5 and 6: Margin protects clearinghouses, while leverage depletes equity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+              "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+              "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+              "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+              "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+              "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+                "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+                "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+                "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+                "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+                "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                5,
+                6
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 5 and 6.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "7bea0db6da93e59f",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b19.mp3",
+          "audioDurationSec": 6.14,
+          "durationInFrames": 197,
+          "subtitlePhrases": [
+            {
+              "text": "Fifth and sixth: Clearinghouses enforce variation margin,",
+              "startMs": 0,
+              "endMs": 3535
+            },
+            {
+              "text": "and high leverage rapidly depletes equity.",
+              "startMs": 3535,
+              "endMs": 6140
+            }
+          ]
+        },
+        {
+          "id": "b20",
+          "hindi_tts": "सातवें और आठवें नियम के अनुसार, बायलेटरल पोजीशन में कोलेटरल अनिवार्य है और ग्रॉस पेऑफ को कभी नेट प्रॉफिट न समझें।",
+          "en_subtitle": "Seventh and eighth: Bilateral exposure requires collateral, and never confuse gross payoff with net profit.",
+          "en_narration": "Rules 7 and 8: Collateralize bilateral risk, and never confuse payoff with profit.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "steps": [
+              "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+              "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+              "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+              "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+              "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+              "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+                "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+                "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+                "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+                "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+                "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                7,
+                8
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 7 and 8 with dedicated focus.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "e8ccd99992576e5e",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b20.mp3",
+          "audioDurationSec": 6.6,
+          "durationInFrames": 212,
+          "subtitlePhrases": [
+            {
+              "text": "Seventh and eighth: Bilateral exposure requires collateral,",
+              "startMs": 0,
+              "endMs": 3674
+            },
+            {
+              "text": "and never confuse gross payoff with net profit.",
+              "startMs": 3674,
+              "endMs": 6600
+            }
+          ]
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "यह आठ नियम किसी भी डेरिवेटिव्स और फाइनेंशियल मार्केट में अनुशासन और सफलता की वास्तविक नींव हैं।",
+          "en_subtitle": "These eight principles form the enduring foundation for trading discipline across global markets.",
+          "en_narration": "These eight rules form the foundation of trading discipline.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "steps": [
+              "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+              "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+              "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+              "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+              "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+              "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Theta is the rate of change of option value with respect to the passage of time: Theta = dc / dt. For a Europe",
+                "2. Gamma is the second partial derivative of option value with respect to stock price: Gamma = d^2C / dS^2 = N'(d",
+                "3. Because underlying stock has Gamma equal to zero, a portfolio cannot be made Gamma-neutral by trading stock. T",
+                "4. The Black-Scholes-Merton differential equation establishes an invariant governing all derivative contracts: Th",
+                "5. Vega is the rate of change of option value with respect to volatility: Vega = dC / d_sigma = S0 * sqrt(T) * N'",
+                "6. Rho is the rate of change of option value with respect to the risk-free interest rate: Rho = dC / dr = K * T *",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display comprehensive whole-chapter synthesis overview.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "575853dab89f2a42",
+          "audioFile": "audio/hull_derivatives_en/ch17_part2/b21.mp3",
+          "audioDurationSec": 3.98,
+          "durationInFrames": 135,
+          "subtitlePhrases": [
+            {
+              "text": "These eight principles form the",
+              "startMs": 0,
+              "endMs": 1299
+            },
+            {
+              "text": "enduring foundation for trading discipline",
+              "startMs": 1299,
+              "endMs": 3059
+            },
+            {
+              "text": "across global markets.",
+              "startMs": 3059,
+              "endMs": 3980
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch12_part1",
+  "title": "The One-Step Binomial Model: Delta Hedging, Risk-Neutral Valuation, and Arbitrage Pricing",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Basic understanding of European call and put options and terminal payoffs",
+    "Continuous compounding discounting via exp(-rT)",
+    "Law of One Price and no-arbitrage principles"
+  ],
+  "learningOutcomes": [
+    "Construct a riskless hedged portfolio combining Delta shares and short call options across up and down stock price movements ([fact-01], [fact-02]).",
+    "Calculate the exact hedge ratio Delta = (fu - fd) / (S0*u - S0*d) and understand its interpretation as the rate of change of option value ([fact-03]).",
+    "Apply the risk-neutral valuation principle to compute artificial up probabilities p = (exp(rT) - d) / (u - d) ([fact-05], [fact-06]).",
+    "Determine the theoretical option price f = exp(-rT) * [p * fu + (1 - p) * fd] and execute arbitrage trades when market prices diverge from theory ([fact-07], [fact-09], [fact-11])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "The One-Step Binomial Stock Price Tree and Riskless Hedging",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Delta Calculation and Portfolio Present Value Pricing",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04",
+        "fact-10"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Risk-Neutral Valuation Principle and Artificial Probabilities",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Arbitrage Exploitation of Mispriced Options",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-09",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-05",
+      "authorRebuttal": "Risk-neutral probability p is an artificial mathematical construct designed solely to discount expected cash flows at the risk-free rate r; it does not reflect the real-world probability distribution or investor subjective forecasts of stock movement ([fact-05], [fact-06], [fact-08])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-08",
+      "authorRebuttal": "Because option prices are determined by replicating and hedging portfolios under no-arbitrage, investors with completely different risk tolerances and subjective growth rates mu must all agree on the identical theoretical option price f to prevent riskless arbitrage ([fact-08])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-03",
+      "authorRebuttal": "Delta is the exact spread in derivative payoffs divided by the spread in stock prices ((fu - fd) / (S0*u - S0*d)), representing the instantaneous rate of change of option value with respect to the underlying stock price ([fact-03])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A stock is priced at S0 = $20.00. In 3 months (T = 0.25 years), it moves up to $22.00 (u = 1.10) or down to $18.00 (d = 0.90). A European call option with strike K = $21.00 pays fu = $1.00 in the up state and fd = $0.00 in the down state. The risk-free interest rate is r = 12% per annum continuously compounded (exp(rT) = exp(0.03) = 1.03045).",
+    "testedFactIds": [
+      "fact-03",
+      "fact-06",
+      "fact-07",
+      "fact-10",
+      "fact-11"
+    ],
+    "question": "1) What is the exact hedge ratio Delta for this call option? 2) What is the risk-neutral probability p, and what is the theoretical option price f?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "A riskless hedged portfolio constructed with Delta shares and short call options completely eliminates market uncertainty over interval T ([fact-01], [fact-02]).",
+    "The hedge ratio Delta equals the payoff spread divided by the stock price spread, representing the option's sensitivity to underlying price changes ([fact-03]).",
+    "Risk-neutral valuation discounts expected future cash flows at the risk-free rate r using artificial probabilities p, yielding unique arbitrage-free option prices independent of investor risk preferences ([fact-05], [fact-07], [fact-08])."
+  ]
+}

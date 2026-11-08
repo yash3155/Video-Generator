@@ -1,0 +1,412 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch17_part2",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Higher-Order Greeks: Theta, Gamma, Vega, Rho, Gamma-Vega Neutrality, and Black Monday Portfolio Insurance",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "Unlocking the Higher-Order Greeks",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A quantitative analyst explores risks beyond Delta; the mentor introduces Theta ($\\Theta$) as relentless calendar time decay ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "They examine Gamma ($\\Gamma$) as the rate of change of Delta, measuring portfolio curvature risk ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Vega ($\\mathcal{V}$) and Rho ($\rho$) are introduced to capture volatility sensitivity and interest rate exposure ([fact-05], [fact-06]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Gamma-Vega Neutrality & Black Monday by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display Multi-Greek Neutrality metrics: solving 2x2 linear system for a book with $\\Gamma = -5,000$ and $\\mathcal{V} = -8,000$ using traded options ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display Black Monday metrics: Dow Jones plummeting 22.6% on October 19, 1987, with $60-$90B in algorithmic equity portfolio insurance ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 17 Part 2 Roadmap: 4 Advanced Greek Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-04",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Higher-Order Greeks — Defining Theta, Gamma, Vega, and Rho formulas ([fact-01], [fact-02], [fact-05]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Gamma Neutrality — Adding traded options ($w_T = -\\Gamma_P / \\Gamma_T$) because stock stock Gamma is zero ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: BSM Differential Invariant — Linking positive Gamma directly to negative Theta ($\\Theta + 0.5\\sigma^2 S^2 \\Gamma = r\\Pi$) ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Black Monday & Circuit Breakers — Synthetic portfolio insurance feedback loops and Brady Commission halts ([fact-08], [fact-10]).",
+          "sourceFactIds": [
+            "fact-08",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Gamma Neutrality: Stock Trading vs. Traded Option Hedging",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Stock Limitations: underlying stock has Gamma equal to zero, making it impossible to neutralize portfolio Gamma through stock alone ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Traded Option Hedging: adding $w_T = -\\Gamma_P / \\Gamma_T$ units of a traded option successfully neutralizes Gamma curvature ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing the BSM Differential Equation Invariant",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down General Invariant: $\\Theta + r*S*\\Delta + 0.5*\\sigma^2*S^2*\\Gamma = r*\\Pi$ governing all derivative positions ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Delta-Neutral Simplification: $\\Theta + 0.5*\\sigma^2*S^2*\\Gamma = r*\\Pi$, proving positive gamma requires paying negative theta ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Business Snapshot 17.2: The 1987 Black Monday Crash Feedback Loop",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Synthetic Put Mechanics: protective puts have negative delta ($\\Delta_{\text{put}} = N(d1) - 1$), requiring algorithmic managers to sell more futures as prices fall ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Crash Spiral: $60-$90B in dynamic selling overwhelmed S&P 500 futures liquidity on October 19, 1987, causing a 22.6% single-day crash ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Positive Gamma Convexity vs. Negative Theta Time Decay",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Positive Gamma: provides lucrative convexity gains during large underlying asset price swings ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Negative Theta: relentless calendar time decay drains option value, funding the gamma convexity ([fact-01], [fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Net Trading Profit vs. Cumulative Theta Drag",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Gross Terminal Payoff: sum of all terminal option payoffs and underlying stock positions ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Net Trading Profit: deducting initial net premium earned, stock financing costs, and cumulative Theta drag ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Regulatory Response: Brady Commission Circuit Breakers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Market-Wide Circuit Breakers: mandatory trading halts triggered at 7%, 13%, and 20% index drops ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Breaking Feedback Loops: designed to halt automated algorithmic selling spirals and restore liquidity during extreme market crashes ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Gamma Neutrality & BSM Invariant",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Explain why underlying stock cannot be used to neutralize portfolio Gamma ($w_T = -\\Gamma_P / \\Gamma_T$) ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Interpret the BSM differential equation invariant linking positive Gamma to negative Theta time decay ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Higher-Order Greeks & Risk Management Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-05",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The risk manager audits Greek exposures: verify Gamma neutrality via traded options and check Vega book sensitivity ([fact-03], [fact-05]).",
+          "sourceFactIds": [
+            "fact-03",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The quant reviews crash preparedness: monitor systemic feedback risks and ensure circuit breaker compliance ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Higher-Order Greeks",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-07",
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Theta calendar time decay formula ([fact-01]), Gamma curvature formula ([fact-02]), Gamma neutrality weighting $w_T = -\\Gamma_P / \\Gamma_T$ ([fact-03]), and BSM differential invariant linking Gamma to Theta ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Vega volatility sensitivity ([fact-05]), synthetic portfolio insurance negative delta feedback loop ([fact-07]), Black Monday 1987 crash ($60-$90B selling) ([fact-08]), and Brady Commission circuit breakers ([fact-10]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-07",
+            "fact-08",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Theta ($\\Theta$) ([fact-01]): Measures relentless calendar time decay, typically negative for long option positions.",
+    "2. Gamma ($\\Gamma$) ([fact-02]): Measures curvature and the rate of change of Delta.",
+    "3. Gamma Neutrality ([fact-03]): Requires trading option contracts ($w_T = -\\Gamma_P / \\Gamma_T$) because underlying stock Gamma is zero.",
+    "4. BSM Differential Invariant ([fact-04]): Proves that positive Gamma comes at the direct expense of negative Theta time decay ($\\Theta + 0.5\\sigma^2 S^2 \\Gamma = r\\Pi$).",
+    "5. Vega ($\\mathcal{V}$) ([fact-05]): Measures sensitivity to volatility changes, peaking at-the-money.",
+    "6. Synthetic Portfolio Insurance ([fact-07]): Dynamically sells futures/shares as markets fall due to negative put Delta.",
+    "7. Black Monday 1987 ([fact-08]): $60-$90B in algorithmic delta-hedging feedback loops overwhelmed futures liquidity, causing a 22.6% crash.",
+    "8. Circuit Breakers ([fact-10]): Brady Commission mandatory market halts (7%, 13%, 20%) designed to break procyclical selling spirals."
+  ],
+  "bottomTakeaway": "Higher-order Greeks govern portfolio curvature and volatility risk, proving that positive Gamma convexity requires paying continuous negative Theta time decay while unmanaged algorithmic hedging can catalyze market crashes ([fact-03], [fact-04], [fact-08])."
+}

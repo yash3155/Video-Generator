@@ -1,0 +1,1144 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives",
+    "chapter": "CHAPTER 22 · PART 1",
+    "chapterTitle": "Exotic Options & Nonstandard Swaps",
+    "domain": "finance",
+    "primaryColor": "#C86D51",
+    "accentColor": "#0D9488",
+    "narrationLanguage": "hi-IN-devanagari"
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "Origins: Beyond Plain Vanilla Options",
+      "template": "chat_story",
+      "badge": "Market Desk · Historical Origins",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "शर्मा जी, कॉरपोरेशन्स स्टैंडर्ड वैनिला ऑप्शंस की जगह एग्जॉटिक ऑप्शंस क्यों पसंद करती हैं?",
+          "en_subtitle": "Raju asks: Sharma ji, how did derivative contracts and risk management actually begin?",
+          "en_narration": "Raju asks how derivative contracts and risk management originated.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju examines the origin of price risk —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji, how did derivatives and risk transfer begin in market history?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji, how did derivatives and risk transfer begin in market history?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present the core human survival and price uncertainty dilemma.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "Sharma ji, corporations standard vanilla options ki jagah exotic options kyu pasand karti hain?"
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "राजू, एग्जॉटिक ऑप्शंस कस्टमाइज्ड होते हैं, जिनमें प्रीमियम सस्ता होता है और कंपनी के कैश फ्लो के साथ परफेक्ट मैच बनता है!",
+          "en_subtitle": "Sharma ji explains: When producers and buyers face price uncertainty, forward contracts are born.",
+          "en_narration": "Sharma ji explains that price uncertainty gave rise to forward contracts.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji explains bilateral commitments —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "When producers and buyers need price certainty, bilateral forward commitments are born.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "When producers and buyers need price certainty, bilateral forward commitments are born.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Establish forward commitments as mutual price risk hedges.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "Raju, exotic options customized hote hain, jinme premium sasta hota hai aur company ke cash flows ke saath perfect match banta hai!"
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Standard Exchange Contracts vs Tailored OTC Exotics",
+      "template": "tug_of_war",
+      "badge": "Structural Conflict · Hedger vs Speculator",
+      "beats": [
+        {
+          "id": "b03",
+          "hindi_tts": "स्टैंडर्ड ऑप्शंस हाई लिक्विडिटी देते हैं, जबकि एग्जॉटिक ऑप्शंस टेलर्ड पेऑफ के साथ प्रीमियम कॉस्ट कम करते हैं।",
+          "en_subtitle": "One party hedges downside price drop, while the other protects against rising procurement costs.",
+          "en_narration": "One side hedges falling prices while the counterparty hedges rising costs.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftLabel": "Farmer / Producer (Downside Protection)",
+            "rightLabel": "Processor / Miller (Upside Ceiling)",
+            "currentTension": 50
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Downside Protection",
+              "rightLabel": "Upside Ceiling",
+              "tension": 50
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate opposing economic motivations meeting in a forward contract.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "text": "Standard options high liquidity dete hain, jabki exotic options tailored payoffs ke saath premium cost kam karte hain."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "Core Architecture: 4 Pillars of Exotic Derivatives",
+      "template": "progressive_cards",
+      "badge": "Roadmap · 4 Structural Pillars",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "हम चार मुख्य विषयों पर चर्चा करेंगे: बैरियर ऑप्शंस, एशियन ऑप्शंस, बाइनरी और चूजर ऑप्शंस, और लीवरेज्ड स्वैप्स।",
+          "en_subtitle": "In this chapter, we master four structural pillars: architecture, payoff math, liquidity, and systemic risk.",
+          "en_narration": "We explore architecture, mathematical payoffs, liquidity, and systemic risk.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "1. Barrier Options",
+                "body": "Knock-in and knock-out structures activated or extinguished at boundary H."
+              },
+              {
+                "title": "2. Asian Options",
+                "body": "Payoffs tied to average price S_avg, dampening volatility and lowering premium."
+              },
+              {
+                "title": "3. Binary & Chooser",
+                "body": "Discontinuous all-or-nothing digital cashflows and flexible post-launch choice."
+              },
+              {
+                "title": "4. Leveraged Swaps",
+                "body": "Complex non-linear spread formulas introducing severe tail sensitivity."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cards": [
+                {
+                  "title": "1. Barrier Options",
+                  "body": "Knock-in and knock-out structures activated or extinguished at boundary H."
+                },
+                {
+                  "title": "2. Asian Options",
+                  "body": "Payoffs tied to average price S_avg, dampening volatility and lowering premium."
+                },
+                {
+                  "title": "3. Binary & Chooser",
+                  "body": "Discontinuous all-or-nothing digital cashflows and flexible post-launch choice."
+                },
+                {
+                  "title": "4. Leveraged Swaps",
+                  "body": "Complex non-linear spread formulas introducing severe tail sensitivity."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present structural roadmap of four learning pillars.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "text": "Hum chaar mukhya vishayo par charcha karenge: barrier options, Asian options, binary/chooser options, aur leveraged swaps."
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Barrier Options (In-Out Parity) vs Lookback Extremum Options",
+      "template": "split_comparison",
+      "badge": "Market Structure · Bilateral vs Centralized",
+      "beats": [
+        {
+          "id": "b05",
+          "hindi_tts": "बैरियर ऑप्शंस रास्ते में एक लेवल छूने पर ऑन या ऑफ होते हैं, जबकि लुकबैक ऑप्शन पूरे जीवन के सबसे ऊंचे या निचले दाम का फायदा देते हैं।",
+          "en_subtitle": "Exchange futures are strictly standardized, while OTC contracts are bilaterally customized.",
+          "en_narration": "Exchange futures are standardized while OTC contracts are customized.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Exchange-Traded Futures",
+            "rightTitle": "Over-the-Counter (OTC)",
+            "leftPoints": [
+              "Standardized contract sizes",
+              "Central clearinghouse (CCP)",
+              "Zero bilateral default risk"
+            ],
+            "rightPoints": [
+              "Tailored specifications",
+              "Bilateral counterparty risk",
+              "Direct negotiation"
+            ],
+            "left": {
+              "title": "Barrier Options (Path Triggered)",
+              "items": [
+                "Knock-in activates when asset touches H",
+                "Knock-out extinguishes when asset touches H",
+                "Substantially cheaper premium than plain vanilla"
+              ]
+            },
+            "right": {
+              "title": "Lookback Options (Extremum Path)",
+              "items": [
+                "Floating strike: pays S_T - S_min at expiration",
+                "Fixed strike: pays max(S_max - K, 0)",
+                "Significantly more expensive due to ideal market timing"
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Futures",
+                "points": [
+                  "Standardized",
+                  "CCP Cleared"
+                ]
+              },
+              "rightColumn": {
+                "title": "OTC Forwards",
+                "points": [
+                  "Customized",
+                  "Bilateral Risk"
+                ]
+              },
+              "left": {
+                "title": "Barrier Options (Path Triggered)",
+                "items": [
+                  "Knock-in activates when asset touches H",
+                  "Knock-out extinguishes when asset touches H",
+                  "Substantially cheaper premium than plain vanilla"
+                ]
+              },
+              "right": {
+                "title": "Lookback Options (Extremum Path)",
+                "items": [
+                  "Floating strike: pays S_T - S_min at expiration",
+                  "Fixed strike: pays max(S_max - K, 0)",
+                  "Significantly more expensive due to ideal market timing"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Contrast exchange standardization with OTC customization.",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          },
+          "text": "बैरियर ऑप्शंस रास्ते में एक लेवल छूने पर ऑन या ऑफ होते हैं, जबकि लुकबैक ऑप्शन पूरे जीवन के सबसे ऊंचे या निचले दाम का फायदा देते हैं।"
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Barrier Option In-Out Parity Law",
+      "template": "progressive_cards",
+      "badge": "Global Volume · BIS Market Data",
+      "beats": [
+        {
+          "id": "b06",
+          "hindi_tts": "इन-आउट पैरिटी नियम के अनुसार, नॉक-इन ऑप्शन और नॉक-आउट ऑप्शन की कीमतों का जोड़ ठीक वैनिला ऑप्शन की कीमत के बराबर होता है।",
+          "en_subtitle": "Globally, the OTC market exceeds $630 trillion in notional principal, dwarfing exchange volumes.",
+          "en_narration": "The global OTC market exceeds $630 trillion, dwarfing exchange volumes.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "OTC Market Notional",
+                "desc": "$630+ Trillion global bilateral outstanding"
+              },
+              {
+                "title": "Exchange Market Notional",
+                "desc": "$65 Trillion centralized standardized volume"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "OTC Market",
+                  "desc": "$630T Notional"
+                },
+                {
+                  "title": "Exchange Market",
+                  "desc": "$65T Notional"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate immense macroeconomic scale of OTC markets.",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "text": "इन-आउट पैरिटी नियम के अनुसार, नॉक-इन ऑप्शन और नॉक-आउट ऑप्शन की कीमतों का जोड़ ठीक वैनिला ऑप्शन की कीमत के बराबर होता है।"
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Business Snapshot 22.4: Procter & Gamble's $157M Leveraged Swap Disaster",
+      "template": "formula_breakdown",
+      "badge": "Quantitative Proof · Terminal Payoff",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "1993 में प्रॉक्टर एंड गैंबल ने बैंकर्स ट्रस्ट के साथ 200 मिलियन का कॉम्प्लेक्स लीवरेज्ड स्वैप किया, जिसमें 1994 में ब्याज दरें बढ़ते ही 157 मिलियन डॉलर का नुकसान हुआ।",
+          "en_subtitle": "At terminal maturity, gross payoff is defined as the spot price minus strike price.",
+          "en_narration": "At expiration, long payoff equals spot price minus the delivery strike price.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Terminal Long Payoff",
+            "expression": "S_t - K",
+            "variables": [
+              {
+                "symbol": "S_t",
+                "label": "Spot asset price at expiration",
+                "unit": "₹"
+              },
+              {
+                "symbol": "K",
+                "label": "Agreed delivery strike price",
+                "unit": "₹"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Terminal Long Payoff",
+              "expression": "S_t - K",
+              "variables": [
+                {
+                  "symbol": "S_t",
+                  "label": "Spot asset price at expiration",
+                  "unit": "₹"
+                },
+                {
+                  "symbol": "K",
+                  "label": "Agreed delivery strike price",
+                  "unit": "₹"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Define terminal long linear payoff formula.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "text": "1993 में प्रॉक्टर एंड गैंबल ने बैंकर्स ट्रस्ट के साथ 200 मिलियन का कॉम्प्लेक्स लीवरेज्ड स्वैप किया, जिसमें 1994 में ब्याज दरें बढ़ते ही 157 मिलियन डॉलर का नुकसान हुआ।"
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "Asian Average Options vs Vanilla European Volatility Damping",
+      "template": "split_comparison",
+      "badge": "Core Invariant · Payoff vs Profit",
+      "beats": [
+        {
+          "id": "b08",
+          "hindi_tts": "एशियन ऑप्शंस में एवरेज प्राइस लेने से वोलैटिलिटी कम हो जाती है, जिससे ऑप्शन सस्ता मिलता है और एक्सपायरी के दिन मार्केट मैनिपुलेशन का खतरा खत्म होता है।",
+          "en_subtitle": "Always distinguish: Payoff is terminal cashflow; Profit deducts initial premium paid.",
+          "en_narration": "Payoff is gross terminal cashflow, while profit subtracts initial premium paid.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Gross Payoff",
+            "rightTitle": "Net Trading Profit",
+            "leftPoints": [
+              "Terminal cashflow at expiration",
+              "Ignores upfront premium paid",
+              "Always >= 0 for options"
+            ],
+            "rightPoints": [
+              "Terminal payoff minus initial premium",
+              "Accounts for capital outlay",
+              "Negative if price stays flat"
+            ],
+            "left": {
+              "title": "Asian Options (Average Price)",
+              "items": [
+                "Payoff based on average asset price S_avg",
+                "Variance of average is strictly lower: sigma / sqrt(3)",
+                "Eliminates expiration date pinning and market manipulation"
+              ]
+            },
+            "right": {
+              "title": "Vanilla European Options",
+              "items": [
+                "Payoff based solely on terminal spot price S_T",
+                "Full underlying market volatility sigma",
+                "Higher premium cost for corporate hedgers"
+              ]
+            }
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Gross Payoff",
+                "points": [
+                  "Terminal Cashflow",
+                  "Ignores Premium"
+                ]
+              },
+              "rightColumn": {
+                "title": "Net Profit",
+                "points": [
+                  "Payoff - Premium",
+                  "True Economic P&L"
+                ]
+              },
+              "left": {
+                "title": "Asian Options (Average Price)",
+                "items": [
+                  "Payoff based on average asset price S_avg",
+                  "Variance of average is strictly lower: sigma / sqrt(3)",
+                  "Eliminates expiration date pinning and market manipulation"
+                ]
+              },
+              "right": {
+                "title": "Vanilla European Options",
+                "items": [
+                  "Payoff based solely on terminal spot price S_T",
+                  "Full underlying market volatility sigma",
+                  "Higher premium cost for corporate hedgers"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Strictly enforce the Payoff vs Profit distinction.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "text": "एशियन ऑप्शंस में एवरेज प्राइस लेने से वोलैटिलिटी कम हो जाती है, जिससे ऑप्शन सस्ता मिलता है और एक्सपायरी के दिन मार्केट मैनिपुलेशन का खतरा खत्म होता है।"
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "Hull Section 22.8: Asian Geometric vs Arithmetic Pricing",
+      "template": "progressive_cards",
+      "badge": "Case Study · Lehman Brothers 2008",
+      "beats": [
+        {
+          "id": "b09",
+          "hindi_tts": "हल के उदाहरण में 40 परसेंट वोलैटिलिटी वाला वैनिला कॉल 9.64 डॉलर का था, जबकि एशियन कॉल सिर्फ 5.62 डॉलर में मिल गया।",
+          "en_subtitle": "In 2008, Lehman held over $600 billion in uncollateralized OTC positions, freezing the banking system.",
+          "en_narration": "In 2008, Lehman held $600 billion in OTC positions, triggering systemic contagion.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "Spot $50 vs Strike $50",
+                "body": "1-year call with 40% initial volatility and 10% risk-free rate."
+              },
+              {
+                "title": "Adjusted Vol: 23.09%",
+                "body": "Continuous geometric averaging scales volatility down by sigma / sqrt(3)."
+              },
+              {
+                "title": "Price: $5.62 vs $9.64 Vanilla",
+                "body": "Hedgers capture identical insurance for 42% lower cash premium expenditure."
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "Spot $50 vs Strike $50",
+                  "body": "1-year call with 40% initial volatility and 10% risk-free rate."
+                },
+                {
+                  "title": "Adjusted Vol: 23.09%",
+                  "body": "Continuous geometric averaging scales volatility down by sigma / sqrt(3)."
+                },
+                {
+                  "title": "Price: $5.62 vs $9.64 Vanilla",
+                  "body": "Hedgers capture identical insurance for 42% lower cash premium expenditure."
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate systemic counterparty contagion in uncollateralized OTC markets.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-05"
+              ]
+            }
+          },
+          "text": "हल के उदाहरण में 40 परसेंट वोलैटिलिटी वाला वैनिला कॉल 9.64 डॉलर का था, जबकि एशियन कॉल सिर्फ 5.62 डॉलर में मिल गया।"
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "Binary (Digital) Options: Cash-or-Nothing vs Asset-or-Nothing",
+      "template": "formula_breakdown",
+      "badge": "Balance Sheet Risk · Leverage Math",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "बाइनरी ऑप्शंस में कैश-ऑर-नथिंग ऑप्शन फिक्स्ड अमाउंट पे करता है, जबकि एसेट-ऑर-नथिंग ऑप्शन एसेट की पूरी वैल्यू डिलीवर करता है।",
+          "en_subtitle": "At thirty-one to one leverage, just a 3.2% decline in assets completely wipes out shareholder equity.",
+          "en_narration": "At 31 to 1 leverage, a 3.2% decline in assets wipes out shareholder equity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Leverage Multipliers & Equity Wipeout",
+            "expression": "L = \\text{Assets} / \\text{Equity}",
+            "variables": [
+              {
+                "symbol": "L",
+                "label": "Balance sheet leverage ratio (31:1)",
+                "unit": "ratio"
+              },
+              {
+                "symbol": "\\Delta Equity",
+                "label": "\\Delta Assets \\times L",
+                "unit": "%"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Leverage Multipliers & Equity Wipeout",
+              "expression": "L = \\text{Assets} / \\text{Equity}",
+              "variables": [
+                {
+                  "symbol": "L",
+                  "label": "Leverage ratio",
+                  "unit": "ratio"
+                },
+                {
+                  "symbol": "\\Delta Equity",
+                  "label": "Change in equity",
+                  "unit": "%"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Prove mathematically how high leverage accelerates balance-sheet bankruptcy.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "बाइनरी ऑप्शंस में कैश-ऑर-नथिंग ऑप्शन फिक्स्ड अमाउंट पे करता है, जबकि एसेट-ऑर-नथिंग ऑप्शन एसेट की पूरी वैल्यू डिलीवर करता है।"
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall Challenge",
+      "template": "interactive_quiz",
+      "badge": "Concept Verification · Active Recall",
+      "beats": [
+        {
+          "id": "b11",
+          "hindi_tts": "सोचिए कि समान स्ट्राइक और मैच्योरिटी वाले नॉक-इन बैरियर ऑप्शन और नॉक-आउट बैरियर ऑप्शन को एक साथ रखने पर वैनिला ऑप्शन क्यों बन जाता है?",
+          "en_subtitle": "If a trader takes an unhedged leveraged position, what is the immediate structural risk?",
+          "en_narration": "What is the primary risk of an unhedged highly leveraged market position?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "question": "Why does holding an identical portfolio of a knock-in barrier option and a knock-out barrier option always equal a plain vanilla option?",
+            "options": [
+              "A: In-out parity guarantees that the option either hits the barrier and pays knock-in, or misses and pays knock-out",
+              "B: Barrier options are illegal on US exchanges unless bundled into symmetrical packages",
+              "C: Knock-in options have zero delta while knock-out options have zero gamma at all asset levels",
+              "D: The Black-Scholes formula is only mathematically defined when barrier levels equal the strike price"
+            ],
+            "showThinkingSpinner": false,
+            "answer": ""
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "Why does holding an identical portfolio of a knock-in barrier option and a knock-out barrier option always equal a plain vanilla option?",
+              "options": [
+                "A: In-out parity guarantees that the option either hits the barrier and pays knock-in, or misses and pays knock-out",
+                "B: Barrier options are illegal on US exchanges unless bundled into symmetrical packages",
+                "C: Knock-in options have zero delta while knock-out options have zero gamma at all asset levels",
+                "D: The Black-Scholes formula is only mathematically defined when barrier levels equal the strike price"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Test understanding of leverage depletion and margin call dynamics.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "सोचिए कि समान स्ट्राइक और मैच्योरिटी वाले नॉक-इन बैरियर ऑप्शन और नॉक-आउट बैरियर ऑप्शन को एक साथ रखने पर वैनिला ऑप्शन क्यों बन जाता है?"
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "विचार कीजिए कि क्या बैरियर छूने या न छूने के अलावा मार्केट में कोई तीसरा रास्ता संभव है।",
+          "en_subtitle": "Think carefully... Can a leveraged position survive without adequate margin capital?",
+          "en_narration": "Pause and consider the margin mechanics.",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "question": "Why does holding an identical portfolio of a knock-in barrier option and a knock-out barrier option always equal a plain vanilla option?",
+            "showThinkingSpinner": true,
+            "answer": "",
+            "options": [
+              "A: In-out parity guarantees that the option either hits the barrier and pays knock-in, or misses and pays knock-out",
+              "B: Barrier options are illegal on US exchanges unless bundled into symmetrical packages",
+              "C: Knock-in options have zero delta while knock-out options have zero gamma at all asset levels",
+              "D: The Black-Scholes formula is only mathematically defined when barrier levels equal the strike price"
+            ]
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "showThinkingSpinner": true,
+              "question": "Why does holding an identical portfolio of a knock-in barrier option and a knock-out barrier option always equal a plain vanilla option?",
+              "options": [
+                "A: In-out parity guarantees that the option either hits the barrier and pays knock-in, or misses and pays knock-out",
+                "B: Barrier options are illegal on US exchanges unless bundled into symmetrical packages",
+                "C: Knock-in options have zero delta while knock-out options have zero gamma at all asset levels",
+                "D: The Black-Scholes formula is only mathematically defined when barrier levels equal the strike price"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Engage active recall cognitive processing pause.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "विचार कीजिए कि क्या बैरियर छूने या न छूने के अलावा मार्केट में कोई तीसरा रास्ता संभव है।"
+        },
+        {
+          "id": "b13",
+          "hindi_tts": "सही उत्तर ए है। इन-आउट पैरिटी यह पक्का करती है कि या तो बैरियर टच होगा या नहीं, इसलिए दोनों का सम हमेशा वैनिला के बराबर रहेगा।",
+          "en_subtitle": "Correct answer is B! Insufficient margin triggers immediate forced liquidation.",
+          "en_narration": "Correct answer is B: Insufficient margin triggers immediate forced liquidation.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "question": "Why does holding an identical portfolio of a knock-in barrier option and a knock-out barrier option always equal a plain vanilla option?",
+            "showThinkingSpinner": false,
+            "answer": "A: In-out parity guarantees that the option either hits the barrier and pays knock-in, or misses and pays knock-out",
+            "correctIndex": 1,
+            "options": [
+              "A: In-out parity guarantees that the option either hits the barrier and pays knock-in, or misses and pays knock-out",
+              "B: Barrier options are illegal on US exchanges unless bundled into symmetrical packages",
+              "C: Knock-in options have zero delta while knock-out options have zero gamma at all asset levels",
+              "D: The Black-Scholes formula is only mathematically defined when barrier levels equal the strike price"
+            ]
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "answer": "A: In-out parity guarantees that the option either hits the barrier and pays knock-in, or misses and pays knock-out",
+              "correctIndex": 1,
+              "question": "Why does holding an identical portfolio of a knock-in barrier option and a knock-out barrier option always equal a plain vanilla option?",
+              "options": [
+                "A: In-out parity guarantees that the option either hits the barrier and pays knock-in, or misses and pays knock-out",
+                "B: Barrier options are illegal on US exchanges unless bundled into symmetrical packages",
+                "C: Knock-in options have zero delta while knock-out options have zero gamma at all asset levels",
+                "D: The Black-Scholes formula is only mathematically defined when barrier levels equal the strike price"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce correct understanding of daily variation settlement.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "सही उत्तर ए है। इन-आउट पैरिटी यह पक्का करती है कि या तो बैरियर टच होगा या नहीं, इसलिए दोनों का सम हमेशा वैनिला के बराबर रहेगा।"
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Trading Desk Execution Rules",
+      "template": "chat_story",
+      "badge": "Practical Synthesis · Senior Trader Desk",
+      "beats": [
+        {
+          "id": "b14",
+          "hindi_tts": "शर्मा जी, एग्जॉटिक बैरियर ऑप्शंस को डायनेमिकली हेज करना इतना कठिन क्यों होता है?",
+          "en_subtitle": "Raju notes: To survive, understanding margin and settlement rules comes before taking leverage.",
+          "en_narration": "Raju realizes that understanding settlement rules precedes taking leverage.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju summarizes risk discipline —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "So margin buffer and settlement discipline matter more than aggressive positioning!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Margin buffer and settlement discipline matter more than aggressive positioning!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Synthesize operational risk discipline before directional speculation.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Sharma ji, exotic barrier options ko dynamically hedge karna itna kathin kyu hota hai?"
+        },
+        {
+          "id": "b15",
+          "hindi_tts": "राजू, बैरियर के पास डेल्टा और गामा डिसकंटीन्यूअस हो जाते हैं, इसलिए ट्रेडर्स स्टैटिक ऑप्शंस रेप्लिकेशन इस्तेमाल करते हैं!",
+          "en_subtitle": "Sharma ji confirms: Exactly! Disciplined traders protect capital before predicting market direction.",
+          "en_narration": "Sharma ji confirms that capital protection precedes directional bets.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji delivers core trading maxim —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Disciplined market participants protect capital buffers before guessing price direction.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Disciplined market participants protect capital buffers before guessing price direction.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Affirm risk management as the paramount prerequisite for trading longevity.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Raju, barrier ke paas delta aur gamma discontinuous ho jate hain, isliye traders static options replication use karte hain!"
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "The Whole Picture: 8 Core Principles",
+      "template": "summary_thread",
+      "badge": "Master Review · 8 Inviolable Rules",
+      "beats": [
+        {
+          "id": "b16",
+          "hindi_tts": "आइए एग्जॉटिक ऑप्शंस और नॉनस्टैंडर्ड स्वैप्स के आठ मुख्य सिद्धांतों को दोहराएं।",
+          "en_subtitle": "Let us review the eight foundational principles established in this lesson.",
+          "en_narration": "Let us review the eight foundational principles of this lesson.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+              "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+              "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+              "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+              "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+              "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+                "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+                "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+                "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+                "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+                "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                0,
+                0
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present executive overview of the 8 chapter rules.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "text": "Aaiye Exotic Options aur Nonstandard Swaps ke aath mukhya siddhanton ko dohraayein."
+        },
+        {
+          "id": "b17",
+          "hindi_tts": "नियम एक और दो: एग्जॉटिक ऑप्शंस टेलर्ड हेजिंग देते हैं और फॉरवर्ड स्टार्ट ऑप्शंस फ्यूचर डेट पर स्ट्राइक फिक्स करते हैं।",
+          "en_subtitle": "First and second: Derivatives derive value from underlyings, and futures are standardized on exchanges.",
+          "en_narration": "Rules 1 and 2: Derivatives derive value from underlyings, and futures are standardized.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+              "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+              "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+              "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+              "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+              "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+                "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+                "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+                "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+                "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+                "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                2
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 1 and 2.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "text": "Niyam 1 aur 2: Exotic options tailored hedging dete hain aur forward start options future date par strike fix karte hain."
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "नियम तीन और चार: बैरियर इन-आउट पैरिटी वैनिला ऑप्शन देती है और लुकबैक एक्सट्रीम प्राइसेस कैप्चर करते हैं।",
+          "en_subtitle": "Third and fourth: OTC contracts carry bilateral counterparty risk, and payoff is defined by the strike price.",
+          "en_narration": "Rules 3 and 4: OTC carries counterparty risk, and payoff depends on strike.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+              "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+              "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+              "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+              "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+              "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+                "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+                "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+                "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+                "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+                "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                3,
+                4
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 3 and 4.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "text": "Niyam 3 aur 4: Barrier in-out parity vanilla option deti hai aur lookback extreme prices capture karte hain."
+        },
+        {
+          "id": "b19",
+          "hindi_tts": "नियम पांच और छह: एशियन ऑप्शंस वोलैटिलिटी डैम्प करके प्रीमियम कम करते हैं और बाइनरी ऑप्शंस डिजिटल कैश फ्लो देते हैं।",
+          "en_subtitle": "Fifth and sixth: Clearinghouses enforce variation margin, and high leverage rapidly depletes equity.",
+          "en_narration": "Rules 5 and 6: Margin protects clearinghouses, while leverage depletes equity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+              "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+              "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+              "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+              "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+              "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+                "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+                "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+                "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+                "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+                "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                5,
+                6
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 5 and 6.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Niyam 5 aur 6: Asian options volatility damp karke premium kam karte hain aur binary options digital cashflows dete hain."
+        },
+        {
+          "id": "b20",
+          "hindi_tts": "नियम सात और आठ: लीवरेज्ड स्वैप्स में नॉन-लीनियर रिस्क होता है और स्टैटिक रेप्लिकेशन बैरियर ग्रीक्स को स्टेबलाइज करता है।",
+          "en_subtitle": "Seventh and eighth: Bilateral exposure requires collateral, and never confuse gross payoff with net profit.",
+          "en_narration": "Rules 7 and 8: Collateralize bilateral risk, and never confuse payoff with profit.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "steps": [
+              "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+              "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+              "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+              "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+              "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+              "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+                "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+                "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+                "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+                "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+                "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                7,
+                8
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 7 and 8 with dedicated focus.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "text": "Niyam 7 aur 8: Leveraged swaps me non-linear risk hota hai aur static replication barrier Greeks ko stabilize karta hai."
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "यह आठ नियम स्ट्रक्चर्ड प्रोडक्ट्स और क्वांटिटेटिव एग्जॉटिक ट्रेडिंग के स्तंभ हैं।",
+          "en_subtitle": "These eight principles form the enduring foundation for trading discipline across global markets.",
+          "en_narration": "These eight rules form the foundation of trading discipline.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "steps": [
+              "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+              "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+              "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+              "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+              "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+              "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. Exotic options are non-standard over-the-counter contracts that differ from plain vanilla exchange-traded opti",
+                "2. Packages are structured portfolios of standard European options. A forward start option is paid for today but ",
+                "3. A chooser option (also called an as-you-like-it option) gives the purchaser the right at a future choice date ",
+                "4. Barrier options have payoffs contingent on whether the underlying asset price touches a barrier level H during",
+                "5. Binary options have discontinuous payoffs: a cash-or-nothing call pays a fixed cash amount Q if asset price S_",
+                "6. Lookback options depend on the extreme maximum or minimum asset price achieved over the entire option contract",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display comprehensive whole-chapter synthesis overview.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "text": "Yeh aath niyam structured products aur quantitative exotic trading ke stambh hain."
+        }
+      ]
+    }
+  ]
+}

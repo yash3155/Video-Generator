@@ -1,0 +1,296 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch24_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-08T07:09:32.590Z",
+  "bookTitle": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "generalAssumptions": [
+    "Weather, energy, and insurance risks cannot be stored costlessly or dynamically replicated via cash-and-carry arbitrage, requiring incomplete market and actuarial pricing models.",
+    "Weather derivatives settle based on cumulative Heating Degree Days (HDD) and Cooling Degree Days (CDD) measured against a 65° Fahrenheit reference temperature.",
+    "Electricity derivatives exhibit extreme price spikes and mean-reversion because electrical power cannot be stored in bulk economically.",
+    "Catastrophe (CAT) bonds transfer catastrophic property casualty risk from insurers to capital market investors via parametric or indemnity triggers."
+  ],
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Incomplete Markets and Non-Storability of Alternative Risks",
+      "statement": "Weather, electricity, and insurance catastrophe risks represent incomplete markets: because temperatures, weather events, and bulk electricity cannot be bought and stored in a warehouse for future delivery, standard no-arbitrage Black-Scholes replication arguments break down, requiring historical burn analysis and equilibrium actuarial models.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch24_part1",
+        "excerpt": "Unlike financial assets, weather and electricity cannot be stored. Standard no-arbitrage arguments cannot be used to price derivatives on these variables.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "incomplete_markets",
+        "non_storability",
+        "actuarial_pricing",
+        "alternative_derivatives"
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "formula",
+      "topic": "Weather Derivatives: Heating Degree Days (HDD) and Cooling Degree Days (CDD)",
+      "statement": "Weather options settle on cumulative degree days relative to 65° Fahrenheit (18.3° Celsius): daily Heating Degree Days HDD = max(0, 65 - A) and daily Cooling Degree Days CDD = max(0, A - 65), where A = (T_max + T_min) / 2 is the average daily temperature. Monthly or seasonal contracts accumulate these daily indices across designated weather stations.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch24_part1",
+        "excerpt": "A Heating Degree Day is HDD = max(0, 65 - A). A Cooling Degree Day is CDD = max(0, A - 65), where A is the average of highest and lowest temperature.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "hdd_formula",
+        "cdd_formula",
+        "degree_days",
+        "weather_indices"
+      ],
+      "formulaDetails": {
+        "name": "Degree Day Equations",
+        "latex": "\\text{HDD} = \\max(0, 65 - A), \\quad \\text{CDD} = \\max(0, A - 65), \\quad A = \\frac{T_{\\max} + T_{\\min}}{2}",
+        "variables": [
+          {
+            "symbol": "\\text{HDD}",
+            "definition": "Heating Degree Days (measures heating demand below 65°F)",
+            "unit": "degree-days (°F-days)"
+          },
+          {
+            "symbol": "\\text{CDD}",
+            "definition": "Cooling Degree Days (measures air conditioning demand above 65°F)",
+            "unit": "degree-days (°F-days)"
+          },
+          {
+            "symbol": "A",
+            "definition": "Average daily temperature in degrees Fahrenheit",
+            "unit": "degrees Fahrenheit (°F)"
+          },
+          {
+            "symbol": "T_{\\max}",
+            "definition": "Maximum recorded daily temperature",
+            "unit": "degrees Fahrenheit (°F)"
+          },
+          {
+            "symbol": "T_{\\min}",
+            "definition": "Minimum recorded daily temperature",
+            "unit": "degrees Fahrenheit (°F)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fact-03",
+      "category": "claim",
+      "topic": "Pricing Weather Derivatives via Historical Burn Analysis",
+      "statement": "Because weather indices cannot be hedged through underlying storage replication, practitioners price weather derivatives using historical burn analysis: calculating what the derivative would have paid out in each of the past 20 to 30 years under current contract specifications, adjusting for global warming trends and urbanization heat-island effects.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch24_part1",
+        "excerpt": "Historical burn analysis involves calculating what the payout from the weather derivative would have been in each of the last 20 or 30 years.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "historical_burn_analysis",
+        "climate_trends",
+        "actuarial_burn_rate"
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "definition",
+      "topic": "Energy Derivatives Landscape: Crude Oil, Natural Gas, and Refined Products",
+      "statement": "Energy derivatives encompass futures, swaps, and options on crude oil (WTI and Brent benchmarks), natural gas (Henry Hub), heating oil, and gasoline. Energy contracts feature distinct physical delivery logistics, seasonal storage cycles (injection in summer, withdrawal in winter for natural gas), and pipeline transit capacity constraints.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch24_part1",
+        "excerpt": "Energy derivatives include contracts on crude oil, natural gas, heating oil, and electricity. Natural gas has marked seasonal demand patterns.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "energy_derivatives",
+        "crude_oil",
+        "natural_gas",
+        "henry_hub",
+        "seasonal_injection"
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "definition",
+      "topic": "Electricity Derivatives: Non-Storability and Standard Power Profiles (5x16, 5x8, 7x24)",
+      "statement": "Electricity is the most extreme commodity because it must be generated and consumed instantaneously in real-time. Power markets trade standardized delivery profiles: 5x16 peak load (16 hours per day, Monday-Friday), 5x8 off-peak, and 7x24 baseload. Grid bottlenecks frequently produce violent short-term price spikes and negative electricity prices.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch24_part1",
+        "excerpt": "Electricity cannot be stored easily. Contracts trade as 5x16 (peak period: 16 hours each weekday) and 7x24 (baseload power around the clock).",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "electricity_derivatives",
+        "peak_5x16",
+        "baseload_7x24",
+        "non_storability_spikes"
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "formula",
+      "topic": "Mean-Reversion in Commodity and Energy Spot Prices",
+      "statement": "Unlike financial asset prices which follow geometric random walks, energy and commodity spot prices follow mean-reverting processes: dS = a * (L - S) dt + sigma * S dz, where S is spot price, a is the speed of mean reversion, and L is the long-run equilibrium marginal cost of production. High prices incentivize extra production, forcing prices back toward L.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch24_part1",
+        "excerpt": "Commodity prices tend to be mean reverting. When the price is high, supply increases and price falls. When the price is low, demand increases and price rises.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "mean_reversion_formula",
+        "commodity_dynamics",
+        "marginal_cost_equilibrium"
+      ],
+      "formulaDetails": {
+        "name": "Mean-Reverting Commodity Price Process",
+        "latex": "dS = a(L - S) \\, dt + \\sigma S \\, dz",
+        "variables": [
+          {
+            "symbol": "dS",
+            "definition": "Instantaneous change in commodity spot price",
+            "unit": "currency ($)"
+          },
+          {
+            "symbol": "a",
+            "definition": "Speed of mean reversion parameter",
+            "unit": "1/time (yr^-1)"
+          },
+          {
+            "symbol": "L",
+            "definition": "Long-run equilibrium marginal cost price level",
+            "unit": "currency ($)"
+          },
+          {
+            "symbol": "S",
+            "definition": "Current commodity spot price",
+            "unit": "currency ($)"
+          },
+          {
+            "symbol": "\\sigma",
+            "definition": "Commodity price volatility",
+            "unit": "per annum (%/yr)"
+          },
+          {
+            "symbol": "dz",
+            "definition": "Standard Wiener process increment",
+            "unit": "sqrt(time)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fact-07",
+      "category": "numerical_example",
+      "topic": "Hull Section 24.2: CDD Weather Option Valuation on Chicago Summer Cooling",
+      "statement": "In Hull Section 24.2, a utility company buys a cumulative CDD call option for Chicago covering July with strike K = 300 CDD degree-days and tick size $10,000 per degree day. Over 30 years of historical data, average payout was 25 degree-days, producing an expected payout of $250,000. Adding a 10% risk premium yields a fair market option premium of $275,000. Profit = Payoff - Premium paid.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch24_part1",
+        "excerpt": "Consider a July CDD option with strike 300 and $10,000 payout per degree-day. Historical burn analysis gives an expected payout of $250,000.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "numerical_weather_cdd",
+        "section_24_2",
+        "chicago_cooling_option"
+      ],
+      "numericalDetails": {
+        "values": {
+          "strikeDegreeDays": 300,
+          "tickSize": 10000,
+          "expectedDegreeDays": 25,
+          "expectedPayout": 250000,
+          "riskPremium": 25000,
+          "totalOptionPrice": 275000
+        },
+        "units": "$",
+        "contractSize": 1,
+        "context": "Hull Section 24.2 numerical Chicago cooling degree day call valuation"
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "max(CDD - K, 0) * tickSize",
+        "formulaProfit": "max(CDD - K, 0) * tickSize - premium"
+      }
+    },
+    {
+      "id": "fact-08",
+      "category": "definition",
+      "topic": "Catastrophe (CAT) Bonds Architecture",
+      "statement": "A Catastrophe (CAT) bond is a structured debt instrument issued by an insurance company or reinsurer via a Special Purpose Vehicle (SPV) to transfer severe disaster risks (hurricanes, earthquakes) to institutional capital markets. Investors receive elevated coupon spreads (such as SOFR + 600 bps), but agree that if a predefined catastrophe occurs, principal is forgiven to pay insurer claims.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch24_part1",
+        "excerpt": "A catastrophe (CAT) bond is an instrument created by an insurance company to transfer risk to capital markets. If a specified catastrophe occurs, investors lose their principal.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "cat_bonds",
+        "spv_structure",
+        "insurance_risk_transfer",
+        "coupon_premium"
+      ]
+    },
+    {
+      "id": "fact-09",
+      "category": "claim",
+      "topic": "CAT Bond Trigger Taxonomy: Indemnity vs Parametric vs Modeled Loss",
+      "statement": "CAT bonds utilize four primary trigger structures: Indemnity triggers (linked directly to the actual dollar loss sustained by the sponsoring insurer); Index triggers (linked to industry-wide insured losses); Parametric triggers (linked directly to physical weather station or geological data, such as a Category 5 hurricane central pressure or 7.5 Richter earthquake); and Modeled loss triggers.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch24_part1",
+        "excerpt": "Triggers for CAT bonds can be indemnity (sponsor's actual losses), industry index, or parametric (actual physical characteristics of the catastrophe).",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "cat_triggers",
+        "indemnity_trigger",
+        "parametric_trigger",
+        "basis_risk"
+      ]
+    },
+    {
+      "id": "fact-10",
+      "category": "case_study",
+      "topic": "Natural Gas Storage as an American Swing Option",
+      "statement": "In energy risk management, natural gas storage facilities operate economically as real American swing options: facility owners hold the optionality to inject gas into depleted salt caverns during low-demand summer months when spot prices are depressed, and withdraw gas for sale into high-demand winter spikes, profiting from the seasonal spread.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch24_part1",
+        "excerpt": "A natural gas storage facility can be regarded as an option. The owner can choose when to inject gas and when to withdraw it to capitalize on seasonal price differences.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "gas_storage_option",
+        "summer_winter_spread",
+        "real_options",
+        "swing_options"
+      ]
+    },
+    {
+      "id": "fact-11",
+      "category": "claim",
+      "topic": "Capital Market Diversification Benefit of CAT Bonds",
+      "statement": "Institutional asset managers value CAT bonds because catastrophe risks (hurricanes, tsunamis, earthquakes) have near-zero statistical correlation with equity markets, interest rate cycles, or corporate credit default cycles. Adding CAT bonds to an investment portfolio expands the efficient frontier by delivering uncorrelated high-yield spread returns.",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "ch24_part1",
+        "excerpt": "CAT bonds are attractive to investors because natural catastrophes are uncorrelated with economic conditions and the returns on other investments.",
+        "provenance": "notebooklm_query"
+      },
+      "tags": [
+        "uncorrelated_returns",
+        "portfolio_diversification",
+        "zero_equity_beta"
+      ]
+    }
+  ]
+}

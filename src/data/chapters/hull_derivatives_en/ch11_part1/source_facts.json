@@ -1,0 +1,357 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch11_part1",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-08T05:27:31.687Z",
+  "bookTitle": "Technical Analysis of the Financial Markets (John J. Murphy)",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Principal-Protected Notes (PPNs) Structure and Payoff",
+      "statement": "A Principal-Protected Note (PPN) is a structured financial product created by combining a zero-coupon government bond paying face value at maturity with a call option (or portfolio of call options) on an underlying asset or stock index. This guarantees 100% principal preservation on the downside while providing upside market participation if the underlying asset appreciates.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch11_part1",
+        "excerpt": "A Principal-Protected Note is a structured financial instrument created by combining a zero-coupon bond paying face value at maturity with a call option (or portfolio of call options) on an underlying asset or stock index",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-02",
+      "category": "formula",
+      "topic": "Covered Call Strategy Formulas and Payoff",
+      "statement": "A covered call consists of a long stock position combined with a short call option on the same stock. Its downside break-even equals Stock Purchase Price minus Call Premium Received, and its maximum profit equals (Call Strike Price minus Stock Purchase Price) plus Call Premium Received.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch11_part1",
+        "excerpt": "Downside Break-Even = Stock Purchase Price - Call Premium Received ... Maximum Profit = (Call Strike Price - Stock Purchase Price) + Call Premium Received",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Covered Call Break-Even and Max Profit",
+        "latex": "\\text{Downside Break-Even} = S_0 - c, \\quad \\text{Maximum Profit} = (K - S_0) + c",
+        "variables": [
+          {
+            "symbol": "S_0",
+            "definition": "Stock purchase price",
+            "unit": "$"
+          },
+          {
+            "symbol": "c",
+            "definition": "Call premium received",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Call strike price",
+            "unit": "$"
+          }
+        ]
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "\\min(S_T, K) - S_0 + c",
+        "formulaProfit": "\\min(S_T, K) - S_0 + c",
+        "premiumConsidered": true,
+        "explanation": "The covered call caps upside profit at strike K while providing downside cushioning equal to the short call premium received c."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-03",
+      "category": "formula",
+      "topic": "Protective Put (Married Put) Strategy Formulas",
+      "statement": "A protective put consists of a long stock position combined with a long put option on the same stock, providing capped maximum loss and uncapped upside potential. Its break-even price equals Stock Purchase Price plus Put Premium Paid, and its maximum loss equals (Stock Purchase Price minus Put Strike Price) plus Put Premium Paid.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch11_part1",
+        "excerpt": "Break-Even Price = Stock Purchase Price + Put Premium Paid ... Maximum Loss = (Stock Purchase Price - Put Strike Price) + Put Premium Paid",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Protective Put Break-Even and Max Loss",
+        "latex": "\\text{Break-Even} = S_0 + p, \\quad \\text{Maximum Loss} = (S_0 - K) + p",
+        "variables": [
+          {
+            "symbol": "S_0",
+            "definition": "Stock purchase price",
+            "unit": "$"
+          },
+          {
+            "symbol": "p",
+            "definition": "Put premium paid",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Put strike price",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-04",
+      "category": "formula",
+      "topic": "Bull Call Spread Formulas and Payoff",
+      "statement": "A bull call spread is established by buying a call with lower strike K_1 and selling a call with higher strike K_2 (K_1 < K_2) as a net debit transaction. Its break-even price equals K_1 plus Net Debit, and its maximum profit equals (K_2 minus K_1) minus Net Debit.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch11_part1",
+        "excerpt": "Break-Even Price = K_1 + Net Debit ... Maximum Profit = (K_2 - K_1) - Net Debit",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Bull Call Spread Break-Even and Max Profit",
+        "latex": "\\text{Break-Even} = K_1 + \\text{Net Debit}, \\quad \\text{Maximum Profit} = (K_2 - K_1) - \\text{Net Debit}",
+        "variables": [
+          {
+            "symbol": "K_1",
+            "definition": "Lower strike price of purchased call",
+            "unit": "$"
+          },
+          {
+            "symbol": "K_2",
+            "definition": "Higher strike price of written call",
+            "unit": "$"
+          },
+          {
+            "symbol": "\\text{Net Debit}",
+            "definition": "Net initial cash outlay for the spread",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-05",
+      "category": "formula",
+      "topic": "Bull Put Spread Formulas",
+      "statement": "A bull put spread is established by buying a put with lower strike K_1 and selling a put with higher strike K_2 (K_1 < K_2) as a net credit transaction. Its break-even price equals K_2 minus Net Credit, and its maximum loss equals (K_2 minus K_1) minus Net Credit.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch11_part1",
+        "excerpt": "Break-Even Price = K_2 - Net Credit ... Maximum Loss = (K_2 - K_1) - Net Credit",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Bull Put Spread Break-Even and Max Loss",
+        "latex": "\\text{Break-Even} = K_2 - \\text{Net Credit}, \\quad \\text{Maximum Loss} = (K_2 - K_1) - \\text{Net Credit}",
+        "variables": [
+          {
+            "symbol": "K_1",
+            "definition": "Lower strike price of purchased put",
+            "unit": "$"
+          },
+          {
+            "symbol": "K_2",
+            "definition": "Higher strike price of written put",
+            "unit": "$"
+          },
+          {
+            "symbol": "\\text{Net Credit}",
+            "definition": "Net initial cash inflow for the spread",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-06",
+      "category": "formula",
+      "topic": "Bear Put Spread Formulas",
+      "statement": "A bear put spread is established by buying a put with higher strike K_2 and selling a put with lower strike K_1 (K_1 < K_2) as a net debit transaction. Its break-even price equals K_2 minus Net Debit, and its maximum profit equals (K_2 minus K_1) minus Net Debit.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch11_part1",
+        "excerpt": "Break-Even Price = K_2 - Net Debit ... Maximum Profit = (K_2 - K_1) - Net Debit",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Bear Put Spread Break-Even and Max Profit",
+        "latex": "\\text{Break-Even} = K_2 - \\text{Net Debit}, \\quad \\text{Maximum Profit} = (K_2 - K_1) - \\text{Net Debit}",
+        "variables": [
+          {
+            "symbol": "K_2",
+            "definition": "Higher strike price of purchased put",
+            "unit": "$"
+          },
+          {
+            "symbol": "K_1",
+            "definition": "Lower strike price of written put",
+            "unit": "$"
+          },
+          {
+            "symbol": "\\text{Net Debit}",
+            "definition": "Net initial cash outlay",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-07",
+      "category": "formula",
+      "topic": "Bear Call Spread Formulas",
+      "statement": "A bear call spread is established by buying a call with higher strike K_2 and selling a call with lower strike K_1 (K_1 < K_2) as a net credit transaction. Its break-even price equals K_1 plus Net Credit, and its maximum loss equals (K_2 minus K_1) minus Net Credit.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch11_part1",
+        "excerpt": "Break-Even = K_1 + Net Credit ... Maximum Loss = (K_2 - K_1) - Net Credit",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Bear Call Spread Break-Even and Max Loss",
+        "latex": "\\text{Break-Even} = K_1 + \\text{Net Credit}, \\quad \\text{Maximum Loss} = (K_2 - K_1) - \\text{Net Credit}",
+        "variables": [
+          {
+            "symbol": "K_1",
+            "definition": "Lower strike price of written call",
+            "unit": "$"
+          },
+          {
+            "symbol": "K_2",
+            "definition": "Higher strike price of purchased call",
+            "unit": "$"
+          },
+          {
+            "symbol": "\\text{Net Credit}",
+            "definition": "Net initial cash inflow",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-08",
+      "category": "formula",
+      "topic": "Box Spread Arbitrage Present Value Rule",
+      "statement": "A box spread combines a bull call spread and a bear put spread using the same strikes K_1 < K_2, guaranteeing a terminal payoff of K_2 minus K_1 regardless of stock price S_T. In an arbitrage-free market, the initial net debit must equal the present value of (K_2 - K_1) discounted at the risk-free rate: Box Price = (K_2 - K_1) * e^(-r*T).",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch11_part1",
+        "excerpt": "Box Price = (K_2 - K_1) e^{-r T}",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Box Spread Present Value Valuation",
+        "latex": "\\text{Box Price} = (K_2 - K_1) e^{-r T}",
+        "variables": [
+          {
+            "symbol": "K_1, K_2",
+            "definition": "Lower and higher strike prices",
+            "unit": "$"
+          },
+          {
+            "symbol": "r",
+            "definition": "Risk-free interest rate",
+            "unit": "rate"
+          },
+          {
+            "symbol": "T",
+            "definition": "Time to expiration",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-09",
+      "category": "formula",
+      "topic": "Butterfly Spread Structure and Formulas",
+      "statement": "A butterfly spread consists of buying one call at lower strike K_1, buying one call at higher strike K_3, and selling two calls at middle strike K_2 (where K_2 = (K_1 + K_3) / 2) for a net debit. Its maximum profit equals (K_2 minus K_1) minus Net Debit, with downside break-even at K_1 plus Net Debit and upside break-even at K_3 minus Net Debit.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch11_part1",
+        "excerpt": "Downside Break-Even = K_1 + Net Debit; Upside Break-Even = K_3 - Net Debit ... Maximum Profit = (K_2 - K_1) - Net Debit",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Butterfly Spread Break-Even and Max Profit",
+        "latex": "\\text{Max Profit} = (K_2 - K_1) - \\text{Net Debit}, \\quad \\text{Downside BE} = K_1 + \\text{Net Debit}, \\quad \\text{Upside BE} = K_3 - \\text{Net Debit}",
+        "variables": [
+          {
+            "symbol": "K_1",
+            "definition": "Lower strike price",
+            "unit": "$"
+          },
+          {
+            "symbol": "K_2",
+            "definition": "Middle strike price",
+            "unit": "$"
+          },
+          {
+            "symbol": "K_3",
+            "definition": "Higher strike price",
+            "unit": "$"
+          },
+          {
+            "symbol": "\\text{Net Debit}",
+            "definition": "Net initial outlay",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-10",
+      "category": "numerical_example",
+      "topic": "Bull Call Spread Numerical Calculation",
+      "statement": "A bull call spread created by purchasing an October 30 call at  and selling an October 35 call at  requires a net debit of  () with a maximum payoff of  () and maximum net profit of  () when the stock expires at or above .",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 11: Trading Strategies Involving Options",
+        "excerpt": "Buy October 30 call at , sell October 35 call at . Net debit is . Maximum profit is ."
+      },
+      "numericalDetails": {
+        "values": {
+          "strikeLow": 30,
+          "strikeHigh": 35,
+          "premiumPaid": 3,
+          "premiumReceived": 1,
+          "netDebit": 2,
+          "maxProfit": 3
+        },
+        "units": "$",
+        "context": "Bull spread payoff and profit calculation at expiration."
+      }
+    },
+    {
+      "id": "fact-11",
+      "category": "numerical_example",
+      "topic": "Covered Call Payoff and Break-Even Example",
+      "statement": "Purchasing common stock at  and selling a call with strike price  for  generates an immediate  cash inflow, lowering downside break-even to  while capping maximum profit at  () per contract if the stock expires at or above .",
+      "sourceCitation": {
+        "book": "Fundamentals of Futures and Options Markets (John C. Hull)",
+        "chapter": "Chapter 11: Trading Strategies Involving Options",
+        "excerpt": "Buy stock at  and sell a call with strike  for . Downside break-even is 43, maximum profit is ."
+      },
+      "numericalDetails": {
+        "values": {
+          "stockPrice": 49,
+          "strikePrice": 50,
+          "callPremium": 6,
+          "downsideBreakEven": 43,
+          "maxProfit": 7
+        },
+        "units": "$",
+        "context": "Covered call downside buffer and profit cap."
+      }
+    }
+  ],
+  "generalAssumptions": [
+    "Principal-Protected Notes require a sufficient interest rate discount on zero-coupon government bonds to fund option premiums.",
+    "Spread and combination strategies are executed with standardized options sharing the same underlying asset and expiration date.",
+    "Box spreads and option combinations trade in efficient markets where mispricings below the discounted present value of terminal payoffs present riskless arbitrage opportunities."
+  ]
+}

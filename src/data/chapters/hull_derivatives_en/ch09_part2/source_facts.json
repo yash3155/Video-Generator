@@ -1,0 +1,229 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch09_part2",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-08T04:50:54.946Z",
+  "bookTitle": "Technical Analysis of the Financial Markets (John J. Murphy)",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Market Makers and Bid-Offer Spread Mechanics",
+      "statement": "Option exchange market makers facilitate trading by quoting continuous two-sided markets—a bid price (at which the market maker buys and a trader sells) and an offer/ask price (at which the market maker sells and a trader buys)—exclusively for their own accounts without handling public customer orders. The bid-offer spread (Spread = Offer - Bid) compensates market makers for providing liquidity and bearing inventory risk, is typically much higher as a percentage of price than on the underlying stock, and can sometimes be reduced when floor brokers 'split the quote' between bid and offer on multi-leg spread trades.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch09_part2",
+        "excerpt": "On option exchanges (such as the CBOE), market makers are appointed to facilitate trading by quoting continuous two-sided markets—both bid and offer prices—for option contracts in the absence of public orders",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-02",
+      "category": "formula",
+      "topic": "Naked (Uncovered) Call Option Initial Margin Requirement Formula",
+      "statement": "For an investor writing a naked (uncovered) call option on stock (100 shares per contract), the initial margin requirement per contract is the maximum of two formulas: C + 0.20*S - OTM and C + 0.10*S, where C is total call premium received, S is total current market value of the 100 underlying shares, and OTM is the out-of-the-money amount max(0, Strike Price - Stock Price) * 100. The option premium received (C) can be applied directly toward fulfilling the total collateral requirement.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch09_part2",
+        "excerpt": "For an investor writing a naked call option on stock, the initial margin requirement per contract (100 shares) is calculated as the maximum of the following two formulas",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Naked Call Option Margin Requirement",
+        "latex": "\\text{Margin Requirement}_{\\text{Call}} = \\max \\left( C + 0.20 S - \\text{OTM}, \\; C + 0.10 S \\right)",
+        "variables": [
+          {
+            "symbol": "C",
+            "definition": "Total call option premium received per 100-share contract",
+            "unit": "$"
+          },
+          {
+            "symbol": "S",
+            "definition": "Total current market value of the underlying stock (100 * stock price)",
+            "unit": "$"
+          },
+          {
+            "symbol": "\\text{OTM}",
+            "definition": "Out-of-the-money amount equal to max(0, Strike Price - Stock Price) * 100",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-03",
+      "category": "numerical_example",
+      "topic": "Naked Call Margin Numerical Examples (XYZ July 50 Call)",
+      "statement": "For writing 1 contract (100 shares) of an XYZ July 50 call (K = $5,000): (1) when stock price is $55 (ITM) and call price is $7.00 (C = $700), 20% of stock is $1,100, OTM is $0, and total margin is $1,800; (2) when stock price is $50 (ATM) and call price is $4.00 (C = $400), 20% of stock is $1,000, OTM is $0, and total margin is $1,400; (3) when stock price is $46 (OTM) and call price is $2.00 (C = $200), 20% of stock is $920, OTM is $400, and total margin is $720 ($920 + $200 - $400); (4) when stock price is $40 (Deep OTM) and call price is $1.00 (C = $100), 20% of stock is $800 and OTM is $1,000, triggering the 10% stock minimum floor for a total margin requirement of $400.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch09_part2",
+        "excerpt": "Naked Call Numerical Examples (Based on XYZ July 50 Call)",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "strikePerShare": 50,
+          "sharesPerContract": 100,
+          "itmStockPrice": 55,
+          "itmCallPremium": 700,
+          "itmMargin": 1800,
+          "atmStockPrice": 50,
+          "atmCallPremium": 400,
+          "atmMargin": 1400,
+          "otmStockPrice": 46,
+          "otmCallPremium": 200,
+          "otmDifferential": 400,
+          "otmMargin": 720,
+          "deepOtmStockPrice": 40,
+          "deepOtmCallPremium": 100,
+          "deepOtmDifferential": 1000,
+          "deepOtmMargin": 400
+        },
+        "units": "$",
+        "context": "Margin requirement calculations for writing 1 naked XYZ July 50 call contract across four underlying stock prices ($55 ITM, $50 ATM, $46 OTM, and $40 Deep OTM)."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-04",
+      "category": "formula",
+      "topic": "Naked (Uncovered) Put Option Initial Margin Requirement Formula",
+      "statement": "For an investor writing a naked (uncovered) put option on stock (100 shares per contract), the initial margin requirement per contract is the maximum of two formulas: P + 0.20*S - OTM and P + 0.10*K, where P is total put premium received, S is current market value of 100 underlying shares, K is total strike value (100 * strike price), and OTM is the out-of-the-money amount max(0, Stock Price - Strike Price) * 100.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch09_part2",
+        "excerpt": "For an investor writing a naked put option on stock, the initial margin requirement per contract is the maximum of the following two formulas",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Naked Put Option Margin Requirement",
+        "latex": "\\text{Margin Requirement}_{\\text{Put}} = \\max \\left( P + 0.20 S - \\text{OTM}, \\; P + 0.10 K \\right)",
+        "variables": [
+          {
+            "symbol": "P",
+            "definition": "Total put option premium received per 100-share contract",
+            "unit": "$"
+          },
+          {
+            "symbol": "S",
+            "definition": "Current market value of the underlying stock (100 * stock price)",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Total strike price value (100 * strike price)",
+            "unit": "$"
+          },
+          {
+            "symbol": "\\text{OTM}",
+            "definition": "Out-of-the-money amount equal to max(0, Stock Price - Strike Price) * 100",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-05",
+      "category": "numerical_example",
+      "topic": "Naked Put Margin Numerical Example (ATM Strike $50 Put)",
+      "statement": "When the underlying stock price is $50 per share (S = $5,000) and an investor writes a 6-month put with strike $50 (K = $5,000) for a premium of 4 points (P = $400), 20% of the stock price is $1,000, the OTM differential is $0, and the primary formula yields $1,000 + $400 - $0 = $1,400. Since $1,400 exceeds the minimum floor check of P + 10%*K ($400 + $500 = $900), the total margin requirement is $1,400.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch09_part2",
+        "excerpt": "Stock price S = $50. Write a 6-month put with strike K = $50 for a premium of 4 points (P = $400).",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "stockPricePerShare": 50,
+          "totalStockValue_S": 5000,
+          "strikePerShare": 50,
+          "totalStrikeValue_K": 5000,
+          "putPremium_P": 400,
+          "twentyPercentStock": 1000,
+          "otmDifferential": 0,
+          "minimumFloorCheck": 900,
+          "totalMarginRequirement": 1400
+        },
+        "units": "$",
+        "context": "Writing 1 naked 6-month at-the-money put contract at $50 strike when stock price is $50 for a $4.00 ($400) premium."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-06",
+      "category": "market_rule",
+      "topic": "Daily Mark-to-Market Collateral Recomputation for Option Writers",
+      "statement": "Naked option positions are marked to market daily by recomputing required collateral each day using closing prices. If the underlying stock moves adversely against the option writer, the writer receives a margin call requiring additional collateral; if the market moves favorably, excess collateral is released back to the writer's margin account.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch09_part2",
+        "excerpt": "Naked option positions are marked to market daily [17, 18]. The required collateral is recomputed each day using closing prices; if the underlying stock moves adversely, the option writer receives a margin call for additional collateral",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-07",
+      "category": "market_rule",
+      "topic": "Options Clearing Corporation (OCC) Role, Assignment Mechanics, and Automatic Exercise",
+      "statement": "The Options Clearing Corporation (OCC) acts as the central issuer, clearinghouse, and guarantor for all exchange-listed option contracts—serving as buyer to every seller and seller to every buyer to eliminate counterparty credit risk. When a long holder submits an exercise notice via their broker, the OCC randomly assigns a clearing member brokerage firm holding open short positions, which then assigns an individual short customer using random selection, First-In First-Out (FIFO), or another exchange-approved equitable method. At expiration, the OCC automatically exercises any option that is in-the-money by a specified threshold (e.g., 3/4-point or $0.01) unless the long holder explicitly instructs otherwise.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch09_part2",
+        "excerpt": "The OCC acts as the central issuer, clearinghouse, and guarantor for all exchange-listed option contracts [19, 20]. By stepping in as the buyer to every seller and seller to every buyer, the OCC eliminates counterparty credit risk",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-08",
+      "category": "market_rule",
+      "topic": "Same-Side Position Limits and 5-Day Exercise Limits",
+      "statement": "Position limits cap the maximum number of option contracts an investor or group acting in concert can hold on the same side of the market for a single underlying stock—where the bullish side equals Long Calls + Short Puts and the bearish side equals Short Calls + Long Puts—across volume and market-cap tiers such as 250,000, 75,000, 60,000, 31,500, 22,500, or 13,500 contracts. Exercise limits restrict the maximum number of contracts in a single class exercised within 5 consecutive business days to prevent attempts to corner the market in the underlying stock.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch09_part2",
+        "excerpt": "The maximum number of option contracts that an investor (or group of related accounts acting in concert) can hold on the same side of the market for a single underlying stock",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-09",
+      "category": "definition",
+      "topic": "Warrants, Employee Stock Options (ESOs), and Convertible Bonds",
+      "statement": "Warrants are long-term call options issued directly by a corporation (or financial institution) giving the right to buy the firm's common stock at a fixed price; they must be paid for in full and carry no margin borrowing value. Employee Stock Options (ESOs) are non-transferable call options with vesting schedules granted by a company to employees and executives as compensation. Convertible bonds (and convertible preferred stock) are corporate debt or preferred shares exchangeable into a predetermined number of common shares at the holder's option, combining a fixed-income yield floor with an embedded call option.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch09_part2",
+        "excerpt": "Warrants: Call options issued directly by a corporation (or financial institution) giving the holder the right to purchase the firm's common stock at a fixed price",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-10",
+      "category": "claim",
+      "topic": "Equity Dilution Comparison: Exchange-Traded Options vs. Corporate-Issued Instruments",
+      "statement": "Exercising exchange-traded options (issued by the OCC, with short maturities up to 9 months or 2-3 years for LEAPS) transfers existing shares between secondary-market traders without issuing new shares, causing zero dilution of corporate equity or earnings per share (EPS). In contrast, exercising or converting warrants, ESOs, or convertible bonds requires the issuing corporation to create and issue brand-new common shares (typically over 5 to 10+ year maturities), increasing total outstanding shares and diluting existing shareholders' equity percentage and EPS.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch09_part2",
+        "excerpt": "Exercising exchange-traded options results solely in the transfer of existing shares between traders via the secondary market [37, 38]. No new shares are issued, so there is no dilution of corporate equity or earnings per share (EPS)",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    }
+  ],
+  "generalAssumptions": [
+    "Each standard stock option contract represents 100 shares of the underlying stock for margin, premium, and strike value calculations.",
+    "The upfront option premium received by an uncovered option writer (C or P) can be applied directly toward satisfying the initial margin collateral requirement.",
+    "The Options Clearing Corporation (OCC) guarantees contract performance between clearing members, eliminating direct bilateral credit risk between individual option buyers and sellers."
+  ]
+}

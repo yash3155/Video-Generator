@@ -1,0 +1,1537 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives",
+    "chapter": "CHAPTER 10 · PART 1",
+    "chapterTitle": "Chapter 10 Part 1: The Six Factors Affecting Option Prices (S0, K, T, Volatility, r, Dividends), No-Arbitrage Upper & Lower Bounds for Calls and Puts.",
+    "domain": "finance",
+    "primaryColor": "#C86D51",
+    "accentColor": "#0D9488",
+    "narrationLanguage": "hi-IN-devanagari"
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "The Option Pricing Mystery",
+      "template": "chat_story",
+      "badge": "Desk Dilemma · Six Factors",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "शर्मा जी, शेयर का दाम तो बदला नहीं, फिर मेरा कॉल प्रीमियम क्यों गिरा?",
+          "en_subtitle": "Sharma ji, the stock price didn't move, so why did my call premium drop?",
+          "en_narration": "Sharma ji, the stock price didn't move, so why did my call premium drop?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju inspects the decaying call premium —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji, the stock price didn't move, so why did my call premium drop?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji, the stock price didn't move, so why did my call premium drop?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce the six primary variables governing option prices.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "280326ab13b8f483",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b01.mp3",
+          "audioDurationSec": 5.62,
+          "durationInFrames": 181,
+          "subtitlePhrases": [
+            {
+              "text": "Sharma ji,",
+              "startMs": 0,
+              "endMs": 803
+            },
+            {
+              "text": "the stock price didn't move,",
+              "startMs": 803,
+              "endMs": 3051
+            },
+            {
+              "text": "so why did my call premium drop?",
+              "startMs": 3051,
+              "endMs": 5620
+            }
+          ]
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "राजू, टाइम डिके और गिरती वोलैटिलिटी प्रीमियम घटाते हैं; कुल छह कारक कीमत तय करते हैं।",
+          "en_subtitle": "Time decay and falling volatility erode prices; six interrelated factors govern every option.",
+          "en_narration": "Time decay and falling volatility erode prices; six interrelated factors govern every option.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji explains the six pricing forces —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Time decay and falling volatility erode prices; six interrelated factors govern every option.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Time decay and falling volatility erode prices; six interrelated factors govern every option.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce the six primary variables governing option prices.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "7cc815f6aa02b466",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b02.mp3",
+          "audioDurationSec": 7.87,
+          "durationInFrames": 249,
+          "subtitlePhrases": [
+            {
+              "text": "Time decay and falling volatility erode prices;",
+              "startMs": 0,
+              "endMs": 4021
+            },
+            {
+              "text": "six interrelated factors govern every option.",
+              "startMs": 4021,
+              "endMs": 7870
+            }
+          ]
+        },
+        {
+          "id": "b03",
+          "hindi_tts": "ओह! यानी सिर्फ शेयर का भाव नहीं, समय, ब्याज दर और डिविडेंड भी असर डालते हैं?",
+          "en_subtitle": "Oh! So besides stock price, time, interest rates, and dividends also impact options?",
+          "en_narration": "Oh! So besides stock price, time, interest rates, and dividends also impact options?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju inspects the decaying call premium —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Oh! So besides stock price, time, interest rates, and dividends also impact options?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Oh! So besides stock price, time, interest rates, and dividends also impact options?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce the six primary variables governing option prices.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "5bf01256233df194",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b03.mp3",
+          "audioDurationSec": 8.04,
+          "durationInFrames": 254,
+          "subtitlePhrases": [
+            {
+              "text": "Oh! So besides stock price,",
+              "startMs": 0,
+              "endMs": 2680
+            },
+            {
+              "text": "time,",
+              "startMs": 2680,
+              "endMs": 3176
+            },
+            {
+              "text": "interest rates,",
+              "startMs": 3176,
+              "endMs": 4665
+            },
+            {
+              "text": "and dividends also impact options?",
+              "startMs": 4665,
+              "endMs": 8040
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Conflicting Market Interests",
+      "template": "tug_of_war",
+      "badge": "Structural Conflict · Hedger vs Speculator",
+      "beats": [
+        {
+          "id": "b03",
+          "hindi_tts": "बाजार में एक पक्ष मूल्य में गिरावट से सुरक्षा चाहता है, जबकि दूसरा पक्ष मूल्य वृद्धि के जोखिम को सीमित करना चाहता है।",
+          "en_subtitle": "One party hedges downside price drop, while the other protects against rising procurement costs.",
+          "en_narration": "One side hedges falling prices while the counterparty hedges rising costs.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftLabel": "Farmer / Producer (Downside Protection)",
+            "rightLabel": "Processor / Miller (Upside Ceiling)",
+            "currentTension": 50
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Downside Protection",
+              "rightLabel": "Upside Ceiling",
+              "tension": 50
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate opposing economic motivations meeting in a forward contract.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          },
+          "narrationHash": "6e18218fa21f6e34",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b03.mp3",
+          "audioDurationSec": 9.86,
+          "durationInFrames": 308,
+          "subtitlePhrases": [
+            {
+              "text": "One party hedges downside price drop,",
+              "startMs": 0,
+              "endMs": 3840
+            },
+            {
+              "text": "while the other protects against rising procurement costs.",
+              "startMs": 3840,
+              "endMs": 9860
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "The Core Architecture Roadmap",
+      "template": "progressive_cards",
+      "badge": "Roadmap · 4 Structural Pillars",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "इस अध्याय में हम चार महत्वपूर्ण स्तंभों को समझेंगे: बाजार संरचना, गणितीय पेऑफ, लिक्विडिटी और सिस्टमिक जोखिम।",
+          "en_subtitle": "In this chapter, we master four structural pillars: architecture, payoff math, liquidity, and systemic risk.",
+          "en_narration": "We explore architecture, mathematical payoffs, liquidity, and systemic risk.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "Market Architecture",
+                "desc": "Exchange vs Over-The-Counter mechanisms"
+              },
+              {
+                "title": "Payoff Math",
+                "desc": "Terminal gross payoff versus net profit"
+              },
+              {
+                "title": "Liquidity & Margining",
+                "desc": "Daily settlement and capital buffers"
+              },
+              {
+                "title": "Systemic Risk",
+                "desc": "Counterparty exposure and clearinghouse reforms"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cards": [
+                {
+                  "title": "Market Architecture",
+                  "desc": "Exchange vs OTC mechanisms"
+                },
+                {
+                  "title": "Payoff Math",
+                  "desc": "Gross payoff versus net profit"
+                },
+                {
+                  "title": "Liquidity & Margining",
+                  "desc": "Daily settlement buffers"
+                },
+                {
+                  "title": "Systemic Risk",
+                  "desc": "Counterparty default mitigation"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present structural roadmap of four learning pillars.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "38b5179fac43e0fb",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b04.mp3",
+          "audioDurationSec": 9.17,
+          "durationInFrames": 288,
+          "subtitlePhrases": [
+            {
+              "text": "In this chapter,",
+              "startMs": 0,
+              "endMs": 1411
+            },
+            {
+              "text": "we master four structural pillars: architecture,",
+              "startMs": 1411,
+              "endMs": 5643
+            },
+            {
+              "text": "payoff math,",
+              "startMs": 5643,
+              "endMs": 6701
+            },
+            {
+              "text": "liquidity,",
+              "startMs": 6701,
+              "endMs": 7583
+            },
+            {
+              "text": "and systemic risk.",
+              "startMs": 7583,
+              "endMs": 9170
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Exchange Standardization vs OTC Flexibility",
+      "template": "split_comparison",
+      "badge": "Market Structure · Bilateral vs Centralized",
+      "beats": [
+        {
+          "id": "b05",
+          "hindi_tts": "एक्सचेंज ट्रेडेड फ्यूचर्स पूरी तरह से मानकीकृत होते हैं, जबकि ओटीसी फॉरवर्ड्स दोनों पक्षों की आवश्यकतानुसार कस्टमाइज किए जाते हैं।",
+          "en_subtitle": "Exchange futures are strictly standardized, while OTC contracts are bilaterally customized.",
+          "en_narration": "Exchange futures are standardized while OTC contracts are customized.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Exchange-Traded Futures",
+            "rightTitle": "Over-the-Counter (OTC)",
+            "leftPoints": [
+              "Standardized contract sizes",
+              "Central clearinghouse (CCP)",
+              "Zero bilateral default risk"
+            ],
+            "rightPoints": [
+              "Tailored specifications",
+              "Bilateral counterparty risk",
+              "Direct negotiation"
+            ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Futures",
+                "points": [
+                  "Standardized",
+                  "CCP Cleared"
+                ]
+              },
+              "rightColumn": {
+                "title": "OTC Forwards",
+                "points": [
+                  "Customized",
+                  "Bilateral Risk"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Contrast exchange standardization with OTC customization.",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "8b03301cb35fb038",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b05.mp3",
+          "audioDurationSec": 10.75,
+          "durationInFrames": 336,
+          "subtitlePhrases": [
+            {
+              "text": "Exchange futures are strictly standardized,",
+              "startMs": 0,
+              "endMs": 5136
+            },
+            {
+              "text": "while OTC contracts are bilaterally customized.",
+              "startMs": 5136,
+              "endMs": 10750
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Global Derivatives Notional Scale",
+      "template": "progressive_cards",
+      "badge": "Global Volume · BIS Market Data",
+      "beats": [
+        {
+          "id": "b06",
+          "hindi_tts": "वैश्विक स्तर पर ओटीसी बाजार का आकार छह सौ तीस ट्रिलियन डॉलर से अधिक है, जो एक्सचेंज बाजार से लगभग दस गुना बड़ा है।",
+          "en_subtitle": "Globally, the OTC market exceeds $630 trillion in notional principal, dwarfing exchange volumes.",
+          "en_narration": "The global OTC market exceeds $630 trillion, dwarfing exchange volumes.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "OTC Market Notional",
+                "desc": "$630+ Trillion global bilateral outstanding"
+              },
+              {
+                "title": "Exchange Market Notional",
+                "desc": "$65 Trillion centralized standardized volume"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "OTC Market",
+                  "desc": "$630T Notional"
+                },
+                {
+                  "title": "Exchange Market",
+                  "desc": "$65T Notional"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate immense macroeconomic scale of OTC markets.",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          },
+          "narrationHash": "c67e7167f1d6fb0b",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b06.mp3",
+          "audioDurationSec": 10.18,
+          "durationInFrames": 318,
+          "subtitlePhrases": [
+            {
+              "text": "Globally,",
+              "startMs": 0,
+              "endMs": 975
+            },
+            {
+              "text": "the OTC market exceeds $630 trillion in notional principal,",
+              "startMs": 975,
+              "endMs": 7365
+            },
+            {
+              "text": "dwarfing exchange volumes.",
+              "startMs": 7365,
+              "endMs": 10180
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Terminal Payoff Mechanics",
+      "template": "formula_breakdown",
+      "badge": "Quantitative Proof · Terminal Payoff",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "मैच्योरिटी पर लॉन्ग पोजीशन का ग्रॉस पेऑफ वर्तमान स्पॉट प्राइस और स्ट्राइक प्राइस का अंतर होता है।",
+          "en_subtitle": "At terminal maturity, gross payoff is defined as the spot price minus strike price.",
+          "en_narration": "At expiration, long payoff equals spot price minus the delivery strike price.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Terminal Long Payoff",
+            "expression": "S_t - K",
+            "variables": [
+              {
+                "symbol": "S_t",
+                "label": "Spot asset price at expiration",
+                "unit": "₹"
+              },
+              {
+                "symbol": "K",
+                "label": "Agreed delivery strike price",
+                "unit": "₹"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Terminal Long Payoff",
+              "expression": "S_t - K",
+              "variables": [
+                {
+                  "symbol": "S_t",
+                  "label": "Spot asset price at expiration",
+                  "unit": "₹"
+                },
+                {
+                  "symbol": "K",
+                  "label": "Agreed delivery strike price",
+                  "unit": "₹"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Define terminal long linear payoff formula.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "0504d217cf6165f9",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b07.mp3",
+          "audioDurationSec": 7.9,
+          "durationInFrames": 250,
+          "subtitlePhrases": [
+            {
+              "text": "At terminal maturity,",
+              "startMs": 0,
+              "endMs": 2023
+            },
+            {
+              "text": "gross payoff is defined as the spot price minus strike price.",
+              "startMs": 2023,
+              "endMs": 7900
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "Gross Payoff versus Net Trading Profit",
+      "template": "split_comparison",
+      "badge": "Core Invariant · Payoff vs Profit",
+      "beats": [
+        {
+          "id": "b08",
+          "hindi_tts": "हमेशा याद रखें, पेऑफ केवल टर्मिनल कैशफ्लो है, जबकि नेट प्रॉफिट में शुरुआत में चुकाया गया प्रीमियम घटाया जाता है।",
+          "en_subtitle": "Always distinguish: Payoff is terminal cashflow; Profit deducts initial premium paid.",
+          "en_narration": "Payoff is gross terminal cashflow, while profit subtracts initial premium paid.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Gross Payoff",
+            "rightTitle": "Net Trading Profit",
+            "leftPoints": [
+              "Terminal cashflow at expiration",
+              "Ignores upfront premium paid",
+              "Always >= 0 for options"
+            ],
+            "rightPoints": [
+              "Terminal payoff minus initial premium",
+              "Accounts for capital outlay",
+              "Negative if price stays flat"
+            ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Gross Payoff",
+                "points": [
+                  "Terminal Cashflow",
+                  "Ignores Premium"
+                ]
+              },
+              "rightColumn": {
+                "title": "Net Profit",
+                "points": [
+                  "Payoff - Premium",
+                  "True Economic P&L"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Strictly enforce the Payoff vs Profit distinction.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "d423e2e2459da7dd",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b08.mp3",
+          "audioDurationSec": 9.6,
+          "durationInFrames": 301,
+          "subtitlePhrases": [
+            {
+              "text": "Always distinguish: Payoff is terminal cashflow;",
+              "startMs": 0,
+              "endMs": 5486
+            },
+            {
+              "text": "Profit deducts initial premium paid.",
+              "startMs": 5486,
+              "endMs": 9600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "Systemic Risk & Bilateral Contagion",
+      "template": "progressive_cards",
+      "badge": "Case Study · Lehman Brothers 2008",
+      "beats": [
+        {
+          "id": "b09",
+          "hindi_tts": "दो हजार आठ में लेहमैन ब्रदर्स के पास छह सौ बिलियन डॉलर के अनक्लेयर्ड ओटीसी डेरिवेटिव्स थे, जिससे पूरी वित्तीय प्रणाली फ्रीज हो गई।",
+          "en_subtitle": "In 2008, Lehman held over $600 billion in uncollateralized OTC positions, freezing the banking system.",
+          "en_narration": "In 2008, Lehman held $600 billion in OTC positions, triggering systemic contagion.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "title": "Bilateral Gridlock",
+                "desc": "No central clearing meant counterparties could not assess exposures"
+              },
+              {
+                "title": "Post-Crisis Reform",
+                "desc": "G20 mandate required standardized OTC clearing through CCPs"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "Lehman Collapse",
+                  "desc": "$600B OTC Network"
+                },
+                {
+                  "title": "Regulatory Response",
+                  "desc": "Mandatory Central Clearing"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate systemic counterparty contagion in uncollateralized OTC markets.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-05"
+              ]
+            }
+          },
+          "narrationHash": "4a3e157327774283",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b09.mp3",
+          "audioDurationSec": 10.32,
+          "durationInFrames": 323,
+          "subtitlePhrases": [
+            {
+              "text": "In 2008,",
+              "startMs": 0,
+              "endMs": 826
+            },
+            {
+              "text": "Lehman held over $600 billion in uncollateralized OTC positions,",
+              "startMs": 826,
+              "endMs": 7431
+            },
+            {
+              "text": "freezing the banking system.",
+              "startMs": 7431,
+              "endMs": 10320
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "Leverage Multipliers & Equity Depletion",
+      "template": "formula_breakdown",
+      "badge": "Balance Sheet Risk · Leverage Math",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "इकतीस गुना लेवरेज पर एसेट्स में केवल सवा तीन परसेंट की गिरावट पूरे शेयरहोल्डर इक्विटी को शून्य कर देती है।",
+          "en_subtitle": "At thirty-one to one leverage, just a 3.2% decline in assets completely wipes out shareholder equity.",
+          "en_narration": "At 31 to 1 leverage, a 3.2% decline in assets wipes out shareholder equity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Leverage Multipliers & Equity Wipeout",
+            "expression": "L = \\text{Assets} / \\text{Equity}",
+            "variables": [
+              {
+                "symbol": "L",
+                "label": "Balance sheet leverage ratio (31:1)",
+                "unit": "ratio"
+              },
+              {
+                "symbol": "\\Delta Equity",
+                "label": "\\Delta Assets \\times L",
+                "unit": "%"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Leverage Multipliers & Equity Wipeout",
+              "expression": "L = \\text{Assets} / \\text{Equity}",
+              "variables": [
+                {
+                  "symbol": "L",
+                  "label": "Leverage ratio",
+                  "unit": "ratio"
+                },
+                {
+                  "symbol": "\\Delta Equity",
+                  "label": "Change in equity",
+                  "unit": "%"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Prove mathematically how high leverage accelerates balance-sheet bankruptcy.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "eb2f770effd0252d",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b10.mp3",
+          "audioDurationSec": 9.12,
+          "durationInFrames": 286,
+          "subtitlePhrases": [
+            {
+              "text": "At thirty-one to one leverage,",
+              "startMs": 0,
+              "endMs": 2736
+            },
+            {
+              "text": "just a 3.2% decline in assets completely wipes out shareholder equity.",
+              "startMs": 2736,
+              "endMs": 9120
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall Scenario",
+      "template": "interactive_quiz",
+      "badge": "Concept Verification · Active Recall",
+      "beats": [
+        {
+          "id": "b11",
+          "hindi_tts": "यदि एक ट्रेडर बिना हेजिंग के अत्यधिक लेवरेज पोजीशन लेता है और बाजार विपरीत दिशा में जाता है, तो सबसे बड़ा प्राथमिक जोखिम क्या है?",
+          "en_subtitle": "If a trader takes an unhedged leveraged position, what is the immediate structural risk?",
+          "en_narration": "What is the primary risk of an unhedged highly leveraged market position?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "question": "If a European call option on a non-dividend stock trades below its theoretical lower bound of S0 minus discounted strike, how does an arbitrageur capture riskless profit?",
+            "options": [
+              "A) Guaranteed price recovery at expiration",
+              "B) Immediate margin call and total equity liquidation",
+              "C) Elimination of counterparty default risk",
+              "D) Automatic contract conversion to equity"
+            ],
+            "showThinkingSpinner": false,
+            "answer": ""
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "If a European call option on a non-dividend stock trades below its theoretical lower bound of S0 minus discounted strike, how does an arbitrageur capture riskless profit?",
+              "options": [
+                "A) Guaranteed price recovery at expiration",
+                "B) Immediate margin call and total equity liquidation",
+                "C) Elimination of counterparty default risk",
+                "D) Automatic contract conversion to equity"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Test understanding of leverage depletion and margin call dynamics.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "00c0f812149e9090",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b11.mp3",
+          "audioDurationSec": 10.85,
+          "durationInFrames": 338,
+          "subtitlePhrases": [
+            {
+              "text": "If a trader takes an unhedged leveraged position,",
+              "startMs": 0,
+              "endMs": 6111
+            },
+            {
+              "text": "what is the immediate structural risk?",
+              "startMs": 6111,
+              "endMs": 10850
+            }
+          ]
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "सोचिए... क्या मार्जिन बफर के बिना पोजीशन सर्वाइव कर सकती है?",
+          "en_subtitle": "Think carefully... Can a leveraged position survive without adequate margin capital?",
+          "en_narration": "Pause and consider the margin mechanics.",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "question": "If a European call option on a non-dividend stock trades below its theoretical lower bound of S0 minus discounted strike, how does an arbitrageur capture riskless profit?",
+            "showThinkingSpinner": true,
+            "answer": ""
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "showThinkingSpinner": true,
+              "question": "If a European call option on a non-dividend stock trades below its theoretical lower bound of S0 minus discounted strike, how does an arbitrageur capture riskless profit?"
+            },
+            "semantics": {
+              "teachingObjective": "Engage active recall cognitive processing pause.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "00a9606b3f239185",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b12.mp3",
+          "audioDurationSec": 6.29,
+          "durationInFrames": 285,
+          "subtitlePhrases": [
+            {
+              "text": "Think carefully... Can a leveraged position",
+              "startMs": 0,
+              "endMs": 3259
+            },
+            {
+              "text": "survive without adequate margin capital?",
+              "startMs": 3259,
+              "endMs": 6290
+            }
+          ]
+        },
+        {
+          "id": "b13",
+          "hindi_tts": "सही उत्तर बी है! अपर्याप्त मार्जिन पर ब्रोकर या एक्सचेंज तुरंत पोजीशन को लिक्विडेट कर देता है।",
+          "en_subtitle": "Correct answer is B! Insufficient margin triggers immediate forced liquidation.",
+          "en_narration": "Correct answer is B: Insufficient margin triggers immediate forced liquidation.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "question": "If a European call option on a non-dividend stock trades below its theoretical lower bound of S0 minus discounted strike, how does an arbitrageur capture riskless profit?",
+            "showThinkingSpinner": false,
+            "answer": "B) Immediate margin call and total equity liquidation. Clearinghouses mandate daily variation margin to prevent systemic default.",
+            "correctIndex": 1
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "answer": "B) Immediate margin call and total equity liquidation.",
+              "correctIndex": 1,
+              "question": "If a European call option on a non-dividend stock trades below its theoretical lower bound of S0 minus discounted strike, how does an arbitrageur capture riskless profit?"
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce correct understanding of daily variation settlement.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "7a6a33da16eb60a4",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b13.mp3",
+          "audioDurationSec": 9.43,
+          "durationInFrames": 297,
+          "subtitlePhrases": [
+            {
+              "text": "Correct answer is B! Insufficient",
+              "startMs": 0,
+              "endMs": 3990
+            },
+            {
+              "text": "margin triggers immediate forced liquidation.",
+              "startMs": 3990,
+              "endMs": 9430
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Practical Application: Arbitraging Lower Bound Violations",
+      "template": "chat_story",
+      "badge": "Desk Debrief · Bound Arbitrage",
+      "beats": [
+        {
+          "id": "b31",
+          "hindi_tts": "शर्मा जी, अगर कोई कॉल ऑप्शन अपनी निचली सीमा से भी सस्ता बिक रहा हो तो?",
+          "en_subtitle": "Sharma ji, what if a call trades below its theoretical lower bound?",
+          "en_narration": "Sharma ji, what if a call trades below its theoretical lower bound?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju identifies a call trading below lower bound —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Sharma ji, what if a call trades below its theoretical lower bound?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Sharma ji, what if a call trades below its theoretical lower bound?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate riskless arbitrage when call price violates lower theoretical bound.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "189c68a1c1b5e799",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b31.mp3",
+          "audioDurationSec": 6.05,
+          "durationInFrames": 194,
+          "subtitlePhrases": [
+            {
+              "text": "Sharma ji,",
+              "startMs": 0,
+              "endMs": 917
+            },
+            {
+              "text": "what if a call trades below its theoretical lower bound?",
+              "startMs": 917,
+              "endMs": 6050
+            }
+          ]
+        },
+        {
+          "id": "b32",
+          "hindi_tts": "तब सस्ता कॉल खरीदो, शेयर शॉर्ट करो और डिस्काउंटेड स्ट्राइक निवेश करके पक्का मुनाफा कमाओ!",
+          "en_subtitle": "Buy the cheap call, short the stock, and lock in guaranteed riskless arbitrage profit!",
+          "en_narration": "Buy the cheap call, short the stock, and lock in guaranteed riskless arbitrage profit!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji executes the synthetic replication arbitrage —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Buy the cheap call, short the stock, and lock in guaranteed riskless arbitrage profit!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Buy the cheap call, short the stock, and lock in guaranteed riskless arbitrage profit!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate riskless arbitrage when call price violates lower theoretical bound.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "b82350294ecc8466",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b32.mp3",
+          "audioDurationSec": 7.2,
+          "durationInFrames": 228,
+          "subtitlePhrases": [
+            {
+              "text": "Buy the cheap call,",
+              "startMs": 0,
+              "endMs": 1629
+            },
+            {
+              "text": "short the stock,",
+              "startMs": 1629,
+              "endMs": 3000
+            },
+            {
+              "text": "and lock in guaranteed riskless arbitrage profit!",
+              "startMs": 3000,
+              "endMs": 7200
+            }
+          ]
+        },
+        {
+          "id": "b33",
+          "hindi_tts": "वाह! मतलब नो-आर्बिट्रेज नियम ऑप्शन की कीमत को उस सीमा से नीचे टिकने नहीं देंगे।",
+          "en_subtitle": "Wow! So no-arbitrage traders immediately force option prices back inside their theoretical bounds.",
+          "en_narration": "Wow! So no-arbitrage traders immediately force option prices back inside their theoretical bounds.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju identifies a call trading below lower bound —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Wow! So no-arbitrage traders immediately force option prices back inside their theoretical bounds.",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Wow! So no-arbitrage traders immediately force option prices back inside their theoretical bounds.",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate riskless arbitrage when call price violates lower theoretical bound.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "ff124f71fc886bc8",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b33.mp3",
+          "audioDurationSec": 7.7,
+          "durationInFrames": 243,
+          "subtitlePhrases": [
+            {
+              "text": "Wow! So no-arbitrage traders immediately",
+              "startMs": 0,
+              "endMs": 3208
+            },
+            {
+              "text": "force option prices back inside",
+              "startMs": 3208,
+              "endMs": 5694
+            },
+            {
+              "text": "their theoretical bounds.",
+              "startMs": 5694,
+              "endMs": 7700
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "The Whole Picture: 8 Core Principles",
+      "template": "summary_thread",
+      "badge": "Master Review · 8 Inviolable Rules",
+      "beats": [
+        {
+          "id": "b16",
+          "hindi_tts": "आइए पूरे अध्याय के आठ बुनियादी सिद्धांतों की एक व्यवस्थित समीक्षा करें।",
+          "en_subtitle": "Let us review the eight foundational principles established in this lesson.",
+          "en_narration": "Let us review the eight foundational principles of this lesson.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+              "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+              "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+              "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+              "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+              "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+                "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+                "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+                "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+                "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+                "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                0,
+                0
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present executive overview of the 8 chapter rules.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "476441909656021e",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b16.mp3",
+          "audioDurationSec": 6.14,
+          "durationInFrames": 197,
+          "subtitlePhrases": [
+            {
+              "text": "Let us review the eight foundational",
+              "startMs": 0,
+              "endMs": 2987
+            },
+            {
+              "text": "principles established in this lesson.",
+              "startMs": 2987,
+              "endMs": 6140
+            }
+          ]
+        },
+        {
+          "id": "b17",
+          "hindi_tts": "पहले और दूसरे नियम के अनुसार, डेरिवेटिव्स अंतर्निहित संपत्ति से मूल्य लेते हैं और फ्यूचर्स एक्सचेंज पर मानकीकृत होते हैं।",
+          "en_subtitle": "First and second: Derivatives derive value from underlyings, and futures are standardized on exchanges.",
+          "en_narration": "Rules 1 and 2: Derivatives derive value from underlyings, and futures are standardized.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+              "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+              "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+              "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+              "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+              "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+                "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+                "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+                "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+                "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+                "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                2
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 1 and 2.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          },
+          "narrationHash": "2b5ed07ecf29c82f",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b17.mp3",
+          "audioDurationSec": 9.94,
+          "durationInFrames": 311,
+          "subtitlePhrases": [
+            {
+              "text": "First and second: Derivatives derive value from underlyings,",
+              "startMs": 0,
+              "endMs": 5847
+            },
+            {
+              "text": "and futures are standardized on exchanges.",
+              "startMs": 5847,
+              "endMs": 9940
+            }
+          ]
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "तीसरे और चौथे नियम के अनुसार, ओटीसी में काउंटरपार्टी रिस्क रहता है और पेऑफ में हमेशा स्ट्राइक प्राइस का महत्व होता है।",
+          "en_subtitle": "Third and fourth: OTC contracts carry bilateral counterparty risk, and payoff is defined by the strike price.",
+          "en_narration": "Rules 3 and 4: OTC carries counterparty risk, and payoff depends on strike.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+              "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+              "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+              "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+              "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+              "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+                "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+                "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+                "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+                "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+                "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                3,
+                4
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 3 and 4.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "d01004f3c06b7274",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b18.mp3",
+          "audioDurationSec": 9.62,
+          "durationInFrames": 301,
+          "subtitlePhrases": [
+            {
+              "text": "Third and fourth: OTC contracts carry bilateral counterparty risk,",
+              "startMs": 0,
+              "endMs": 5879
+            },
+            {
+              "text": "and payoff is defined by the strike price.",
+              "startMs": 5879,
+              "endMs": 9620
+            }
+          ]
+        },
+        {
+          "id": "b19",
+          "hindi_tts": "पांचवें और छठे नियम के तहत, क्लीयरिंगहाउस वेरिएशन मार्जिन से रिस्क कम करता है और लेवरेज इक्विटी को तेजी से घटा सकता है।",
+          "en_subtitle": "Fifth and sixth: Clearinghouses enforce variation margin, and high leverage rapidly depletes equity.",
+          "en_narration": "Rules 5 and 6: Margin protects clearinghouses, while leverage depletes equity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+              "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+              "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+              "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+              "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+              "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+                "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+                "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+                "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+                "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+                "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                5,
+                6
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 5 and 6.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "bce865add4bc0e20",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b19.mp3",
+          "audioDurationSec": 10.39,
+          "durationInFrames": 324,
+          "subtitlePhrases": [
+            {
+              "text": "Fifth and sixth: Clearinghouses enforce variation margin,",
+              "startMs": 0,
+              "endMs": 5982
+            },
+            {
+              "text": "and high leverage rapidly depletes equity.",
+              "startMs": 5982,
+              "endMs": 10390
+            }
+          ]
+        },
+        {
+          "id": "b20",
+          "hindi_tts": "सातवें और आठवें नियम के अनुसार, बायलेटरल पोजीशन में कोलेटरल अनिवार्य है और ग्रॉस पेऑफ को कभी नेट प्रॉफिट न समझें।",
+          "en_subtitle": "Seventh and eighth: Bilateral exposure requires collateral, and never confuse gross payoff with net profit.",
+          "en_narration": "Rules 7 and 8: Collateralize bilateral risk, and never confuse payoff with profit.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "steps": [
+              "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+              "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+              "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+              "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+              "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+              "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "compactOverview": false
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+                "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+                "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+                "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+                "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+                "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                7,
+                8
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 7 and 8 with dedicated focus.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          },
+          "narrationHash": "465ff0a192c3dd84",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b20.mp3",
+          "audioDurationSec": 9.53,
+          "durationInFrames": 300,
+          "subtitlePhrases": [
+            {
+              "text": "Seventh and eighth: Bilateral exposure requires collateral,",
+              "startMs": 0,
+              "endMs": 5304
+            },
+            {
+              "text": "and never confuse gross payoff with net profit.",
+              "startMs": 5304,
+              "endMs": 9530
+            }
+          ]
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "यह आठ नियम किसी भी डेरिवेटिव्स और फाइनेंशियल मार्केट में अनुशासन और सफलता की वास्तविक नींव हैं।",
+          "en_subtitle": "These eight principles form the enduring foundation for trading discipline across global markets.",
+          "en_narration": "These eight rules form the foundation of trading discipline.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "steps": [
+              "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+              "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+              "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+              "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+              "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+              "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+              "7. Bilateral counterparty exposure demands rigorous collateralization.",
+              "8. Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "compactOverview": true
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. The price of a stock option is determined by six quantifiable factors: (1) Current Stock Price (S_0), the prev",
+                "2. An increase in the current stock price (S_0) increases European and American call values (+) and decreases Eur",
+                "3. A longer time to expiration (T) increases American call and put values (+) because the holder retains all exer",
+                "4. Higher risk-free interest rates (r) reduce the present value of the strike price payable in the future and inc",
+                "5. Intrinsic value is the value realized if an option were exercised immediately, equal to max(S_0 - K, 0) for ca",
+                "6. Arbitrage processes enforce strict pricing equilibrium between calls, puts, and underlying stocks according to",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display comprehensive whole-chapter synthesis overview.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          },
+          "narrationHash": "e8474cbb8fa7c9e0",
+          "audioFile": "audio/hull_derivatives/ch10_part1/b21.mp3",
+          "audioDurationSec": 8.64,
+          "durationInFrames": 275,
+          "subtitlePhrases": [
+            {
+              "text": "These eight principles form the",
+              "startMs": 0,
+              "endMs": 2819
+            },
+            {
+              "text": "enduring foundation for trading discipline",
+              "startMs": 2819,
+              "endMs": 6639
+            },
+            {
+              "text": "across global markets.",
+              "startMs": 6639,
+              "endMs": 8640
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

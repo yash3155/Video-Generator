@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch20_part2",
+  "title": "The Model-Building Approach, Linear/Quadratic Delta-Gamma VaR, EWMA, GARCH(1,1), Kupiec Backtesting, and LTCM",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Probability, multivariate normal distributions, and covariance matrices",
+    "Option Greeks (Delta and Gamma) and Taylor series expansions",
+    "Value at Risk (VaR) definition and historical simulation foundations"
+  ],
+  "learningOutcomes": [
+    "Calculate parametric portfolio risk using the model-building (variance-covariance) approach and evaluate diversification benefits ([fact-01], [fact-02], [fact-05]).",
+    "Differentiate linear delta approximation from quadratic delta-gamma pricing for option portfolios ([fact-03], [fact-04]).",
+    "Update daily volatility and capture volatility clustering using EWMA and GARCH(1,1) models ([fact-06], [fact-07], [fact-08]).",
+    "Validate VaR model accuracy using Kupiec's Proportion of Failures (POF) backtesting and analyze LTCM failure causes ([fact-09], [fact-10], [fact-11])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Model-Building Approach and Portfolio Diversification",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-05"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Linear and Quadratic Delta-Gamma VaR Approximations",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Volatility Updating: EWMA and GARCH(1,1) Models",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-06",
+        "fact-07",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Model Backtesting, Kupiec POF Test, and LTCM Collapse",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-09",
+        "fact-10",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-03",
+      "authorRebuttal": "Linear delta approximations completely ignore non-linear option curvature (Gamma), leading to severe risk miscalculations when underlying asset prices jump significantly ([fact-03], [fact-04])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-06",
+      "authorRebuttal": "Standard historical simulation weights past scenarios equally over a fixed window (e.g., 500 days), whereas model-building approaches use EWMA or GARCH to update volatility dynamically ([fact-06], [fact-07], [fact-11])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-10",
+      "authorRebuttal": "As demonstrated by LTCM in 1998, historical correlations frequently jump toward 1.0 during panics, eliminating anticipated portfolio diversification benefits and breaking normal distribution VaR models ([fact-10])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A portfolio contains $10,000,000 in Microsoft shares (daily vol 2%) and $5,000,000 in AT&T shares (daily vol 1%) with correlation 0.3. Individual 99% VaRs are $465,200 for Microsoft and $116,300 for AT&T (sum = $581,500). Total portfolio 99% VaR is $496,600.",
+    "testedFactIds": [
+      "fact-05",
+      "fact-06"
+    ],
+    "question": "1) What is the exact diversification benefit achieved by combining Microsoft and AT&T? 2) How does EWMA update variance over time?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "The model-building approach calculates parametric portfolio risk using multivariate normal distributions and covariance matrices ([fact-01]).",
+    "Linear delta models must be upgraded to quadratic delta-gamma formulations to capture option curvature ([fact-03], [fact-04]).",
+    "EWMA and GARCH(1,1) models dynamically update variance and capture volatility clustering, while model failures at LTCM highlight correlation breakdown risks ([fact-06], [fact-07], [fact-10])."
+  ]
+}

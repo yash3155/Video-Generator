@@ -1,0 +1,408 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch21_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Interest Rate Derivatives: Bond Options, Caps, Floors, Collars, Swaptions, and Black's Model",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "Embedded Bond Options & Callable Structures",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A fixed-income analyst asks how embedded options affect corporate bonds; the mentor defines callable and putable bonds ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Callable bonds grant issuers the right to buy back bonds when interest rates decline ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Putable bonds grant bondholders the right to demand early principal repayment at par when interest rates rise ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Caplet Benchmark Valuation by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display Caplet Parameters ($L = \\$10M, F_1 = 5.0%, R_K = 4.0%, \\delta = 0.25, \\sigma = 20%, r = 5.0\\%$): resulting in $d_1 = 1.2157$ and $d_2 = 1.0157$ ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display Caplet Value: Black's model calculates a 3-month caplet valuation of exactly $\\$23,980$ ([fact-05], [fact-09]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 21 Part 1 Roadmap: 4 Interest Rate Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-04",
+        "fact-07",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Bond Options — Callable/putable bonds and Black's model using dirty forward prices $F_0$ ([fact-01], [fact-02]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Caps & Floors — Caplets and floorlets protecting floating-rate borrowers and lenders ([fact-04], [fact-06]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Collars & Parity — Zero-cost corridors and $\text{Cap} - \text{Floor} = \text{Swap}$ put-call parity ([fact-07], [fact-08]).",
+          "sourceFactIds": [
+            "fact-07",
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Swaptions & Negative Rates — Payer/receiver swaptions, MBS negative convexity, and shifted models ([fact-10], [fact-11]).",
+          "sourceFactIds": [
+            "fact-10",
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Clean Price vs. Cash (Dirty) Price in Bond Options",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Clean Price: quoted bond market price that excludes accrued interest ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Cash (Dirty) Price: Quoted Price plus Accrued Interest ($\text{Cash Price} = \text{Clean Price} + \text{Accrued Interest}$), which is strictly required for Black's forward bond price $F_0$ ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Caplet and Floorlet Black Valuation Formulas",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Caplet Formula: $c_k = e^{-r t_{k+1}} \\delta_k L [F_k N(d_1) - R_K N(d_2)]$ valuing call options on forward interest rates ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Floorlet Formula: $p_k = e^{-r t_{k+1}} \\delta_k L [R_K N(-d_2) - F_k N(-d_1)]$ valuing put options on interest rates ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Business Snapshot 21.1 & 21.2: MBS Prepayments & Negative Rates",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine MBS Negative Convexity: 30-year mortgages with penalty-free prepayments expose MBS investors to negative convexity as rates fall ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Negative Rates: post-2015 European negative rates broke standard lognormal Black models, forcing shifted Black and Bachelier normal models ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Cap Purchase vs. Floor Sale in Zero-Cost Collars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Cap Purchase: caps floating rate above $R_{\text{cap}}$, requiring upfront premium payment ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Floor Sale: sells a floor at $R_{\text{floor}}$ to collect premium, perfectly offsetting the cap cost in a zero-cost collar ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Caplet Payoff Profile $\\delta_k L \\max(R_k - R_K, 0)$ & Net Profit",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Caplet Payoff: $\\delta_k L \\max(R_k - R_K, 0)$ paid at $t_{k+1}$ when reference rate exceeds cap strike $R_K$ ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Net Trading Profit: caplet payoff minus initial premium paid compounded at risk-free rate ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Swaptions & Cap-Floor-Swap Put-Call Parity",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Put-Call Parity Relation: $\text{Cap} - \text{Floor} = \text{Interest Rate Swap}$, enabling synthetic swap arbitrage ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Payer vs. Receiver Swaptions: right to pay fixed rate $S_K$ (payer) versus receive fixed rate $S_K$ (receiver) at future date $T_0$ ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Caplet Value & Swap Parity",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Verify the benchmark 3-month caplet valuation of $\\$23,980$ on $\\$10M notional ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Explain the put-call parity equation linking caps, floors, and interest rate swaps ($\text{Cap} - \text{Floor} = \text{Swap}$) ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Interest Rate Derivatives Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-05",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The risk manager audits bond option inputs: confirm clean prices are adjusted to cash (dirty) prices including accrued interest ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The derivatives desk checks cap/floor and swaption parameters: verify forward rates $F_k$, accrual fractions $\\delta_k$, and payer/receiver swaption exercise terms ([fact-05], [fact-10]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Interest Rate Derivatives",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-07",
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Callable and putable bond embedded options ([fact-01]), Black's bond option model using forward dirty prices $F_0$ ([fact-02]), clean vs. cash dirty price adjustments ([fact-03]), and interest rate caps as call caplet portfolios ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Caplet valuation formula $\\delta_k L \\max(R_k - R_K, 0)$ ([fact-05]), zero-cost collar premium offsetting ([fact-07]), $\text{Cap} - \text{Floor} = \text{Swap}$ parity ([fact-08]), and payer/receiver swaption definitions ([fact-10]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-07",
+            "fact-08",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Embedded Bond Options ([fact-01]): Callable bonds grant issuer buybacks; putable bonds grant holder early principal repayment.",
+    "2. Black's Bond Option Model ([fact-02]): Values European bond options using forward cash (dirty) price $F_0$.",
+    "3. Clean vs. Dirty Price ([fact-03]): Cash Price equals Quoted Clean Price plus Accrued Interest, essential for Black's model inputs.",
+    "4. Interest Rate Caps ([fact-04]): Portfolios of European call caplets protecting floating-rate borrowers against rising rates above $R_K$.",
+    "5. Caplet Valuation Formula ([fact-05]): $c_k = e^{-r t_{k+1}} \\delta_k L [F_k N(d_1) - R_K N(d_2)]$ valuing individual caplets.",
+    "6. Zero-Cost Collars ([fact-07]): Combines cap purchase and floor sale such that premium received offsets premium paid.",
+    "7. Cap-Floor-Swap Parity ([fact-08]): $\text{Cap} - \text{Floor} = \text{Interest Rate Swap}$, linking options and swaps synthetically.",
+    "8. Swaptions ([fact-10]): Options to enter into interest rate swaps at future date $T_0$ (payer vs. receiver swaptions)."
+  ],
+  "bottomTakeaway": "Interest rate derivatives like bond options, caps, floors, collars, and swaptions apply Black's 1976 model to forward rates and dirty bond prices, governing floating-rate risk management and swap parity relationships ([fact-02], [fact-05], [fact-08], [fact-10])."
+}

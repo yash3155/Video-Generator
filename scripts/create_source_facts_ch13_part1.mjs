@@ -1,0 +1,251 @@
+import fs from 'fs';
+import path from 'path';
+
+const sourceFactsCh13Part1 = {
+  schemaVersion: "1.0.0",
+  chapterSlug: "ch13_part1",
+  notebookId: "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  sourceId: "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  retrievalTimestamp: new Date().toISOString(),
+  bookTitle: "Fundamentals of Futures and Options Markets (John C. Hull)",
+  generalAssumptions: [
+    "Stock price follows geometric Brownian motion with constant drift mu and constant volatility sigma.",
+    "Continuously compounded returns over finite intervals are normally distributed, making stock prices lognormally distributed.",
+    "Financial markets trade on 252 business days per year, with volatility generated predominantly during open market hours.",
+    "Standard exchange option contracts represent exactly 100 shares of the underlying equity."
+  ],
+  facts: [
+    {
+      id: "fact-01",
+      category: "definition",
+      topic: "The Lognormal Property of Stock Prices",
+      statement: "Under geometric Brownian motion, while percentage returns over short intervals are normal, the continuously compounded return over any horizon T, ln(S_T / S_0), is normally distributed with mean (mu - sigma^2 / 2)*T and variance sigma^2 * T. Because ln(S_T) is normal, the price S_T itself follows a lognormal distribution, ensuring stock prices can never drop below zero. Standard exchange options represent 100 shares of the underlying equity.",
+      sourceCitation: {
+        book: "Fundamentals of Futures and Options Markets (John C. Hull)",
+        chapter: "ch13_part1",
+        excerpt: "The model of stock price behavior used by Black, Scholes, and Merton assumes that ln(S_T/S_0) is normally distributed with mean (mu - sigma^2/2)*T and variance sigma^2*T",
+        provenance: "notebooklm_query"
+      },
+      tags: ["lognormal_distribution", "geometric_brownian_motion", "price_process"]
+    },
+    {
+      id: "fact-02",
+      category: "formula",
+      topic: "Continuously Compounded Return Distribution Formula",
+      statement: "The log price ratio distribution is given by: ln(S_T / S_0) ~ N((mu - sigma^2/2)*T, sigma^2 * T). The subtraction of sigma^2 / 2 from drift mu arises from Ito's Lemma and represents the convexity drag between arithmetic compounding and geometric continuously compounded growth.",
+      sourceCitation: {
+        book: "Fundamentals of Futures and Options Markets (John C. Hull)",
+        chapter: "ch13_part1",
+        excerpt: "It follows that ln(S_T) ~ N(ln(S_0) + (mu - sigma^2/2)*T, sigma^2*T). The expected value of ln(S_T) is ln(S_0) + (mu - sigma^2/2)*T",
+        provenance: "notebooklm_query"
+      },
+      formulaDetails: {
+        name: "Lognormal Return Distribution",
+        latex: "\\ln\\left(\\frac{S_T}{S_0}\\right) \\sim \\mathcal{N}\\left( \\left(\\mu - \\frac{\\sigma^2}{2}\\right)T, \\; \\sigma^2 T \\right)",
+        variables: [
+          { symbol: "S_0", definition: "Current stock price at time zero", unit: "$" },
+          { symbol: "S_T", definition: "Future stock price at time T", unit: "$" },
+          { symbol: "\\mu", definition: "Expected real-world rate of return", unit: "%/year" },
+          { symbol: "\\sigma", definition: "Annualized stock price volatility", unit: "%/year" },
+          { symbol: "T", definition: "Time horizon in years", unit: "years" }
+        ]
+      },
+      tags: ["log_returns", "ito_lemma", "convexity_drag"]
+    },
+    {
+      id: "fact-03",
+      category: "formula",
+      topic: "Expected Value and Variance of Future Stock Price S_T",
+      statement: "From the properties of the lognormal distribution, the expected future stock price is E[S_T] = S_0 * exp(mu * T), and its variance is Var[S_T] = S_0^2 * exp(2*mu*T) * (exp(sigma^2 * T) - 1). This confirms that the expected stock price grows at rate mu, but the distribution exhibits positive right skewness.",
+      sourceCitation: {
+        book: "Fundamentals of Futures and Options Markets (John C. Hull)",
+        chapter: "ch13_part1",
+        excerpt: "The expected value of S_T is E(S_T) = S_0*exp(mu*T) and the variance of S_T is var(S_T) = S_0^2*exp(2*mu*T)*(exp(sigma^2*T) - 1)",
+        provenance: "notebooklm_query"
+      },
+      formulaDetails: {
+        name: "Expected Value and Variance of S_T",
+        latex: "E[S_T] = S_0 e^{\\mu T}, \\quad \\text{Var}[S_T] = S_0^2 e^{2\\mu T} \\left( e^{\\sigma^2 T} - 1 \\right)",
+        variables: [
+          { symbol: "E[S_T]", definition: "Expected stock price at maturity T", unit: "$" },
+          { symbol: "\\text{Var}[S_T]", definition: "Variance of future stock price", unit: "$^2" },
+          { symbol: "S_0", definition: "Initial stock price", unit: "$" },
+          { symbol: "\\mu", definition: "Expected annual return", unit: "%" },
+          { symbol: "\\sigma", definition: "Annual volatility", unit: "%" }
+        ]
+      },
+      tags: ["statistical_moments", "expected_stock_price", "variance"]
+    },
+    {
+      id: "fact-04",
+      category: "case_study",
+      topic: "Business Snapshot 13.1: Mutual Fund Returns Can Be Misleading",
+      statement: "Mutual fund advertisements frequently report arithmetic average returns, which severely distort true wealth compounding. In Hull's classic example, an investor with $100 experiences a +100% gain in Year 1 ($100 grows to $200), followed by a -50% loss in Year 2 ($200 shrinks back to $100). The fund reports an arithmetic average return of (+100% - 50%) / 2 = +25% per year, yet the investor's actual net geometric return is 0%, ending with the exact same $100 starting capital.",
+      sourceCitation: {
+        book: "Fundamentals of Futures and Options Markets (John C. Hull)",
+        chapter: "ch13_part1",
+        excerpt: "Business Snapshot 13.1: Mutual Fund Returns Can be Misleading. If an asset is worth $100, gains 100% to $200, then loses 50% back to $100, the arithmetic average is 25%, but the geometric return is 0%",
+        provenance: "notebooklm_query"
+      },
+      tags: ["business_snapshot_13_1", "arithmetic_vs_geometric", "performance_deception"]
+    },
+    {
+      id: "fact-05",
+      category: "numerical_example",
+      topic: "Arithmetic vs Geometric Compounded Return Calculation",
+      statement: "For a portfolio starting at $100.00 gaining 100% in year 1 to $200.00 and losing 50% in year 2 back to $100.00: the arithmetic mean return is (+1.00 + (-0.50)) / 2 = +0.25 (+25.0%). The true geometric compound rate of return is (100.00 / 100.00)^(1/2) - 1 = 0.0%, and the continuously compounded annual return is ln(100.00 / 100.00) / 2 = 0.0%. Arithmetic averaging upwardly biases performance by approximately sigma^2 / 2.",
+      sourceCitation: {
+        book: "Fundamentals of Futures and Options Markets (John C. Hull)",
+        chapter: "ch13_part1",
+        excerpt: "The geometric return is the single rate of return that achieves the same overall compound growth. The arithmetic return always overstates true investment compounding",
+        provenance: "notebooklm_query"
+      },
+      numericalDetails: {
+        values: {
+          initialCapital: 100,
+          year1EndingValue: 200,
+          year2EndingValue: 100,
+          year1Return: 1.0,
+          year2Return: -0.5,
+          arithmeticAverageReturn: 0.25,
+          geometricReturn: 0.0,
+          continuouslyCompoundedReturn: 0.0,
+          contractSize: 100
+        },
+        units: "$",
+        contractSize: 100,
+        context: "Hull Business Snapshot 13.1 arithmetic vs geometric return arithmetic."
+      },
+      tags: ["numerical_example", "return_arithmetic", "compounding"]
+    },
+    {
+      id: "fact-06",
+      category: "formula",
+      topic: "Historical Volatility Estimation from Daily Log Returns",
+      statement: "To estimate volatility sigma from closing stock prices S0, S1, ..., Sn observed at fixed intervals, compute daily log return relatives u_i = ln(S_i / S_{i-1}). The sample standard deviation s is s = sqrt( (1 / (n - 1)) * sum((u_i - u_bar)^2) ). The annualized volatility is then sigma = s / sqrt(tau), where tau is the length of the observation interval in years.",
+      sourceCitation: {
+        book: "Fundamentals of Futures and Options Markets (John C. Hull)",
+        chapter: "ch13_part1",
+        excerpt: "Define u_i = ln(S_i / S_{i-1}). An unbiased estimate of the variance of the u_i is s^2 = 1/(n-1)*sum(u_i - u_bar)^2. The standard deviation is s and sigma = s/sqrt(tau)",
+        provenance: "notebooklm_query"
+      },
+      formulaDetails: {
+        name: "Historical Volatility Estimator",
+        latex: "u_i = \\ln\\left(\\frac{S_i}{S_{i-1}}\\right), \\quad s = \\sqrt{\\frac{1}{n-1}\\sum_{i=1}^n (u_i - \\bar{u})^2}, \\quad \\sigma = \\frac{s}{\\sqrt{\\tau}}",
+        variables: [
+          { symbol: "u_i", definition: "Continuously compounded return on day i", unit: "unitless" },
+          { symbol: "s", definition: "Sample standard deviation of daily log returns", unit: "unitless" },
+          { symbol: "\\tau", definition: "Length of time interval in years (1/252 for daily trading)", unit: "years" },
+          { symbol: "\\sigma", definition: "Annualized historical volatility", unit: "%/year" }
+        ]
+      },
+      tags: ["historical_volatility", "sample_standard_deviation", "log_returns"]
+    },
+    {
+      id: "fact-07",
+      category: "numerical_example",
+      topic: "Trading-Day Annualization Scaling Example",
+      statement: "Suppose daily closing prices produce a daily return sample standard deviation s = 0.0132 (1.32% daily volatility). Because equity markets operate on 252 trading days per year, tau = 1 / 252 years. The annualized volatility is sigma = s / sqrt(1 / 252) = s * sqrt(252) = 0.0132 * 15.8745 = 0.2095, or 21.0% per annum. For an option with contract size 100 shares, accurately estimating sigma is the single most critical pricing input.",
+      sourceCitation: {
+        book: "Fundamentals of Futures and Options Markets (John C. Hull)",
+        chapter: "ch13_part1",
+        excerpt: "If tau is 1/252, sigma = s * sqrt(252). For example, if s = 0.0132, sigma = 0.0132 * sqrt(252) = 0.2095 or about 21%",
+        provenance: "notebooklm_query"
+      },
+      numericalDetails: {
+        values: {
+          dailyStdDev: 0.0132,
+          tradingDaysPerYear: 252,
+          sqrtTradingDays: 15.8745,
+          annualizedVolatility: 0.2095,
+          stockSpot: 50,
+          contractSize: 100
+        },
+        units: "$",
+        contractSize: 100,
+        context: "Hull Section 13.4 numerical example of historical volatility annualization."
+      },
+      tags: ["annualization", "volatility_scaling", "trading_days"]
+    },
+    {
+      id: "fact-08",
+      category: "case_study",
+      topic: "Business Snapshot 13.2: What Causes Volatility? (The French 1980 Study)",
+      statement: "In Business Snapshot 13.2, Kenneth French (1980) investigated whether stock volatility is caused by information arrival over calendar days or by the process of active trading itself. French compared the variance of stock returns across weekends (Friday close to Monday close, spanning 72 hours) against weekday trading (spanning 24 hours). If calendar time drove volatility, weekend variance should be 3 times weekday variance. In reality, weekend variance was only 1.22 times weekday variance, proving that trading itself causes volatility, validating the convention of counting 252 trading days rather than 365 calendar days.",
+      sourceCitation: {
+        book: "Fundamentals of Futures and Options Markets (John C. Hull)",
+        chapter: "ch13_part1",
+        excerpt: "Business Snapshot 13.2: What Causes Volatility? French (1980) studied stock returns between 1953 and 1977. Weekend variance was only 22% higher than weekday variance, showing trading itself generates volatility",
+        provenance: "notebooklm_query"
+      },
+      tags: ["business_snapshot_13_2", "french_1980", "trading_days_vs_calendar"]
+    },
+    {
+      id: "fact-09",
+      category: "formula",
+      topic: "Gross Payoff versus Net Trading Profit for Stock Options",
+      statement: "A non-negotiable rule in derivatives risk analysis is distinguishing terminal Gross Payoff from Net Trading Profit: Profit = Payoff - Premium paid. For a standard 100-share European call option purchased at initial premium c0 = $3.50 with strike K = $50.00, if stock price S_T terminates at $60.00, the terminal Gross Payoff is max(S_T - K, 0) = $10.00 per share ($1,000 per contract), but the realized Net Trading Profit is Payoff - Premium paid = $10.00 - $3.50 = $6.50 per share ($650 per contract). Profit = Payoff - Premium paid.",
+      sourceCitation: {
+        book: "Fundamentals of Futures and Options Markets (John C. Hull)",
+        chapter: "ch13_part1",
+        excerpt: "Payoff is the terminal cash flow received at expiration. Net profit subtracts the original premium: Profit = Payoff - Premium paid",
+        provenance: "notebooklm_query"
+      },
+      formulaDetails: {
+        name: "Gross Payoff vs Net Profit Invariant",
+        latex: "\\text{Net Profit}_{call} = \\max(S_T - K, 0) - c_0",
+        variables: [
+          { symbol: "S_T - K", definition: "Gross terminal cash payoff per share", unit: "$" },
+          { symbol: "c_0", definition: "Initial option premium paid per share", unit: "$" },
+          { symbol: "\\text{Net Profit}", definition: "Net trading profit per share", unit: "$" }
+        ]
+      },
+      payoffVsProfit: {
+        distinctionType: "both",
+        formulaPayoff: "Payoff = max(S_T - K, 0)",
+        formulaProfit: "Profit = Payoff - Premium paid"
+      },
+      tags: ["payoff_vs_profit", "risk_rule", "option_economics"]
+    },
+    {
+      id: "fact-10",
+      category: "definition",
+      topic: "Standard Assumptions Underlying Black-Scholes-Merton",
+      statement: "The Black-Scholes-Merton model rests on six rigorous market assumptions: 1) Stock price follows geometric Brownian motion with constant mu and sigma, 2) Short selling with full use of proceeds is permitted, 3) No transaction costs or taxes, 4) No dividends paid during the option life, 5) Constant risk-free interest rate r, and 6) Continuous trading with no price jumps.",
+      sourceCitation: {
+        book: "Fundamentals of Futures and Options Markets (John C. Hull)",
+        chapter: "ch13_part1",
+        excerpt: "The assumptions used to derive the Black-Scholes-Merton differential equation include lognormal stock prices, no transaction costs, constant interest rates, and no dividends",
+        provenance: "notebooklm_query"
+      },
+      tags: ["bsm_assumptions", "frictionless_markets", "theoretical_foundation"]
+    },
+    {
+      id: "fact-11",
+      category: "definition",
+      topic: "The Standard Normal Cumulative Distribution Function N(x)",
+      statement: "The cumulative normal distribution function N(x) represents the probability that a standard normal variable Z ~ N(0, 1) is less than x. It is central to Black-Scholes-Merton pricing, where N(d2) represents the risk-neutral probability that the option will be exercised at maturity, and N(d1) represents the delta hedge ratio adjusted for stock price growth.",
+      sourceCitation: {
+        book: "Fundamentals of Futures and Options Markets (John C. Hull)",
+        chapter: "ch13_part1",
+        excerpt: "N(x) is the cumulative probability distribution function for a standardized normal variable. N(d2) is the probability that the call option will be exercised",
+        provenance: "notebooklm_query"
+      },
+      tags: ["cumulative_normal", "n_d1", "n_d2", "risk_neutral_probability"]
+    }
+  ]
+};
+
+const dirs = [
+  path.resolve('src/data/chapters/hull_derivatives/ch13_part1'),
+  path.resolve('src/data/chapters/hull_derivatives_en/ch13_part1')
+];
+
+for (const dir of dirs) {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  const filePath = path.join(dir, 'source_facts.json');
+  fs.writeFileSync(filePath, JSON.stringify(sourceFactsCh13Part1, null, 2), 'utf8');
+  console.log(`Saved source_facts.json to: ${filePath}`);
+}

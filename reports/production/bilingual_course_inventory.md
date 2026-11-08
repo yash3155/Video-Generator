@@ -1,15 +1,15 @@
 # Bilingual Course Production Inventory & Audit Matrix
 
-Generated: 2026-11-08T03:27:12.489Z
+Generated: 2026-11-08T07:29:02.298Z
 
 ## Executive Summary
 
-- **Total Tracked Chapter Pairs**: 48
-  - **John C. Hull (Derivatives)**: 15 chapters
+- **Total Tracked Chapter Pairs**: 73
+  - **John C. Hull (Derivatives)**: 40 chapters
   - **John J. Murphy (Technical Analysis)**: 33 chapters
-- **Bilingual Data Complete (7/7 Artifacts in both Hindi & English)**: 48 / 48
-- **Both Videos Rendered**: 48 / 48
-- **Both QA Passed (0 Blockers, 0 Highs)**: 1 / 48
+- **Bilingual Data Complete (7/7 Artifacts in both Hindi & English)**: 73 / 73
+- **Both Videos Rendered**: 61 / 73
+- **Both QA Passed (0 Blockers, 0 Highs)**: 2 / 73
 
 ## Detailed Bilingual Audit Table
 
@@ -30,6 +30,31 @@ Generated: 2026-11-08T03:27:12.489Z
 | `hull_derivatives` | `ch07_part1` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: NO_QA |
 | `hull_derivatives` | `ch07_part2` | ✅ Complete (7/7) | 32 audio | 🎬 Rendered | ✅ Complete (7/7) | 32 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
 | `hull_derivatives` | `ch08_part1` | ✅ Complete (7/7) | 33 audio | 🎬 Rendered | ✅ Complete (7/7) | 33 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch09_part1` | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | HI: PASS | EN: PASS ✅ Release Ready |
+| `hull_derivatives` | `ch09_part2` | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch10_part1` | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch10_part2` | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch11_part1` | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch11_part2` | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch12_part1` | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch12_part2` | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch13_part1` | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch13_part2` | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch14_part1` | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | ✅ Complete (7/7) | 22 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch15_part1` | ✅ Complete (7/7) | 21 audio | 🎬 Rendered | ✅ Complete (7/7) | 21 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch16_part1` | ✅ Complete (7/7) | 21 audio | 🎬 Rendered | ✅ Complete (7/7) | 21 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `hull_derivatives` | `ch17_part1` | ✅ Complete (7/7) | 21 audio | 🎬 Rendered | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: CONDITIONAL_PASS | EN: NO_QA |
+| `hull_derivatives` | `ch17_part2` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `hull_derivatives` | `ch18_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `hull_derivatives` | `ch19_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `hull_derivatives` | `ch20_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `hull_derivatives` | `ch20_part2` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `hull_derivatives` | `ch21_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `hull_derivatives` | `ch22_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `hull_derivatives` | `ch23_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `hull_derivatives` | `ch24_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `hull_derivatives` | `ch25_part1` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
+| `hull_derivatives` | `ch25_part2` | ✅ Complete (7/7) | 21 audio | ❌ No Video | ✅ Complete (7/7) | 21 audio | ❌ No Video | HI: NO_QA | EN: NO_QA |
 | `murphy_technical_analysis` | `appendix_ab` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS ⚠️ (1 Highs) |
 | `murphy_technical_analysis` | `appendix_cd` | ✅ Complete (7/7) | 35 audio | 🎬 Rendered | ✅ Complete (7/7) | 35 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS ⚠️ (1 Highs) |
 | `murphy_technical_analysis` | `ch01_part1` | ✅ Complete (7/7) | 42 audio | 🎬 Rendered | ✅ Complete (7/7) | 42 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: PASS |

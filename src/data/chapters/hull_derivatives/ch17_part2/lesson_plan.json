@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch17_part2",
+  "title": "Higher-Order Greeks: Theta, Gamma, Vega, Rho, Gamma-Vega Neutrality, and Black Monday Portfolio Insurance",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Black-Scholes-Merton option pricing models and Delta hedging principles",
+    "Partial differentiation and Taylor series expansions",
+    "Portfolio risk management and market crash history"
+  ],
+  "learningOutcomes": [
+    "Calculate and interpret higher-order Greeks (Theta, Gamma, Vega, Rho) and their sensitivities ([fact-01], [fact-02], [fact-05], [fact-06]).",
+    "Construct Gamma-neutral and Vega-neutral portfolios using traded option contracts ([fact-03], [fact-09]).",
+    "Explain the mathematical BSM differential equation invariant linking positive Gamma directly to negative Theta ([fact-04]).",
+    "Analyze synthetic portfolio insurance, the 1987 Black Monday feedback loop, and regulatory circuit breakers ([fact-07], [fact-08], [fact-10])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Theta, Gamma, Vega, and Rho Definitions and Formulas",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-05",
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Gamma Neutrality and the BSM Differential Equation Invariant",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-03",
+        "fact-04",
+        "fact-09"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Synthetic Portfolio Insurance and the 1987 Black Monday Crash",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-07",
+        "fact-08",
+        "fact-10"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Net Trading Profit and Cumulative Theta Drag",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-03",
+      "authorRebuttal": "Because underlying stock has a Gamma of exactly zero, stock trading cannot neutralize portfolio Gamma; managers must trade options with non-zero Gamma ([fact-03])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-04",
+      "authorRebuttal": "The BSM differential equation invariant proves that positive Gamma comes at the direct expense of negative Theta time decay ($\\Theta + 0.5\\sigma^2 S^2 \\Gamma = r\\Pi$), meaning convexity must be continuously paid for via time decay ([fact-04])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-07",
+      "authorRebuttal": "As demonstrated on Black Monday in 1987, synthetic portfolio insurance creates a dangerous procyclical feedback loop where falling prices force algorithmic selling, driving prices down further and overwhelming exchange liquidity ([fact-07], [fact-08])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A trading book has $\\Delta = 0$, $\\Gamma = -5,000$, and $\\mathcal{V} = -8,000$. Traded Option 1 has $\\Gamma_1 = 1.5, \\mathcal{V}_1 = 2.0$, and Traded Option 2 has $\\Gamma_2 = 0.5, \\mathcal{V}_2 = 3.0$. Separately, on Black Monday in 1987, the Dow dropped 22.6% in a single day.",
+    "testedFactIds": [
+      "fact-04",
+      "fact-07",
+      "fact-08"
+    ],
+    "question": "1) How do option Gamma and Theta interact according to the BSM differential equation? 2) Why did synthetic portfolio insurance exacerbate the 1987 market crash?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Higher-order Greeks (Theta, Gamma, Vega, Rho) quantify critical dimensions of option risk beyond simple price sensitivity ([fact-01], [fact-02], [fact-05], [fact-06]).",
+    "Making a portfolio Gamma-neutral or Vega-neutral requires trading option contracts because underlying stock has zero Gamma and zero Vega ([fact-03]).",
+    "The BSM differential equation establishes that positive Gamma requires paying continuous negative Theta time decay, while unmanaged synthetic portfolio insurance can catalyze market-wide crash feedback loops ([fact-04], [fact-08])."
+  ]
+}

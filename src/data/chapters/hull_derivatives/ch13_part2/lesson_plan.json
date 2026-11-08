@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch13_part2",
+  "title": "The Black-Scholes-Merton Pricing Model, Greeks, Implied Volatility, and Dividend Adjustments",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Lognormal stock price distributions and continuously compounded returns",
+    "Cumulative normal distribution function N(x) basics",
+    "Put-Call Parity and no-arbitrage valuation principles"
+  ],
+  "learningOutcomes": [
+    "Formulate the Black-Scholes-Merton European call and put pricing equations and interpret their expected present value components ([fact-01], [fact-02]).",
+    "Calculate standardized variables d1 and d2 and explain the probabilistic meaning of N(d2) and Delta N(d1) ([fact-03], [fact-04], [fact-05]).",
+    "Compute implied volatility using root-finding methods and understand the CBOE VIX Index as market sentiment ([fact-06]).",
+    "Apply generalized BSM formulas for continuous dividend yields q and evaluate early exercise conditions for American calls on dividend-paying stocks ([fact-07], [fact-08], [fact-10], [fact-11])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Black-Scholes-Merton European Call and Put Pricing Formulas",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Probabilistic Meaning of N(d2) and Delta N(d1)",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-04",
+        "fact-05"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Implied Volatility and the CBOE VIX Index",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Continuous Dividends, Early Exercise, and Fischer Black's Approximation",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-07",
+        "fact-08",
+        "fact-09",
+        "fact-10",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-04",
+      "authorRebuttal": "N(d1) represents the dynamic Delta hedge ratio (dc/dS0), whereas N(d2) is the actual risk-neutral probability that the option will be exercised at maturity ([fact-04])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-08",
+      "authorRebuttal": "Early exercise of an American call is only optimal right before the ex-dividend date if the anticipated dividend D exceeds the interest lost on paying strike K early (D > K * [1 - exp(-r * (T - t1))]); otherwise, holding preserves time value ([fact-08])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-09",
+      "authorRebuttal": "Gross payoff ignores the initial premium paid; net trading profit is strictly defined as Terminal Gross Payoff minus Premium paid ([fact-09])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "Consider Hull's benchmark BSM example: S0 = $42.00, K = $40.00, r = 10%, sigma = 20%, T = 0.5 years. Resulting values include d1 = 0.7693, d2 = 0.6279, N(d1) = 0.7791, N(d2) = 0.7350, and European call price c = $4.76 per share ($476 per contract).",
+    "testedFactIds": [
+      "fact-04",
+      "fact-05",
+      "fact-09"
+    ],
+    "question": "1) What is the probabilistic meaning of N(d2) and N(d1) in this model? 2) If the call option is purchased at $4.76 and stock terminates at $50.00, what is the net trading profit per share?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "The Black-Scholes-Merton model prices European options using expected stock present value versus strike present value discounted under risk-neutral probabilities ([fact-01], [fact-02]).",
+    "Cumulative normal probabilities N(d2) and N(d1) provide direct probabilistic exercise likelihoods and dynamic Delta hedge ratios ([fact-04]).",
+    "Generalized BSM formulas incorporate continuous dividend yields q and govern optimal early exercise boundaries for American options on dividend-paying stocks ([fact-07], [fact-08])."
+  ]
+}

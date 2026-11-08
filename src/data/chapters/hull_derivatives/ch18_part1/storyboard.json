@@ -1,0 +1,411 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch18_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Numerical Procedures: Cox-Ross-Rubinstein Binomial Trees, American Options, Control Variates, and Monte Carlo Simulation",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "Introduction to Numerical Lattices & American Exercise",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A quantitative analyst asks how to value options when analytical formulas fail; the mentor introduces Cox-Ross-Rubinstein binomial trees ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "They examine step factors $u = e^{\\sigma\\sqrt{\\Delta t}}$, $d = 1/u$, and risk-neutral probability $p$ ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "The mentor explains backward induction for American options: evaluating $\\max(\text{Intrinsic}, \text{Continuation})$ at every node ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "American Put Tree & Monte Carlo Metrics by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display American Put Benchmark ($S_0 = \\$50, K = \\$52, r = 5%, \\sigma = 30\\%$): node $(1,0)$ stock price $\\$37.04$ yields $\\$14.96$ exercise profit vs $\\$12.36$ continuation, giving initial put price $\\$7.43$ ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display Monte Carlo Standard Error metrics: $SE = \\omega / \\sqrt{M}$, proving that quadrupling paths ($4M$) is required to halve estimation error ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 18 Part 1 Roadmap: 4 Numerical Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-04",
+        "fact-06",
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: CRR Binomial Trees — Up/down step factors and backward induction for American exercise ([fact-01], [fact-02]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Variance Reduction & Escrow — Control variate analytical correction and discrete dividend escrow decomposition ([fact-04], [fact-05]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Monte Carlo Simulation — Risk-neutral path generation and sample standard error scaling ([fact-06], [fact-07]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Institutional Calibration — Balancing trees for American options versus Monte Carlo for path-dependent exotics ([fact-08], [fact-10]).",
+          "sourceFactIds": [
+            "fact-08",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Binomial Trees vs. Monte Carlo Simulation Strengths",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Binomial Trees: excel at valuing American options with early exercise decisions via backward node optimization ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Monte Carlo Simulation: steps forward in time making early exercise difficult, but excels at pricing complex path-dependent exotic options across multi-asset baskets ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Control Variates & Escrow Decomposition",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Control Variate Formula: $f_A = f_{A,\text{tree}} + (f_{E,\text{BSM}} - f_{E,\text{tree}})$ removing known discretization error ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Escrow Decomposition: $S^* = S - D \\cdot e^{-r t_D}$ maintaining recombining lattice efficiency ($N(N+1)/2$) for discrete dividends ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Trinomial Trees vs. Binomial Lattices Convergence Speed",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Standard Lattices: institutional desks calibrate 50-step trees to balance sub-cent accuracy against sub-second execution speeds ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Trinomial Expansion: expanding branches to 3 ($u = e^{\\sigma\\sqrt{3\\Delta t}}$) offers faster convergence and stability around barrier triggers ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Immediate Exercise Value vs. Discounted Continuation Value",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-03"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Immediate Exercise: capturing cash intrinsic value immediately (e.g., $\\$14.96$ at node $(1,0)$) ([fact-02], [fact-03]).",
+          "sourceFactIds": [
+            "fact-02",
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Continuation Value: discounting future node expectations ($e^{-r\\Delta t}[p V_{up} + (1-p)V_{down}]$) when time value exceeds exercise value ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Early Exercise Payoff vs. Compounded Net Profit",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Gross Exercise Payoff: $\\max(K - S_i, 0)$ upon early exercise at node $(i,j)$ ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Net Trading Profit: deducting compounded initial option purchase price ($\text{Profit} = \text{Payoff} - \text{Premium} \\cdot e^{r t_i}$) ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Risk-Neutral Monte Carlo Path Generation Formula",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-06",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Path Step Equation: $S(t+\\Delta t) = S(t)\\exp[(r - q - 0.5\\sigma^2)\\Delta t + \\sigma\\sqrt{\\Delta t}\\epsilon]$ with $\\epsilon \\sim N(0,1)$ ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pricing Estimator: sample average of discounted terminal payoffs across $M$ simulated paths with $SE = \\omega / \\sqrt{M}$ ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Backward Induction & Monte Carlo SE",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Explain why node $(1,0)$ triggers early exercise ($\\$14.96 > \\$12.36$) in the 2-year American put example ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Determine path multiplier required to halve Monte Carlo standard error ($4M$ paths) ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Institutional Numerical Procedures Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-05",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The quant reviews tree calibration: verify 50-step lattice sizing and control variate adjustments for European discretization error ([fact-04], [fact-10]).",
+          "sourceFactIds": [
+            "fact-04",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The risk manager checks dividend handling: ensure escrow decomposition $S^* = S - D \\cdot e^{-r t_D}$ is applied to maintain recombining efficiency ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Numerical Procedures",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-04",
+        "fact-05",
+        "fact-06",
+        "fact-07",
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: CRR tree step factors $u$ and $d$ ([fact-01]), American backward induction optimization ([fact-02]), control variate analytical correction ([fact-04]), and escrow dividend decomposition ([fact-05]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-04",
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Monte Carlo path simulation step formula ([fact-06]), standard error scaling $1/\\sqrt{M}$ ([fact-07]), comparative strengths of trees vs simulation ([fact-08]), and 50-step institutional calibration ([fact-10]).",
+          "sourceFactIds": [
+            "fact-06",
+            "fact-07",
+            "fact-08",
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. CRR Step Factors ([fact-01]): Up and down factors $u = e^{\\sigma\\sqrt{\\Delta t}}$ and $d = 1/u$ with risk-neutral probability $p = (a-d)/(u-d)$.",
+    "2. American Backward Induction ([fact-02]): Evaluates node values as $V = \\max(\text{Intrinsic}, e^{-r\\Delta t}[p V_{up} + (1-p)V_{down}])$.",
+    "3. Control Variates ([fact-04]): Pairs tree pricing with European BSM analytical formulas to eliminate known discretization errors ($f_A = f_{\text{tree}} + [f_{\text{BSM}} - f_{\text{tree}}]$).",
+    "4. Escrow Dividend Decomposition ([fact-05]): Decomposes stock into $S^* = S - D \\cdot e^{-r t_D}$ to preserve recombining lattice efficiency ($N(N+1)/2$).",
+    "5. Monte Carlo Simulation ([fact-06]): Generates discrete risk-neutral Brownian motion paths via $S(t+\\Delta t) = S(t)\\exp[(r-q-0.5\\sigma^2)\\Delta t + \\sigma\\sqrt{\\Delta t}\\epsilon]$.",
+    "6. Standard Error Scaling ([fact-07]): Standard error scales as $SE = \\omega / \\sqrt{M}$, requiring quadrupling paths ($4M$) to halve estimation error.",
+    "7. Method Comparative Strengths ([fact-08]): Binomial trees excel at American early exercise; Monte Carlo excels at path-dependent multi-asset exotics.",
+    "8. Institutional Calibration ([fact-10]): Standard trading desks use 50 to 100 steps paired with control variates for sub-second precision."
+  ],
+  "bottomTakeaway": "Numerical procedures like Cox-Ross-Rubinstein binomial trees and Monte Carlo simulation provide robust institutional pricing frameworks, balancing American early exercise backward induction against path-dependent exotic simulation ([fact-02], [fact-04], [fact-06], [fact-08])."
+}

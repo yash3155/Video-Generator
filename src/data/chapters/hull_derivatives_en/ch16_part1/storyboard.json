@@ -1,0 +1,406 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch16_part1",
+  "course": "Fundamentals of Futures and Options Markets (John C. Hull)",
+  "chapterTitle": "Futures Options: Mechanics, Put-Call Parity, Fischer Black's Model, Binomial Trees, and Early Exercise",
+  "approvedFactIds": [
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11"
+  ],
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "title": "Introduction to Futures Options & Exercise Mechanics",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "A commodities trader asks how futures options work compared to spot options; the mentor explains exercise mechanics yielding futures positions plus cash ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Exercising a call grants a long futures position plus cash credit F0 - K, while a put delivers short futures plus K - F0 ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "The mentor highlights why traders prefer futures options: high liquidity, no physical delivery friction, and seamless margin netting ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Crude Oil Futures Call Benchmark by the Numbers",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-05",
+        "fact-06"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Display Fischer Black's model inputs: F0 = $50, K = $50, r = 6%, sigma = 30%, and T = 0.75 years ([fact-05], [fact-06]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Display pricing outputs: d1 = 0.1949, d2 = -0.0649, N(d1) = 0.5772, N(d2) = 0.4741, yielding call premium c = $4.87 ([fact-06]).",
+          "sourceFactIds": [
+            "fact-06"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Chapter 16 Part 1 Roadmap: 4 Core Pillars",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-02",
+        "fact-05",
+        "fact-08",
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Pillar 1: Futures Option Mechanics — Exercise cash settlements and structural advantages over spot options ([fact-02]).",
+          "sourceFactIds": [
+            "fact-02"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Pillar 2: Fischer Black's Model — Zero-drift risk-neutral pricing (q = r) and put-call parity ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 2,
+          "textOutline": "Pillar 3: Binomial Trees — Modified up probabilities p = (1 - d) / (u - d) for futures lattices ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 3,
+          "textOutline": "Pillar 4: Early Exercise & Futures-Style — American call exercise rules and daily margined options ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Spot Options vs. Futures Options Put-Call Parity",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-03",
+        "fact-07"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Compare Observability: Fischer Black's model utilizes directly observable futures prices F0, bypassing spot storage cost and convenience yield errors ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Compare Parity Equation: c + K*e^(-r*T) = p + F0*e^(-r*T) discounts both strike K and futures price F0 to present value ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Deconstructing Fischer Black's (1976) Pricing Model",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-04",
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Break down Zero-Drift Assumption: futures contracts cost nothing to enter, treating q = r as a continuous dividend yield ([fact-04]).",
+          "sourceFactIds": [
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Break down Black's Formula: c = e^(-r*T) * [F0 * N(d1) - K * N(d2)] incorporating standardized variables d1 and d2 ([fact-05]).",
+          "sourceFactIds": [
+            "fact-05"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Futures-Style Options: Eliminating Upfront Premium",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-10"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Examine Traditional Options: buyer pays full upfront premium c or p, requiring interest rate discounting ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Examine Futures-Style Options: buyer pays zero upfront premium, and positions are marked-to-market daily with margin variation like futures contracts ([fact-10]).",
+          "sourceFactIds": [
+            "fact-10"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 6,
+      "title": "Spot Calls vs. American Futures Calls Early Exercise",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Balance Spot Calls: non-dividend spot calls are rarely exercised early because exercising forfeits time value ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Balance Futures Calls: American futures calls are exercised early when F is high, expected to decline, or interest rates are high to earn interest on cash F - K ([fact-09]).",
+          "sourceFactIds": [
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 7,
+      "title": "Terminal Gross Payoff vs. Compounded Net Trading Profit",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-11"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Plot Terminal Gross Payoff: max(F_T - K, 0) at option expiration for futures call contracts ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Plot Net Trading Profit: Payoff minus initial premium paid compounded at risk-free rate (Payoff - Premium * e^(r*T)) ([fact-11]).",
+          "sourceFactIds": [
+            "fact-11"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 8,
+      "title": "Binomial Tree Parameterization for Futures Options",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-08"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Up and Down Factors: u = e^(sigma * sqrt(delta_t)) and d = 1 / u matching volatility sigma ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Risk-Neutral Probability: p = (1 - d) / (u - d), replacing drift e^(r*delta_t) with 1 due to zero initial payment for futures ([fact-08]).",
+          "sourceFactIds": [
+            "fact-08"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 9,
+      "title": "Active Recall Challenge: Futures Exercise & Parity",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-03",
+        "fact-05"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Quiz Part 1: Identify futures call exercise cash adjustment (F0 - K) and underlying position (long futures) ([fact-01]).",
+          "sourceFactIds": [
+            "fact-01"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Quiz Part 2: Verify European futures put-call parity c + K*e^(-r*T) = p + F0*e^(-r*T) ([fact-03]).",
+          "sourceFactIds": [
+            "fact-03"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 10,
+      "title": "Futures Options Pricing & Execution Audit Checklist",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-07",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "The quant reviews model parameters: verify observable futures price F0, volatility sigma, and time to maturity T ([fact-07]).",
+          "sourceFactIds": [
+            "fact-07"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "The risk manager audits exercise rules: check cash adjustments F0 - K upon exercise and monitor American futures call early exercise boundaries ([fact-01], [fact-09]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    },
+    {
+      "sceneIndex": 11,
+      "title": "8-Step Mastery Thread: Futures Options",
+      "template": "progressive_cards",
+      "concept": "Foundational market concept",
+      "sourceFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05",
+        "fact-07",
+        "fact-08",
+        "fact-09"
+      ],
+      "beatOutlines": [
+        {
+          "beatIndex": 0,
+          "textOutline": "Synthesize Steps 1 to 4: Futures call exercise yielding long futures plus cash F0 - K ([fact-01]), superior liquidity and margin netting over spot options ([fact-02]), put-call parity discounting both F0 and K ([fact-03]), and zero-drift risk-neutral assumption q = r ([fact-04]).",
+          "sourceFactIds": [
+            "fact-01",
+            "fact-02",
+            "fact-03",
+            "fact-04"
+          ],
+          "speaker": "narrator"
+        },
+        {
+          "beatIndex": 1,
+          "textOutline": "Synthesize Steps 5 to 8: Fischer Black's pricing model formulas ([fact-05]), institutional preference for observable F0 ([fact-07]), binomial tree probability p = (1 - d) / (u - d) ([fact-08]), and American futures call early exercise conditions ([fact-09]).",
+          "sourceFactIds": [
+            "fact-05",
+            "fact-07",
+            "fact-08",
+            "fact-09"
+          ],
+          "speaker": "narrator"
+        }
+      ]
+    }
+  ],
+  "summarySteps": [
+    "1. Futures Option Exercise ([fact-01]): Exercising a call delivers a long futures position plus cash F0 - K; exercising a put delivers short futures plus K - F0.",
+    "2. Trader Preferences ([fact-02]): Futures options are preferred over spot options due to superior liquidity, no physical delivery friction, and seamless margin netting.",
+    "3. Put-Call Parity ([fact-03]): c + K*e^(-r*T) = p + F0*e^(-r*T) discounts both futures price F0 and strike K to present value.",
+    "4. Zero-Drift Assumption ([fact-04]): Futures contracts cost nothing to enter, behaving in risk-neutral valuation like assets paying continuous dividend q = r.",
+    "5. Fischer Black's Model ([fact-05]): Values futures options using F0 in place of S0: c = e^(-r*T) * [F0 * N(d1) - K * N(d2)].",
+    "6. Observable Inputs ([fact-07]): Financial institutions prefer Black's model because F0 is directly observable, bypassing spot storage cost and convenience yield errors.",
+    "7. Binomial Tree Probability ([fact-08]): Futures binomial lattices use modified up probability p = (1 - d) / (u - d) with drift replaced by 1.",
+    "8. American Early Exercise ([fact-09]): American futures calls are optimally exercised early when futures prices are high, expected to decline, or interest rates are high."
+  ],
+  "bottomTakeaway": "Fischer Black's (1976) model prices futures options by treating futures contracts as zero-drift assets (q = r), providing institutional traders with observable valuation inputs and flexible cash-settled exercise mechanics ([fact-01], [fact-04], [fact-05], [fact-07])."
+}

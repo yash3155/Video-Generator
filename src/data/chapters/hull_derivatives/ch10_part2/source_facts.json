@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch10_part2",
+  "notebookId": "c10a8b30-fee8-4d92-9d2c-516bc8866bad",
+  "sourceId": "f8901e7b-90e2-4ac7-b8cb-492198f9ac7a",
+  "retrievalTimestamp": "2026-11-08T05:14:02.366Z",
+  "bookTitle": "Technical Analysis of the Financial Markets (John J. Murphy)",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "definition",
+      "topic": "Put-Call Parity Formula for European Options on Non-Dividend-Paying Stock",
+      "statement": "Put-Call Parity establishes that for a European call option (c) and a European put option (p) with the same strike price (K), maturity date (T), and non-dividend-paying underlying stock (S_0), the pricing relationship is c + K*e^(-rT) = p + S_0, where K*e^(-rT) is the present value of the strike price discounted at the continuously compounded risk-free rate r.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part2",
+        "excerpt": "Put-Call Parity defines a fundamental relationship between the price of a European call option (c) and a European put option (p) having the same strike price (K), maturity date (T), and underlying stock (S_0) paying no dividends",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Put-Call Parity",
+        "latex": "c + K e^{-rT} = p + S_0",
+        "variables": [
+          {
+            "symbol": "c",
+            "definition": "Current price of the European call option",
+            "unit": "$"
+          },
+          {
+            "symbol": "p",
+            "definition": "Current price of the European put option",
+            "unit": "$"
+          },
+          {
+            "symbol": "S_0",
+            "definition": "Current price of the underlying stock",
+            "unit": "$"
+          },
+          {
+            "symbol": "K",
+            "definition": "Strike or exercise price of the options",
+            "unit": "$"
+          },
+          {
+            "symbol": "r",
+            "definition": "Risk-free continuously compounded interest rate",
+            "unit": "rate"
+          },
+          {
+            "symbol": "T",
+            "definition": "Time to expiration in years",
+            "unit": "years"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-02",
+      "category": "claim",
+      "topic": "Put-Call Parity Replication Proof via Portfolio A and Portfolio B",
+      "statement": "Put-Call Parity is proven by constructing two portfolios at time t = 0: Portfolio A (1 European call c + cash of K*e^(-rT)) and Portfolio B (1 European put p + 1 share of underlying stock S_0). At expiration T, if S_T > K, Portfolio A pays (S_T - K) + K = S_T and Portfolio B pays 0 + S_T = S_T; if S_T <= K, Portfolio A pays 0 + K = K and Portfolio B pays K via put exercise. Because both portfolios yield the exact same terminal payoff max(S_T, K) in all states, the Law of One Price requires c + K*e^(-rT) = p + S_0.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part2",
+        "excerpt": "In both scenarios, both portfolios yield the exact same terminal payoff of \\max(S_T, K) at time T. Under the no-arbitrage principle, two portfolios guaranteeing identical future payoffs in all market states must cost the same today.",
+        "provenance": "notebooklm_query"
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "max(S_T, K)",
+        "formulaProfit": "max(S_T, K) - (c + K*e^(-rT)) = max(S_T, K) - (p + S_0)",
+        "premiumConsidered": true,
+        "explanation": "Both Portfolio A and Portfolio B produce an identical terminal payoff of max(S_T, K) at expiration T, so their initial investment costs (including option premiums c and p) must be equal at t = 0."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-03",
+      "category": "market_rule",
+      "topic": "Fiduciary Call Arbitrage Steps When Call Side Is Overpriced (c + K*e^(-rT) > p + S_0)",
+      "statement": "When c + K*e^(-rT) > p + S_0, arbitrageurs execute a Fiduciary Call Arbitrage at t = 0 by: (1) selling/shorting the European call at c (+c), (2) buying the European put at p (-p), (3) buying 1 share of stock at S_0 (-S_0), and (4) borrowing K*e^(-rT) at the risk-free rate r (+K*e^(-rT)), locking in an upfront riskless profit of (c + K*e^(-rT)) - (p + S_0) > 0. At expiration T, whether S_T > K (short call exercised against trader for +K) or S_T <= K (long put exercised by trader for +K), the +K inflow exactly repays the -K loan obligation, netting 0 terminal cash flow.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part2",
+        "excerpt": "When the call option is overpriced relative to the put and stock, traders execute a Fiduciary Call Arbitrage",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-04",
+      "category": "market_rule",
+      "topic": "Reversal (Reverse Conversion) Arbitrage Steps When Call Side Is Underpriced (c + K*e^(-rT) < p + S_0)",
+      "statement": "When c + K*e^(-rT) < p + S_0, arbitrageurs execute a Reversal (Reverse Conversion) Arbitrage at t = 0 by: (1) buying the European call at c (-c), (2) selling/shorting the European put at p (+p), (3) short-selling 1 share of stock at S_0 (+S_0), and (4) lending/investing K*e^(-rT) at the risk-free rate r (-K*e^(-rT)), locking in an upfront riskless profit of (p + S_0) - (c + K*e^(-rT)) > 0. At expiration T, the invested cash grows to +K, which exactly pays the -K required to buy 1 share and close the short stock position via long call exercise (if S_T > K) or short put assignment (if S_T <= K).",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part2",
+        "excerpt": "When the call option is underpriced relative to the put and stock, traders execute a Reversal / Reverse Conversion Arbitrage",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-05",
+      "category": "case_study",
+      "topic": "Business Snapshot 10.1: Merton's Model — Corporate Equity as a European Call Option",
+      "statement": "In Robert Merton's capital structure model (Snapshot 10.1), for a firm with total asset value V_T at time T and a single zero-coupon debt bond of face value D maturing at T, corporate equity is a European call option on the firm's assets (V) with strike price D and terminal payoff E_T = max(V_T - D, 0). If V_T > D, shareholders pay off debt D and retain V_T - D; if V_T <= D, shareholders default and walk away with 0 due to limited liability.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part2",
+        "excerpt": "Equity is a European call option on the total assets of the firm (V) with a strike price equal to the face value of the firm's debt (D)",
+        "provenance": "notebooklm_query"
+      },
+      "numericalDetails": {
+        "values": {
+          "defaultPayoffToEquity": 0
+        },
+        "units": "$",
+        "context": "Merton's structural model of corporate equity and limited liability at debt maturity T."
+      },
+      "payoffVsProfit": {
+        "distinctionType": "both",
+        "formulaPayoff": "E_T = max(V_T - D, 0)",
+        "formulaProfit": "max(V_T - D, 0) - E_0",
+        "premiumConsidered": true,
+        "explanation": "Shareholders' terminal claim at debt maturity T is the call payoff max(V_T - D, 0) on total firm assets V_T above debt face value D."
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-06",
+      "category": "formula",
+      "topic": "Merton's Model — Corporate Debt as a Risk-Free Bond Plus a Short European Put",
+      "statement": "In Merton's model, the payoff to corporate debt holders at maturity T is min(V_T, D) = D - max(D - V_T, 0). Therefore, owning risky corporate debt is economically equivalent to holding a risk-free bond paying D at maturity T and simultaneously writing (shorting) a European put option on the firm's asset value V with strike price D.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part2",
+        "excerpt": "Owning corporate debt is economically equivalent to holding a risk-free bond paying D and writing a European put option on the firm's value (V) with strike price D",
+        "provenance": "notebooklm_query"
+      },
+      "formulaDetails": {
+        "name": "Merton Model Debt Holder Payoff",
+        "latex": "\\text{Payoff to Debt Holders} = \\min(V_T, D) = D - \\max(D - V_T, 0)",
+        "variables": [
+          {
+            "symbol": "V_T",
+            "definition": "Total market value of the firm's assets at debt maturity T",
+            "unit": "$"
+          },
+          {
+            "symbol": "D",
+            "definition": "Face value of the firm's zero-coupon debt maturing at time T",
+            "unit": "$"
+          }
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-07",
+      "category": "claim",
+      "topic": "Proof Why American Calls on Non-Dividend-Paying Stocks Are Never Exercised Early (C = c)",
+      "statement": "An American call option on a non-dividend-paying stock should never be exercised early before expiration, making its value identical to a European call (C = c), for three reasons: (1) Time Value of Money—waiting until T delays paying strike K, allowing the holder to earn risk-free interest on K over (T - t); (2) Downside Insurance Value—holding the call protects against the stock dropping below K between t and T, whereas early exercise exposes the holder to full stock downside below K; and (3) Dominance of Selling over Exercising—because C >= c >= S_t - K*e^(-r(T-t)) > S_t - K (for r > 0, T > t), the call's market price strictly exceeds its intrinsic value (S_t - K), so selling the call in the market always yields more than exercising early.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part2",
+        "excerpt": "For an American call option on a stock paying no dividends, C = c—meaning the American call has the exact same value as its European counterpart, and early exercise is never optimal",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    },
+    {
+      "id": "fact-08",
+      "category": "claim",
+      "topic": "Early Exercise Conditions and Critical Barrier (S*) for American Puts",
+      "statement": "Unlike American calls, American put options on non-dividend-paying stocks can be optimal to exercise early when the stock price S_0 is sufficiently deep in the money (nearing 0, below a critical barrier S*). Because stock prices cannot fall below zero (S >= 0), the put's maximum payoff is capped at K; when S_0 is near 0, further downside is negligible and remaining insurance value is nearly zero, so the time value of money gained by receiving cash strike K immediately at time t and earning risk-free interest over (T - t) outweighs the forfeited insurance value, making immediate exercise value (K - S_0) exceed the value of continuing to hold the put.",
+      "sourceCitation": {
+        "book": "Technical Analysis of the Financial Markets (John J. Murphy)",
+        "chapter": "ch10_part2",
+        "excerpt": "Under these conditions, the time value of money on receiving K immediately outweighs any remaining insurance value",
+        "provenance": "notebooklm_query"
+      },
+      "tags": []
+    }
+  ],
+  "generalAssumptions": [
+    "The underlying stock pays zero cash dividends over the life of the option contract (non-dividend-paying stock).",
+    "The risk-free interest rate r is positive (r > 0) and continuously compounded, allowing traders to borrow and lend freely at rate r.",
+    "Under the Law of One Price (no-arbitrage principle), any two portfolios that produce identical payoffs in every state at expiration T must have the exact same market price at time t = 0."
+  ]
+}

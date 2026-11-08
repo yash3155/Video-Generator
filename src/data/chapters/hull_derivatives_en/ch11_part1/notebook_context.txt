@@ -1,0 +1,229 @@
+Here is a detailed extraction of the facts, definitions, formulas, payoff profiles, numerical examples, and trading strategies for each of the six requested options topics [1-5].
+
+---
+
+### 1. Principal-Protected Notes (PPNs)
+
+* **Definition & Structure**: A Principal-Protected Note is a structured financial product created by combining a **zero-coupon bond** paying face value at maturity with a **call option** (or portfolio of call options) on an underlying asset or index [5, 6].
+* **Creation Mechanics**:
+  * An issuer takes a portion of the capital (e.g., \$600,000 out of a \$1,000,000 pool or 60 cents on the dollar) to purchase zero-coupon government bonds maturing at full face value (\$1,000,000) at the end of a specified term (e.g., 7 years) [5].
+  * The remaining capital (\$400,000) is used to buy at-the-money call options on the underlying stock or market index [5, 7].
+* **Conditions for Creation**:
+  * PPNs require a sufficient gap between the discounted purchase price of the zero-coupon bond and its face value to fund the required option premiums [5].
+  * Higher interest rates lower the present value of the zero-coupon bond, leaving more funds to purchase upside call options [5].
+* **Payoff Profile**:
+  * **Downside**: If the underlying asset falls or remains flat, the call options expire worthless, but the zero-coupon bond matures at 100% of face value, guaranteeing that the investor receives back their initial principal [5, 8].
+  * **Upside**: If the underlying asset appreciates, the call options gain value, providing market participation on top of the guaranteed principal [5, 7].
+  * **Bull Spread Variation**: Issuers can also cap the maximum payoff by using a bull call spread instead of an outright call option, lowering option costs [9, 10].
+
+---
+
+### 2. Covered Calls and Protective Puts
+
+#### Covered Call
+* **Definition**: A strategy consisting of a **long stock position** combined with a **short call option** on the same stock [11, 12].
+* **Payoff Profile**:
+  * Provides limited downside protection (equal to the call premium received) while capping upside profit at the option's strike price [11, 12].
+* **Formulas**:
+  * \\(\text{Downside Break-Even} = \text{Stock Purchase Price} - \text{Call Premium Received}\\) [13, 14].
+  * \\(\text{Maximum Profit} = (\text{Call Strike Price} - \text{Stock Purchase Price}) + \text{Call Premium Received}\\) [14, 15].
+* **Numerical Example**:
+  * Buy stock at \$49 and sell a call with strike \$50 for \$6 [14].
+  * \\(\text{Maximum Profit} = (50 - 49) + 6 = 7\\) points (\$700) if stock is \\(\ge 50\\) at expiration [14].
+  * \\(\text{Downside Break-Even} = 49 - 6 = 43\\) [14].
+
+#### Protective Put (Married Put)
+* **Definition**: A strategy consisting of a **long stock position** combined with a **long put option** on the same stock [16-18].
+* **Payoff Profile**:
+  * Caps maximum loss below the put strike price while maintaining uncapped upside potential as the stock price rises [16, 17].
+* **Formulas**:
+  * \\(\text{Break-Even Price} = \text{Stock Purchase Price} + \text{Put Premium Paid}\\) [17, 19].
+  * \\(\text{Maximum Loss} = (\text{Stock Purchase Price} - \text{Put Strike Price}) + \text{Put Premium Paid}\\) [19].
+* **Numerical Example**:
+  * Stock purchased at \$50 combined with a long put at strike \$50 costing \$4 [17].
+  * \\(\text{Maximum Loss} = (50 - 50) + 4 = 4\\) points (\$400) if stock falls below \$50 [17].
+  * \\(\text{Break-Even Price} = 50 + 4 = 54\\) [17].
+
+---
+
+### 3. Bull Spreads
+
+#### Bull Spread Using Calls (Bull Call Spread)
+* **Definition & Structure**: Established by **buying a call option with lower strike price \\(K_1\\)** and **selling a call option with higher strike price \\(K_2\\)** (\\(K_1 < K_2\\)) with the same expiration date [20-23]. Always a **net debit** transaction [21, 23].
+* **Payoff Table**:
+
+| Stock Price at Expiration (\\(S_T\\)) | Payoff from Long Call (\\(K_1\\)) | Payoff from Short Call (\\(K_2\\)) | Total Payoff | Total Profit / Loss |
+| :--- | :--- | :--- | :--- | :--- |
+| \\(S_T \le K_1\\) | \\(0\\) | \\(0\\) | \\(0\\) | \\(-\text{Net Debit}\\) [20, 21] |
+| \\(K_1 < S_T < K_2\\) | \\(S_T - K_1\\) | \\(0\\) | \\(S_T - K_1\\) | \\((S_T - K_1) - \text{Net Debit}\\) [20, 21] |
+| \\(S_T \ge K_2\\) | \\(S_T - K_1\\) | \\(-(S_T - K_2)\\) | \\(K_2 - K_1\\) | \\((K_2 - K_1) - \text{Net Debit}\\) [21, 24] |
+
+* **Formulas**:
+  * \\(\text{Break-Even Price} = K_1 + \text{Net Debit}\\) [21, 24, 25].
+  * \\(\text{Maximum Profit} = (K_2 - K_1) - \text{Net Debit}\\) [21, 24].
+* **Numerical Example**: Buy October 30 call at \\(3\\), sell October 35 call at \\(1\\) (\\(\text{Net Debit} = 2\\) points or \$200) [21].
+  * \\(\text{Maximum Profit} = (35 - 30) - 2 = 3\\) points (\$300) when \\(S_T \ge 35\\) [21].
+  * \\(\text{Maximum Loss} = 2\\) points (\$200) when \\(S_T \le 30\\) [21].
+  * \\(\text{Break-Even} = 30 + 2 = 32\\) [21, 25].
+
+#### Bull Spread Using Puts (Bull Put Spread)
+* **Definition & Structure**: Established by **buying a put option with lower strike \\(K_1\\)** and **selling a put option with higher strike \\(K_2\\)** (\\(K_1 < K_2\\)) with the same expiration date [22, 26-28]. Always a **net credit** transaction [26-29].
+* **Payoff Table**:
+
+| Stock Price at Expiration (\\(S_T\\)) | Payoff from Long Put (\\(K_1\\)) | Payoff from Short Put (\\(K_2\\)) | Total Payoff | Total Profit / Loss |
+| :--- | :--- | :--- | :--- | :--- |
+| \\(S_T \ge K_2\\) | \\(0\\) | \\(0\\) | \\(0\\) | \\(+\text{Net Credit}\\) [27, 28] |
+| \\(K_1 < S_T < K_2\\) | \\(0\\) | \\(-(K_2 - S_T)\\) | \\(-(K_2 - S_T)\\) | \\(\text{Net Credit} - (K_2 - S_T)\\) [27, 28] |
+| \\(S_T \le K_1\\) | \\(K_1 - S_T\\) | \\(-(K_2 - S_T)\\) | \\(-(K_2 - K_1)\\) | \\(\text{Net Credit} - (K_2 - K_1)\\) [28] |
+
+* **Formulas**:
+  * \\(\text{Break-Even Price} = K_2 - \text{Net Credit}\\) [28].
+  * \\(\text{Maximum Loss} = (K_2 - K_1) - \text{Net Credit}\\) [28].
+* **Numerical Example**: Buy January 50 put for \\(2\\), sell January 60 put for \\(7\\) (\\(\text{Net Credit} = 5\\) points or \$500) [27, 28].
+  * \\(\text{Maximum Profit} = 5\\) points (\$500) when \\(S_T \ge 60\\) [27, 28].
+  * \\(\text{Maximum Loss} = (60 - 50) - 5 = 5\\) points (\$500) when \\(S_T \le 50\\) [28].
+  * \\(\text{Break-Even} = 60 - 5 = 55\\) [28].
+
+---
+
+### 4. Bear Spreads
+
+#### Bear Spread Using Puts (Bear Put Spread)
+* **Definition & Structure**: Established by **buying a put option with higher strike \\(K_2\\)** and **selling a put option with lower strike \\(K_1\\)** (\\(K_1 < K_2\\)) with the same expiration date [30-33]. Always a **net debit** transaction [31-33].
+* **Payoff Table**:
+
+| Stock Price at Expiration (\\(S_T\\)) | Payoff from Short Put (\\(K_1\\)) | Payoff from Long Put (\\(K_2\\)) | Total Payoff | Total Profit / Loss |
+| :--- | :--- | :--- | :--- | :--- |
+| \\(S_T \ge K_2\\) | \\(0\\) | \\(0\\) | \\(0\\) | \\(-\text{Net Debit}\\) [32, 34] |
+| \\(K_1 < S_T < K_2\\) | \\(0\\) | \\(K_2 - S_T\\) | \\(K_2 - S_T\\) | \\((K_2 - S_T) - \text{Net Debit}\\) [32] |
+| \\(S_T \le K_1\\) | \\(-(K_1 - S_T)\\) | \\(K_2 - S_T\\) | \\(K_2 - K_1\\) | \\((K_2 - K_1) - \text{Net Debit}\\) [32, 34] |
+
+* **Formulas**:
+  * \\(\text{Break-Even Price} = K_2 - \text{Net Debit}\\) [32, 35].
+  * \\(\text{Maximum Profit} = (K_2 - K_1) - \text{Net Debit}\\) [32, 35].
+* **Numerical Example**: Buy January 60 put for \\(7\\), sell January 50 put for \\(2\\) (\\(\text{Net Debit} = 5\\) points or \$500) [32].
+  * \\(\text{Maximum Profit} = (60 - 50) - 5 = 5\\) points (\$500) when \\(S_T \le 50\\) [32, 35].
+  * \\(\text{Maximum Loss} = 5\\) points (\$500) when \\(S_T \ge 60\\) [32, 35].
+  * \\(\text{Break-Even} = 60 - 5 = 55\\)### 1. Principal-Protected Notes (PPNs)
+
+* **Definition & Structure**: A Principal-Protected Note is a structured financial instrument created by combining a **zero-coupon bond** paying face value at maturity with a **call option** (or portfolio of call options) on an underlying asset or stock index [6].
+* **Creation Mechanics**:
+  * An issuer allocates a portion of capital (e.g., \$600,000 out of a \$1,000,000 pool or 60 cents on the dollar) to buy zero-coupon government bonds that mature at full face value (\$1,000,000) at the end of the term (e.g., 7 years) [5].
+  * The remaining capital (\$400,000) is used to buy at-the-money call options on the underlying stock or market index [5].
+* **Conditions for Creation**:
+  * Interest rates must be high enough so that zero-coupon bonds can be purchased at a sufficient discount to face value, leaving enough remaining capital to purchase the call options [5].
+* **Payoff Profile**:
+  * **Downside**: If the underlying asset declines or stays flat, the call options expire worthless, but the zero-coupon bond matures at 100% of face value, guaranteeing full principal preservation [5, 8].
+  * **Upside**: If the underlying asset appreciates, the call options gain value, delivering upside market return on top of the guaranteed principal [5].
+
+---
+
+### 2. Covered Calls and Protective Puts
+
+#### Covered Call
+* **Definition & Structure**: Consists of a **long stock position** combined with a **short call option** on the same stock [11, 12].
+* **Formulas**:
+  * \\(\text{Downside Break-Even} = \text{Stock Purchase Price} - \text{Call Premium Received}\\) [14].
+  * \\(\text{Maximum Profit} = (\text{Call Strike Price} - \text{Stock Purchase Price}) + \text{Call Premium Received}\\) [14, 15].
+* **Numerical Example**:
+  * Buy stock at \$49 and sell a 50-strike call for \$6 [14].
+  * \\(\text{Maximum Profit} = (50 - 49) + 6 = 7\\) points (\$700) if stock is \\(\ge 50\\) at expiration [14].
+  * \\(\text{Downside Break-Even} = 49 - 6 = 43\\) [14].
+
+#### Protective Put (Married Put)
+* **Definition & Structure**: Consists of a **long stock position** combined with a **long put option** on the same stock [17, 36].
+* **Formulas**:
+  * \\(\text{Break-Even Price} = \text{Stock Purchase Price} + \text{Put Premium Paid}\\) [17, 19].
+  * \\(\text{Maximum Loss} = (\text{Stock Purchase Price} - \text{Put Strike Price}) + \text{Put Premium Paid}\\) [19].
+* **Numerical Example**:
+  * Stock purchased at \$50 combined with a long put at strike \$50 costing \$4 [17].
+  * \\(\text{Maximum Loss} = (50 - 50) + 4 = 4\\) points (\$400) if stock falls below \$50 [17].
+  * \\(\text{Break-Even Price} = 50 + 4 = 54\\) [17].
+
+---
+
+### 3. Bull Spreads
+
+#### Bull Spread Using Calls (Bull Call Spread)
+* **Definition & Structure**: Established by **buying a call with lower strike \\(K_1\\)** and **selling a call with higher strike \\(K_2\\)** (\\(K_1 < K_2\\)) with the same expiration date [20, 21]. Always a **net debit** transaction [21].
+* **Payoff Profile**:
+  * \\(S_T \le K_1\\): Both calls expire worthless; loss equals the net debit [21].
+  * \\(K_1 < S_T < K_2\\): Payoff equals \\((S_T - K_1) - \text{Net Debit}\\) [21].
+  * \\(S_T \ge K_2\\): Maximum profit equals \\((K_2 - K_1) - \text{Net Debit}\\) [21].
+* **Numerical Example**: Buy Oct 30 call at \\(3\\), sell Oct 35 call at \\(1\\) (\\(\text{Net Debit} = 2\\) points or \$200) [21].
+  * \\(\text{Maximum Profit} = (35 - 30) - 2 = 3\\) points (\$300) when \\(S_T \ge 35\\) [21].
+  * \\(\text{Maximum Loss} = 2\\) points (\$200) when \\(S_T \le 30\\) [21].
+  * \\(\text{Break-Even} = 30 + 2 = 32\\) [21, 37].
+
+#### Bull Spread Using Puts (Bull Put Spread)
+* **Definition & Structure**: Established by **buying a put with lower strike \\(K_1\\)** and **selling a put with higher strike \\(K_2\\)** (\\(K_1 < K_2\\)) with the same expiration date [26, 27]. Always a **net credit** transaction [27, 29].
+* **Payoff Profile**:
+  * \\(S_T \ge K_2\\): Both puts expire worthless; maximum profit equals the net credit [27].
+  * \\(K_1 < S_T < K_2\\): Payoff equals \\(\text{Net Credit} - (K_2 - S_T)\\) [27].
+  * \\(S_T \le K_1\\): Maximum loss equals \\((K_2 - K_1) - \text{Net Credit}\\) [27].
+* **Numerical Example**: Buy Jan 50 put for \\(2\\), sell Jan 60 put for \\(7\\) (\\(\text{Net Credit} = 5\\) points or \$500) [27, 29].
+  * \\(\text{Maximum Profit} = 5\\) points (\$500) when \\(S_T \ge 60\\) [27].
+  * \\(\text{Maximum Loss} = (60 - 50) - 5 = 5\\) points (\$500) when \\(S_T \le 50\\) [27].
+  * \\(\text{Break-Even} = 60 - 5 = 55\\) [27].
+
+---
+
+### 4. Bear Spreads
+
+#### Bear Spread Using Puts (Bear Put Spread)
+* **Definition & Structure**: Established by **buying a put with higher strike \\(K_2\\)** and **selling a put with lower strike \\(K_1\\)** (\\(K_1 < K_2\\)) with the same expiration date [30, 31, 34]. Always a **net debit** transaction [31, 34].
+* **Payoff Profile**:
+  * \\(S_T \ge K_2\\): Both puts expire worthless; loss equals the net debit [32, 34].
+  * \\(K_1 < S_T < K_2\\): Payoff equals \\((K_2 - S_T) - \text{Net Debit}\\) [32].
+  * \\(S_T \le K_1\\): Maximum profit equals \\((K_2 - K_1) - \text{Net Debit}\\) [32, 34].
+* **Numerical Example**: Buy Jan 60 put for \\(7\\), sell Jan 50 put for \\(2\\) (\\(\text{Net Debit} = 5\\) points or \$500) [32].
+  * \\(\text{Maximum Profit} = (60 - 50) - 5 = 5\\) points (\$500) when \\(S_T \le 50\\) [32].
+  * \\(\text{Maximum Loss} = 5\\) points (\$500) when \\(S_T \ge 60\\) [32].
+  * \\(\text{Break-Even} = 60 - 5 = 55\\) [32, 38].
+
+#### Bear Spread Using Calls (Bear Call Spread)
+* **Definition & Structure**: Established by **buying a call with higher strike \\(K_2\\)** and **selling a call with lower strike \\(K_1\\)** (\\(K_1 < K_2\\)) with the same expiration date [39-41]. Always a **net credit** transaction [37, 41].
+* **Payoff Profile**:
+  * \\(S_T \le K_1\\): Both calls expire worthless; maximum profit equals the net credit [37, 41].
+  * \\(K_1 < S_T < K_2\\): Payoff equals \\(\text{Net Credit} - (S_T - K_1)\\) [37].
+  * \\(S_T \ge K_2\\): Maximum loss equals \\((K_2 - K_1) - \text{Net Credit}\\) [37, 41].
+* **Numerical Example**: Buy Oct 35 call at \\(1\\), sell Oct 30 call at \\(3\\) (\\(\text{Net Credit} = 2\\) points or \$200) [37, 41].
+  * \\(\text{Maximum Profit} = 2\\) points (\$200) when \\(S_T \le 30\\) [37, 41].
+  * \\(\text{Maximum Loss} = (35 - 30) - 2 = 3\\) points (\$300) when \\(S_T \ge 35\\) [37, 41].
+  * \\(\text{Break-Even} = 30 + 2 = 32\\) [37].
+
+---
+
+### 5. Box Spreads
+
+* **Definition & Structure**: A Box Spread is formed by combining a **bull call spread** (buy call \\(K_1\\), sell call \\(K_2\\)) and a **bear put spread** (buy put \\(K_2\\), sell put \\(K_1\\)) using the same strike prices \\(K_1 < K_2\\) and expiration date [4, 42].
+* **Payoff**: At expiration, exactly one spread will be in the money with a guaranteed payoff of \\(K_2 - K_1\\) regardless of stock price \\(S_T\\) [4].
+* **No-Arbitrage Present Value Rule**:
+  * In an arbitrage-free market, the initial net debit paid to purchase the box spread must equal the present value of \\(K_2 - K_1\\) discounted at the risk-free rate [43]:
+    \\[\text{Box Price} = (K_2 - K_1) e^{-r T}\\]
+  * If the market price is less than \\((K_2 - K_1) e^{-r T}\\), an arbitrageur can buy the box spread to lock in a risk-free return above the risk-free rate [4, 43].
+* **Numerical Example**:
+  * Stock at \\(55\\). Strikes \\(K_1 = 50\\), \\(K_2 = 60\\) (\\(K_2 - K_1 = 10\\)).
+  * Call bull spread: Buy 50 call for \\(7\\), sell 60 call for \\(2\\) (\\(\text{Net Cost} = 5\\) debit) [4].
+  * Put bear spread: Buy 60 put for \\(5.50\\), sell 50 put for \\(1\\) (\\(\text{Net Cost} = 4.50\\) debit) [4].
+  * Total box cost = \\(5 + 4.50 = 9.50\\) debit [4].
+  * Payoff at expiration = \\(10\\) [4]. Arbitrage profit = \\(10 - 9.50 = 0.50\\) points (\$50) minus interest/carrying costs [4, 43].
+
+---
+
+### 6. Butterfly Spreads
+
+* **Definition & Structure**: Consists of **buying one call at lower strike \\(K_1\\)**, **buying one call at higher strike \\(K_3\\)**, and **selling two calls at middle strike \\(K_2\\)**, where \\(K_2 = \frac{K_1 + K_3}{2}\\) [3, 44, 45]. Always requires a net debit [3, 46].
+* **Payoff Profile**:
+  * \\(S_T \le K_1\\) or \\(S_T \ge K_3\\): All options expire worthless or offset; maximum loss equals the net debit [46, 47].
+  * \\(K_1 < S_T \le K_2\\): Payoff equals \\((S_T - K_1) - \text{Net Debit}\\) [46, 47].
+  * \\(K_2 < S_T < K_3\\): Payoff equals \\((K_3 - S_T) - \text{Net Debit}\\) [46, 47].
+  * \\(S_T = K_2\\): Maximum profit equals \\((K_2 - K_1) - \text{Net Debit}\\) [3, 46].
+  * \\(\text{Downside Break-Even} = K_1 + \text{Net Debit}\\); \\(\text{Upside Break-Even} = K_3 - \text{Net Debit}\\) [46, 47].
+* **Numerical Example**:
+  * Buy July 50 call for \\(12\\), sell two July 60 calls for \\(6\\) each (\\(12\\) total credit), buy July 70 call for \\(3\\) [3].
+  * Strikes: \\(K_1 = 50\\), \\(K_2 = 60\\), \\(K_3 = 70\\) [3, 46].
+  * \\(\text{Net Debit} = 12 - 12 + 3 = 3\\) points (\$300) [3, 46].
+  * \\(\text{Maximum Profit} = (60 - 50) - 3 = 7\\) points (\$700) at \\(S_T = 60\\) [3, 46].
+  * \\(\text{Downside Break-Even} = 50 + 3 = 53\\); \\(\text{Upside Break-Even} = 70 - 3 = 67\\) [46, 47].
+  * \\(\text{Maximum Loss} = 3\\) points (\$300) if \\(S_T \le 50\\) or \\(S_T \ge 70\\) [47].

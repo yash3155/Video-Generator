@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch10_part1",
+  "title": "Properties of Stock Options: The Six Pricing Factors, Intrinsic vs. Time Value, and Arbitrage Bounds",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Basic definitions of European and American call and put options",
+    "Concept of strike price (K), current stock price (S_0), and time to expiration (T)",
+    "Present value discounting using continuous compounding e^(-rT) and short-selling mechanics"
+  ],
+  "learningOutcomes": [
+    "Identify the six quantifiable factors determining stock option prices: S_0, K, T, sigma, r (benchmarked to the 90-day Treasury bill rate), and D ([fact-01]).",
+    "Predict the directional impact (+) or (-) of increases in S_0, K, T, sigma, r, and D on European and American call and put values, including time decay (Theta) ([fact-02], [fact-03], [fact-04]).",
+    "Decompose total option premium into Intrinsic Value and Time Value (Extrinsic Value) and apply the Put-Call Equilibrium and Carrying Cost relationship ([fact-05], [fact-06]).",
+    "Execute step-by-step riskless arbitrage trades when calls or puts trade at a discount below their immediate intrinsic value ([fact-07], [fact-08]).",
+    "Formulate the formal no-arbitrage upper and lower pricing bounds for European and American calls and puts ([fact-09])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "The Six Quantifiable Determinants of Option Prices and Directional Sensitivities",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Intrinsic Value, Time Value Premium, and Put-Call Equilibrium",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-05",
+        "fact-06"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Discount Option Arbitrage Case Studies",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-07",
+        "fact-08"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Formal No-Arbitrage Upper and Lower Option Pricing Bounds",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-09"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-03",
+      "authorRebuttal": "Higher volatility (sigma) expands the range of potential future stock outcomes in both directions, making extreme upward and downward movements more likely while option downside remains capped ([fact-03]). Consequently, increased volatility increases both call values (+) and put values (+) across European and American styles ([fact-03])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-04",
+      "authorRebuttal": "When a stock goes ex-dividend, its spot price drops by approximately the cash dividend amount ([fact-04]). Because option holders do not receive cash dividends, expected dividends (D) decrease call option values (-) and increase put option values (+) ([fact-04])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-07",
+      "authorRebuttal": "If an option trades at a discount below its intrinsic value, an arbitrageur does not wait until expiration ([fact-05], [fact-07], [fact-08]). For example, when Stock XYZ is bid at $50 and the January 40 call is offered at $9.80 (below its $10.00 intrinsic value), buying the call at $9.80, shorting the stock at $50, and immediately exercising the call at $40 locks in an instant, riskless net profit of $0.20 per share regardless of future stock direction ([fact-07])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "Stock XYZ is currently trading at $40 per share, and a July put option with strike price K = $50 is offered in the market at $9.75. Separately, macroeconomists announce a sudden rise in the 90-day Treasury bill risk-free interest rate (r) alongside an increase in expected cash dividends (D) across the sector.",
+    "testedFactIds": [
+      "fact-01",
+      "fact-04",
+      "fact-05",
+      "fact-08"
+    ],
+    "question": "1) What is the July 50 put's intrinsic value, what is its time value premium at $9.75, and what exact 3-step trade locks in a riskless arbitrage profit? 2) How do the higher risk-free rate (r) and higher expected dividends (D) each affect call and put option values?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Six quantifiable variables govern option prices—S_0, K, T, sigma, r, and D—where higher volatility (sigma) and longer time to expiration (T) lift both calls and puts (+), while S_0 and r boost calls (+) and reduce puts (-), and K and D reduce calls (-) and boost puts (+) ([fact-01], [fact-02], [fact-03], [fact-04]).",
+    "Total option price equals Intrinsic Value plus Time Value Premium, and put-call equilibrium enforces Call Price + K - S_0 - Put Price + D - Carrying Cost = 0 ([fact-05], [fact-06]).",
+    "Any option priced below its intrinsic value invites immediate riskless arbitrage—such as the $0.20 net profit on the XYZ January 40 discount call or the $0.25 net profit on the XYZ July 50 discount put—while formal upper and lower bounds (c, C <= S_0; p <= K*e^(-rT), P <= K; c >= max(S_0 - K*e^(-rT), 0); p >= max(K*e^(-rT) - S_0, 0)) bound rational option prices ([fact-07], [fact-08], [fact-09])."
+  ]
+}

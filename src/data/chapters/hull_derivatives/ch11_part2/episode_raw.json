@@ -1,0 +1,1133 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "course": "hull_derivatives",
+    "chapter": "CHAPTER 11 · PART 2",
+    "chapterTitle": "Advanced Option Strategies: Calendar Spreads, Volatility Combinations, and Straddle Traps",
+    "domain": "finance",
+    "primaryColor": "#C86D51",
+    "accentColor": "#0D9488",
+    "narrationLanguage": "hi-IN-devanagari"
+  },
+  "scenes": [
+    {
+      "segmentIndex": 0,
+      "title": "Origins: Trading Explosive Volatility",
+      "template": "chat_story",
+      "badge": "Market Desk · Non-Directional Trading",
+      "beats": [
+        {
+          "id": "b01",
+          "hindi_tts": "शर्मा जी, बड़ी खबर आने वाली है पर दिशा पता नहीं, तब कैसे ट्रेड करें?",
+          "en_subtitle": "Big news is coming but direction is unknown, how should we trade?",
+          "en_narration": "Big news is coming but direction is unknown, how should we trade?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju seeks a strategy for uncertain explosive moves —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Big news is coming but direction is unknown, how should we trade?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Big news is coming but direction is unknown, how should we trade?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce long straddles and non-directional volatility trading.",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b02",
+          "hindi_tts": "बॉटम स्ट्रडल अपनाओ! एक ही स्ट्राइक पर कॉल और पुट दोनों खरीदकर दोनों तरफ के धमाके से मुनाफा कमाओ।",
+          "en_subtitle": "Use a bottom straddle! Buy call and put at strike K to profit from explosive moves.",
+          "en_narration": "Use a bottom straddle! Buy call and put at strike K to profit from explosive moves.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji explains the long straddle call plus put architecture —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Use a bottom straddle! Buy call and put at strike K to profit from explosive moves.",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Use a bottom straddle! Buy call and put at strike K to profit from explosive moves.",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce long straddles and non-directional volatility trading.",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b03",
+          "hindi_tts": "यानी शेयर किसी भी दिशा में जोर से भागे, हमारा मुनाफा पक्का!",
+          "en_subtitle": "So whichever direction the stock breaks hard, our profit is locked!",
+          "en_narration": "So whichever direction the stock breaks hard, our profit is locked!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju seeks a strategy for uncertain explosive moves —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "So whichever direction the stock breaks hard, our profit is locked!",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "So whichever direction the stock breaks hard, our profit is locked!",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Introduce long straddles and non-directional volatility trading.",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 1,
+      "title": "Conflicting Market Interests",
+      "template": "tug_of_war",
+      "badge": "Structural Conflict · Hedger vs Speculator",
+      "beats": [
+        {
+          "id": "b03",
+          "hindi_tts": "बाजार में एक पक्ष मूल्य में गिरावट से सुरक्षा चाहता है, जबकि दूसरा पक्ष मूल्य वृद्धि के जोखिम को सीमित करना चाहता है।",
+          "en_subtitle": "One party hedges downside price drop, while the other protects against rising procurement costs.",
+          "en_narration": "One side hedges falling prices while the counterparty hedges rising costs.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "leftLabel": "Farmer / Producer (Downside Protection)",
+            "rightLabel": "Processor / Miller (Upside Ceiling)",
+            "currentTension": 50,
+            "centerTitle": "MARKET BALANCE",
+            "centerMetric": "Order Flow",
+            "trend": "up"
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftLabel": "Downside Protection",
+              "rightLabel": "Upside Ceiling",
+              "tension": 50
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate opposing economic motivations meeting in a forward contract.",
+              "sourceFactIds": [
+                "fact-01"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 2,
+      "title": "The Core Architecture Roadmap",
+      "template": "progressive_cards",
+      "badge": "Roadmap · 4 Structural Pillars",
+      "beats": [
+        {
+          "id": "b04",
+          "hindi_tts": "इस अध्याय में हम चार महत्वपूर्ण स्तंभों को समझेंगे: बाजार संरचना, गणितीय पेऑफ, लिक्विडिटी और सिस्टमिक जोखिम।",
+          "en_subtitle": "In this chapter, we master four structural pillars: architecture, payoff math, liquidity, and systemic risk.",
+          "en_narration": "We explore architecture, mathematical payoffs, liquidity, and systemic risk.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "Market Architecture",
+                "subtitle": "",
+                "state": "active_amber"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Payoff Math",
+                "subtitle": "",
+                "state": "active_blue"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Liquidity & Margining",
+                "subtitle": "",
+                "state": "active_green"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Systemic Risk",
+                "subtitle": "",
+                "state": "active_purple"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "activeCardIndex": 0,
+              "cards": [
+                {
+                  "title": "Market Architecture",
+                  "desc": "Exchange vs OTC mechanisms"
+                },
+                {
+                  "title": "Payoff Math",
+                  "desc": "Gross payoff versus net profit"
+                },
+                {
+                  "title": "Liquidity & Margining",
+                  "desc": "Daily settlement buffers"
+                },
+                {
+                  "title": "Systemic Risk",
+                  "desc": "Counterparty default mitigation"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present structural roadmap of four learning pillars.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 3,
+      "title": "Exchange Standardization vs OTC Flexibility",
+      "template": "split_comparison",
+      "badge": "Market Structure · Bilateral vs Centralized",
+      "beats": [
+        {
+          "id": "b05",
+          "hindi_tts": "एक्सचेंज ट्रेडेड फ्यूचर्स पूरी तरह से मानकीकृत होते हैं, जबकि ओटीसी फॉरवर्ड्स दोनों पक्षों की आवश्यकतानुसार कस्टमाइज किए जाते हैं।",
+          "en_subtitle": "Exchange futures are strictly standardized, while OTC contracts are bilaterally customized.",
+          "en_narration": "Exchange futures are standardized while OTC contracts are customized.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Exchange-Traded Futures",
+            "rightTitle": "Over-the-Counter (OTC)",
+            "leftPoints": [
+              "Standardized contract sizes",
+              "Central clearinghouse (CCP)",
+              "Zero bilateral default risk"
+            ],
+            "rightPoints": [
+              "Tailored specifications",
+              "Bilateral counterparty risk",
+              "Direct negotiation"
+            ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Futures",
+                "points": [
+                  "Standardized",
+                  "CCP Cleared"
+                ]
+              },
+              "rightColumn": {
+                "title": "OTC Forwards",
+                "points": [
+                  "Customized",
+                  "Bilateral Risk"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Contrast exchange standardization with OTC customization.",
+              "sourceFactIds": [
+                "fact-02",
+                "fact-03"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 4,
+      "title": "Global Derivatives Notional Scale",
+      "template": "progressive_cards",
+      "badge": "Global Volume · BIS Market Data",
+      "beats": [
+        {
+          "id": "b06",
+          "hindi_tts": "वैश्विक स्तर पर ओटीसी बाजार का आकार छह सौ तीस ट्रिलियन डॉलर से अधिक है, जो एक्सचेंज बाजार से लगभग दस गुना बड़ा है।",
+          "en_subtitle": "Globally, the OTC market exceeds $630 trillion in notional principal, dwarfing exchange volumes.",
+          "en_narration": "The global OTC market exceeds $630 trillion, dwarfing exchange volumes.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "OTC Market Notional",
+                "subtitle": "",
+                "state": "active_amber"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Exchange Market Notional",
+                "subtitle": "",
+                "state": "active_blue"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "OTC Market",
+                  "desc": "$630T Notional"
+                },
+                {
+                  "title": "Exchange Market",
+                  "desc": "$65T Notional"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Demonstrate immense macroeconomic scale of OTC markets.",
+              "sourceFactIds": [
+                "fact-03"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 5,
+      "title": "Terminal Payoff Mechanics",
+      "template": "formula_breakdown",
+      "badge": "Quantitative Proof · Terminal Payoff",
+      "beats": [
+        {
+          "id": "b07",
+          "hindi_tts": "मैच्योरिटी पर लॉन्ग पोजीशन का ग्रॉस पेऑफ वर्तमान स्पॉट प्राइस और स्ट्राइक प्राइस का अंतर होता है।",
+          "en_subtitle": "At terminal maturity, gross payoff is defined as the spot price minus strike price.",
+          "en_narration": "At expiration, long payoff equals spot price minus the delivery strike price.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Terminal Long Payoff",
+            "expression": "S_t - K",
+            "variables": [
+              {
+                "symbol": "S_t",
+                "label": "Spot asset price at expiration",
+                "unit": "₹"
+              },
+              {
+                "symbol": "K",
+                "label": "Agreed delivery strike price",
+                "unit": "₹"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Terminal Long Payoff",
+              "expression": "S_t - K",
+              "variables": [
+                {
+                  "symbol": "S_t",
+                  "label": "Spot asset price at expiration",
+                  "unit": "₹"
+                },
+                {
+                  "symbol": "K",
+                  "label": "Agreed delivery strike price",
+                  "unit": "₹"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Define terminal long linear payoff formula.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 6,
+      "title": "Gross Payoff versus Net Trading Profit",
+      "template": "split_comparison",
+      "badge": "Core Invariant · Payoff vs Profit",
+      "beats": [
+        {
+          "id": "b08",
+          "hindi_tts": "हमेशा याद रखें, पेऑफ केवल टर्मिनल कैशफ्लो है, जबकि नेट प्रॉफिट में शुरुआत में चुकाया गया प्रीमियम घटाया जाता है।",
+          "en_subtitle": "Always distinguish: Payoff is terminal cashflow; Profit deducts initial premium paid.",
+          "en_narration": "Payoff is gross terminal cashflow, while profit subtracts initial premium paid.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "leftTitle": "Gross Payoff",
+            "rightTitle": "Net Trading Profit",
+            "leftPoints": [
+              "Terminal cashflow at expiration",
+              "Ignores upfront premium paid",
+              "Always >= 0 for options"
+            ],
+            "rightPoints": [
+              "Terminal payoff minus initial premium",
+              "Accounts for capital outlay",
+              "Negative if price stays flat"
+            ]
+          },
+          "visual": {
+            "kind": "comparison",
+            "data": {
+              "leftColumn": {
+                "title": "Gross Payoff",
+                "points": [
+                  "Terminal Cashflow",
+                  "Ignores Premium"
+                ]
+              },
+              "rightColumn": {
+                "title": "Net Profit",
+                "points": [
+                  "Payoff - Premium",
+                  "True Economic P&L"
+                ]
+              }
+            },
+            "semantics": {
+              "teachingObjective": "Strictly enforce the Payoff vs Profit distinction.",
+              "sourceFactIds": [
+                "fact-04"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 7,
+      "title": "Systemic Risk & Bilateral Contagion",
+      "template": "progressive_cards",
+      "badge": "Case Study · Lehman Brothers 2008",
+      "beats": [
+        {
+          "id": "b09",
+          "hindi_tts": "दो हजार आठ में लेहमैन ब्रदर्स के पास छह सौ बिलियन डॉलर के अनक्लेयर्ड ओटीसी डेरिवेटिव्स थे, जिससे पूरी वित्तीय प्रणाली फ्रीज हो गई।",
+          "en_subtitle": "In 2008, Lehman held over $600 billion in uncollateralized OTC positions, freezing the banking system.",
+          "en_narration": "In 2008, Lehman held $600 billion in OTC positions, triggering systemic contagion.",
+          "pauseAfterMs": 420,
+          "ui_state": {
+            "activeCardIndex": 0,
+            "cards": [
+              {
+                "icon": "Sparkles",
+                "title": "Bilateral Gridlock",
+                "subtitle": "",
+                "state": "active_amber"
+              },
+              {
+                "icon": "Sparkles",
+                "title": "Post-Crisis Reform",
+                "subtitle": "",
+                "state": "active_blue"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "cards",
+            "data": {
+              "cards": [
+                {
+                  "title": "Lehman Collapse",
+                  "desc": "$600B OTC Network"
+                },
+                {
+                  "title": "Regulatory Response",
+                  "desc": "Mandatory Central Clearing"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Illustrate systemic counterparty contagion in uncollateralized OTC markets.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-05"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 8,
+      "title": "Leverage Multipliers & Equity Depletion",
+      "template": "formula_breakdown",
+      "badge": "Balance Sheet Risk · Leverage Math",
+      "beats": [
+        {
+          "id": "b10",
+          "hindi_tts": "इकतीस गुना लेवरेज पर एसेट्स में केवल सवा तीन परसेंट की गिरावट पूरे शेयरहोल्डर इक्विटी को शून्य कर देती है।",
+          "en_subtitle": "At thirty-one to one leverage, just a 3.2% decline in assets completely wipes out shareholder equity.",
+          "en_narration": "At 31 to 1 leverage, a 3.2% decline in assets wipes out shareholder equity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "title": "Leverage Multipliers & Equity Wipeout",
+            "expression": "L = \\text{Assets} / \\text{Equity}",
+            "variables": [
+              {
+                "symbol": "L",
+                "label": "Balance sheet leverage ratio (31:1)",
+                "unit": "ratio"
+              },
+              {
+                "symbol": "\\Delta Equity",
+                "label": "\\Delta Assets \\times L",
+                "unit": "%"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "formula",
+            "data": {
+              "title": "Leverage Multipliers & Equity Wipeout",
+              "expression": "L = \\text{Assets} / \\text{Equity}",
+              "variables": [
+                {
+                  "symbol": "L",
+                  "label": "Leverage ratio",
+                  "unit": "ratio"
+                },
+                {
+                  "symbol": "\\Delta Equity",
+                  "label": "Change in equity",
+                  "unit": "%"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Prove mathematically how high leverage accelerates balance-sheet bankruptcy.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 9,
+      "title": "Active Recall Challenge",
+      "template": "interactive_quiz",
+      "badge": "Straddle Payoff & Break-Even",
+      "beats": [
+        {
+          "id": "b11",
+          "hindi_tts": "यदि एक निवेशक पचास स्ट्राइक पर चार डॉलर की कॉल और तीन डॉलर की पुट खरीदता है, तो ब्रेक ईवन और पैंसठ डॉलर पर लाभ क्या होगा?",
+          "en_subtitle": "Buying $50 strike call at $4 and put at $3: calculate break-evens and profit at $65.",
+          "en_narration": "Calculate break-even points and net profit at $65 for a $50 straddle costing $7.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "question": "If an investor purchases a 6-month call for $4.00 and a 6-month put for $3.00 with common strike $50.00, what are the exact break-even prices and the outcome if the stock reaches $65.00 at expiration?",
+            "options": [
+              "A) Downside break-even is $43.00, upside break-even is $57.00, and profit at $65.00 is $8.00 per share ($800.00 total)",
+              "B) Downside break-even is $47.00, upside break-even is $54.00, and profit at $65.00 is $15.00 per share ($1,500.00 total)",
+              "C) Downside break-even is $50.00, upside break-even is $60.00, and profit at $65.00 is $5.00 per share ($500.00 total)",
+              "D) Downside break-even is $46.00, upside break-even is $53.00, and max loss occurs at $65.00"
+            ],
+            "showThinkingSpinner": false,
+            "answer": ""
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "question": "If an investor purchases a 6-month call for $4.00 and a 6-month put for $3.00 with common strike $50.00, what are the exact break-even prices and the outcome if the stock reaches $65.00 at expiration?",
+              "options": [
+                "A) Downside break-even is $43.00, upside break-even is $57.00, and profit at $65.00 is $8.00 per share ($800.00 total)",
+                "B) Downside break-even is $47.00, upside break-even is $54.00, and profit at $65.00 is $15.00 per share ($1,500.00 total)",
+                "C) Downside break-even is $50.00, upside break-even is $60.00, and profit at $65.00 is $5.00 per share ($500.00 total)",
+                "D) Downside break-even is $46.00, upside break-even is $53.00, and max loss occurs at $65.00"
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Test understanding of leverage depletion and margin call dynamics.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b12",
+          "hindi_tts": "सोचिए... दोनों ऑप्शंस का कुल प्रीमियम सात डॉलर है, तो ब्रेक ईवन दोनों तरफ कितना दूर होगा?",
+          "en_subtitle": "Think carefully... Total premium is $7, how far are the break-evens from strike $50?",
+          "en_narration": "Consider the total premium paid and the resulting break-even corridor.",
+          "pauseAfterMs": 3200,
+          "ui_state": {
+            "question": "If an investor purchases a 6-month call for $4.00 and a 6-month put for $3.00 with common strike $50.00, what are the exact break-even prices and the outcome if the stock reaches $65.00 at expiration?",
+            "showThinkingSpinner": true,
+            "answer": ""
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "showThinkingSpinner": true,
+              "question": "If an investor purchases a 6-month call for $4.00 and a 6-month put for $3.00 with common strike $50.00, what are the exact break-even prices and the outcome if the stock reaches $65.00 at expiration?"
+            },
+            "semantics": {
+              "teachingObjective": "Engage active recall cognitive processing pause.",
+              "sourceFactIds": [
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b13",
+          "hindi_tts": "सही उत्तर ए है! ब्रेक ईवन तैंतालीस और सत्तावन डॉलर हैं, और पैंसठ डॉलर पर आठ डॉलर प्रति शेयर का शुद्ध लाभ होगा।",
+          "en_subtitle": "Correct answer is A! Break-evens are $43 and $57, with $8 profit at $65.",
+          "en_narration": "Correct answer is A: Break-evens are $43 and $57, yielding $8 profit per share at $65.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "question": "If an investor purchases a 6-month call for $4.00 and a 6-month put for $3.00 with common strike $50.00, what are the exact break-even prices and the outcome if the stock reaches $65.00 at expiration?",
+            "showThinkingSpinner": false,
+            "answer": "A) Downside break-even is $43.00, upside break-even is $57.00, and profit at $65.00 is $8.00 ($800 per 100-share contract). Total debit is $4 + $3 = $7. At $65, Call payoff is $15, Put payoff is $0, net profit is $15 - $7 = $8.",
+            "correctIndex": 0
+          },
+          "visual": {
+            "kind": "quiz",
+            "data": {
+              "answer": "A) Downside break-even is $43.00, upside break-even is $57.00, and profit at $65.00 is $8.00 ($800 per 100-share contract). Total debit is $4 + $3 = $7. At $65, Call payoff is $15, Put payoff is $0, net profit is $15 - $7 = $8.",
+              "correctIndex": 0,
+              "question": "If an investor purchases a 6-month call for $4.00 and a 6-month put for $3.00 with common strike $50.00, what are the exact break-even prices and the outcome if the stock reaches $65.00 at expiration?"
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce correct understanding of daily variation settlement.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 10,
+      "title": "Trading Desk Execution Rules",
+      "template": "chat_story",
+      "badge": "Desk Debrief · Snapshot 11.2 Traps",
+      "beats": [
+        {
+          "id": "b31",
+          "hindi_tts": "शर्मा जी, अर्निंग्स से पहले स्ट्रडल खरीदने पर रिटेल ट्रेडर्स का पैसा क्यों डूब जाता है?",
+          "en_subtitle": "Why do retail traders lose money buying straddles right before earnings?",
+          "en_narration": "Why do retail traders lose money buying straddles right before earnings?",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju asks why pre-earnings straddles often fail —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Why do retail traders lose money buying straddles right before earnings?",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Why do retail traders lose money buying straddles right before earnings?",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Warn traders about implied volatility crush around corporate earnings (Snapshot 11.2).",
+              "sourceFactIds": [
+                "fact-09"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b32",
+          "hindi_tts": "स्नैपशॉट 11.2 देखो: आईवी क्रश! नतीजे आते ही इंप्लाइड वोलैटिलिटी अचानक ढह जाती है और सारे ऑप्शन मूल्य मिट्टी हो जाते हैं!",
+          "en_subtitle": "Snapshot 11.2: Implied Volatility Crush! IV collapses post-announcement, destroying option values!",
+          "en_narration": "Snapshot 11.2: Implied Volatility Crush! IV collapses post-announcement, destroying option values!",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Sharma ji explains implied volatility crush and post-earnings pricing —"
+            ],
+            "messages": [
+              {
+                "sender": "Sharma ji",
+                "avatar": "S",
+                "text": "Snapshot 11.2: Implied Volatility Crush! IV collapses post-announcement, destroying option values!",
+                "theme": "teal",
+                "align": "right"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Sharma ji",
+                  "avatar": "S",
+                  "text": "Snapshot 11.2: Implied Volatility Crush! IV collapses post-announcement, destroying option values!",
+                  "theme": "teal",
+                  "align": "right"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Warn traders about implied volatility crush around corporate earnings (Snapshot 11.2).",
+              "sourceFactIds": [
+                "fact-09"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b33",
+          "hindi_tts": "ओह! यानी भारी उतार-चढ़ाव के बाद भी वोलैटिलिटी गिरने से स्ट्रडल बर्बाद हो जाता है।",
+          "en_subtitle": "Oh! Even with large price swings, falling volatility destroys straddles.",
+          "en_narration": "Oh! Even with large price swings, falling volatility destroys straddles.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "stageDirections": [
+              "— Raju asks why pre-earnings straddles often fail —"
+            ],
+            "messages": [
+              {
+                "sender": "Raju",
+                "avatar": "R",
+                "text": "Oh! Even with large price swings, falling volatility destroys straddles.",
+                "theme": "amber",
+                "align": "left"
+              }
+            ]
+          },
+          "visual": {
+            "kind": "conversation",
+            "data": {
+              "messages": [
+                {
+                  "sender": "Raju",
+                  "avatar": "R",
+                  "text": "Oh! Even with large price swings, falling volatility destroys straddles.",
+                  "theme": "amber",
+                  "align": "left"
+                }
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Warn traders about implied volatility crush around corporate earnings (Snapshot 11.2).",
+              "sourceFactIds": [
+                "fact-09"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "segmentIndex": 11,
+      "title": "The Whole Picture: 8 Core Principles",
+      "template": "summary_thread",
+      "badge": "Master Review · 8 Inviolable Rules",
+      "beats": [
+        {
+          "id": "b16",
+          "hindi_tts": "आइए पूरे अध्याय के आठ बुनियादी सिद्धांतों की एक व्यवस्थित समीक्षा करें।",
+          "en_subtitle": "Let us review the eight foundational principles established in this lesson.",
+          "en_narration": "Let us review the eight foundational principles of this lesson.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying",
+              "Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+              "A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+              "The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net",
+              "A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration",
+              "A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+              "Bilateral counterparty exposure demands rigorous collateralization.",
+              "Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              0,
+              0
+            ],
+            "compactOverview": false,
+            "heading": "Today's thread"
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying ",
+                "2. Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+                "3. A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+                "4. The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net ",
+                "5. A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration ",
+                "6. A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                0,
+                0
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Present executive overview of the 8 chapter rules.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b17",
+          "hindi_tts": "पहले और दूसरे नियम के अनुसार, डेरिवेटिव्स अंतर्निहित संपत्ति से मूल्य लेते हैं और फ्यूचर्स एक्सचेंज पर मानकीकृत होते हैं।",
+          "en_subtitle": "First and second: Derivatives derive value from underlyings, and futures are standardized on exchanges.",
+          "en_narration": "Rules 1 and 2: Derivatives derive value from underlyings, and futures are standardized.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying",
+              "Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+              "A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+              "The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net",
+              "A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration",
+              "A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+              "Bilateral counterparty exposure demands rigorous collateralization.",
+              "Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              2
+            ],
+            "compactOverview": false,
+            "heading": "Today's thread"
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying ",
+                "2. Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+                "3. A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+                "4. The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net ",
+                "5. A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration ",
+                "6. A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                2
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 1 and 2.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b18",
+          "hindi_tts": "तीसरे और चौथे नियम के अनुसार, ओटीसी में काउंटरपार्टी रिस्क रहता है और पेऑफ में हमेशा स्ट्राइक प्राइस का महत्व होता है।",
+          "en_subtitle": "Third and fourth: OTC contracts carry bilateral counterparty risk, and payoff is defined by the strike price.",
+          "en_narration": "Rules 3 and 4: OTC carries counterparty risk, and payoff depends on strike.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying",
+              "Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+              "A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+              "The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net",
+              "A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration",
+              "A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+              "Bilateral counterparty exposure demands rigorous collateralization.",
+              "Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              3,
+              4
+            ],
+            "compactOverview": false,
+            "heading": "Today's thread"
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying ",
+                "2. Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+                "3. A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+                "4. The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net ",
+                "5. A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration ",
+                "6. A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                3,
+                4
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 3 and 4.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b19",
+          "hindi_tts": "पांचवें और छठे नियम के तहत, क्लीयरिंगहाउस वेरिएशन मार्जिन से रिस्क कम करता है और लेवरेज इक्विटी को तेजी से घटा सकता है।",
+          "en_subtitle": "Fifth and sixth: Clearinghouses enforce variation margin, and high leverage rapidly depletes equity.",
+          "en_narration": "Rules 5 and 6: Margin protects clearinghouses, while leverage depletes equity.",
+          "pauseAfterMs": 400,
+          "ui_state": {
+            "steps": [
+              "A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying",
+              "Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+              "A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+              "The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net",
+              "A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration",
+              "A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+              "Bilateral counterparty exposure demands rigorous collateralization.",
+              "Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              5,
+              6
+            ],
+            "compactOverview": false,
+            "heading": "Today's thread"
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying ",
+                "2. Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+                "3. A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+                "4. The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net ",
+                "5. A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration ",
+                "6. A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                5,
+                6
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 5 and 6.",
+              "sourceFactIds": [
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b20",
+          "hindi_tts": "सातवें और आठवें नियम के अनुसार, बायलेटरल पोजीशन में कोलेटरल अनिवार्य है और ग्रॉस पेऑफ को कभी नेट प्रॉफिट न समझें।",
+          "en_subtitle": "Seventh and eighth: Bilateral exposure requires collateral, and never confuse gross payoff with net profit.",
+          "en_narration": "Rules 7 and 8: Collateralize bilateral risk, and never confuse payoff with profit.",
+          "pauseAfterMs": 450,
+          "ui_state": {
+            "steps": [
+              "A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying",
+              "Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+              "A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+              "The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net",
+              "A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration",
+              "A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+              "Bilateral counterparty exposure demands rigorous collateralization.",
+              "Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              7,
+              8
+            ],
+            "compactOverview": false,
+            "heading": "Today's thread"
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying ",
+                "2. Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+                "3. A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+                "4. The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net ",
+                "5. A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration ",
+                "6. A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                7,
+                8
+              ]
+            },
+            "semantics": {
+              "teachingObjective": "Reinforce rules 7 and 8 with dedicated focus.",
+              "sourceFactIds": [
+                "fact-03",
+                "fact-04"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b21",
+          "hindi_tts": "यह आठ नियम किसी भी डेरिवेटिव्स और फाइनेंशियल मार्केट में अनुशासन और सफलता की वास्तविक नींव हैं।",
+          "en_subtitle": "These eight principles form the enduring foundation for trading discipline across global markets.",
+          "en_narration": "These eight rules form the foundation of trading discipline.",
+          "pauseAfterMs": 500,
+          "ui_state": {
+            "steps": [
+              "A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying",
+              "Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+              "A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+              "The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net",
+              "A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration",
+              "A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+              "Bilateral counterparty exposure demands rigorous collateralization.",
+              "Always distinguish gross terminal payoff from net trading profit."
+            ],
+            "activeStepRange": [
+              1,
+              8
+            ],
+            "compactOverview": true,
+            "heading": "Today's thread"
+          },
+          "visual": {
+            "kind": "summary",
+            "data": {
+              "steps": [
+                "1. A calendar spread is constructed by simultaneously selling a short-dated option with expiration T1 and buying ",
+                "2. Calendar spreads can be neutral, bullish, or bearish depending on strike selection: a neutral spread uses stri",
+                "3. A bottom straddle (or long straddle) involves simultaneously buying a European call and a European put with th",
+                "4. The terminal gross payoff of a long straddle is max(S_T - K, 0) + max(K - S_T, 0) = |S_T - K|. Crucially, Net ",
+                "5. A top straddle (short straddle) involves selling a call and a put with the same strike price K and expiration ",
+                "6. A strip consists of a long position in 1 call and 2 puts with the same strike K and expiration T, expressing a",
+                "7. Bilateral counterparty exposure demands rigorous collateralization.",
+                "8. Always distinguish gross terminal payoff from net trading profit."
+              ],
+              "activeStepRange": [
+                1,
+                8
+              ],
+              "compactOverview": true
+            },
+            "semantics": {
+              "teachingObjective": "Display comprehensive whole-chapter synthesis overview.",
+              "sourceFactIds": [
+                "fact-01",
+                "fact-02",
+                "fact-03",
+                "fact-04",
+                "fact-05",
+                "fact-06"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

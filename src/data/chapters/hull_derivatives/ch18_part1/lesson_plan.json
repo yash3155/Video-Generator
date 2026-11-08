@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "1.0.0",
+  "chapterSlug": "ch18_part1",
+  "title": "Numerical Procedures: Cox-Ross-Rubinstein Binomial Trees, American Options, Control Variates, and Monte Carlo Simulation",
+  "targetAudiencePersona": "Retail Trader & Student",
+  "prerequisites": [
+    "Black-Scholes-Merton European option pricing and risk-neutral valuation",
+    "One-step and multi-step binomial tree fundamentals",
+    "Basic probability, normal distributions, and stochastic simulation"
+  ],
+  "learningOutcomes": [
+    "Construct Cox-Ross-Rubinstein binomial trees using up/down step factors $u$ and $d$ and risk-neutral probabilities $p$ ([fact-01]).",
+    "Value American options via backward induction by comparing immediate exercise value against discounted continuation value ([fact-02], [fact-03]).",
+    "Apply the control variate technique and escrow decomposition for discrete dividends to sharpen tree accuracy and preserve recombining efficiency ([fact-04], [fact-05]).",
+    "Execute risk-neutral Monte Carlo path simulation and calculate option price estimators and standard errors ([fact-06], [fact-07]).",
+    "Differentiate the comparative strengths of binomial trees (American exercise) versus Monte Carlo simulation (path-dependent exotic options) ([fact-08], [fact-09], [fact-10])."
+  ],
+  "sections": [
+    {
+      "sectionIndex": 0,
+      "title": "Cox-Ross-Rubinstein Binomial Trees and American Option Backward Induction",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-01",
+        "fact-02",
+        "fact-03"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 1,
+      "title": "Control Variates and Discrete Dividend Escrow Decomposition",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-04",
+        "fact-05"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 2,
+      "title": "Monte Carlo Simulation and Trinomial Lattices",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-06",
+        "fact-07",
+        "fact-09"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    },
+    {
+      "sectionIndex": 3,
+      "title": "Institutional Calibration, Comparative Strengths, and Net Profit",
+      "pedagogicalObjective": "Understand foundational lesson concepts.",
+      "groundedFactIds": [
+        "fact-08",
+        "fact-10",
+        "fact-11"
+      ],
+      "keyPoints": [
+        "Core principle analysis."
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-02",
+      "authorRebuttal": "American options require backward induction because the optimal early exercise decision depends on future node values, necessitating a recursive step from maturity back to time zero ([fact-02], [fact-08])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-05",
+      "authorRebuttal": "Direct subtraction causes tree branches to diverge into non-recombining node explosions ($2^N$), requiring Hull's escrow decomposition ($S^* = S - D \\cdot e^{-r t_D}$) to preserve linear node growth ($N(N+1)/2$) ([fact-05])."
+    },
+    {
+      "misconception": "Believing high leverage creates free profits without downside risk.",
+      "factId": "fact-07",
+      "authorRebuttal": "Because standard error is inversely proportional to the square root of the path count ($SE \\propto 1/\\sqrt{M}$), quadrupling the number of paths ($4M$) is required to halve the standard error ([fact-07])."
+    }
+  ],
+  "activeRecallQuiz": {
+    "scenario": "A 2-year American put option is valued on a CRR binomial tree with $S_0 = \\$50, K = \\$52, r = 5%, \\sigma = 30\\%$, and $\\Delta t = 1$ year. Backward induction reveals optimal early exercise at node $(1,0)$ where stock price is $\\$37.04$, yielding an immediate exercise profit of $\\$14.96$ versus a continuation value of $\\$12.36$. Separately, a Monte Carlo simulation generates terminal payoffs across $M$ paths.",
+    "testedFactIds": [
+      "fact-03",
+      "fact-07"
+    ],
+    "question": "1) Why is early exercise optimal at node $(1,0)$ in this American put example? 2) How many simulated paths must be run to cut the Monte Carlo standard error in half?",
+    "correctAnswer": "Correctly identifying the downside risk and margin constraints.",
+    "explanation": "Detailed pedagogical explanation grounded in source principles."
+  },
+  "coreTakeaways": [
+    "Cox-Ross-Rubinstein binomial trees evaluate American options efficiently via backward induction, comparing immediate exercise against continuation values at every node ([fact-01], [fact-02]).",
+    "Control variates and escrow decomposition eliminate discretization errors and prevent non-recombining node explosions when handling discrete dividends ([fact-04], [fact-05]).",
+    "Monte Carlo simulation excels at pricing complex path-dependent exotics, whereas binomial and trinomial trees remain the industry standard for American exercise features ([fact-06], [fact-08], [fact-09])."
+  ]
+}
