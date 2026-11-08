@@ -25,8 +25,8 @@ The repository houses two primary production courses, each architected as a stri
 - **John C. Hull (English)**: 15 chapters | 15 / 15 (100%) 7/7 Data | 100% Zero Blockers | **15 videos rendered** (`ch01_part1` to `ch08_part1` complete) | 100% Alignment Pass (0 Blockers, 0 Highs)
 - **John C. Hull (Hindi)**: 15 chapters | 15 / 15 (100%) 7/7 Data | 100% Zero Blockers | **15 videos rendered** (`ch01_part1` to `ch08_part1` complete) | 100% Alignment Pass (0 Blockers, 0 Highs)
 - **John J. Murphy (Hindi)**: 33 chapters | 33 / 33 (100%) 7/7 Data | 100% Zero Blockers | **33 videos rendered** | 100% Alignment Pass (0 Blockers, 0 Highs)
-- **John J. Murphy (English)**: 33 chapters | 33 / 33 (100%) 7/7 Data | 100% Zero Blockers | **33 Workspaces Production & Validation Passed (0 Blockers, 0 Errors)** | Audio compilation in progress; batch rendering pipeline active
-- **Total Production Video Library**: **63+ Broadcast-Grade MP4 Videos** (100% Phase 2C Release Gate Passed)
+- **John J. Murphy (English)**: 33 chapters | 33 / 33 (100%) 7/7 Data | 100% Zero Blockers | **33 videos rendered** | 100% Alignment Pass (0 Blockers, 0 Highs)
+- **Total Production Video Library**: **96+ Broadcast-Grade MP4 Videos** (48 Full Bilingual Pairs, 100% Phase 2C Release Gate Passed)
 
 ---
 
