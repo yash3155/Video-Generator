@@ -169,14 +169,17 @@ async function run() {
 
   const bothCompleteData = inventory.filter(i => i.hi.hasAllArtifacts && i.en.hasAllArtifacts).length;
   const bothRendered = inventory.filter(i => i.hi.hasVideo && i.en.hasVideo).length;
-  const bothQAPass = inventory.filter(i => i.hi.qaStatus === 'PASS' && i.en.qaStatus === 'PASS').length;
+  const isReleaseGatePassed = (item) => item.qaStatus === 'PASS' || item.qaStatus === 'CONDITIONAL_PASS';
+  const bothQAPass = inventory.filter(i => isReleaseGatePassed(i.hi) && isReleaseGatePassed(i.en)).length;
+  const bothStrictPass = inventory.filter(i => i.hi.qaStatus === 'PASS' && i.en.qaStatus === 'PASS').length;
 
   md += `- **Total Tracked Chapter Pairs**: ${totalPairs}\n`;
   md += `  - **John C. Hull (Derivatives)**: ${hullPairs} chapters\n`;
   md += `  - **John J. Murphy (Technical Analysis)**: ${murphyPairs} chapters\n`;
   md += `- **Bilingual Data Complete (7/7 Artifacts in both Hindi & English)**: ${bothCompleteData} / ${totalPairs}\n`;
   md += `- **Both Videos Rendered**: ${bothRendered} / ${totalPairs}\n`;
-  md += `- **Both QA Passed (0 Blockers, 0 Highs)**: ${bothQAPass} / ${totalPairs}\n\n`;
+  md += `- **Both QA Passed Phase 2C Release Gate (0 Blockers, 0 Highs)**: ${bothQAPass} / ${totalPairs}\n`;
+  md += `- **Both QA Strict Clean Pass (0 Defects of Any Severity)**: ${bothStrictPass} / ${totalPairs}\n\n`;
 
   md += `## Detailed Bilingual Audit Table\n\n`;
   md += `| Base Course | Chapter ID | Hindi Data (7 Artifacts) | Hindi Audio / Video | English Data (7 Artifacts) | English Audio / Video | Bilingual Alignment & QA |\n`;

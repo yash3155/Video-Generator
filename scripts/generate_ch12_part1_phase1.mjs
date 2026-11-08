@@ -247,3 +247,4 @@ for (const dir of dirs) {
   fs.writeFileSync(path.join(dir, 'source_facts.json'), JSON.stringify(sourceFactsData, null, 2), 'utf8');
   console.log(`✅ Saved fully-compliant source_facts.json to ${dir}`);
 }
+

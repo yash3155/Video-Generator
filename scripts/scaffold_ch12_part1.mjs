@@ -26,3 +26,4 @@ function scaffoldFor(bookSlug) {
 
 scaffoldFor('hull_derivatives');
 scaffoldFor('hull_derivatives_en');
+

@@ -252,3 +252,4 @@ for (const dir of dirs) {
   fs.writeFileSync(filePath, JSON.stringify(sourceFactsCh13Part2, null, 2), 'utf8');
   console.log(`Saved source_facts.json to: ${filePath}`);
 }
+

@@ -42,3 +42,4 @@ for (const ch of chapters) {
     console.log(`[CLEAN] ${ch}: Already in sync`);
   }
 }
+

@@ -287,11 +287,6 @@ function robustParseJson(raw) {
   try {
     return JSON.parse(text);
   } catch {}
-  // Sanitize unescaped backslashes in LaTeX strings (e.g. \beta, \sigma, \frac)
-  text = text.replace(/\\(?!["\\/bfnrtu])/g, '\\\\');
-  try {
-    return JSON.parse(text);
-  } catch {}
   // Clean unescaped newlines in JSON strings
   text = text.replace(/:\s*"([^"]*)"/g, (m, p1) => ': "' + p1.replace(/\r?\n/g, '\\n') + '"');
   return JSON.parse(text);

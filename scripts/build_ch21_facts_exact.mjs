@@ -215,3 +215,4 @@ for (const d of dirs) {
   fs.writeFileSync(path.join(d, "source_facts.json"), JSON.stringify(ch21Facts, null, 2), "utf8");
   console.log(`Wrote exact source_facts.json to ${d}`);
 }
+

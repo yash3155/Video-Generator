@@ -244,3 +244,4 @@ const targetDir = path.resolve("src/data/chapters/hull_derivatives/ch17_part2");
 fs.mkdirSync(targetDir, { recursive: true });
 fs.writeFileSync(path.join(targetDir, "source_facts.json"), JSON.stringify(facts, null, 2), "utf8");
 console.log("Successfully wrote source_facts.json to " + targetDir);
+

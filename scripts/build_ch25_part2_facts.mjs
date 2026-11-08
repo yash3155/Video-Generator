@@ -169,3 +169,4 @@ const englishDir = path.resolve("src/data/chapters/hull_derivatives_en/ch25_part
 fs.writeFileSync(path.join(hindiDir, "source_facts.json"), JSON.stringify(facts, null, 2), "utf8");
 fs.writeFileSync(path.join(englishDir, "source_facts.json"), JSON.stringify(facts, null, 2), "utf8");
 console.log("Successfully wrote source_facts.json for ch25_part2 in both languages!");
+
