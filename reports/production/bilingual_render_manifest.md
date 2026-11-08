@@ -1,6 +1,6 @@
 # Official Bilingual Course Delivery Manifest
 
-**Generated**: 2026-11-08T03:21:45.477Z  
+**Generated**: 2026-11-08T03:27:12.288Z  
 **Governing Standard**: `AGENTS.md` Phase 12 Delivery Contract  
 
 ## 1. Executive Delivery Summary
@@ -66,4 +66,4 @@
 | `ch17_part1` | [`ch17_part1.mp4` (28.6MB)](../../out/chapters/murphy_technical_analysis/ch17_part1.mp4) | N/A | CONDITIONAL_PASS | [`ch17_part1.mp4` (22.5MB)](../../out/chapters/murphy_technical_analysis_en/ch17_part1.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
 | `ch17_part2` | [`ch17_part2.mp4` (26.9MB)](../../out/chapters/murphy_technical_analysis/ch17_part2.mp4) | N/A | CONDITIONAL_PASS | [`ch17_part2.mp4` (27.7MB)](../../out/chapters/murphy_technical_analysis_en/ch17_part2.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
 | `ch18_part1` | [`ch18_part1.mp4` (24.1MB)](../../out/chapters/murphy_technical_analysis/ch18_part1.mp4) | N/A | CONDITIONAL_PASS | [`ch18_part1.mp4` (24.9MB)](../../out/chapters/murphy_technical_analysis_en/ch18_part1.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
-| `ch19_part1` | [`ch19_part1.mp4` (24.1MB)](../../out/chapters/murphy_technical_analysis/ch19_part1.mp4) | N/A | CONDITIONAL_PASS | [`ch19_part1.mp4` (25.0MB)](../../out/chapters/murphy_technical_analysis_en/ch19_part1.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
+| `ch19_part1` | [`ch19_part1.mp4` (24.1MB)](../../out/chapters/murphy_technical_analysis/ch19_part1.mp4) | N/A | CONDITIONAL_PASS | [`ch19_part1.mp4` (25.2MB)](../../out/chapters/murphy_technical_analysis_en/ch19_part1.mp4) | N/A | CONDITIONAL_PASS | ✅ Complete Pair |
