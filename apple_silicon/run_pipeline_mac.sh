@@ -24,3 +24,4 @@ node scripts/batch_produce_murphy_with_argon.mjs "$CHAPTER" $FORCE
 
 echo ""
 echo "🎉 Chapter $CHAPTER generated and QA verified on Apple Silicon!"
+

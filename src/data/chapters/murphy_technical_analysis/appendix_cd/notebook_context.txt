@@ -1,0 +1,207 @@
+# Extract: Building & Testing an Objective Trading System and Continuous Futures Contracts
+
+---
+
+## Part 1: The 5-Step Plan for Building and Testing an Objective Trading System
+
+### Core Concepts & Definitions
+* **Mechanical (Objective) System**: A system that defines all entry, exit, and money management parameters using explicit, non-subjective rules so that 100 people following the same instructions arrive at identical trading decisions [1, 2]. It eliminates human emotion (fear and greed) and provides disciplined execution [3, 4].
+* **System Objectives & Benefits**:
+  * **Back-Testing**: Allows testing of trading concepts on historical price data prior to committing capital [3].
+  * **Objectivity**: Removes emotional stress during active market conditions by automating trade triggers [3].
+  * **Efficiency & Scale**: Enables traders to cover multiple markets, system variations, and timeframes simultaneously [3, 4].
+
+---
+
+### The 5-Step Plan
+
+#### Step 1: Start with a Concept (an Idea)
+* **Design Principles**:
+  * Concepts must possess a **positive mathematical expectation** over the long run [5].
+  * Rules should be straightforward, fit the trader’s personality, trade in the direction of the major trend, let profits run, and cut losses short [5].
+  * **Exits vs. Entries**: Designing exit logic is more critical and difficult than designing entry rules [6]. Non-auto-reversing systems (exiting a trade before opening a new position in the opposite direction) are preferred [6].
+  * **Minimal Optimization**: Keep parameters to a minimum to prevent curve-fitting and over-optimization [6].
+* **System Categories**:
+  1. **Trend-Following**: Trades in the direction of the primary trend (e.g., Moving Averages, Donchian’s Weekly Rule) [7].
+  2. **Counter-Trend**:
+     * *Support/Resistance*: Buys at support levels and sells at resistance levels [7].
+     * *Retracements*: Buys pullbacks in bull markets or sells rallies in bear markets (e.g., 50% retracements) [7].
+     * *Oscillators*: Buys oversold conditions and sells overbought conditions, especially when combined with momentum divergences [8].
+  3. **Pattern Recognition**: Visual formations (e.g., Head and Shoulders) or statistical regularities (e.g., seasonal price tendencies) [8].
+
+#### Step 2: Turn Your Idea into a Set of Objective Rules
+* Translate abstract concepts into explicit rules without ambiguity, ensuring any two analysts implementing the rules produce identical signals [2].
+
+#### Step 3: Visually Check It Out on the Charts
+* Perform an informal chart inspection to verify that signals execute as intended and confirm potential profitability before writing computer code [9].
+
+#### Step 4: Formally Test It with a Computer
+* **Data Selection**: Begin back-testing with continuous spread-adjusted data series (e.g., Schwager's method), followed by testing on individual futures contracts [10].
+* **Transaction Costs**: Slippage and commission costs are factored in after initial raw testing to maintain clean comparative evaluations [11].
+* **Multi-Dimensional Robustness Rules**:
+  * **Parameter Stability**: Nearby parameter settings must yield consistent profitability (e.g., if a \\(5/20\\) moving average crossover works, settings such as \\(6/18\\), \\(6/23\\), \\(4/21\\), and \\(5/19\\) must also perform well) [11].
+  * **Time Period Consistency**: The strategy must maintain performance across non-overlapping multi-year periods (e.g., 1981–1986 vs. 1990–1995) [12].
+  * **Cross-Market Universality**: A robust model must perform across multiple markets within a sector (e.g., Crude Oil, Heating Oil, Unleaded Gasoline) and across unrelated asset classes [12].
+
+#### Step 5: Evaluate Results
+* Evaluate performance metrics, drawdown characteristics, trade-by-trade behavior, and equity curves to ensure psychological comfort during real-time execution [13]. Less than 5% of tested trading concepts demonstrate real-world viability [14].
+
+---
+
+### Mathematical Formulas & Variables
+
+1. **Profit Factor**:
+   \\[\text{Profit Factor} = \frac{\text{Gross Profit on Winning Trades}}{\text{Gross Loss on Losing Trades}}\\]
+   * *Variables*: Gross Profit = total dollar gain from all winning trades; Gross Loss = absolute total dollar loss from all losing trades [15].
+   * *Rule*: Long-term systems should target a Profit Factor of **2.00 or higher** [15].
+
+2. **Average Trade (Mathematical Expectation)**:
+   \\[\text{Average Trade} = \frac{\text{Gross Profit} - \text{Gross Loss}}{\text{Total Number of Trades}}\\]
+   * *Rule*: Must significantly exceed combined slippage and commission costs per trade [15].
+
+3. **Maximum Intraday Drawdown**:
+   \\[\text{Max Drawdown} = \max_{t} \left( \text{Peak Equity}_t - \text{Trough Equity}_t \right)\\]
+   * Measures the largest peak-to-trough decline in account equity (evaluated in both absolute dollar and percentage terms) [15].
+
+4. **Zweig 4% Model (EasyLanguage Mathematical Rules)**:
+   * **Buy Signal Condition**:
+     \\[\frac{\text{Close} - \text{Lowest Close}}{\text{Lowest Close}} \ge 0.04 \quad (4\%)\\]
+   * **Sell Signal Condition**:
+     \\[\frac{\text{Highest Close} - \text{Close}}{\text{Highest Close}} \ge 0.04 \quad (4\%)\\]
+   * *Variables*: \\(\text{Close}\\) = current weekly close; \\(\text{Lowest Close}\\) = minimum weekly close recorded while short/out; \\(\text{Highest Close}\\) = maximum weekly close recorded while long [16-18].
+
+---
+
+### Confirmation Rules & Trading Rules
+* **Exits Over Entries**: Always define stop-loss parameters and exit rules prior to entry [5, 6].
+* **No Curve-Fitting**: Avoid heavy parameter optimization on past data, as it creates unrealistic return expectations that fail in live trading [6].
+* **Independent Execution**: Never alter mechanical signals during live execution; allow automated execution to remove trader emotion [3, 4].
+
+---
+
+### Author Case Study: Martin Zweig’s 4% Model
+* **System Description**: Tested by Fred G. Schutzman using TradeStation/EasyLanguage on a weekly chart of the Value Line Composite Index (VLCI) [16, 19].
+* **36-Year Historical Back-Test Performance (1961–1998)** [20]:
+  * **Total Net Profit**: \\(\$718.01\\) (Gross Profit: \\(\$1118.15\\); Gross Loss: \\(-\$400.14\\)) [20].
+  * **Profit Factor**: **2.79** [20].
+  * **Win/Loss Profile**: 137 total trades; 67 winning trades (\\(49\%\\)) and 70 losing trades (\\(51\%\\)) [20].
+  * **Payoff Ratio (Avg Win / Avg Loss)**: \\(2.92\\) (Avg Win: \\(\$18.89\\); Avg Loss: \\(-\$5.72\\)) [20].
+  * **Average Trade Expectation**: \\(\$5.24\\) per trade [20].
+  * **Max Intraday Drawdown**: \\(-\$45.01\\) [20].
+  * **Return on Account**: **1595%** [20].
+
+---
+
+## Part 2: Continuous Futures Contracts
+
+### Core Concepts & Definitions
+* **Limited Life Span Problem**: Individual futures contracts expire after a short duration (typically 1.5 years or less), creating low volume near expiration and artificial price gaps when changing from expiring contracts to new contracts [21-24].
+* **Continuous Futures Contract**: Synthetic long-term price series constructed by combining data from multiple contract months to eliminate price rollover gaps and liquidity distortions for multi-year charting and computer system testing [24, 25].
+
+---
+
+### Contract Types & Construction Methods
+
+#### 1. Nearest Contract
+* **Definition**: Merges consecutive active front-month futures contracts to form an uninterrupted historical record using actual price data [23, 26].
+* **Rollover Mechanics**: Rollover occurs automatically at contract expiration or a set number of days (\\(N\\)) prior to expiration (e.g., `TRNE00`, `TRNE05`, `TRNE12`, `TRNE15`, `TRNE21` representing \\(0, 5, 12, 15, \text{ or } 21\\) days prior to expiration) [23, 27].
+
+#### 2. Next Contract
+* **Definition**: Tracks the contract month immediately trailing the active Nearest Contract [28].
+* **Variants**:
+  * *Next-1 (`TRNXT1`)*: Always uses data from the contract one cycle behind the Nearest Contract (e.g., March data when Nearest uses December) [28, 29].
+  * *Next-2 (`TRNXT2`)*: Always uses data from the contract two cycles behind the Nearest Contract (e.g., June data when Nearest uses December) [29].
+
+#### 3. Gann Contract
+* **Definition**: Links data for a specific calendar month across consecutive years, rolling forward only to the identical contract month of the following year (favored by W.D. Gann) [24, 30].
+* **Examples**: July Wheat (`W07GN`), April Gold (`GC04GN`), December Japanese Yen (`JY12GN`) [24].
+
+#### 4. Spread-Adjusted Continuous Contracts
+* **Definition**: Adjusts historical prices by adding or subtracting the price difference (spread) between expiring and new contracts at rollover dates to remove price jumps [10, 24].
+
+#### 5. Constant Forward Continuous Contracts (Perpetual Contract™)
+* **Definition**: Developed by Robert Pelletier (Commodity Systems, Inc.), this method constructs a continuous price series targeting a constant forward time horizon (e.g., 12 weeks or 6 months into the future) using a weighted average of two surrounding contracts [31-33].
+* **Configuration Parameters**:
+  * Commodity Ticker Symbol (e.g., `TR` for T-Bonds) [34, 35].
+  * Number of contracts used in calculation (typically 2 to 4 contracts) [34, 35].
+  * Number of weeks projected into the future (typically 3 to 40 weeks) [34, 35].
+
+---
+
+### Mathematical Formulas & Extrapolation Mechanics
+
+For a **Constant Forward Continuous Contract** using the 2 nearest contracts (\\(P_1\\) expiring at date \\(T_1\\), and \\(P_2\\) expiring at date \\(T_2\\)) to project a price \\(P_{\text{target}}\\) at target date \\(T_{\text{target}}\\):
+
+\\[\text{Slope } (m) = \frac{P_2 - P_1}{T_2 - T_1}\\]
+
+\\[P_{\text{target}} = P_1 + m \times (T_{\text{target}} - T_1)\\]
+
+* *Variables*:
+  * \\(P_1\\) = Closing price of the nearest contract expiring at \\(T_1\\) [33].
+  * \\(P_2\\) = Closing price of the second contract expiring at \\(T_2\\) [33].
+  * \\(T_{\text{target}}\\) = Target date defined by adding specified forward weeks to current date \\(T_{\text{today}}\\) [33, 36].
+
+---
+
+### Confirmation Rules & Trading Rules
+* **Volume-Based Rollover Rule**: Rollover from front-month to back-month contracts should be executed when open interest and daily volume in the expiring contract begin to decline/erode (typically 10 to 15 days prior to expiration) [23, 27, 35].
+* **Application Rule**:
+  * **Visual Charting**: Standard Nearest-month continuation charts published by commercial services are sufficient for visual technical analysis [25].
+  * **System Testing**: System testing **must** use Constant Forward / Perpetual Contracts or spread-adjusted continuous contracts; unadjusted nearest contracts introduce false rollover price gaps that trigger erratic signals in computer back-tests [24, 25].
+
+---
+
+### Author Case Study: T-Bond Constant Forward Continuous Contract (`TRCF212`)
+* **Setup**:
+  * Commodity: Treasury Bonds (`TR`) [33].
+  * Model Configuration: 2 nearest contracts (`CF2`), 12 weeks forward time horizon (`12`) [33].
+  * Date: December 1 [33].
+  * Data Points:
+    * December Contract Price (\\(P_1\\)): \\(88.25\\) [33].
+    * March Contract Price (\\(P_2\\)): \\(87.75\\) [33].
+    * Target Date (\\(T_{\text{target}}\\)): February 25 (12 weeks forward from Dec 1) [33].
+* **Execution & Result**:
+  * Linear extrapolation between the December (\\(88.25\\)) and March (\\(87.75\\)) prices at the February 25 target intersection generates a calculated Continuous Contract closing price of **\\(87.91\\)** [33, 36].
+  * Because Feb 25 is chronologically closer to the March expiration date than December, the March contract price receives greater weighting in the mathematical calculation [36].
+
+---
+
+💡 **Next Step**: Would you like me to draft a quantitative back-testing protocol script or create a visual study guide comparing these system evaluation parameters?
+
+### Direct Citations from Book Sources:
+- "Ideally, we would prefer an approach that is 100% mechan-ical, increasing the odds that past performance can be replicated in the future. Mechanical means objective: if 10 people follow the same rules and achieve the same results, those rules are said to be objective. It does not matter whether a mechanical system is written on paper or entered into a computer. *This appendix was prepared by Fred G. Schutzman. 493 494 Appendix C Here, however, we'll assume that we are using a comput-er and will use the terms "mechanical" and "computerized" interchangeably. This does not imply that a computer is mandatory for trading system development, although it cer-tainly helps."
+- "STEP 2: TURN YOUR IDEA INTO A SET OF OBJECTIVE RULES This is the most difficult step in our 5 step plan, much more dif-ficult than many of us would at first expect! To complete this step successfully, we must express our idea in such objective terms that 100 people following our rules will all arrive at exactly the same conclusions. Determine what our system is supposed to do and how it will do it. It is with this step that we produce the details needed to accomplish the programming task. We need to take the overall problem and break it down into more and more detail until we finalize all the details."
+- "The mechanical approach offers us three main benefits: We can back test ideas before trading them. A computer allows us to test ideas on historical data rather than on hard earned cash. By helping us see how a system would have per-formed in the past, it allows us to make better decisions when it really counts—in the present. We can be more objective and less emotional. Most peo-ple have trouble applying their objective analysis to actual trading situations. Analysis (where we have no money at risk) is easy, trading (where we have money at risk) is stress-ful. Therefore, why not let the computer pull the trigger for us? It is free of human emotion and will do exactly what we had instructed it to do at the time when we developed our system. We can do more work, increasing our opportunities. A mechanical approach takes less time to apply than a sub-jective one, which allows us to cover more markets, trade more systems, and analyze more time frames each day. This is especially true for those of us who use a computer, since it can work faster and longer than we can, without losing its concentration."
+- "CONCLUSION We have discussed the basic philosophy of trading systems and why objective is better than subjective. We covered the three main benefits of a computerized approach and designed a 5 step plan for building a trading system. And last, but not least, we touched upon the importance of money management and diversification. 502 Appendix C Trading systems can improve your performance and help to make you a successful trader. The reasons for that are clear: they force you to do your homework before making a trade they provide a disciplined framework, making it easier for you to follow the rules they enable you to increase your level of diversification"
+- "Principles of Good Concept Design Good concepts usually make good sense. If a concept seems to work, but makes little sense, you may be sliding into the realm of coincidence, and the odds of this concept continuing to work in the future diminishes considerably. Your concepts must fit your personality in order to give you the discipline to follow them even when they are losing money (i.e. during periods of drawdown). Your concepts should be straightforward and objective, and if trend following, should trade with the major trend, let profits run and cut losses short. Most importantly, your concepts must make money in the long run (i.e. they must have a positive expectation)."
+- "496 Appendix C Designing entries is hard, but designing exits is harder and more important. Entry logic is fairly straightforward, but exits have to take various contingencies into account, such as how fast to cut losses or what to do with accumulated profits. I prefer systems that do not reverse automatically—I like to exit a trade first, before putting on another trade in the opposite direction. Work hard to improve your exits, and your returns will improve relative to your risk. Another suggestion—try to optimize as little as possible. Optimization using historical data often leads one to expect unre-alistic returns that cannot be replicated in real trading. Try to use few parameters and apply the same technique across a number of different markets. This will improve your chances of long run suc-cess, by reducing the pitfalls of over optimization."
+- "The three main categories of trading systems are: Trend following. These systems trade in the direction of the major trend, buying after the bottom and selling after the top. Moving averages and Donchian's weekly rule are popular methodologies among money managers. Counter trend - Support/Resistance. Buy a decline into support; sell a rally into resistance. - Retracements. Here we buy pullbacks in a bull market and sell rallies in a bear market. For example, buy a 50% pullback of the last advance, but only if the major trend remains up. The danger of such systems is that you never know how far a retracement will go and it becomes difficult to implement an acceptable exit technique."
+- "- Oscillators. The idea is to buy when the oscillator is oversold and to sell when it is overbought. If divergence between the price series and the oscillator is also present, a much stronger signal is given. However, it is usually best to wait for some sign of a price reversal before buying or selling. The Essentials of Building a Trading System 497 Pattern recognition (visual and statistical). Examples include the highly reliable head and shoulders formation (visual), and seasonal price patterns (statistical)."
+- "STEP 3: VISUALLY CHECK IT OUT ON THE CHARTS Following the explicit rules we just determined in Step 2, let us visually check the trading signals that are produced on a price chart. This is an informal process, meant to achieve two results: first, we want to see whether our idea has been stated properly; and second, before writing complicated computer code, we want some proof that the idea is a potentially profitable one. STEP 4: FORMALLY TEST IT WITH A COMPUTER Now its time to convert our logic into computer code. For my own work, I use a program called TradeStation®, Omega Research, Inc. in Miami, FL. TradeStation is the most compre-"
+- "Once our program has been written, we then move into the testing phase. To begin with, we must choose one or more data series to test. For stock traders this is an easy task. Futures traders, however, are faced with contracts that expire after a relatively short period of time. I like to do my initial testing using a continuous (spread adjusted) price series popularized by Jack Schwager. (Schwager on Futures: Technical Analysis, Wiley, 1996.) If those results look promising, I then move on to actual contracts."
+- "I do not account for transaction costs (slippage and com-missions) when testing systems, but instead factor them in at the end. I believe that this keeps the evaluation process more pure and allows my results to remain useful should certain assumptions change in the future. I require my systems to work across: Different sets of parameters. If I were considering using a 5/20 moving average crossover system, then I would expect 6/18, 6/23, 4/21, and 5/19 to also perform reasonably well. If not, I immediately become skeptical of the 5/20 results."
+- "{ End of Code } Figure C.l    (EasyLanguage Code): This EasyLanguage code was written using TradeStation's Power Editor™. It has the look—and power—of a full blown programming language. See Figures C.2 and C.3 for the results on this trend following system described by Martin Zweig. 500 Appendix C Different periods of time (e.g. 1990-95 and 1981-86). A system that tests well in the Japanese Yen over a recent five year period should also test reasonably well over any other five year interval. This is another area where I appear to hold the minority point of view. Many different markets. A system that has worked well in crude oil should also work well in heating oil and unleaded gasoline over the same period of time. If not, I will look for an explanation and will usually discard the system. I go even further than this, however, and test that same system across my entire database of markets, expecting it to perform well in the majority of them."
+- "STEP 5: EVALUATE RESULTS Let us try to understand the concept behind our trading system. Does it make sense or is it just a coincidence? Analyze the equity curve. Can we live through the drawdowns? Evaluate the system on a trade-by-trade basis. What happens if a signal is a bad one? How quickly does the system exit from losers? How long does it stay with the winners? Make sure we are completely comfortable with the test results, otherwise we will not be able to trade this system in real time. Three key TradeStation statistics to analyze are:"
+- "Once our testing is complete, let us visually inspect the computer generated trading signals on a price chart to ensure that the system does what we intended it to do. TradeStation facilitates this process by placing buy and sell arrows directly on the chart for us! If the system does not do what it is supposed to do, we need to make the necessary corrections to the code and test it again. Keep in mind that very few ideas will test out profitably, usually less than 5%. And, for one reason or another, most of these "successful" ideas will not even be tradable."
+- "Profit factor. Equals Gross profit on winning trades/Gross loss on losing trades. This statistic tells us how many dollars our system made for every $1 it lost, and is a measure The Essentials of Building a Trading System 501 of risk. Long term traders should aim for profit factors of 2.00 or higher. Short term traders can accept slightly lower numbers. Avg trade (win & loss). This is our system's mathematical expectation. It should at least be high enough to cover transaction costs (slippage and commissions); otherwise we will be losing money. Max intraday drawdown. This is the biggest drop, in dol-lar terms, from an equity peak to an equity trough. I prefer to do this calculation on a percentage basis. I also differen-tiate between drawdowns from a standing start (where I am losing money from my own pocket) versus drawdowns from an equity peak (where I am giving back profits taken from the markets). I am usually more lenient with the latter."
+- "//fileName: J|MBook.Four%Model //Written by Fred G. Schutzman, CMT //Logic by Ned Davis //see Zweig book: Martin Zweig's Winning with New IRAs, pages 117-128 //Model was designed to be applied to a weekly chart of the Value Line Composite Index (VLCI) //Program uses the weekly (usually Friday) close of the VLCI to initiate trades //buy if the weekly close of the VLCI rises 4% or more from its lowest close (since the last sell signal) //sell if the weekly close of the VLCI falls 4% or more from its highest close (since the last"
+- "buy signal) //Date last changed: February 8, 1998 """"System Properties**"*"* Properties tab: Pyramid Settings = Do not allow multiple entries in same direction Entry Settings = default values Max number of bars system will reference = 1 Inputs: perOffLo(4.00), {percent off lowest close} perOffHi(4.00); { percent off highest close} Variables: LC(O), {lowest close} HC(0), { highest close} trend(O); { 0 = no trades yet, +1 = up, -1 down } {initialize variables} If currentBar = 1 then begin LC = close; HC = close; trend = 0; end;"
+- "{ update trend variable and place trading orders} if trend = 0 then begin if ((close-LC) / LC) > = (perOffLo /100) then trend = +1 ; if ((HC-close) / HC) > = (perOffHi / 100) then trend = -1; end else if trend = +1 and ((HC-close) / HC) > = (perOffHi / 100) then begin sell on close; trend = -1; LC = close; end else if trend = -1 and ((close-LC) / LC) > = (perOffLo / 100) then begin buy on close; trend = +1; HC = close; end; { update LC & HC variables} If close < LC then LC = close; If close > HC then HC = close;"
+- "With lots of hard work and dedication, anyone can build a successful trading system. It is not easy, but it certainly is within reach. As with most things in life, what you get out of this effort will be directly related to what you put into it. (See Figures C.2 and C.3.) Figure C.2    (Price Chart): This trading system was designed to be applied to a weekly chart of the Value Line Composite Index (VLCI), but also tested well on a daily chart of the VLCI and on both weekly and daily charts in other markets, votes of confidence in the underlying concept. This is the sys-tem described in Figure C.l."
+- "The Essentials of Building a Trading System 503 Figure C.3    (Performance Summary): Here is a 36 year Performance Summary of the system shown in Figures C.l and C.2. Performance over the last 12 years has been consistent with the overall results. The Profit factor, Avg tade (win and loss) and Max intraday drawdown are all excellent. Appendix D: Continuous Futures Contracts* With a clean database of "raw" commodity data, there are numerous types of contracts that can be gleaned from the raw data, such as: Nearest Contracts, Next Contracts, Gann Contracts, and Continuous Contracts. Following, are ideas for constructing these futures contracts derivatives. The symbols used are for illustration purposes only. These continuous con-tracts can be created through the Dial Data Service (56 Pine Street, New York, NY 10005, [212] 422-1600.)"
+- "Limited Life Span Unlike stocks, futures contracts have expiration dates. A March 1999 Treasury Bond contract, for example, expires in March of Philosophy of Technical Analysis 13 1999. The typical futures contract trades for about a year and a half before expiration. Therefore, at any one time, at least a half dozen different contract months are trading in the same commodity at the same time. The trader must know which contracts to trade and which ones to avoid. (This is explained later in this book.) This limited life feature causes some problems for longer range price forecasting. It necessitates the continuing need for obtaining new charts once old contracts stop trading. The chart of an expired contract isn't of much use. New charts must be obtained for the newer contracts along with their own technical indicators. This constant rotation makes the maintenance of an ongoing chart library a good deal more difficult. For computer users, it also entails greater time and expense by making it necessary to be constantly obtaining new historical data as old contracts expire."
+- "The accompanying charts will demonstrate that the principles of technical analysis—including trend analysis, support and resistance levels, trendlines, percentage retracements, and price patterns—lend themselves quite well to the analysis of long range price movements. Anyone who is not consulting these longer range charts is missing an enormous amount of valuable price information. CONSTRUCTION OF CONTINUATION CHARTS FOR FUTURES The average futures contract has a trading life of about a year and a half before expiration. This limited life feature poses some obvious problems for the technician interested in constructing a long range chart going back several years. Stock market technicians don't have this problem. Charts are readily available for individual common stocks and the market averages from the inception of trading. How then does the futures technician construct longer range charts for contracts that are constantly expiring?"
+- "*This appendix was prepared by Greg Morris. 505 506 Appendix D NEAREST CONTRACT A nearest contract is primarily used by traders who just want a large file of continuous data made up of actual trading prices. They are content with the data going to expiration and then rolling over automatically. It is quite probable that no one trades the nearest contract within 15 to 30 days of expiration. This is because the liquidity dries up very fast in the latter days of a contract. The number of days before expiration that an individual rolls over to the next contract is a function of the commodity that is being traded (the number of months till the next contract), and the individual's trading style. It is quite conceivable that the same individual will rollover at different times for different commodities."
+- "GANN CONTRACT Gann Contracts refer to the use of a specific contract month and rolling over only to the same contract in the next year. For exam-ple, July Wheat would be used until the July contract expires, then the Gann Contract would start using data from the July Wheat contract of the next year. Examples of ticker symbols for Gann Contracts are: W07GN, GC04GN, JY12GN, etc. (representing July Wheat, April gold, December Japanese yen). CONTINUOUS CONTRACTS Continuous Contracts were developed to help analysts overcome the problem of liquidity dry up and premium (or discount) gaps in futures data. This becomes a problem whenever an analyst is testing a trading model or system over many years of data. It allows for a continuous stream of data with compensation being made for rollover jumps in price trends."
+- "The value for the Perpetual Contract™ is not an actual price, but a weighted average of two other prices. The main advan-tage of the Perpetual Contract™ is that it eliminates the need for using only the nearest expiring contract and smoothes out the price series by eliminating the distortions that can take place dur-ing the transition between delivery months. For chart analysis pur-poses, the nearest-month continuation charts published by chart services are more than adequate. A continuous price series, how-ever, is more useful for back-testing trading systems and indicators. A more complete explanation of ways to construct continuous futures contracts is provided by Greg Morris in Appendix D."
+- "Long Term Charts 183 The answer is the continuation chart. Notice the emphasis on the word "continuation." The technique most commonly employed is simply to link a number of contracts together to provide continuity. When one contract expires, another one is used. In order to accomplish this, the simplest method, and the one used by most chart services, is to always use the price of the nearest expiring contract. When that nearest expiring contract stops trading, the next in line becomes the nearest contract and is the one plotted."
+- "When to rollover to the next contract will more than likely be based upon the current contract's volume. When it begins to erode, that is the time to roll forward. Therefore, one should have available a choice as to when to rollover his Nearest Contract. Remember, Nearest Contracts are made up of actual data. Here are some examples: Portfolio Manager A is content to rollover at expiration; so all he wants is the "standard" Nearest Contract with symbol TRNE00 (Treasury Bonds). Manager A is probably managing money and needs equity calculations which he can derive from the data. Trader B feels that trading in the month of expiration is not liquid enough for him; so he wants his Nearest Contract to roll over 15 days prior to expiration—the symbol could be TRNE15. Analyst C would like to evaluate different roll-over dates, so he might like to download multiple Nearest Contracts, such as: TRNEOO, TRNE05, TRNE12, and TRNE21 (which roll-over 5,12, and 21 days before expiration)."
+- "Keep in mind that all of these contracts are Nearest Contracts and contain actual contract data. The only difference is which actual contract the data comes from. NEXT CONTRACT A Next Contract is a unique offspring of the Nearest Contract. It is exactly the same as the Nearest Contract except that it is always Continuous Futures Contracts 507 the contract that follows the Nearest Contract. In other words, if the Nearest Contract is using December data for T-Bonds (TR), then the Next Contract is using data from the March T-Bond con-tract. When the December contract expires, the Nearest rolls to the March and the Next rolls to the June contract. This is defined as the Next-1 contract."
+- "From this concept, another Next Contract is available, called a Next-2. Here, the data is always coming from the contract that is two contracts away from the Nearest Contract. Keeping with the above example, if the Nearest is using data from the December contract, the Next-2 Contract is using data from the June contract. When the December contract expires, the Nearest begins to use data from the March contract and the Next-2 Contract uses data from the September contract and so on. Ticker symbols for the Next contracts are: TRNXT1 and TRNXT2. Of course, the actual futures ticker will be used instead of the TR used in this example."
+- "Futures technicians have devised many ways to deal with these occasional distortions. Some will stop plotting the nearest contract a month or two before it expires to avoid the volatility in the spot month. Others will avoid using the nearest contract altogether and will instead chart the second or third contract. Another method is to chart the contract with the highest open interest on the theory that that delivery month is the truest representation of market value. Continuation charts can also be constructed by linking specific calendar months. For example, a November soybean continuation chart would combine only the historic data provided by each successive year's November soybean contract. (This technique of linking specific delivery months was favored by W.D. Gann.) Some chartists go even further by averaging the prices of several contracts, or constructing indices that attempt to smooth the changeover by making adjustments in the price premium or discount."
+- "184 Chapter 8 THE PERPETUAL CONTRACT™ An innovative solution to the problem of price continuity was developed by Robert Pelletier, president of Commodity Systems, Inc., a commodity and stock data service (CSI. 200 W. Palmetto Park Road, Boca Raton, FL 33422), called the Perpetual Contract.™ ("Perpetual Contract™ " is a registered trademark of that firm.) The purpose of the Perpetual Contract™ is to provide years of futures price history in one continuous time series. That is accomplished by constructing a time series based on a constant forward time period. For example, the series would determine a value three months or six months into the future. The time peri-od varies and can be chosen by the user. The Perpetual Contract™ is constructed by taking a weighted average of two futures con-tracts that surround the time period desired."
+- "508 Appendix D CONSTANT FORWARD CONTINUOUS CONTRACTS A Constant Forward Continuous Contract looks a constant length of time into the future. It uses more than one contract to do this. A common method is to use the nearest two contracts and do a linear extrapolation of the data. (See Figure D.l.) r 88.40 -88.35 SB.25  -88.30 -88.25    8 P    ? 3    8 87.91  r87.95 L87.90 ^V.^7.75 r 87.85 r 87.80 -87.75  12 weeks    -87.70 6 -87.60 -87.55 -87.50 - 8745 - 87.40 - 87.35 B E ' ks" " h'2"' I19" bV' i" b" " he"' b'3'' bit " Is" " h'3"' b'i' bn "b ""
+- "Example: This is the method used by Commodity Systems, Inc. (See Perpetual Contract in Chapter 8.) T-Bonds will be used again, because they have a uniform expiration cycle of every 3 months. Let's say a trader wants a Continuous Contract of T-Bonds using the 2 nearest months and looking 12 weeks into the future (symbol = TRCF212). Today's date is December 1. A graphical portrayal makes this easier to understand (see Figure D.l). The vertical axis is price and the horizontal axis is time. Today's date is marked on the horizontal axis and the expiration dates of the two nearest contracts (December and March), are also marked. He wants to look 12 weeks into the future so a mark is made 12 weeks from today which is about February 25. The close price of the December contract was 88.25 and the close of the March contract was 87.75 These points are then put above their expiration dates at the corresponding prices. Then a linear extrapolation is made by merely drawing a line between the two points. The slope of this line will vary up and down depending upon the outlook for long term interest rates (in this T-Bond example). In this particular example the outlook is for higher rates because the March futures price is lower than the December price."
+- "Il3     bo   C7 i    ho   h7   I  December 1989 February March «43ril Figure D.l    A visual representation of a continuous contract. One possibility is to give the futures trader (as with the Nearest Contracts) the ability to construct his own Constant Forward Continuous Contract. Three things are needed to do this: The commodity symbol, the number of contracts he wants used in the calculation, and the number of weeks into the futures he wants to look. For instance, if he wanted T-Bonds, using 3 of the"
+- "Continuous Futures Contracts 509 nearest contracts, and looking 14 weeks into the future, the symbol could be: TRCF314. TR is the symbol, CF is for Continuous (Forward Looking), 3 is the number of contracts used, and 14 is the number of weeks the price is projected. The mechanics of this are fairly simple. First, a fixed rollover date would need to be set for each commodity. A good one to start with could be 10 days prior to expiration. What is important is that there is a rollover sometime prior to actual expiration. Second, the number of contracts used will never be less than 2 and probably never greater than 4. The number of weeks used should probably always be greater that 3 and could go up to 40 in some cases."
+- "To find the value of the TRCF212 close price for today, find the point on the horizontal axis that is 12 weeks from today (Feb 25th) and go up to the line drawn on the chart. Then from the line go to the right and that is the price of the close for this Constant Forward Continuous Contract (about 87.91). You can 510 Appendix D also visually see from the chart that the March contract is carry-ing more weight than the December contract because the point of interception is closer to March. This method can be done on the Open, High, Low, and Close in the exact manner. Of course, a computer does it mathematically; this is just a visual explanation of how a Perpetual Contract is constructed."

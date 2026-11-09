@@ -1,6 +1,6 @@
 # Bilingual Course Production Inventory & Audit Matrix
 
-Generated: 2026-11-09T01:25:55.119Z
+Generated: 2026-11-09T12:49:53.521Z
 
 ## Executive Summary
 
@@ -59,12 +59,12 @@ Generated: 2026-11-09T01:25:55.119Z
 | `hull_derivatives` | `ch25_part2` | ✅ Complete (7/7) | 21 audio | 🎬 Rendered | ✅ Complete (7/7) | 21 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
 | `murphy_technical_analysis` | `appendix_ab` | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | ✅ Complete (7/7) | 40 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS ⚠️ (1 Highs) |
 | `murphy_technical_analysis` | `appendix_cd` | ✅ Complete (7/7) | 35 audio | 🎬 Rendered | ✅ Complete (7/7) | 35 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS ⚠️ (1 Highs) |
-| `murphy_technical_analysis` | `ch01_part1` | ✅ Complete (7/7) | 42 audio | 🎬 Rendered | ✅ Complete (7/7) | 42 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: PASS |
-| `murphy_technical_analysis` | `ch01_part2` | ✅ Complete (7/7) | 43 audio | 🎬 Rendered | ✅ Complete (7/7) | 42 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: PASS |
+| `murphy_technical_analysis` | `ch01_part1` | ✅ Complete (7/7) | 43 audio | 🎬 Rendered | ✅ Complete (7/7) | 43 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
+| `murphy_technical_analysis` | `ch01_part2` | ✅ Complete (7/7) | 43 audio | 🎬 Rendered | ✅ Complete (7/7) | 43 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
 | `murphy_technical_analysis` | `ch02_part1` | ✅ Complete (7/7) | 41 audio | 🎬 Rendered | ✅ Complete (7/7) | 35 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
 | `murphy_technical_analysis` | `ch02_part2` | ✅ Complete (7/7) | 36 audio | 🎬 Rendered | ✅ Complete (7/7) | 36 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
 | `murphy_technical_analysis` | `ch03_part1` | ✅ Complete (7/7) | 37 audio | 🎬 Rendered | ✅ Complete (7/7) | 37 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
-| `murphy_technical_analysis` | `ch04_part1` | ✅ Complete (7/7) | 38 audio | 🎬 Rendered | ✅ Complete (7/7) | 38 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS ⚠️ (1 Highs) |
+| `murphy_technical_analysis` | `ch04_part1` | ✅ Complete (7/7) | 38 audio | 🎬 Rendered | ✅ Complete (7/7) | 38 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
 | `murphy_technical_analysis` | `ch04_part2` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
 | `murphy_technical_analysis` | `ch04_part3` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |
 | `murphy_technical_analysis` | `ch05_part1` | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | ✅ Complete (7/7) | 39 audio | 🎬 Rendered | HI: CONDITIONAL_PASS | EN: CONDITIONAL_PASS |

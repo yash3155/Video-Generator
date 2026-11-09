@@ -63,3 +63,4 @@ echo "   4 Videos Rendered in: ${TOTAL_SECS} seconds."
 echo "   Average time per video: $((TOTAL_SECS / 4)) seconds."
 echo "   Outputs located in 'out/chapters/'"
 echo "=========================================================="
+

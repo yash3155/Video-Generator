@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QA Release Gate Report — CHAPTER 1 · PART 1</title>
+  <title>QA Release Gate Report — CHAPTER 1 · PART 2</title>
   <style>
     :root {
       --bg: #F8FAFC;
@@ -172,8 +172,8 @@
   <div class="container">
     <div class="header">
       <div class="header-info">
-        <h1>CHAPTER 1 · PART 1</h1>
-        <p>Course: <strong>TECHNICAL ANALYSIS · MURPHY</strong> · Domain: <strong>finance</strong> · Generated: 3/11/2026, 8:44:31 pm</p>
+        <h1>CHAPTER 1 · PART 2</h1>
+        <p>Course: <strong>murphy_technical_analysis</strong> · Domain: <strong>technical_analysis</strong> · Generated: 9/11/2026, 6:32:16 pm</p>
       </div>
       <div>
         <span class="badge badge-high" style="background: #F59E0B; color: #fff; font-size: 14px; padding: 6px 12px;">
@@ -184,41 +184,41 @@
 
     <div class="status-banner">
       <span>RELEASE GATE: CONDITIONAL PASS (OVERRIDE / REVIEW)</span>
-      <span>0 Blockers · 0 High · 1 Medium · 0 Low</span>
+      <span>0 Blockers · 0 High · 8 Medium · 0 Low</span>
     </div>
 
     <div class="metrics-grid">
       <div class="metric-card">
         <div class="metric-title">Duration</div>
-        <div class="metric-value">338.6s</div>
+        <div class="metric-value">293.7s</div>
       </div>
       <div class="metric-card">
         <div class="metric-title">Total Frames</div>
-        <div class="metric-value">10159</div>
+        <div class="metric-value">8812</div>
       </div>
       <div class="metric-card">
         <div class="metric-title">Duration Drift</div>
-        <div class="metric-value" style="color: #EF4444;">
-          +643ms
+        <div class="metric-value" style="color: #10B981;">
+          +353ms
         </div>
       </div>
       <div class="metric-card">
         <div class="metric-title">Audio Files</div>
-        <div class="metric-value">42 / 42</div>
+        <div class="metric-value">28 / 28</div>
       </div>
       <div class="metric-card">
         <div class="metric-title">Source Facts</div>
-        <div class="metric-value">8</div>
+        <div class="metric-value">15</div>
       </div>
       <div class="metric-card">
         <div class="metric-title">MP4 Status</div>
         <div class="metric-value" style="font-size: 16px;">
-          ✅ 23.3MB
+          ✅ 17.9MB
         </div>
       </div>
     </div>
 
-    <div class="section-title">Validation Findings (1)</div>
+    <div class="section-title">Validation Findings (8)</div>
     <div class="table-container">
       <table>
         <thead>
@@ -233,14 +233,91 @@
         <tbody>
           <tr>
             <td><span class="badge badge-medium">MEDIUM</span></td>
-            <td><strong>duration_drift</strong></td>
-            <td> </td>
+            <td><strong>visual_layout</strong></td>
+            <td>Scene 0 Beat <code>b02</code></td>
             <td>
-              <div><strong>Duration drift is 643ms (> 0.5s).</strong></div>
-              <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Cause: Frame rounding drift.</div>
+              <div><strong>Subtitle has 22 words (guideline is <= 16 words per beat).</strong></div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Cause: Long subtitle risks multi-line visual overflow in layout.</div>
             </td>
             <td>
-              <div class="repair-box">🔧 Check authored pauses and FPS calculations.</div>
+              <div class="repair-box">🔧 Condense subtitle to 14-16 words.</div>
+            </td>
+          </tr><tr>
+            <td><span class="badge badge-medium">MEDIUM</span></td>
+            <td><strong>visual_layout</strong></td>
+            <td>Scene 0 Beat <code>b04</code></td>
+            <td>
+              <div><strong>Subtitle has 17 words (guideline is <= 16 words per beat).</strong></div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Cause: Long subtitle risks multi-line visual overflow in layout.</div>
+            </td>
+            <td>
+              <div class="repair-box">🔧 Condense subtitle to 14-16 words.</div>
+            </td>
+          </tr><tr>
+            <td><span class="badge badge-medium">MEDIUM</span></td>
+            <td><strong>visual_layout</strong></td>
+            <td>Scene 1 Beat <code>b05</code></td>
+            <td>
+              <div><strong>Subtitle has 19 words (guideline is <= 16 words per beat).</strong></div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Cause: Long subtitle risks multi-line visual overflow in layout.</div>
+            </td>
+            <td>
+              <div class="repair-box">🔧 Condense subtitle to 14-16 words.</div>
+            </td>
+          </tr><tr>
+            <td><span class="badge badge-medium">MEDIUM</span></td>
+            <td><strong>visual_layout</strong></td>
+            <td>Scene 1 Beat <code>b06</code></td>
+            <td>
+              <div><strong>Subtitle has 19 words (guideline is <= 16 words per beat).</strong></div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Cause: Long subtitle risks multi-line visual overflow in layout.</div>
+            </td>
+            <td>
+              <div class="repair-box">🔧 Condense subtitle to 14-16 words.</div>
+            </td>
+          </tr><tr>
+            <td><span class="badge badge-medium">MEDIUM</span></td>
+            <td><strong>visual_layout</strong></td>
+            <td>Scene 2 Beat <code>b09</code></td>
+            <td>
+              <div><strong>Subtitle has 17 words (guideline is <= 16 words per beat).</strong></div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Cause: Long subtitle risks multi-line visual overflow in layout.</div>
+            </td>
+            <td>
+              <div class="repair-box">🔧 Condense subtitle to 14-16 words.</div>
+            </td>
+          </tr><tr>
+            <td><span class="badge badge-medium">MEDIUM</span></td>
+            <td><strong>visual_layout</strong></td>
+            <td>Scene 5 Beat <code>b14</code></td>
+            <td>
+              <div><strong>Formula expression is 68 characters long (may wrap awkwardly).</strong></div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Cause: Long unformatted formula string.</div>
+            </td>
+            <td>
+              <div class="repair-box">🔧 Split formula into separate definition steps or shorten expression.</div>
+            </td>
+          </tr><tr>
+            <td><span class="badge badge-medium">MEDIUM</span></td>
+            <td><strong>visual_layout</strong></td>
+            <td>Scene 8 Beat <code>b17</code></td>
+            <td>
+              <div><strong>Formula expression is 61 characters long (may wrap awkwardly).</strong></div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Cause: Long unformatted formula string.</div>
+            </td>
+            <td>
+              <div class="repair-box">🔧 Split formula into separate definition steps or shorten expression.</div>
+            </td>
+          </tr><tr>
+            <td><span class="badge badge-medium">MEDIUM</span></td>
+            <td><strong>visual_layout</strong></td>
+            <td>Scene 9 Beat <code>b18</code></td>
+            <td>
+              <div><strong>Subtitle has 18 words (guideline is <= 16 words per beat).</strong></div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Cause: Long subtitle risks multi-line visual overflow in layout.</div>
+            </td>
+            <td>
+              <div class="repair-box">🔧 Condense subtitle to 14-16 words.</div>
             </td>
           </tr>
         </tbody>

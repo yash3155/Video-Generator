@@ -1,0 +1,148 @@
+Here is the extract from **John J. Murphy's *Technical Analysis of the Financial Markets*** (Chapter 12, contributed by Gregory L. Morris) covering Japanese candlestick charting concepts, pattern definitions, mathematical logic, trading rules, and Western indicator filtering [1-3].
+
+---
+
+### 1. Basic Candlesticks (Real Body and Shadows)
+
+* **Core Concepts & Definitions**: Candlestick charts display the same four fundamental price points as standard Western bar charts: **Open**, **High**, **Low**, and **Close** [3, 4]. 
+  * **Real Body**: The rectangular portion measuring the price distance between the Open and Close [4, 5].
+    * **White Body (Open/Unfilled)**: Formed when the Close price is higher than the Open price (\\(\text{Close} > \text{Open}\\)), signaling positive/bullish price movement [4, 5].
+    * **Black Body (Filled)**: Formed when the Close price is lower than the Open price (\\(\text{Close} < \text{Open}\\)), signaling negative/bearish price movement [4, 5].
+  * **Shadows (Wicks / Hairs)**: Thin vertical lines extending above and below the real body representing the extreme intraday High and Low prices [4, 5].
+  * **Long Days vs. Short Days**: **Long Days** represent large differences between Open and Close (large real body) [6]. **Short Days** represent small differences between Open and Close (small real body) [6].
+  * **Spinning Tops**: Candlesticks with small real bodies and upper/lower shadows longer than the body [6, 7]. Body color is secondary; they represent market **indecision** [7].
+
+* **Mathematical Formulas & Variables**:
+  * \\(\text{Real Body Range} = |\text{Close} - \text{Open}|\\) [5]
+  * \\(\text{Total Range} = \text{High} - \text{Low}\\) [4, 5]
+  * \\(\text{Upper Shadow} = \text{High} - \max(\text{Open}, \text{Close})\\) [5]
+  * \\(\text{Lower Shadow} = \min(\text{Open}, \text{Close}) - \text{Low}\\) [5]
+
+---
+
+### 2. Doji
+
+* **Definition & Core Concepts**: Formed when the **Open and Close prices are equal** (or nearly equal, especially in high-volatility/large-price movements) [7]. Doji lines represent extreme indecision among market participants [7, 8].
+* **Doji Variations**:
+  * **Long-Legged Doji**: Features long upper and lower shadows, reflecting significant intraday expansion and indecision [8].
+  * **Gravestone Doji**: Has a long upper shadow and no lower shadow (\\(\text{Open} = \text{Close} = \text{Low}\\)) [8]. The longer the upper shadow, the more **bearish** the interpretation [8].
+  * **Dragonfly Doji**: Opposite of the Gravestone Doji; has a long lower shadow and no upper shadow (\\(\text{Open} = \text{Close} = \text{High}\\)) [8]. Considered quite **bullish** [8].
+* **Mathematical Formula**:
+  * \\(\text{Close} = \text{Open} \quad \text{or} \quad |\text{Close} - \text{Open}| \le \epsilon\\) (where \\(\epsilon\\) is a minimal pixel/price threshold) [7, 9]
+
+---
+
+### 3. Hammer
+
+* **Definition & Pattern**: A single-candlestick bullish reversal pattern featuring a small real body (white or black) located at the upper end of the price range and a **long lower shadow** (typically at least twice the height of the real body), with little to no upper shadow [10, 11].
+* **Preceding Trend & Context**: Must occur following an established **downtrend** [10, 12].
+* **Trading & Confirmation Rules**:
+  * **Psychology**: Intraday sellers pressed prices significantly lower, but strong buying emerged to drive prices back toward the high, indicating potential trend exhaustion [12, 13].
+  * **Confirmation**: Requires a preceding downtrend (e.g., verified via a short-term 10-period moving average) and subsequent bullish confirmation or oversold oscillator status [12, 14, 15].
+
+---
+
+### 4. Hanging Man
+
+* **Definition & Pattern**: Visually identical in structure to the Hammer (small real body near the top of the range, long lower shadow), but appears at the end of an advance [11, 16].
+* **Preceding Trend & Context**: Must occur during or after an **uptrend** (bearish reversal pattern) [12, 16].
+* **Trading & Confirmation Rules**:
+  * **Psychology**: Demonstrates that selling pressure emerged during the day [12, 13]. Even if prices recovered to close near the high, the appearance of intraday selling flags top-side vulnerability [12, 16].
+  * **Confirmation**: Must be confirmed by subsequent bearish action or indicator filtering; a Hanging Man structure appearing in a downtrend is not valid [12, 15].
+
+---
+
+### 5. Bullish & Bearish Engulfing Patterns
+
+* **Definition & Pattern**: Two-candle reversal formations [10, 16].
+  * **Bullish Engulfing**: A two-day pattern in a downtrend. Day 1 is a small black candlestick; Day 2 is a long white candlestick whose real body completely covers/engulfs the real body of Day 1 [10, 11].
+  * **Bearish Engulfing**: A two-day pattern in an uptrend. Day 1 is a small white candlestick; Day 2 is a long black candlestick whose real body completely engulfs the real body of Day 1 [11, 16].
+* **Trading & Confirmation Rules**:
+  * The second day's real body must completely overlap the prior day's real body [10, 11, 16].
+  * Signals a sudden shift in control from bears to bulls (or vice versa) [12, 13].
+
+---
+
+### 6. Dark Cloud Cover
+
+* **Definition & Pattern**: A two-day bearish reversal pattern occurring exclusively in an **uptrend** [16, 17].
+  * **Day 1**: Long white candlestick reinforcing the uptrend [17].
+  * **Day 2**: Opens above the high price of Day 1 (adding to initial bullish momentum), but trades lower all day to close **at or below the 50% midpoint** of Day 1's white real body (forming a black candlestick) [17, 18].
+* **Mathematical Formula**:
+  * \\(\text{Open}_2 > \text{High}_1\\) [17]
+  * \\(\text{Close}_2 \le \text{Open}_1 + 0.5 \times (\text{Close}_1 - \text{Open}_1)\\) [17, 18]
+* **Trading Rules**: Deals a blow to bullish psychology and forces long liquidation [18].
+
+---
+
+### 7. Piercing Line
+
+* **Definition & Pattern**: The bullish counterpart to Dark Cloud Cover; a two-day bullish reversal pattern occurring in a **downtrend** [10, 17, 18].
+  * **Day 1**: Long black candlestick solidifying downtrend confidence [19].
+  * **Day 2**: Opens at a new low (below Day 1's low/close), trades higher throughout the session, and closes **above the 50% midpoint** of Day 1's black body (forming a white candlestick) [19].
+* **Mathematical Formula**:
+  * \\(\text{Open}_2 < \text{Low}_1\\) [19]
+  * \\(\text{Close}_2 \ge \text{Open}_1 - 0.5 \times (\text{Open}_1 - \text{Close}_1)\\) [19]
+* **Trading Rules**: Forces short covering and invites new buying interest [19].
+
+---
+
+### 8. Morning Star and Evening Star
+
+* **Evening Star (Bearish Reversal)**: A three-day pattern occurring in an **uptrend** [19-21].
+  * **Day 1**: Long white candlestick [20, 21].
+  * **Day 2 (Star)**: Small real body gapping above Day 1's real body [21].
+  * **Day 3**: Opens with a gap below the Star's body and closes lower, with Close price penetrating below the midpoint of Day 1's white body [21].
+* **Morning Star (Bullish Reversal)**: A three-day pattern occurring in a **downtrend** [19, 20].
+  * **Day 1**: Long black candlestick [19, 20].
+  * **Day 2 (Star)**: Small real body gapping below Day 1's body [11, 20].
+  * **Day 3**: Long white candlestick closing well into Day 1's black body [11, 20].
+* **Subjective vs. Computer Rules**: Automated/computer pattern recognition mandates strict gap and midpoint criteria, whereas visual chartists allow minor flexibility (e.g., slight overlap without explicit gaps) [21, 22].
+
+---
+
+### 9. Filtered Candle Patterns Combined with Western Indicators
+
+* **Core Concept**: Introduced by Greg Morris in 1991, **candle pattern filtering** combines traditional Western oscillators with Japanese candlestick patterns to eliminate false signals and improve overall timing [15].
+* **The "Presignal Area" Rule**:
+  * Reversal candle patterns are evaluated **only when a Western oscillator is in its presignal extreme area** [15, 23].
+  * **Stochastics %D Example**: The presignal buy zone is \\(\%D < 20\\) (oversold), and the presignal sell zone is \\(\%D > 80\\) (overbought) [23, 24].
+  * If a reversal pattern appears while the oscillator is at a neutral level (e.g., \\(\%D = 65\\)), the pattern is **ignored** [23].
+  * Applicable oscillators include **Stochastics %D, Welles Wilder's RSI, Donald Lambert's CCI, and Larry Williams' %R** [24, 25].
+  * Applies **strictly to reversal candle patterns**, not continuation patterns [23].
+
+* **Author Case Study (3Com Corp)**:
+  * **Setup**: In a chart of 3Com Corp (`COMS`), a **Piercing Line** bullish reversal pattern developed at a market trough [24].
+  * **Filter Verification**: Simultaneously, the **Stochastic %D** indicator was positioned in its presignal buy zone (below 20) [24].
+  * **Result**: The presignal alignment validated the Piercing Line pattern, generating a high-probability buy signal before traditional moving average or oscillator crossover signals occurred [24, 25].
+
+---
+
+💡 *Would you like me to construct a comparative cheat sheet table or build an interactive study artifact covering these candlestick patterns and their filtering rules?*
+
+### Direct Citations from Book Sources:
+- "John Murphy Acknowledgments The person who deserves the most credit for the second edition of this book is Ellen Schneid Coleman, Executive Editor at Simon & Schuster. She convinced me that it was time to revise Technical Analysis of the Futures Markets and broaden its scope. I'm glad she was so persistent. Special thanks go to the folks at Omega Research who provided me with the charting software I needed and, in par-ticular, Gaston Sanchez who spent a lot of time on the phone with me. The contributing authors—Tom Aspray, Dennis Hynes, and Fred Schutzman—added their particular expertise where it was needed. In addition, several analysts contributed charts including Michael Burke, Stan Ehrlich, Jerry Toepke, Ken Tower, and Nick Van Nice. The revision of Chapter 2 on Dow Theory was a collaborative effort with Elyce Picciotti, an independent technical writer and market consultant in New Orleans, Louisiana. Greg Morris deserves special mention. He wrote the chapter on candlestick charting, contributed the article in Appendix D, and did most of the graphic work. Fred Dahl of Inkwell Publishing Services (Fishkill, NY), who handled production of the first edition of this book, did this one as well. It was great working with him again."
+- "CONCLUSION Point and figure charting isn't the oldest technique in the world. That credit goes to the Japanese candlestick chart, which has been used in that country for centuries. In the next chapter Greg Morris, author of two books on candlesticks, will introduce that ancient technique that has gained new popularity in recent years among Western technical analysts. Japanese Candlesticks* * ■.."\  - *        -A" * INTRODUCTION While the Japanese have used this charting and analysis tech-nique for centuries, only in recent years has it become popular in the West. The term, candlesticks, actually refers to two different, but related subjects. First, and possibly the more popular, is the method of displaying stock and futures data for chart analysis. Secondly, it is the art of identifying certain combinations of can-dlesticks in defined and proven combinations. Fortunately, both techniques can be used independently or in combination."
+- "CANDLESTICK CHARTING Charting market data in candlestick form uses the same data available for standard bar charts; open, high, low, and close prices. While using the exact same data, candlestick charts offer a much *This chapter was contributed by Gregory L. Morris. 297 298 Chapter 12 more visually appealing chart. Information seems to jump off the page (computer screen). The information displayed is more easily interpreted and analyzed. The box below is a depiction of of a single day of prices showing the difference between the bar (left) and the candlestick(s). (See Figure 12.1.)"
+- "CANDLESTICKS Candlestick charts are the Japanese version of bar charting and have become very popular in recent years among western chartists. The Japanese candlestick records the same four prices as the traditional bar chart—the open, the close, the high, and the Figure 3.3    A point and figure chart of Intel. Notice the alternating columns ofx's and o's. The x column shows rising prices. The o column shows falling prices. Buy and sell sigiwls are more precise on this type of chart. low. The visual presentation differs however. On the candlestick chart, a thin line (called the shadow) shows the day's price range from the high to the low. A wider portion of the bar (called the real body) measures the distance between the open and the close. If the close is higher than the open, the real body is white (positive). If the close is lower than the open, the real body is black (negative). (See Figure 3.4.)"
+- "Figure 12.1 You can see how the name "candlesticks" came about. They look somewhat like a candle with a wick. The rectangle represents the difference between the open and close price for the day, and is called the body. Notice that the body can be either black or white. A white body means that the close price was greater (higher) than the open price. Actually, the body is not white, but open (not filled), which makes it work better with computers. This is so that it will print correctly when printing charts on a computer. This is one of the adaptations that have occurred in the West; the Japanese use red for the open body. The black body means that the close price was lower than the open price. The open and close prices are given much significance in Japanese candlesticks. The small lines above and below the body are referred to as wicks or hairs or shadows. Many different names for these lines appear in Japanese reference literature, which is odd since they represent the high and low prices for the day and are normally not considered vital in the analysis by the Japanese. (See Figure 12.2.)"
+- "BASIC CANDLESTICKS Different body/shadow combinations have different meanings. Days in which the difference between the open and close prices is great are called Long Days. Likewise, days in which the difference between the open and close price is small, are called Short Days. Remember, we are only talking about the size of the body and no reference is made to trie high and/or low prices. (See Figure 12.3.) Spinning Tops are days in which the candlesticks have small bodies with upper and lower shadows that are of greater length"
+- "V*i 300 Chapter 12 4 Long Days - Short Days Figure 12.3 Figure 12.4    Spinning tops. than that of the body. The body color is relatively unimportant in spinning top candlesticks. These candlesticks are considered as days of indecision. (See Figure 12.4.) When the open price and the close price are equal, they are called Doji lines. Doji candlesticks can have shadows of varying length. When referring to Doji candlesticks, there is some consid-eration as to whether the open and close price must be exactly equal. This is a time when the prices must be almost equal, especially when dealing with large price movements."
+- "There are different Doji candlesticks that are important. The Long-legged Doji has long upper and lower shadows and reflects considerable indecision on the part of market participants. The Gravestone Doji has only a long upper shadow and no lower shadow. The longer the upper shadow, the more bearish the interpretation. Figure 12.5    Doji candlesticks. Japanese Candlesticks 301 The Dragonfly Doji is the opposite of the Gravestone Doji, the lower shadow is long and there is no upper shadow. It is usually considered quite bullish. (See Figure 12.5.)"
+- "306 Chapter 12 Using Computers for Candle Pattern Identification A personal computer with software designed to recognize candle patterns is a great way to remove emotion, especially during a trade. However, there are a couple of things to keep in mind when viewing candlesticks on a computer screen. A computer screen is made up of small light elements called pixels. There are only so many pixels on your computer screen, with the amount based upon the resolution of your video card/monitor combination. If you are viewing price data that has a large range of prices in a short period of time, you may think that you are seeing many Doji days (open and close price are equal) when in fact, you are not. With a large range of prices on the screen, each pixel element will have a price range of its own. A computer software program that identifies patterns based on a mathematical relationship will overcome this visual anomaly. Hopefully, the above explanation will keep you from thinking that your software isn't working."
+- "CANDLE PATTERNS The candle patterns listed below comprise the library that is used to identify candlestick signals. The number in parentheses at the end of each name represents the number of candles that are used to define that particular pattern. The bullish and bearish patterns are divided into two groups signifying either reversal or continuation patterns. Bullish Reversals Long White Body (1) Hammer (1) Inverted Hammer (1) Belt Hold (1) Engulfing Pattern (2) Harami (2) Harami Cross (2) Piercing Line (2) Doji Star (2) Meeting Lines (2) Three White Soldiers (3) Morning Star (3) Morning Doji Star (3) Abandoned Baby (3) Tri-Star (3) Breakaway (5) Three Inside Up (3) Three Outside Up (3) Kicking (2) Unique Three Rivers Bottom (3) Three Stars in the South (3) Concealing Swallow (4) Stick Sandwich (3) Homing Pigeon (2) Ladder Bottom (5) Matching Low (2)"
+- "Inside Down (3) Three Outside Down (3) Kicking (2) Latter Top (5) Matching High (2) Upside Gap Two Crows (3) Identical Three Crows (3) Deliberation (3) Advance Block (3) Two Crows (3) Bearish Continuation Separating Lines (2) Falling Three Methods (5) Downside Tasuki Gap (3) Side by Side White Lines (3) Three Line Strike (4) Downside Gap Three Methods (3) On Neck Line (2) In Neck Line (2) 310 Chapter 12 I Belt Hold - Engulfing + Japanese Candlesticks 311 I + Doji Star + 312 Chapter 12"
+- "Reversal Patterns A reversal candle pattern is a combination of Japanese candlesticks that normally indicate a reversal of the trend. One serious con-sideration that must be used to help identify patterns as being either bullish or bearish is the trend of the market preceding the pattern. You cannot have a bullish reversal pattern in an uptrend. You can have a series of candlesticks that resemble the bullish pat-tern, but if the trend is up, it is not a bullish Japanese candle pat-tern. Likewise, you cannot have a bearish reversal candle pattern in a downtrend."
+- "The single candlestick lines are essential to Japanese can-dlestick analysis. You will find that all Japanese candle patterns are made from combinations of these basic candlesticks. CANDLE PATTERN ANALYSIS A Japanese candle pattern is a psychological depiction of traders' mentality at the time. It vividly shows the actions of the traders as time unfolds in the market. The mere fact that humans react consis-tently during similar situations makes candle pattern analysis work. A Japanese candle pattern can consist of a single candlestick line or be a combination of multiple lines, normally never more than five. While most candle patterns are used to determine reversal points in the market, there are a few that are used to determine trend continuation. They are referred to as reversal and continua-tion patterns. Whenever a reversal pattern has bullish implica-tions, an inversely related pattern has bearish meaning. Similarly, whenever a continuation pattern has bullish implications, an opposite pattern gives bearish meaning. When there is a pair of patterns that work in both bullish and bearish situations, they usu-ally have the same name. In a few cases, however, the bullish pat-tern and its bearish counterpart have completely different names."
+- "302 Chapter 12 This presents one of the age-old problems when analyzing markets: What is the trend? You must determine the trend, before you can utilize Japanese candle patterns effectively. While volumes have been written on the subject of trend determination, the use of a moving average will work quite well with Japanese candle patterns. Once the short term (ten periods or so) trend has been determined, Japanese candle patterns will significantly assist in identifying the reversal of that trend."
+- "FILTERED CANDLE PATTERNS A revolutionary concept developed by Greg Morris in 1991, called candle pattern filtering, provides a simple method to improve the overall reliability of candle patterns. While the short term trend of the market must be identified before a candle pattern can exist, determination of overbought and oversold markets using traditional technical analysis will enhance a candle pattern's predictive ability. Concurrently, this technique helps eliminate bad or premature candle patterns."
+- "Bullish Continuation Separating Lines (2) Rising Three Methods (5) Upside Tasuki Gap (3) Side by Side White Lines (3) Three Line Strike (4) Upside Gap Three Methods (3) On Neck Line (2) In Neck Line (2) Bearish Reversals Long Black Body (1) Hanging Man (1) Shooting Star (1) Belt Hold (1) Engulfing Pattern (2) Harami (2) Harami Cross (2) Dark Cloud Cover (2) Doji Star (2) Meeting Lines (2) Three Black Crows (3) Evening Star (3) Evening Doji Star (3) Abandoned Baby (3) Tri-Star (3) Breakaway (5) Three"
+- "Japanese literature consistently refers to approximately forty reversal candle patterns. These vary from single candlestick lines to more complex patterns of up to five candlestick lines. There are many good references on candlesticks, so only a few of the more popular patterns will be discussed here. --------     Dark Cloud Cover.    This is a two day reversal pattern that only has bearish implications. (See Figure 12.6.) This is also one of the times when the pattern's counterpart exists but has a different name (see Piercing Line). The first day of this pattern is a long white candlestick. This reflects the current trend of the market and helps confirm the uptrend to traders. The next day opens above the high price of the previous day, again"
+- "adding to the bullishness. However, trading for Figure 12.6 Dark cloud the rest of the daY is lower with a cover-. close price at least below the mid- point of the body of the first day. This is a significant blow to the bullish mentality and will force many to exit the market. Since the close price is below the open price on the second day, the body is black. This is the dark cloud referred to in the name. Piercing Line. The opposite of the Dark Cloud Cover, the Piercing Line, has bullish implications. (See Figure 12.7.) The scenario is quite similar, but opposite. A downtrend is in place, the"
+- "( Japanese Candlesticks 303 first candlestick is a long black day which solidifies traders' confidence in the downtrend. The next day, prices open at a new low and then trade higher all day and close above the midpoint of the first candle- « stick's body. This offers a significant change to the downtrend mentality P-L. and many will reverse or exit their positions. Evening Star and Morning Star. The Evening Star and its cousin, the Morning Star, are two powerful reversal candle patterns. These are both three day"
+- "patterns that work exceptionally well. The scenario for understanding the change in trader psychology for the Evening Star will be thoroughly discussed here since the opposite can be said for the Morning Star. (See Figures 12.8 and 12.9.) Figure 12.8    Evening star -. Figure 12.9    Morning star +. Figure 12.7 Piercing line +. 304 Chapter 12 The Evening Star is a bearish reversal candle pattern, as its name suggests. The first day of this pattern is a long white candle- stick which fully enforces the current uptrend. On the open of the"
+- "second day, prices gap up above the body of the first day. Trading on this second day is somewhat restricted and the close price is near the open price while remaining above the body of the first day. The body for the second day is small. This type of day following a long day is referred to as a Star pattern. A Star is a small body day that gaps away from a long body day. The third and last day of this pattern opens with a gap below the body of the star and closes lower with the close price below the midpoint of the first day. The previous explanation was the perfect scenario. Many"
+- "references will accept as valid, an Evening Star which does not meet each detail exactly. For instance, the third day might not gap down or the close on the third day might not be quite below the midpoint of the first day's body. These details are subjective when viewing a candlestick chart, but not when using a computer program to automatically identify the patterns. That is because computer programs require explicit instructions to read the candle chart, and don't allow for subjective interpretation."
+- "Here is what we know about stochastics %D: When it enters the area above 80 or below 20, it will eventually generate a signal. In other words, it is just a matter of time until a signal is given. The area above 80 and below 20 is called the presignal area and represents the area that %D must get to before it can give a trading signal of its own. (See Figure 12.12.) Figure 12.12 The filtered candle pattern concept uses this presignal area. Candle patterns are considered only when %D is in its presignal area. If a candle pattern occurs when stochastics %D is at, say 65, the pattern is ignored. Also, only reversal candle patterns are considered using this concept."
+- "One must first grasp how a traditional technical indicator responds to price data. In this example, Stochastics %D will be used. The stochastic indicator oscillates between 0 and 100, with 20 being oversold and 80 being overbought. The primary interpretation for this indicator is when %D rises above 80 and then falls below 80, a sell signal has been generated. Similarly, when it drops below 20 and then rises above 20, a buy signal is given. (See Chapter 10 for more on Stochastics.) Japanese Candlesticks 307"
+- "Candle pattern filtering is not limited to using stochastics %D. Any technical oscillator that you might normally use for analysis can be used to filter candle patterns. Wilder's RSI, Lambert's CCI, and Williams' %R are a few that will work equally as well. (These oscillators are explained in Chapter 10.) 308 Chapter 12 CONCLUSION Japanese candlestick charting and candle pattern analysis are essential tools for making market timing decisions. One should use Japanese candle patterns in the same manner as any other technical tool or technique; that is, to study the psychology of market participants. Once you become used to seeing your price charts using candlesticks, you may not want to use bar charts again. Japanese candle patterns, used in conjunction with other technical indicators in the filtering concept, will almost always offer a trading signal prior to using other price-based indicators."

@@ -72,3 +72,4 @@ To generate any new chapter part autonomously end-to-end on Mac:
 ```
 
 All model calls, audio compilation, and Remotion rendering will run natively and autonomously.
+

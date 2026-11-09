@@ -145,3 +145,4 @@ chmod +x apple_silicon/*.sh && ./apple_silicon/setup_apple_silicon.sh
 # 4. View results
 open out/chapters/murphy_technical_analysis/ch01_part1.mp4
 ```
+

@@ -4,9 +4,6 @@
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-
 echo "=========================================================="
 echo "🍎 APPLE SILICON (M-SERIES) AUTONOMOUS ENVIRONMENT SETUP"
 echo "=========================================================="
@@ -45,26 +42,26 @@ else
   echo "✅ Antigravity CLI ($(agy --version 2>/dev/null || echo 'ready')) is installed."
 fi
 
-# 5. Install Project Dependencies
+# 5. Install Project NPM Dependencies
 echo "📦 Installing project dependencies via npm..."
-cd "$ROOT_DIR"
 npm install
 
 # 6. Setup macOS native Argon binary
-if [ -f "$SCRIPT_DIR/bin/gemini-core-darwin-arm64" ]; then
+if [ -f "../free-gemini-api/gemini-core-darwin-arm64" ]; then
   echo "🔧 Configuring native Apple Silicon Argon Proxy executable..."
-  chmod +x "$SCRIPT_DIR/bin/gemini-core-darwin-arm64"
-elif [ -f "$ROOT_DIR/../free-gemini-api/gemini-core-darwin-arm64" ]; then
-  mkdir -p "$SCRIPT_DIR/bin"
-  cp "$ROOT_DIR/../free-gemini-api/gemini-core-darwin-arm64" "$SCRIPT_DIR/bin/gemini-core-darwin-arm64"
-  chmod +x "$SCRIPT_DIR/bin/gemini-core-darwin-arm64"
+  chmod +x "../free-gemini-api/gemini-core-darwin-arm64"
+elif [ -d "../free-gemini-api/free-gemini-api" ]; then
+  echo "🔨 Compiling native Apple Silicon Argon Proxy binary from Go source..."
+  (cd ../free-gemini-api/free-gemini-api && go build -ldflags="-s -w" -o ../gemini-core-darwin-arm64)
+  chmod +x "../free-gemini-api/gemini-core-darwin-arm64"
 fi
 
 # 7. Grant execution permissions on all mac helper scripts
-chmod +x "$SCRIPT_DIR"/*.sh
+chmod +x apple_silicon/*.sh
 
 echo ""
 echo "=========================================================="
 echo "🎉 SETUP COMPLETE! Ready for broadcast rendering on Mac M-series."
 echo "   Run './apple_silicon/render_benchmark_m5.sh' to test Remotion rendering."
 echo "=========================================================="
+
