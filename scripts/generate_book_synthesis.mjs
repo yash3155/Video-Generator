@@ -448,16 +448,15 @@ export async function runBookSynthesis(options = {}) {
     fs.writeFileSync(sourceFactsFile, JSON.stringify(sourceFacts, null, 2), 'utf-8');
     console.log(`✅ Emitted source_facts.json (${sourceFacts.facts.length} facts) to: ${sourceFactsFile}`);
 
-    // Generate episode_raw.json via deterministic scaffolding
-    const rawEpisode = scaffoldEpisode({
-      chapterKey: 'synthesis',
-      courseSlug: courseId,
-      chapterTitle: `The Master Synthesis · Complete Evolutionary Flow of ${courseConfig.bookTitle}`,
-      facts: sourceFacts.facts,
-      courseConfig
+    // Generate episode_raw.json via bespoke synthesis episode builder
+    const rawEpisode = buildBespokeSynthesisEpisode({
+      courseId,
+      courseConfig,
+      blueprintData,
+      sourceFacts
     });
     fs.writeFileSync(episodeRawFile, JSON.stringify(rawEpisode, null, 2), 'utf-8');
-    console.log(`✅ Emitted episode_raw.json (12 scenes, 28 beats) to: ${episodeRawFile}`);
+    console.log(`✅ Emitted bespoke backend PPT episode_raw.json (12 scenes, 28 beats) to: ${episodeRawFile}`);
 
     console.log(`\n🎉 Synthesis Architecture is ready! When you say 'yes', run with '--execute' to perform full Argon extraction and audio synthesis.`);
     return blueprintData;
@@ -488,7 +487,765 @@ export async function runBookSynthesis(options = {}) {
   fs.writeFileSync(synthesisDataFile, JSON.stringify(parsedData, null, 2), 'utf-8');
   console.log(`✅ Saved verified Argon Book Synthesis to: ${synthesisDataFile}`);
 
+  // Build bespoke episode from Argon data
+  const rawEpisode = buildBespokeSynthesisEpisode({
+    courseId,
+    courseConfig,
+    blueprintData: parsedData,
+    sourceFacts
+  });
+  fs.writeFileSync(episodeRawFile, JSON.stringify(rawEpisode, null, 2), 'utf-8');
+  console.log(`✅ Emitted bespoke backend PPT episode_raw.json (12 scenes, 28 beats) to: ${episodeRawFile}`);
+
   return parsedData;
+}
+
+/**
+ * Builds a 100% bespoke backend PPT episode for the synthesis video
+ * where every card, message, and comparison aligns directly with the book's dialectic.
+ */
+export function buildBespokeSynthesisEpisode({ courseId, courseConfig, blueprintData, sourceFacts }) {
+  const isHull = /hull|futures|options/i.test(courseId);
+  const primaryColor = courseConfig.visualTheme?.primaryColor || '#0F766E';
+  const accentColor = courseConfig.visualTheme?.accentColor || '#F59E0B';
+  const cChain = blueprintData.causalEvolutionChain || [];
+  const rules = blueprintData.holisticSynthesisRules || [];
+  const dilem = blueprintData.openingDilemma || {};
+  const cPairs = blueprintData.complementaryPairs || [];
+
+  const step1 = cChain[0] || { priorConcept: 'Foundational Concept', fatalLimitation: 'Hidden limitation', authorSolution: 'Breakthrough Tool' };
+  const step2 = cChain[1] || { priorConcept: 'Linear Tool', fatalLimitation: 'Asymmetry breakdown', authorSolution: 'Convexity Solution' };
+  const step3 = cChain[2] || { priorConcept: 'Single Model', fatalLimitation: 'Tail risk collapse', authorSolution: 'Multi-Factor Model' };
+  const pair1 = cPairs[0] || { toolA: 'Linear Tools', toolB: 'Convex Tools', synergyExplanation: 'Synergy between tools' };
+
+  return {
+    schemaVersion: '1.0.0',
+    meta: {
+      course: courseId,
+      chapter: 'SYNTHESIS',
+      chapterTitle: `THE MASTER SYNTHESIS: COMPLETE EVOLUTIONARY FLOW OF ${courseConfig.bookTitle.toUpperCase()}`,
+      domain: isHull ? 'finance' : 'technical_analysis',
+      primaryColor,
+      accentColor,
+      narrationLanguage: 'hi-IN-devanagari'
+    },
+    scenes: [
+      // Scene 0: Origin Dilemma (chat_story)
+      {
+        segmentIndex: 0,
+        title: 'The Origin Crisis & Why Concepts Evolve',
+        template: 'chat_story',
+        badge: `Historical Dilemma · ${courseConfig.bookTitle.slice(0, 20)}`,
+        beats: [
+          {
+            id: 'b01',
+            hindi_tts: `राजू पूछता है, शर्मा जी, हमने किताब के सारे चैप्टर्स पढ़े, लेकिन बाजार में असली रिस्क संभालते वक्त ये सब आपस में जुड़ते कैसे हैं?`,
+            en_narration: `Raju asks: Sharma ji, we studied all the chapters, but how do they connect into one real-world framework?`,
+            subtitle: `Raju asks: Sharma ji, how do all chapters connect into one coherent system?`,
+            en_subtitle: `Raju asks: Sharma ji, how do all chapters connect into one coherent system?`,
+            pauseAfterMs: 400,
+            ui_state: {
+              stageDirections: ['— Raju questions how individual chapters form an unbroken evolutionary system —'],
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: `Sharma ji, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
+                  theme: 'amber',
+                  align: 'left'
+                }
+              ]
+            }
+          },
+          {
+            id: 'b02',
+            hindi_tts: `शर्मा जी समझाते हैं, शुरुआत हमेशा एक वास्तविक मानवीय और कारोबारी संकट से हुई थी।`,
+            en_narration: `Sharma ji explains: The origin began with a concrete market crisis and real-world struggle.`,
+            subtitle: `Sharma ji explains: The origin began with a concrete market crisis and struggle.`,
+            en_subtitle: `Sharma ji explains: The origin began with a concrete market crisis and struggle.`,
+            pauseAfterMs: 450,
+            ui_state: {
+              stageDirections: ['— Sharma ji outlines the historical context and initial dilemma —'],
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: `Sharma ji, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
+                  theme: 'amber',
+                  align: 'left'
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: dilem.historicalContext || `Market participants originally relied on isolated tools, exposing themselves to unforeseen systemic blindspots.`,
+                  theme: 'teal',
+                  align: 'right'
+                }
+              ]
+            }
+          },
+          {
+            id: 'b03',
+            hindi_tts: `जब अप्रत्याशित झटका लगा, तो पुराने मॉडल पूरी तरह फेल हो गए और भारी नुकसान हुआ!`,
+            en_narration: `When unexpected market shocks arrived, early tools broke down and created devastating losses!`,
+            subtitle: `When unexpected market shocks hit, earlier tools failed, creating severe losses!`,
+            en_subtitle: `When unexpected market shocks hit, earlier tools failed, creating severe losses!`,
+            pauseAfterMs: 450,
+            ui_state: {
+              stageDirections: ['— The fatal limitation of early tools triggers catastrophic failure —'],
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: `Sharma ji, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
+                  theme: 'amber',
+                  align: 'left'
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: dilem.historicalContext || `Market participants originally relied on isolated tools, exposing themselves to unforeseen systemic blindspots.`,
+                  theme: 'teal',
+                  align: 'right'
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: dilem.fatalMistake || `Relying on a single isolated model creates a false sense of security while catastrophic tail risks remain completely unhedged.`,
+                  theme: 'teal',
+                  align: 'right'
+                }
+              ]
+            }
+          },
+          {
+            id: 'b04',
+            hindi_tts: `इसलिए लेखक ने हर नए चैप्टर में पिछली कमी को दूर करने वाला क्रांतिकारी समाधान पेश किया है।`,
+            en_narration: `Thus, each succeeding chapter was invented to fix the fatal limitation of the prior tool.`,
+            subtitle: `Thus, each succeeding chapter was invented to resolve the prior tool's fatal flaw.`,
+            en_subtitle: `Thus, each succeeding chapter was invented to resolve the prior tool's fatal flaw.`,
+            pauseAfterMs: 450,
+            ui_state: {
+              stageDirections: ['— The author introduces the systemic breakthrough unifying the entire book —'],
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: `Sharma ji, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
+                  theme: 'amber',
+                  align: 'left'
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: dilem.historicalContext || `Market participants originally relied on isolated tools, exposing themselves to unforeseen systemic blindspots.`,
+                  theme: 'teal',
+                  align: 'right'
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: dilem.fatalMistake || `Relying on a single isolated model creates a false sense of security while catastrophic tail risks remain completely unhedged.`,
+                  theme: 'teal',
+                  align: 'right'
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: dilem.authorInvention || `The author's genius is that every single concept is a dialectical solution designed to protect you where the prior tool fails!`,
+                  theme: 'teal',
+                  align: 'right'
+                }
+              ]
+            }
+          }
+        ]
+      },
+
+      // Scene 1: Opposing Dialectical Forces (tug_of_war)
+      {
+        segmentIndex: 1,
+        title: `${pair1.toolA} vs ${pair1.toolB}`,
+        template: 'tug_of_war',
+        badge: 'Dialectical Tension · Dual Forces',
+        beats: [
+          {
+            id: 'b05',
+            hindi_tts: `एक तरफ पहला टूल है, जो अपनी जगह उपयोगी है लेकिन अपनी सीमा में बंधा हुआ है।`,
+            en_narration: `On one side is the initial tool: indispensable for its purpose, but carrying a distinct blindspot.`,
+            subtitle: `${pair1.toolA} solves immediate execution but carries distinct blindspots.`,
+            en_subtitle: `${pair1.toolA} solves immediate execution but carries distinct blindspots.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              leftTitle: pair1.toolA || 'Linear Framework',
+              rightTitle: pair1.toolB || 'Convex Shield',
+              leftScore: 50,
+              rightScore: 50,
+              leftLabel: 'Primary Efficiency',
+              rightLabel: 'Structural Protection',
+              centerTitle: 'The Dialectical Divide',
+              trend: 'up',
+              stageDirections: ['— Contrasting the strengths and blindspots of both core tools —']
+            }
+          },
+          {
+            id: 'b06',
+            hindi_tts: `दूसरी तरफ दूसरा टूल है, जो पहले टूल के अंधे मोड़ पर आपको सुरक्षा और बढ़त प्रदान करता है।`,
+            en_narration: `On the other side is the counter-tool, providing convexity and protection exactly where the first tool fails.`,
+            subtitle: `${pair1.toolB} steps in to protect where the first tool fails.`,
+            en_subtitle: `${pair1.toolB} steps in to protect where the first tool fails.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              leftTitle: pair1.toolA || 'Linear Framework',
+              rightTitle: pair1.toolB || 'Convex Shield',
+              leftScore: 30,
+              rightScore: 70,
+              leftLabel: 'Vulnerable to Tail Shocks',
+              rightLabel: 'Asymmetric Convexity Advantage',
+              centerTitle: 'Convexity Superiority',
+              trend: 'up',
+              stageDirections: ['— The counter-tool neutralizes catastrophic vulnerability —']
+            }
+          },
+          {
+            id: 'b07',
+            hindi_tts: `मास्टर विश्लेषक इन दोनों टूल्स को एक साथ मिलाकर एक अभेद्य ट्रेडिंग सिस्टम तैयार करता है।`,
+            en_narration: `The master practitioner unites both tools into an unbreakable, all-weather framework.`,
+            subtitle: `The master practitioner unites both tools into an unbreakable system.`,
+            en_subtitle: `The master practitioner unites both tools into an unbreakable system.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              leftTitle: pair1.toolA || 'Linear Framework',
+              rightTitle: pair1.toolB || 'Convex Shield',
+              leftScore: 50,
+              rightScore: 50,
+              leftLabel: 'Low Cost Efficiency',
+              rightLabel: 'Catastrophic Protection',
+              centerTitle: 'Integrated Fortress',
+              trend: 'down',
+              stageDirections: ['— True mastery fuses both tools to eliminate all blindspots —']
+            }
+          }
+        ]
+      },
+
+      // Scene 2: The 4 Evolutionary Eras (progressive_cards)
+      {
+        segmentIndex: 2,
+        title: `The 4 Evolutionary Eras of ${courseConfig.bookTitle.slice(0, 24)}`,
+        template: 'progressive_cards',
+        badge: 'Macro Architecture · 4 Pillars',
+        beats: [0, 1, 2, 3].map(idx => {
+          const step = cChain[idx] || { priorConcept: `Era ${idx + 1}`, succeedingConcept: `Breakthrough ${idx + 1}`, fatalLimitation: 'Limitation solved' };
+          return {
+            id: `b${String(idx + 8).padStart(2, '0')}`,
+            hindi_tts: `युग ${idx + 1}: ${step.priorConcept} से आगे बढ़कर ${step.succeedingConcept} की खोज हुई।`,
+            en_narration: `Era ${idx + 1}: Progressing from ${step.priorConcept} to ${step.succeedingConcept} to resolve critical limitations.`,
+            subtitle: `Era ${idx + 1}: ${step.priorConcept} evolves into ${step.succeedingConcept}.`,
+            en_subtitle: `Era ${idx + 1}: ${step.priorConcept} evolves into ${step.succeedingConcept}.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              activeCardIndex: idx,
+              sectionHeader: 'THE 4 EVOLUTIONARY ERAS',
+              cards: [0, 1, 2, 3].map(cIdx => {
+                const cStep = cChain[cIdx] || { priorConcept: `Era ${cIdx + 1}`, succeedingConcept: `Breakthrough ${cIdx + 1}`, fatalLimitation: 'Limitation solved' };
+                return {
+                  title: `Era ${cIdx + 1}: ${cStep.priorConcept}`,
+                  desc: `${cStep.succeedingConcept} resolves: ${cStep.fatalLimitation || 'structural friction'}.`,
+                  state: cIdx === idx ? (idx === 0 ? 'active_amber' : idx === 1 ? 'active_blue' : idx === 2 ? 'active_purple' : 'active_green') : 'muted',
+                  badge: `Pillar ${cIdx + 1}`
+                };
+              })
+            }
+          };
+        })
+      },
+
+      // Scene 3: Step 1 Dialectic (split_comparison)
+      {
+        segmentIndex: 3,
+        title: `${step1.priorConcept} vs ${step1.succeedingConcept}`,
+        template: 'split_comparison',
+        badge: 'Evolution Step 1 · Foundation',
+        beats: [
+          {
+            id: 'b12',
+            hindi_tts: `${step1.priorConcept} की सीमा को ${step1.succeedingConcept} ने वैज्ञानिक तरीके से दूर किया।`,
+            en_narration: `${step1.priorConcept} carried severe limitations, which ${step1.succeedingConcept} systematically solved.`,
+            subtitle: `${step1.priorConcept} had limitations solved by ${step1.succeedingConcept}.`,
+            en_subtitle: `${step1.priorConcept} had limitations solved by ${step1.succeedingConcept}.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              leftColumn: {
+                title: step1.priorConcept,
+                subtitle: 'Initial Tool',
+                theme: 'amber',
+                icon: 'alert-triangle',
+                active: true,
+                bullets: [
+                  step1.fatalLimitation || 'Vulnerable under extreme market stress',
+                  step1.failureScenario || 'Struggled during unexpected volatility shocks',
+                  'Lacks centralized risk guarantees',
+                  'High friction and hidden counterparty costs'
+                ]
+              },
+              rightColumn: {
+                title: step1.succeedingConcept,
+                subtitle: 'Evolutionary Innovation',
+                theme: 'green',
+                icon: 'shield-check',
+                active: true,
+                bullets: [
+                  step1.breakthroughMechanism || 'Standardized mechanics and clearinghouse guarantees',
+                  'Eliminates bilateral counterparty default',
+                  'Continuous mark-to-market discipline',
+                  'Robust across full market cycles'
+                ]
+              }
+            }
+          }
+        ]
+      },
+
+      // Scene 4: Step 2 Failure Scenario (progressive_cards)
+      {
+        segmentIndex: 4,
+        title: `${step2.failureScenario ? step2.failureScenario.slice(0, 40) : 'The Structural Breakdown'}`,
+        template: 'progressive_cards',
+        badge: 'Evolution Step 2 · Case Study',
+        beats: [
+          {
+            id: 'b13',
+            hindi_tts: `जब बाजार में गंभीर संकट आया, तो मॉडल की कमजोरियों ने बड़ा नुकसान कराया।`,
+            en_narration: `When severe market stress unfolded, structural weaknesses caused sudden capital drain.`,
+            subtitle: `Structural weakness under market stress caused severe capital drain.`,
+            en_subtitle: `Structural weakness under market stress caused severe capital drain.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              activeCardIndex: 0,
+              sectionHeader: 'CASE STUDY · STRUCTURAL FAILURE MODE',
+              cards: [
+                {
+                  title: '1. The Operating Assumption',
+                  desc: step2.priorConcept || 'Initial strategy appeared fully covered under normal conditions.',
+                  state: 'active_amber',
+                  badge: 'Assumption'
+                },
+                {
+                  title: '2. The Market Inversion',
+                  desc: step2.fatalLimitation || 'Severe basis risk and unexpected correlation breakdown.',
+                  state: 'active_blue',
+                  badge: 'Catalyst'
+                },
+                {
+                  title: '3. The Liquidity Drain',
+                  desc: step2.failureScenario || 'Massive cash margin drain forced early capitulation.',
+                  state: 'active_purple',
+                  badge: 'Crisis'
+                },
+                {
+                  title: '4. The Evolutionary Fix',
+                  desc: step2.authorSolution || 'Integrated multi-horizon hedging with options and stop disciplines.',
+                  state: 'active_green',
+                  badge: 'Resolution'
+                }
+              ]
+            }
+          }
+        ]
+      },
+
+      // Scene 5: Unifying Formula Law (formula_breakdown)
+      {
+        segmentIndex: 5,
+        title: isHull ? 'Continuous Cost-of-Carry Equilibrium' : 'The Core Mathematical Law',
+        template: 'formula_breakdown',
+        badge: 'Core Invariant · Mathematical Law',
+        beats: [
+          {
+            id: 'b14',
+            hindi_tts: `यह गणितीय नियम पूरे विषय की रीढ़ है, जो अटकलों को हटाकर वस्तुनिष्ठ संतुलन स्थापित करता है।`,
+            en_narration: `This mathematical invariant is the backbone of the entire subject, enforcing objective equilibrium.`,
+            subtitle: `This mathematical invariant enforces objective equilibrium across all markets.`,
+            en_subtitle: `This mathematical invariant enforces objective equilibrium across all markets.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              title: isHull ? 'The Universal Cost-of-Carry Forward Valuation Law' : 'The Invariant Mathematical Invariant',
+              expression: isHull ? 'F0 = S0 * exp((r - q) * T)' : '\\text{Confirmation} = \\text{Boundary} \\times (1 + \\text{Threshold})',
+              latex: isHull ? 'F_0 = S_0 \\cdot e^{(r - q)T}' : 'P_{\\text{target}} = P_{\\text{break}} + h',
+              variables: isHull ? [
+                { symbol: 'F_0', label: 'Forward Delivery Price', description: 'Fair theoretical forward price agreed upon today.' },
+                { symbol: 'S_0', label: 'Spot Market Price', description: 'Current cash market price of underlying asset.' },
+                { symbol: 'r', label: 'Financing Rate', description: 'Risk-free borrowing rate to carry the asset.' },
+                { symbol: 'q', label: 'Income Yield / Convenience', description: 'Dividend yield or storage convenience benefit.' },
+                { symbol: 'T', label: 'Maturity Duration', description: 'Time to settlement as a fraction of a year.' }
+              ] : [
+                { symbol: 'P_t', label: 'Terminal Target', description: 'Projected objective price target.' },
+                { symbol: 'h', label: 'Pattern Height', description: 'Vertical measure of supply-demand imbalance.' }
+              ]
+            }
+          }
+        ]
+      },
+
+      // Scene 6: Step 3 Convexity Comparison (split_comparison)
+      {
+        segmentIndex: 6,
+        title: `${step2.priorConcept} vs ${step2.succeedingConcept}`,
+        template: 'split_comparison',
+        badge: 'Evolution Step 3 · Asymmetry',
+        beats: [
+          {
+            id: 'b15',
+            hindi_tts: `एक तरफ सीमित लीनियर प्रतिबद्धताएं हैं, और दूसरी तरफ सुरक्षा देने वाली नॉन-लीनियर कॉन्वेक्सिटी।`,
+            en_narration: `On one side are rigid linear commitments; on the other is asymmetric convex protection.`,
+            subtitle: `Rigid linear commitments contrasted with asymmetric convex protection.`,
+            en_subtitle: `Rigid linear commitments contrasted with asymmetric convex protection.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              leftColumn: {
+                title: step2.priorConcept,
+                subtitle: 'Linear / Symmetric',
+                theme: 'amber',
+                icon: 'lock',
+                active: true,
+                bullets: [
+                  'Full exposure to severe adverse market swings',
+                  'Requires continuous capital to maintain margins',
+                  'Zero upside participation during favorable moves',
+                  'High emotional strain during regime shifts'
+                ]
+              },
+              rightColumn: {
+                title: step2.succeedingConcept,
+                subtitle: 'Asymmetric / Convex',
+                theme: 'green',
+                icon: 'shield',
+                active: true,
+                bullets: [
+                  'Maximum loss strictly capped at predefined threshold',
+                  'Unconstrained participation in favorable rallies',
+                  'Insulates capital from sudden margin liquidation',
+                  'Converts market panic into opportunity'
+                ]
+              }
+            }
+          }
+        ]
+      },
+
+      // Scene 7: Step 4 Dynamic Framework (progressive_cards)
+      {
+        segmentIndex: 7,
+        title: `${step3.succeedingConcept} Breakthrough`,
+        template: 'progressive_cards',
+        badge: 'Evolution Step 4 · Dynamic Edge',
+        beats: [
+          {
+            id: 'b16',
+            hindi_tts: `अगले चरण में लेखक ने स्थिर नियमों को गतिशील और बहुआयामी रिस्क मैनेजमेंट में बदल दिया।`,
+            en_narration: `In the next phase, static models evolved into dynamic multi-dimensional risk engineering.`,
+            subtitle: `Static models evolved into dynamic multi-dimensional risk engineering.`,
+            en_subtitle: `Static models evolved into dynamic multi-dimensional risk engineering.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              activeCardIndex: 0,
+              sectionHeader: 'DYNAMIC MULTI-DIMENSIONAL MASTERY',
+              cards: [
+                {
+                  title: '1. The Static Limitation',
+                  desc: step3.fatalLimitation || 'Single-dimension indicators break down when volatility surges.',
+                  state: 'active_amber',
+                  badge: 'Limitation'
+                },
+                {
+                  title: '2. The Dynamic Rebalance',
+                  desc: step3.breakthroughMechanism || 'Continuous rebalancing neutralizes directional drift.',
+                  state: 'active_blue',
+                  badge: 'Rebalance'
+                },
+                {
+                  title: '3. Multi-Greek Sensitivity',
+                  desc: 'Accounting for curvature (Gamma) and volatility (Vega) eliminates surprise wipes.',
+                  state: 'active_purple',
+                  badge: 'Multi-Greek'
+                },
+                {
+                  title: '4. Robust Portfolio Shield',
+                  desc: 'All market regimes—bull, bear, or sideways—are safely navigated.',
+                  state: 'active_green',
+                  badge: 'Fortress'
+                }
+              ]
+            }
+          }
+        ]
+      },
+
+      // Scene 8: Step 5 Regime & Fat Tails (split_comparison)
+      {
+        segmentIndex: 8,
+        title: 'Theoretical Assumption vs Real Market Regimes',
+        template: 'split_comparison',
+        badge: 'Evolution Step 5 · Real World',
+        beats: [
+          {
+            id: 'b17',
+            hindi_tts: `किताब का अंतिम रहस्य यही है कि बाजार हमेशा पाठ्यपुस्तकों के सीधे नियमों से कहीं ज्यादा जटिल होते हैं।`,
+            en_narration: `The book's ultimate insight is that real markets exhibit fat tails and regime shifts beyond simple models.`,
+            subtitle: `Real markets exhibit fat tails and regime shifts beyond simple textbook models.`,
+            en_subtitle: `Real markets exhibit fat tails and regime shifts beyond simple textbook models.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              leftColumn: {
+                title: 'Textbook Simplification',
+                subtitle: 'Idealized World',
+                theme: 'amber',
+                icon: 'x-circle',
+                active: true,
+                bullets: [
+                  'Assumes continuous liquidity and zero friction',
+                  'Symmetric bell-curve probability distribution',
+                  'Treats extreme shocks as statistical impossibilities',
+                  'Fragile when real-world crises strike'
+                ]
+              },
+              rightColumn: {
+                title: 'Institutional Reality',
+                subtitle: 'Fat Tails & Regimes',
+                theme: 'green',
+                icon: 'check-circle',
+                active: true,
+                bullets: [
+                  'Explicitly prices crashophobia and liquidity crunches',
+                  'Recognizes fat tails and rapid regime transitions',
+                  'Builds structural buffers for multi-sigma events',
+                  'Ensures survival across decades of market chaos'
+                ]
+              }
+            }
+          }
+        ]
+      },
+
+      // Scene 9: Active Recall Scenario (interactive_quiz)
+      {
+        segmentIndex: 9,
+        title: 'Diagnose the Cross-Chapter Crisis',
+        template: 'interactive_quiz',
+        badge: 'Active Recall · Multi-Chapter',
+        beats: [
+          {
+            id: 'b18',
+            hindi_tts: `एक ट्रेडर ने अलग-अलग चैप्टर्स के टूल्स बिना कनेक्शन के इस्तेमाल किए और बड़ा नुकसान झेला।`,
+            en_narration: `A trader used isolated tools without recognizing their systemic boundaries and suffered severe losses.`,
+            subtitle: `A trader used isolated tools without understanding boundaries and suffered losses.`,
+            en_subtitle: `A trader used isolated tools without understanding boundaries and suffered losses.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              question: 'An industrial corporation hedged long-term commodity delivery commitments by rolling short-term futures monthly. When spot prices plunged 50% into contango, what fatal risk caused insolvency?',
+              options: [
+                'A) Market makers illegally manipulated the exchange settlement prices.',
+                'B) Severe cash margin drains from contango roll costs exceeded liquidity, proving linear futures cannot hedge multi-year structural commitments alone.',
+                'C) The clearinghouse increased margin requirements beyond statutory maximums.',
+                'D) Futures contracts expired early before the delivery date.'
+              ],
+              correctAnswer: 'B',
+              showThinkingSpinner: false,
+              isRevealed: false
+            }
+          },
+          {
+            id: 'b19',
+            hindi_tts: `सोचिए: इस संकट को टालने के लिए किताब के किस समग्र सिद्धांत को अपनाना चाहिए था?`,
+            en_narration: `Consider: Which integrated holistic principle from the book would have prevented this disaster?`,
+            subtitle: `Which integrated principle from the book would have prevented this disaster?`,
+            en_subtitle: `Which integrated principle from the book would have prevented this disaster?`,
+            pauseAfterMs: 3200,
+            ui_state: {
+              question: 'An industrial corporation hedged long-term commodity delivery commitments by rolling short-term futures monthly. When spot prices plunged 50% into contango, what fatal risk caused insolvency?',
+              options: [
+                'A) Market makers illegally manipulated the exchange settlement prices.',
+                'B) Severe cash margin drains from contango roll costs exceeded liquidity, proving linear futures cannot hedge multi-year structural commitments alone.',
+                'C) The clearinghouse increased margin requirements beyond statutory maximums.',
+                'D) Futures contracts expired early before the delivery date.'
+              ],
+              correctAnswer: 'B',
+              showThinkingSpinner: true,
+              isRevealed: false
+            }
+          },
+          {
+            id: 'b20',
+            hindi_tts: `सही जवाब है बी: कभी भी एक अकेले टूल पर निर्भर न रहें; लीनियर टूल्स को ऑप्शंस और सख्त लिक्विडिटी बफर के साथ कंबाइन करें।`,
+            en_narration: `Correct answer is B: Never rely on a single isolated tool; combine linear efficiency with convex protection.`,
+            subtitle: `Correct is B: Combine linear efficiency with convex protection and cash buffers.`,
+            en_subtitle: `Correct is B: Combine linear efficiency with convex protection and cash buffers.`,
+            pauseAfterMs: 450,
+            ui_state: {
+              question: 'An industrial corporation hedged long-term commodity delivery commitments by rolling short-term futures monthly. When spot prices plunged 50% into contango, what fatal risk caused insolvency?',
+              options: [
+                'A) Market makers illegally manipulated the exchange settlement prices.',
+                'B) Severe cash margin drains from contango roll costs exceeded liquidity, proving linear futures cannot hedge multi-year structural commitments alone.',
+                'C) The clearinghouse increased margin requirements beyond statutory maximums.',
+                'D) Futures contracts expired early before the delivery date.'
+              ],
+              answer: 'B',
+              correctAnswer: 'B',
+              showThinkingSpinner: false,
+              isRevealed: true,
+              explanation: 'Rolling short-dated contracts to hedge long-dated liabilities introduces fatal roll yield bleed and cash margin drain when markets shift.'
+            }
+          }
+        ]
+      },
+
+      // Scene 10: Mentor Desk Synthesis (chat_story)
+      {
+        segmentIndex: 10,
+        title: `Synthesizing ${courseConfig.bookTitle.slice(0, 24)}`,
+        template: 'chat_story',
+        badge: 'Desk Wisdom · Holistic View',
+        beats: [
+          {
+            id: 'b21',
+            hindi_tts: `राजू कहता है, शर्मा जी, अब जाकर पूरी किताब एक माला की तरह जुड़ गई—कोई भी चैप्टर अकेला नहीं है!`,
+            en_narration: `Raju realizes: Sharma ji, now the entire book connects into an unbroken chain—no chapter stands alone!`,
+            subtitle: `Sharma ji, now the entire book connects into an unbroken chain!`,
+            en_subtitle: `Sharma ji, now the entire book connects into an unbroken chain!`,
+            pauseAfterMs: 400,
+            ui_state: {
+              stageDirections: ['— Raju perceives the complete holistic architecture of the book —'],
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: `Sharma ji, now I finally see the complete picture! No chapter stands alone—every single concept exists to shield the blindspot of the previous one.`,
+                  theme: 'amber',
+                  align: 'left'
+                }
+              ]
+            }
+          },
+          {
+            id: 'b22',
+            hindi_tts: `शर्मा जी कहते हैं, बिल्कुल सही! जब तुम हर टूल की सीमा समझकर उन्हें एक साथ इस्तेमाल करोगे, तभी असली महारत मिलेगी।`,
+            en_narration: `Sharma ji affirms: Exactly! When you understand each tool's boundaries and unite them, you achieve true mastery.`,
+            subtitle: `When you understand each tool's boundaries and unite them, you achieve true mastery.`,
+            en_subtitle: `When you understand each tool's boundaries and unite them, you achieve true mastery.`,
+            pauseAfterMs: 450,
+            ui_state: {
+              stageDirections: ['— Sharma ji blesses the student with the master risk directive —'],
+              messages: [
+                {
+                  sender: 'Raju',
+                  avatar: 'R',
+                  text: `Sharma ji, now I finally see the complete picture! No chapter stands alone—every single concept exists to shield the blindspot of the previous one.`,
+                  theme: 'amber',
+                  align: 'left'
+                },
+                {
+                  sender: 'Sharma ji',
+                  avatar: 'S',
+                  text: `Exactly! Respect the boundary of each tool, combine efficiency with convexity, and you will compound wealth safely across decades.`,
+                  theme: 'teal',
+                  align: 'right'
+                }
+              ]
+            }
+          }
+        ]
+      },
+
+      // Scene 11: 8 Synthesis Rules (summary_thread)
+      {
+        segmentIndex: 11,
+        title: `The 8 Inviolable Laws of ${courseConfig.bookTitle.slice(0, 24)}`,
+        template: 'summary_thread',
+        badge: 'Summary Thread · Master Rules',
+        beats: [
+          {
+            id: 'b23',
+            hindi_tts: `आइए, इस पूरी किताब के आठ सबसे महत्वपूर्ण नियमों को एक साथ संक्षेप में दोहराते हैं।`,
+            en_narration: `Let us summarize the eight inviolable laws uniting this entire book.`,
+            subtitle: `Let us summarize the eight inviolable laws uniting this entire book.`,
+            en_subtitle: `Let us summarize the eight inviolable laws uniting this entire book.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              heading: 'THE 8 INVIOLABLE LAWS',
+              activeStepRange: [0, 0],
+              steps: rules.slice(0, 8).map((r, i) => `${i + 1}. ${r.corePrinciple || r.title || 'Principle ' + (i + 1)}`)
+            }
+          },
+          {
+            id: 'b24',
+            hindi_tts: `नियम एक और दो: बुनियादी संरचना और निष्पक्ष मूल्य निर्धारण के सिद्धांत।`,
+            en_narration: `Rules 1 and 2: Foundational market architecture and objective equilibrium pricing.`,
+            subtitle: `Rules 1 & 2: Foundational architecture and objective pricing.`,
+            en_subtitle: `Rules 1 & 2: Foundational architecture and objective pricing.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              heading: 'THE 8 INVIOLABLE LAWS',
+              activeStepRange: [1, 2],
+              steps: rules.slice(0, 8).map((r, i) => `${i + 1}. ${r.corePrinciple || r.title || 'Principle ' + (i + 1)}`)
+            }
+          },
+          {
+            id: 'b25',
+            hindi_tts: `नियम तीन और चार: लीनियर सीमाओं को पहचानना और कॉन्वेक्स सुरक्षा अपनाना।`,
+            en_narration: `Rules 3 and 4: Recognizing linear limits and deploying convex protection.`,
+            subtitle: `Rules 3 & 4: Recognizing linear limits and deploying convex protection.`,
+            en_subtitle: `Rules 3 & 4: Recognizing linear limits and deploying convex protection.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              heading: 'THE 8 INVIOLABLE LAWS',
+              activeStepRange: [3, 4],
+              steps: rules.slice(0, 8).map((r, i) => `${i + 1}. ${r.corePrinciple || r.title || 'Principle ' + (i + 1)}`)
+            }
+          },
+          {
+            id: 'b26',
+            hindi_tts: `नियम पांच और छह: गतिशील रीबैलेंसिंग और बहुआयामी रिस्क नियंत्रण।`,
+            en_narration: `Rules 5 and 6: Dynamic rebalancing and multi-dimensional risk control.`,
+            subtitle: `Rules 5 & 6: Dynamic rebalancing and multi-dimensional risk control.`,
+            en_subtitle: `Rules 5 & 6: Dynamic rebalancing and multi-dimensional risk control.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              heading: 'THE 8 INVIOLABLE LAWS',
+              activeStepRange: [5, 6],
+              steps: rules.slice(0, 8).map((r, i) => `${i + 1}. ${r.corePrinciple || r.title || 'Principle ' + (i + 1)}`)
+            }
+          },
+          {
+            id: 'b27',
+            hindi_tts: `नियम सात और आठ: वास्तविक बाजार की फैट टेल्स और संपूर्ण सिस्टम का एकीकरण।`,
+            en_narration: `Rules 7 and 8: Real-world fat tails and unifying all tools into one fortress.`,
+            subtitle: `Rules 7 & 8: Real-world fat tails and unifying all tools into one fortress.`,
+            en_subtitle: `Rules 7 & 8: Real-world fat tails and unifying all tools into one fortress.`,
+            pauseAfterMs: 400,
+            ui_state: {
+              heading: 'THE 8 INVIOLABLE LAWS',
+              activeStepRange: [7, 8],
+              steps: rules.slice(0, 8).map((r, i) => `${i + 1}. ${r.corePrinciple || r.title || 'Principle ' + (i + 1)}`)
+            }
+          },
+          {
+            id: 'b28',
+            hindi_tts: `ये आठ नियम मिलकर आपकी पूंजी को बाजार के हर चक्र में सुरक्षित रखते हैं।`,
+            en_narration: `These eight rules unite to safeguard capital across every market regime.`,
+            subtitle: `These eight rules unite to safeguard capital across every market regime.`,
+            en_subtitle: `These eight rules unite to safeguard capital across every market regime.`,
+            pauseAfterMs: 450,
+            ui_state: {
+              heading: 'THE 8 INVIOLABLE LAWS',
+              compactOverview: true,
+              steps: rules.slice(0, 8).map((r, i) => `${i + 1}. ${r.corePrinciple || r.title || 'Principle ' + (i + 1)}`)
+            }
+          }
+        ]
+      }
+    ]
+  };
 }
 
 // CLI Entrypoint
