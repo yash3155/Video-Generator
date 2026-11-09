@@ -90,7 +90,7 @@ export function aggregateCourseKnowledge(courseId) {
 
   const entries = fs.readdirSync(coursePath, { withFileTypes: true });
   const chapterDirs = entries
-    .filter(e => e.isDirectory() && e.name.startsWith('ch') && !e.name.includes('backup'))
+    .filter(e => e.isDirectory() && (e.name.startsWith('ch') || e.name.startsWith('vpa_') || e.name.startsWith('chapter')) && !e.name.includes('backup') && e.name !== 'synthesis' && e.name !== 'orientation')
     .map(e => e.name)
     .sort();
 
