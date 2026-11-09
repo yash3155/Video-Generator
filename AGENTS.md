@@ -8,8 +8,11 @@ This document serves as the permanent system instructions for the Antigravity Ag
 
 The engine converts authoritative book sources into animated, narration-synchronized, broadcast-grade educational videos using Remotion. Every lesson is governed by six non-negotiable principles:
 
-1. **Source Grounding & Anti-Fabrication Invariant**:
-   The original uploaded book source is the authoritative foundation of author teachings. Gemini NotebookLM (`nlm`) serves as the source-extraction assistant. The structured fact ledger ([`source_facts.json`](src/schemas/sourceLessonSchemas.mjs)) is the sole approved production input for lesson design. The agent must never hallucinate formulas, numbers, citations, or concepts, nor replace missing domain knowledge with generic boilerplate.
+1. **Source Grounding & Comprehensive Extraction Invariant**:
+   The original uploaded book source is the authoritative foundation of author teachings. Gemini NotebookLM (`nlm`) serves as the source-extraction assistant. The structured fact ledger ([`source_facts.json`](src/schemas/sourceLessonSchemas.mjs)) is the sole approved production input for lesson design.
+   - **Mandatory Argon Reasoning per Chapter**: Gemini 4 Argon (`http://127.0.0.1:8001`) MUST be invoked for **every single chapter part** of any book being converted. Skipping Argon or falling back to generic/static templates across chapters is strictly prohibited as a quality violation.
+   - **Exhaustive Knowledge Preservation**: Extraction is NOT capped at a superficial 6–8 facts. Argon must extract an exhaustive fact ledger (typically 10–20+ deep facts, definitions, exact mathematical formulas, volume/price thresholds, case studies, nuances, and source citations) directly from the NotebookLM context (`notebook_context.txt`). The end user must NEVER need to open the physical book themselves because all authoritative author knowledge is fully captured and taught.
+   - **Distinct Character Dialogue Synthesis**: Argon must synthesize distinct, chapter-unique dialogues for Hindi (`Raju` & `Sharma ji`) and English (`Alex` & `Anna`) explicitly discussing the specific concepts, formulas, and real examples of that exact chapter part.
 2. **Domain Decoupling & Config-Driven Visuals**:
    The shared rendering engine is completely domain-agnostic. Visual templates, formatting, units, themes, personas, and pedagogical rules are defined in course configuration ([`src/courses/<course_id>.json`](src/courses/hull_derivatives.json)) and the visual template registry ([`src/templates/registry/templateRegistry.ts`](src/templates/registry/templateRegistry.ts)). Domain-specific behavior is isolated in optional domain modules ([`src/domain/finance/`](src/domain/finance/financeValidation.mjs)).
 3. **Structured Cue Synchronization**:
@@ -114,6 +117,7 @@ Argon access is **exclusively powered by the local `free-gemini-api` proxy engin
 - **REST Endpoint**: `http://127.0.0.1:8001/v1/chat/completions`
 - **Health Check**: `http://127.0.0.1:8001/health`
 - **Thinking Matrix**: `gemini-4-argon` (Low), `gemini-4-argon-thinking-medium` (Medium), `gemini-4-argon-thinking-high` (High).
+- **Mandatory Chapter Coverage Invariant**: Argon MUST be invoked for every chapter to extract an exhaustive fact ledger (10–20+ deep facts) from `notebook_context.txt` and generate tailored, nuanced dialogues for each scene. No chapter may be silently bypassed with hardcoded dialogue or facts.
 
 ### 3.4 Unified Fallback Policy & Zero-Leakage Guarantee
 1. **Interactive Single-Chapter Mode**:

@@ -1,14 +1,14 @@
 {
   "schemaVersion": "1.0.0",
   "chapterSlug": "vpa_ch04_part3",
-  "auditTimestamp": "2026-11-08T12:07:40.679Z",
-  "status": "PASS",
+  "auditTimestamp": "2026-11-09T01:25:14.739Z",
+  "status": "CONDITIONAL_PASS",
   "summary": {
-    "totalFacts": 6,
+    "totalFacts": 12,
     "criticalCount": 0,
-    "warningCount": 0,
+    "warningCount": 1,
     "infoCount": 0,
-    "coveragePercentage": 75
+    "coveragePercentage": 100
   },
   "checklist": {
     "sourceCoverageValid": true,
@@ -16,13 +16,22 @@
     "prerequisitesIdentified": true,
     "numericalExamplesGrounded": true,
     "formulaVariablesDefined": true,
-    "unitsSpecified": true,
+    "unitsSpecified": false,
     "signsConsistent": true,
     "contractSizesStated": true,
     "assumptionsExplicit": true,
     "payoffVsProfitDistinguished": true,
     "zeroGenericFiller": true
   },
-  "findings": [],
+  "findings": [
+    {
+      "code": "UNIT_001",
+      "severity": "WARNING",
+      "category": "units",
+      "message": "Fact fact-03 contains numbers without explicit units or currency symbol.",
+      "targetFactId": "fact-03",
+      "suggestedRemedy": "Specify units (₹, $, %, shares, contracts) in numericalDetails.units."
+    }
+  ],
   "blockingReason": null
 }
