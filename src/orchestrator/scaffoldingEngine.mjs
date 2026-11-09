@@ -62,8 +62,8 @@ export function scaffoldEpisode({
     ? { id: 'fact-06', statement: 'High leverage accelerates balance-sheet capital depletion.' }
     : { id: 'fact-06', statement: 'Prematurely anticipating patterns before completion risks severe whipsaw losses.' });
 
-  // Helper to get scene overrides or fallbacks
-  const so = sceneOverrides || {};
+  // Helper to check if this is strictly Chapter 1 Part 1 baseline
+  const isCh01Part1 = /ch0?1[_.-]*(?:part|p)0?1/i.test(chapterKey);
 
   // 8 Chapter Rules for the Progressive Summary Thread (Scene 11)
   const steps = so.scene11?.rules || [
@@ -78,7 +78,7 @@ export function scaffoldEpisode({
   ];
 
   // Build Scene 0 UI Data (The Motivating Front Dilemma: 4 Beats)
-  const sc0 = so.scene0 || (isHull ? {
+  const sc0 = so.scene0 || (isCh01Part1 && isHull ? {
     title: "Origins & The Human Dilemma",
     badge: "Historical Origins · 1848 CBOT",
     b01_raju: "Sharma ji, how did futures and forwards actually originate in financial history?",
@@ -93,7 +93,7 @@ export function scaffoldEpisode({
     b02_en: "Sharma ji explains: In the 19th century, American Midwest farmers planted corn in June for September harvest.",
     b03_en: "A bumper crop caused harvest prices to collapse, ruining farmers; while a drought caused prices to surge, bankrupting flour merchants.",
     b04_en: "Thus in 1848, the Chicago Board of Trade created standardized 5,000-bushel contracts to fix prices ahead of delivery, protecting both livelihoods."
-  } : {
+  } : isCh01Part1 ? {
     title: `Origins & The Market Dilemma: ${chapterTitle}`,
     badge: "Market Reality · Problem & Solution",
     b01_raju: "Sharma ji, why do investors buy on record earnings reports only to suffer heavy losses?",
@@ -108,10 +108,26 @@ export function scaffoldEpisode({
     b02_en: "Sharma ji explains: An investor bought XYZ shares after seeing quarterly filings show a 25% profit surge.",
     b03_en: "However, public earnings reports lagged by three months, while smart money had already dumped 30% of their holdings.",
     b04_en: "Thus, John Murphy proves market action discounts all information in advance, protecting disciplined chartists from the news lag trap."
+  } : {
+    // Dynamic topic-derived front hook ensuring ZERO corn farmer or quarterly earnings leakage
+    title: `Crucible Dilemma: ${chapterTitle}`,
+    badge: `Market Crucible · ${facts[0]?.topic || chapterTitle}`,
+    b01_raju: `Sharma ji, when trading ${facts[0]?.topic || chapterTitle}, why do participants suffer sudden unexpected losses?`,
+    b02_sharma: `Sharma ji explains: Market participants frequently enter positions without accounting for ${facts[1]?.topic || 'underlying structural risk boundaries'}.`,
+    b03_sharma: `Without objective rules, sudden market shifts trigger catastrophic liquidation and capital depletion!`,
+    b04_sharma: `To solve this, ${courseConfig.bookTitle || 'the author'} established: ${facts[0]?.statement || 'disciplined objective execution rules'}.`,
+    b01_tts: `राजू पूछता है, शर्मा जी, जब ट्रेडर्स ${facts[0]?.topic || chapterTitle} में ट्रेड करते हैं, तो अप्रत्याशित नुकसान क्यों उठाते हैं?`,
+    b02_tts: `शर्मा जी समझाते हैं, ज्यादातर लोग बिना ${facts[1]?.topic || 'संरचनात्मक सीमाओं'} को समझे ट्रेड में कूद पड़ते हैं।`,
+    b03_tts: `जब बाजार में प्रतिकूल चाल आती है, तो बिना सख्त नियमों के भारी कैपिटल नुकसान और लिक्विडेशन झेलना पड़ता है!`,
+    b04_tts: `इसलिए लेखक ने यह महत्वपूर्ण सिद्धांत स्थापित किया ताकि ट्रेडर्स इस ट्रैप से अपनी पूंजी को सुरक्षित रख सकें।`,
+    b01_en: `Raju asks: Sharma ji, why do traders suffer unexpected losses when executing ${facts[0]?.topic || chapterTitle}?`,
+    b02_en: `Sharma ji explains: Most market participants trade without understanding the structural boundaries of ${facts[1]?.topic || 'the underlying mechanism'}.`,
+    b03_en: `When adverse volatility strikes, lack of disciplined parameters causes severe account drawdowns!`,
+    b04_en: `Thus, the author established this core principle to protect traders from catastrophic market traps.`
   });
 
   // Build Scene 1 UI Data (Opposing Forces: 3 Beats)
-  const sc1 = so.scene1 || (isHull ? {
+  const sc1 = so.scene1 || (isCh01Part1 && isHull ? {
     title: "Conflicting Market Interests",
     badge: "Structural Conflict · Hedger vs Speculator",
     leftLabel: "Farmer / Producer (Downside Fear)",
@@ -122,7 +138,7 @@ export function scaffoldEpisode({
     b05_en: "Futures originated in Chicago to balance price uncertainty between corn farmers and flour millers.",
     b06_en: "The farmer feared price collapse from oversupply, while the miller dreaded price spikes wiping out operating margins.",
     b07_en: "The forward contract eliminated existential uncertainty by locking in delivery prices ahead of time."
-  } : {
+  } : isCh01Part1 ? {
     title: "The Information Lag Conflict",
     badge: "Market Friction · News Lag vs Leading Price",
     leftLabel: "Fundamental News Lag (Trapped Crowd)",
@@ -133,10 +149,21 @@ export function scaffoldEpisode({
     b05_en: "On one side is the retail crowd relying on stale quarterly reports; on the other are disciplined chartists acting on real-time price action.",
     b06_en: "By the time public news breaks, prices have already tumbled, leaving late fundamental buyers completely trapped at the highs.",
     b07_en: "The foundational premise of technical analysis proves that understanding price action provides the vital timing that fundamentals lack."
+  } : {
+    title: `Opposing Pressures: ${facts[0]?.topic || 'Market Forces'}`,
+    badge: "Market Tension · Dual Forces",
+    leftLabel: `${facts[0]?.topic || 'Aggressive Drive'} (Exposure)`,
+    rightLabel: `${facts[1]?.topic || 'Risk Control'} (Protection)`,
+    b05_tts: `बाजार में एक तरफ आक्रामक पोजिशनिंग होती है, जबकि दूसरी तरफ अनुशासित रिस्क मैनेजमेंट की जरूरत होती है।`,
+    b06_tts: `बिना रिस्क कंट्रोल के केवल एक्सपोजर बढ़ाना विपरीत परिस्थितियों में खाते को खाली कर देता है।`,
+    b07_tts: `दोनों पक्षों के बीच संतुलन बनाकर ही लंबे समय तक बाजार में टिका जा सकता है।`,
+    b05_en: `On one side is aggressive exposure seeking yield; on the other is the absolute necessity of capital protection.`,
+    b06_en: `Pursuing exposure without disciplined risk parameters inevitably leads to rapid capital depletion under adverse conditions.`,
+    b07_en: `Mastering this dynamic requires harmonizing both forces into a balanced, resilient strategy.`
   });
 
   // Build Scene 2 UI Data (4 Structural Pillars: 4 Beats)
-  const sc2 = so.scene2 || (isHull ? {
+  const sc2 = so.scene2 || (isCh01Part1 && isHull ? {
     title: "The Core Architecture Roadmap",
     badge: "Roadmap · 4 Structural Pillars",
     cards: [
@@ -154,39 +181,54 @@ export function scaffoldEpisode({
     b10_en: "Pillar three is liquidity and margining: daily variation settlement buffering against rapid capital depletion.",
     b11_en: "Pillar four is systemic risk: managing bilateral counterparty exposures through central clearinghouses."
   } : {
-    title: "The 4 Core Analytical Pillars",
+    title: `The 4 Core Analytical Pillars: ${chapterTitle}`,
     badge: "Roadmap · 4 Methodological Pillars",
     cards: [
       { title: facts[0]?.topic || "Market Premise", desc: (facts[0]?.statement || "Price action discounts fundamental information.").slice(0, 70) },
-      { title: facts[1]?.topic || "Trend Mechanics", desc: (facts[1]?.statement || "Trends persist until verified reversal signals.").slice(0, 70) },
-      { title: facts[2]?.topic || "Chart Geometry", desc: (facts[2]?.statement || "Geometric boundaries and confirmation filters.").slice(0, 70) },
-      { title: facts[3]?.topic || "Risk Management", desc: (facts[3]?.statement || "Objective stop loss and position sizing rules.").slice(0, 70) }
+      { title: facts[1]?.topic || "Core Mechanism", desc: (facts[1]?.statement || "Trends persist until verified reversal signals.").slice(0, 70) },
+      { title: facts[2]?.topic || "Risk Boundary", desc: (facts[2]?.statement || "Geometric boundaries and confirmation filters.").slice(0, 70) },
+      { title: facts[3]?.topic || "Capital Discipline", desc: (facts[3]?.statement || "Objective stop loss and position sizing rules.").slice(0, 70) }
     ],
-    b08_tts: "पहला स्तंभ है प्राइस डिस्काउंटिंग: बाजार का भाव सभी बुनियादी, राजनीतिक और मनोवैज्ञानिक खबरों को समाहित कर लेता है।",
-    b09_tts: "दूसरा स्तंभ है ट्रेंड की निरंतरता: बाजार में एक बार शुरू हुआ रुझान तब तक जारी रहता है जब तक निश्चित उलटने के संकेत न मिलें।",
-    b10_tts: "तीसरा स्तंभ है चार्ट पैटर्न्स: मानवीय मनोविज्ञान स्थिर रहता है, जिससे चार्ट पर वही आकृतियां बार-बार दोहराई जाती हैं।",
-    b11_tts: "चौथा स्तंभ है टाइमिंग और अनुशासन: सही समय पर ट्रेड में प्रवेश और स्टॉप लॉस से पूंजी की रक्षा करना।",
-    b08_en: "Pillar one is market discounting: current price reflects all fundamental, political, and psychological information.",
-    b09_en: "Pillar two is trend persistence: an established trend is far more likely to continue than to reverse.",
-    b10_en: "Pillar three is chart geometry: repetitive human crowd psychology generates invariant recurring patterns.",
-    b11_en: "Pillar four is execution timing: identifying the precise moment to deploy capital while enforcing strict stop losses."
+    b08_tts: `पहला स्तंभ है ${facts[0]?.topic || 'मूल अवधारणा'}: इसकी कार्यप्रणाली को गहराई से समझना।`,
+    b09_tts: `दूसरा स्तंभ है ${facts[1]?.topic || 'एक्जीक्यूशन नियम'}: बाजार में सही समय पर रणनीति लागू करना।`,
+    b10_tts: `तीसरा स्तंभ है ${facts[2]?.topic || 'जोखिम की सीमा'}: विपरीत परिस्थितियों में नुकसान को सीमित रखना।`,
+    b11_tts: `चौथा स्तंभ है ${facts[3]?.topic || 'दीर्घकालिक अनुशासन'}: पूंजी की सुरक्षा को हमेशा सर्वोपरि रखना।`,
+    b08_en: `Pillar one is ${facts[0]?.topic || 'the foundational premise'}: mastering its mechanical dynamics.`,
+    b09_en: `Pillar two is ${facts[1]?.topic || 'the execution framework'}: applying rules at optimal market junctures.`,
+    b10_en: `Pillar three is ${facts[2]?.topic || 'the risk boundary'}: strictly capping exposure during adverse moves.`,
+    b11_en: `Pillar four is ${facts[3]?.topic || 'capital discipline'}: prioritizing long-term survival over short-term greed.`
   });
 
   // Build Scene 3 UI Data (Comparison)
-  const sc3 = so.scene3 || (isHull ? {
+  const sc3 = so.scene3 || (isCh01Part1 && isHull ? {
     title: "Exchange Standardization vs OTC Flexibility",
     badge: "Market Structure · Bilateral vs Centralized",
     leftTitle: "Exchange-Traded Futures",
     rightTitle: "Over-the-Counter (OTC)",
     leftPoints: ["Standardized contract sizes", "Central clearinghouse (CCP)", "Zero bilateral default risk"],
     rightPoints: ["Tailored specifications", "Bilateral counterparty risk", "Direct negotiation"]
-  } : {
+  } : isCh01Part1 ? {
     title: "Lagging Fundamentals versus Leading Price Action",
     badge: "Analytical Edge · Lags vs Leading Signals",
     leftTitle: "Lagging Fundamentals",
     rightTitle: "Price Action (Technicals)",
     leftPoints: ["Quarterly reporting publication delay", "Subjective balance sheet interpretation", "Insiders discount news weeks before release"],
     rightPoints: ["Immediate discounting of all market forces", "Objective visual geometry and boundaries", "Direct evidence of real institutional supply & demand"]
+  } : {
+    title: `Comparative Analysis: ${facts[0]?.topic || 'Methodologies'}`,
+    badge: "Comparative Edge · Contrasting Models",
+    leftTitle: `${facts[0]?.topic || 'Unstructured Approach'} (Amateur)`,
+    rightTitle: `${facts[1]?.topic || 'Disciplined Model'} (Professional)`,
+    leftPoints: [
+      (facts[0]?.statement || 'Relies on unverified assumptions').slice(0, 50),
+      'Lacks structured capital boundaries',
+      'High vulnerability to adverse regime shifts'
+    ],
+    rightPoints: [
+      (facts[1]?.statement || 'Enforces mathematical discipline').slice(0, 50),
+      'Systematic risk parameters and filters',
+      'Compounds capital across diverse market cycles'
+    ]
   });
 
   // Build Scene 4 UI Data (Empirical Evidence / Volume)

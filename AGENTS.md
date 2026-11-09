@@ -37,6 +37,15 @@ The engine converts authoritative book sources into animated, narration-synchron
 6. **Single Unified Quality Release Gate**:
    A video is never released merely because an MP4 container exists. Deployment requires passing the domain-independent Phase 2C Release Gate ([`node scripts/run_qa.mjs`](scripts/run_qa.mjs)) with 0 Blockers and 0 Highs.
 
+7. **Inviolable Bespoke Visual Synchronization & Zero-Stale-Boilerplate Invariant**:
+   Visual presentation cards (`ui_state.cards`), character chat dialogues (`ui_state.messages`), comparison columns (`ui_state.leftColumn`/`rightColumn`), mathematical expressions, and summary steps MUST be 100% bespoke, authored second-by-second to match the exact spoken narration of that specific chapter, part, orientation, or synthesis video.
+   - **Zero Tolerance for Scaffolding Leakage**: Inheriting or copy-pasting placeholder text from Chapter 1 baseline templates (e.g., 1848 Midwest corn farmers, lagging earnings reports, bilateral vs OTC default, or generic rule summaries) into any other chapter, part, orientation, or synthesis is an immediate `BLOCKER` violation.
+   - **Automated Anti-Boilerplate Release Gate**: Both [`scripts/validate_episode.mjs`](scripts/validate_episode.mjs) and [`scripts/run_qa.mjs`](scripts/run_qa.mjs) strictly scan the full AST/JSON of all `ui_state` and `visual` objects. Any presence of un-replaced scaffolding boilerplate or semantic desync between spoken text and on-screen cards immediately fails validation with exit code 1.
+   - **Universal Book Modularity Across All Types**:
+     * **Standard Chapters & Parts**: Every single part must derive its opening struggle, comparison labels, and progressive cards directly from that specific chapter's extracted facts.
+     * **Beginner's Orientation Video (`orientation`)**: A dedicated ~5-minute intro video watched *before* Chapter 1 to dismantle intimidation, bust the casino myth, reveal the 4 superpowers of the book, and outline the reader journey with 100% tailored cards.
+     * **Whole-Book Dialectical Synthesis (`synthesis`)**: A comprehensive capstone showing why each chapter exists as a dialectical chain of inventions solving the fatal real-world failure of the prior tool, with 100% bespoke evolutionary cards, formulas, and rules.
+
 ---
 
 ## 2. Stable Course & Chapter Workspaces and Artifact Ownership

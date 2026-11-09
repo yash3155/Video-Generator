@@ -20,13 +20,13 @@ const synthesisEpisode = {
   },
   scenes: [
     // =======================================================================
-    // SCENE 0: The 1848 Grain Crisis & Why Derivatives Evolve (chat_story)
+    // SCENE 0: The Isolated Tool Trap & The Dialectical Chain (chat_story)
     // =======================================================================
     {
       segmentIndex: 0,
-      title: 'The 1848 Grain Crisis & Why Derivatives Evolve',
+      title: 'The Isolated Tool Trap & The Dialectical Chain',
       template: 'chat_story',
-      badge: 'Historical Dilemma · 1848 CBOT',
+      badge: 'Holistic Dilemma · The 25-Chapter Puzzle',
       beats: [
         {
           id: 'b01',
@@ -50,13 +50,13 @@ const synthesisEpisode = {
         },
         {
           id: 'b02',
-          hindi_tts: 'शर्मा जी समझाते हैं, अठारह सौ अड़तालीस में शिकागो के मक्का किसानों ने व्यापारियों के साथ सीधे फॉरवर्ड कांट्रैक्ट किए थे।',
-          en_narration: 'Sharma ji explains: In 1848, Chicago corn farmers entered direct bilateral forward contracts with merchants.',
-          subtitle: 'In 1848, Chicago farmers signed bilateral forward contracts with merchants.',
-          en_subtitle: 'In 1848, Chicago farmers signed bilateral forward contracts with merchants.',
+          hindi_tts: 'शर्मा जी समझाते हैं, नौसिखिए ट्रेडर्स एक अकेले टूल को सब कुछ मान लेते हैं; वे फ्यूचर्स से रेट लॉक करते हैं, लेकिन बेसिस रिस्क और मार्जिन ड्रेन उन्हें डुबो देता है।',
+          en_narration: 'Sharma ji explains: Novices treat isolated tools as silver bullets; they lock prices with futures, only to be drowned by basis risk and cash margin calls.',
+          subtitle: 'Novices use isolated tools; futures lock prices but ignore margin drains.',
+          en_subtitle: 'Novices use isolated tools; futures lock prices but ignore margin drains.',
           pauseAfterMs: 450,
           ui_state: {
-            stageDirections: ['— Sharma ji traces derivatives back to the 1848 Midwest grain harvest dilemma —'],
+            stageDirections: ['— Sharma ji outlines the fatal trap of using isolated single tools —'],
             messages: [
               {
                 sender: 'Raju',
@@ -68,7 +68,7 @@ const synthesisEpisode = {
               {
                 sender: 'Sharma ji',
                 avatar: 'S',
-                text: 'In 1848, Midwest farmers planted corn in June and negotiated private bilateral forward contracts with Chicago merchants.',
+                text: 'Novices treat individual tools as complete systems. They lock in prices with forwards, completely blind to cash margin exhaustion and basis correlation breakdown!',
                 theme: 'teal',
                 align: 'right'
               }
@@ -77,13 +77,13 @@ const synthesisEpisode = {
         },
         {
           id: 'b03',
-          hindi_tts: 'लेकिन जब बंपर फसल से कीमतें पचास प्रतिशत गिर गईं, तो खरीदार कांट्रैक्ट से मुकर गए और किसान तबाह हो गए!',
-          en_narration: 'When bumper harvests crashed prices by 50%, buyers defaulted on their promises, bankrupting farmers!',
-          subtitle: 'When bumper harvest crashed prices by 50%, buyers defaulted, bankrupting farmers!',
-          en_subtitle: 'When bumper harvest crashed prices by 50%, buyers defaulted, bankrupting farmers!',
+          hindi_tts: 'जब मार्केट में वोलैटिलिटी का तूफान आता है, तो लीनियर मॉडल धराशायी हो जाते हैं और अनहेज्ड गामा तथा वेगा पूरे पोर्टफोलियो को साफ कर देते हैं!',
+          en_narration: 'When volatility storms hit, linear models collapse, and unhedged gamma and vega completely wipe out the entire portfolio!',
+          subtitle: 'In volatility storms, linear models fail, and unhedged Greeks wipe out capital!',
+          en_subtitle: 'In volatility storms, linear models fail, and unhedged Greeks wipe out capital!',
           pauseAfterMs: 450,
           ui_state: {
-            stageDirections: ['— Counterparty default reveals the catastrophic limitation of bilateral forwards —'],
+            stageDirections: ['— Unhedged higher-order risks reveal the boundaries of linear models —'],
             messages: [
               {
                 sender: 'Raju',
@@ -95,14 +95,14 @@ const synthesisEpisode = {
               {
                 sender: 'Sharma ji',
                 avatar: 'S',
-                text: 'In 1848, Midwest farmers planted corn in June and negotiated private bilateral forward contracts with Chicago merchants.',
+                text: 'Novices treat individual tools as complete systems. They lock in prices with forwards, completely blind to cash margin exhaustion and basis correlation breakdown!',
                 theme: 'teal',
                 align: 'right'
               },
               {
                 sender: 'Sharma ji',
                 avatar: 'S',
-                text: 'When bumper harvests crashed corn prices 50%, merchants simply defaulted and walked away—bankrupting farmers with zero recourse!',
+                text: 'When extreme market shocks hit, linear tools cannot protect you. Discontinuous price jumps and unhedged Gamma crush your capital without warning!',
                 theme: 'teal',
                 align: 'right'
               }
@@ -111,13 +111,13 @@ const synthesisEpisode = {
         },
         {
           id: 'b04',
-          hindi_tts: 'इसी डिफॉल्ट संकट से निपटने के लिए सीबॉट ने सेंट्रलाइज्ड फ्यूचर्स और क्लीयरिंगहाउस बनाया—हर नया चैप्टर पिछली कमी को दूर करने के लिए जन्मा है।',
-          en_narration: 'To resolve this default crisis, CBOT invented centralized futures and clearinghouses—each chapter was born to fix the prior tool.',
-          subtitle: 'To fix credit defaults, CBOT invented standardized clearinghouse futures.',
-          en_subtitle: 'To fix credit defaults, CBOT invented standardized clearinghouse futures.',
+          hindi_tts: 'यही जॉन हल की सबसे बड़ी खोज है: किताब का हर नया चैप्टर पिछले टूल की जानलेवा कमजोरी को ठीक करने के लिए ही पैदा हुआ है!',
+          en_narration: 'This is Hull\'s profound insight: every single chapter was born to solve the fatal limitation of the prior tool!',
+          subtitle: 'Hull\'s insight: every chapter was born to fix the fatal limit of the prior tool!',
+          en_subtitle: 'Hull\'s insight: every chapter was born to fix the fatal limit of the prior tool!',
           pauseAfterMs: 450,
           ui_state: {
-            stageDirections: ['— CBOT exchange novation introduces the evolutionary engine of Hull —'],
+            stageDirections: ['— Sharma ji introduces the dialectical evolutionary thesis uniting all 25 chapters —'],
             messages: [
               {
                 sender: 'Raju',
@@ -129,21 +129,21 @@ const synthesisEpisode = {
               {
                 sender: 'Sharma ji',
                 avatar: 'S',
-                text: 'In 1848, Midwest farmers planted corn in June and negotiated private bilateral forward contracts with Chicago merchants.',
+                text: 'Novices treat individual tools as complete systems. They lock in prices with forwards, completely blind to cash margin exhaustion and basis correlation breakdown!',
                 theme: 'teal',
                 align: 'right'
               },
               {
                 sender: 'Sharma ji',
                 avatar: 'S',
-                text: 'When bumper harvests crashed corn prices 50%, merchants simply defaulted and walked away—bankrupting farmers with zero recourse!',
+                text: 'When extreme market shocks hit, linear tools cannot protect you. Discontinuous price jumps and unhedged Gamma crush your capital without warning!',
                 theme: 'teal',
                 align: 'right'
               },
               {
                 sender: 'Sharma ji',
                 avatar: 'S',
-                text: 'CBOT created standardized futures and clearinghouse novation to kill default risk. Every chapter of Hull was born to fix the fatal flaw of the prior tool!',
+                text: 'This is the master secret: Hull organized the book as an evolutionary chain. Every chapter is a dialectical shield curing the fatal flaw of the prior model!',
                 theme: 'teal',
                 align: 'right'
               }

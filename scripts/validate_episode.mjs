@@ -58,6 +58,92 @@ function checkNoDevanagariInUI(obj, keyPath, errors) {
   }
 }
 
+/**
+ * Validates that an episode does NOT contain stale scaffolding boilerplate
+ * copy-pasted or inherited from Chapter 1 baseline templates.
+ */
+function validateBespokeVisualAlignment(episode, errors) {
+  const chapterStr = (episode.meta?.chapter || '').toUpperCase();
+  const isCh01Part1 = /CHAPTER\s*1\s*[·.]\s*PART\s*1|CH01_PART1/i.test(chapterStr);
+  const isOrientation = /ORIENTATION/i.test(chapterStr);
+  const isSynthesis = /SYNTHESIS/i.test(chapterStr);
+
+  // If this is Chapter 1 Part 1, baseline examples (1848 corn or quarterly earnings) are legitimate
+  if (isCh01Part1) return;
+
+  const serializedUi = JSON.stringify(episode.scenes || []).toLowerCase();
+
+  // 1. Check for Midwest corn farmer leakage in non-Chapter 1
+  const cornBoilerplatePhrases = [
+    'midwest farmers planted corn',
+    'farmer / producer (downside fear)',
+    'processor / miller (price spike fear)',
+    '5,000-bushel contracts to lock delivery',
+    'midwest farmers planted corn in june'
+  ];
+
+  for (const phrase of cornBoilerplatePhrases) {
+    if (serializedUi.includes(phrase)) {
+      errors.push(
+        `[CRITICAL VISUAL DESYNC] Detected stale Chapter 1 corn farmer boilerplate ("${phrase}") in ${chapterStr}! Every visual card, chat message, and column must be 100% bespoke to this specific chapter/part/orientation/synthesis.`
+      );
+      break;
+    }
+  }
+
+  // 2. Check for stale Murphy quarterly earnings leakage in non-Murphy Ch 1
+  const murphyCh1Boilerplate = [
+    'investor bought xyz stock after quarterly reports',
+    'fundamental news lag (trapped crowd)',
+    'leading price action (disciplined chartist)'
+  ];
+
+  if (!isCh01Part1) {
+    for (const phrase of murphyCh1Boilerplate) {
+      if (serializedUi.includes(phrase)) {
+        errors.push(
+          `[CRITICAL VISUAL DESYNC] Detected stale Chapter 1 technical analysis boilerplate ("${phrase}") in ${chapterStr}! All visuals must be tailored to the active topic.`
+        );
+        break;
+      }
+    }
+  }
+
+  // 3. Check for stale scaffolding progressive cards
+  const stalePillarCards = [
+    'exchange vs over-the-counter mechanisms',
+    'terminal gross payoff versus net profit',
+    'daily settlement and capital buffers'
+  ];
+
+  if (!isCh01Part1 && !isSynthesis && !isOrientation) {
+    for (const phrase of stalePillarCards) {
+      if (serializedUi.includes(phrase)) {
+        errors.push(
+          `[CRITICAL VISUAL DESYNC] Detected stale Chapter 1 structural pillar boilerplate ("${phrase}") in Scene 2! Cards must reflect the 4 analytical concepts of this chapter.`
+        );
+        break;
+      }
+    }
+  }
+
+  // 4. Orientation Specific Validation
+  if (isOrientation) {
+    // Orientation must have at least 4 superpowers, myth/reality split, and math busters
+    if (!serializedUi.includes('superpower') && !serializedUi.includes('crash immunity') && !serializedUi.includes('quantitative')) {
+      errors.push(`[ORIENTATION QUALITY] Orientation episode lacks core beginner superpower cards or quantitative transformation concepts.`);
+    }
+  }
+
+  // 5. Synthesis Specific Validation
+  if (isSynthesis) {
+    // Synthesis must connect across multiple chapters or evolutionary eras
+    if (!serializedUi.includes('era') && !serializedUi.includes('evolution') && !serializedUi.includes('dialectical') && !serializedUi.includes('interconnect')) {
+      errors.push(`[SYNTHESIS QUALITY] Synthesis episode lacks cross-chapter evolutionary eras or dialectical connectivity.`);
+    }
+  }
+}
+
 export function validateEpisodeData(episode) {
   const errors = [];
 
@@ -70,7 +156,10 @@ export function validateEpisodeData(episode) {
     );
   }
 
-  // 2. Scene & Beat validation
+  // 2. Automated Bespoke Visual Alignment Check
+  validateBespokeVisualAlignment(episode, errors);
+
+  // 3. Scene & Beat validation
   (episode.scenes || []).forEach((scene, sIdx) => {
     const sPrefix = `Scene ${sIdx} ("${scene.title}", template: ${scene.template})`;
     const beats = scene.beats || [];
