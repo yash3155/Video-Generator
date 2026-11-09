@@ -13,6 +13,19 @@ The engine converts authoritative book sources into animated, narration-synchron
    - **Mandatory Argon Reasoning per Chapter**: Gemini 4 Argon (`http://127.0.0.1:8001`) MUST be invoked for **every single chapter part** of any book being converted. Skipping Argon or falling back to generic/static templates across chapters is strictly prohibited as a quality violation.
    - **Exhaustive Knowledge Preservation**: Extraction is NOT capped at a superficial 6–8 facts. Argon must extract an exhaustive fact ledger (typically 10–20+ deep facts, definitions, exact mathematical formulas, volume/price thresholds, case studies, nuances, and source citations) directly from the NotebookLM context (`notebook_context.txt`). The end user must NEVER need to open the physical book themselves because all authoritative author knowledge is fully captured and taught.
    - **Distinct Character Dialogue Synthesis**: Argon must synthesize distinct, chapter-unique dialogues for Hindi (`Raju` & `Sharma ji`) and English (`Alex` & `Anna`) explicitly discussing the specific concepts, formulas, and real examples of that exact chapter part.
+   - **Mandatory Problem-First Front Hook & Concrete Dilemma**: Every chapter across every course MUST begin in Scene 0 (`chat_story`) with a **concrete real-world failure, trader struggle, or historical dilemma** (see [`src/templates/CANONICAL_SCRIPT_SOUL.md`](src/templates/CANONICAL_SCRIPT_SOUL.md)).
+     - *Dry, straightforward textbook definitions at the start are strictly prohibited as quality violations.*
+     - **Scene 0 (4 beats)**:
+       * `b01`: Raju/Alex asks about a practical trading struggle, failure mode, or market trap.
+       * `b02`: Sharma ji/Marcus introduces the **concrete relatable situation & actors** (e.g., Hull: 1848 Midwest corn farmers; Murphy: Retail investor buying on record quarterly earnings).
+       * `b03`: Sharma ji/Marcus reveals the **existential trap / crisis** (e.g., Hull: Bumper crop crashes prices, drought surges costs; Murphy: Earnings reports lag by 3 months while smart money already dumped the stock, causing 30% blindside loss).
+       * `b04`: Sharma ji/Marcus introduces the **author's conceptual invention & solution** (e.g., Hull: 1848 CBOT standardized forward contracts; Murphy: Charles Dow & John Murphy established price action discounts all fundamentals in advance, so watching the chart warns you weeks before the news).
+     - **Scene 1 (`tug_of_war`, 3 beats)**: Pits the two opposing market pressures from that opening dilemma against each other.
+     - **Scene 2 (`progressive_cards`, 4 beats)**: Outlines the 4 structural solution pillars.
+     - **Scenes 3–8**: Concrete technical rules, geometry, indicators, and calculations with real numbers solving that problem.
+     - **Scene 9 (`interactive_quiz`, 3 beats)**: Practical scenario ($\ge 18$ words) testing how to avoid the opening failure.
+     - **Scene 10 (`chat_story`)**: Mentor cautionary wisdom tying directly back to the opening dilemma.
+     - **Scene 11 (`summary_thread`, 6 beats)**: 8 crisp rules codifying the solution.
 2. **Domain Decoupling & Config-Driven Visuals**:
    The shared rendering engine is completely domain-agnostic. Visual templates, formatting, units, themes, personas, and pedagogical rules are defined in course configuration ([`src/courses/<course_id>.json`](src/courses/hull_derivatives.json)) and the visual template registry ([`src/templates/registry/templateRegistry.ts`](src/templates/registry/templateRegistry.ts)). Domain-specific behavior is isolated in optional domain modules ([`src/domain/finance/`](src/domain/finance/financeValidation.mjs)).
 3. **Structured Cue Synchronization**:
