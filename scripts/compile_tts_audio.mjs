@@ -370,11 +370,12 @@ async function synthesizeEdge(beat, maxRetries = 8, targetHash = null, isHashMat
         }
       } catch (err) {
         attempt++;
+        edgeTts = null; // Recreate EdgeTTS client instance on retry
         if (fs.existsSync(filePath) && fs.statSync(filePath).size < 1000) {
           try { fs.unlinkSync(filePath); } catch { }
         }
         if (attempt >= maxRetries) throw err;
-        const waitMs = Math.min(30000, attempt * 4000);
+        const waitMs = Math.min(30000, attempt * 5000);
         console.warn(`  [Edge-TTS Rate Limit 429] Waiting ${waitMs}ms before retry ${attempt}/${maxRetries} for beat "${beat.id}"...`);
         await sleep(waitMs);
       }

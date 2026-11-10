@@ -1,0 +1,1103 @@
+// src/domain/technical_analysis/murphySynthesis.mjs
+/**
+ * 100% Bespoke Whole-Book Dialectical Synthesis Engine for
+ * John J. Murphy's "Technical Analysis of the Financial Markets"
+ */
+
+export function getMurphySynthesisBlueprint() {
+  return {
+    courseId: 'murphy_technical_analysis',
+    bookTitle: 'Technical Analysis of the Financial Markets (John J. Murphy)',
+    author: 'John J. Murphy',
+    macroThesis: 'Holistic first-principles journey of Technical Analysis of the Financial Markets, mapping the evolutionary chain of limitations and conceptual breakthroughs across all 19 chapters from Dow Theory to Intermarket Analysis.',
+    openingDilemma: {
+      struggle: 'Traders fail by isolating individual indicators, buying false breakouts into weekly resistance, and treating charts in a macroeconomic vacuum.',
+      historicalContext: 'Evolution of technical trading from Charles Dow 1884 market averages to classical geometry, quantitative oscillators, Japanese candlesticks, and intermarket capital flows.',
+      fatalMistake: 'Treating single technical tools as complete trading systems without higher-timeframe trend alignment or multi-asset intermarket confirmation.',
+      authorInvention: 'John J. Murphy complete unified technical framework connecting Dow Theory, classical patterns, moving averages, momentum oscillators, volume, candlesticks, and cross-asset intermarket flows.'
+    },
+    causalEvolutionChain: [
+      {
+        step: 1,
+        priorConcept: 'Dow Theory & Primary Averages',
+        priorBreakthrough: 'Established that market index averages discount all fundamental news and proved prices move in primary, secondary, and minor trends.',
+        fatalLimitation: 'Dow Theory confirms only after 20% to 30% of a primary trend has already unfolded, missing early reversal turns and exposing late entrants to severe drawdowns.',
+        failureScenario: 'Waiting for both Industrial and Transportation averages to breach prior peaks forces traders to enter late into already-extended rallies.',
+        authorSolution: 'Classical Chart Geometry & Support/Resistance Levels (Chapters 3 to 6).',
+        succeedingConcept: 'Classical Chart Patterns & Trendline Breakouts',
+        breakthroughMechanism: 'Head and Shoulders necklines, double bottoms, and trendlines pinpoint exact entry pivots at the earliest inflection points.',
+        sourceChapters: ['ch01_part1', 'ch02_part1', 'ch03_part1', 'ch04_part1']
+      },
+      {
+        step: 2,
+        priorConcept: 'Classical Chart Patterns',
+        priorBreakthrough: 'Enables early reversal and continuation entries with exact vertical price projection measuring objectives.',
+        fatalLimitation: 'Drawing lines on charts is subjective; in sideways horizontal trading ranges, chartists suffer repeated whipsaws and expensive false breakouts.',
+        failureScenario: 'Traders buy upside breakouts and short downside breakdowns in choppy ranges, getting repeatedly stopped out as prices revert to the mean.',
+        authorSolution: 'Moving Averages & Quantitative Momentum Oscillators (Chapters 8 to 10).',
+        succeedingConcept: 'Moving Averages & Momentum Oscillators (RSI, MACD, Stochastics)',
+        breakthroughMechanism: 'Mathematical price smoothing eliminates subjective line-drawing bias, while oscillators quantify overbought and oversold extremes.',
+        sourceChapters: ['ch05_part1', 'ch06_part1', 'ch08_part1', 'ch10_part1']
+      },
+      {
+        step: 3,
+        priorConcept: 'Single-Indicator Trading Systems',
+        priorBreakthrough: 'Brought objective mathematical rules, moving average crossovers, and oscillator overbought/oversold levels.',
+        fatalLimitation: 'Moving averages whipsaw endlessly in non-trending ranges, while oscillators get pinned at overbought levels during runaway trends, giving false sell signals.',
+        failureScenario: 'RSI signals overbought at 70 during the early stage of a multi-month bull market run, causing traders to exit winners prematurely or short into a raging rally.',
+        authorSolution: 'Japanese Candlesticks & Volume/Open Interest Confirmation (Chapters 7, 11, 12).',
+        succeedingConcept: 'Japanese Candlesticks & Volume Confirmation',
+        breakthroughMechanism: 'Candlestick price action (Hammers, Engulfing, Dojis) provides immediate 1-to-3 bar confirmation, while volume confirms true institutional accumulation.',
+        sourceChapters: ['ch07_part1', 'ch09_part1', 'ch11_part1', 'ch12_part1']
+      },
+      {
+        step: 4,
+        priorConcept: 'Isolated Technical Chart Setups',
+        priorBreakthrough: 'High win rates on clean candlestick and chart pattern breakouts at confirmed volume inflection zones.',
+        fatalLimitation: 'Textbook technical breakouts on individual stocks collapse instantly if the broader sector is distributing or bond yields and commodity inflation trigger systemic risk.',
+        failureScenario: '1987 Black Monday crash and 2000 Dot-Com top: Individual stock charts showed bullish continuations while bond yields were surging and market breadth was collapsing.',
+        authorSolution: 'Intermarket Analysis & Market Breadth Synthesis (Chapters 17 and 18).',
+        succeedingConcept: 'Intermarket Analysis & Market Breadth',
+        breakthroughMechanism: 'Cross-asset correlation across currencies, commodities, bonds, and equities, combined with advance-decline breadth to anticipate market turns weeks in advance.',
+        sourceChapters: ['ch16_part1', 'ch17_part1', 'ch17_part2', 'ch18_part1']
+      }
+    ],
+    complementaryPairs: [
+      {
+        pairName: 'Macro Trend vs Micro Precision',
+        toolA: 'Dow Theory Primary Trend',
+        toolB: 'Classical Neckline Breakouts',
+        synergyExplanation: 'Dow Theory establishes the macro directional tide while classical chart geometry provides tight-stop entry triggers at reversal necklines.',
+        antiPatternWarning: 'Trading classical breakout patterns against the dominant Dow primary trend results in repeated bull and bear traps.'
+      },
+      {
+        pairName: 'Regime Specialization',
+        toolA: 'Trend-Following Moving Averages',
+        toolB: 'Mean-Reverting Momentum Oscillators',
+        synergyExplanation: 'Moving averages ride persistent multi-month trends while oscillators monetize sideways horizontal trading ranges.',
+        antiPatternWarning: 'Using moving averages in sideways chop causes capital death by whipsaw; using oscillators in runaway trends exits winners prematurely.'
+      },
+      {
+        pairName: 'Micro Geometry vs Macro Flow',
+        toolA: 'Single-Stock Candlestick Setup',
+        toolB: 'Intermarket Bond Yield & Breadth Flow',
+        synergyExplanation: 'Candlestick geometry pinpoints exact daily entries while intermarket bond yields and breadth protect capital from systemic macro shocks.',
+        antiPatternWarning: 'Trading individual stock charts in a macroeconomic vacuum leaves portfolios blind to rising interest rates and sector rotation.'
+      }
+    ],
+    holisticSynthesisRules: [
+      {
+        ruleNumber: 1,
+        title: 'The Zero-Argument Principle',
+        corePrinciple: 'Market action discounts all fundamental news, earnings reports, rumors, and crowd psychology into price.',
+        interconnectedChapters: ['ch01_part1', 'ch02_part1'],
+        practicalExecutionDirective: 'Never argue with prevailing price action; if good earnings news causes a stock to plunge, respect the distribution signal.'
+      },
+      {
+        ruleNumber: 2,
+        title: 'The Primary Ocean Tide Invariant',
+        corePrinciple: 'Prices move in trends, and higher-timeframe primary trends always overrule minor intraday ripples.',
+        interconnectedChapters: ['ch02_part1', 'ch04_part1'],
+        practicalExecutionDirective: 'Always identify the weekly primary trend first; execute tactical long entries only when the weekly trend is bullish.'
+      },
+      {
+        ruleNumber: 3,
+        title: 'The Fuel Verification Rule',
+        corePrinciple: 'Trading volume must definitively expand in the direction of the primary trend to validate price moves.',
+        interconnectedChapters: ['ch07_part1', 'ch08_part1'],
+        practicalExecutionDirective: 'Demand above-average volume on breakouts; treat low-volume breakouts as high-risk institutional liquidity traps.'
+      },
+      {
+        ruleNumber: 4,
+        title: 'The Principle of Polarity',
+        corePrinciple: 'Broken support levels become future resistance ceilings, and broken resistance levels become future support floors.',
+        interconnectedChapters: ['ch04_part2', 'ch05_part1'],
+        practicalExecutionDirective: 'Look to buy former resistance ceilings on initial pullbacks with tight stops placed just beneath the broken level.'
+      },
+      {
+        ruleNumber: 5,
+        title: 'The Dual-Regime Indicator Rule',
+        corePrinciple: 'Different technical tools possess distinct operational domains: moving averages excel in trends, while oscillators excel in ranges.',
+        interconnectedChapters: ['ch09_part1', 'ch10_part1'],
+        practicalExecutionDirective: 'Check ADX trend strength: if ADX is above 25 use moving averages; if ADX is below 20 trade oscillator overbought/oversold extremes.'
+      },
+      {
+        ruleNumber: 6,
+        title: 'The Candlestick Confirmation Trigger',
+        corePrinciple: 'Indicators and chart patterns establish prospective zones, but Japanese candlesticks provide the immediate execution trigger.',
+        interconnectedChapters: ['ch11_part1', 'ch12_part1'],
+        practicalExecutionDirective: 'Wait for a Hammer, Bullish Engulfing, or Piercing pattern at key support before pulling the trigger on an entry.'
+      },
+      {
+        ruleNumber: 7,
+        title: 'The Asymmetric 1:3 Capital Law',
+        corePrinciple: 'Technical analysis without strict risk control is financial suicide; capital preservation is the first duty of the chartist.',
+        interconnectedChapters: ['ch16_part1', 'ch16_part2'],
+        practicalExecutionDirective: 'Never risk more than 1% to 2% of total account capital per trade, and demand prospective gains that are at least 3x the stop distance.'
+      },
+      {
+        ruleNumber: 8,
+        title: 'The Intermarket Macro Shield',
+        corePrinciple: 'No individual asset class trades in isolation; bond yields, commodity inflation, and currencies dictate equity market trends.',
+        interconnectedChapters: ['ch17_part1', 'ch18_part1'],
+        practicalExecutionDirective: 'Monitor 10-year Treasury yields and advance-decline breadth weekly; reduce equity exposure when yields surge and breadth diverges.'
+      }
+    ],
+    unifiedExecutionChecklist: [
+      '1. Weekly Macro Check: Confirm dominant primary trend on weekly chart.',
+      '2. Support/Resistance Alignment: Identify key horizontal levels and trendlines.',
+      '3. Indicator Regime Check: Verify ADX trend strength and RSI/MACD divergence.',
+      '4. Volume & Candlestick Trigger: Demand volume expansion and multi-candle confirmation.',
+      '5. Asymmetric Risk Calculation: Enforce strict 1:3 reward-to-risk and 1-2% position sizing.',
+      '6. Intermarket Filter: Verify that bond yields, sector breadth, and currency flows confirm the trade.'
+    ],
+    metadata: {
+      generatedAt: new Date().toISOString(),
+      engine: 'scaffolding-blueprint',
+      version: '1.0.0'
+    }
+  };
+}
+
+export function buildMurphySynthesisEpisode({ courseId, courseConfig, synthesisData, sourceFacts }) {
+  const isEn = courseId.includes('_en') || courseConfig.narrationLanguage?.startsWith('en');
+  const noviceName = isEn ? (courseConfig.persona?.novice?.name || 'Alex') : 'Raju';
+  const noviceAvatar = isEn ? (courseConfig.persona?.novice?.avatar || 'A') : 'R';
+  const mentorName = isEn ? (courseConfig.persona?.mentor?.name || 'Marcus') : 'Sharma ji';
+  const mentorAvatar = isEn ? (courseConfig.persona?.mentor?.avatar || 'M') : 'S';
+
+  const primaryColor = courseConfig.visualTheme?.primaryColor || '#B45309';
+  const accentColor = courseConfig.visualTheme?.accentColor || '#2563EB';
+
+  const cChain = synthesisData.dialecticalEvolutionChain || [];
+  const step1 = cChain[0] || { priorConcept: 'Dow Theory', succeedingConcept: 'Chart Patterns', fatalLimitation: 'Lagging signals', breakthroughMechanism: 'Early neckline geometry' };
+  const step2 = cChain[1] || { priorConcept: 'Chart Patterns', succeedingConcept: 'Indicators & Oscillators', fatalLimitation: 'Subjective false breaks', breakthroughMechanism: 'Mathematical rules' };
+  const step3 = cChain[2] || { priorConcept: 'Indicators', succeedingConcept: 'Candlesticks & Volume', fatalLimitation: 'Whipsaws in chop', breakthroughMechanism: 'Order flow confirmation' };
+  const step4 = cChain[3] || { priorConcept: 'Single-Stock Charts', succeedingConcept: 'Intermarket Analysis', fatalLimitation: 'Macro blindness', breakthroughMechanism: 'Cross-asset flows' };
+
+  return {
+    schemaVersion: '1.0.0',
+    meta: {
+      course: courseId,
+      chapter: 'SYNTHESIS',
+      chapterTitle: `DIALECTICAL SYNTHESIS: THE UNIFIED ARCHITECTURE OF TECHNICAL ANALYSIS`,
+      domain: 'technical_analysis',
+      primaryColor,
+      accentColor,
+      narrationLanguage: isEn ? 'en-US' : 'hi-IN-devanagari'
+    },
+    scenes: [
+      // Scene 0: The Isolated Tool Trap & The Dialectical Chain (chat_story)
+      {
+        segmentIndex: 0,
+        title: 'The Isolated Tool Trap & The Dialectical Chain',
+        template: 'chat_story',
+        badge: 'Holistic Synthesis · Dialectical Chain',
+        beats: [
+          {
+            id: 'b01',
+            hindi_tts: isEn
+              ? `${noviceName} asks: ${mentorName}, we studied all 19 chapters of Murphy; in live market trading, how do these individual patterns and indicators connect into one unified system?`
+              : `राजू पूछता है, शर्मा जी, हमने जॉन मर्फी के सभी उन्नीस चैप्टर्स पढ़े, लेकिन लाइव ट्रेडिंग में ये सारे पैटर्न्स और इंडिकेटर्स आपस में कैसे जुड़ते हैं?`,
+            en_narration: `${noviceName} asks: ${mentorName}, we studied all 19 chapters of Murphy; in live trading, how do these individual patterns and indicators connect into one unified system?`,
+            subtitle: `${noviceName} asks: ${mentorName}, how do all 19 chapters connect into one coherent system?`,
+            en_subtitle: `${noviceName} asks: ${mentorName}, how do all 19 chapters connect into one coherent system?`,
+            pauseAfterMs: 400,
+            ui_state: {
+              stageDirections: [`— ${noviceName} questions how 19 individual chapters unite into an unbroken trading framework —`],
+              messages: [
+                {
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, we studied all 19 chapters individually—Dow Theory, chart patterns, moving averages, oscillators, candlesticks, and intermarket flows. In real market conditions, how does this entire book connect into one unified trading system?`,
+                  theme: 'amber',
+                  align: 'left'
+                }
+              ]
+            }
+          },
+          {
+            id: 'b02',
+            hindi_tts: isEn
+              ? `${mentorName} explains: Novices treat isolated tools as complete systems. They buy a breakout using a single indicator, completely blind to higher-timeframe trend exhaustion and sector distribution!`
+              : `शर्मा जी समझाते हैं, नौसिखिए किसी एक इंडिकेटर को जादुई छड़ी मान लेते हैं; वे ब्रेकआउट पर शेयर खरीदते हैं जबकि साप्ताहिक ट्रेंड पहले ही खत्म हो चुका होता है!`,
+            en_narration: `${mentorName} explains: Novices treat isolated tools as silver bullets, buying breakouts while blind to weekly trend exhaustion and sector distribution.`,
+            subtitle: `${mentorName} explains: Novices use isolated tools, blind to weekly trend exhaustion.`,
+            en_subtitle: `${mentorName} explains: Novices use isolated tools, blind to weekly trend exhaustion.`,
+            pauseAfterMs: 450,
+            ui_state: {
+              stageDirections: [`— ${mentorName} exposes the fatal flaw of trading isolated indicators —`],
+              messages: [
+                {
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, we studied all 19 chapters individually—Dow Theory, chart patterns, moving averages, oscillators, candlesticks, and intermarket flows. In real market conditions, how does this entire book connect into one unified trading system?`,
+                  theme: 'amber',
+                  align: 'left'
+                },
+                {
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `Novices treat individual tools as complete systems. They buy a moving average crossover on a 5-minute chart, completely blind to the fact that the weekly primary trend is in major distribution!`,
+                  theme: 'teal',
+                  align: 'right'
+                }
+              ]
+            }
+          },
+          {
+            id: 'b03',
+            hindi_tts: isEn
+              ? `When choppy consolidation strikes, moving averages whipsaw you to death, and when runaway trends explode, oscillators give false reversal signals!`
+              : `जब बाजार एक दायरे में फंसता है, तो मूविंग एवरेज बार-बार घाटा कराते हैं, और जब जोरदार ट्रेंड आता है, तो आरएसआई जैसे ऑस्किलेटर्स गलत रिवर्सल दिखाते हैं!`,
+            en_narration: `In sideways chop, moving averages whipsaw you to death, and in runaway trends, oscillators trigger premature exits!`,
+            subtitle: `In sideways chop, moving averages whipsaw; in runaway trends, oscillators give false signals!`,
+            en_subtitle: `In sideways chop, moving averages whipsaw; in runaway trends, oscillators give false signals!`,
+            pauseAfterMs: 450,
+            ui_state: {
+              stageDirections: [`— The mentor reveals the structural limitations of isolated indicators —`],
+              messages: [
+                {
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, we studied all 19 chapters individually—Dow Theory, chart patterns, moving averages, oscillators, candlesticks, and intermarket flows. In real market conditions, how does this entire book connect into one unified trading system?`,
+                  theme: 'amber',
+                  align: 'left'
+                },
+                {
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `Novices treat individual tools as complete systems. They buy a moving average crossover on a 5-minute chart, completely blind to the fact that the weekly primary trend is in major distribution!`,
+                  theme: 'teal',
+                  align: 'right'
+                },
+                {
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `When market regimes shift, single tools fail: moving averages whipsaw endlessly during sideways chop, while oscillators get pinned at overbought levels during runaway trends!`,
+                  theme: 'teal',
+                  align: 'right'
+                }
+              ]
+            }
+          },
+          {
+            id: 'b04',
+            hindi_tts: isEn
+              ? `This is John Murphy's master secret: every chapter exists as an evolutionary chain. Each tool was invented to cure the fatal vulnerability of the prior model!`
+              : `यही मर्फी का सबसे बड़ा रहस्य है: हर नया चैप्टर पिछले टूल की जानलेवा कमी को दूर करने के लिए बनाया गया है—यह उन्नीस कड़ियों की एक अटूट जंजीर है!`,
+            en_narration: `This is Murphy's master insight: every chapter was invented to cure the fatal vulnerability of the prior tool, forming an unbroken evolutionary chain!`,
+            subtitle: `Murphy organized the book as an evolutionary chain, each tool curing the prior flaw.`,
+            en_subtitle: `Murphy organized the book as an evolutionary chain, each tool curing the prior flaw.`,
+            pauseAfterMs: 450,
+            ui_state: {
+              stageDirections: [`— ${mentorName} unveils the dialectical thesis unifying all 19 chapters —`],
+              messages: [
+                {
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, we studied all 19 chapters individually—Dow Theory, chart patterns, moving averages, oscillators, candlesticks, and intermarket flows. In real market conditions, how does this entire book connect into one unified trading system?`,
+                  theme: 'amber',
+                  align: 'left'
+                },
+                {
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `Novices treat individual tools as complete systems. They buy a moving average crossover on a 5-minute chart, completely blind to the fact that the weekly primary trend is in major distribution!`,
+                  theme: 'teal',
+                  align: 'right'
+                },
+                {
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `When market regimes shift, single tools fail: moving averages whipsaw endlessly during sideways chop, while oscillators get pinned at overbought levels during runaway trends!`,
+                  theme: 'teal',
+                  align: 'right'
+                },
+                {
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `This is John Murphy's master secret: every chapter was invented to cure the fatal blindspot of the prior tool. Master this dialectic, and the market can never trap you!`,
+                  theme: 'teal',
+                  align: 'right'
+                }
+              ]
+            }
+          }
+        ]
+      },
+
+      // Scene 1: Dow Theory Macro Trend vs Classical Pattern Precision (tug_of_war)
+      {
+        segmentIndex: 1,
+        title: 'Dow Theory Macro Trend vs Classical Pattern Precision',
+        template: 'tug_of_war',
+        badge: 'Dialectical Tension · Macro vs Micro',
+        beats: [
+          {
+            id: 'b05',
+            hindi_tts: 'एक तरफ डाउ थ्योरी है, जो बड़े प्राथमिक ट्रेंड की पहचान कराती है लेकिन बीस परसेंट देर से संकेत देती है।',
+            en_narration: 'On one side is Dow Theory: indispensable for identifying the primary ocean tide, but lagging by 20% to 30%.',
+            subtitle: 'Dow Theory identifies the primary ocean tide, but lags market turns by 20% to 30%.',
+            en_subtitle: 'Dow Theory identifies the primary ocean tide, but lags market turns by 20% to 30%.',
+            pauseAfterMs: 400,
+            ui_state: {
+              leftTitle: 'Dow Theory Macro Trend',
+              rightTitle: 'Classical Pattern Precision',
+              leftScore: 50,
+              rightScore: 50,
+              leftLabel: 'Primary Trend Reliability (Lagging)',
+              rightLabel: 'Early Reversal Precision (Subjective)',
+              centerTitle: 'The Dialectical Divide',
+              trend: 'up',
+              stageDirections: ['— Contrasting lagging macro trend certainty with early geometric timing —']
+            }
+          },
+          {
+            id: 'b06',
+            hindi_tts: 'दूसरी तरफ क्लासिकल चार्ट पैटर्न्स हैं, जो नेकलाइन और ब्रेकआउट पर बहुत पहले सटीक एंट्री दिलाते हैं।',
+            en_narration: 'On the other side are classical chart patterns: pinpointing early reversal pivots exactly where Dow Theory is too slow.',
+            subtitle: 'Classical chart patterns pinpoint early reversal pivots where Dow Theory is too slow.',
+            en_subtitle: 'Classical chart patterns pinpoint early reversal pivots where Dow Theory is too slow.',
+            pauseAfterMs: 400,
+            ui_state: {
+              leftTitle: 'Dow Theory Macro Trend',
+              rightTitle: 'Classical Pattern Precision',
+              leftScore: 40,
+              rightScore: 60,
+              leftLabel: 'Waits for Both Averages to Confirm',
+              rightLabel: 'Neckline & Breakout Timing Advantage',
+              centerTitle: 'Timing Breakthrough',
+              trend: 'down',
+              stageDirections: ['— Geometric patterns solve the entry lag of Dow Theory —']
+            }
+          },
+          {
+            id: 'b07',
+            hindi_tts: 'मास्टर विश्लेषक इन दोनों को मिलाकर डाउ के बड़े ट्रेंड की दिशा में ही क्लासिकल पैटर्न्स ट्रेड करता है।',
+            en_narration: 'The master analyst unites both: trading classical geometric patterns strictly in the direction of Dow\'s primary trend.',
+            subtitle: 'Master analysts trade classical patterns strictly in the direction of Dow\'s primary trend.',
+            en_subtitle: 'Master analysts trade classical patterns strictly in the direction of Dow\'s primary trend.',
+            pauseAfterMs: 400,
+            ui_state: {
+              leftTitle: 'Dow Theory Macro Trend',
+              rightTitle: 'Classical Pattern Precision',
+              leftScore: 50,
+              rightScore: 50,
+              leftLabel: 'Macro Directional Filter',
+              rightLabel: 'Tactical Execution Trigger',
+              centerTitle: 'Integrated Framework',
+              trend: 'up',
+              stageDirections: ['— Fusing macro trend with micro timing creates an unbreakable system —']
+            }
+          }
+        ]
+      },
+
+      // Scene 2: The 4 Evolutionary Eras of Technical Analysis (progressive_cards)
+      {
+        segmentIndex: 2,
+        title: 'The 4 Evolutionary Eras of Technical Analysis',
+        template: 'progressive_cards',
+        badge: 'Macro Architecture · 4 Eras',
+        beats: [
+          {
+            id: 'b08',
+            hindi_tts: 'युग 1: चार्ल्स डाउ ने 1884 में मार्केट एवरेजेस और प्राथमिक ट्रेंड्स की वैज्ञानिक नींव रखी।',
+            en_narration: 'Era 1: Charles Dow established market index averages and primary trend classification in 1884.',
+            subtitle: 'Era 1: Charles Dow founded market averages and primary trend classification in 1884.',
+            en_subtitle: 'Era 1: Charles Dow founded market averages and primary trend classification in 1884.',
+            pauseAfterMs: 400,
+            ui_state: {
+              activeCardIndex: 0,
+              sectionHeader: 'THE 4 EVOLUTIONARY ERAS OF TECHNICAL ANALYSIS',
+              cards: [
+                {
+                  title: 'Era 1: Dow Theory & Primary Trends (Ch 1-2)',
+                  desc: 'Charles Dow established market averages and proved price action discounts all fundamentals, but trend confirmation suffered from 20-30% lag.',
+                  state: 'active_amber',
+                  badge: 'Foundation'
+                },
+                {
+                  title: 'Era 2: Classical Chart Geometry (Ch 3-6)',
+                  desc: 'Head & Shoulders, Triangles, and Trendlines introduced early geometric timing, but remained subjective during horizontal consolidation chop.',
+                  state: 'muted',
+                  badge: 'Geometry'
+                },
+                {
+                  title: 'Era 3: Indicators & Momentum Oscillators (Ch 8-10)',
+                  desc: 'Moving averages and oscillators (RSI, MACD, Stochastics) brought objective math, but failed when regimes transitioned between trend and range.',
+                  state: 'muted',
+                  badge: 'Quantitative Math'
+                },
+                {
+                  title: 'Era 4: Candlesticks & Intermarket Flow (Ch 11-18)',
+                  desc: 'Japanese candlesticks provided immediate 1-3 bar confirmation, while intermarket bond yields and breadth united the global macroeconomic jigsaw.',
+                  state: 'muted',
+                  badge: 'Institutional Synthesis'
+                }
+              ]
+            }
+          },
+          {
+            id: 'b09',
+            hindi_tts: 'युग 2: क्लासिकल ज्योमेट्री ने हेड एंड शोल्डर्स और ट्रेंडलाइन्स से समय से पहले सटीक रिवर्सल पकड़ना सिखाया।',
+            en_narration: 'Era 2: Classical geometry introduced Head & Shoulders and trendlines to capture early inflection points.',
+            subtitle: 'Era 2: Classical geometry added Head & Shoulders and trendlines for early timing.',
+            en_subtitle: 'Era 2: Classical geometry added Head & Shoulders and trendlines for early timing.',
+            pauseAfterMs: 400,
+            ui_state: {
+              activeCardIndex: 1,
+              sectionHeader: 'THE 4 EVOLUTIONARY ERAS OF TECHNICAL ANALYSIS',
+              cards: [
+                {
+                  title: 'Era 1: Dow Theory & Primary Trends (Ch 1-2)',
+                  desc: 'Charles Dow established market averages and proved price action discounts all fundamentals.',
+                  state: 'muted',
+                  badge: 'Foundation'
+                },
+                {
+                  title: 'Era 2: Classical Chart Geometry (Ch 3-6)',
+                  desc: 'Head & Shoulders, Triangles, and Trendlines introduced early geometric timing, but remained subjective during horizontal consolidation chop.',
+                  state: 'active_blue',
+                  badge: 'Geometry'
+                },
+                {
+                  title: 'Era 3: Indicators & Momentum Oscillators (Ch 8-10)',
+                  desc: 'Moving averages and oscillators (RSI, MACD, Stochastics) brought objective math, but failed when regimes transitioned between trend and range.',
+                  state: 'muted',
+                  badge: 'Quantitative Math'
+                },
+                {
+                  title: 'Era 4: Candlesticks & Intermarket Flow (Ch 11-18)',
+                  desc: 'Japanese candlesticks provided immediate 1-3 bar confirmation, while intermarket bond yields and breadth united the global macroeconomic jigsaw.',
+                  state: 'muted',
+                  badge: 'Institutional Synthesis'
+                }
+              ]
+            }
+          },
+          {
+            id: 'b10',
+            hindi_tts: 'युग 3: मूविंग एवरेजेस और ऑस्किलेटर्स ने व्यक्तिपरक रेखाओं को गणितीय नियमों में बदल दिया।',
+            en_narration: 'Era 3: Moving averages and oscillators replaced subjective chart drawing with objective quantitative rules.',
+            subtitle: 'Era 3: Moving averages and oscillators introduced objective quantitative rules.',
+            en_subtitle: 'Era 3: Moving averages and oscillators introduced objective quantitative rules.',
+            pauseAfterMs: 400,
+            ui_state: {
+              activeCardIndex: 2,
+              sectionHeader: 'THE 4 EVOLUTIONARY ERAS OF TECHNICAL ANALYSIS',
+              cards: [
+                {
+                  title: 'Era 1: Dow Theory & Primary Trends (Ch 1-2)',
+                  desc: 'Charles Dow established market averages and proved price action discounts all fundamentals.',
+                  state: 'muted',
+                  badge: 'Foundation'
+                },
+                {
+                  title: 'Era 2: Classical Chart Geometry (Ch 3-6)',
+                  desc: 'Head & Shoulders, Triangles, and Trendlines introduced early geometric timing.',
+                  state: 'muted',
+                  badge: 'Geometry'
+                },
+                {
+                  title: 'Era 3: Indicators & Momentum Oscillators (Ch 8-10)',
+                  desc: 'Moving averages and oscillators (RSI, MACD, Stochastics) brought objective math, but failed when regimes transitioned between trend and range.',
+                  state: 'active_purple',
+                  badge: 'Quantitative Math'
+                },
+                {
+                  title: 'Era 4: Candlesticks & Intermarket Flow (Ch 11-18)',
+                  desc: 'Japanese candlesticks provided immediate 1-3 bar confirmation, while intermarket bond yields and breadth united the global macroeconomic jigsaw.',
+                  state: 'muted',
+                  badge: 'Institutional Synthesis'
+                }
+              ]
+            }
+          },
+          {
+            id: 'b11',
+            hindi_tts: 'युग 4: कैंडलस्टिक्स, मनी मैनेजमेंट और इंटरमार्केट एनालिसिस ने पूरी दुनिया को एक अटूट ट्रेडिंग सिस्टम में जोड़ दिया।',
+            en_narration: 'Era 4: Candlesticks, money management, and intermarket analysis united individual charts with global macro flows.',
+            subtitle: 'Era 4: Candlesticks, money management, and intermarket flows united the global market.',
+            en_subtitle: 'Era 4: Candlesticks, money management, and intermarket flows united the global market.',
+            pauseAfterMs: 400,
+            ui_state: {
+              activeCardIndex: 3,
+              sectionHeader: 'THE 4 EVOLUTIONARY ERAS OF TECHNICAL ANALYSIS',
+              cards: [
+                {
+                  title: 'Era 1: Dow Theory & Primary Trends (Ch 1-2)',
+                  desc: 'Charles Dow established market averages and proved price action discounts all fundamentals.',
+                  state: 'muted',
+                  badge: 'Foundation'
+                },
+                {
+                  title: 'Era 2: Classical Chart Geometry (Ch 3-6)',
+                  desc: 'Head & Shoulders, Triangles, and Trendlines introduced early geometric timing.',
+                  state: 'muted',
+                  badge: 'Geometry'
+                },
+                {
+                  title: 'Era 3: Indicators & Momentum Oscillators (Ch 8-10)',
+                  desc: 'Moving averages and oscillators brought objective math.',
+                  state: 'muted',
+                  badge: 'Quantitative Math'
+                },
+                {
+                  title: 'Era 4: Candlesticks & Intermarket Flow (Ch 11-18)',
+                  desc: 'Japanese candlesticks provided immediate 1-3 bar confirmation, while intermarket bond yields and breadth united the global macroeconomic jigsaw.',
+                  state: 'active_green',
+                  badge: 'Institutional Synthesis'
+                }
+              ]
+            }
+          }
+        ]
+      },
+
+      // Scene 3: Dow Theory Lag vs Classical Pattern Timing (split_comparison)
+      {
+        segmentIndex: 3,
+        title: 'Dow Theory Primary Lag vs Classical Pattern Precision',
+        template: 'split_comparison',
+        badge: 'Evolution Step 1 · Timing Breakthrough',
+        beats: [
+          {
+            id: 'b12',
+            hindi_tts: 'डाउ थ्योरी की बीस परसेंट की देरी को क्लासिकल हेड एंड शोल्डर्स और ट्रेंडलाइन ब्रेकआउट्स ने सटीक समय देकर हल किया।',
+            en_narration: 'Dow Theory\'s confirmation lag was solved by classical Head & Shoulders and trendlines, providing early inflection entries.',
+            subtitle: 'Dow Theory\'s confirmation lag was solved by classical Head & Shoulders early entries.',
+            en_subtitle: 'Dow Theory\'s confirmation lag was solved by classical Head & Shoulders early entries.',
+            pauseAfterMs: 420,
+            ui_state: {
+              leftColumn: {
+                title: 'Dow Theory Primary Lag (Ch 2)',
+                subtitle: 'Macro Trend Certainty',
+                theme: 'amber',
+                icon: 'anchor',
+                active: true,
+                bullets: [
+                  'Requires both Industrials and Transports to confirm',
+                  'Waits for prior secondary peaks to be exceeded',
+                  'Gives up the first 20% to 30% of a bull market move',
+                  'Large stop-loss distance on delayed entries'
+                ]
+              },
+              rightColumn: {
+                title: 'Classical Pattern Precision (Ch 5-6)',
+                subtitle: 'Micro Geometric Advantage',
+                theme: 'green',
+                icon: 'crosshair',
+                active: true,
+                bullets: [
+                  'Neckline breaks trigger entry at the earliest reversal pivot',
+                  'Volume surge verifies institutional participation on breakout',
+                  'Tight stop-loss placed right behind the right shoulder peak',
+                  'Calculates exact minimum vertical measuring price targets'
+                ]
+              }
+            }
+          }
+        ]
+      },
+
+      // Scene 4: The False Breakout Trap during Consolidations (progressive_cards)
+      {
+        segmentIndex: 4,
+        title: 'The False Breakout Trap during Consolidations',
+        template: 'progressive_cards',
+        badge: 'Crisis Analysis · The Chop Trap',
+        beats: [
+          {
+            id: 'b13',
+            hindi_tts: 'जब बाजार एक दायरे में फंसता है, तो केवल रेखाओं पर भरोसा करने वाले ट्रेडर्स बार-बार फॉल्स ब्रेकआउट्स में लिक्विडिटी बन जाते हैं।',
+            en_narration: 'During sideways consolidation ranges, traders relying solely on subjective lines get repeatedly trapped in false breakouts.',
+            subtitle: 'In sideways consolidations, subjective lines alone trap traders in false breakouts.',
+            en_subtitle: 'In sideways consolidations, subjective lines alone trap traders in false breakouts.',
+            pauseAfterMs: 400,
+            ui_state: {
+              activeCardIndex: 0,
+              sectionHeader: 'THE FATAL VULNERABILITY OF SUBJECTIVE PATTERNS',
+              cards: [
+                {
+                  title: '1. The Horizontal Trading Range Trap',
+                  desc: 'Markets spend one-third of the time in sideways trading ranges where trendlines break constantly without directional follow-through.',
+                  state: 'active_amber',
+                  badge: 'Market Chop'
+                },
+                {
+                  title: '2. The Retail Whipsaw Drain',
+                  desc: 'Traders buy upside breakouts and short downside breakdowns, only to get stopped out repeatedly as prices revert to the range mean.',
+                  state: 'active_blue',
+                  badge: 'Capital Bleed'
+                },
+                {
+                  title: '3. The Dialectical Solution: Oscillators',
+                  desc: 'John Murphy introduces oscillators (RSI, Stochastics, MACD) to mathematically trade range extremes rather than chasing breakouts.',
+                  state: 'active_green',
+                  badge: 'Indicator Evolution'
+                }
+              ]
+            }
+          }
+        ]
+      },
+
+      // Scene 5: The Head & Shoulders Minimum Measuring Formula (formula_breakdown)
+      {
+        segmentIndex: 5,
+        title: 'The Head & Shoulders Measuring Formula',
+        template: 'formula_breakdown',
+        badge: 'Core Formula · Geometric Target',
+        beats: [
+          {
+            id: 'b14',
+            hindi_tts: 'मर्फी का क्लासिक फॉर्मूला: हेड की चोटी से नेकलाइन की सीधी दूरी नापकर, नेकलाइन टूटने के बिंदु से नीचे घटाने पर सटीक न्यूनतम टारगेट मिलता है।',
+            en_narration: 'Murphy\'s geometric rule: measure the vertical distance from the head to the neckline, and project it down from the breakout point.',
+            subtitle: 'Measure vertical distance from head to neckline, and project downward from breakout.',
+            en_subtitle: 'Measure vertical distance from head to neckline, and project downward from breakout.',
+            pauseAfterMs: 400,
+            ui_state: {
+              title: 'Head and Shoulders Minimum Price Target Formula',
+              expression: 'Target Price = Neckline Level - (Head Peak - Neckline Level)',
+              latex: 'P_{\\text{target}} = P_{\\text{neckline}} - (P_{\\text{head}} - P_{\\text{neckline}})',
+              variables: [
+                {
+                  symbol: 'P_{\\text{target}}',
+                  label: 'Minimum Objective',
+                  description: 'The mathematical minimum price target projected following a decisive neckline break.'
+                },
+                {
+                  symbol: 'P_{\\text{neckline}}',
+                  label: 'Neckline Level',
+                  description: 'The support floor connecting the reaction troughs between the left shoulder, head, and right shoulder.'
+                },
+                {
+                  symbol: 'P_{\\text{head}}',
+                  label: 'Head Peak',
+                  description: 'The highest peak of the reversal formation, representing the final exhausted buying climax.'
+                },
+                {
+                  symbol: 'H_{\\text{pattern}}',
+                  label: 'Vertical Base Height',
+                  description: 'The absolute vertical price distance between the head peak and the intervening neckline.'
+                }
+              ]
+            }
+          }
+        ]
+      },
+
+      // Scene 6: Trend-Following Averages vs Mean-Reverting Oscillators (split_comparison)
+      {
+        segmentIndex: 6,
+        title: 'Trend-Following Averages vs Mean-Reverting Oscillators',
+        template: 'split_comparison',
+        badge: 'Evolution Step 2 · Dual Regimes',
+        beats: [
+          {
+            id: 'b15',
+            hindi_tts: 'एक तरफ ट्रेंड-फॉलोइंग मूविंग एवरेजेस हैं जो ट्रेंड में बेहतरीन हैं, और दूसरी तरफ ऑस्किलेटर्स हैं जो रेंज-बाउंड मार्केट्स में जीत दिलाते हैं।',
+            en_narration: 'On one side are moving averages, thriving in strong trends; on the other are oscillators, mastering range-bound consolidations.',
+            subtitle: 'Moving averages thrive in strong trends; oscillators master range-bound consolidations.',
+            en_subtitle: 'Moving averages thrive in strong trends; oscillators master range-bound consolidations.',
+            pauseAfterMs: 400,
+            ui_state: {
+              leftColumn: {
+                title: 'Moving Averages (Trending Regimes)',
+                subtitle: 'Chapters 8-9: Trend Following',
+                theme: 'amber',
+                icon: 'trending-up',
+                active: true,
+                bullets: [
+                  'Rides powerful multi-month bull and bear primary trends',
+                  'Eliminates day-to-day emotional noise and minor whipsaws',
+                  'Fatal flaw: chops capital to pieces in sideways ranges',
+                  'Best applied when ADX confirms strong trend presence'
+                ]
+              },
+              rightColumn: {
+                title: 'Oscillators (Range Regimes)',
+                subtitle: 'Chapter 10: RSI, MACD, Stochastics',
+                theme: 'green',
+                icon: 'activity',
+                active: true,
+                bullets: [
+                  'Identifies extreme overbought (>70) and oversold (<30) turning points',
+                  'Monetizes horizontal channels where moving averages fail',
+                  'Fatal flaw: premature exit signals during runaway trends',
+                  'Unlocks powerful reversal signals via momentum divergence'
+                ]
+              }
+            }
+          }
+        ]
+      },
+
+      // Scene 7: Dynamic Execution: Candlesticks & Volume (progressive_cards)
+      {
+        segmentIndex: 7,
+        title: 'Dynamic Execution: Candlesticks & Volume',
+        template: 'progressive_cards',
+        badge: 'Evolution Step 3 · Order Flow',
+        beats: [
+          {
+            id: 'b16',
+            hindi_tts: 'अगले चरण में लेखक ने जापानी कैंडलस्टिक्स और वॉल्यूम जोड़कर संस्थागत स्मार्ट मनी की असली नीयत को उजागर कर दिया।',
+            en_narration: 'In the next phase, Murphy integrated Japanese candlesticks and volume to unmask institutional intent in real time.',
+            subtitle: 'Murphy integrated Japanese candlesticks and volume to reveal real-time institutional intent.',
+            en_subtitle: 'Murphy integrated Japanese candlesticks and volume to reveal real-time institutional intent.',
+            pauseAfterMs: 400,
+            ui_state: {
+              activeCardIndex: 0,
+              sectionHeader: 'INSTITUTIONAL CONFIRMATION MECHANICS',
+              cards: [
+                {
+                  title: '1. Japanese Candlestick Signals (Ch 12)',
+                  desc: 'Hammers, Shooting Stars, and Bullish Engulfing candles provide instantaneous 1-to-3 bar confirmation right at key support and resistance zones.',
+                  state: 'active_amber',
+                  badge: 'Visual Precision'
+                },
+                {
+                  title: '2. Volume & Open Interest Confirmation (Ch 7)',
+                  desc: 'Volume must expand in the direction of the primary trend; high-volume breakouts signal institutional accumulation, while low-volume moves are traps.',
+                  state: 'active_blue',
+                  badge: 'Fuel Verification'
+                },
+                {
+                  title: '3. Money Management & 1:3 R:R (Ch 16)',
+                  desc: 'Never risk more than 1% to 2% of total capital on any single trade, and demand prospective gains that are triple your stop-loss distance.',
+                  state: 'active_green',
+                  badge: 'Mathematical Survival'
+                }
+              ]
+            }
+          }
+        ]
+      },
+
+      // Scene 8: Isolated Stock Charting vs Intermarket Macro Flow (split_comparison)
+      {
+        segmentIndex: 8,
+        title: 'Isolated Stock Charting vs Intermarket Macro Flow',
+        template: 'split_comparison',
+        badge: 'Evolution Step 4 · The Capstone',
+        beats: [
+          {
+            id: 'b17',
+            hindi_tts: 'किताब का अंतिम रहस्य यह है कि कोई भी स्टॉक अकेला नहीं चलता—बॉन्ड यील्ड्स, कमोडिटीज और करेंसी की चाल ही पूरे शेयर बाजार की दिशा तय करती है।',
+            en_narration: 'The book\'s capstone insight is that no chart exists in a vacuum: bond yields, commodities, and currencies dictate equity market trends.',
+            subtitle: 'No stock chart exists in a vacuum: bond yields, currencies, and commodities dictate trends.',
+            en_subtitle: 'No stock chart exists in a vacuum: bond yields, currencies, and commodities dictate trends.',
+            pauseAfterMs: 400,
+            ui_state: {
+              leftColumn: {
+                title: 'Isolated Stock Charting (Myopic)',
+                subtitle: 'Amateur Tunnel Vision',
+                theme: 'amber',
+                icon: 'eye-off',
+                active: true,
+                bullets: [
+                  'Looks only at the single 5-minute stock chart on the screen',
+                  'Blindsided when spiking bond yields crush equity valuations',
+                  'Ignores commodity inflation and US Dollar surges',
+                  'Trapped in systemic sector rotation selloffs'
+                ]
+              },
+              rightColumn: {
+                title: 'Intermarket Macro Reality (Holistic)',
+                subtitle: 'Chapters 17-18: The Four Sectors',
+                theme: 'green',
+                icon: 'globe',
+                active: true,
+                bullets: [
+                  'Tracks the causal chain: Currencies -> Commodities -> Bonds -> Equities',
+                  'Rising bond yields peak bonds first, signaling an upcoming equity top',
+                  'Advance-Decline breadth warns of distribution weeks before index drops',
+                  'Survives across decades of macroeconomic turbulence'
+                ]
+              }
+            }
+          }
+        ]
+      },
+
+      // Scene 9: Diagnose the Cross-Chapter Crisis (interactive_quiz)
+      {
+        segmentIndex: 9,
+        title: 'Diagnose the Cross-Chapter Crisis',
+        template: 'interactive_quiz',
+        badge: 'Active Recall · Multi-Chapter',
+        beats: [
+          {
+            id: 'b18',
+            hindi_tts: 'एक ट्रेडर ने 5-मिनट चार्ट पर रेजिस्टेंस ब्रेकआउट देखकर शेयर खरीदा, लेकिन साप्ताहिक प्राथमिक ट्रेंड डाउन था और बॉन्ड यील्ड्स बढ़ रही थीं—बड़ा नुकसान हुआ। कौन सा सिद्धांत भूला?',
+            en_narration: 'A trader bought a 5-minute breakout, ignoring that the weekly trend was down and bond yields were spiking, causing huge losses. Which Murphy law was violated?',
+            subtitle: 'A trader bought a 5-minute breakout against a weekly downtrend and spiking yields. What was violated?',
+            en_subtitle: 'A trader bought a 5-minute breakout against a weekly downtrend and spiking yields. What was violated?',
+            pauseAfterMs: 400,
+            ui_state: {
+              question: 'A trader initiated a leveraged long position following a clean 5-minute resistance breakout. However, the stock collapsed 8% within hours because the weekly primary trend was in a severe Dow distribution phase and 10-year Treasury yields were surging. What fundamental Murphy synthesis principle was violated?',
+              options: [
+                'A) Market makers illegally manipulated the exchange closing prices.',
+                'B) The trader analyzed an intraday chart in complete isolation, ignoring that higher-timeframe primary trends and intermarket macro flows always overrule minor intraday ripples.',
+                'C) Technical analysis cannot be applied to stocks when bond yields move.',
+                'D) The stop-loss order was executed on the wrong trading venue.'
+              ],
+              correctAnswer: 'B',
+              showThinkingSpinner: false,
+              isRevealed: false
+            }
+          },
+          {
+            id: 'b19',
+            hindi_tts: 'सोचिए: इस संकट को टालने के लिए किताब के किस समग्र सिद्धांत को अपनाना चाहिए था?',
+            en_narration: 'Consider: Which integrated holistic principle from the book would have prevented this disaster?',
+            subtitle: 'Which integrated holistic principle from the book would have prevented this disaster?',
+            en_subtitle: 'Which integrated holistic principle from the book would have prevented this disaster?',
+            pauseAfterMs: 3200,
+            ui_state: {
+              question: 'A trader initiated a leveraged long position following a clean 5-minute resistance breakout. However, the stock collapsed 8% within hours because the weekly primary trend was in a severe Dow distribution phase and 10-year Treasury yields were surging. What fundamental Murphy synthesis principle was violated?',
+              options: [
+                'A) Market makers illegally manipulated the exchange closing prices.',
+                'B) The trader analyzed an intraday chart in complete isolation, ignoring that higher-timeframe primary trends and intermarket macro flows always overrule minor intraday ripples.',
+                'C) Technical analysis cannot be applied to stocks when bond yields move.',
+                'D) The stop-loss order was executed on the wrong trading venue.'
+              ],
+              correctAnswer: 'B',
+              showThinkingSpinner: true,
+              isRevealed: false
+            }
+          },
+          {
+            id: 'b20',
+            hindi_tts: 'सही जवाब है बी: कभी भी किसी चार्ट को अकेले में न देखें; बड़े टाइमफ्रेम का प्राथमिक ट्रेंड और इंटरमार्केट बॉन्ड यील्ड्स छोटे टाइमफ्रेम पर हमेशा भारी पड़ते हैं।',
+            en_narration: 'Correct answer is B: Never analyze a chart in isolation; higher-timeframe primary trends and intermarket bond yields overrule minor ripples.',
+            subtitle: 'Correct is B: Higher-timeframe primary trends and intermarket flows always overrule minor ripples.',
+            en_subtitle: 'Correct is B: Higher-timeframe primary trends and intermarket flows always overrule minor ripples.',
+            pauseAfterMs: 450,
+            ui_state: {
+              question: 'A trader initiated a leveraged long position following a clean 5-minute resistance breakout. However, the stock collapsed 8% within hours because the weekly primary trend was in a severe Dow distribution phase and 10-year Treasury yields were surging. What fundamental Murphy synthesis principle was violated?',
+              options: [
+                'A) Market makers illegally manipulated the exchange closing prices.',
+                'B) The trader analyzed an intraday chart in complete isolation, ignoring that higher-timeframe primary trends and intermarket macro flows always overrule minor intraday ripples.',
+                'C) Technical analysis cannot be applied to stocks when bond yields move.',
+                'D) The stop-loss order was executed on the wrong trading venue.'
+              ],
+              answer: 'B',
+              correctAnswer: 'B',
+              showThinkingSpinner: false,
+              isRevealed: true,
+              explanation: 'The primary trend is an ocean tide. Trading minor 5-minute ripples against the weekly tide and against intermarket macroeconomic headwinds guarantees eventual wipeout.'
+            }
+          }
+        ]
+      },
+
+      // Scene 10: Desk Wisdom: Synthesizing All 19 Chapters (chat_story)
+      {
+        segmentIndex: 10,
+        title: 'Synthesizing Technical Analysis of the Financial Markets',
+        template: 'chat_story',
+        badge: 'Desk Wisdom · Holistic View',
+        beats: [
+          {
+            id: 'b21',
+            hindi_tts: isEn
+              ? `${noviceName} realizes: ${mentorName}, now the entire book connects into an unbroken chain—no chapter stands alone!`
+              : `राजू कहता है, शर्मा जी, अब जाकर पूरी किताब एक माला की तरह जुड़ गई—कोई भी चैप्टर अकेला नहीं है!`,
+            en_narration: `${noviceName} realizes: ${mentorName}, now the entire book connects into an unbroken chain—no chapter stands alone!`,
+            subtitle: `${mentorName}, now the entire book connects into an unbroken chain!`,
+            en_subtitle: `${mentorName}, now the entire book connects into an unbroken chain!`,
+            pauseAfterMs: 400,
+            ui_state: {
+              stageDirections: [`— ${noviceName} perceives the complete holistic architecture of the book —`],
+              messages: [
+                {
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, now I finally see the complete picture! No chapter stands alone—Dow Theory gives the macro trend, classical patterns pinpoint entry timing, indicators confirm momentum, candlesticks verify order flow, and intermarket analysis shields us from systemic shocks!`,
+                  theme: 'amber',
+                  align: 'left'
+                }
+              ]
+            }
+          },
+          {
+            id: 'b22',
+            hindi_tts: isEn
+              ? `${mentorName} affirms: Exactly! When you understand each tool's boundaries and unite them with strict money management, you achieve true market mastery.`
+              : `शर्मा जी कहते हैं, बिल्कुल सही! जब तुम हर टूल की सीमा समझकर उन्हें सख्त मनी मैनेजमेंट के साथ जोड़ोगे, तभी बाजार में अजेय बनोगे।`,
+            en_narration: `${mentorName} affirms: Exactly! When you understand each tool's boundaries and unite them with strict money management, you achieve true mastery.`,
+            subtitle: `When you understand each tool's boundaries and unite them with money management, you achieve mastery.`,
+            en_subtitle: `When you understand each tool's boundaries and unite them with money management, you achieve mastery.`,
+            pauseAfterMs: 450,
+            ui_state: {
+              stageDirections: [`— ${mentorName} blesses the student with the master chartist directive —`],
+              messages: [
+                {
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, now I finally see the complete picture! No chapter stands alone—Dow Theory gives the macro trend, classical patterns pinpoint entry timing, indicators confirm momentum, candlesticks verify order flow, and intermarket analysis shields us from systemic shocks!`,
+                  theme: 'amber',
+                  align: 'left'
+                },
+                {
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `Exactly! Respect the boundary of each tool: let Dow Theory set the primary direction, use classical patterns for entry, confirm with candlesticks and volume, enforce 1:3 risk-reward, and respect intermarket flows. Do this, and the market can never defeat you!`,
+                  theme: 'teal',
+                  align: 'right'
+                }
+              ]
+            }
+          }
+        ]
+      },
+
+      // Scene 11: The 8 Inviolable Laws of Technical Analysis (summary_thread)
+      {
+        segmentIndex: 11,
+        title: 'The 8 Inviolable Laws of Technical Analysis',
+        template: 'summary_thread',
+        badge: 'Synthesis · 8 Laws',
+        beats: [
+          {
+            id: 'b23',
+            hindi_tts: 'आइए, उन्नीस चैप्टर्स के सार को इन आठ अटल तकनीकी नियमों में हमेशा के लिए याद कर लें।',
+            en_narration: 'Let us summarize the core of all 19 chapters into these eight inviolable laws of technical analysis.',
+            subtitle: 'Summarize all 19 chapters into eight inviolable laws of technical analysis.',
+            en_subtitle: 'Summarize all 19 chapters into eight inviolable laws of technical analysis.',
+            pauseAfterMs: 400,
+            ui_state: {
+              heading: 'THE 8 LAWS OF TECHNICAL ANALYSIS',
+              activeStepRange: [0, 0],
+              steps: [
+                '1. Market action discounts everything: all fundamental news and crowd psychology are reflected in price.',
+                '2. Trade with the primary trend: the weekly ocean tide overrules all intraday ripples.',
+                '3. Demand volume confirmation: valid breakouts require expanding turnover; low volume is a trap.',
+                '4. Respect the principle of polarity: broken support becomes resistance, and resistance becomes support.',
+                '5. Match the tool to the regime: use moving averages in trends and oscillators in consolidations.',
+                '6. Confirm with candlesticks: require multi-bar Japanese price action at key support/resistance zones.',
+                '7. Enforce strict money management: risk strictly 1% to 2% per trade with minimum 1:3 reward-to-risk.',
+                '8. Consult intermarket macro flows: verify sector breadth and bond yield trends before trading.'
+              ]
+            }
+          },
+          {
+            id: 'b24',
+            hindi_tts: 'रूल्स 1 और 2: भाव सब कुछ पचा लेता है, और हमेशा बड़े साप्ताहिक प्राथमिक ट्रेंड की दिशा में ही ट्रेड करें।',
+            en_narration: 'Rules 1 and 2: Market action discounts everything, and always trade in the direction of the weekly primary trend.',
+            subtitle: 'Rules 1 & 2: Market action discounts all news; trade with the weekly primary trend.',
+            en_subtitle: 'Rules 1 & 2: Market action discounts all news; trade with the weekly primary trend.',
+            pauseAfterMs: 400,
+            ui_state: {
+              heading: 'THE 8 LAWS OF TECHNICAL ANALYSIS',
+              activeStepRange: [1, 2],
+              steps: [
+                '1. Market action discounts everything: all fundamental news and crowd psychology are reflected in price.',
+                '2. Trade with the primary trend: the weekly ocean tide overrules all intraday ripples.',
+                '3. Demand volume confirmation: valid breakouts require expanding turnover; low volume is a trap.',
+                '4. Respect the principle of polarity: broken support becomes resistance, and resistance becomes support.',
+                '5. Match the tool to the regime: use moving averages in trends and oscillators in consolidations.',
+                '6. Confirm with candlesticks: require multi-bar Japanese price action at key support/resistance zones.',
+                '7. Enforce strict money management: risk strictly 1% to 2% per trade with minimum 1:3 reward-to-risk.',
+                '8. Consult intermarket macro flows: verify sector breadth and bond yield trends before trading.'
+              ]
+            }
+          },
+          {
+            id: 'b25',
+            hindi_tts: 'रूल्स 3 और 4: वॉल्यूम से ब्रेकआउट की पुष्टि करें, और टूटे हुए सपोर्ट को भविष्य का रेजिस्टेंस मानें।',
+            en_narration: 'Rules 3 and 4: Require volume confirmation on breakouts, and treat broken support as future resistance.',
+            subtitle: 'Rules 3 & 4: Confirm breakouts with volume, and treat broken support as future resistance.',
+            en_subtitle: 'Rules 3 & 4: Confirm breakouts with volume, and treat broken support as future resistance.',
+            pauseAfterMs: 400,
+            ui_state: {
+              heading: 'THE 8 LAWS OF TECHNICAL ANALYSIS',
+              activeStepRange: [3, 4],
+              steps: [
+                '1. Market action discounts everything: all fundamental news and crowd psychology are reflected in price.',
+                '2. Trade with the primary trend: the weekly ocean tide overrules all intraday ripples.',
+                '3. Demand volume confirmation: valid breakouts require expanding turnover; low volume is a trap.',
+                '4. Respect the principle of polarity: broken support becomes resistance, and resistance becomes support.',
+                '5. Match the tool to the regime: use moving averages in trends and oscillators in consolidations.',
+                '6. Confirm with candlesticks: require multi-bar Japanese price action at key support/resistance zones.',
+                '7. Enforce strict money management: risk strictly 1% to 2% per trade with minimum 1:3 reward-to-risk.',
+                '8. Consult intermarket macro flows: verify sector breadth and bond yield trends before trading.'
+              ]
+            }
+          },
+          {
+            id: 'b26',
+            hindi_tts: 'रूल्स 5 और 6: ट्रेंड में मूविंग एवरेज और रेंज में ऑस्किलेटर इस्तेमाल करें, और कैंडलस्टिक से कन्फर्मेशन लें।',
+            en_narration: 'Rules 5 and 6: Use moving averages in trends and oscillators in ranges, and confirm with candlesticks.',
+            subtitle: 'Rules 5 & 6: Use averages in trends, oscillators in ranges, and confirm with candlesticks.',
+            en_subtitle: 'Rules 5 & 6: Use averages in trends, oscillators in ranges, and confirm with candlesticks.',
+            pauseAfterMs: 400,
+            ui_state: {
+              heading: 'THE 8 LAWS OF TECHNICAL ANALYSIS',
+              activeStepRange: [5, 6],
+              steps: [
+                '1. Market action discounts everything: all fundamental news and crowd psychology are reflected in price.',
+                '2. Trade with the primary trend: the weekly ocean tide overrules all intraday ripples.',
+                '3. Demand volume confirmation: valid breakouts require expanding turnover; low volume is a trap.',
+                '4. Respect the principle of polarity: broken support becomes resistance, and resistance becomes support.',
+                '5. Match the tool to the regime: use moving averages in trends and oscillators in consolidations.',
+                '6. Confirm with candlesticks: require multi-bar Japanese price action at key support/resistance zones.',
+                '7. Enforce strict money management: risk strictly 1% to 2% per trade with minimum 1:3 reward-to-risk.',
+                '8. Consult intermarket macro flows: verify sector breadth and bond yield trends before trading.'
+              ]
+            }
+          },
+          {
+            id: 'b27',
+            hindi_tts: 'रूल्स 7 और 8: कभी भी 1-2% से ज्यादा रिस्क न लें (1:3 रिवॉर्ड), और इंटरमार्केट बॉन्ड यील्ड्स पर नजर रखें।',
+            en_narration: 'Rules 7 and 8: Risk strictly 1% to 2% per trade with 1:3 R:R, and monitor intermarket bond yields.',
+            subtitle: 'Rules 7 & 8: Enforce 1:3 risk-reward, and monitor intermarket bond yields.',
+            en_subtitle: 'Rules 7 & 8: Enforce 1:3 risk-reward, and monitor intermarket bond yields.',
+            pauseAfterMs: 400,
+            ui_state: {
+              heading: 'THE 8 LAWS OF TECHNICAL ANALYSIS',
+              activeStepRange: [7, 8],
+              steps: [
+                '1. Market action discounts everything: all fundamental news and crowd psychology are reflected in price.',
+                '2. Trade with the primary trend: the weekly ocean tide overrules all intraday ripples.',
+                '3. Demand volume confirmation: valid breakouts require expanding turnover; low volume is a trap.',
+                '4. Respect the principle of polarity: broken support becomes resistance, and resistance becomes support.',
+                '5. Match the tool to the regime: use moving averages in trends and oscillators in consolidations.',
+                '6. Confirm with candlesticks: require multi-bar Japanese price action at key support/resistance zones.',
+                '7. Enforce strict money management: risk strictly 1% to 2% per trade with minimum 1:3 reward-to-risk.',
+                '8. Consult intermarket macro flows: verify sector breadth and bond yield trends before trading.'
+              ]
+            }
+          },
+          {
+            id: 'b28',
+            hindi_tts: 'ये आठ कानून जॉन मर्फी के पूरे ज्ञान को समेटकर आपको एक अपराजेय और अनुशासित मार्केट मास्टर बना देते हैं।',
+            en_narration: 'These eight laws unite John Murphy\'s entire masterwork, transforming you into a disciplined technical master.',
+            subtitle: 'These eight laws unite Murphy\'s masterwork, transforming you into a disciplined chartist.',
+            en_subtitle: 'These eight laws unite Murphy\'s masterwork, transforming you into a disciplined chartist.',
+            pauseAfterMs: 450,
+            ui_state: {
+              heading: 'THE 8 LAWS OF TECHNICAL ANALYSIS',
+              compactOverview: true,
+              activeStepRange: [0, 8],
+              steps: [
+                '1. Market action discounts everything: all fundamental news and crowd psychology are reflected in price.',
+                '2. Trade with the primary trend: the weekly ocean tide overrules all intraday ripples.',
+                '3. Demand volume confirmation: valid breakouts require expanding turnover; low volume is a trap.',
+                '4. Respect the principle of polarity: broken support becomes resistance, and resistance becomes support.',
+                '5. Match the tool to the regime: use moving averages in trends and oscillators in consolidations.',
+                '6. Confirm with candlesticks: require multi-bar Japanese price action at key support/resistance zones.',
+                '7. Enforce strict money management: risk strictly 1% to 2% per trade with minimum 1:3 reward-to-risk.',
+                '8. Consult intermarket macro flows: verify sector breadth and bond yield trends before trading.'
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  };
+}
