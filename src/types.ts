@@ -154,17 +154,28 @@ export interface SplitComparisonUI {
 export interface InteractiveQuizUI {
   badge?: string;
   question: string;
+  options?: string[];
+  correctAnswer?: string;
+  isRevealed?: boolean;
+  explanation?: string;
   showThinkingSpinner?: boolean;
   answer?: string | null;
 }
 
 // 7. Summary Thread UI Types
+export interface SummaryStepObject {
+  number?: number;
+  title?: string;
+  description?: string;
+  rule?: string;
+}
+
 export interface SummaryThreadUI {
   headerBadge?: string;
   heading: string;
   activeStepIndex?: number;
   activeStepRange?: [number, number];
-  steps: string[];
+  steps: (string | SummaryStepObject)[];
   bottomTakeaway?: string;
 }
 

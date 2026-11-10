@@ -1,8 +1,8 @@
 // src/templates/SummaryThread.tsx
 import React from 'react';
 import { useVideoConfig, spring } from 'remotion';
-import { Scene, Beat, SummaryThreadUI } from '../types';
-import { Sparkles, CheckCircle2 } from 'lucide-react';
+import { Scene, Beat, SummaryThreadUI, SummaryStepObject } from '../types';
+import { Sparkles } from 'lucide-react';
 import { getLatestCue } from '../utils/cueUtils';
 
 interface SummaryThreadProps {
@@ -12,6 +12,41 @@ interface SummaryThreadProps {
   beatFrame?: number;
   beatDuration?: number;
   allBeatsInScene?: Beat[];
+}
+
+interface ParsedStep {
+  stepNumber: number;
+  title: string;
+  description: string;
+  rule: string;
+  fullText: string;
+}
+
+function parseStep(rawStep: string | SummaryStepObject, index: number): ParsedStep {
+  const stepNumber = index + 1;
+  if (!rawStep) {
+    return { stepNumber, title: `Rule ${stepNumber}`, description: '', rule: '', fullText: '' };
+  }
+
+  if (typeof rawStep === 'object') {
+    const num = rawStep.number || stepNumber;
+    const title = rawStep.title || rawStep.rule || `Rule ${num}`;
+    const description = rawStep.description || '';
+    const rule = rawStep.rule || '';
+    const fullText = title && description ? `${title}: ${description}` : (title || description || rule);
+    return { stepNumber: num, title, description, rule, fullText };
+  }
+
+  // String case: "1. Title: Description" or "1. Rule text"
+  const cleanStr = String(rawStep).replace(/^\d+[\.\)]\s*/, '').trim();
+  const colonSplit = cleanStr.split(/:\s*|—\s*|-\s*/);
+  if (colonSplit.length > 1) {
+    const title = colonSplit[0].trim();
+    const description = colonSplit.slice(1).join(' - ').trim();
+    return { stepNumber, title, description, rule: '', fullText: cleanStr };
+  }
+
+  return { stepNumber, title: cleanStr, description: '', rule: '', fullText: cleanStr };
 }
 
 export const SummaryThread: React.FC<SummaryThreadProps> = ({
@@ -29,8 +64,9 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
   };
 
   const headerBadge = uiState.headerBadge || 'CHAPTER SUMMARY · THE WHOLE PICTURE';
-  const steps = uiState.steps || [];
-  const totalStepsCount = steps.length || 8;
+  const rawSteps = uiState.steps || [];
+  const parsedSteps: ParsedStep[] = rawSteps.map((s, idx) => parseStep(s, idx));
+  const totalStepsCount = parsedSteps.length || 8;
   const totalBeats = allBeatsInScene.length;
 
   const isFinalBeat = totalBeats > 1 && beatIndexInScene === totalBeats - 1;
@@ -94,12 +130,9 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
   });
 
   // Calculate current active items for progressive mode
-  const activeItems = steps
-    .map((text, idx) => ({
-      stepNumber: idx + 1,
-      text: String(text).replace(/^\d+\.\s*/, ''),
-    }))
-    .filter((item) => item.stepNumber >= startStep && item.stepNumber <= endStep);
+  const activeItems = parsedSteps.filter(
+    (item) => item.stepNumber >= startStep && item.stepNumber <= endStep
+  );
 
   return (
     <div className="w-full h-full flex flex-col justify-between relative z-10 max-w-5xl mx-auto px-8 py-5">
@@ -166,12 +199,24 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
                       {item.stepNumber}
                     </div>
                     <div className="flex-1 min-w-0 pt-0.5">
-                      <span className="text-xs font-mono font-bold text-[#B45309] uppercase tracking-wider block mb-1">
-                        Core Rule {item.stepNumber}
-                      </span>
-                      <p className="text-xl font-bold text-[#1E293B] leading-relaxed">
-                        {item.text}
-                      </p>
+                      <div className="flex items-center space-x-2 mb-1">
+                        <span className="text-xs font-mono font-bold text-[#B45309] uppercase tracking-wider">
+                          Core Rule {item.stepNumber}
+                        </span>
+                        {item.rule && (
+                          <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#FEF3C7] text-[#92400E] font-bold">
+                            {item.rule}
+                          </span>
+                        )}
+                      </div>
+                      <h4 className="text-xl font-bold text-[#1E293B] leading-snug">
+                        {item.title}
+                      </h4>
+                      {item.description ? (
+                        <p className="text-sm font-medium text-[#475569] mt-1.5 leading-relaxed">
+                          {item.description}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                 );
@@ -190,9 +235,7 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
           }}
           className="flex-1 grid grid-cols-2 gap-3 my-auto w-full content-center"
         >
-          {steps.map((stepText, idx) => {
-            const stepNumber = idx + 1;
-            const cleanText = String(stepText).replace(/^\d+\.\s*/, '');
+          {parsedSteps.map((stepItem, idx) => {
             const itemSpring = spring({
               frame: beatFrame - idx * 2,
               fps,
@@ -209,11 +252,18 @@ export const SummaryThread: React.FC<SummaryThreadProps> = ({
                 className="flex items-start space-x-3 p-3 rounded-xl bg-white border border-[#E2E8F0] shadow-2xs"
               >
                 <div className="w-5 h-5 rounded-md bg-[#FEF3C7] text-[#B45309] flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5">
-                  {stepNumber}
+                  {stepItem.stepNumber}
                 </div>
-                <p className="text-xs font-medium text-[#334155] leading-snug line-clamp-2">
-                  {cleanText}
-                </p>
+                <div className="flex-1 min-w-0">
+                  <span className="text-xs font-bold text-[#1E293B] block leading-tight">
+                    {stepItem.title}
+                  </span>
+                  {stepItem.description ? (
+                    <span className="text-[11px] font-medium text-[#64748B] block mt-0.5 leading-snug line-clamp-1">
+                      {stepItem.description}
+                    </span>
+                  ) : null}
+                </div>
               </div>
             );
           })}

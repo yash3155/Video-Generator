@@ -375,12 +375,13 @@ async function synthesizeEdge(beat, maxRetries = 8, targetHash = null, isHashMat
           try { fs.unlinkSync(filePath); } catch { }
         }
         if (attempt >= maxRetries) throw err;
-        const waitMs = Math.min(30000, attempt * 5000);
-        console.warn(`  [Edge-TTS Rate Limit 429] Waiting ${waitMs}ms before retry ${attempt}/${maxRetries} for beat "${beat.id}"...`);
+        const is429 = String(err?.message || '').includes('429');
+        const waitMs = is429 ? Math.min(60000, attempt * 10000) : Math.min(30000, attempt * 5000);
+        console.warn(`  [Edge-TTS ${is429 ? 'Rate Limit 429' : 'Error'}] Waiting ${waitMs}ms before retry ${attempt}/${maxRetries} for beat "${beat.id}"...`);
         await sleep(waitMs);
       }
     }
-    await sleep(800);
+    await sleep(1000);
   } else {
     console.log(`  -> [Edge-TTS] Using authoritative cached "${fileName}" (hash: ${targetHash})`);
   }
@@ -527,10 +528,10 @@ async function run() {
           console.warn(`[WARN] Gemini TTS failed for beat ${beat.id}: ${err.message}`);
           console.warn(`[FALLBACK] Switching to Edge-TTS for beat ${beat.id} and remaining beats.`);
           fallbackToEdge = true;
-          audioResult = await synthesizeEdge(beat, 4, currentHash, isHashMatch);
+          audioResult = await synthesizeEdge(beat, 8, currentHash, isHashMatch);
         }
       } else {
-        audioResult = await synthesizeEdge(beat, 4, currentHash, isHashMatch);
+        audioResult = await synthesizeEdge(beat, 8, currentHash, isHashMatch);
       }
 
       beat.narrationHash = currentHash;
