@@ -46,6 +46,18 @@ The engine converts authoritative book sources into animated, narration-synchron
      * **Beginner's Orientation Video (`orientation`)**: A dedicated ~5-minute intro video watched *before* Chapter 1 to dismantle intimidation, bust the casino myth, reveal the 4 superpowers of the book, and outline the reader journey with 100% tailored cards.
      * **Whole-Book Dialectical Synthesis (`synthesis`)**: A comprehensive capstone showing why each chapter exists as a dialectical chain of inventions solving the fatal real-world failure of the prior tool, with 100% bespoke evolutionary cards, formulas, and rules.
 
+8. **Interactive Quiz & Summary Thread Presentation Invariants**:
+   - **Scene 9 (`interactive_quiz`) Full Options Invariant**:
+     * Every interactive quiz scene MUST have exactly 3 beats:
+       * `b01` (Question Posing): Question card + 4 multiple-choice options (`A`, `B`, `C`, `D`) displayed in a clean 2x2 interactive grid.
+       * `b02` (Thinking Pause): Options remain visible while the animated *"PAUSE AND CONSIDER"* thinking spinner runs.
+       * `b03` (Answer Reveal): The correct option card is highlighted in vivid emerald green with a checkmark badge (`CheckCircle2`), non-selected options dim to 45% opacity, and a detailed explanatory banner displays below.
+     * `ui_state.options` MUST contain exactly 4 distinct options with letter prefixes (`A`, `B`, `C`, `D`). Missing options, blank cards, or skipping option rendering in the React template is an immediate `BLOCKER` quality violation.
+   - **Scene 11 (`summary_thread`) Zero-Object-Serialization Invariant**:
+     * Summary steps MUST NEVER produce `[object Object]` on screen.
+     * Both structured step objects (`{ number, title, description, rule }`) and delimited strings (`"1. Title: Description"`) must be supported polymorphically and unpacked into rich visual cards (rule badge, bold title, descriptive rationale).
+     * Any presence of literal `"[object Object]"` in AST, JSON, UI states, or rendered output is an immediate `BLOCKER` failure in `validate_episode.mjs` and `run_qa.mjs`.
+
 ---
 
 ## 2. Stable Course & Chapter Workspaces and Artifact Ownership
@@ -231,7 +243,7 @@ npx remotion render src/index.ts EpisodeComposition out/chapters/<course_id>/<ch
 
 ### 6.2 Release Gate Protocol (`scripts/run_qa.mjs`)
 Release requires passing the Phase 2C Release Gate:
-- **`BLOCKER`**: Prohibits release. (Missing audio, corrupt container, schema violation, placeholder formula, duration drift $>10\text{s}$, content audit fail).
+- **`BLOCKER`**: Prohibits release. (Missing audio, corrupt container, schema violation, placeholder formula, duration drift $>10\text{s}$, content audit fail, literal `[object Object]` detected anywhere in payload, missing 4 multiple-choice options in `interactive_quiz`).
 - **`HIGH`**: Prohibits release unless `--allow-high` is explicitly granted. (Duration drift $>1.0\text{s}$, unlabelled hypothetical scenario, quiz $<18$ words, cue timing mismatch).
 - **`MEDIUM`**: Telemetry review; non-blocking. (Subtitle $>16$ words, summary step $>30$ words, minor drift $0.5\text{s}–1.0\text{s}$).
 

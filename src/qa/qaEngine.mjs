@@ -57,6 +57,22 @@ export async function runQaEngine(options) {
   let compiledEpisode = null;
 
   // -----------------------------------------------------------------
+  // 0. Zero Serialization Leak Invariant: Detect '[object Object]'
+  // -----------------------------------------------------------------
+  const rawEpisodeString = JSON.stringify(rawEpisode || {});
+  if (rawEpisodeString.includes('[object Object]') || rawEpisodeString.includes('[object object]')) {
+    findings.push({
+      id: 'qa_object_serialization_leak',
+      category: 'schema_validity',
+      severity: 'BLOCKER',
+      message: "Fatal serialization leak: detected literal '[object Object]' in episode payload.",
+      target: 'episode_raw.json',
+      cause: "A React/JSON property was stringified without unpacking its fields, resulting in '[object Object]'.",
+      suggestedRepair: "Check UI state steps/cards/messages and format objects as title/description or unpack their properties.",
+    });
+  }
+
+  // -----------------------------------------------------------------
   // 1. Source-Fact Coverage & Lesson Architecture
   // -----------------------------------------------------------------
   const isChapterDir = resolvedDir.includes('chapters');
@@ -385,6 +401,22 @@ export async function runQaEngine(options) {
             target: 'ui_state.question',
             cause: 'Scenario description is too brief to provide context.',
             suggestedRepair: 'Expand question into a complete real-world scenario (18+ words).',
+          });
+        }
+
+        // Validate multiple-choice options invariant
+        const opts = beat.ui_state?.options;
+        if (opts !== undefined && (!Array.isArray(opts) || opts.length !== 4)) {
+          findings.push({
+            id: `qa_quiz_options_count_${beat.id}`,
+            category: 'visual_layout',
+            severity: 'BLOCKER',
+            message: `Quiz beat ${beat.id} has ${Array.isArray(opts) ? opts.length : 0} options (must be exactly 4 choices: A, B, C, D).`,
+            sceneIndex: sIdx,
+            beatId: beat.id,
+            target: 'ui_state.options',
+            cause: 'Incomplete or malformed multiple-choice options array.',
+            suggestedRepair: 'Provide exactly 4 distinct multiple choice options in ui_state.options.',
           });
         }
       }

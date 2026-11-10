@@ -370,6 +370,12 @@ export function validateEpisodeData(episode) {
       }
     });
 
+    // Anti-serialization leak check: detect literal '[object Object]'
+    const rawSceneString = JSON.stringify(scene || {});
+    if (rawSceneString.includes('[object Object]') || rawSceneString.includes('[object object]')) {
+      errors.push(`${sPrefix}: Detected fatal serialization leak '[object Object]' in scene payload.`);
+    }
+
     if (scene.template === 'interactive_quiz') {
       if (beats.length !== 3) {
         errors.push(`${sPrefix}: interactive_quiz MUST have exactly 3 beats. Found ${beats.length}.`);
@@ -383,6 +389,12 @@ export function validateEpisodeData(episode) {
         if (!beats[2].ui_state?.answer) {
           errors.push(`${sPrefix} Beat 2: answer must be a non-empty string.`);
         }
+        beats.forEach((b, bIdx) => {
+          const opts = b.ui_state?.options;
+          if (opts !== undefined && (!Array.isArray(opts) || opts.length !== 4)) {
+            errors.push(`${sPrefix} Beat ${bIdx} (${b.id}): options must be an array of exactly 4 choices (A, B, C, D). Found ${Array.isArray(opts) ? opts.length : 'non-array'}.`);
+          }
+        });
       }
     }
 
