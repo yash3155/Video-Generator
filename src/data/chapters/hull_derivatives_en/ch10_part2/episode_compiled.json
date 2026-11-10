@@ -199,9 +199,9 @@
     },
     {
       "segmentIndex": 1,
-      "title": "Conflicting Market Interests",
+      "title": "Fiduciary Call Replication vs Synthetic Put-Call Parity",
       "template": "tug_of_war",
-      "badge": "Structural Conflict · Hedger vs Speculator",
+      "badge": "Arbitrage Tension · Mispricing vs Parity",
       "beats": [
         {
           "id": "b03",
@@ -210,15 +210,16 @@
           "en_narration": "One side hedges falling prices while the counterparty hedges rising costs.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "leftLabel": "Farmer / Producer (Downside Protection)",
-            "rightLabel": "Processor / Miller (Upside Ceiling)",
-            "currentTension": 50
+            "leftLabel": "Fiduciary Call (Call + Zero-Coupon Bond)",
+            "rightLabel": "Protective Put (Stock + Put Option)",
+            "currentTension": 50,
+            "centerTitle": "The No-Arbitrage Law"
           },
           "visual": {
             "kind": "comparison",
             "data": {
-              "leftLabel": "Downside Protection",
-              "rightLabel": "Upside Ceiling",
+              "leftLabel": "Fiduciary Call (Call + Zero-Coupon Bond)",
+              "rightLabel": "Protective Put (Stock + Put Option)",
               "tension": 50
             },
             "semantics": {
@@ -249,9 +250,9 @@
     },
     {
       "segmentIndex": 2,
-      "title": "The Core Architecture Roadmap",
+      "title": "The 4 Pillars of Put-Call Parity",
       "template": "progressive_cards",
-      "badge": "Roadmap · 4 Structural Pillars",
+      "badge": "Roadmap · 4 Parity Pillars",
       "beats": [
         {
           "id": "b04",
@@ -263,20 +264,28 @@
             "activeCardIndex": 0,
             "cards": [
               {
-                "title": "Market Architecture",
-                "desc": "Exchange vs Over-The-Counter mechanisms"
+                "title": "The Parity Invariant",
+                "desc": "European options must satisfy c + K*e^(-rT) = p + S0 to prevent riskless cash arbitrage.",
+                "badge": "Equilibrium Law",
+                "state": "active_amber"
               },
               {
-                "title": "Payoff Math",
-                "desc": "Terminal gross payoff versus net profit"
+                "title": "Fiduciary Call Strategy",
+                "desc": "Long call combined with cash bond K*e^(-rT) replicates identical terminal cashflow as stock.",
+                "badge": "Synthetic Asset",
+                "state": "muted"
               },
               {
-                "title": "Liquidity & Margining",
-                "desc": "Daily settlement and capital buffers"
+                "title": "Conversion Arbitrage",
+                "desc": "When call side is overpriced, sell call, buy put, buy stock, and lock in risk-free profit.",
+                "badge": "Cash & Carry",
+                "state": "muted"
               },
               {
-                "title": "Systemic Risk",
-                "desc": "Counterparty exposure and clearinghouse reforms"
+                "title": "Reverse Conversion",
+                "desc": "When put side is overpriced, buy call, sell put, short stock, and bank riskless interest.",
+                "badge": "Reverse Arbitrage",
+                "state": "muted"
               }
             ]
           },
@@ -286,20 +295,28 @@
               "activeCardIndex": 0,
               "cards": [
                 {
-                  "title": "Market Architecture",
-                  "desc": "Exchange vs OTC mechanisms"
+                  "title": "The Parity Invariant",
+                  "desc": "European options must satisfy c + K*e^(-rT) = p + S0 to prevent riskless cash arbitrage.",
+                  "badge": "Equilibrium Law",
+                  "state": "active_amber"
                 },
                 {
-                  "title": "Payoff Math",
-                  "desc": "Gross payoff versus net profit"
+                  "title": "Fiduciary Call Strategy",
+                  "desc": "Long call combined with cash bond K*e^(-rT) replicates identical terminal cashflow as stock.",
+                  "badge": "Synthetic Asset",
+                  "state": "muted"
                 },
                 {
-                  "title": "Liquidity & Margining",
-                  "desc": "Daily settlement buffers"
+                  "title": "Conversion Arbitrage",
+                  "desc": "When call side is overpriced, sell call, buy put, buy stock, and lock in risk-free profit.",
+                  "badge": "Cash & Carry",
+                  "state": "muted"
                 },
                 {
-                  "title": "Systemic Risk",
-                  "desc": "Counterparty default mitigation"
+                  "title": "Reverse Conversion",
+                  "desc": "When put side is overpriced, buy call, sell put, short stock, and bank riskless interest.",
+                  "badge": "Reverse Arbitrage",
+                  "state": "muted"
                 }
               ]
             },

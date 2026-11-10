@@ -194,9 +194,9 @@
     },
     {
       "segmentIndex": 1,
-      "title": "Conflicting Market Interests",
+      "title": "Stock Received Value vs Discounted Cash Strike Paid",
       "template": "tug_of_war",
-      "badge": "Structural Conflict · Hedger vs Speculator",
+      "badge": "Formula Equilibrium · Stock vs Strike",
       "beats": [
         {
           "id": "b03",
@@ -205,15 +205,16 @@
           "en_narration": "One side hedges falling prices while the counterparty hedges rising costs.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "leftLabel": "Farmer / Producer (Downside Protection)",
-            "rightLabel": "Processor / Miller (Upside Ceiling)",
-            "currentTension": 50
+            "leftLabel": "Expected Share Value Received: S0 * N(d1)",
+            "rightLabel": "Discounted Strike Paid: K * e^(-rT) * N(d2)",
+            "currentTension": 50,
+            "centerTitle": "The BSM Analytical Balance"
           },
           "visual": {
             "kind": "comparison",
             "data": {
-              "leftLabel": "Downside Protection",
-              "rightLabel": "Upside Ceiling",
+              "leftLabel": "Expected Share Value Received: S0 * N(d1)",
+              "rightLabel": "Discounted Strike Paid: K * e^(-rT) * N(d2)",
               "tension": 50
             },
             "semantics": {
@@ -244,9 +245,9 @@
     },
     {
       "segmentIndex": 2,
-      "title": "The Core Architecture Roadmap",
+      "title": "The 4 Core Foundations of the BSM Model",
       "template": "progressive_cards",
-      "badge": "Roadmap · 4 Structural Pillars",
+      "badge": "Roadmap · 4 BSM Pillars",
       "beats": [
         {
           "id": "b04",
@@ -258,20 +259,28 @@
             "activeCardIndex": 0,
             "cards": [
               {
-                "title": "Market Architecture",
-                "desc": "Exchange vs Over-The-Counter mechanisms"
+                "title": "European Call Closed-Form",
+                "desc": "Call price c = S0 * N(d1) - K * e^(-rT) * N(d2), balancing expected share against strike.",
+                "badge": "Analytical Equation",
+                "state": "active_amber"
               },
               {
-                "title": "Payoff Math",
-                "desc": "Terminal gross payoff versus net profit"
+                "title": "Standardized Parameters d1 & d2",
+                "desc": "Dimensionless variables scaling moneyness against volatility: d2 = d1 - sigma*sqrt(T).",
+                "badge": "Moneyness Scale",
+                "state": "muted"
               },
               {
-                "title": "Liquidity & Margining",
-                "desc": "Daily settlement and capital buffers"
+                "title": "Probabilistic Meaning of N(d2)",
+                "desc": "N(d2) represents the exact risk-neutral probability that the option expires in-the-money.",
+                "badge": "Risk-Neutral Prob",
+                "state": "muted"
               },
               {
-                "title": "Systemic Risk",
-                "desc": "Counterparty exposure and clearinghouse reforms"
+                "title": "Delta Replication Weight N(d1)",
+                "desc": "N(d1) is the continuous delta hedging weight required to maintain local risk neutrality.",
+                "badge": "Dynamic Weight",
+                "state": "muted"
               }
             ]
           },
@@ -281,20 +290,28 @@
               "activeCardIndex": 0,
               "cards": [
                 {
-                  "title": "Market Architecture",
-                  "desc": "Exchange vs OTC mechanisms"
+                  "title": "European Call Closed-Form",
+                  "desc": "Call price c = S0 * N(d1) - K * e^(-rT) * N(d2), balancing expected share against strike.",
+                  "badge": "Analytical Equation",
+                  "state": "active_amber"
                 },
                 {
-                  "title": "Payoff Math",
-                  "desc": "Gross payoff versus net profit"
+                  "title": "Standardized Parameters d1 & d2",
+                  "desc": "Dimensionless variables scaling moneyness against volatility: d2 = d1 - sigma*sqrt(T).",
+                  "badge": "Moneyness Scale",
+                  "state": "muted"
                 },
                 {
-                  "title": "Liquidity & Margining",
-                  "desc": "Daily settlement buffers"
+                  "title": "Probabilistic Meaning of N(d2)",
+                  "desc": "N(d2) represents the exact risk-neutral probability that the option expires in-the-money.",
+                  "badge": "Risk-Neutral Prob",
+                  "state": "muted"
                 },
                 {
-                  "title": "Systemic Risk",
-                  "desc": "Counterparty default mitigation"
+                  "title": "Delta Replication Weight N(d1)",
+                  "desc": "N(d1) is the continuous delta hedging weight required to maintain local risk neutrality.",
+                  "badge": "Dynamic Weight",
+                  "state": "muted"
                 }
               ]
             },

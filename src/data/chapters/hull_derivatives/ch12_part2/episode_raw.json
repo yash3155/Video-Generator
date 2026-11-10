@@ -146,9 +146,9 @@
     },
     {
       "segmentIndex": 1,
-      "title": "Conflicting Market Interests",
+      "title": "Node Expansion vs Dynamic Delta Rebalancing",
       "template": "tug_of_war",
-      "badge": "Structural Conflict · Hedger vs Speculator",
+      "badge": "Tree Dynamics · Lattice vs Hedge",
       "beats": [
         {
           "id": "b03",
@@ -157,15 +157,16 @@
           "en_narration": "One side hedges falling prices while the counterparty hedges rising costs.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "leftLabel": "Farmer / Producer (Downside Protection)",
-            "rightLabel": "Processor / Miller (Upside Ceiling)",
-            "currentTension": 50
+            "leftLabel": "Two-Step Price Dispersion (Lattice)",
+            "rightLabel": "Continuous Delta Neutrality (Rebalance)",
+            "currentTension": 50,
+            "centerTitle": "The Binomial Hedging Tension"
           },
           "visual": {
             "kind": "comparison",
             "data": {
-              "leftLabel": "Downside Protection",
-              "rightLabel": "Upside Ceiling",
+              "leftLabel": "Two-Step Price Dispersion (Lattice)",
+              "rightLabel": "Continuous Delta Neutrality (Rebalance)",
               "tension": 50
             },
             "semantics": {
@@ -180,9 +181,9 @@
     },
     {
       "segmentIndex": 2,
-      "title": "The Core Architecture Roadmap",
+      "title": "The 4 Pillars of Multi-Step Binomial Valuation",
       "template": "progressive_cards",
-      "badge": "Roadmap · 4 Structural Pillars",
+      "badge": "Roadmap · 4 Tree Pillars",
       "beats": [
         {
           "id": "b04",
@@ -194,20 +195,28 @@
             "activeCardIndex": 0,
             "cards": [
               {
-                "title": "Market Architecture",
-                "desc": "Exchange vs Over-The-Counter mechanisms"
+                "title": "Multi-Period Tree Lattice",
+                "desc": "Models price paths across two discrete steps of length dt with upward (u) and downward (d) moves.",
+                "badge": "Discrete Geometry",
+                "state": "active_amber"
               },
               {
-                "title": "Payoff Math",
-                "desc": "Terminal gross payoff versus net profit"
+                "title": "Backward Induction Valuation",
+                "desc": "Recursively discounts node values: f = e^(-r*dt) * [p*f_u + (1-p)*f_d] back to t=0.",
+                "badge": "Recursive Pricing",
+                "state": "muted"
               },
               {
-                "title": "Liquidity & Margining",
-                "desc": "Daily settlement and capital buffers"
+                "title": "Node-by-Node Delta Hedging",
+                "desc": "Dynamic hedge ratio Delta = (f_u - f_d) / (S0*u - S0*d) rebalances across each tree node.",
+                "badge": "Delta Calibration",
+                "state": "muted"
               },
               {
-                "title": "Systemic Risk",
-                "desc": "Counterparty exposure and clearinghouse reforms"
+                "title": "American Early Exercise Check",
+                "desc": "At intermediate nodes, checks whether immediate exercise intrinsic value exceeds continuation value.",
+                "badge": "Early Exercise",
+                "state": "muted"
               }
             ]
           },
@@ -217,20 +226,28 @@
               "activeCardIndex": 0,
               "cards": [
                 {
-                  "title": "Market Architecture",
-                  "desc": "Exchange vs OTC mechanisms"
+                  "title": "Multi-Period Tree Lattice",
+                  "desc": "Models price paths across two discrete steps of length dt with upward (u) and downward (d) moves.",
+                  "badge": "Discrete Geometry",
+                  "state": "active_amber"
                 },
                 {
-                  "title": "Payoff Math",
-                  "desc": "Gross payoff versus net profit"
+                  "title": "Backward Induction Valuation",
+                  "desc": "Recursively discounts node values: f = e^(-r*dt) * [p*f_u + (1-p)*f_d] back to t=0.",
+                  "badge": "Recursive Pricing",
+                  "state": "muted"
                 },
                 {
-                  "title": "Liquidity & Margining",
-                  "desc": "Daily settlement buffers"
+                  "title": "Node-by-Node Delta Hedging",
+                  "desc": "Dynamic hedge ratio Delta = (f_u - f_d) / (S0*u - S0*d) rebalances across each tree node.",
+                  "badge": "Delta Calibration",
+                  "state": "muted"
                 },
                 {
-                  "title": "Systemic Risk",
-                  "desc": "Counterparty default mitigation"
+                  "title": "American Early Exercise Check",
+                  "desc": "At intermediate nodes, checks whether immediate exercise intrinsic value exceeds continuation value.",
+                  "badge": "Early Exercise",
+                  "state": "muted"
                 }
               ]
             },

@@ -196,9 +196,9 @@
     },
     {
       "segmentIndex": 1,
-      "title": "Conflicting Market Interests",
+      "title": "Normal Short-Term Returns vs Lognormal Price Distribution",
       "template": "tug_of_war",
-      "badge": "Structural Conflict · Hedger vs Speculator",
+      "badge": "Statistical Tension · Normal vs Lognormal",
       "beats": [
         {
           "id": "b03",
@@ -207,15 +207,16 @@
           "en_narration": "One side hedges falling prices while the counterparty hedges rising costs.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "leftLabel": "Farmer / Producer (Downside Protection)",
-            "rightLabel": "Processor / Miller (Upside Ceiling)",
-            "currentTension": 50
+            "leftLabel": "Normal Compounded Return (Arithmetic)",
+            "rightLabel": "Lognormal Terminal Price (Geometric)",
+            "currentTension": 50,
+            "centerTitle": "The Distributional Reality"
           },
           "visual": {
             "kind": "comparison",
             "data": {
-              "leftLabel": "Downside Protection",
-              "rightLabel": "Upside Ceiling",
+              "leftLabel": "Normal Compounded Return (Arithmetic)",
+              "rightLabel": "Lognormal Terminal Price (Geometric)",
               "tension": 50
             },
             "semantics": {
@@ -246,9 +247,9 @@
     },
     {
       "segmentIndex": 2,
-      "title": "The Core Architecture Roadmap",
+      "title": "The 4 Pillars of Lognormal Price Dynamics",
       "template": "progressive_cards",
-      "badge": "Roadmap · 4 Structural Pillars",
+      "badge": "Roadmap · 4 Statistical Pillars",
       "beats": [
         {
           "id": "b04",
@@ -260,20 +261,28 @@
             "activeCardIndex": 0,
             "cards": [
               {
-                "title": "Market Architecture",
-                "desc": "Exchange vs Over-The-Counter mechanisms"
+                "title": "Lognormal Distribution Law",
+                "desc": "While stock returns over dt are normal, terminal price S_T is strictly lognormally distributed.",
+                "badge": "Lognormal Bound",
+                "state": "active_amber"
               },
               {
-                "title": "Payoff Math",
-                "desc": "Terminal gross payoff versus net profit"
+                "title": "Continuous Return Formula",
+                "desc": "Log returns follow ln(S_T/S0) ~ N((mu - sigma^2/2)*T, sigma^2*T), accounting for volatility drag.",
+                "badge": "Volatility Drag",
+                "state": "muted"
               },
               {
-                "title": "Liquidity & Margining",
-                "desc": "Daily settlement and capital buffers"
+                "title": "Expected Value Equilibrium",
+                "desc": "Future expected stock price is E[S_T] = S0 * e^(mu*T), with variance expanding with maturity.",
+                "badge": "Expectation Drift",
+                "state": "muted"
               },
               {
-                "title": "Systemic Risk",
-                "desc": "Counterparty exposure and clearinghouse reforms"
+                "title": "Geometric vs Arithmetic Trap",
+                "desc": "Arithmetic average returns mislead investors; true compounding follows geometric drift.",
+                "badge": "Compounding Truth",
+                "state": "muted"
               }
             ]
           },
@@ -283,20 +292,28 @@
               "activeCardIndex": 0,
               "cards": [
                 {
-                  "title": "Market Architecture",
-                  "desc": "Exchange vs OTC mechanisms"
+                  "title": "Lognormal Distribution Law",
+                  "desc": "While stock returns over dt are normal, terminal price S_T is strictly lognormally distributed.",
+                  "badge": "Lognormal Bound",
+                  "state": "active_amber"
                 },
                 {
-                  "title": "Payoff Math",
-                  "desc": "Gross payoff versus net profit"
+                  "title": "Continuous Return Formula",
+                  "desc": "Log returns follow ln(S_T/S0) ~ N((mu - sigma^2/2)*T, sigma^2*T), accounting for volatility drag.",
+                  "badge": "Volatility Drag",
+                  "state": "muted"
                 },
                 {
-                  "title": "Liquidity & Margining",
-                  "desc": "Daily settlement buffers"
+                  "title": "Expected Value Equilibrium",
+                  "desc": "Future expected stock price is E[S_T] = S0 * e^(mu*T), with variance expanding with maturity.",
+                  "badge": "Expectation Drift",
+                  "state": "muted"
                 },
                 {
-                  "title": "Systemic Risk",
-                  "desc": "Counterparty default mitigation"
+                  "title": "Geometric vs Arithmetic Trap",
+                  "desc": "Arithmetic average returns mislead investors; true compounding follows geometric drift.",
+                  "badge": "Compounding Truth",
+                  "state": "muted"
                 }
               ]
             },

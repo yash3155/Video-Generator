@@ -506,6 +506,12 @@ export async function runBookSynthesis(options = {}) {
  */
 export function buildBespokeSynthesisEpisode({ courseId, courseConfig, blueprintData, sourceFacts }) {
   const isHull = /hull|futures|options/i.test(courseId);
+  const isEn = courseId.includes('_en') || courseConfig.narrationLanguage?.startsWith('en');
+  const noviceName = isEn ? (courseConfig.persona?.novice?.name || 'Alex') : 'Raju';
+  const noviceAvatar = isEn ? (courseConfig.persona?.novice?.avatar || 'A') : 'R';
+  const mentorName = isEn ? (courseConfig.persona?.mentor?.name || 'Marcus') : 'Sharma ji';
+  const mentorAvatar = isEn ? (courseConfig.persona?.mentor?.avatar || 'M') : 'S';
+
   const primaryColor = courseConfig.visualTheme?.primaryColor || '#0F766E';
   const accentColor = courseConfig.visualTheme?.accentColor || '#F59E0B';
   const cChain = blueprintData.causalEvolutionChain || [];
@@ -527,30 +533,32 @@ export function buildBespokeSynthesisEpisode({ courseId, courseConfig, blueprint
       domain: isHull ? 'finance' : 'technical_analysis',
       primaryColor,
       accentColor,
-      narrationLanguage: 'hi-IN-devanagari'
+      narrationLanguage: isEn ? 'en-US' : 'hi-IN-devanagari'
     },
     scenes: [
       // Scene 0: Origin Dilemma (chat_story)
       {
         segmentIndex: 0,
-        title: 'The Origin Crisis & Why Concepts Evolve',
+        title: 'The Isolated Tool Trap & The Dialectical Chain',
         template: 'chat_story',
-        badge: `Historical Dilemma · ${courseConfig.bookTitle.slice(0, 20)}`,
+        badge: `Holistic Dilemma · ${courseConfig.bookTitle.slice(0, 20)}`,
         beats: [
           {
             id: 'b01',
-            hindi_tts: `राजू पूछता है, शर्मा जी, हमने किताब के सारे चैप्टर्स पढ़े, लेकिन बाजार में असली रिस्क संभालते वक्त ये सब आपस में जुड़ते कैसे हैं?`,
-            en_narration: `Raju asks: Sharma ji, we studied all the chapters, but how do they connect into one real-world framework?`,
-            subtitle: `Raju asks: Sharma ji, how do all chapters connect into one coherent system?`,
-            en_subtitle: `Raju asks: Sharma ji, how do all chapters connect into one coherent system?`,
+            hindi_tts: isEn
+              ? `${noviceName} asks: ${mentorName}, we studied all the chapters separately, but in live market trading, how does this entire book connect into one unified hedge?`
+              : `राजू पूछता है, शर्मा जी, हमने किताब के सारे चैप्टर्स पढ़े, लेकिन बाजार में असली रिस्क संभालते वक्त ये सब आपस में जुड़ते कैसे हैं?`,
+            en_narration: `${noviceName} asks: ${mentorName}, we studied all the chapters separately, but in live market trading, how does this entire book connect into one unified hedge?`,
+            subtitle: `${noviceName} asks: ${mentorName}, how do all chapters connect into one coherent system?`,
+            en_subtitle: `${noviceName} asks: ${mentorName}, how do all chapters connect into one coherent system?`,
             pauseAfterMs: 400,
             ui_state: {
-              stageDirections: ['— Raju questions how individual chapters form an unbroken evolutionary system —'],
+              stageDirections: [`— ${noviceName} questions how individual chapters form an unbroken evolutionary system —`],
               messages: [
                 {
-                  sender: 'Raju',
-                  avatar: 'R',
-                  text: `Sharma ji, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
                   theme: 'amber',
                   align: 'left'
                 }
@@ -559,25 +567,27 @@ export function buildBespokeSynthesisEpisode({ courseId, courseConfig, blueprint
           },
           {
             id: 'b02',
-            hindi_tts: `शर्मा जी समझाते हैं, शुरुआत हमेशा एक वास्तविक मानवीय और कारोबारी संकट से हुई थी।`,
-            en_narration: `Sharma ji explains: The origin began with a concrete market crisis and real-world struggle.`,
-            subtitle: `Sharma ji explains: The origin began with a concrete market crisis and struggle.`,
-            en_subtitle: `Sharma ji explains: The origin began with a concrete market crisis and struggle.`,
+            hindi_tts: isEn
+              ? `${mentorName} explains: Novices treat isolated tools as silver bullets; they lock forward prices, completely blind to cash margin exhaustion and basis correlation breakdown!`
+              : `शर्मा जी समझाते हैं, शुरुआत हमेशा एक वास्तविक मानवीय और कारोबारी संकट से हुई थी।`,
+            en_narration: `${mentorName} explains: Novices treat isolated tools as complete systems, locking prices while blind to cash margin exhaustion and basis risk.`,
+            subtitle: `${mentorName} explains: Novices use isolated tools; futures lock prices but ignore margin drains.`,
+            en_subtitle: `${mentorName} explains: Novices use isolated tools; futures lock prices but ignore margin drains.`,
             pauseAfterMs: 450,
             ui_state: {
-              stageDirections: ['— Sharma ji outlines the historical context and initial dilemma —'],
+              stageDirections: [`— ${mentorName} outlines the fatal trap of using isolated single tools —`],
               messages: [
                 {
-                  sender: 'Raju',
-                  avatar: 'R',
-                  text: `Sharma ji, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
                   theme: 'amber',
                   align: 'left'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
-                  text: dilem.historicalContext || `Market participants originally relied on isolated tools, exposing themselves to unforeseen systemic blindspots.`,
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `Novices treat individual tools as complete systems. They lock in prices with forwards, completely blind to cash margin exhaustion and basis correlation breakdown!`,
                   theme: 'teal',
                   align: 'right'
                 }
@@ -586,32 +596,34 @@ export function buildBespokeSynthesisEpisode({ courseId, courseConfig, blueprint
           },
           {
             id: 'b03',
-            hindi_tts: `जब अप्रत्याशित झटका लगा, तो पुराने मॉडल पूरी तरह फेल हो गए और भारी नुकसान हुआ!`,
-            en_narration: `When unexpected market shocks arrived, early tools broke down and created devastating losses!`,
-            subtitle: `When unexpected market shocks hit, earlier tools failed, creating severe losses!`,
-            en_subtitle: `When unexpected market shocks hit, earlier tools failed, creating severe losses!`,
+            hindi_tts: isEn
+              ? `When extreme market shocks hit, linear tools cannot protect you. Discontinuous price jumps and unhedged Gamma crush your capital without warning!`
+              : `जब अप्रत्याशित झटका लगा, तो पुराने मॉडल पूरी तरह फेल हो गए और भारी नुकसान हुआ!`,
+            en_narration: `When volatility storms strike, linear models fail, and unhedged gamma and vega completely wipe out capital!`,
+            subtitle: `In volatility storms, linear models fail, and unhedged Greeks wipe out capital!`,
+            en_subtitle: `In volatility storms, linear models fail, and unhedged Greeks wipe out capital!`,
             pauseAfterMs: 450,
             ui_state: {
-              stageDirections: ['— The fatal limitation of early tools triggers catastrophic failure —'],
+              stageDirections: [`— Unhedged higher-order risks reveal the boundaries of linear models —`],
               messages: [
                 {
-                  sender: 'Raju',
-                  avatar: 'R',
-                  text: `Sharma ji, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
                   theme: 'amber',
                   align: 'left'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
-                  text: dilem.historicalContext || `Market participants originally relied on isolated tools, exposing themselves to unforeseen systemic blindspots.`,
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `Novices treat individual tools as complete systems. They lock in prices with forwards, completely blind to cash margin exhaustion and basis correlation breakdown!`,
                   theme: 'teal',
                   align: 'right'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
-                  text: dilem.fatalMistake || `Relying on a single isolated model creates a false sense of security while catastrophic tail risks remain completely unhedged.`,
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `When extreme market shocks hit, linear tools cannot protect you. Discontinuous price jumps and unhedged Gamma crush your capital without warning!`,
                   theme: 'teal',
                   align: 'right'
                 }
@@ -620,39 +632,41 @@ export function buildBespokeSynthesisEpisode({ courseId, courseConfig, blueprint
           },
           {
             id: 'b04',
-            hindi_tts: `इसलिए लेखक ने हर नए चैप्टर में पिछली कमी को दूर करने वाला क्रांतिकारी समाधान पेश किया है।`,
+            hindi_tts: isEn
+              ? `This is the master secret: The author organized the book as an evolutionary chain. Every chapter is a dialectical shield curing the fatal flaw of the prior model!`
+              : `इसलिए लेखक ने हर नए चैप्टर में पिछली कमी को दूर करने वाला क्रांतिकारी समाधान पेश किया है।`,
             en_narration: `Thus, each succeeding chapter was invented to fix the fatal limitation of the prior tool.`,
-            subtitle: `Thus, each succeeding chapter was invented to resolve the prior tool's fatal flaw.`,
-            en_subtitle: `Thus, each succeeding chapter was invented to resolve the prior tool's fatal flaw.`,
+            subtitle: `The author organized the book as an evolutionary chain solving prior limitations.`,
+            en_subtitle: `The author organized the book as an evolutionary chain solving prior limitations.`,
             pauseAfterMs: 450,
             ui_state: {
-              stageDirections: ['— The author introduces the systemic breakthrough unifying the entire book —'],
+              stageDirections: [`— ${mentorName} introduces the systemic breakthrough unifying the entire book —`],
               messages: [
                 {
-                  sender: 'Raju',
-                  avatar: 'R',
-                  text: `Sharma ji, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, we studied all chapters individually. In real market conditions, how does this entire book connect into one unified risk system?`,
                   theme: 'amber',
                   align: 'left'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
-                  text: dilem.historicalContext || `Market participants originally relied on isolated tools, exposing themselves to unforeseen systemic blindspots.`,
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `Novices treat individual tools as complete systems. They lock in prices with forwards, completely blind to cash margin exhaustion and basis correlation breakdown!`,
                   theme: 'teal',
                   align: 'right'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
-                  text: dilem.fatalMistake || `Relying on a single isolated model creates a false sense of security while catastrophic tail risks remain completely unhedged.`,
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `When extreme market shocks hit, linear tools cannot protect you. Discontinuous price jumps and unhedged Gamma crush your capital without warning!`,
                   theme: 'teal',
                   align: 'right'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
-                  text: dilem.authorInvention || `The author's genius is that every single concept is a dialectical solution designed to protect you where the prior tool fails!`,
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `This is the master secret: The author organized the book as an evolutionary chain. Every chapter is a dialectical shield curing the fatal flaw of the prior model!`,
                   theme: 'teal',
                   align: 'right'
                 }

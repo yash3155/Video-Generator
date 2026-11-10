@@ -209,9 +209,9 @@
     },
     {
       "segmentIndex": 1,
-      "title": "Conflicting Market Interests",
+      "title": "Intrinsic Value Forces vs Time Decay & Volatility",
       "template": "tug_of_war",
-      "badge": "Structural Conflict · Hedger vs Speculator",
+      "badge": "Valuation Tension · Intrinsic vs Extrinsic",
       "beats": [
         {
           "id": "b03",
@@ -220,15 +220,16 @@
           "en_narration": "One side hedges falling prices while the counterparty hedges rising costs.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "leftLabel": "Farmer / Producer (Downside Protection)",
-            "rightLabel": "Processor / Miller (Upside Ceiling)",
-            "currentTension": 50
+            "leftLabel": "Spot & Strike Moneyness (Intrinsic)",
+            "rightLabel": "Volatility & Time Decay (Extrinsic)",
+            "currentTension": 50,
+            "centerTitle": "The Option Valuation Balance"
           },
           "visual": {
             "kind": "comparison",
             "data": {
-              "leftLabel": "Downside Protection",
-              "rightLabel": "Upside Ceiling",
+              "leftLabel": "Spot & Strike Moneyness (Intrinsic)",
+              "rightLabel": "Volatility & Time Decay (Extrinsic)",
               "tension": 50
             },
             "semantics": {
@@ -259,9 +260,9 @@
     },
     {
       "segmentIndex": 2,
-      "title": "The Core Architecture Roadmap",
+      "title": "The 4 Main Drivers of Option Prices",
       "template": "progressive_cards",
-      "badge": "Roadmap · 4 Structural Pillars",
+      "badge": "Roadmap · 4 Pricing Pillars",
       "beats": [
         {
           "id": "b04",
@@ -273,20 +274,28 @@
             "activeCardIndex": 0,
             "cards": [
               {
-                "title": "Market Architecture",
-                "desc": "Exchange vs Over-The-Counter mechanisms"
+                "title": "Spot Price & Strike (S0, K)",
+                "desc": "Stock price increases call value (+) and lowers puts (-); strike works inversely.",
+                "badge": "Moneyness Drivers",
+                "state": "active_amber"
               },
               {
-                "title": "Payoff Math",
-                "desc": "Terminal gross payoff versus net profit"
+                "title": "Time to Expiration (T)",
+                "desc": "Longer time until expiration expands option value; calendar days burn premium continuously.",
+                "badge": "Theta Decay",
+                "state": "muted"
               },
               {
-                "title": "Liquidity & Margining",
-                "desc": "Daily settlement and capital buffers"
+                "title": "Implied Volatility (sigma)",
+                "desc": "Higher volatility expands option price convexity for both calls and puts.",
+                "badge": "Vega Convexity",
+                "state": "muted"
               },
               {
-                "title": "Systemic Risk",
-                "desc": "Counterparty exposure and clearinghouse reforms"
+                "title": "Interest Rates & Dividends (r, q)",
+                "desc": "Risk-free rates increase call values; continuous dividends drain call premiums.",
+                "badge": "Carry Adjustments",
+                "state": "muted"
               }
             ]
           },
@@ -296,20 +305,28 @@
               "activeCardIndex": 0,
               "cards": [
                 {
-                  "title": "Market Architecture",
-                  "desc": "Exchange vs OTC mechanisms"
+                  "title": "Spot Price & Strike (S0, K)",
+                  "desc": "Stock price increases call value (+) and lowers puts (-); strike works inversely.",
+                  "badge": "Moneyness Drivers",
+                  "state": "active_amber"
                 },
                 {
-                  "title": "Payoff Math",
-                  "desc": "Gross payoff versus net profit"
+                  "title": "Time to Expiration (T)",
+                  "desc": "Longer time until expiration expands option value; calendar days burn premium continuously.",
+                  "badge": "Theta Decay",
+                  "state": "muted"
                 },
                 {
-                  "title": "Liquidity & Margining",
-                  "desc": "Daily settlement buffers"
+                  "title": "Implied Volatility (sigma)",
+                  "desc": "Higher volatility expands option price convexity for both calls and puts.",
+                  "badge": "Vega Convexity",
+                  "state": "muted"
                 },
                 {
-                  "title": "Systemic Risk",
-                  "desc": "Counterparty default mitigation"
+                  "title": "Interest Rates & Dividends (r, q)",
+                  "desc": "Risk-free rates increase call values; continuous dividends drain call premiums.",
+                  "badge": "Carry Adjustments",
+                  "state": "muted"
                 }
               ]
             },

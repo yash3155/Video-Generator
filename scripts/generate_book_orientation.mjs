@@ -330,6 +330,12 @@ export async function runBookOrientation(options = {}) {
  */
 export function buildBespokeOrientationEpisode({ courseId, courseConfig, orientationData, sourceFacts }) {
   const isHull = /hull|futures|options/i.test(courseId);
+  const isEn = courseId.includes('_en') || courseConfig.narrationLanguage?.startsWith('en');
+  const noviceName = isEn ? (courseConfig.persona?.novice?.name || 'Alex') : 'Raju';
+  const noviceAvatar = isEn ? (courseConfig.persona?.novice?.avatar || 'A') : 'R';
+  const mentorName = isEn ? (courseConfig.persona?.mentor?.name || 'Marcus') : 'Sharma ji';
+  const mentorAvatar = isEn ? (courseConfig.persona?.mentor?.avatar || 'M') : 'S';
+
   const primaryColor = courseConfig.visualTheme?.primaryColor || '#0F766E';
   const accentColor = courseConfig.visualTheme?.accentColor || '#F59E0B';
   const superpowers = orientationData.coreSuperpowers || [];
@@ -350,7 +356,7 @@ export function buildBespokeOrientationEpisode({ courseId, courseConfig, orienta
       domain: isHull ? 'finance' : 'technical_analysis',
       primaryColor,
       accentColor,
-      narrationLanguage: 'hi-IN-devanagari'
+      narrationLanguage: isEn ? 'en-US' : 'hi-IN-devanagari'
     },
     scenes: [
       // Scene 0: The Intimidation Crisis & The YouTube Trap (chat_story)
@@ -362,18 +368,20 @@ export function buildBespokeOrientationEpisode({ courseId, courseConfig, orienta
         beats: [
           {
             id: 'b01',
-            hindi_tts: `राजू कहता है, शर्मा जी, मैंने ${courseConfig.bookTitle} की आठ सौ पेज की मोटी किताब देखी; कैलकुलस और ग्रीक सिंबल्स देखकर मेरे पसीने छूट गए—क्या यह किताब सिर्फ पीएचडी गणितज्ञों के लिए है?`,
-            en_narration: `Raju says: Sharma ji, I saw this massive 800-page book; seeing the advanced symbols terrified me—is this book only for PhD mathematicians?`,
-            subtitle: `Sharma ji, this massive book terrified me—is it only for PhDs?`,
-            en_subtitle: `Sharma ji, this massive book terrified me—is it only for PhDs?`,
+            hindi_tts: isEn
+              ? `${noviceName} confesses: ${mentorName}, I opened John Hull's 800-page book; seeing advanced calculus and Greek symbols terrified me—is this book strictly for PhD mathematicians?`
+              : `राजू कहता है, शर्मा जी, मैंने जॉन हल की आठ सौ पेज की मोटी किताब देखी; कैलकुलस और ग्रीक सिंबल्स देखकर मेरे पसीने छूट गए—क्या यह किताब सिर्फ पीएचडी गणितज्ञों के लिए है?`,
+            en_narration: `${noviceName} says: ${mentorName}, I saw this massive 800-page book; seeing advanced calculus and Greek symbols terrified me—is this book only for PhD mathematicians?`,
+            subtitle: `${mentorName}, this massive 800-page book terrified me—is it only for PhDs?`,
+            en_subtitle: `${mentorName}, this massive 800-page book terrified me—is it only for PhDs?`,
             pauseAfterMs: 400,
             ui_state: {
-              stageDirections: ['— Raju reveals beginner intimidation when confronting the massive textbook —'],
+              stageDirections: [`— ${noviceName} reveals beginner intimidation when confronting the massive textbook —`],
               messages: [
                 {
-                  sender: 'Raju',
-                  avatar: 'R',
-                  text: `Sharma ji, I opened ${courseConfig.bookTitle}. It is over 800 pages of advanced math and formulas! I feel completely overwhelmed—do I need a PhD in applied mathematics to understand this?`,
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, I opened John Hull's book. It is over 800 pages of advanced math and formulas! I feel completely overwhelmed—do I need a PhD in applied mathematics to understand this?`,
                   theme: 'amber',
                   align: 'left'
                 }
@@ -382,25 +390,27 @@ export function buildBespokeOrientationEpisode({ courseId, courseConfig, orienta
           },
           {
             id: 'b02',
-            hindi_tts: `शर्मा जी समझाते हैं, राजू, यूट्यूब देखकर लोग इसे जुआ समझते हैं और नब्बे दिनों में अपनी पूंजी गंवा बैठते हैं; लेकिन यह किताब जुआ खेलना नहीं, बल्कि जोखिम को गणितीय रूप से खत्म करना सिखाती है।`,
-            en_narration: `Sharma ji explains: People watch superficial videos, treat the market like a casino, and blow up in 90 days. This book teaches you how to systematically engineer risk.`,
-            subtitle: `Superficial videos teach gambling; this book teaches quantitative engineering.`,
-            en_subtitle: `Superficial videos teach gambling; this book teaches quantitative engineering.`,
+            hindi_tts: isEn
+              ? `${mentorName} explains: ${noviceName}, retail amateurs watch superficial internet clips, treat markets like a casino, and blow up within 90 days. This book is the mathematical antidote to gambling!`
+              : `शर्मा जी समझाते हैं, राजू, यूट्यूब देखकर लोग इसे जुआ समझते हैं और नब्बे दिनों में अपनी पूंजी गंवा बैठते हैं; लेकिन यह किताब जुआ खेलना नहीं, बल्कि जोखिम को गणितीय रूप से खत्म करना सिखाती है।`,
+            en_narration: `${mentorName} explains: People watch superficial videos, treat the market like a casino, and blow up in 90 days. This book teaches you how to systematically engineer risk.`,
+            subtitle: 'Superficial videos teach gambling; this book teaches quantitative engineering.',
+            en_subtitle: 'Superficial videos teach gambling; this book teaches quantitative engineering.',
             pauseAfterMs: 450,
             ui_state: {
-              stageDirections: ['— Sharma ji exposes the amateur casino trap vs professional engineering —'],
+              stageDirections: [`— ${mentorName} exposes the amateur casino trap vs professional engineering —`],
               messages: [
                 {
-                  sender: 'Raju',
-                  avatar: 'R',
-                  text: `Sharma ji, I opened ${courseConfig.bookTitle}. It is over 800 pages of advanced math and formulas! I feel completely overwhelmed—do I need a PhD in applied mathematics to understand this?`,
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, I opened John Hull's book. It is over 800 pages of advanced math and formulas! I feel completely overwhelmed—do I need a PhD in applied mathematics to understand this?`,
                   theme: 'amber',
                   align: 'left'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
-                  text: `Raju, retail amateurs watch superficial internet clips, treat markets like a casino, and blow up within 90 days. This book is the complete antidote to gambling!`,
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `${noviceName}, retail amateurs watch superficial internet clips, treat markets like a casino, and blow up within 90 days. This book is the complete antidote to gambling!`,
                   theme: 'teal',
                   align: 'right'
                 }
@@ -409,31 +419,33 @@ export function buildBespokeOrientationEpisode({ courseId, courseConfig, orienta
           },
           {
             id: 'b03',
-            hindi_tts: `वॉल स्ट्रीट पर इस किताब को सिर्फ एक किताब नहीं, बल्कि 'द बाइबल' कहा जाता है—दुनिया का हर बड़ा हेज फंड मैनेजर और क्वांट ट्रेडर अपने करियर की शुरुआत इसी से करता है।`,
+            hindi_tts: isEn
+              ? `On Wall Street, this book is universally revered as 'The Bible'. Every elite quantitative analyst, market maker, and portfolio risk manager begins their career right here.`
+              : `वॉल स्ट्रीट पर इस किताब को सिर्फ एक किताब नहीं, बल्कि 'द बाइबल' कहा जाता है—दुनिया का हर बड़ा हेज फंड मैनेजर और क्वांट ट्रेडर अपने करियर की शुरुआत इसी से करता है।`,
             en_narration: `On Wall Street, this is not merely a textbook; it is universally revered as 'The Bible'. Every elite portfolio manager begins their career here.`,
-            subtitle: `Wall Street calls this 'The Bible'—every elite hedge fund manager starts here.`,
-            en_subtitle: `Wall Street calls this 'The Bible'—every elite hedge fund manager starts here.`,
+            subtitle: "Wall Street calls this 'The Bible'—every elite hedge fund manager starts here.",
+            en_subtitle: "Wall Street calls this 'The Bible'—every elite hedge fund manager starts here.",
             pauseAfterMs: 450,
             ui_state: {
-              stageDirections: ['— Sharma ji unveils the institutional prestige and authority of the book —'],
+              stageDirections: [`— ${mentorName} unveils the institutional prestige and authority of the book —`],
               messages: [
                 {
-                  sender: 'Raju',
-                  avatar: 'R',
-                  text: `Sharma ji, I opened ${courseConfig.bookTitle}. It is over 800 pages of advanced math and formulas! I feel completely overwhelmed—do I need a PhD in applied mathematics to understand this?`,
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, I opened John Hull's book. It is over 800 pages of advanced math and formulas! I feel completely overwhelmed—do I need a PhD in applied mathematics to understand this?`,
                   theme: 'amber',
                   align: 'left'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
-                  text: `Raju, retail amateurs watch superficial internet clips, treat markets like a casino, and blow up within 90 days. This book is the complete antidote to gambling!`,
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `${noviceName}, retail amateurs watch superficial internet clips, treat markets like a casino, and blow up within 90 days. This book is the complete antidote to gambling!`,
                   theme: 'teal',
                   align: 'right'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
+                  sender: mentorName,
+                  avatar: mentorAvatar,
                   text: `On Wall Street, this book is universally revered as 'The Bible'. Every elite quantitative analyst, market maker, and risk manager begins their career right here.`,
                   theme: 'teal',
                   align: 'right'
@@ -443,38 +455,40 @@ export function buildBespokeOrientationEpisode({ courseId, courseConfig, orienta
           },
           {
             id: 'b04',
-            hindi_tts: `यह किताब सूखी गणित नहीं, बल्कि इंसानी सभ्यता का सबसे ताकतवर वित्तीय ढाल है; इसे समझ लिया तो बाजार की कोई भी गिरावट तुम्हें कभी बर्बाद नहीं कर पाएगी!`,
+            hindi_tts: isEn
+              ? `This is not dry math; it is your personal quantitative armor. Once you master it, no market crash or panic selloff can ever destroy your portfolio!`
+              : `यह किताब सूखी गणित नहीं, बल्कि इंसानी सभ्यता का सबसे ताकतवर वित्तीय ढाल है; इसे समझ लिया तो बाजार की कोई भी गिरावट तुम्हें कभी बर्बाद नहीं कर पाएगी!`,
             en_narration: `This is not dry math; it is the most powerful financial shield ever invented. Master it, and no market crash can ever destroy you!`,
-            subtitle: `This is not dry math, but an indestructible shield against market crashes!`,
-            en_subtitle: `This is not dry math, but an indestructible shield against market crashes!`,
+            subtitle: 'This is not dry math, but an indestructible shield against market crashes!',
+            en_subtitle: 'This is not dry math, but an indestructible shield against market crashes!',
             pauseAfterMs: 450,
             ui_state: {
               stageDirections: ['— The mentor reframes mathematical intimidation into empowerment —'],
               messages: [
                 {
-                  sender: 'Raju',
-                  avatar: 'R',
-                  text: `Sharma ji, I opened ${courseConfig.bookTitle}. It is over 800 pages of advanced math and formulas! I feel completely overwhelmed—do I need a PhD in applied mathematics to understand this?`,
+                  sender: noviceName,
+                  avatar: noviceAvatar,
+                  text: `${mentorName}, I opened John Hull's book. It is over 800 pages of advanced math and formulas! I feel completely overwhelmed—do I need a PhD in applied mathematics to understand this?`,
                   theme: 'amber',
                   align: 'left'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
-                  text: `Raju, retail amateurs watch superficial internet clips, treat markets like a casino, and blow up within 90 days. This book is the complete antidote to gambling!`,
+                  sender: mentorName,
+                  avatar: mentorAvatar,
+                  text: `${noviceName}, retail amateurs watch superficial internet clips, treat markets like a casino, and blow up within 90 days. This book is the complete antidote to gambling!`,
                   theme: 'teal',
                   align: 'right'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
+                  sender: mentorName,
+                  avatar: mentorAvatar,
                   text: `On Wall Street, this book is universally revered as 'The Bible'. Every elite quantitative analyst, market maker, and risk manager begins their career right here.`,
                   theme: 'teal',
                   align: 'right'
                 },
                 {
-                  sender: 'Sharma ji',
-                  avatar: 'S',
+                  sender: mentorName,
+                  avatar: mentorAvatar,
                   text: `This is not dry theory—it is your personal quantitative armor. Once you master it, no market downturn can ever destroy your portfolio!`,
                   theme: 'teal',
                   align: 'right'

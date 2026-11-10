@@ -146,9 +146,9 @@
     },
     {
       "segmentIndex": 1,
-      "title": "Conflicting Market Interests",
+      "title": "Option Writer Premium Greed vs Margin Liquidation Shock",
       "template": "tug_of_war",
-      "badge": "Structural Conflict · Hedger vs Speculator",
+      "badge": "Risk Tension · Premium vs Collateral",
       "beats": [
         {
           "id": "b03",
@@ -157,15 +157,16 @@
           "en_narration": "One side hedges falling prices while the counterparty hedges rising costs.",
           "pauseAfterMs": 400,
           "ui_state": {
-            "leftLabel": "Farmer / Producer (Downside Protection)",
-            "rightLabel": "Processor / Miller (Upside Ceiling)",
-            "currentTension": 50
+            "leftLabel": "Premium Collection (Greed)",
+            "rightLabel": "Exchange Margin Call (Liquidation Fear)",
+            "currentTension": 50,
+            "centerTitle": "The Option Writer Dilemma"
           },
           "visual": {
             "kind": "comparison",
             "data": {
-              "leftLabel": "Downside Protection",
-              "rightLabel": "Upside Ceiling",
+              "leftLabel": "Premium Collection (Greed)",
+              "rightLabel": "Exchange Margin Call (Liquidation Fear)",
               "tension": 50
             },
             "semantics": {
@@ -180,9 +181,9 @@
     },
     {
       "segmentIndex": 2,
-      "title": "The Core Architecture Roadmap",
+      "title": "The 4 Core Mechanics of Option Margining",
       "template": "progressive_cards",
-      "badge": "Roadmap · 4 Structural Pillars",
+      "badge": "Roadmap · 4 Margin Pillars",
       "beats": [
         {
           "id": "b04",
@@ -194,20 +195,28 @@
             "activeCardIndex": 0,
             "cards": [
               {
-                "title": "Market Architecture",
-                "desc": "Exchange vs Over-The-Counter mechanisms"
+                "title": "Market Maker Liquidity",
+                "desc": "Quoting continuous two-sided bid-ask spreads while bearing inventory risk.",
+                "badge": "Liquidity Provision",
+                "state": "active_amber"
               },
               {
-                "title": "Payoff Math",
-                "desc": "Terminal gross payoff versus net profit"
+                "title": "Naked Call Margin Rule",
+                "desc": "Requires max(C + 0.20*S - OTM, C + 0.10*S) per contract to protect against upside spikes.",
+                "badge": "Call Risk Cap",
+                "state": "muted"
               },
               {
-                "title": "Liquidity & Margining",
-                "desc": "Daily settlement and capital buffers"
+                "title": "Naked Put Protection",
+                "desc": "Collateralized by max(P + 0.20*S - OTM, P + 0.10*K) to buffer sudden price collapses.",
+                "badge": "Put Floor Buffer",
+                "state": "muted"
               },
               {
-                "title": "Systemic Risk",
-                "desc": "Counterparty exposure and clearinghouse reforms"
+                "title": "OCC Central Novation",
+                "desc": "Options Clearing Corporation acts as guarantor and enforces daily mark-to-market margin.",
+                "badge": "Clearing Security",
+                "state": "muted"
               }
             ]
           },
@@ -217,20 +226,28 @@
               "activeCardIndex": 0,
               "cards": [
                 {
-                  "title": "Market Architecture",
-                  "desc": "Exchange vs OTC mechanisms"
+                  "title": "Market Maker Liquidity",
+                  "desc": "Quoting continuous two-sided bid-ask spreads while bearing inventory risk.",
+                  "badge": "Liquidity Provision",
+                  "state": "active_amber"
                 },
                 {
-                  "title": "Payoff Math",
-                  "desc": "Gross payoff versus net profit"
+                  "title": "Naked Call Margin Rule",
+                  "desc": "Requires max(C + 0.20*S - OTM, C + 0.10*S) per contract to protect against upside spikes.",
+                  "badge": "Call Risk Cap",
+                  "state": "muted"
                 },
                 {
-                  "title": "Liquidity & Margining",
-                  "desc": "Daily settlement buffers"
+                  "title": "Naked Put Protection",
+                  "desc": "Collateralized by max(P + 0.20*S - OTM, P + 0.10*K) to buffer sudden price collapses.",
+                  "badge": "Put Floor Buffer",
+                  "state": "muted"
                 },
                 {
-                  "title": "Systemic Risk",
-                  "desc": "Counterparty default mitigation"
+                  "title": "OCC Central Novation",
+                  "desc": "Options Clearing Corporation acts as guarantor and enforces daily mark-to-market margin.",
+                  "badge": "Clearing Security",
+                  "state": "muted"
                 }
               ]
             },
