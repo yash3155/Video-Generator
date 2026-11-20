@@ -797,6 +797,7 @@ const S12: Stage = {
             scope: `review_${lang}`,
           }),
         );
+      writeJson(path.join(qaDir(ctx), "review.json"), { reviews });
     }
     const ttsMock = Object.values(compiled?.timelines ?? {}).some((t) => t.beats.some((b) => b.audio.mock));
     const fallback = Object.values(compiled?.timelines ?? {})
