@@ -79,8 +79,8 @@ const Captions: React.FC<{ words: CaptionWord[] }> = ({ words }) => {
   const { theme } = useRc();
   if (!words.length) return null;
   return (
-    <div style={{ position: "absolute", left: 0, right: 0, bottom: theme.layout.footerHeight + 10, height: theme.layout.captionHeight - 16, display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <Fit id="caption" style={{ maxWidth: 1560, maxHeight: theme.layout.captionHeight - 16, padding: "8px 26px", borderRadius: 14, background: theme.colors.captionBackground, fontSize: theme.size.caption, lineHeight: 1.3, textAlign: "center", fontWeight: 500 }}>
+    <div style={{ position: "absolute", left: 0, right: 0, bottom: theme.layout.footerHeight + 4, height: theme.layout.captionHeight, display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <Fit id="caption" style={{ maxWidth: 1600, maxHeight: theme.layout.captionHeight, padding: "6px 24px", borderRadius: 14, background: theme.colors.captionBackground, fontSize: theme.size.caption, lineHeight: 1.25, textAlign: "center", fontWeight: 500 }}>
         {words.map((w, i) => (
           <span key={i} style={{ color: w.spoken ? theme.colors.gold : theme.colors.text }}>
             {(i ? " " : "") + text(w.text, `caption[${i}]`)}

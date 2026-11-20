@@ -13,7 +13,7 @@ Each row: phase, task, status, evidence command, result.
 | 5 | Remotion templates, Lesson/Still compositions, render:stills with overflow + layout audit | done | `verify:phase 5 exit 0; 16 template PNGs, 4 variants, overflow entry, [object Object] rejected; npm run check 205 tests` | phase 5 verified |
 | 6 | Pipeline S0–S14, runner, caching, mock LLM/TTS, draft render | done | `npm run verify:phase -- 6` | exit 0, verified (5/5 checks); mock run, artifacts, Q-MOCK blocker, full cache, resume dependents |
 | 7 | Rigorous QA release gate, 49 checks, bad fixture coverage, HTML report | done | `npm run verify:phase -- 7` | exit 0, verified (5/5 checks); 49/49 QA fixture coverage 100%, clean fixture pass, self-contained report.html |
-| 8 | End-to-end demo: Orientation + Ch01 P1 in en+hi, real TTS, full 1080p render, QA release, replay recording | in_progress | `npm run verify:phase -- 8` | 13 replay tasks recorded; rendering orientation & ch01 p1 |
+| 8 | End-to-end demo: Orientation + Ch01 P1 in en+hi, real TTS, full 1080p render, QA release, replay recording | in_progress | `npm run verify:phase -- 8` | Orientation p1 complete & releasable in en+hi (0 BLOCKER, 0 HIGH, scores 5/5, packaged in out/demo/); ch01 p1 speech synthesized, rendering en+hi; 15 replay tasks recorded |
 
 ## Open blockers
 

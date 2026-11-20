@@ -30,10 +30,10 @@ const fonts = {
   devanagari: "'Noto Sans Devanagari', Inter, sans-serif",
 };
 
-const size = { hero: 56, title: 46, heading: 32, body: 26, label: 20, caption: 30, header: 20 };
+const size = { hero: 56, title: 46, heading: 32, body: 26, label: 20, caption: 26, header: 20 };
 const radius = { panel: 18, card: 14, pill: 999 };
 const space = { page: 56, gap: 24, pad: 28 };
-const layout = { width: 1920, height: 1080, headerHeight: 76, titleHeight: 88, footerHeight: 132, captionHeight: 96 };
+const layout = { width: 1920, height: 1080, headerHeight: 76, titleHeight: 88, footerHeight: 132, captionHeight: 100 };
 
 export const DARK_CLASSROOM: Theme = {
   id: "dark-classroom",

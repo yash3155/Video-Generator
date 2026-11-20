@@ -355,7 +355,12 @@ function priorGlossary(ctx: PartContext) {
   if (!exists(f)) return [];
   const g = CourseGlossary.safeParse(readJson(f));
   if (!g.success) return [];
-  return g.data.concepts.filter((c) => !(c.introducedIn.chapterId === ctx.chapterId && c.introducedIn.partId === ctx.partId));
+  return g.data.concepts.filter(
+    (c) =>
+      c.introducedIn.chapterId !== "orientation" &&
+      c.introducedIn.chapterId !== "synthesis" &&
+      !(c.introducedIn.chapterId === ctx.chapterId && c.introducedIn.partId === ctx.partId),
+  );
 }
 
 const S5: Stage = {
@@ -688,23 +693,24 @@ const S11: Stage = {
     for (const lang of ctx.langs) {
       if (!compiled.timelines[lang]) throw new Error(`no ${lang} timeline in the compiled episode; re-run S10`);
       const out = renderFile(ctx, lang);
-      if (exists(out) && fs.statSync(out).size > 1_000_000 && exists(stillsIndex(ctx, lang)) && exists(contactFile(ctx, lang))) {
-        log.info(`render ${lang}: already rendered (${Math.round(fs.statSync(out).size / 1024 / 1024)} MB), reusing`);
-        outputs.push(out, stillsIndex(ctx, lang), contactFile(ctx, lang));
-        continue;
+      if (exists(out) && fs.statSync(out).size > 1_000_000) {
+        log.info(`render ${lang}: already rendered (${Math.round(fs.statSync(out).size / 1024 / 1024)} MB), reusing video`);
+      } else {
+        log.info(`render ${lang}${ctx.draft ? " (draft)" : ""}`);
+        await renderLessonVideo({ partDir: ctx.partDir, compiled, lang, output: out, draft: ctx.draft });
       }
-      log.info(`render ${lang}${ctx.draft ? " (draft)" : ""}`);
-      await renderLessonVideo({ partDir: ctx.partDir, compiled, lang, output: out, draft: ctx.draft });
       const fd = framesDir(ctx, lang);
-      if (exists(fd)) fs.rmSync(fd, { recursive: true, force: true });
-      log.info(`beat stills ${lang}`);
-      const stills = await renderLessonStills({ partDir: ctx.partDir, compiled, lang, outDir: fd, draft: ctx.draft });
-      const rel = stills.map((s) => ({ ...s, png: path.relative(ctx.partDir, s.png).split(path.sep).join("/") }));
-      writeJson(stillsIndex(ctx, lang), rel);
-      contactSheet(
-        stills.filter((s) => s.kind === "end").map((s) => s.png),
-        contactFile(ctx, lang),
-      );
+      if (!exists(stillsIndex(ctx, lang)) || !exists(contactFile(ctx, lang))) {
+        if (exists(fd)) fs.rmSync(fd, { recursive: true, force: true });
+        log.info(`beat stills ${lang}`);
+        const stills = await renderLessonStills({ partDir: ctx.partDir, compiled, lang, outDir: fd, draft: ctx.draft });
+        const rel = stills.map((s) => ({ ...s, png: path.relative(ctx.partDir, s.png).split(path.sep).join("/") }));
+        writeJson(stillsIndex(ctx, lang), rel);
+        contactSheet(
+          stills.filter((s) => s.kind === "end").map((s) => s.png),
+          contactFile(ctx, lang),
+        );
+      }
       outputs.push(out, stillsIndex(ctx, lang), contactFile(ctx, lang));
     }
     pruneBundles(3);
