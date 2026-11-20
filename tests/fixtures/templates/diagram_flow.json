@@ -1,0 +1,69 @@
+{
+  "template": "diagram_flow",
+  "title": "How a deposit becomes a bigger balance",
+  "takeaways": [
+    "Interest is added at the end of each period.",
+    "The new balance earns interest next time.",
+    "Repeat the loop and growth speeds up."
+  ],
+  "data": {
+    "mode": "flow",
+    "nodes": [
+      {
+        "id": "deposit",
+        "label": "Deposit",
+        "sublabel": "$1,000 today"
+      },
+      {
+        "id": "interest",
+        "label": "Interest added",
+        "sublabel": "5% of the balance"
+      },
+      {
+        "id": "balance",
+        "label": "New balance",
+        "sublabel": "$1,050 after year 1"
+      },
+      {
+        "id": "repeat",
+        "label": "Next year",
+        "sublabel": "5% of a bigger number"
+      }
+    ],
+    "edges": [
+      {
+        "from": "deposit",
+        "to": "interest",
+        "label": "one year passes"
+      },
+      {
+        "from": "interest",
+        "to": "balance",
+        "label": "add it"
+      },
+      {
+        "from": "balance",
+        "to": "repeat",
+        "label": "keep it invested"
+      }
+    ]
+  },
+  "visual": {
+    "show": []
+  },
+  "lang": "en",
+  "header": {
+    "course": "Money That Grows",
+    "chapter": "Chapter 1",
+    "part": "Part 1",
+    "progress": {
+      "index": 1,
+      "total": 4
+    }
+  },
+  "names": {
+    "novice": "Alex",
+    "mentor": "Dr. Rivera"
+  },
+  "caption": "Each year the bank adds interest, and that interest stays in the account."
+}

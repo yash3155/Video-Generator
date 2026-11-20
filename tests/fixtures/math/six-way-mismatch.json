@@ -1,0 +1,236 @@
+{
+  "good": {
+    "formula": {
+      "latex": "A = P(1 + r)^{t}",
+      "expression": "P * (1 + r)^t",
+      "solvesFor": "A",
+      "variables": [
+        {
+          "symbol": "A",
+          "meaning": "balance",
+          "unit": "dollars"
+        },
+        {
+          "symbol": "P",
+          "meaning": "principal",
+          "unit": "dollars"
+        },
+        {
+          "symbol": "r",
+          "meaning": "rate",
+          "unit": "per year"
+        },
+        {
+          "symbol": "t",
+          "meaning": "years",
+          "unit": "years"
+        }
+      ]
+    },
+    "given": [
+      {
+        "symbol": "P",
+        "label": "Principal",
+        "value": 1000,
+        "display": "$1,000"
+      },
+      {
+        "symbol": "r",
+        "label": "Rate",
+        "value": 0.1,
+        "display": "10%"
+      },
+      {
+        "symbol": "t",
+        "label": "Time",
+        "value": 2,
+        "display": "2 years"
+      }
+    ],
+    "steps": [
+      {
+        "label": "Year 1",
+        "latex": "1000 \\times 1.10 = 1100",
+        "expr": "P * (1 + r)",
+        "value": 1100
+      },
+      {
+        "label": "Year 2",
+        "latex": "1100 \\times 1.10 = 1210",
+        "expr": "P * (1 + r)^2",
+        "value": 1210
+      }
+    ],
+    "result": {
+      "label": "Balance after 2 years",
+      "value": 1210,
+      "display": "$1,210",
+      "rounding": 2
+    },
+    "chart": {
+      "kind": "line",
+      "title": "$1,000 at 10%",
+      "xAxis": {
+        "label": "Time",
+        "unit": "years"
+      },
+      "yAxis": {
+        "label": "Balance",
+        "unit": "dollars"
+      },
+      "series": [
+        {
+          "id": "c",
+          "label": "Compound",
+          "color": "gold",
+          "generator": {
+            "expression": "P * (1 + r)^t",
+            "variable": "t",
+            "from": 0,
+            "to": 5,
+            "step": 1,
+            "scope": {
+              "P": 1000,
+              "r": 0.1
+            }
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "m2",
+          "x": 2,
+          "y": 1210,
+          "label": "After 2 years"
+        }
+      ],
+      "isHypothetical": true
+    },
+    "annotations": [
+      "Year 1",
+      "Year 2"
+    ],
+    "narration": [
+      "We start with 1,000 dollars at ten percent a year.",
+      "After the first year it grows to 1,100 dollars, and after the second year it reaches 1,210 dollars."
+    ],
+    "conclusion": "After 2 years the balance is $1,210."
+  },
+  "bad": {
+    "formula": {
+      "latex": "A = P(1 + r)^{t}",
+      "expression": "P * (1 + r)^t",
+      "solvesFor": "A",
+      "variables": [
+        {
+          "symbol": "A",
+          "meaning": "balance",
+          "unit": "dollars"
+        },
+        {
+          "symbol": "P",
+          "meaning": "principal",
+          "unit": "dollars"
+        },
+        {
+          "symbol": "r",
+          "meaning": "rate",
+          "unit": "per year"
+        },
+        {
+          "symbol": "t",
+          "meaning": "years",
+          "unit": "years"
+        }
+      ]
+    },
+    "given": [
+      {
+        "symbol": "P",
+        "label": "Principal",
+        "value": 1000,
+        "display": "$1,000"
+      },
+      {
+        "symbol": "r",
+        "label": "Rate",
+        "value": 0.1,
+        "display": "10%"
+      },
+      {
+        "symbol": "t",
+        "label": "Time",
+        "value": 2,
+        "display": "2 years"
+      }
+    ],
+    "steps": [
+      {
+        "label": "Year 1",
+        "latex": "1000 \\times 1.10 = 1100",
+        "expr": "P * (1 + r)",
+        "value": 1100
+      },
+      {
+        "label": "Year 2",
+        "latex": "1100 \\times 1.10 = 1210",
+        "expr": "P * (1 + r)^2",
+        "value": 1210
+      }
+    ],
+    "result": {
+      "label": "Balance after 2 years",
+      "value": 1210,
+      "display": "$1,210",
+      "rounding": 2
+    },
+    "chart": {
+      "kind": "line",
+      "title": "$1,000 at 10%",
+      "xAxis": {
+        "label": "Time",
+        "unit": "years"
+      },
+      "yAxis": {
+        "label": "Balance",
+        "unit": "dollars"
+      },
+      "series": [
+        {
+          "id": "c",
+          "label": "Compound",
+          "color": "gold",
+          "generator": {
+            "expression": "P * (1 + r)^t",
+            "variable": "t",
+            "from": 0,
+            "to": 5,
+            "step": 1,
+            "scope": {
+              "P": 1000,
+              "r": 0.1
+            }
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "m2",
+          "x": 2,
+          "y": 1200,
+          "label": "After 2 years"
+        }
+      ],
+      "isHypothetical": true
+    },
+    "annotations": [
+      "Year 1",
+      "Year 2"
+    ],
+    "narration": [
+      "We start with 1,000 dollars at ten percent a year.",
+      "After the first year it grows to 1,100 dollars, and after the second year it reaches 1,201 dollars."
+    ],
+    "conclusion": "After 2 years the balance is $1,201."
+  }
+}

@@ -1,0 +1,27 @@
+name: Bug report
+description: Something in the pipeline, the wizard, or a rendered video is wrong
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: Include the command you ran and the QA finding ids if any.
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of `npx openlectern doctor`
+      render: text
+  - type: input
+    id: os
+    attributes:
+      label: Operating system and Node version
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Content
+      options:
+        - label: I have not pasted copyrighted book text into this issue
+          required: true

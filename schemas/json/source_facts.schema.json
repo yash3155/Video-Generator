@@ -1,0 +1,342 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "bookId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chapterId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "partId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "facts": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^F\\d{2,3}$"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "definition",
+              "claim",
+              "rule",
+              "formula",
+              "numerical_example",
+              "case_study",
+              "historical_event",
+              "assumption",
+              "limitation",
+              "misconception"
+            ]
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 10
+          },
+          "citation": {
+            "type": "object",
+            "properties": {
+              "chapter": {
+                "type": "string",
+                "minLength": 1
+              },
+              "section": {
+                "type": "string"
+              },
+              "page": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "chapter"
+            ]
+          },
+          "formula": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "latex": {
+                "type": "string",
+                "minLength": 1,
+                "description": "LaTeX source only, no $ delimiters"
+              },
+              "expression": {
+                "description": "mathjs expression for the right-hand side, e.g. P * (1 + r)^t",
+                "type": "string"
+              },
+              "solvesFor": {
+                "description": "symbol computed by expression, e.g. A",
+                "type": "string"
+              },
+              "variables": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "symbol": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "plain identifier used in expression, e.g. P"
+                    },
+                    "latex": {
+                      "description": "LaTeX for the symbol, e.g. P or r_{real}",
+                      "type": "string"
+                    },
+                    "meaning": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "unit": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "unit, or 'dimensionless' / 'count'"
+                    }
+                  },
+                  "required": [
+                    "symbol",
+                    "meaning",
+                    "unit"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "latex",
+              "variables"
+            ]
+          },
+          "numbers": {
+            "type": "object",
+            "properties": {
+              "inputs": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "value": {
+                      "type": "number"
+                    },
+                    "unit": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "value"
+                  ]
+                }
+              },
+              "steps": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "expr": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "value"
+                  ]
+                }
+              },
+              "result": {
+                "type": "object",
+                "properties": {
+                  "symbol": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "unit": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "label",
+                  "value"
+                ]
+              },
+              "rounding": {
+                "default": 2,
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 6
+              }
+            },
+            "required": [
+              "inputs",
+              "result"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "category",
+          "statement",
+          "citation"
+        ]
+      }
+    },
+    "realWorldProblem": {
+      "type": "object",
+      "properties": {
+        "actors": {
+          "type": "string",
+          "minLength": 1
+        },
+        "situation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "failure": {
+          "type": "string",
+          "minLength": 1
+        },
+        "invention": {
+          "type": "string",
+          "minLength": 1
+        },
+        "factIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "actors",
+        "situation",
+        "failure",
+        "invention",
+        "factIds"
+      ]
+    },
+    "terms": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fullForm": {
+            "type": "string"
+          },
+          "definition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "factId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "term",
+          "definition"
+        ]
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "properties": {
+        "earlier": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "later": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "quotes": {
+      "default": [],
+      "maxItems": 2,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "citation": {
+            "type": "object",
+            "properties": {
+              "chapter": {
+                "type": "string",
+                "minLength": 1
+              },
+              "section": {
+                "type": "string"
+              },
+              "page": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "chapter"
+            ]
+          }
+        },
+        "required": [
+          "text",
+          "citation"
+        ]
+      }
+    }
+  },
+  "required": [
+    "bookId",
+    "chapterId",
+    "partId",
+    "facts",
+    "realWorldProblem",
+    "dependencies"
+  ]
+}

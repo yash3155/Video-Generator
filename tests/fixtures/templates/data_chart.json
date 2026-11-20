@@ -1,0 +1,89 @@
+{
+  "template": "data_chart",
+  "title": "Thirty years later",
+  "takeaways": [
+    "Simple interest grows in a straight line",
+    "Compound interest bends upward",
+    "Over decades the gap becomes very large"
+  ],
+  "data": {
+    "kind": "line",
+    "title": "$1,000 at 5% a year",
+    "xAxis": {
+      "label": "Time",
+      "unit": "years"
+    },
+    "yAxis": {
+      "label": "Balance",
+      "unit": "dollars"
+    },
+    "series": [
+      {
+        "id": "simple",
+        "label": "Simple interest",
+        "color": "blue",
+        "generator": {
+          "expression": "P * (1 + r * t)",
+          "variable": "t",
+          "from": 0,
+          "to": 30,
+          "step": 1,
+          "scope": {
+            "P": 1000,
+            "r": 0.05
+          }
+        }
+      },
+      {
+        "id": "compound",
+        "label": "Compound interest",
+        "color": "gold",
+        "generator": {
+          "expression": "P * (1 + r)^t",
+          "variable": "t",
+          "from": 0,
+          "to": 30,
+          "step": 1,
+          "scope": {
+            "P": 1000,
+            "r": 0.05
+          }
+        }
+      }
+    ],
+    "markers": [
+      {
+        "id": "simple30",
+        "x": 30,
+        "y": 2500,
+        "label": "Simple: $2,500"
+      },
+      {
+        "id": "compound30",
+        "x": 30,
+        "y": 4321.94,
+        "label": "Compound: about $4,322"
+      }
+    ],
+    "isHypothetical": true
+  },
+  "visual": {
+    "show": [],
+    "hypothetical": true
+  },
+  "caption": "Here is the answer. Simple interest climbs in a straight line to 2,500 dollars.",
+  "lang": "en",
+  "header": {
+    "course": "Money That Grows",
+    "chapter": "Chapter 1",
+    "part": "Part 1",
+    "progress": {
+      "index": 1,
+      "total": 4
+    }
+  },
+  "names": {
+    "novice": "Alex",
+    "mentor": "Dr. Rivera"
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "bookId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "courseTitle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "modules": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "chapterIds": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_-]*$"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "chapterIds"
+        ]
+      }
+    },
+    "chapters": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]*$"
+          },
+          "number": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "moduleId": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]*$"
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "default": "chapter_part",
+            "type": "string",
+            "enum": [
+              "chapter_part",
+              "orientation",
+              "synthesis"
+            ]
+          },
+          "parts": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]*$"
+                },
+                "title": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sections": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "estimatedMinutes": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "sections",
+                "estimatedMinutes"
+              ]
+            }
+          },
+          "prerequisites": {
+            "default": [],
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_-]*$"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "number",
+          "title",
+          "moduleId",
+          "summary",
+          "parts"
+        ]
+      }
+    }
+  },
+  "required": [
+    "bookId",
+    "courseTitle",
+    "modules",
+    "chapters"
+  ]
+}

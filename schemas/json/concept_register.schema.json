@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "concepts": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^K\\d{2,3}$"
+          },
+          "term": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fullForm": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "acronym",
+              "term",
+              "symbol",
+              "concept"
+            ]
+          },
+          "plainMeaning": {
+            "type": "string",
+            "minLength": 1
+          },
+          "roleHere": {
+            "type": "string",
+            "minLength": 1
+          },
+          "connectsTo": {
+            "type": "string"
+          },
+          "analogy": {
+            "type": "string"
+          },
+          "depth": {
+            "type": "string",
+            "enum": [
+              "L1",
+              "L2",
+              "L3",
+              "L4"
+            ]
+          },
+          "familiarity": {
+            "type": "string",
+            "enum": [
+              "new",
+              "introduced_earlier",
+              "assumed_known"
+            ]
+          },
+          "introducedIn": {
+            "type": "object",
+            "properties": {
+              "chapterId": {
+                "type": "string"
+              },
+              "partId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "chapterId",
+              "partId"
+            ]
+          },
+          "aliases": {
+            "default": [],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "factIds": {
+            "default": [],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "term",
+          "kind",
+          "plainMeaning",
+          "roleHere",
+          "depth",
+          "familiarity"
+        ]
+      }
+    }
+  },
+  "required": [
+    "concepts"
+  ]
+}

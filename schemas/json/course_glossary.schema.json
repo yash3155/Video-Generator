@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "bookId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "concepts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fullForm": {
+            "type": "string"
+          },
+          "definition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "introducedIn": {
+            "type": "object",
+            "properties": {
+              "chapterId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "partId": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "chapterId",
+              "partId"
+            ]
+          },
+          "aliases": {
+            "default": [],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "term",
+          "definition",
+          "introducedIn"
+        ]
+      }
+    },
+    "analogies": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "chapterId": {
+            "type": "string"
+          },
+          "partId": {
+            "type": "string"
+          },
+          "conceptTerm": {
+            "type": "string"
+          },
+          "analogy": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "chapterId",
+          "partId",
+          "conceptTerm",
+          "analogy"
+        ]
+      }
+    }
+  },
+  "required": [
+    "bookId",
+    "concepts"
+  ]
+}

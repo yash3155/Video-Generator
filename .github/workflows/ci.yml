@@ -1,0 +1,49 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    name: lint, typecheck, tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+
+  demo:
+    name: demo pipeline from recorded outputs (${{ matrix.os }})
+    needs: check
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx remotion browser ensure
+      - name: replay demo (scene subset, draft, mock voice)
+        run: npx openlectern make --book demo --chapter ch01 --part p1 --lang en --llm replay --tts mock --draft --scenes 0,9,11 --non-interactive
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qa-report-${{ matrix.os }}
+          path: workspace/books/demo/chapters/ch01/p1/qa/report.html

@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "default": 1,
+      "type": "number",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1
+    },
+    "edition": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 1,
+      "description": "free-text subject domain"
+    },
+    "domainPresets": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rights": {
+      "type": "object",
+      "properties": {
+        "confirmed": {
+          "type": "boolean",
+          "const": true
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confirmedAt": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "confirmed",
+        "statement",
+        "confirmedAt"
+      ]
+    },
+    "audience": {
+      "default": "absolute_beginner",
+      "type": "string",
+      "enum": [
+        "absolute_beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "narrationLanguages": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
+      }
+    },
+    "displayLanguage": {
+      "default": "en",
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
+    },
+    "personas": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "novice": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "voice": {
+                "type": "string",
+                "minLength": 1,
+                "description": "provider voice id, e.g. en-US-ChristopherNeural"
+              }
+            },
+            "required": [
+              "name",
+              "voice"
+            ]
+          },
+          "mentor": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "voice": {
+                "type": "string",
+                "minLength": 1,
+                "description": "provider voice id, e.g. en-US-ChristopherNeural"
+              }
+            },
+            "required": [
+              "name",
+              "voice"
+            ]
+          }
+        },
+        "required": [
+          "novice",
+          "mentor"
+        ]
+      }
+    },
+    "chapters": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]*$"
+          },
+          "number": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "number",
+          "title"
+        ]
+      }
+    },
+    "tocSource": {
+      "default": "config",
+      "type": "string",
+      "enum": [
+        "pasted",
+        "notebooklm",
+        "local-file",
+        "config"
+      ]
+    },
+    "targetMinutes": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "min",
+        "max"
+      ]
+    },
+    "research": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "notebooklm",
+            "manual",
+            "local-file"
+          ]
+        },
+        "connector": {
+          "type": "string"
+        },
+        "notebookId": {
+          "type": "string"
+        },
+        "localFile": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mode"
+      ]
+    },
+    "llm": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider"
+      ]
+    },
+    "tts": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rate": {
+          "default": "+0%",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider"
+      ]
+    },
+    "deliverables": {
+      "type": "object",
+      "properties": {
+        "orientation": {
+          "default": true,
+          "type": "boolean"
+        },
+        "chapters": {
+          "default": "all",
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "all"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "from": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "to": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "from",
+                "to"
+              ]
+            }
+          ]
+        },
+        "synthesis": {
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "theme": {
+      "default": "dark-classroom",
+      "type": "string"
+    },
+    "pronunciation": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string"
+        },
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    },
+    "allowedTemplates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "boilerplateDenylist": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "author",
+    "domain",
+    "rights",
+    "narrationLanguages",
+    "personas",
+    "chapters",
+    "targetMinutes",
+    "research",
+    "llm",
+    "tts",
+    "deliverables"
+  ]
+}

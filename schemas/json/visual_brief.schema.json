@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "scenes": {
+      "minItems": 3,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "topology": {
+            "type": "string",
+            "enum": [
+              "hook",
+              "tension",
+              "pillars",
+              "process",
+              "comparison",
+              "formula",
+              "quantity_over_time",
+              "worked_example",
+              "definition",
+              "statistic",
+              "table",
+              "timeline",
+              "quiz",
+              "wisdom",
+              "summary",
+              "roadmap",
+              "mixed"
+            ]
+          },
+          "visualIntent": {
+            "type": "string",
+            "minLength": 1
+          },
+          "keyElements": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "factIds": {
+            "default": [],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "index",
+          "topology",
+          "visualIntent",
+          "keyElements"
+        ]
+      }
+    }
+  },
+  "required": [
+    "scenes"
+  ]
+}

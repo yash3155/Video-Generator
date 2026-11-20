@@ -1,0 +1,342 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "outcomes": {
+      "minItems": 2,
+      "maxItems": 6,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "coreConcepts": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "conceptId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "term": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stages": {
+            "type": "object",
+            "properties": {
+              "intuition": {
+                "type": "object",
+                "properties": {
+                  "sceneIndex": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "note": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "sceneIndex",
+                  "note"
+                ]
+              },
+              "why": {
+                "type": "object",
+                "properties": {
+                  "sceneIndex": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "note": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "sceneIndex",
+                  "note"
+                ]
+              },
+              "what": {
+                "type": "object",
+                "properties": {
+                  "sceneIndex": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "note": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "sceneIndex",
+                  "note"
+                ]
+              },
+              "how": {
+                "type": "object",
+                "properties": {
+                  "sceneIndex": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "note": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "sceneIndex",
+                  "note"
+                ]
+              },
+              "workedExample": {
+                "type": "object",
+                "properties": {
+                  "sceneIndex": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "note": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "sceneIndex",
+                  "note"
+                ]
+              },
+              "guided": {
+                "type": "object",
+                "properties": {
+                  "sceneIndex": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "note": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "sceneIndex",
+                  "note"
+                ]
+              },
+              "independent": {
+                "type": "object",
+                "properties": {
+                  "sceneIndex": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "note": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "sceneIndex",
+                  "note"
+                ]
+              },
+              "limitations": {
+                "type": "object",
+                "properties": {
+                  "sceneIndex": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "note": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "sceneIndex",
+                  "note"
+                ]
+              }
+            },
+            "required": [
+              "intuition",
+              "why",
+              "what",
+              "how",
+              "workedExample",
+              "guided",
+              "independent",
+              "limitations"
+            ]
+          }
+        },
+        "required": [
+          "conceptId",
+          "term",
+          "stages"
+        ]
+      }
+    },
+    "misconception": {
+      "type": "object",
+      "properties": {
+        "myth": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reality": {
+          "type": "string",
+          "minLength": 1
+        },
+        "factIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sceneIndex": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "myth",
+        "reality",
+        "factIds",
+        "sceneIndex"
+      ]
+    },
+    "predictionQuestions": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sceneIndex": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "revealBeat": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "question",
+          "sceneIndex"
+        ]
+      }
+    },
+    "causalChain": {
+      "type": "object",
+      "properties": {
+        "condition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mechanism": {
+          "type": "string",
+          "minLength": 1
+        },
+        "result": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consequence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "factIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sceneIndex": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "condition",
+        "action",
+        "mechanism",
+        "result",
+        "consequence",
+        "factIds",
+        "sceneIndex"
+      ]
+    },
+    "sceneOutline": {
+      "minItems": 3,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "concepts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "factIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "index",
+          "purpose",
+          "concepts",
+          "factIds"
+        ]
+      }
+    }
+  },
+  "required": [
+    "outcomes",
+    "coreConcepts",
+    "misconception",
+    "predictionQuestions",
+    "causalChain",
+    "sceneOutline"
+  ]
+}

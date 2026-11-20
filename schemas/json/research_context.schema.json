@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "bookId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "chapterId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "partId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "connector": {
+          "type": "string",
+          "enum": [
+            "notebooklm-mcp",
+            "nlm-cli",
+            "manual",
+            "local-file",
+            "demo"
+          ]
+        },
+        "notebookId": {
+          "type": "string"
+        },
+        "sourceIds": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timestamp": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "bookId",
+        "chapterId",
+        "partId",
+        "connector",
+        "query",
+        "timestamp",
+        "sha256"
+      ]
+    },
+    "body": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "header",
+    "body"
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "template": "worked_example",
+  "title": "Worked example: $1,000 at 5% for 3 years",
+  "takeaways": [
+    "Year 1: $1,050.00",
+    "Year 3: $1,157.63",
+    "Compounding earns $7.63 more than simple interest"
+  ],
+  "data": {
+    "title": "Compound interest, added once a year",
+    "formula": {
+      "latex": "A = P(1 + r)^{t}",
+      "expression": "P * (1 + r)^t",
+      "solvesFor": "A",
+      "variables": [
+        {
+          "symbol": "A",
+          "meaning": "balance after t years",
+          "unit": "dollars"
+        },
+        {
+          "symbol": "P",
+          "meaning": "principal",
+          "unit": "dollars"
+        },
+        {
+          "symbol": "r",
+          "meaning": "annual rate as a decimal",
+          "unit": "per year"
+        },
+        {
+          "symbol": "t",
+          "meaning": "number of years",
+          "unit": "years"
+        }
+      ]
+    },
+    "given": [
+      {
+        "id": "g-p",
+        "symbol": "P",
+        "label": "Principal",
+        "value": 1000,
+        "unit": "dollars",
+        "display": "$1,000"
+      },
+      {
+        "id": "g-r",
+        "symbol": "r",
+        "label": "Rate",
+        "value": 0.05,
+        "unit": "per year",
+        "display": "5% = 0.05"
+      },
+      {
+        "id": "g-t",
+        "symbol": "t",
+        "label": "Time",
+        "value": 3,
+        "unit": "years",
+        "display": "3 years"
+      }
+    ],
+    "steps": [
+      {
+        "id": "y1",
+        "label": "Year 1",
+        "latex": "1000 \\times 1.05 = 1050.00",
+        "expr": "P * (1 + r)",
+        "value": 1050
+      },
+      {
+        "id": "y2",
+        "label": "Year 2",
+        "latex": "1050.00 \\times 1.05 = 1102.50",
+        "expr": "P * (1 + r)^2",
+        "value": 1102.5
+      },
+      {
+        "id": "y3",
+        "label": "Year 3",
+        "latex": "1102.50 \\times 1.05 \\approx 1157.63",
+        "expr": "P * (1 + r)^3",
+        "value": 1157.63
+      }
+    ],
+    "result": {
+      "id": "res",
+      "label": "Balance after 3 years",
+      "value": 1157.63,
+      "unit": "dollars",
+      "display": "$1,157.63",
+      "rounding": 2
+    },
+    "conclusion": "Compounding earns $157.63 of interest, $7.63 more than simple interest's $150.",
+    "isHypothetical": false
+  },
+  "visual": {
+    "show": []
+  },
+  "caption": "So compound interest earns 157.63 dollars, while simple interest earned 150. The extra 7.63",
+  "lang": "en",
+  "header": {
+    "course": "Money That Grows",
+    "chapter": "Chapter 1",
+    "part": "Part 1",
+    "progress": {
+      "index": 1,
+      "total": 4
+    }
+  },
+  "names": {
+    "novice": "Alex",
+    "mentor": "Dr. Rivera"
+  }
+}

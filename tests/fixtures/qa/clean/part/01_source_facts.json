@@ -1,0 +1,481 @@
+{
+  "bookId": "demo",
+  "chapterId": "ch01",
+  "partId": "p1",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "definition",
+      "statement": "Interest is the price a borrower pays for using someone else's money for a period of time.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.1",
+        "page": "1"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "definition",
+      "statement": "The principal is the amount lent or deposited at the start.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.1",
+        "page": "1"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "definition",
+      "statement": "The interest rate is the interest for one period as a fraction or percentage of the principal; here the period is one year (per annum, p.a.).",
+      "citation": {
+        "chapter": "1",
+        "section": "1.1",
+        "page": "1"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "definition",
+      "statement": "A saver who deposits money in a bank is a lender: the bank borrows the deposit and pays interest for it.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.1",
+        "page": "1"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "definition",
+      "statement": "Simple interest is interest paid only on the original principal.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.2",
+        "page": "2"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "definition",
+      "statement": "Compound interest adds each period's interest to the balance, so the next period's interest is calculated on the larger balance: interest starts earning interest.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.3",
+        "page": "3"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "definition",
+      "statement": "Exponential growth is the pattern in which each period multiplies the balance by the same factor, so the curve gets steeper over time.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.3",
+        "page": "3"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "formula",
+      "statement": "Simple interest formula: I = P r t, and the end balance is P + I.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.2",
+        "page": "2"
+      },
+      "formula": {
+        "latex": "I = P \\times r \\times t",
+        "expression": "P * r * t",
+        "solvesFor": "I",
+        "variables": [
+          {
+            "symbol": "I",
+            "meaning": "interest earned",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "P",
+            "meaning": "principal",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "r",
+            "meaning": "annual rate as a decimal",
+            "unit": "per year"
+          },
+          {
+            "symbol": "t",
+            "meaning": "time",
+            "unit": "years"
+          }
+        ]
+      }
+    },
+    {
+      "id": "F09",
+      "category": "rule",
+      "statement": "Under simple interest the interest for each year is the same amount, so the balance grows in a straight line.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.2",
+        "page": "2"
+      }
+    },
+    {
+      "id": "F10",
+      "category": "formula",
+      "statement": "Compound interest with interest added once per year: A = P (1 + r)^t.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.3",
+        "page": "3"
+      },
+      "formula": {
+        "latex": "A = P(1 + r)^{t}",
+        "expression": "P * (1 + r)^t",
+        "solvesFor": "A",
+        "variables": [
+          {
+            "symbol": "A",
+            "meaning": "balance after t years",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "P",
+            "meaning": "principal",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "r",
+            "meaning": "annual rate as a decimal",
+            "unit": "per year"
+          },
+          {
+            "symbol": "t",
+            "meaning": "number of years",
+            "unit": "years"
+          }
+        ]
+      }
+    },
+    {
+      "id": "F11",
+      "category": "rule",
+      "statement": "Each year a compound balance is multiplied by the same factor (1 + r).",
+      "citation": {
+        "chapter": "1",
+        "section": "1.3",
+        "page": "3"
+      }
+    },
+    {
+      "id": "F12",
+      "category": "numerical_example",
+      "statement": "1,000 dollars at 5% for 3 years, compounded yearly: 1,050.00, then 1,102.50, then 1,157.63 dollars (1,000 x 1.05^3 = 1,157.625).",
+      "citation": {
+        "chapter": "1",
+        "section": "1.4",
+        "page": "4"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "P",
+            "label": "principal",
+            "value": 1000,
+            "unit": "dollars"
+          },
+          {
+            "symbol": "r",
+            "label": "rate",
+            "value": 0.05,
+            "unit": "per year"
+          },
+          {
+            "symbol": "t",
+            "label": "time",
+            "value": 3,
+            "unit": "years"
+          }
+        ],
+        "steps": [
+          {
+            "label": "year 1",
+            "expr": "P * (1 + r)",
+            "value": 1050
+          },
+          {
+            "label": "year 2",
+            "expr": "P * (1 + r)^2",
+            "value": 1102.5
+          },
+          {
+            "label": "year 3",
+            "expr": "P * (1 + r)^3",
+            "value": 1157.63
+          }
+        ],
+        "result": {
+          "symbol": "A",
+          "label": "balance after 3 years",
+          "value": 1157.63,
+          "unit": "dollars"
+        },
+        "rounding": 2
+      }
+    },
+    {
+      "id": "F13",
+      "category": "numerical_example",
+      "statement": "Simple interest on the same deposit: I = 1,000 x 0.05 x 3 = 150 dollars; balance 1,150 dollars.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.4",
+        "page": "4"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "P",
+            "label": "principal",
+            "value": 1000,
+            "unit": "dollars"
+          },
+          {
+            "symbol": "r",
+            "label": "rate",
+            "value": 0.05,
+            "unit": "per year"
+          },
+          {
+            "symbol": "t",
+            "label": "time",
+            "value": 3,
+            "unit": "years"
+          }
+        ],
+        "steps": [
+          {
+            "label": "interest",
+            "expr": "P * r * t",
+            "value": 150
+          }
+        ],
+        "result": {
+          "label": "balance",
+          "value": 1150,
+          "unit": "dollars"
+        },
+        "rounding": 2
+      }
+    },
+    {
+      "id": "F14",
+      "category": "numerical_example",
+      "statement": "The compound account earns 157.63 dollars instead of 150 dollars; the extra 7.63 dollars is interest earned on earlier interest, and the gap widens every year.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.4",
+        "page": "4"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "P",
+            "label": "principal",
+            "value": 1000,
+            "unit": "dollars"
+          },
+          {
+            "symbol": "r",
+            "label": "rate",
+            "value": 0.05,
+            "unit": "per year"
+          },
+          {
+            "symbol": "t",
+            "label": "time",
+            "value": 3,
+            "unit": "years"
+          }
+        ],
+        "steps": [
+          {
+            "label": "compound interest",
+            "expr": "P * (1 + r)^t - P",
+            "value": 157.63
+          },
+          {
+            "label": "simple interest",
+            "expr": "P * r * t",
+            "value": 150
+          }
+        ],
+        "result": {
+          "label": "extra interest from compounding",
+          "value": 7.63,
+          "unit": "dollars"
+        },
+        "rounding": 2
+      }
+    },
+    {
+      "id": "F15",
+      "category": "historical_event",
+      "statement": "In 1790 Benjamin Franklin's will left 1,000 pounds each to Boston and Philadelphia, to be lent at 5% to young married craftsmen; repaid loans were to be lent again.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.5",
+        "page": "5"
+      }
+    },
+    {
+      "id": "F16",
+      "category": "case_study",
+      "statement": "Franklin calculated that each fund would hold about 131,000 pounds after 100 years.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.5",
+        "page": "5"
+      }
+    },
+    {
+      "id": "F17",
+      "category": "case_study",
+      "statement": "Franklin's arithmetic was sound: 1,000 x 1.05^100 is about 131,501.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.5",
+        "page": "5"
+      }
+    },
+    {
+      "id": "F18",
+      "category": "case_study",
+      "statement": "Fewer craftsmen borrowed than expected, some loans were never repaid and money sometimes sat idle; around 1990 Boston's fund was worth roughly 5 million dollars and Philadelphia's roughly 2 million dollars.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.5",
+        "page": "5"
+      }
+    },
+    {
+      "id": "F19",
+      "category": "claim",
+      "statement": "Compounding is powerful, but only for money actually invested at the assumed rate, year after year.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.5",
+        "page": "5"
+      }
+    },
+    {
+      "id": "F20",
+      "category": "assumption",
+      "statement": "A = P (1 + r)^t assumes the rate stays the same for the whole period and nothing is withdrawn; real rates change.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.6",
+        "page": "6"
+      }
+    },
+    {
+      "id": "F21",
+      "category": "misconception",
+      "statement": "Multiplying the yearly interest by the number of years and calling it compound interest is a mistake; that is simple interest and ignores interest on interest.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.6",
+        "page": "6"
+      }
+    },
+    {
+      "id": "F22",
+      "category": "misconception",
+      "statement": "Using the rate as a whole number is a mistake; 5% must be written as 0.05 in the formulas.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.6",
+        "page": "6"
+      }
+    },
+    {
+      "id": "F23",
+      "category": "limitation",
+      "statement": "Over short periods the two methods give similar answers; over long periods the difference becomes very large.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.6",
+        "page": "6"
+      }
+    }
+  ],
+  "realWorldProblem": {
+    "actors": "Benjamin Franklin, the cities of Boston and Philadelphia, and young married craftsmen who needed loans",
+    "situation": "Franklin left 1,000 pounds per city in 1790 to be lent at 5% and re-lent, expecting a large public fund after two centuries",
+    "failure": "Around 1990 the funds held roughly 5 million and 2 million dollars, far below his projection, because money did not stay invested at the assumed rate",
+    "invention": "Compound interest, A = P (1 + r)^t: interest earns interest and growth is exponential",
+    "factIds": [
+      "F15",
+      "F16",
+      "F18",
+      "F10"
+    ]
+  },
+  "terms": [
+    {
+      "term": "interest",
+      "definition": "the price paid for using someone else's money for a time",
+      "factId": "F01"
+    },
+    {
+      "term": "principal",
+      "definition": "the starting amount lent or deposited",
+      "factId": "F02"
+    },
+    {
+      "term": "interest rate",
+      "definition": "interest per year as a percentage of the principal",
+      "factId": "F03"
+    },
+    {
+      "term": "simple interest",
+      "definition": "interest on the original principal only",
+      "factId": "F05"
+    },
+    {
+      "term": "compound interest",
+      "definition": "interest added to the balance so that interest earns interest",
+      "factId": "F06"
+    },
+    {
+      "term": "exponential growth",
+      "definition": "growth by the same multiplying factor each period",
+      "factId": "F07"
+    }
+  ],
+  "dependencies": {
+    "earlier": [],
+    "later": [
+      "ch02",
+      "ch03"
+    ]
+  },
+  "quotes": [
+    {
+      "text": "Interest starts earning interest.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.3",
+        "page": "3"
+      }
+    },
+    {
+      "text": "Compounding is powerful, but only for money that is actually invested at the assumed rate, year after year.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.5",
+        "page": "5"
+      }
+    }
+  ]
+}
