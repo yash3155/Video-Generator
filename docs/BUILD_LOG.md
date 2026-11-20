@@ -14,7 +14,7 @@ Each row: phase, task, status, evidence command, result.
 | 6 | Pipeline S0–S14, runner, caching, mock LLM/TTS, draft render | done | `npm run verify:phase -- 6` | exit 0, verified (5/5 checks); mock run, artifacts, Q-MOCK blocker, full cache, resume dependents |
 | 7 | Rigorous QA release gate, 49 checks, bad fixture coverage, HTML report | done | `npm run verify:phase -- 7` | exit 0, verified (5/5 checks); 49/49 QA fixture coverage 100%, clean fixture pass, self-contained report.html |
 | 8 | End-to-end demo: Orientation + Ch01 P1 in en+hi, real TTS, full 1080p render, QA release, replay recording | done | `npm run verify:phase -- 8` | exit 0, verified (5/5 checks); all 4 MP4s released (en+hi), QA reports clean (0 BLOCKER, 0 HIGH, L6 >= 4), 17 replay tasks recorded, ffprobe R-01 match |
-| 9 | Documentation and open-source readiness | in_progress | `npm run verify:phase -- 9` | docs, media, licenses, changelog prepared; clean clone verification |
+| 9 | Documentation and open-source readiness | done | `npm run verify:phase -- 9` | exit 0, verified (8/8 checks); clean clone quickstart replay, scan clean, audit clean, README commands valid |
 
 ## Open blockers
 
