@@ -688,6 +688,11 @@ const S11: Stage = {
     for (const lang of ctx.langs) {
       if (!compiled.timelines[lang]) throw new Error(`no ${lang} timeline in the compiled episode; re-run S10`);
       const out = renderFile(ctx, lang);
+      if (exists(out) && fs.statSync(out).size > 1_000_000 && exists(stillsIndex(ctx, lang)) && exists(contactFile(ctx, lang))) {
+        log.info(`render ${lang}: already rendered (${Math.round(fs.statSync(out).size / 1024 / 1024)} MB), reusing`);
+        outputs.push(out, stillsIndex(ctx, lang), contactFile(ctx, lang));
+        continue;
+      }
       log.info(`render ${lang}${ctx.draft ? " (draft)" : ""}`);
       await renderLessonVideo({ partDir: ctx.partDir, compiled, lang, output: out, draft: ctx.draft });
       const fd = framesDir(ctx, lang);
