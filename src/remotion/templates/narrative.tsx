@@ -2,6 +2,7 @@
 import React from "react";
 import type {
   ChatStoryData,
+  TechnicalPanelData,
   TugOfWarData,
   ProgressiveCardsData,
   SplitComparisonData,
@@ -17,40 +18,357 @@ import { ui } from "../i18n";
 const col = (gap: number, extra: React.CSSProperties = {}): React.CSSProperties => ({ display: "flex", flexDirection: "column", gap, minHeight: 0, minWidth: 0, ...extra });
 const row = (gap: number, extra: React.CSSProperties = {}): React.CSSProperties => ({ display: "flex", flexDirection: "row", gap, minHeight: 0, minWidth: 0, ...extra });
 
-export const ChatStory: React.FC<{ data: ChatStoryData }> = ({ data }) => {
-  const { theme, reveal, names, lang, size } = useRc();
+export const TechnicalPanel: React.FC<{ data: TechnicalPanelData | ChatStoryData }> = ({ data }) => {
+  const { theme, reveal, lang, size } = useRc();
   const L = ui(lang);
+
+  // 1. Two-Party Economic Mechanism (e.g. Chapter 1 Part 1)
+  if (data.twoParty || data.presentation === "two_party_mechanism") {
+    const tp = data.twoParty ?? {
+      left: {
+        role: "Long / Buyer: Grain Merchant & Miller",
+        color: "#59BFC3",
+        obligation: "Supply Obligation: Must purchase 5,000 bushels at harvest delivery.",
+        motivation: "Economic Motivation: Lock in input costs against forward grain sales.",
+      },
+      right: {
+        role: "Short / Seller: Corn Farmer Producer",
+        color: "#E5C45B",
+        obligation: "Harvest Obligation: Deliver 5,000 bushels of grade 2 corn in Chicago.",
+        motivation: "Price Protection: Eliminate downside risk from autumn price crashes.",
+      },
+      contractConduit: {
+        title: "Central Contract Conduit",
+        specs: "Forward Committal: 5,000 Bushels @ $4.00/bu, Sept Chicago Delivery",
+      },
+      causalFailure: {
+        title: "Causal Failure Callout",
+        breakdown: "Bilateral counterparty default risk without a centralized clearinghouse.",
+      },
+    };
+
+    return (
+      <div style={row(theme.space.gap, { height: "100%" })}>
+        <Fit id="mechanism" style={col(14, { flex: 1, height: "100%", justifyContent: "space-between" })}>
+          {/* Main Two-Party Conduit Row */}
+          <div style={row(16, { flex: 1, minHeight: 0, alignItems: "stretch" })}>
+            {/* Left Entity (Long / Buyer) */}
+            <div
+              style={{
+                flex: 1,
+                background: theme.colors.panelRaised,
+                border: `2px solid #59BFC3`,
+                borderRadius: theme.radius.card,
+                padding: "20px 22px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 12,
+                boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+              }}
+            >
+              <div style={row(10, { alignItems: "center" })}>
+                <Badge color="#59BFC3" size={32}>
+                  <Icon name="check" color="#171717" size={18} />
+                </Badge>
+                <Label color="#59BFC3" style={{ fontSize: 18, fontWeight: 700, letterSpacing: 1.2 }}>
+                  LONG / BUYER
+                </Label>
+              </div>
+              <Heading color="#59BFC3" style={{ fontSize: 26, lineHeight: 1.25 }}>
+                {text(tp.left.role, "twoParty.left.role")}
+              </Heading>
+              <div style={col(8, { marginTop: 4, background: "rgba(89, 191, 195, 0.08)", padding: "10px 14px", borderRadius: 8 })}>
+                <Label color="#59BFC3" style={{ fontSize: 18 }}>SUPPLY OBLIGATION</Label>
+                <Body size={20}>{text(tp.left.obligation, "twoParty.left.obligation")}</Body>
+              </div>
+              <div style={col(8, { background: "rgba(89, 191, 195, 0.08)", padding: "10px 14px", borderRadius: 8 })}>
+                <Label color="#59BFC3" style={{ fontSize: 18 }}>ECONOMIC MOTIVATION</Label>
+                <Body size={20}>{text(tp.left.motivation, "twoParty.left.motivation")}</Body>
+              </div>
+            </div>
+
+            {/* Central Contract Conduit */}
+            <div
+              style={{
+                width: size === "half" ? 220 : 310,
+                flex: "none",
+                background: "#1E1E1E",
+                border: `2px solid ${theme.colors.border}`,
+                borderRadius: theme.radius.card,
+                padding: "18px 16px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                gap: 14,
+              }}
+            >
+              <Badge color={theme.colors.gold} size={42}>
+                <Icon name="arrow" color="#171717" size={24} />
+              </Badge>
+              <Label color={theme.colors.gold} style={{ fontSize: 18, fontWeight: 700, letterSpacing: 1.4 }}>
+                {text(tp.contractConduit.title, "contractConduit.title")}
+              </Label>
+              <div
+                style={{
+                  background: "#141414",
+                  border: `1px solid ${theme.colors.gold}`,
+                  borderRadius: 8,
+                  padding: "12px 14px",
+                  fontSize: 18,
+                  fontWeight: 600,
+                  color: theme.colors.text,
+                  lineHeight: 1.35,
+                  fontFamily: theme.fonts.mono,
+                }}
+              >
+                {text(tp.contractConduit.specs, "contractConduit.specs")}
+              </div>
+            </div>
+
+            {/* Right Entity (Short / Seller) */}
+            <div
+              style={{
+                flex: 1,
+                background: theme.colors.panelRaised,
+                border: `2px solid #E5C45B`,
+                borderRadius: theme.radius.card,
+                padding: "20px 22px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 12,
+                boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+              }}
+            >
+              <div style={row(10, { alignItems: "center" })}>
+                <Badge color="#E5C45B" size={32}>
+                  <Icon name="bulb" color="#171717" size={18} />
+                </Badge>
+                <Label color="#E5C45B" style={{ fontSize: 18, fontWeight: 700, letterSpacing: 1.2 }}>
+                  SHORT / SELLER
+                </Label>
+              </div>
+              <Heading color="#E5C45B" style={{ fontSize: 26, lineHeight: 1.25 }}>
+                {text(tp.right.role, "twoParty.right.role")}
+              </Heading>
+              <div style={col(8, { marginTop: 4, background: "rgba(229, 196, 91, 0.08)", padding: "10px 14px", borderRadius: 8 })}>
+                <Label color="#E5C45B" style={{ fontSize: 18 }}>HARVEST OBLIGATION</Label>
+                <Body size={20}>{text(tp.right.obligation, "twoParty.right.obligation")}</Body>
+              </div>
+              <div style={col(8, { background: "rgba(229, 196, 91, 0.08)", padding: "10px 14px", borderRadius: 8 })}>
+                <Label color="#E5C45B" style={{ fontSize: 18 }}>PRICE PROTECTION</Label>
+                <Body size={20}>{text(tp.right.motivation, "twoParty.right.motivation")}</Body>
+              </div>
+            </div>
+          </div>
+
+          {/* Causal Failure Callout */}
+          {tp.causalFailure ? (
+            <div
+              style={{
+                background: "rgba(217, 130, 120, 0.12)",
+                border: `2px solid ${theme.colors.coral}`,
+                borderRadius: theme.radius.card,
+                padding: "14px 22px",
+                display: "flex",
+                alignItems: "center",
+                gap: 16,
+              }}
+            >
+              <Badge color={theme.colors.coral} size={36}>
+                <Icon name="warn" color="#171717" size={20} />
+              </Badge>
+              <div style={{ flex: 1 }}>
+                <Label color={theme.colors.coral} style={{ fontSize: 18, fontWeight: 700, letterSpacing: 1.2 }}>
+                  {text(tp.causalFailure.title, "causalFailure.title")}
+                </Label>
+                <Body size={22} color={theme.colors.text} style={{ fontWeight: 600 }}>
+                  {text(tp.causalFailure.breakdown, "causalFailure.breakdown")}
+                </Body>
+              </div>
+            </div>
+          ) : null}
+        </Fit>
+
+        {data.whereWeAre ? (
+          <Fit id="where" style={col(14, { width: size === "half" ? 280 : 380, flex: "none", background: theme.colors.panelRaised, borderRadius: theme.radius.card, border: `2px solid ${theme.colors.border}`, padding: "22px 24px" })}>
+            <Label color={theme.colors.gold}>{data.whereWeAre.label === "WHERE WE ARE" ? L.whereWeAre : text(data.whereWeAre.label, "data.whereWeAre.label")}</Label>
+            {data.whereWeAre.items.map((it, i) => {
+              const cur = i === data.whereWeAre!.current;
+              const done = i < data.whereWeAre!.current;
+              const color = cur ? theme.colors.gold : done ? theme.colors.teal : theme.colors.textMuted;
+              return (
+                <div key={i} style={row(14, { alignItems: "center" })}>
+                  <Badge color={color} filled={cur} size={34}>
+                    {done ? <Icon name="check" color={theme.colors.textOnAccent} size={20} /> : <span style={{ fontSize: 16 }}>{i + 1}</span>}
+                  </Badge>
+                  <Body size={22} color={cur ? theme.colors.text : theme.colors.textMuted} style={{ fontWeight: cur ? 700 : 400 }}>
+                    {text(it, `data.whereWeAre.items[${i}]`)}
+                  </Body>
+                </div>
+              );
+            })}
+          </Fit>
+        ) : null}
+      </div>
+    );
+  }
+
+  // 2. 4-Pillar Structural Framework (single_concept) (e.g. Course Orientation)
+  if (data.pillars || data.presentation === "single_concept") {
+    const pf = data.pillars ?? {
+      primaryCard: {
+        title: "4 Institutional Pillars",
+        pillars: [
+          { id: "p1", title: "The Commercial Dilemma", description: "Unhedged price volatility threatening operational solvency." },
+          { id: "p2", title: "Risk Unbundling", description: "Separating commodity ownership from price risk." },
+          { id: "p3", title: "Quantitative Engineering", description: "Standardized contract sizing, forward parity, and payoff mechanics." },
+          { id: "p4", title: "The Unified Chapter Chain", description: "Evolution from bilateral forward committals to exchange-cleared futures." },
+        ],
+      },
+      riskPanel: {
+        title: "Secondary Risk Architecture",
+        architecture: "Standardized margin rules and daily mark-to-market eliminate bilateral counterparty default.",
+      },
+    };
+
+    return (
+      <div style={row(theme.space.gap, { height: "100%" })}>
+        <Fit id="framework" style={row(18, { flex: 1, height: "100%", alignItems: "stretch" })}>
+          {/* Primary Technical Card */}
+          <div
+            style={{
+              flex: 1.4,
+              background: theme.colors.panelRaised,
+              border: `2px solid ${theme.colors.gold}`,
+              borderRadius: theme.radius.card,
+              padding: "24px 28px",
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+            }}
+          >
+            <div style={row(12, { alignItems: "center" })}>
+              <Badge color={theme.colors.gold} size={36}>
+                <Icon name="check" color="#171717" size={20} />
+              </Badge>
+              <Label color={theme.colors.gold} style={{ fontSize: 20, fontWeight: 700, letterSpacing: 1.4 }}>
+                {text(pf.primaryCard.title, "primaryCard.title")}
+              </Label>
+            </div>
+            <div style={col(12, { flex: 1, justifyContent: "space-around" })}>
+              {pf.primaryCard.pillars.map((p, i) => (
+                <div key={p.id} style={row(14, { alignItems: "flex-start", background: "rgba(229, 196, 91, 0.06)", padding: "12px 16px", borderRadius: 10, border: `1px solid rgba(229, 196, 91, 0.2)` })}>
+                  <Badge color={theme.colors.gold} size={32} filled>
+                    <span style={{ fontSize: 16, fontWeight: 700, color: "#171717" }}>{i + 1}</span>
+                  </Badge>
+                  <div style={col(4)}>
+                    <Body size={22} style={{ fontWeight: 700, color: theme.colors.gold }}>
+                      {text(p.title, `primaryCard.pillars[${i}].title`)}
+                    </Body>
+                    <Body size={18} color={theme.colors.textMuted}>
+                      {text(p.description, `primaryCard.pillars[${i}].description`)}
+                    </Body>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Secondary Risk Architecture Panel */}
+          {pf.riskPanel ? (
+            <div
+              style={{
+                flex: 0.9,
+                background: theme.colors.panelRaised,
+                border: `2px solid ${theme.colors.teal}`,
+                borderRadius: theme.radius.card,
+                padding: "24px 26px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 16,
+                boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+              }}
+            >
+              <div style={row(12, { alignItems: "center" })}>
+                <Badge color={theme.colors.teal} size={36}>
+                  <Icon name="bulb" color="#171717" size={20} />
+                </Badge>
+                <Label color={theme.colors.teal} style={{ fontSize: 18, fontWeight: 700, letterSpacing: 1.2 }}>
+                  {text(pf.riskPanel.title, "riskPanel.title")}
+                </Label>
+              </div>
+              <div style={col(12, { flex: 1, justifyContent: "center" })}>
+                <div style={{ background: "rgba(89, 191, 195, 0.08)", padding: "20px 22px", borderRadius: 12, border: `1px solid rgba(89, 191, 195, 0.25)` }}>
+                  <Body size={22} style={{ lineHeight: 1.45, fontWeight: 500, color: theme.colors.text }}>
+                    {text(pf.riskPanel.architecture, "riskPanel.architecture")}
+                  </Body>
+                </div>
+              </div>
+            </div>
+          ) : null}
+        </Fit>
+
+        {data.whereWeAre ? (
+          <Fit id="where" style={col(14, { width: size === "half" ? 280 : 380, flex: "none", background: theme.colors.panelRaised, borderRadius: theme.radius.card, border: `2px solid ${theme.colors.border}`, padding: "22px 24px" })}>
+            <Label color={theme.colors.gold}>{data.whereWeAre.label === "WHERE WE ARE" ? L.whereWeAre : text(data.whereWeAre.label, "data.whereWeAre.label")}</Label>
+            {data.whereWeAre.items.map((it, i) => {
+              const cur = i === data.whereWeAre!.current;
+              const done = i < data.whereWeAre!.current;
+              const color = cur ? theme.colors.gold : done ? theme.colors.teal : theme.colors.textMuted;
+              return (
+                <div key={i} style={row(14, { alignItems: "center" })}>
+                  <Badge color={color} filled={cur} size={34}>
+                    {done ? <Icon name="check" color={theme.colors.textOnAccent} size={20} /> : <span style={{ fontSize: 16 }}>{i + 1}</span>}
+                  </Badge>
+                  <Body size={22} color={cur ? theme.colors.text : theme.colors.textMuted} style={{ fontWeight: cur ? 700 : 400 }}>
+                    {text(it, `data.whereWeAre.items[${i}]`)}
+                  </Body>
+                </div>
+              );
+            })}
+          </Fit>
+        ) : null}
+      </div>
+    );
+  }
+
+  // 3. Structured Collegiate Presentation Cards (replacing on-screen chat bubbles)
+  const messages = data.messages ?? [];
   return (
     <div style={row(theme.space.gap, { height: "100%" })}>
-      <Fit id="chat" style={col(18, { flex: 1, justifyContent: "center", padding: "4px 8px" })}>
-        {data.messages.map((m, i) => {
-          const novice = m.speaker === "novice";
-          const color = novice ? theme.colors.blue : theme.colors.teal;
-          const name = novice ? names.novice : names.mentor;
+      <Fit id="chat" style={col(16, { flex: 1, justifyContent: "center", padding: "4px 8px" })}>
+        {messages.map((m, i) => {
+          const focused = reveal.focused(m.id);
+          const color = i % 2 === 0 ? theme.colors.teal : theme.colors.gold;
           return (
-            <div key={m.id} style={{ display: "flex", justifyContent: novice ? "flex-start" : "flex-end", ...revealStyle(reveal, m.id) }}>
-              <div style={row(16, { flexDirection: novice ? "row" : "row-reverse", alignItems: "flex-start", maxWidth: size === "half" ? "96%" : "84%" })}>
-                <Badge color={color} size={52}>
-                  <Icon name={novice ? "question" : "bulb"} color={theme.colors.textOnAccent} size={30} />
+            <div key={m.id} style={{ width: "100%", ...revealStyle(reveal, m.id) }}>
+              <div
+                style={{
+                  width: "100%",
+                  background: theme.colors.panelRaised,
+                  border: `2px solid ${focused ? theme.colors.gold : color}`,
+                  borderRadius: 14,
+                  padding: "16px 24px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 18,
+                  boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+                }}
+              >
+                <Badge color={color} size={40} filled={focused}>
+                  <span style={{ fontSize: 16, fontWeight: 700, color: focused ? "#171717" : color }}>{i + 1}</span>
                 </Badge>
-                <Fit
-                  id={`msg-${m.id}`}
-                  style={{
-                    background: theme.colors.panelRaised,
-                    border: `2px solid ${reveal.focused(m.id) ? theme.colors.gold : color}`,
-                    borderRadius: 22,
-                    borderTopLeftRadius: novice ? 4 : 22,
-                    borderTopRightRadius: novice ? 22 : 4,
-                    padding: "14px 22px",
-                  }}
-                >
-                  <Label color={color} style={{ marginBottom: 6 }}>
-                    {text(name, `names.${m.speaker}`)}
+                <div style={{ flex: 1 }}>
+                  <Label color={color} style={{ fontSize: 18, letterSpacing: 1.2, marginBottom: 4 }}>
+                    {i === 0 ? "PROBLEM-FIRST HOOK" : i === 1 ? "CONTEXT & ACTORS" : i === 2 ? "THE COMMERCIAL TRAP" : "INVENTION & RESOLUTION"}
                   </Label>
-                  <Body>
+                  <Body size={24}>
                     <Rich value={m.text} path={`data.messages[${i}].text`} />
                   </Body>
-                </Fit>
+                </div>
               </div>
             </div>
           );
@@ -79,6 +397,8 @@ export const ChatStory: React.FC<{ data: ChatStoryData }> = ({ data }) => {
     </div>
   );
 };
+
+export const ChatStory = TechnicalPanel;
 
 export const TugOfWar: React.FC<{ data: TugOfWarData }> = ({ data }) => {
   const { theme, reveal, lang } = useRc();

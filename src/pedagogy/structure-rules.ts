@@ -110,7 +110,7 @@ export function checkRequiredElements(ep: Episode, plan?: LessonPlan): QaFinding
   for (const idx of [0, 10]) {
     const s = ep.scenes.find((x) => x.index === idx);
     if (!s) continue;
-    const ok = s.template === "roadmap" || templatesOf(s).includes("roadmap") || (s.template === "chat_story" && !!s.data.whereWeAre);
+    const ok = s.template === "roadmap" || templatesOf(s).includes("roadmap") || ((s.template === "chat_story" || s.template === "technical_panel") && !!s.data.whereWeAre);
     if (!ok) out.push(finding("P-04", "HIGH", `scene ${idx} has no "where we are" roadmap`, "Scenes 0 and 10 position the part in the course.", `Add whereWeAre to scene ${idx}.`, { sceneId: s.id }));
   }
   return out;

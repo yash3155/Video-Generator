@@ -1,7 +1,7 @@
 <!-- openlectern-template: teaching_script v1 -->
 # Teaching script (stage S7)
 
-You are writing the narration every learner will hear: a dialogue between {{noviceName}} (the curious novice) and {{mentorName}} (the patient mentor). It must sound like an excellent teacher talking, vivid, informative and clear, never like a textbook read aloud. Languages: {{languages}}.
+You are writing the narration every learner will hear: an authoritative collegiate single-instructor masterclass narration speaking directly to the learner. Zero two-person dialogues, zero alternating voices, and no artificial junior-vs-mentor banter. It must sound like an authoritative masterclass professor: calm, articulate, measured, vivid, informative and clear, never like a textbook read aloud. Languages: {{languages}}.
 
 ## Ground rules (apply to every OpenLectern task)
 
@@ -14,7 +14,7 @@ You are writing the narration every learner will hear: a dialogue between {{novi
 ## What to produce
 
 `languages` (copy from input) and `scenes` that follow the lesson plan's scene outline one-to-one. Each scene has `index`, `title`, `purpose` and `beats`. Each beat has:
-- `id` sNNbM (scene number two digits, beat number), `speaker` (novice, mentor or narrator);
+- `id` sNNbM (scene number two digits, beat number), `speaker` ("narrator" or "mentor" for the single collegiate instructor);
 - `narration`: for every language a `display` text (digits and symbols, used for subtitles) and, when it differs, a `spoken` text (how a teacher says it: "five percent", "S sub T");
 - `onScreenIntent`: what the visual must show while this beat is spoken;
 - `sourceFactIds`: the facts this beat teaches (every beat cites at least one fact unless it is a pure transition with `transition: true`);

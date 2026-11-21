@@ -159,3 +159,17 @@ One entry per decision: context, options, choice, reason.
 ## D-023: Hidden elements are not shifted
 
 - The first Phase 6 runs reported R-04 overflow on the summary scene (626 px of content in a 608 px main area) for every beat before rule 8 appears. The cause was the entrance style: a not-yet-revealed element sat at opacity 0 but was still translated 18 px down, and Chrome counts transformed boxes in the scroll height. `revealStyle` now applies the offset only while an element is entering (amount > 0); stills are taken after entrances finish, so real overflow is still caught.
+
+## D-024 Collegiate Single-Instructor Masterclass Narration and Technical Panel Mechanism
+
+- Context: The original reference paradigm relied on juvenile two-person banter (novice vs mentor) and cartoon speech bubbles on screen. For serious academic, quantitative finance, and institutional textbooks, learners require an authoritative, calm, and rigorous single-instructor masterclass format.
+- Options: Maintain dialogue banter with voice switching; completely eliminate speech bubbles and alternating voices in favor of an authoritative single-instructor collegiate masterclass with structured pedagogical layouts.
+- Choice:
+  1. Narration: A single, authoritative professor/practitioner speaks directly to the learner. Zero two-person dialogues, zero alternating voices, and no artificial junior-vs-mentor banter.
+  2. Voice: `en-US-ChristopherNeural` via Microsoft Edge-TTS is configured as the English voice for the entire course (male, collegiate/institutional masterclass narrator, calm, articulate, measured).
+  3. Visual Presentation (`technical_panel`): On-screen chat bubbles are replaced with structured pedagogical presentations:
+     - Two-Party Economic Mechanism (`two_party_mechanism`): Left Entity (Long / Buyer in cyan `#59BFC3`) with supply obligation and economic motivation; Right Entity (Short / Seller in gold `#E5C45B`) with harvest obligation and price protection motivation; Central Contract Conduit with exact transaction specifications; Causal Failure Callout highlighting bilateral counterparty default risk without a centralized clearinghouse.
+     - 4-Pillar Structural Framework (`single_concept`): Primary technical card outlining the 4 institutional pillars (The Commercial Dilemma, Risk Unbundling, Quantitative Engineering, and The Unified Chapter Chain) paired with a secondary risk architecture panel.
+     - Structured collegiate presentation cards for standard narrative beats.
+  4. Canvas Base Background: `#171717` (Dark Charcoal) with a subtle radial depth gradient: `radial-gradient(ellipse at 50% 30%, #1E1E1E 0%, #131313 100%)`.
+- Reason: Provides broadcast-grade instructional authority, prevents juvenile dialogue, and visually clarifies complex multi-party and institutional economic mechanics.

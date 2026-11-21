@@ -5,6 +5,7 @@ import { Persona } from "./book";
 import {
   ConceptPanel,
   ChatStoryData,
+  TechnicalPanelData,
   TugOfWarData,
   ProgressiveCardsData,
   SplitComparisonData,
@@ -65,6 +66,7 @@ const sceneBase = {
 
 export const Scene = z.discriminatedUnion("template", [
   z.object({ ...sceneBase, template: z.literal("chat_story"), data: ChatStoryData }),
+  z.object({ ...sceneBase, template: z.literal("technical_panel"), data: TechnicalPanelData }),
   z.object({ ...sceneBase, template: z.literal("tug_of_war"), data: TugOfWarData }),
   z.object({ ...sceneBase, template: z.literal("progressive_cards"), data: ProgressiveCardsData }),
   z.object({ ...sceneBase, template: z.literal("split_comparison"), data: SplitComparisonData }),

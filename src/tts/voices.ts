@@ -3,7 +3,7 @@ import type { BookConfig } from "../schemas/book";
 import { sha256, stableStringify } from "../core/fsutil";
 
 export const DEFAULT_VOICES: Record<string, Record<string, string>> = {
-  edge: { en: "en-US-AriaNeural", hi: "hi-IN-SwaraNeural" },
+  edge: { en: "en-US-ChristopherNeural", hi: "hi-IN-SwaraNeural" },
   mock: { en: "mock-en", hi: "mock-hi" },
   piper: { en: "en_US-lessac-medium", hi: "hi_IN-pratham-medium" },
   openai: { en: "alloy", hi: "alloy" },

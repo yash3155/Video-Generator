@@ -25,10 +25,13 @@
 - Words per beat: 25 to 75 (about 10 to 30 seconds). Split longer beats.
 - Banned filler: "as we all know", "it goes without saying", "needless to say", "in today's world", "let's dive in", "without further ado", "at the end of the day".
 
-## Dialogue
+## Collegiate Single-Instructor Masterclass Narration
 
-- The novice asks the questions real beginners ask, including wrong guesses; the mentor answers.
-- No skits, jokes or off-topic banter.
+- A single, authoritative professor/practitioner speaks directly to the learner.
+- Zero two-person dialogues, zero alternating voices, and no artificial junior-vs-mentor banter.
+- The instructor delivers an authoritative, calm, articulate, and measured collegiate lecture suited for technical and quantitative deconstruction.
+- English Voice: `en-US-ChristopherNeural` via Microsoft Edge-TTS for the entire course.
+- Tone & Delivery: Academic clarity, rigor, measured pacing, and causal explanations without sounding robotic or overly casual.
 - Hindi narration is natural conversational Hinglish in Devanagari script. Standard technical terms keep their English pronunciation (written in Devanagari or kept as Latin acronyms such as APR). On-screen text stays in the chosen display language.
 
 ## Script format

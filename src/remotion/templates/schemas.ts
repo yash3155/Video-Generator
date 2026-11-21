@@ -23,9 +23,67 @@ export const WhereWeAre = z.object({
   current: z.number().int().min(0),
 });
 
-export const ChatStoryData = z.object({
-  messages: z.array(z.object({ id: ElId, speaker: z.enum(["novice", "mentor"]), text: RichText })).min(1).max(6),
+export const TwoPartyMechanismData = z.object({
+  left: z.object({
+    role: z.string().min(1),
+    color: z.string().default("#59BFC3"),
+    obligation: z.string().min(1),
+    motivation: z.string().min(1),
+  }),
+  right: z.object({
+    role: z.string().min(1),
+    color: z.string().default("#E5C45B"),
+    obligation: z.string().min(1),
+    motivation: z.string().min(1),
+  }),
+  contractConduit: z.object({
+    title: z.string().min(1).default("Central Contract Conduit"),
+    specs: z.string().min(1),
+  }),
+  causalFailure: z
+    .object({
+      title: z.string().min(1).default("Causal Failure Callout"),
+      breakdown: z.string().min(1),
+    })
+    .optional(),
+});
+export type TwoPartyMechanismData = z.infer<typeof TwoPartyMechanismData>;
+
+export const FourPillarFrameworkData = z.object({
+  primaryCard: z.object({
+    title: z.string().min(1).default("4-Pillar Institutional Framework"),
+    pillars: z.array(
+      z.object({
+        id: ElId.default("p1"),
+        title: z.string().min(1),
+        description: z.string().min(1),
+      })
+    ).min(2).max(6),
+  }),
+  riskPanel: z
+    .object({
+      title: z.string().min(1).default("Risk Architecture & Controls"),
+      architecture: z.string().min(1),
+    })
+    .optional(),
+});
+export type FourPillarFrameworkData = z.infer<typeof FourPillarFrameworkData>;
+
+export const TechnicalPanelData = z.object({
+  presentation: z.enum(["two_party_mechanism", "single_concept", "structured_cards"]).optional(),
+  twoParty: TwoPartyMechanismData.optional(),
+  pillars: FourPillarFrameworkData.optional(),
+  messages: z.array(z.object({ id: ElId, speaker: z.string().min(1), text: RichText })).optional(),
   whereWeAre: WhereWeAre.optional(),
+});
+export type TechnicalPanelData = z.infer<typeof TechnicalPanelData>;
+
+export const ChatStoryData = z.object({
+  messages: z.array(z.object({ id: ElId, speaker: z.string().min(1), text: RichText })).min(1).max(6),
+  whereWeAre: WhereWeAre.optional(),
+  presentation: z.enum(["two_party_mechanism", "single_concept", "structured_cards", "chat_bubbles"]).optional(),
+  twoParty: TwoPartyMechanismData.optional(),
+  pillars: FourPillarFrameworkData.optional(),
 });
 
 export const TugOfWarData = z.object({
@@ -173,6 +231,7 @@ export const CompositeLayoutData = z.object({
 
 export const TEMPLATE_IDS = [
   "chat_story",
+  "technical_panel",
   "tug_of_war",
   "progressive_cards",
   "split_comparison",
@@ -193,6 +252,7 @@ export type TemplateId = (typeof TEMPLATE_IDS)[number];
 
 export const TEMPLATE_DATA_SCHEMAS = {
   chat_story: ChatStoryData,
+  technical_panel: TechnicalPanelData,
   tug_of_war: TugOfWarData,
   progressive_cards: ProgressiveCardsData,
   split_comparison: SplitComparisonData,

@@ -126,8 +126,17 @@ export const LessonFrame: React.FC<{
   const { theme, lang } = useRc();
   const L = ui(lang);
   return (
-    <AbsoluteFill style={{ background: theme.colors.background, color: theme.colors.text, fontFamily: fontFor(theme, lang) }}>
-      <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 40%, transparent 55%, ${theme.colors.vignette} 100%)` }} />
+    <AbsoluteFill
+      style={{
+        backgroundColor: theme.colors.background,
+        backgroundImage:
+          theme.id.startsWith("light")
+            ? `radial-gradient(ellipse at 50% 40%, transparent 55%, ${theme.colors.vignette} 100%)`
+            : "radial-gradient(ellipse at 50% 30%, #1E1E1E 0%, #131313 100%)",
+        color: theme.colors.text,
+        fontFamily: fontFor(theme, lang),
+      }}
+    >
       <Header header={header} />
       <div style={{ position: "absolute", left: 56, right: 56, top: theme.layout.headerHeight, height: theme.layout.titleHeight, display: "flex", alignItems: "center", gap: 18 }}>
         <div style={{ width: 8, height: 52, borderRadius: 4, background: theme.colors.gold, flex: "none" }} />

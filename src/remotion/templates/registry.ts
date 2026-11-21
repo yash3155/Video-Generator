@@ -17,7 +17,8 @@ export interface TemplateMeta {
 }
 
 const META: Record<TemplateId, Omit<TemplateMeta, "id" | "nestable" | "level">> = {
-  chat_story: { title: "Chat story", description: "Novice and mentor message bubbles with an optional WHERE WE ARE panel; the hook and bridge scenes.", animationTargets: "messages[].id", topologies: ["hook", "wisdom"], fallback: "progressive_cards" },
+  chat_story: { title: "Chat story", description: "Collegiate masterclass technical panel or structured presentation layout with an optional WHERE WE ARE panel.", animationTargets: "messages[].id", topologies: ["hook", "wisdom"], fallback: "progressive_cards" },
+  technical_panel: { title: "Technical panel", description: "Collegiate masterclass presentation layout: two-party economic mechanism or 4-pillar institutional framework.", animationTargets: "twoParty.left, twoParty.right, twoParty.contractConduit, twoParty.causalFailure, pillars.primaryCard", topologies: ["hook", "process", "comparison", "pillars"], fallback: "progressive_cards" },
   tug_of_war: { title: "Tug of war", description: "Two opposing sides with up to 3 points each and a resolution card.", animationTargets: "left.id, right.id, resolution.id", topologies: ["tension", "comparison"], fallback: "split_comparison" },
   progressive_cards: { title: "Progressive cards", description: "2-6 numbered cards revealed one by one.", animationTargets: "cards[].id", topologies: ["pillars", "process"], fallback: "progressive_cards" },
   split_comparison: { title: "Split comparison", description: "Trap vs reality (or any two sides) with tone icons and a verdict.", animationTargets: "left.id, right.id, verdict.id", topologies: ["tension", "comparison"], fallback: "table_compare" },

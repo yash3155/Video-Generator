@@ -39,3 +39,11 @@ Configure via `--tts <provider>` or in `book.config.json`: `"tts": { "provider":
 ### Automatic Edge-to-Piper Fallback
 
 When Edge TTS network requests fail 3 times in a row with exponential backoff (due to rate limiting or proxy blocks), OpenLectern automatically falls back to Piper TTS for remaining beats. Fallback provenance is recorded in `09_episode_compiled.json` and reported in the QA report.
+
+### English Collegiate Masterclass Voice Specifications
+
+- **Voice ID**: `en-US-ChristopherNeural` via Microsoft Edge-TTS
+- **Gender & Persona**: Male, collegiate / institutional masterclass narrator.
+- **Tone & Delivery**: Calm, authoritative, articulate, and measured. It provides a natural collegiate lecture delivery suited for quantitative finance and textbook deconstruction without sounding robotic or overly casual.
+- **Locale**: US English (`en-US`).
+- **Scope**: Serves as the single instructor voice across all English narration; zero alternating voices or juvenile junior-vs-mentor banter.

@@ -26,7 +26,7 @@ export interface StartCliOptions extends MakeCliOptions {
 }
 
 const PERSONA_DEFAULTS: Record<string, { novice: [string, string]; mentor: [string, string] }> = {
-  en: { novice: ["Alex", "en-US-AriaNeural"], mentor: ["Dr. Rivera", "en-US-ChristopherNeural"] },
+  en: { novice: ["Alex", "en-US-ChristopherNeural"], mentor: ["Dr. Rivera", "en-US-ChristopherNeural"] },
   hi: { novice: ["Raju", "hi-IN-MadhurNeural"], mentor: ["Sharma ji", "hi-IN-SwaraNeural"] },
 };
 

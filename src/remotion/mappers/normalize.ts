@@ -25,10 +25,11 @@ export function coerceTemplateData(template: TemplateId, raw: unknown): unknown 
       if (Array.isArray(d.rules)) d.rules = d.rules.map((r, i) => (typeof r === "string" ? { id: `rule-${i + 1}`, ...parseNumberedLine(r) } : r));
       break;
     case "chat_story":
+    case "technical_panel":
       if (Array.isArray(d.messages))
         d.messages = d.messages.map((m, i) => {
           if (typeof m !== "string") return m;
-          const mm = /^\s*(novice|mentor)\s*:\s*(.+)$/i.exec(m);
+          const mm = /^\s*(novice|mentor|instructor|narrator)\s*:\s*(.+)$/i.exec(m);
           return { id: `m${i + 1}`, speaker: (mm?.[1].toLowerCase() ?? (i % 2 ? "mentor" : "novice")) as string, text: mm ? mm[2] : m };
         });
       break;

@@ -1,7 +1,7 @@
 /* Template id -> React component. composite_layout renders two nestable templates side by side or stacked (Level 2). */
 import React from "react";
 import type { CompositeLayoutData, TemplateId } from "./schemas";
-import { ChatStory, TugOfWar, ProgressiveCards, SplitComparison, CausalChain, DiagramFlow, ConceptClarification, Roadmap } from "./narrative";
+import { ChatStory, TechnicalPanel, TugOfWar, ProgressiveCards, SplitComparison, CausalChain, DiagramFlow, ConceptClarification, Roadmap } from "./narrative";
 import { FormulaBreakdown, WorkedExample, DataChart, StatCounter, TableCompare } from "./math";
 import { InteractiveQuiz, SummaryThread } from "./assessment";
 import { Ctx, useRc } from "../components/ui";
@@ -30,6 +30,7 @@ export const Composite: React.FC<{ data: CompositeLayoutData }> = ({ data }) => 
 
 export const TEMPLATE_COMPONENTS: Record<TemplateId, AnyTemplate> = {
   chat_story: ChatStory as AnyTemplate,
+  technical_panel: TechnicalPanel as AnyTemplate,
   tug_of_war: TugOfWar as AnyTemplate,
   progressive_cards: ProgressiveCards as AnyTemplate,
   split_comparison: SplitComparison as AnyTemplate,

@@ -4,7 +4,7 @@ Chapter parts follow a canonical 12-scene structure. Orientation and Synthesis v
 
 | Scene | Default template | Beats | Purpose |
 | --- | --- | --- | --- |
-| 0 | chat_story | 4 | Problem-first hook. b1: the novice asks about a real struggle. b2: the mentor sets the concrete situation and actors. b3: the trap or failure. b4: the author's invention or solution. Includes the "where we are" roadmap. No dry definitions. |
+| 0 | technical_panel / chat_story | 4 | Problem-first hook presented through a structured pedagogical layout (e.g. Two-Party Economic Mechanism or 4-Pillar Institutional Framework) instead of on-screen speech bubbles. b1: real-world dilemma and commercial stakes. b2: concrete situation and counterparty roles. b3: commercial breakdown and default risk. b4: institutional invention and resolution. Includes the "where we are" roadmap. No conversational banter. |
 | 1 | tug_of_war | 3 | The two opposing forces from the hook, and how the concept resolves them. |
 | 2 | progressive_cards | 4 | The four pillars of the solution: the part's roadmap. |
 | 3 to 8 | chosen per concept | 1 to 3 each | Deep dive: definitions, mechanisms, formulas, charts, causal chains, worked example, guided application, limitations. |
