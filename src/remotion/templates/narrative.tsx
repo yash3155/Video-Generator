@@ -22,7 +22,7 @@ export const TechnicalPanel: React.FC<{ data: TechnicalPanelData | ChatStoryData
   const { theme, reveal, lang, size } = useRc();
   const L = ui(lang);
 
-  // 1. Two-Party Economic Mechanism (e.g. Chapter 1 Part 1)
+  // 1. Two-Party Economic Mechanism (two_party_mechanism)
   if (data.twoParty || data.presentation === "two_party_mechanism") {
     const tp = data.twoParty ?? {
       left: {
