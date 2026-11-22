@@ -42,7 +42,7 @@ jobs:
       - run: npx remotion browser ensure
       - name: replay demo (scene subset, draft, mock voice)
         run: npx openlectern make --book demo --chapter ch01 --part p1 --lang en --llm replay --tts mock --draft --scenes 0,9,11 --non-interactive
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: qa-report-${{ matrix.os }}
