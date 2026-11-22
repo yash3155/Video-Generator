@@ -5,7 +5,7 @@ import reactHooks from "eslint-plugin-react-hooks";
 
 export default tseslint.config(
   {
-    ignores: ["node_modules/**", "workspace/**", "out/**", ".build/**", "schemas/json/**", "coverage/**", "dist/**", "public/**"],
+    ignores: ["node_modules/**", "workspace/**", "out/**", ".build/**", "schemas/json/**", "coverage/**", "dist/**", "public/**", "scripts/*.mjs"],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

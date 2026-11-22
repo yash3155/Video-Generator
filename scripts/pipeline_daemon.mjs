@@ -43,7 +43,7 @@ function runCmd(cmd) {
 }
 
 async function handleAgentHandoff(output) {
-  const awaitingMatch = output.match(/AWAITING_AGENT\s+([a-zA-Z0-9_\-]+)\s+([^\r\n]+)/);
+  const awaitingMatch = output.match(/AWAITING_AGENT\s+([a-zA-Z0-9_-]+)\s+([^\r\n]+)/);
   if (!awaitingMatch) return false;
   
   const taskId = awaitingMatch[1];
