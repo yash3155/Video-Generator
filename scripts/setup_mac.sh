@@ -2,7 +2,7 @@
 set -e
 
 echo "=================================================="
-echo " OpenLectern Video Generator - macOS Setup Script"
+echo " Video-Generator: macOS Automated Setup Script"
 echo "=================================================="
 
 # 1. Check / Install Homebrew

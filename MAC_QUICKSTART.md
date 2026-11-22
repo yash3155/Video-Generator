@@ -1,12 +1,14 @@
-# macOS Quick Start Guide (MacBook Air / Pro / Mac Studio)
+# Video-Generator: macOS Quick Start Guide (MacBook Air / Pro / Mac Studio)
 
-This guide provides step-by-step instructions to set up and run OpenLectern on macOS with Apple Silicon (M1/M2/M3/M4/M5) or Intel chips.
+This guide provides step-by-step instructions to set up and run **Video-Generator** on macOS (Apple Silicon M1/M2/M3/M4/M5 and Intel Macs).
+
+> **Note:** Video-Generator uses the built-in `openlectern` CLI engine (`bin/openlectern.mjs`) for automated pedagogical scripting, Microsoft Edge TTS audio synthesis, and Remotion 1080p video rendering.
 
 ---
 
 ## ⚡ Option A: Automated One-Command Setup
 
-Open **Terminal** on your Mac, navigate to where you want the project, and run:
+Open **Terminal** on your Mac, navigate to the folder where you want to clone the project, and run:
 
 ```bash
 # 1. Clone the repository
@@ -44,12 +46,12 @@ git clone https://github.com/yash3155/Video-Generator.git
 cd Video-Generator
 ```
 
-### 3. Install NPM Dependencies
+### 3. Install Dependencies
 ```bash
 npm install
 ```
 
-### 4. Ensure Remotion Headless Chromium is Downloaded
+### 4. Download Remotion Headless Chromium
 ```bash
 npx remotion browser ensure
 ```
@@ -66,7 +68,7 @@ node bin/openlectern.mjs doctor
 ## 🎬 How to Generate Videos
 
 ### 1. Quick 60-Second Demo Test
-Generates a draft educational video in `out/demo/drafts/`:
+Generates a draft test video in `out/demo/drafts/`:
 ```bash
 npm start -- --non-interactive --book demo --chapter ch01 --part p1 --lang en --llm replay --tts mock --draft
 ```
@@ -94,7 +96,7 @@ node bin/openlectern.mjs run S12 --book hull --chapter ch03 --part p2 --no-revie
 node bin/openlectern.mjs run S13 --book hull --chapter ch03 --part p2
 ```
 
-> **Note:** The `--no-review` flag allows S12 automated checks (syntax, timings, frame integrity) to pass without pausing to wait for an LLM reviewer. Videos are ready immediately after S11.
+> **Note on `--no-review`:** This flag tells the QA validator to run all 49 automated checks (syntax, timing, audio levels, frame integrity) without pausing to prompt for an LLM reviewer. Completed MP4 videos are ready in `out/hull/` immediately upon S11 render completion.
 
 The completed broadcast videos will be in `out/hull/`:
 - `ch03_p1_en.mp4` & `ch03_p1_hi.mp4`
@@ -138,4 +140,4 @@ brew uninstall ffmpeg node@20
 ## 💡 Notes for Antigravity IDE / VS Code / Cursor
 - When opening this repository in Antigravity IDE, open the root folder (`Video-Generator`).
 - Use the integrated terminal (`Ctrl + \`` or `Cmd + \``) to run any of the commands above.
-- Zero paid API keys are required. Spoken speech uses free Edge TTS, and LLM reasoning stages automatically use Agent-as-LLM mode.
+- Zero paid API keys are required. Spoken narration uses free Microsoft Edge TTS, and all reasoning stages run in automated Agent-as-LLM mode.

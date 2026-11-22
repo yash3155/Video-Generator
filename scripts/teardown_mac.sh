@@ -2,7 +2,7 @@
 # Teardown script to completely clean up OpenLectern after testing on a guest Mac
 
 echo "=================================================="
-echo " OpenLectern - macOS Clean Teardown Script"
+echo " Video-Generator: macOS Clean Teardown Script"
 echo "=================================================="
 
 # 1. Clear Remotion browser and global caches
