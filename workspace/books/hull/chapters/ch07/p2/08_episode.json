@@ -1,0 +1,1506 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch07",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 7",
+  "partLabel": "Part 2",
+  "title": "Swaps - Part 2",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 2,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "Cross-Border Cash Flow Transformation: The Currency Swap",
+      "purpose": "Extend swaps from single-currency to cross-border multi-currency asset-liability management",
+      "takeaways": [
+        "Multinationals earn revenues in one currency and finance capital expenditures in another",
+        "A Currency Swap exchanges principal and interest across two completely different currencies",
+        "Part 2 masters dual principal exchanges, GE vs. Qantas model, dual bond valuation, and CSAs"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "chat_story",
+      "data": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "novice",
+            "text": "How can a US company finance a factory in Australia without bearing exchange rate volatility on foreign loans?"
+          },
+          {
+            "id": "m2",
+            "speaker": "mentor",
+            "text": "While plain vanilla swaps solve single-currency mismatches, modern multinationals operate across borders, earning revenue in one currency and financing in another."
+          },
+          {
+            "id": "m3",
+            "speaker": "mentor",
+            "text": "A Currency Swap is an OTC contract where counterparties exchange principal and periodic interest in two different currencies, transforming foreign debt synthetically."
+          },
+          {
+            "id": "m4",
+            "speaker": "mentor",
+            "text": "In Part Two, we master dual principal exchanges, Hull's GE vs. Qantas model, dual bond valuation, credit risk, and the Hammersmith & Fulham disaster."
+          }
+        ],
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "Cross-Border Intro",
+            "Dual Principal Rules",
+            "GE vs Qantas Model",
+            "Cash Flow Lifecycle",
+            "Dual Bond Valuation",
+            "Credit Risk & CSAs"
+          ],
+          "current": 0
+        }
+      },
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "novice",
+          "narration": {
+            "en": {
+              "display": "How can a US company finance a factory in Australia without bearing exchange rate volatility on foreign loans?"
+            },
+            "hi": {
+              "display": "क्या कोई अमेरिकी कंपनी बिना करेंसी रिस्क लिए ऑस्ट्रेलिया में फैक्ट्री के लिए लोन को हेज कर सकती है?"
+            }
+          },
+          "onScreenIntent": "Opening dilemma question on cross-border corporate borrowing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "currency swap"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "While plain vanilla interest rate swaps solve single-currency asset-liability mismatches, modern multinational corporations operate globally across borders. A multinational company often earns revenue in one foreign currency while financing its capital expenditures in another. To solve this cross-border structural mismatch, financial engineering created the Cross-Currency Swap."
+            },
+            "hi": {
+              "display": "Interest Rate Swaps single-currency cash flow mismatches ko solve karte hain. Lekin global economy mein multinational corporations cross-border operations run karti hain, jahan revenue ek currency mein hota hai aur factory financing doosri currency mein. Is cross-border dilemma ko solve karta hai The Currency Swap."
+            }
+          },
+          "onScreenIntent": "The mentor introduces cross-currency cash flow transformation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Currency Swap is an over-the-counter contract where two counterparties exchange principal and periodic interest payments denominated in two completely different currencies, transforming foreign currency debt into synthetic domestic obligations."
+            },
+            "hi": {
+              "display": "Currency Swap do parties ke beech ek over-the-counter contract hai jisme wo do alag-alag currencies jaise US Dollars aur Australian Dollars mein principal aur periodic interest payments exchange karti hain."
+            }
+          },
+          "onScreenIntent": "The mentor defines the Currency Swap contract and dual currency flows",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "cross-currency swap"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part Two of Chapter Seven, we will master the mechanics of dual principal exchanges, analyze global comparative advantage through Hull's classic General Electric and Qantas model, formulate the dual bond valuation methodology, evaluate why currency swaps carry ten times greater credit risk than interest rate swaps, and inspect the famous Hammersmith and Fulham municipal disaster."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter Seven Part Two mein hum Currency Swaps ke dual principal exchanges, comparative advantage in foreign borrowing, dual bond valuation, credit risk asymmetry aur historic Hammersmith municipal scandal ko step-by-step master karenge."
+            }
+          },
+          "onScreenIntent": "The mentor outlines Part 2 roadmap and learning topics",
+          "sourceFactIds": [
+            "F03",
+            "F04",
+            "F05",
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3",
+              "m4"
+            ]
+          },
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Fixed-for-Fixed Currency Swaps: Dual Principal Exchanges & Gross Payments",
+      "purpose": "Establish the two fundamental distinctions between currency swaps and interest rate swaps",
+      "takeaways": [
+        "In currency swaps, principal is real: exchanged at inception and re-exchanged at maturity at S_0",
+        "Because payments are in different sovereign currencies, periodic cash flows cannot be netted",
+        "Counterparties must make full gross payments on every settlement date"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "cmp-irs-rules",
+          "heading": "Interest Rate Swap (IRS)",
+          "tone": "neutral",
+          "points": [
+            "Principal is purely reference notional and is never exchanged",
+            "Single sovereign currency denomination on both fixed and floating legs",
+            "Cash flows are netted bilaterally: only the net interest spread transfers",
+            "Zero initial capital outlay and low default replacement exposure"
+          ]
+        },
+        "right": {
+          "id": "cmp-currency-rules",
+          "heading": "Currency Swap",
+          "tone": "positive",
+          "points": [
+            "Principal is real: full physical exchange at inception and re-exchange at maturity",
+            "Two distinct sovereign currencies: e.g. USD leg vs. AUD leg",
+            "Cash flow netting is impossible: counterparties transfer full gross payments",
+            "Re-exchange of terminal principal creates up to 10x greater credit risk"
+          ]
+        },
+        "verdict": {
+          "id": "vrd-principal-rule",
+          "text": "Currency swaps feature real dual principal exchanges and gross non-netted periodic flows."
+        }
+      },
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "There are two foundational structural distinctions between a Currency Swap and an Interest Rate Swap that every practitioner must recognize immediately."
+            },
+            "hi": {
+              "display": "Currency Swap aur Interest Rate Swap ke beech do fundamental structural differences hote hain jinhein samajhna har trader ke liye mandatory hai."
+            }
+          },
+          "onScreenIntent": "Introduce the two core distinctions between currency and interest rate swaps",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [
+            "principal exchange rules"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "First: In a currency swap, principal is real, not merely notional. Full principal amounts are physically exchanged at inception based on the prevailing spot exchange rate S_0, and the exact same principal amounts are re-exchanged at maturity at that same original exchange rate S_0."
+            },
+            "hi": {
+              "display": "Pehla difference: Currency Swap mein principal purely hypothetical ya notional nahi hota. Contract shuru hote waqt prevailing spot exchange rate par actual principal exchange hota hai, aur maturity par exact usi initial exchange rate par principal wapas re-exchange hota hai."
+            }
+          },
+          "onScreenIntent": "Explain physical principal exchange at inception and re-exchange at maturity at S_0",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "terminal re-exchange"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Second: Because periodic interest payments are denominated in two different sovereign currencies, cash flow netting is impossible. On each settlement date, both counterparties must transfer full gross payments in their respective agreed currencies."
+            },
+            "hi": {
+              "display": "Doosra difference: Kyunki interest payments do alag currencies mein hoti hain, inhein single currency ki tarah net nahi kiya ja sakta. Har payment date par dono parties full gross amounts transfer karti hain."
+            }
+          },
+          "onScreenIntent": "Explain why different currencies make netting impossible, requiring gross payments",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "gross payments"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Comparative Advantage in Global Capital Markets: Hull's GE vs. Qantas Model",
+      "purpose": "Examine global comparative advantage where GE and Qantas exploit domestic borrowing power",
+      "takeaways": [
+        "Multinationals borrow cheaply in their domestic markets due to local brand recognition",
+        "GE needs AUD for Sydney expansion; Qantas needs USD for Boeing aircraft",
+        "Cross-currency swaps allow both firms to access cheaper foreign funding than direct foreign debt"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "table_compare",
+      "data": {
+        "title": "Global Comparative Advantage: GE vs. Qantas",
+        "columns": [
+          "Corporation",
+          "Domestic Market Advantage",
+          "Foreign Currency Need",
+          "Swap Economic Role"
+        ],
+        "rows": [
+          {
+            "id": "row-ge",
+            "cells": [
+              "General Electric (US)",
+              "Issues cheap USD debt in US capital markets",
+              "Needs Australian Dollars (AUD) for Sydney facility",
+              "Borrows USD, swaps to synthetic AUD funding"
+            ]
+          },
+          {
+            "id": "row-qantas",
+            "cells": [
+              "Qantas Airways (Australia)",
+              "Issues cheap AUD debt in domestic Australian market",
+              "Needs US Dollars (USD) for commercial Boeing aircraft",
+              "Borrows AUD, swaps to synthetic USD funding"
+            ]
+          },
+          {
+            "id": "row-arbitrage",
+            "cells": [
+              "Market Synergy",
+              "Domestic borrowing power saves 40-60 bps",
+              "Both obtain required foreign currency",
+              "Swap locks exchange rates, eliminating FX risk"
+            ]
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Why do global corporations utilize currency swaps rather than borrowing foreign currency directly from international banks? Let us examine John Hull's classic corporate case study featuring General Electric and Qantas Airways."
+            },
+            "hi": {
+              "display": "Multinational companies foreign currencies mein direct borrow karne ke bajaye Currency Swaps kyun use karti hain? Aaiye John C. Hull ke classic General Electric aur Qantas Airways model se samajhte hain."
+            }
+          },
+          "onScreenIntent": "Introduce John Hull's classic GE vs. Qantas corporate case study",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "global comparative advantage"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "General Electric, based in the United States, requires Australian dollars to finance a new production facility in Sydney. Simultaneously, Qantas Airways, based in Australia, requires US dollars to acquire commercial Boeing aircraft."
+            },
+            "hi": {
+              "display": "American company GE ko Australia mein factory finance karne ke liye Australian Dollars chahiye, jabki Australian airline Qantas ko Boeing aircraft khareedne ke liye US Dollars chahiye."
+            }
+          },
+          "onScreenIntent": "Specify corporate financing needs: GE in Sydney, Qantas for Boeing planes",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "General Electric enjoys prestigious brand recognition and borrowing power in the United States, allowing it to issue USD debt very cheaply. Qantas possesses superior borrowing power in Australia, issuing domestic Australian dollar debt at favorable terms. By borrowing in their domestic markets and executing a cross-currency swap, both corporations achieve significantly cheaper foreign funding than borrowing directly abroad."
+            },
+            "hi": {
+              "display": "GE apne domestic US market mein strong reputation ki wajah se USD bohot cheap borrow kar sakti hai, jabki Qantas Australia mein AUD cheap borrow kar sakti hai. Dono apne home market mein borrow karke principal aur coupons swap karti hain, jisse dono ko direct foreign borrowing se substantially cheap financing milti hai."
+            }
+          },
+          "onScreenIntent": "Detail how domestic borrowing combined with swaps yields cheaper funding",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Numerical Structuring: Step-by-Step USD/AUD Currency Swap",
+      "purpose": "Trace the 3-phase lifecycle: inception principal swap, annual gross coupons, and terminal re-exchange",
+      "takeaways": [
+        "Inception: GE transfers 15M USD, Qantas transfers 20M AUD at S_0 = 0.75 USD/AUD",
+        "Interim: GE remits AUD coupons; Qantas remits USD coupons annually for 5 years",
+        "Maturity: GE returns 20M AUD and receives back 15M USD, eliminating terminal FX risk"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "technical_panel",
+      "data": {
+        "title": "Cash Flow Lifecycle: 5-Year USD/AUD Currency Swap",
+        "subtitle": "Spot Parity S_0 = 0.75 USD per 1 AUD ($15M USD = 20M AUD)",
+        "sections": [
+          {
+            "id": "phase-inception",
+            "title": "Phase 1: Inception Principal Exchange (t = 0)",
+            "content": "GE transfers $15,000,000 USD to Qantas. Simultaneously, Qantas transfers 20,000,000 AUD to GE."
+          },
+          {
+            "id": "phase-annual",
+            "title": "Phase 2: Annual Gross Interest Payments (t = 1 to 5)",
+            "content": "GE pays agreed AUD fixed coupon to Qantas. Qantas pays agreed USD fixed coupon to GE. Payments are made in gross non-netted transfers."
+          },
+          {
+            "id": "phase-maturity",
+            "title": "Phase 3: Maturity Principal Re-Exchange (t = 5)",
+            "content": "GE returns 20,000,000 AUD to Qantas. Qantas returns 15,000,000 USD to GE at the exact original 0.75 parity."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us trace the complete cash flow lifecycle of this transaction on screen. The prevailing spot exchange rate is zero point seven five US dollars per Australian dollar."
+            },
+            "hi": {
+              "display": "Screen par Hull ke standard USD-AUD swap ke complete cash flow timeline ko observe kijiye. Spot exchange rate zero point seven five US Dollars per Australian Dollar hai."
+            }
+          },
+          "onScreenIntent": "Specify spot exchange rate: S_0 = 0.75 USD per AUD",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At inception, General Electric transfers fifteen million US dollars to Qantas, while Qantas transfers twenty million Australian dollars to General Electric. Each corporation instantly receives its required foreign currency."
+            },
+            "hi": {
+              "display": "Inception par GE fifteen million US Dollars Qantas ko deti hai aur Qantas twenty million Australian Dollars GE ko transfer karti hai. Dono companies ko apni desired foreign currency mil gayi."
+            }
+          },
+          "onScreenIntent": "Trace Phase 1 inception exchange: $15M USD for 20M AUD",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Annually over the five-year term, General Electric remits Australian dollar coupon payments, while Qantas remits US dollar coupon payments. Finally, at maturity, the initial principal amounts are re-exchanged: General Electric returns twenty million Australian dollars and receives back fifteen million US dollars, fully insulating both firms from exchange rate volatility."
+            },
+            "hi": {
+              "display": "Har saal GE Australian Dollars par five percent interest pay karti hai aur Qantas US Dollars par six percent interest pay karti hai. Five years baad terminal maturity par exact initial fifteen million USD aur twenty million AUD re-exchange ho jate hain."
+            }
+          },
+          "onScreenIntent": "Trace Phase 2 annual gross coupons and Phase 3 terminal principal re-exchange",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Currency Swap Valuation: The Dual Bond Portfolio Model",
+      "purpose": "Formulate currency swap valuation as domestic bond minus spot-converted foreign bond: V_swap = B_D - S_0 * B_F",
+      "takeaways": [
+        "A currency swap is valued by decomposing into two separate sovereign currency bonds",
+        "To the party receiving domestic and paying foreign: V_swap = B_D - S_0 * B_F",
+        "B_D is discounted along domestic zero curve; B_F is discounted along foreign zero curve"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Currency Swap Valuation: The Dual Bond Model",
+        "formula": {
+          "latex": "V_{\\text{swap}} = B_D - S_0 B_F",
+          "expression": "Swap Value = Domestic Bond PV - (Spot Exchange Rate * Foreign Bond PV)",
+          "solvesFor": "Mark-to-Market Currency Swap Value in Domestic Currency (V_swap)",
+          "variables": [
+            {
+              "symbol": "V_swap",
+              "latex": "V_{\\text{swap}}",
+              "meaning": "Mark-to-market value of swap in domestic currency",
+              "unit": "domestic currency"
+            },
+            {
+              "symbol": "B_D",
+              "latex": "B_D",
+              "meaning": "Present value of future domestic cash flows discounted along domestic zero curve",
+              "unit": "domestic currency"
+            },
+            {
+              "symbol": "B_F",
+              "latex": "B_F",
+              "meaning": "Present value of future foreign cash flows discounted along foreign zero curve",
+              "unit": "foreign currency"
+            },
+            {
+              "symbol": "S_0",
+              "latex": "S_0",
+              "meaning": "Current spot exchange rate: domestic currency per 1 unit foreign currency",
+              "unit": "domestic/foreign"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "cv1",
+            "symbolLatex": "B_D",
+            "meaning": "Present value of all received domestic coupons plus principal repayment",
+            "unit": "domestic currency"
+          },
+          {
+            "id": "cv2",
+            "symbolLatex": "S_0 B_F",
+            "meaning": "Foreign bond present value converted into domestic currency at prevailing spot FX",
+            "unit": "domestic currency"
+          },
+          {
+            "id": "cv3",
+            "symbolLatex": "V_{\\text{swap}} = 0 \\text{ at } t=0",
+            "meaning": "At inception, terms are chosen such that B_D = S_0 * B_F, making initial value zero",
+            "unit": "equilibrium"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "How do quantitative desks determine the fair market value of an ongoing currency swap once exchange rates and interest rates have fluctuated? Hull decomposes the contract into a portfolio of two separate sovereign bonds."
+            },
+            "hi": {
+              "display": "Ek existing currency swap ki market fair value kaise calculate ki jati hai? Hull explain karte hain ki currency swap ko do alag currencies ke bonds ke portfolio ke roop mein decompose kiya ja sakta hai."
+            }
+          },
+          "onScreenIntent": "Introduce currency swap valuation via two separate sovereign bonds",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "dual bond model"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To the party receiving domestic currency and paying foreign currency, the swap is identical to holding a long position in a domestic currency bond and a short position in a foreign currency bond."
+            },
+            "hi": {
+              "display": "Domestic currency receive karne wali party ke liye swap value barabar hoti hai: domestic bond ki present value minus spot exchange rate guna foreign bond ki present value."
+            }
+          },
+          "onScreenIntent": "Model position as long domestic bond and short foreign bond",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The swap value formula is V_swap equals B_D minus S_0 times B_F, where B_D is the present value of domestic cash flows discounted along the domestic zero curve, B_F is the present value of foreign cash flows discounted along the foreign zero curve, and S_0 is the current spot exchange rate."
+            },
+            "hi": {
+              "display": "Formula dekhiye: V swap barabar B domestic minus S zero guna B foreign. Dono bonds ki cash flows ko unki respective domestic aur foreign zero rate curves se discount kiya jata hai, aur current exchange rate se convert kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Formulate master equation V_swap = B_D - S_0 * B_F",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Credit Risk Asymmetry: Why Currency Swaps Carry 10x Greater Default Risk",
+      "purpose": "Contrast credit exposure: interest rate swaps risk net interest vs. currency swaps risking terminal principal",
+      "takeaways": [
+        "Currency swaps carry up to 10 times greater default risk than interest rate swaps",
+        "In an IRS, default risks only the net interest spread (rarely exceeding 2-3% of notional)",
+        "In a currency swap, terminal principal re-exchange can create replacement costs of 30-50%"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "cmp-irs-credit",
+          "heading": "Interest Rate Swap Credit Risk",
+          "tone": "positive",
+          "points": [
+            "Principal is never exchanged; counterparties settle only net interest spreads",
+            "In counterparty default, exposure is confined to discounted interest differential",
+            "Maximum credit loss rarely exceeds 2% to 3% of total contract notional",
+            "Low systemic credit risk and straightforward capital allocation"
+          ]
+        },
+        "right": {
+          "id": "cmp-currency-credit",
+          "heading": "Currency Swap Credit Risk",
+          "tone": "trap",
+          "points": [
+            "Full physical re-exchange of principal occurs at final contract maturity",
+            "Severe currency devaluations cause massive mark-to-market replacement exposure",
+            "If counterparty defaults near maturity, replacement loss can reach 30% to 50% of principal",
+            "Carries up to 10x greater credit risk, necessitating strict daily collateralization"
+          ]
+        },
+        "verdict": {
+          "id": "vrd-credit-risk",
+          "text": "Terminal principal re-exchange elevates currency swap default exposure up to 10x."
+        }
+      },
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When evaluating counterparty credit risk, currency swaps differ profoundly from plain vanilla interest rate swaps. In fact, their default exposure is typically up to ten times larger."
+            },
+            "hi": {
+              "display": "Credit risk ke context mein Currency Swaps Interest Rate Swaps se bohot fundamentally alag hote hain. Inka default risk ten times greater kyun hota hai?"
+            }
+          },
+          "onScreenIntent": "State that currency swap default exposure is up to 10 times larger",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "credit risk asymmetry"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In an interest rate swap, principal is never exchanged, and cash flows are netted. If a counterparty defaults, the non-defaulting party loses only the net interest spread, which rarely exceeds two to three percent of notional."
+            },
+            "hi": {
+              "display": "Interest Rate Swap mein principal kabhi exchange nahi hota; sirf net interest difference risk par hota hai, jo rarely notional ka two to three percent exceed karta hai."
+            }
+          },
+          "onScreenIntent": "Analyze IRS default: confined to 2-3% net interest spread",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In contrast, a currency swap involves the full physical re-exchange of principal at maturity. If a severe currency devaluation occurs and the counterparty defaults just prior to terminal re-exchange, the replacement cost can easily reach thirty to fifty percent of principal."
+            },
+            "hi": {
+              "display": "Lekin Currency Swap mein contract maturity par full principal exchange hota hai. Agar exchange rate substantially move ho jaye aur counterparty default kar de, toh non-defaulting party ko replacement currency par thirty to fifty percent tak ka massive loss uthana pad sakta hai."
+            }
+          },
+          "onScreenIntent": "Analyze currency swap default: terminal principal loss reaching 30-50%",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "terminal principal risk"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Credit Mitigation: Daily Collateralization Under Credit Support Annexes (CSAs)",
+      "purpose": "Examine Credit Support Annexes (CSAs), daily variation margin, and uncollateralized risk resetting",
+      "takeaways": [
+        "Bilateral collateralization is legally governed by Credit Support Annexes (CSAs)",
+        "Every swap is marked to market daily; the out-of-the-money party posts cash or Treasuries",
+        "Daily variation margin resets uncollateralized credit risk back to zero every 24 hours"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "technical_panel",
+      "data": {
+        "title": "Credit Mitigation via Credit Support Annexes (CSAs)",
+        "subtitle": "Daily Variation Margin & Zero-Risk Resetting",
+        "sections": [
+          {
+            "id": "csa-framework",
+            "title": "Credit Support Annex (CSA)",
+            "content": "Legal document attached to ISDA Master Agreement specifying collateral eligibility, valuation hair cuts, and transfer thresholds."
+          },
+          {
+            "id": "csa-margin",
+            "title": "Daily Variation Margin",
+            "content": "Positions are marked to market at daily close. If counterparty exposure is positive, opposing party posts cash or sovereign bonds."
+          },
+          {
+            "id": "csa-reset",
+            "title": "24-Hour Credit Reset",
+            "content": "By transferring collateral every business day, net uncollateralized credit exposure is restored to zero every 24 hours."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To protect institutions against catastrophic principal default, the modern over-the-counter market mandates bilateral collateralization governed by Credit Support Annexes, or CSAs."
+            },
+            "hi": {
+              "display": "Is high default risk ko eliminate karne ke liye institutional OTC swap market Credit Support Annex ya CSA collateral agreements enforce karta hai."
+            }
+          },
+          "onScreenIntent": "Introduce Credit Support Annexes (CSAs) and collateralization",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "credit support annex"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under a CSA attached to the ISDA Master Agreement, every swap position is marked to market at the end of each trading day. If a party's mark-to-market exposure becomes positive, the opposing counterparty must post eligible collateral—typically cash or government Treasuries."
+            },
+            "hi": {
+              "display": "CSA ke under har trade ko daily mark-to-market kiya jata hai. Agar currency move hone se kisi bank ka exposure positive ho jata hai, toh counterparty ko immediately cash ya Treasury bonds collateral ke roop mein post karne padte hain."
+            }
+          },
+          "onScreenIntent": "Detail daily mark-to-market calculations and eligible collateral",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "variation margin"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "By transferring daily variation margin, uncollateralized credit risk is reset back to zero every twenty-four hours, ensuring that even a major counterparty insolvency cannot cause catastrophic contagion."
+            },
+            "hi": {
+              "display": "Daily margin variation ensure karti hai ki uncollateralized credit risk zero ke close rahe, jisse Lehman Brothers jaise systemic failure se counterparty wipeout na ho."
+            }
+          },
+          "onScreenIntent": "Explain how daily margin resets credit risk to zero, preventing contagion",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "credit reset"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Other Swap Structures: Total Return Swaps & Equity Swaps",
+      "purpose": "Examine Total Return Swaps (TRS) and Equity Swaps transferring asset performance synthetically",
+      "takeaways": [
+        "Total Return Swaps transfer total economic performance (coupons + capital gains) of reference assets",
+        "Receiver pays floating interest benchmark plus spread and absorbs any capital depreciation",
+        "Hedge funds deploy TRS to achieve high synthetic leverage without purchasing underlying bonds"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "table_compare",
+      "data": {
+        "title": "Advanced Synthetic Swap Structures",
+        "columns": [
+          "Swap Structure",
+          "Total Return Payer Transmits",
+          "Total Return Receiver Transmits",
+          "Primary Economic Application"
+        ],
+        "rows": [
+          {
+            "id": "trs-bond",
+            "cells": [
+              "Total Return Swap (TRS)",
+              "Coupons, interest & capital appreciation of reference asset",
+              "Floating benchmark rate + credit spread (reimburses losses)",
+              "Synthetic leveraged exposure to illiquid loans or bonds"
+            ]
+          },
+          {
+            "id": "trs-equity",
+            "cells": [
+              "Equity Swap",
+              "Total return of stock index (dividends + price change)",
+              "Fixed swap rate or floating SOFR benchmark",
+              "Asset managers rebalancing equity portfolios synthetically"
+            ]
+          },
+          {
+            "id": "trs-commodity",
+            "cells": [
+              "Commodity Swap",
+              "Spot commodity price index return over horizon",
+              "Fixed commodity strike price per unit delivered",
+              "Industrial producers locking forward revenues"
+            ]
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Beyond plain vanilla interest rate and currency swaps, modern financial markets have developed highly specialized synthetic structures, most prominently the Total Return Swap."
+            },
+            "hi": {
+              "display": "Plain vanilla currency aur interest rate swaps ke alawa modern financial markets mein specialized exotic swaps develop huye hain, jisme sabse prominent hai The Total Return Swap ya TRS."
+            }
+          },
+          "onScreenIntent": "Introduce Total Return Swaps and advanced synthetic structures",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "total return swap"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In a Total Return Swap, the total return payer transfers the complete economic performance of an underlying reference asset—such as a corporate bond index, including coupon payments and capital appreciation—to the receiver."
+            },
+            "hi": {
+              "display": "Total Return Swap mein ek Total Return Payer kisi asset jaise corporate bond portfolio ka complete economic return, jisme capital gains aur interest shamil hain, receiver ko transfer karta hai."
+            }
+          },
+          "onScreenIntent": "Detail TRS cash flows: coupon payments and capital appreciation",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In return, the receiver pays a floating interest rate benchmark plus a credit spread, and reimburses the payer for any capital depreciation. This allows hedge funds to obtain synthetic asset exposure with high leverage without purchasing the cash asset."
+            },
+            "hi": {
+              "display": "Badle mein Total Return Receiver payer ko regular floating financing rate pay karta hai aur kisi bhi capital depreciation ko reimburse karta hai. Ye hedge funds ko bina actual asset buy kiye synthetic leveraged exposure provide karta hai."
+            }
+          },
+          "onScreenIntent": "Explain hedge fund synthetic leverage applications without physical bond purchases",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "synthetic leverage"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Case Study: The Hammersmith & Fulham Municipal Swap Crisis",
+      "purpose": "Examine the £6B Hammersmith & Fulham crisis and the legal risk of ultra vires contracts",
+      "takeaways": [
+        "Hammersmith & Fulham municipal treasurers entered £6B in speculative swaps gambling on falling rates",
+        "When rates surged, UK House of Lords ruled councils lacked statutory legal authority to trade swaps",
+        "Contracts were declared ultra vires (void), forcing global banks to write off £600M in swap claims"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "technical_panel",
+      "data": {
+        "title": "Case Study: Hammersmith & Fulham Municipal Crisis",
+        "subtitle": "The £600M Ultra Vires Legal Disaster",
+        "sections": [
+          {
+            "id": "hf-gamble",
+            "title": "Speculative Municipal Gambling",
+            "content": "Local council treasurers entered over £6 billion notional in aggressive interest rate swaps, selling options to capture upfront premium."
+          },
+          {
+            "id": "hf-rate-spike",
+            "title": "Interest Rate Surge & Catastrophe",
+            "content": "UK interest rates surged sharply, inflicting hundreds of millions in mark-to-market swap losses on the municipal budget."
+          },
+          {
+            "id": "hf-ruling",
+            "title": "House of Lords Ultra Vires Ruling",
+            "content": "The House of Lords ruled local councils had no statutory capacity to trade derivatives. Swaps were declared void ab initio, inflicting £600M in bank losses."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Business Snapshot 7.2, John Hull details one of the most famous legal and structural failures in derivatives history: The London Borough of Hammersmith and Fulham disaster."
+            },
+            "hi": {
+              "display": "John C. Hull Business Snapshot seven point two mein swap history ka sabse famous legal breakdown present karte hain: The Hammersmith and Fulham Disaster."
+            }
+          },
+          "onScreenIntent": "Introduce Business Snapshot 7.2: Hammersmith & Fulham disaster",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Hammersmith & Fulham disaster"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "During the late 1980s, local municipal council treasurers in the UK entered into massive speculative interest rate swaps with a combined notional exceeding six billion pounds, effectively gambling that interest rates would decline to earn upfront premiums."
+            },
+            "hi": {
+              "display": "Nineteen-eighties ke end mein UK ki ek local municipal council ne interest rates par pure speculative bet lagane ke liye six billion pounds se zyada ke swaps enter kiye."
+            }
+          },
+          "onScreenIntent": "Detail £6B speculative swap positions and rate decline bet",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When British interest rates surged, the council faced hundreds of millions in losses. The UK House of Lords subsequently ruled that municipal councils lacked statutory legal authority to trade derivatives. The contracts were declared ultra vires and legally void, forcing international banks to write off over six hundred million pounds in swap claims."
+            },
+            "hi": {
+              "display": "Jab interest rates move huye aur council ko massive losses huye, toh nineteen-ninety-one mein British House of Lords ne ruling di ki local councils ke paas speculative swaps enter karne ki statutory legal authority hi nahi thi. Contracts ko Ultra Vires ghoshit karke cancel kar diya gaya, jisse global banks ko six hundred million pounds ka massive legal loss bear karna pada."
+            }
+          },
+          "onScreenIntent": "Explain House of Lords ultra vires ruling and £600M banking write-off",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "ultra vires"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Valuing an Existing USD/GBP Currency Swap",
+      "purpose": "Test student calculation of currency swap value: B_D - S_0 * B_F",
+      "takeaways": [
+        "B_D = $105M USD, B_F = £70M GBP, S_0 = 1.45 USD/GBP",
+        "Spot-converted foreign bond: £70M * 1.45 = $101.5M USD",
+        "V_swap = $105M - $101.5M = +$3,500,000 (positive $3.5M)"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "interactive_quiz",
+      "data": {
+        "title": "Active Recall: Dual Bond Currency Swap Valuation",
+        "question": "An institution receives USD fixed (B_D = $105M) and pays GBP fixed (B_F = £70M). Spot rate S_0 = 1.45 USD/GBP. What is the value of this currency swap to the institution?",
+        "options": [
+          "+$3,500,000: $105M domestic bond minus ($70M * 1.45 = $101.5M) foreign bond.",
+          "-$3,500,000: The institution is in an out-of-the-money loss position.",
+          "+$35,000,000: Subtracting foreign currency pounds directly from domestic dollars.",
+          "$0.00: Currency swaps remain at zero value because original principal amounts are re-exchanged."
+        ],
+        "correctIndex": 0,
+        "explanation": "Using the dual bond valuation formula: V_swap = B_D - S_0 * B_F. First convert the foreign GBP bond into USD: 70M GBP * 1.45 USD/GBP = $101.5M USD. Then subtract from the domestic USD bond: $105M - $101.5M = +$3.5M (positive $3,500,000)."
+      },
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us now apply the dual bond portfolio valuation formula to solve a practical currency swap pricing problem. Carefully inspect the terms on screen."
+            },
+            "hi": {
+              "display": "Chaliye ab ek practical currency swap valuation scenario solve karte hain. Screen par diye gaye parameters ko evaluate kijiye."
+            }
+          },
+          "onScreenIntent": "Present the currency swap pricing problem",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A financial institution receives USD at a fixed rate of four point zero percent and pays GBP at a fixed rate of five point zero percent. The present value of future USD cash flows is one hundred five million dollars, while the present value of GBP cash flows is seventy million pounds. The current spot exchange rate is one point four five dollars per pound. What is the value of this currency swap to the institution? Pause and consider."
+            },
+            "hi": {
+              "display": "Ek US financial institution USD receive kar raha hai aur British Pounds pay kar raha hai. USD bond ki present value one hundred five million dollars hai. GBP bond ki present value seventy million pounds hai. Current spot exchange rate one point four five dollars per pound hai. Swap ki fair value kya hogi? Pause and consider."
+            }
+          },
+          "onScreenIntent": "Prompt calculation: B_D = $105M, B_F = £70M, S_0 = 1.45",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A: Positive three million five hundred thousand dollars. First, convert the foreign GBP bond into domestic USD: seventy million pounds times one point four five equals one hundred one point five million dollars. Then, subtract this value from the domestic USD bond: one hundred five million minus one hundred one point five million equals positive three point five million dollars."
+            },
+            "hi": {
+              "display": "Correct answer hai Option A: Positive three point five zero million dollars. Calculation dekhiye: Foreign bond value in USD barabar seventy million pounds guna one point four five, jo banta hai one hundred one point five million dollars. Domestic value one hundred five million minus one hundred one point five million equals positive three point five million dollars."
+            }
+          },
+          "onScreenIntent": "Reveal Option A: +$3.5M and trace foreign bond conversion",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Structural Risk Management Rules for Corporate Swap Users",
+      "purpose": "Establish three imperative risk management rules: hedging vs. speculation, legal capacity, and CSAs",
+      "takeaways": [
+        "Rule 1: Use swaps strictly to hedge underlying debt; macro speculation risks existential ruin",
+        "Rule 2: Independently verify counterparty statutory legal capacity to prevent ultra vires voiding",
+        "Rule 3: Enforce daily CSA variation margin to neutralize terminal principal default risk"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "cmp-prudent-hedging",
+          "heading": "Prudent Treasury Practice",
+          "tone": "positive",
+          "points": [
+            "Swaps strictly matched to underlying commercial loans and operational revenues",
+            "Independent legal verification of counterparty capacity within ISDA schedules",
+            "Mandatory daily CSA variation margin collateralization in cash or Treasuries",
+            "Eliminates FX and interest rate volatility without speculative balance sheet risk"
+          ]
+        },
+        "right": {
+          "id": "cmp-fatal-traps",
+          "heading": "Existential Failure Traps",
+          "tone": "trap",
+          "points": [
+            "Using swaps speculatively to generate upfront premium income (e.g. Hammersmith)",
+            "Assuming counterparties possess statutory authority without independent legal check",
+            "Leaving cross-currency terminal principal re-exchanges uncollateralized",
+            "Creates catastrophic multi-hundred-million-dollar default losses"
+          ]
+        },
+        "verdict": {
+          "id": "vrd-rules",
+          "text": "Prudent treasuries hedge commercial exposures, verify legal capacity, and collateralize daily via CSAs."
+        }
+      },
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "From our comprehensive study of Chapter Seven, three vital risk management rules emerge that every corporate treasurer and quantitative risk manager must strictly enforce."
+            },
+            "hi": {
+              "display": "Chapter Seven se teen inviolable corporate risk management rules emerge hote hain jo har corporate treasury ko strictly follow karne chahiye."
+            }
+          },
+          "onScreenIntent": "Introduce three vital risk management rules for corporate swap users",
+          "sourceFactIds": [
+            "F06",
+            "F07"
+          ],
+          "newTerms": [
+            "risk management rules"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule One: Corporate treasuries must utilize swaps strictly to hedge underlying commercial asset-liability exposures; using swaps to speculate on macro rate or currency movements creates existential ruin risk."
+            },
+            "hi": {
+              "display": "Rule One: Swaps ka istemaal underlying commercial business cash flows ko hedge karne ke liye kijiye; interest rate ya currency direction par speculative bet kabhi mat lagaiye."
+            }
+          },
+          "onScreenIntent": "State Rule One: Swaps must hedge underlying debt, not speculate",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule Two: Treasuries and bank desks must verify counterparty statutory legal capacity within ISDA documentation to protect against ultra vires contract nullification."
+            },
+            "hi": {
+              "display": "Rule Two: Counterparty ki legal authority aur capacity ISDA schedule mein independently verify kijiye taaki Hammersmith jaisa ultra vires contract cancellation na jhelna pade."
+            }
+          },
+          "onScreenIntent": "State Rule Two: Independently verify counterparty statutory legal capacity",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "statutory legal capacity"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule Three: All cross-currency exposures must be collateralized under bilateral CSAs with daily variation margin to neutralize terminal principal default risk."
+            },
+            "hi": {
+              "display": "Rule Three: Har cross-currency transaction ko bilateral CSA margin agreements se collateralize kijiye taaki terminal principal default risk zero rahe."
+            }
+          },
+          "onScreenIntent": "State Rule Three: Collateralize all cross-currency exposures under bilateral CSAs",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Currency Swaps & Credit Risk",
+      "purpose": "Consolidate Chapter 7 Part 2 currency swap principles before Chapter 8 Securitization",
+      "takeaways": [
+        "Currency swaps feature real principal exchange and gross periodic cash transfers",
+        "Contracts are valued via the dual bond portfolio model: V_swap = B_D - S_0 * B_F",
+        "Terminal principal default risk necessitates daily CSA variation margin collateralization"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "summary_thread",
+      "data": {
+        "title": "Executive Synthesis: The Four Pillars of Cross-Currency Swaps",
+        "rules": [
+          {
+            "id": "rul-1",
+            "title": "Dual Principal Exchanges",
+            "text": "Full physical principal is exchanged at inception and re-exchanged at maturity at original S_0."
+          },
+          {
+            "id": "rul-2",
+            "title": "Gross Periodic Payments",
+            "text": "Because cash flows are in different sovereign currencies, payments cannot be netted."
+          },
+          {
+            "id": "rul-3",
+            "title": "Global Comparative Advantage",
+            "text": "Multinationals issue debt in domestic markets where they have brand advantage, swapping to foreign needs."
+          },
+          {
+            "id": "rul-4",
+            "title": "Dual Bond Portfolio Valuation",
+            "text": "V_swap = B_D - S_0 * B_F: domestic bond PV minus spot-converted foreign bond PV."
+          },
+          {
+            "id": "rul-5",
+            "title": "10x Greater Credit Risk",
+            "text": "Terminal principal re-exchange exposes counterparties to replacement losses of 30-50%."
+          },
+          {
+            "id": "rul-6",
+            "title": "Daily CSA Collateralization",
+            "text": "Credit Support Annexes mandate daily variation margin, resetting credit risk to zero every 24 hours."
+          },
+          {
+            "id": "rul-7",
+            "title": "Synthetic Total Return Swaps",
+            "text": "TRS structures transfer complete reference asset returns without cash asset purchases."
+          },
+          {
+            "id": "rul-8",
+            "title": "Statutory Capacity Enforceability",
+            "text": "Hammersmith & Fulham proves counterparty legal capacity must be verified to prevent ultra vires nullification."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate our mastery of Chapter Seven Part Two through the four structural pillars of cross-currency swaps."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Seven Part Two ke chaar foundational pillars ko consolidate karte hain."
+            }
+          },
+          "onScreenIntent": "Introduce synthesis of the four structural pillars",
+          "sourceFactIds": [
+            "F01",
+            "F04",
+            "F05",
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar One: Dual Principal Exchanges. Currency swaps involve real physical principal exchange at inception and maturity, with gross non-netted periodic coupon payments."
+            },
+            "hi": {
+              "display": "Pillar One: Dual Principal Exchange. Currency swaps mein inception aur maturity par actual principal exchange hota hai, aur interest payments gross cash flows ke roop mein transfer hoti hain."
+            }
+          },
+          "onScreenIntent": "Review Pillar One: Dual Principal Exchanges",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Two: Dual Bond Valuation. A currency swap is valued as the domestic currency bond present value minus the spot-converted foreign bond present value."
+            },
+            "hi": {
+              "display": "Pillar Two: Dual Bond Valuation. Swap value domestic bond present value minus spot converted foreign bond present value hoti hai."
+            }
+          },
+          "onScreenIntent": "Review Pillar Two: Dual Bond Valuation",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Three: Principal Credit Risk. Terminal principal re-exchange introduces up to ten times greater default risk, necessitating daily CSA collateralization."
+            },
+            "hi": {
+              "display": "Pillar Three: Principal Credit Exposure. Terminal principal re-exchange ki wajah se currency swaps interest rate swaps se substantially higher credit default risk carry karte hain."
+            }
+          },
+          "onScreenIntent": "Review Pillar Three: Principal Credit Risk and CSAs",
+          "sourceFactIds": [
+            "F05",
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Four: Legal Authority Enforceability. Counterparty capacity must be independently verified to prevent municipal ultra vires repudiation. In Chapter Eight, we will advance into Securitization and the 2008 Credit Crisis."
+            },
+            "hi": {
+              "display": "Pillar Four: Legal Authority Protection. Counterparty statutory power independently confirm karna mandatory hai taaki ultra vires contract repudiation prevent kiya ja sake."
+            }
+          },
+          "onScreenIntent": "Review Pillar Four: Legal Capacity and preview Chapter 8 Securitization",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1380 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch21",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 21",
+  "partLabel": "Part 1",
+  "title": "Chapter 21: Binomial Trees in Practice & Trinomial Trees (Part 1)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 40,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "Practical Numerical Engineering",
+      "purpose": "Practical Numerical Engineering: Foundational quantitative principles",
+      "takeaways": [
+        "Practical Numerical Engineering: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Earlier binomial tree models assumed continuous dividend yields, but real-world equities pay discrete, lump-sum cash dividends."
+            },
+            "hi": {
+              "display": "Sharma ji, previous chapters mein humne binomial trees padhe jahan stock continuous dividend yield deta tha. Lekin real companies cash dividend fixed dollar amount mein deti hain. Ye practical dividend tree par kaise model hota hai?"
+            }
+          },
+          "onScreenIntent": "Practical Numerical Engineering",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These discrete cash dividend drops break lattice recombination, causing an exponential two-to-the-N node explosion that overwhelms memory."
+            },
+            "hi": {
+              "display": "Raju, discrete dollar dividend aate hi standard binomial tree completely collapse ho jata hai! Agar hum naive tree banayein, toh ex-dividend drop ki wajah se nodes aapas mein recombine nahi hote, aur nodes ki sankhya exponentially explode kar jaati hai."
+            }
+          },
+          "onScreenIntent": "Practical Numerical Engineering",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 21 Part 1, we master John Hull's stock price decomposition to restore recombination, and construct three-branch Trinomial Trees."
+            },
+            "hi": {
+              "display": "Aaj Chapter 21 mein hum dekhenge ki John Hull ne is non-recombining crisis ko solve karne ke liye Stock Decomposition method kaise invent kiya, aur kaise Trinomial Trees extra stability provide karte hain!"
+            }
+          },
+          "onScreenIntent": "Practical Numerical Engineering",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Practical Numerical Engineering",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Practical Numerical Engineering: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "The Non-Recombining Tree Dilemma",
+      "purpose": "The Non-Recombining Tree Dilemma: Foundational quantitative principles",
+      "takeaways": [
+        "The Non-Recombining Tree Dilemma: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Observe the mathematical failure: an up move followed by dividend deduction and a down move produces (S_0 u - D) times d."
+            },
+            "hi": {
+              "display": "Mathematical problem ko dhyan se dekhiye: Maan lijiye stock par up move ke baad dividend D deduct hota hai, aur fir down move hota hai. Toh price banta hai S zero u minus D times d."
+            }
+          },
+          "onScreenIntent": "The Non-Recombining Tree Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, a down move followed by dividend deduction and an up move yields (S_0 d - D) times u. These two nodal values are not equal!"
+            },
+            "hi": {
+              "display": "Lekin agar pehle down move ho aur fir dividend deduct hoke up move ho, toh price banta hai S zero d minus D times u. Ye dono values mathematical equal nahi hoteen!"
+            }
+          },
+          "onScreenIntent": "The Non-Recombining Tree Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because nodes do not recombine, after 30 time steps the tree explodes into over one billion nodes, rendering calculation impossible."
+            },
+            "hi": {
+              "display": "Iska result ye hota hai ki tree recombine nahi hota. 30 time steps ke baad tree mein 2 ki power 30 yaani 1 billion se zyada nodes ban jayenge! Kisi bhi computer ke liye is path-dependent explosion ko calculate karna impossible ho jata hai."
+            }
+          },
+          "onScreenIntent": "The Non-Recombining Tree Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Non-Recombining Tree Dilemma",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Non-Recombining Tree Dilemma: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Hull's Stock Price Decomposition",
+      "purpose": "Hull's Stock Price Decomposition: Foundational quantitative principles",
+      "takeaways": [
+        "Hull's Stock Price Decomposition: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To defeat this exponential explosion, John Hull formulated a powerful decomposition dividing stock price S(t) into two distinct parts."
+            },
+            "hi": {
+              "display": "Is exponential explosion ko defeat karne ke liye John Hull ne ek brilliant mathematical decomposition invent kiya: hum stock price S of t ko do parts mein split karte hain."
+            }
+          },
+          "onScreenIntent": "Hull's Stock Price Decomposition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The first part is the Riskless Component: the discounted present value of all scheduled future cash dividends payable during option life."
+            },
+            "hi": {
+              "display": "Pehla part hai Riskless Component, jo future mein aane wale sabhi scheduled dividends ki discounted present value hota hai."
+            }
+          },
+          "onScreenIntent": "Hull's Stock Price Decomposition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second part is the Stochastic Component S*(t): an uncertain diffusion process that follows standard geometric Brownian motion."
+            },
+            "hi": {
+              "display": "Aur dusra part hai Stochastic Component S star of t, jo stock ka uncertain, volatile hissa hota hai aur continuous geometric Brownian motion follow karta hai."
+            }
+          },
+          "onScreenIntent": "Hull's Stock Price Decomposition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Hull's Stock Price Decomposition",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Hull's Stock Price Decomposition: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Recombining Lattice on S*",
+      "purpose": "Recombining Lattice on S*: Foundational quantitative principles",
+      "takeaways": [
+        "Recombining Lattice on S*: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The core breakthrough is that we construct the lattice not on actual stock S, but strictly on stochastic component S*."
+            },
+            "hi": {
+              "display": "Screen par dekhiye: ab hum pura binomial tree actual stock S par nahi, balki stochastic component S star par construct karte hain."
+            }
+          },
+          "onScreenIntent": "Recombining Lattice on S*",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because S* pays no dividends during the step, the condition u times d equals one holds identically, ensuring perfect lattice recombination!"
+            },
+            "hi": {
+              "display": "Kyunki S star khud koi dividend pay nahi karta, iska up step u aur down step d hamesha multiply hoke 1 banate hain. Isse tree perfectly recombine karta hai!"
+            }
+          },
+          "onScreenIntent": "Recombining Lattice on S*",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At 30 steps, instead of one billion nodes, only 496 recombining nodes are generated. Adding remaining dividend present value recovers true stock S(t)."
+            },
+            "hi": {
+              "display": "30 steps par 1 billion nodes ke bajay, sirf 496 recombining nodes bante hain. Aur har node par hum PV of remaining dividends add karke true market stock price S of t recover kar lete hain."
+            }
+          },
+          "onScreenIntent": "Recombining Lattice on S*",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Recombining Lattice on S*",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Recombining Lattice on S*: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Nodal Early Exercise with S(t)",
+      "purpose": "Nodal Early Exercise with S(t): Foundational quantitative principles",
+      "takeaways": [
+        "Nodal Early Exercise with S(t): Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option valuation proceeds via standard backward induction, using true terminal stock price S_T at maturity to compute payoffs."
+            },
+            "hi": {
+              "display": "Option valuation ke liye backward induction standard tareeqe se chalta hai. Terminal maturity par true stock price S of T use hota hai."
+            }
+          },
+          "onScreenIntent": "Nodal Early Exercise with S(t)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At each intermediate node, American exercise value is evaluated directly against true stock price S(t) rather than artificial S*."
+            },
+            "hi": {
+              "display": "Har intermediate node par American option holder ke paas do choices hoti hain: continue karna ya immediate early exercise karna. Yahan intrinsic value hamesha true stock price S of t se calculate hoti hai."
+            }
+          },
+          "onScreenIntent": "Nodal Early Exercise with S(t)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The nodal rule is: Value equals maximum of Intrinsic Value at S(t) and Continuation Value. Hull's model captures exact early exercise timing!"
+            },
+            "hi": {
+              "display": "Nodal rule: Node Value equals maximum of intrinsic value S of t minus K, aur discounted expected continuation value. Hull ka decomposition tree ko recombining banaye rakhte hue exact American early exercise timing capture kar leta hai!"
+            }
+          },
+          "onScreenIntent": "Nodal Early Exercise with S(t)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Nodal Early Exercise with S(t)",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Nodal Early Exercise with S(t): Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Multi-Asset Tree Generalization",
+      "purpose": "Multi-Asset Tree Generalization: Foundational quantitative principles",
+      "takeaways": [
+        "Multi-Asset Tree Generalization: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The binomial tree architecture extends seamlessly across all major asset classes by adjusting growth parameter a."
+            },
+            "hi": {
+              "display": "Ab agar asset discrete dollar dividend ke bajay continuous dividend yield q pay kare—jaise stock indices—toh recombining tree directly apply hota hai jahan growth parameter a equals e to the power r minus q delta t hota hai."
+            }
+          },
+          "onScreenIntent": "Multi-Asset Tree Generalization",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For continuous dividend yield q, parameter a equals e to the power (r - q) delta t; for currencies, a equals e to the (r - r_f) delta t."
+            },
+            "hi": {
+              "display": "Foreign currencies ke liye parameter a equals e to the power r minus r f delta t hota hai, jahan r f foreign risk-free interest rate hai."
+            }
+          },
+          "onScreenIntent": "Multi-Asset Tree Generalization",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And for futures options, parameter a is identically 1.0000, reflecting zero expected drift in the risk-neutral measure."
+            },
+            "hi": {
+              "display": "Aur commodity futures contracts ke liye parameter a exactly 1 hota hai, kyunki risk-neutral world mein futures price ka drift zero hota hai."
+            }
+          },
+          "onScreenIntent": "Multi-Asset Tree Generalization",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Multi-Asset Tree Generalization",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Multi-Asset Tree Generalization: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Trinomial Trees: Three-Branch Architecture",
+      "purpose": "Trinomial Trees: Three-Branch Architecture: Foundational quantitative principles",
+      "takeaways": [
+        "Trinomial Trees: Three-Branch Architecture: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now let us examine an advanced numerical framework: Trinomial Trees, featuring three distinct branches: Up, Middle, and Down."
+            },
+            "hi": {
+              "display": "Ab chaliye advanced lattice architecture par: Trinomial Trees. Yahan har node se do nahi, balki teen branches nikalte hain: Up, Middle, aur Down!"
+            }
+          },
+          "onScreenIntent": "Trinomial Trees: Three-Branch Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The up factor is u = e^(sigma * sqrt(3 * dt)), the middle factor is m = 1, and the down factor is d = 1 / u."
+            },
+            "hi": {
+              "display": "Up branch factor hota hai u equals e to the power sigma square root 3 delta t, middle branch factor m equals 1 yaani no price change, aur down factor d equals 1 upon u."
+            }
+          },
+          "onScreenIntent": "Trinomial Trees: Three-Branch Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Risk-neutral probabilities p_u, p_m = 2/3, and p_d match continuous drift and variance with extraordinary numerical precision."
+            },
+            "hi": {
+              "display": "Teeno branches ki risk-neutral probabilities p u, p m equals 2 by 3, aur p d mathematically continuous drift aur variance ko exactly match karti hain."
+            }
+          },
+          "onScreenIntent": "Trinomial Trees: Three-Branch Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Trinomial Trees: Three-Branch Architecture",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Trinomial Trees: Three-Branch Architecture: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Why Trinomial Trees Outperform Binomial Trees",
+      "purpose": "Why Trinomial Trees Outperform Binomial Trees: Foundational quantitative principles",
+      "takeaways": [
+        "Why Trinomial Trees Outperform Binomial Trees: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Why do trinomial trees outperform binomial trees in quantitative production? First, the three-branch design guarantees positive probabilities."
+            },
+            "hi": {
+              "display": "Trinomial trees binomial models se superior kyu hain? Pehla reason: extra branch ki wajah se probabilities hamesha positive rehti hain aur extreme volatility par negative probability error nahi aata."
+            }
+          },
+          "onScreenIntent": "Why Trinomial Trees Outperform Binomial Trees",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Second, fixing central probability p_m at 2/3 completely dampens the odd-even numerical oscillations seen in binomial lattices."
+            },
+            "hi": {
+              "display": "Dusra reason: Central probability p m ko 2 by 3 par fix karne se numerical oscillations completely suppress ho jaati hain."
+            }
+          },
+          "onScreenIntent": "Why Trinomial Trees Outperform Binomial Trees",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Third, a trinomial tree is mathematically identical to an explicit finite difference scheme for solving the Black-Scholes PDE!"
+            },
+            "hi": {
+              "display": "Teesra aur sabse important point: Trinomial tree mathematically Black-Scholes partial differential equation ke explicit finite difference method ke completely equivalent hota hai!"
+            }
+          },
+          "onScreenIntent": "Why Trinomial Trees Outperform Binomial Trees",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Why Trinomial Trees Outperform Binomial Trees",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Why Trinomial Trees Outperform Binomial Trees: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Worked Example: 2-Step Trinomial Tree",
+      "purpose": "Worked Example: 2-Step Trinomial Tree: Foundational quantitative principles",
+      "takeaways": [
+        "Worked Example: 2-Step Trinomial Tree: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us calculate a concrete worked example: S_0 = $100, strike K = $100, r = 5%, volatility = 20%, and T = 0.5 years across two steps."
+            },
+            "hi": {
+              "display": "Sharma ji, kya hum actual numbers ke sath ek trinomial tree solve karke dekh sakte hain?"
+            }
+          },
+          "onScreenIntent": "Worked Example: 2-Step Trinomial Tree",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "With delta t = 0.25 years, step factor u = 1.1904, d = 0.8401, and p_m = 0.6667, five distinct terminal price levels emerge."
+            },
+            "hi": {
+              "display": "Zaroor! Maan lijiye S zero equals 100 dollars, strike K equals 100 dollars, risk-free rate 5 percent, volatility 20 percent, aur maturity 6 months hai do time steps ke sath."
+            }
+          },
+          "onScreenIntent": "Worked Example: 2-Step Trinomial Tree",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Backward induction yields an American put value of $3.98, converging within 2% of the continuous Black-Scholes benchmark in just two steps!"
+            },
+            "hi": {
+              "display": "Step size calculate karte hain: u equals 1.1904, d equals 0.8401, aur central probability p m 0.6667 hai. Terminal period t equals 0.5 par 5 price levels bante hain: 141.7, 119.0, 100.0, 84.0, aur 70.6 dollars."
+            }
+          },
+          "onScreenIntent": "Worked Example: 2-Step Trinomial Tree",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Evaluate the scenario: Stock trades at $54, call strike is $50. Tomorrow is ex-dividend with a $2.00 cash dividend. Exercise today or hold? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Backward induction apply karne par American Put option ki fair value 3.98 dollars aati hai. Sirf 2 trinomial steps mein hum exact continuous Black-Scholes value ke behad kareeb pahunch gaye!"
+            }
+          },
+          "onScreenIntent": "Worked Example: 2-Step Trinomial Tree",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Worked Example: 2-Step Trinomial Tree",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Worked Example: 2-Step Trinomial Tree: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Interactive Cognitive Quiz",
+      "purpose": "Interactive Cognitive Quiz: Foundational quantitative principles",
+      "takeaways": [
+        "Interactive Cognitive Quiz: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Compare immediate intrinsic value against expected post-dividend price and continuation value."
+            },
+            "hi": {
+              "display": "Raju, ab ek critical real-world trading quiz: Ek investor ke paas 50 dollar strike American Call option hai, aur stock price 54 dollars hai. Kal company ka ex-dividend date hai jahan 2 dollar cash dividend pay hoga. Kya investor ko aaj market close hone se pehle call exercise karni chahiye ya hold karna chahiye?"
+            }
+          },
+          "onScreenIntent": "Interactive Cognitive Quiz",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option A is correct: Exercise today! Immediate exercise locks in $4.00 profit. Holding past ex-date drops stock to $52, reducing intrinsic value to $2.00 permanently!"
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Interactive Cognitive Quiz",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Standard trees assume constant volatility, but real option markets exhibit volatility smiles and downward skews."
+            },
+            "hi": {
+              "display": "Correct answer hai Option A: Investor ko aaj hi early exercise karna chahiye! Aaj exercise karne par 4 dollar intrinsic cash milta hai. Agar kal tak hold kiya, toh stock drop hokar 52 dollar ho jayega aur intrinsic value gir kar sirf 2 dollar reh jayegi, jisse dividend ka 2 dollar loss permanently ho jayega!"
+            }
+          },
+          "onScreenIntent": "Interactive Cognitive Quiz",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Implied Trees: Fitting Market Volatility Smiles",
+      "purpose": "Implied Trees: Fitting Market Volatility Smiles: Foundational quantitative principles",
+      "takeaways": [
+        "Implied Trees: Fitting Market Volatility Smiles: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Derman and Kani formulated Implied Trees, calibrating transition probabilities p(i, j) at every node to match observable market quotes."
+            },
+            "hi": {
+              "display": "Standard trees assume karte hain ki volatility constant sigma hai. Lekin pichle chapter mein humne dekha ki real market option prices mein Volatility Smile aur Skew hota hai."
+            }
+          },
+          "onScreenIntent": "Implied Trees: Fitting Market Volatility Smiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Implied trees reprice all vanilla options perfectly, providing an arbitrage-free engine to value complex exotic derivatives."
+            },
+            "hi": {
+              "display": "Quantitative finance mein Derman aur Kani ne Implied Trees invent kiye. Yahan har individual node par transition probabilities p of i j ko live option market prices se calibrate kiya jaata hai."
+            }
+          },
+          "onScreenIntent": "Implied Trees: Fitting Market Volatility Smiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the eight foundational institutional rules of Chapter 21 Part 1:"
+            },
+            "hi": {
+              "display": "Implied tree ensure karta hai ki model sabhi liquid vanilla options ko exact market price par reproduce kare, jisse exotic options bina kisi arbitrage risk ke price kiye ja sakte hain."
+            }
+          },
+          "onScreenIntent": "Implied Trees: Fitting Market Volatility Smiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Implied Trees: Fitting Market Volatility Smiles",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Implied Trees: Fitting Market Volatility Smiles: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary: 8 Rules of Practical Trees",
+      "purpose": "Summary: 8 Rules of Practical Trees: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Rules of Practical Trees: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Discrete dividends cause non-recombining exponential node explosion; Rule 2: Hull's S* decomposition restores perfect recombination."
+            },
+            "hi": {
+              "display": "Chaliye Chapter 21 Part 1 ke 8 core quantitative rules ko consolidate karte hain: Rule 1 — Discrete cash dividends standard binomial trees ko non-recombining bana kar exponential node explosion create karte hain. Rule 2 — Hull Stock Decomposition stock ko S star stochastic component aur dividend present value mein split karke recombination restore karta hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Practical Trees",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Growth parameter a unifies equities, currencies, and futures; Rule 4: Trinomial trees use three branches with u = e^(sigma sqrt(3 dt))."
+            },
+            "hi": {
+              "display": "Rule 3 — Multi-asset parameter a tree ko stock dividend yield, foreign currencies, aur futures ke sath seamlessly unify karta hai. Rule 4 — Trinomial trees up, middle, aur down branches ke sath 3-state lattice form karte hain."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Practical Trees",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Trinomial trees suppress odd-even lattice oscillations; Rule 6: Trinomial lattices are mathematically equivalent to explicit PDE schemes."
+            },
+            "hi": {
+              "display": "Rule 5 — Trinomial step size u equals e to the power sigma square root 3 delta t variance ko preserve karta hai aur p m equals 2 by 3 stability provide karta hai. Rule 6 — Trinomial tree explicit finite difference PDE solver ke mathematically identical hota hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Practical Trees",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Deep ITM calls must be exercised before ex-dividend dates; Rule 8: Implied trees calibrate local probabilities to empirical volatility smiles."
+            },
+            "hi": {
+              "display": "Rule 7 — American calls on dividend-paying stocks must be evaluated for early exercise immediately prior to ex-dividend dates. Rule 8 — Implied binomial and trinomial trees calibrate local probabilities to match live market volatility smiles."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Practical Trees",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles master practical tree engineering and form the bridge to continuous finite difference methods."
+            },
+            "hi": {
+              "display": "Screen par summary table mein sabhi governing formulas aur lattice algorithms systematically compile kar diye gaye hain."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Practical Trees",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In the next video, we begin Chapter 21 Part 2: Monte Carlo Simulation and Finite Difference Methods!"
+            },
+            "hi": {
+              "display": "Agli video mein hum shuru karenge Chapter 21 Part 2: Monte Carlo Simulation aur Finite Difference Methods. Practice jari rakhiye!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Practical Trees",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Rules of Practical Trees",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

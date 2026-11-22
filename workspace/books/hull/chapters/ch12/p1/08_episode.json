@@ -1,0 +1,1642 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch12",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 12",
+  "partLabel": "Part 1",
+  "title": "Trading Strategies Involving Options - Part 1",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 1,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Asymmetry Engine: Engineering Custom Risk Profiles",
+      "purpose": "Options are modular financial building blocks that can engineer any desired payoff profile",
+      "takeaways": [
+        "Options are modular financial building blocks that can engineer any desired payoff profile",
+        "Traders can sculpt non-linear returns to profit from directional moves, range-bound markets, or volatility",
+        "Part 1 covers Principal-Protected Notes, Covered Calls, Bull/Bear Spreads, and Box Spreads"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Traditional investing in stocks offers strictly linear payoffs: If the market drops 20%, your portfolio drops 20%."
+            },
+            "hi": {
+              "display": "Traditional investing mein stock ya commodity hold karna ek strictly linear payoff offer karta hai: Agar market 20 percent girega toh aapka portfolio bhi 20 percent girega."
+            }
+          },
+          "onScreenIntent": "The Asymmetry Engine: Engineering Custom Risk Profiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yet in Chapter 12, John Hull reveals the true superpower of options: Asymmetric Payoff Engineering."
+            },
+            "hi": {
+              "display": "Lekin Chapter Twelve mein John Hull options ki asli super-power ko reveal karte hain: Asymmetric Payoff Engineering."
+            }
+          },
+          "onScreenIntent": "The Asymmetry Engine: Engineering Custom Risk Profiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "By bundling bonds, stocks, and options, we engineer custom profiles: Zero downside, recurring yield, or strictly capped losses."
+            },
+            "hi": {
+              "display": "Bonds, stocks aur options ko bundle karke hum customized risk profiles design kar sakte hain: Jaise zero downside risk, regular cash-flow generation, ya strictly capped losses."
+            }
+          },
+          "onScreenIntent": "The Asymmetry Engine: Engineering Custom Risk Profiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us first master the mechanics of institutions' most famous structured product: The Principal-Protected Note."
+            },
+            "hi": {
+              "display": "Aaiye pehle financial institutions ke sabse famous structured product: Principal-Protected Note ke exact mechanics ko master karte hain."
+            }
+          },
+          "onScreenIntent": "The Asymmetry Engine: Engineering Custom Risk Profiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Asymmetry Engine: Engineering Custom Risk Profiles",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Options are modular financial building blocks that can engineer any desired payoff profile"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Traders can sculpt non-linear returns to profit from directional moves, range-bound markets, or volatility"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Capital Preservation vs Upside Participation",
+      "purpose": "Conservative investors demand 100% capital preservation but refuse zero-yield cash",
+      "takeaways": [
+        "Conservative investors demand 100% capital preservation but refuse zero-yield cash",
+        "Options enable structuring asymmetric instruments delivering guaranteed floor plus upside",
+        "Understanding option payoffs allows structurers to create tailor-made risk products"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Every conservative investor faces a dilemma: They want equity wealth creation, but cannot afford capital loss."
+            },
+            "hi": {
+              "display": "Har conservative investor ek classic dilemma face karta hai: Wo stock market ki wealth creation mein participate karna chahta hai, lekin apna hard-earned capital lose nahi kar sakta."
+            }
+          },
+          "onScreenIntent": "Capital Preservation vs Upside Participation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Fixed deposits offer safety, but their returns lag far behind inflation and market rallies."
+            },
+            "hi": {
+              "display": "Fixed deposits aur Treasury bills complete safety dete hain, lekin unka return inflation aur market rallies se bohot peeche reh jata hai."
+            }
+          },
+          "onScreenIntent": "Capital Preservation vs Upside Participation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, direct equities carry 100% crash risk where crises can wipe out decades of wealth."
+            },
+            "hi": {
+              "display": "Dusri taraf, direct equity mein 100 percent crash vulnerability hoti hai jahan 2008 jaise crises portfolio ko wipe out kar sakte hain."
+            }
+          },
+          "onScreenIntent": "Capital Preservation vs Upside Participation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John Hull demonstrates how coupling a zero-coupon bond with a call option mathematically resolves this dilemma."
+            },
+            "hi": {
+              "display": "John Hull dikhate hain ki kaise engineering ek zero-coupon bond ko call option se jod kar is dilemma ko mathematically solve kar deti hai."
+            }
+          },
+          "onScreenIntent": "Capital Preservation vs Upside Participation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Contractual / Traditional Profile",
+          "tone": "neutral",
+          "points": [
+            "Conservative investors demand 100% capital preservation but refuse zero-yield cash",
+            "Options enable structuring asymmetric instruments delivering guaranteed floor plus upside"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Institutional / Alternative Profile",
+          "tone": "positive",
+          "points": [
+            "Options enable structuring asymmetric instruments delivering guaranteed floor plus upside",
+            "Understanding option payoffs allows structurers to create tailor-made risk products"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Conservative investors demand 100% capital preservation but refuse zero-yield cash"
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Principal-Protected Notes: Zero-Coupon Bonds + Options",
+      "purpose": "A PPN splits capital into a Zero-Coupon Bond (principal guarantee) and Call Option (equity participation)",
+      "takeaways": [
+        "A PPN splits capital into a Zero-Coupon Bond (principal guarantee) and Call Option (equity participation)",
+        "In Hull's example: at r=6%, 3 years, $1,000 note buys $835.27 zero-coupon bond",
+        "The remaining $164.73 interest budget purchases at-the-money call options"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine the exact financial balance sheet of a Principal-Protected Note."
+            },
+            "hi": {
+              "display": "Aaiye Principal-Protected Note ki exact financial balance sheet ko samajhte hain."
+            }
+          },
+          "onScreenIntent": "Principal-Protected Notes: Zero-Coupon Bonds + Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Suppose an investor commits $1,000 for 3 years, with a continuous risk-free rate of 6%."
+            },
+            "hi": {
+              "display": "Suppose investor 1,000 dollars invest karta hai 3 saal ke liye, jahan risk-free rate 6 percent continuously compounded hai."
+            }
+          },
+          "onScreenIntent": "Principal-Protected Notes: Zero-Coupon Bonds + Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To guarantee $1,000 at maturity, the bank invests K e^(-rT) or $835 into a zero-coupon bond today."
+            },
+            "hi": {
+              "display": "Bank 3 saal baad 1,000 dollars guarantee karne ke liye aaj sirf K e to the power minus rT यानी 835 dollars zero-coupon bond mein daalta hai."
+            }
+          },
+          "onScreenIntent": "Principal-Protected Notes: Zero-Coupon Bonds + Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The remaining $165 buys call options. If equities soar, the investor profits; if equities crash, principal is 100% returned!"
+            },
+            "hi": {
+              "display": "Bacha hua 165 dollars ka surplus call options buy karne ke liye use hota hai. Agar stock index double ho jaye, investor equity gain capture karta hai; agar index zero ho jaye, investor ko pura 1,000 dollar wapas milta hai!"
+            }
+          },
+          "onScreenIntent": "Principal-Protected Notes: Zero-Coupon Bonds + Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Principal-Protected Notes: Zero-Coupon Bonds + Options",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "A PPN splits capital into a Zero-Coupon Bond (principal guarantee) and Call Option (equity participation)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "In Hull's example: at r=6%, 3 years, $1,000 note buys $835.27 zero-coupon bond"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Covered Calls vs Protective Puts: Income vs Insurance",
+      "purpose": "Covered Call = Long Stock + Short Call; generates upfront premium income but caps upside at strike K",
+      "takeaways": [
+        "Covered Call = Long Stock + Short Call; generates upfront premium income but caps upside at strike K",
+        "Protective Put = Long Stock + Long Put; pays premium to lock in an unbreakable downside floor",
+        "By Put-Call Parity, Covered Call is synthetically equivalent to Short Put; Protective Put is equivalent to Long Call"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we examine the two most widely deployed stock-plus-option strategies: Covered Call and Protective Put."
+            },
+            "hi": {
+              "display": "Ab aate hain stock aur single option ke do sabse popular combinations par: Covered Call aur Protective Put."
+            }
+          },
+          "onScreenIntent": "Covered Calls vs Protective Puts: Income vs Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In a Covered Call, you hold shares and sell an out-of-the-money call, harvesting upfront premium to boost yield."
+            },
+            "hi": {
+              "display": "Covered Call mein aap shares hold karte hue out-of-the-money call option sell karte hain. Isse aapko upfront cash premium milta hai jo portfolio yield ko badhata hai."
+            }
+          },
+          "onScreenIntent": "Covered Calls vs Protective Puts: Income vs Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The tradeoff is capped upside: If the stock surges, your profit is strictly frozen at strike K."
+            },
+            "hi": {
+              "display": "Lekin iska trade-off ye hai ki agar stock massively surge karta hai, toh aapka profit strike K par permanently freeze ho jata hai."
+            }
+          },
+          "onScreenIntent": "Covered Calls vs Protective Puts: Income vs Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, a Protective Put buys downside insurance, establishing an absolute floor while leaving upside open."
+            },
+            "hi": {
+              "display": "Iske opposite, Protective Put mein aap put buy karke ek absolute insurance floor establish karte hain, jabki upside equity growth completely open rehti hai."
+            }
+          },
+          "onScreenIntent": "Covered Calls vs Protective Puts: Income vs Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Covered Calls vs Protective Puts: Income vs Insurance",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Covered Call = Long Stock + Short Call; generates upfront premium income but caps upside at strike K"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Protective Put = Long Stock + Long Put; pays premium to lock in an unbreakable downside floor"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The Four Archetypes of Vertical Spreads",
+      "purpose": "Vertical spreads combine long and short options of the same type and expiration with different strikes",
+      "takeaways": [
+        "Vertical spreads combine long and short options of the same type and expiration with different strikes",
+        "Bullish outlooks use Bull Call Spreads (debit) or Bull Put Spreads (credit)",
+        "Bearish outlooks use Bear Put Spreads (debit) or Bear Call Spreads (credit)"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When trading desks take directional views, they prefer Vertical Spreads over naked option purchases."
+            },
+            "hi": {
+              "display": "Jab trading desks directional positions leti hain, toh wo naked options buy karne ke bajaye Vertical Spreads prefer karti hain."
+            }
+          },
+          "onScreenIntent": "The Four Archetypes of Vertical Spreads",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Vertical Spread utilizes two options with identical expirations but different strike prices K1 and K2."
+            },
+            "hi": {
+              "display": "Vertical Spread ka matlab hai same expiration date ke do options use karna, lekin alag-alag strike prices K one aur K two par."
+            }
+          },
+          "onScreenIntent": "The Four Archetypes of Vertical Spreads",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These spreads divide into four archetypes: Bull Call, Bull Put, Bear Put, and Bear Call Spreads."
+            },
+            "hi": {
+              "display": "Ye spreads chaar archetypes mein divide hote hain: Bull Call Spread, Bull Put Spread, Bear Put Spread aur Bear Call Spread."
+            }
+          },
+          "onScreenIntent": "The Four Archetypes of Vertical Spreads",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Their major advantage is cost reduction: Selling the second leg slashes initial outlay, defining maximum risk."
+            },
+            "hi": {
+              "display": "Inka sabse bada advantage ye hai ki higher strike option sell karke initial premium cost drastically cut ho jaati hai, jisse risk defined rehta hai."
+            }
+          },
+          "onScreenIntent": "The Four Archetypes of Vertical Spreads",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Contractual / Traditional Profile",
+          "tone": "neutral",
+          "points": [
+            "Vertical spreads combine long and short options of the same type and expiration with different strikes",
+            "Bullish outlooks use Bull Call Spreads (debit) or Bull Put Spreads (credit)"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Institutional / Alternative Profile",
+          "tone": "positive",
+          "points": [
+            "Bullish outlooks use Bull Call Spreads (debit) or Bull Put Spreads (credit)",
+            "Bearish outlooks use Bear Put Spreads (debit) or Bear Call Spreads (credit)"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Vertical spreads combine long and short options of the same type and expiration with different strikes"
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Bull Call Spread: Mathematical Mechanics & Hull Example",
+      "purpose": "In Hull's example: Buy K1=$30 call for $3.00, Sell K2=$35 call for $1.00; Net Debit = $2.00",
+      "takeaways": [
+        "In Hull's example: Buy K1=$30 call for $3.00, Sell K2=$35 call for $1.00; Net Debit = $2.00",
+        "Maximum Profit = ($35 - $30) - $2.00 = $3.00 per share ($300 per contract)",
+        "Maximum Loss = Net Debit = $2.00 per share ($200 per contract); Breakeven = $30 + $2 = $32.00"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us calculate the mathematical payoff of a Bull Call Spread using John Hull's classic numerical example."
+            },
+            "hi": {
+              "display": "Aaiye John Hull ke classic numerical example se Bull Call Spread ke mathematical payoff ko step-by-step calculate karte hain."
+            }
+          },
+          "onScreenIntent": "Bull Call Spread: Mathematical Mechanics & Hull Example",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Stock is at $30. Trader buys a $30 Call for $3, and writes a $35 Call for $1."
+            },
+            "hi": {
+              "display": "Stock trades at 30 dollars. Trader strike 30 par ek Call buy karta hai 3 dollars mein, aur strike 35 par ek Call sell karta hai 1 dollar mein."
+            }
+          },
+          "onScreenIntent": "Bull Call Spread: Mathematical Mechanics & Hull Example",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Net upfront debit is $3 - $1 = $2.00 per share, reducing entry cost by 33% versus a naked call."
+            },
+            "hi": {
+              "display": "Net upfront cost sirf 3 minus 1 यानी 2 dollars per share banti hai. Naked call ke mukable cost 33 percent reduce ho gayi!"
+            }
+          },
+          "onScreenIntent": "Bull Call Spread: Mathematical Mechanics & Hull Example",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Above $35, gross payoff is $5 and net profit is $3. Below $30, max loss is capped at $2. Breakeven is exactly $32!"
+            },
+            "hi": {
+              "display": "Agar stock 35 dollars ke upar jata hai, toh gross payoff 5 dollar banta hai aur net profit 3 dollar hota hai. Agar stock 30 ke niche drop hota hai, toh max loss sirf initial 2 dollar hota hai. Breakeven 32 dollars hai!"
+            }
+          },
+          "onScreenIntent": "Bull Call Spread: Mathematical Mechanics & Hull Example",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Bull Call Spread: Mathematical Mechanics & Hull Example",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "In Hull's example: Buy K1=$30 call for $3.00, Sell K2=$35 call for $1.00; Net Debit = $2.00"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Maximum Profit = ($35 - $30) - $2.00 = $3.00 per share ($300 per contract)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Bull Put Spread: Credit Generation & Downside Cushion",
+      "purpose": "Bull Put Spread is an income-generating credit spread: sell put K2 (higher strike), buy put K1 (lower strike)",
+      "takeaways": [
+        "Bull Put Spread is an income-generating credit spread: sell put K2 (higher strike), buy put K1 (lower strike)",
+        "Maximum Profit equals the net credit received upfront, captured if stock remains above K2",
+        "Maximum Loss equals (K2 - K1) minus Net Credit; Breakeven equals K2 minus Net Credit"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Bull Put Spread is a net credit strategy where the trader collects cash upfront on Day 0."
+            },
+            "hi": {
+              "display": "Bull Put Spread ek net credit strategy hai jahan trader Day zero par upfront cash collect karta hai."
+            }
+          },
+          "onScreenIntent": "Bull Put Spread: Credit Generation & Downside Cushion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Here we sell a put at higher strike K2 to collect premium, and buy a put at lower strike K1 as crash insurance."
+            },
+            "hi": {
+              "display": "Yahan higher strike K two par put sell karke premium receive kiya jata hai, aur lower strike K one par put buy karke crash protection le li jaati hai."
+            }
+          },
+          "onScreenIntent": "Bull Put Spread: Credit Generation & Downside Cushion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If the stock stays above K2 at expiration, both options expire worthless and the entire net credit is retained."
+            },
+            "hi": {
+              "display": "Agar stock expiration tak strike K two ke upar rehta hai, toh dono options worthless expire ho jaate hain aur pura credit net profit ban jata hai."
+            }
+          },
+          "onScreenIntent": "Bull Put Spread: Credit Generation & Downside Cushion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Even in a crash, the lower put K1 caps losses, eliminating the bankruptcy risk of naked put selling!"
+            },
+            "hi": {
+              "display": "Aur agar market unexpectedly crash bhi ho jaye, toh lower put K one loss ko strictly cap kar deta hai. Naked put selling jaisi unlimited bankruptcy risk zero ho jaati hai!"
+            }
+          },
+          "onScreenIntent": "Bull Put Spread: Credit Generation & Downside Cushion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Bull Put Spread: Credit Generation & Downside Cushion",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Bull Put Spread is an income-generating credit spread: sell put K2 (higher strike), buy put K1 (lower strike)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Maximum Profit equals the net credit received upfront, captured if stock remains above K2"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Bear Put Spreads vs Bear Call Spreads",
+      "purpose": "Bear Put Spread buys higher strike put K2 and sells lower strike put K1 (pays net debit)",
+      "takeaways": [
+        "Bear Put Spread buys higher strike put K2 and sells lower strike put K1 (pays net debit)",
+        "Bear Call Spread sells lower strike call K1 and buys higher strike call K2 (collects net credit)",
+        "Both strategies cap risk and profit from downward or stagnant underlying price movement"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When the market outlook is bearish, traders deploy either Bear Put Spreads or Bear Call Spreads."
+            },
+            "hi": {
+              "display": "Jab market outlook bearish ho, toh trader Bear Put Spread ya Bear Call Spread deploy kar sakta hai."
+            }
+          },
+          "onScreenIntent": "Bear Put Spreads vs Bear Call Spreads",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Bear Put Spread is a net debit play capturing favorable risk-reward on significant downward moves."
+            },
+            "hi": {
+              "display": "Bear Put Spread ek net debit play hai jahan higher put buy karke aur lower put sell karke downside move par maximum 1 to 2 ya 1 to 3 ka risk-reward capture kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Bear Put Spreads vs Bear Call Spreads",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Bear Call Spread is a credit play collecting cash upfront, profiting if the asset falls or moves sideways."
+            },
+            "hi": {
+              "display": "Bear Call Spread ek net credit play hai jahan lower call sell karke upfront cash collect kiya jata hai; agar stock fall kare ya stagnant rahe, toh full credit retain hota hai."
+            }
+          },
+          "onScreenIntent": "Bear Put Spreads vs Bear Call Spreads",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Both strategies eliminate the unlimited risk of short selling, enforcing strict mathematical corridors."
+            },
+            "hi": {
+              "display": "Dono strategies short selling ki unlimited risk ko remove kar deti hain aur strict mathematical corridor enforce karti hain."
+            }
+          },
+          "onScreenIntent": "Bear Put Spreads vs Bear Call Spreads",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Bear Put Spreads vs Bear Call Spreads",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Bear Put Spread buys higher strike put K2 and sells lower strike put K1 (pays net debit)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Bear Call Spread sells lower strike call K1 and buys higher strike call K2 (collects net credit)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Box Spreads: Replicating a Pure Risk-Free Zero-Coupon Bond",
+      "purpose": "A Box Spread pairs a Bull Call Spread (strikes K1, K2) with a Bear Put Spread (strikes K1, K2)",
+      "takeaways": [
+        "A Box Spread pairs a Bull Call Spread (strikes K1, K2) with a Bear Put Spread (strikes K1, K2)",
+        "Terminal payoff is identically equal to K2 - K1 in ALL economic states with zero market risk",
+        "No-arbitrage value today must equal (K2 - K1) * exp(-rT); deviations allow pure borrowing/lending arbitrage"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we examine one of the most brilliant syntheses in option theory: The Box Spread."
+            },
+            "hi": {
+              "display": "Ab dekhte hain option theory ka ek sabse brilliant synthesis: The Box Spread."
+            }
+          },
+          "onScreenIntent": "Box Spreads: Replicating a Pure Risk-Free Zero-Coupon Bond",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Combining a Bull Call Spread with a Bear Put Spread on identical strikes completely eliminates all market risk!"
+            },
+            "hi": {
+              "display": "Agar hum ek Bull Call Spread strikes K one aur K two par lein, aur sath mein ek Bear Put Spread exactly same strikes par add kar dein, toh market ka sara directional risk completely cancel out ho jata hai!"
+            }
+          },
+          "onScreenIntent": "Box Spreads: Replicating a Pure Risk-Free Zero-Coupon Bond",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At maturity, this combination delivers exactly K2 - K1 cash under every possible market condition!"
+            },
+            "hi": {
+              "display": "Maturity par ye combination strictly K two minus K one cash deliver karta hai, chahe stock price 1,000 dollar ho ya zero!"
+            }
+          },
+          "onScreenIntent": "Box Spreads: Replicating a Pure Risk-Free Zero-Coupon Bond",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because the payoff is risk-free, its price must equal (K2 - K1) e^(-rT). Desks use Box Spreads to borrow or lend cash efficiently."
+            },
+            "hi": {
+              "display": "Kyunki payoff completely risk-free hai, isliye iska market price discounted strike difference ke barabar hona chahiye. Proprietary trading desks Box Spreads ko cheap cash borrow ya lend karne ke liye use karti hain."
+            }
+          },
+          "onScreenIntent": "Box Spreads: Replicating a Pure Risk-Free Zero-Coupon Bond",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Box Spreads: Replicating a Pure Risk-Free Zero-Coupon Bond",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "A Box Spread pairs a Bull Call Spread (strikes K1, K2) with a Bear Put Spread (strikes K1, K2)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Terminal payoff is identically equal to K2 - K1 in ALL economic states with zero market risk"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Bull Call Spread Profit & Breakeven Calculation",
+      "purpose": "Given K1 = $50 (c1 = $5.00) and K2 = $60 (c2 = $1.50): Net Debit = $5.00 - $1.50 = $3.50",
+      "takeaways": [
+        "Given K1 = $50 (c1 = $5.00) and K2 = $60 (c2 = $1.50): Net Debit = $5.00 - $1.50 = $3.50",
+        "Max Profit = (K2 - K1) - Net Debit = ($60 - $50) - $3.50 = $6.50 per share ($650 per contract)",
+        "Breakeven = K1 + Net Debit = $50 + $3.50 = $53.50"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your active recall understanding on a concrete vertical spread scenario from John Hull."
+            },
+            "hi": {
+              "display": "Aaiye ab aapki active recall understanding ko John Hull ke ek concrete vertical spread problem par test karte hain."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Bull Call Spread Profit & Breakeven Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Stock is $48. Trader buys $50 Call for $4.00, and sells $55 Call for $1.50. Calculate net debit, max profit, and breakeven."
+            },
+            "hi": {
+              "display": "Stock trades at 48 dollars. Trader strike 50 ki call buy karta hai 4 dollars mein, aur strike 55 ki call sell karta hai 1 dollar 50 cents mein. Net initial debit, maximum profit, aur breakeven price calculate kijiye."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Bull Call Spread Profit & Breakeven Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A. Net debit is $4.00 - $1.50 = $2.50."
+            },
+            "hi": {
+              "display": "Sahi answer Option A hai. Net debit paid 4 dollars minus 1 dollar 50 cents यानी 2 dollars 50 cents hai."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Bull Call Spread Profit & Breakeven Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Gross payoff is $5, yielding $2.50 max profit after debit. Breakeven is strike $50 + $2.50 = $52.50!"
+            },
+            "hi": {
+              "display": "Gross payoff 55 minus 50 यानी 5 dollar hai, jismein se 2 dollar 50 cents debit minus karke maximum profit exactly 2 dollar 50 cents banta hai. Aur breakeven strike 50 plus net debit yani 52 dollars 50 cents hai!"
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Bull Call Spread Profit & Breakeven Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "A trader establishes a Bull Call Spread by buying a 6-month call with strike K1 = $50 for $5.00 and selling a 6-month call with strike K2 = $60 for $1.50. What are the Maximum Profit per share and Breakeven stock price?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Net Debit = $5.00 - $1.50 = $3.50. Maximum Profit = Strike Difference ($60 - $50) - Net Debit ($3.50) = $6.50 per share ($650 per contract). Breakeven = K1 + Net Debit = $50 + $3.50 = $53.50."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "The Greeks Impact on Spreads: Delta, Theta, Vega Dynamics",
+      "purpose": "Net Delta of a Bull Spread is positive; Net Delta of a Bear Spread is negative",
+      "takeaways": [
+        "Net Delta of a Bull Spread is positive; Net Delta of a Bear Spread is negative",
+        "Debit spreads suffer negative Theta when OTM and benefit from positive Theta when ITM",
+        "Vega exposure is lower in spreads than single options because long and short legs offset each other"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Why do institutional desks favor vertical spreads over naked options? The answer lies in the Option Greeks."
+            },
+            "hi": {
+              "display": "Professional trading desks naked options ke muqable vertical spreads ko kyu prefer karti hain? Iska jawab Option Greeks mein chhipa hai."
+            }
+          },
+          "onScreenIntent": "The Greeks Impact on Spreads: Delta, Theta, Vega Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Buying naked calls bleeds premium daily to theta decay, collapsing if implied volatility drops."
+            },
+            "hi": {
+              "display": "Jab aap naked call buy karte hain, toh time decay ya theta daily basis par aapka premium bleed karta hai, aur volatility drop hote hi option collapse ho jata hai."
+            }
+          },
+          "onScreenIntent": "The Greeks Impact on Spreads: Delta, Theta, Vega Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In a spread, the short option's time decay offsets the long leg, compressing vega risk."
+            },
+            "hi": {
+              "display": "Lekin spread mein second option sell karne ki wajah se short leg ka time decay long leg ke decay ko offset kar deta hai, aur vega risk compress ho jata hai."
+            }
+          },
+          "onScreenIntent": "The Greeks Impact on Spreads: Delta, Theta, Vega Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This Greek-hedged efficiency makes vertical spreads the primary directional tool of algorithmic trading."
+            },
+            "hi": {
+              "display": "Is Greek-hedged efficiency ki wajah se vertical spreads modern algorithmic trading ka primary directional instrument hain."
+            }
+          },
+          "onScreenIntent": "The Greeks Impact on Spreads: Delta, Theta, Vega Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Greeks Impact on Spreads: Delta, Theta, Vega Dynamics",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Net Delta of a Bull Spread is positive; Net Delta of a Bear Spread is negative"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Debit spreads suffer negative Theta when OTM and benefit from positive Theta when ITM"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Core Strategy Laws",
+      "purpose": "PPNs fuse zero-coupon bonds with calls to guarantee principal while capturing equity upside",
+      "takeaways": [
+        "PPNs fuse zero-coupon bonds with calls to guarantee principal while capturing equity upside",
+        "Vertical spreads cap both risk and reward, reducing entry debit through leg offsetting",
+        "Box spreads assemble four options to engineer a pure synthetic risk-free bond; Part 2 covers Straddles & Condors"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the four core trading strategy pillars of Chapter 12 Part 1."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Twelve Part One ke chaar core trading strategy pillars ko consolidate karte hain."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Core Strategy Laws",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: Principal-Protected Notes. Zero-coupon bonds guarantee capital while interest surplus buys options for equity upside."
+            },
+            "hi": {
+              "display": "Pillar One: Principal-Protected Notes. Zero-coupon bond capital guarantee provide karta hai aur interest surplus options ke zariye equity upside deliver karta hai."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Core Strategy Laws",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: Covered Call Tradeoff. Short calls generate upfront income, but upside freezes at strike K."
+            },
+            "hi": {
+              "display": "Pillar Two: Covered Call Tradeoff. Short call se upfront premium income generate hoti hai lekin stock gains strike K par freeze ho jaate hain."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Core Strategy Laws",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: Vertical Spread Corridors. Spreads reduce premium outlay and fix defined profit and loss corridors."
+            },
+            "hi": {
+              "display": "Pillar Three: Vertical Spread Corridors. Bull aur Bear spreads second leg sell karke premium cost cut karte hain aur profit-loss boundaries fix kar dete hain."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Core Strategy Laws",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 4: Box Spread Arbitrage. Combining Bull Call and Bear Put Spreads yields a guaranteed payoff K2 - K1, replicating a pure bond."
+            },
+            "hi": {
+              "display": "Pillar Four: Box Spread Arbitrage. Bull Call aur Bear Put ko combine karke guaranteed payoff K two minus K one banta hai jo pure zero-coupon bond replicate karta hai."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Core Strategy Laws",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part 2, we master advanced volatility combinations: Straddles, Strangles, Calendar Spreads, and Butterflies."
+            },
+            "hi": {
+              "display": "Part Two mein hum advanced volatility combinations: Straddles, Strangles, Calendar Spreads aur Butterfly Spreads ko geometrically master karenge."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Core Strategy Laws",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary Thread: Four Core Strategy Laws",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

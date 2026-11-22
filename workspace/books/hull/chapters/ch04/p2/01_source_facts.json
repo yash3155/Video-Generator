@@ -1,0 +1,111 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch04",
+  "partId": "p2",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "definition",
+      "statement": "A Forward Rate Agreement (FRA) is an over-the-counter contract where two counterparties agree that a fixed interest rate R_K will be paid on a principal L over a future period from T_1 to T_2.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.7",
+        "page": "88"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "formula",
+      "statement": "The cash settlement payoff of an FRA at time T_1 to the fixed rate payer is L * (R_M - R_K) * (T_2 - T_1) / [1 + R_M * (T_2 - T_1)], reflecting in-advance settlement discounting.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.7",
+        "page": "89"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "formula",
+      "statement": "The value of an existing FRA prior to maturity is V_FRA = L * (R_F - R_K) * (T_2 - T_1) * e^(-R_2 * T_2), where R_F is current market forward rate and e^(-R_2 * T_2) is zero discount factor.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.7",
+        "page": "90"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "formula",
+      "statement": "Macaulay duration D is the weighted average maturity of bond cash flows: D = sum(t_i * c_i * e^(-y * t_i)) / B, measuring cash flow timing.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.8",
+        "page": "92"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "formula",
+      "statement": "Modified duration D* = D / (1 + y/m) directly relates fractional price change to yield shift: Delta B / B ≈ -D* * Delta y.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.8",
+        "page": "93"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "formula",
+      "statement": "Convexity C measures curvature: C = (1 / B) * (d^2 B / dy^2). The second-order Taylor price change is Delta B / B ≈ -D* * Delta y + 0.5 * C * (Delta y)^2.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.9",
+        "page": "95"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "definition",
+      "statement": "Liquidity Preference Theory states that forward rates exceed expected future zero rates because lenders prefer short-term liquidity while borrowers prefer locking long-term debt, giving upward-sloping yield curves.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.10",
+        "page": "98"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "case_study",
+      "statement": "In 1994, Orange County treasurer Robert Citron lost $1.6 billion when a $20 billion leveraged repo portfolio with duration of ~7.4 years collapsed as the Federal Reserve raised rates by 300 bps.",
+      "citation": {
+        "chapter": "4",
+        "section": "Snapshot 4.1",
+        "page": "94"
+      }
+    },
+    {
+      "id": "F09",
+      "category": "numerical_example",
+      "statement": "A bond with modified duration of 5.0 years experiences a 0.50% (50 bps) increase in yield, causing an estimated price drop of Delta B / B = -5.0 * 0.005 = -2.50%.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.8",
+        "page": "93"
+      }
+    }
+  ],
+  "realWorldProblem": {
+    "actors": "Corporate treasurers, fixed income portfolio managers, and pension fund asset-liability managers",
+    "situation": "Managing interest rate duration mismatches and locking forward borrowing costs across interest rate cycles",
+    "failure": "Ignoring duration exposure or convexity under sharp rate hikes creates catastrophic multi-billion dollar capital losses (e.g., Orange County)",
+    "invention": "Forward Rate Agreements (FRAs), Macaulay and Modified Duration immunization, and Convexity hedging",
+    "factIds": [
+      "F01",
+      "F02",
+      "F04",
+      "F05",
+      "F06",
+      "F08"
+    ]
+  }
+}

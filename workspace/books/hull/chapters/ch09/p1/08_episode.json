@@ -1,0 +1,1389 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch09",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 9",
+  "partLabel": "Part 1",
+  "title": "OIS Discounting, Credit Issues, and Funding Costs",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 1,
+    "total": 1
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Risk-Free Revolution: The Death of LIBOR Discounting",
+      "purpose": "Pre-2007 trading desks discounted all cash flows using unsecured LIBOR curves",
+      "takeaways": [
+        "Pre-2007 trading desks discounted all cash flows using unsecured LIBOR curves",
+        "LIBOR incorporates commercial bank credit and liquidity risk; it is not truly risk-free",
+        "Chapter 9 introduces OIS discounting, multi-curve frameworks, CVA, DVA, FVA, and SOFR"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Prior to the 2007 financial crisis, academic finance and investment banking operated under a universal consensus: the London Interbank Offered Rate, or LIBOR, was treated as the canonical risk-free rate for discounting derivative cash flows. The credit crisis permanently shattered that foundational assumption."
+            },
+            "hi": {
+              "display": "Two thousand seven se pehle financial engineering mein ek universal consensus tha: Har derivative trader aur risk modeler LIBOR zero curve ko risk-free rate maankar future cash flows discount karta tha. Lekin credit crisis ne is assumption ki fundamental flaw ko expose kar diya."
+            }
+          },
+          "onScreenIntent": "The Risk-Free Revolution: The Death of LIBOR Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "LIBOR is an unsecured borrowing rate reflecting commercial bank credit risk. When interbank counterparty trust vanished during the 2008 liquidity run, LIBOR yields spiked dramatically. In response, global trading desks completely rebuilt their quantitative pricing foundations around Overnight Indexed Swap, or OIS Discounting."
+            },
+            "hi": {
+              "display": "LIBOR unsecured interbank borrowing rate hai, jisme AA-rated commercial banks ka credit risk shamil hota hai. Crisis mein jab banks ne ek doosre par trust khoya, toh LIBOR explode ho gaya. Is intellectual collapse ke baad Wall Street ne derivative pricing ko naye foundation par rebuild kiya: The OIS Discounting Framework."
+            }
+          },
+          "onScreenIntent": "The Risk-Free Revolution: The Death of LIBOR Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter Nine of John C. Hull's treatise, we will master Overnight Indexed Swaps, understand why collateral agreements mathematically mandate OIS discounting, formulate the modern multi-curve architecture, and dissect the complete XVA valuation framework: CVA, DVA, and FVA."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter Nine mein hum Overnight Indexed Swaps, collateralized discounting, multi-curve architecture aur modern valuation adjustments jaise CVA, DVA aur FVA ko master karenge."
+            }
+          },
+          "onScreenIntent": "The Risk-Free Revolution: The Death of LIBOR Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Risk-Free Revolution: The Death of LIBOR Discounting",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Pre-2007 trading desks discounted all cash flows using unsecured LIBOR curves"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "LIBOR incorporates commercial bank credit and liquidity risk; it is not truly risk-free"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "The LIBOR-OIS Spread: The Heartbeat of Financial Contagion",
+      "purpose": "An OIS exchanges fixed rate for geometric average of daily overnight central bank rates",
+      "takeaways": [
+        "An OIS exchanges fixed rate for geometric average of daily overnight central bank rates",
+        "Because principal is never exchanged and overnight loans roll daily, OIS carries negligible credit risk",
+        "The LIBOR-OIS spread surged from 10 bps historically to 364 bps in October 2008"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The most vital diagnostic barometer for measuring credit risk and systemic liquidity stress in the global banking system is the LIBOR-OIS Spread."
+            },
+            "hi": {
+              "display": "Market systemic risk ko measure karne ke liye quantitative finance ka sabse crucial diagnostic tool hai: The LIBOR-OIS Spread."
+            }
+          },
+          "onScreenIntent": "The LIBOR-OIS Spread: The Heartbeat of Financial Contagion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "An Overnight Indexed Swap exchanges a predetermined fixed rate for the geometric compounded average of overnight central bank rates—such as the effective Federal Funds rate in the United States. Because overnight loans mature in twenty-four hours, interbank overnight lending carries virtually zero credit default risk."
+            },
+            "hi": {
+              "display": "Overnight Indexed Swap ya OIS ek aisa derivative contract hai jahan ek fixed rate ke badle daily overnight central bank rates jaise Federal Funds rate ka geometric average pay kiya jata hai. Kyunki loans purely overnight hote hain, OIS mein credit risk virtually zero hota hai."
+            }
+          },
+          "onScreenIntent": "The LIBOR-OIS Spread: The Heartbeat of Financial Contagion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Historically, three-month LIBOR traded roughly ten basis points above the OIS rate. However, during the Lehman Brothers insolvency in October 2008, the spread exploded to an unprecedented three hundred sixty-four basis points. This historic divergence proved conclusively that three-month LIBOR reflects bank default risk and term funding premia rather than the pure time value of money."
+            },
+            "hi": {
+              "display": "Normal financial conditions mein three-month LIBOR aur OIS ke beech spread sirf ten basis points hota tha. Lekin September two thousand eight mein Lehman Brothers collapse ke waqt yeh spread three hundred sixty-four basis points tak explode ho gaya! Is spread ne prove kar diya ki LIBOR risk-free nahi, balki systemic bank default risk carry karta hai."
+            }
+          },
+          "onScreenIntent": "The LIBOR-OIS Spread: The Heartbeat of Financial Contagion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Contractual / Traditional Profile",
+          "tone": "neutral",
+          "points": [
+            "An OIS exchanges fixed rate for geometric average of daily overnight central bank rates",
+            "Because principal is never exchanged and overnight loans roll daily, OIS carries negligible credit risk"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Institutional / Alternative Profile",
+          "tone": "positive",
+          "points": [
+            "Because principal is never exchanged and overnight loans roll daily, OIS carries negligible credit risk",
+            "The LIBOR-OIS spread surged from 10 bps historically to 364 bps in October 2008"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "An OIS exchanges fixed rate for geometric average of daily overnight central bank rates"
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Collateralized Pricing Mechanics: Why CSAs Demand OIS Discounting",
+      "purpose": "Under ISDA CSAs, daily cash variation margin is posted to eliminate counterparty credit risk",
+      "takeaways": [
+        "Under ISDA CSAs, daily cash variation margin is posted to eliminate counterparty credit risk",
+        "The collateral receiver pays the collateral poster interest at the overnight rate (Fed Funds/ESTR)",
+        "No-arbitrage replication mandates discounting at the rate paid on posted collateral: OIS"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In modern derivative valuation theory, an essential pricing rule governs all contracts: Future cash flows must be discounted at the exact interest rate earned on the collateral supporting the position."
+            },
+            "hi": {
+              "display": "Financial theory mein ek fundamental rule hai: Kisi bhi financial contract ke cash flows ko us rate par discount kiya jana chahiye jo us contract ko support karne wale collateral par earn hota hai."
+            }
+          },
+          "onScreenIntent": "Collateralized Pricing Mechanics: Why CSAs Demand OIS Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Virtually all interbank derivatives trade under bilateral Credit Support Annexes, or CSAs, where the party with negative mark-to-market value must post cash variation margin on a daily basis."
+            },
+            "hi": {
+              "display": "Modern over-the-counter derivative market Credit Support Annex ya CSA contracts par operate karta hai, jahan losing party winning party ko daily cash collateral transfer karti hai."
+            }
+          },
+          "onScreenIntent": "Collateralized Pricing Mechanics: Why CSAs Demand OIS Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The receiving counterparty is contractually required to pay interest on that cash collateral at the central bank overnight rate. Because the collateral earns the overnight rate, replicating and funding collateralized cash flows occurs at the overnight rate. Therefore, discounting collateralized derivative cash flows at the OIS zero curve is mathematically mandatory."
+            },
+            "hi": {
+              "display": "Law ke according cash collateral hold karne wali party ko us cash par overnight interest rate pay karna padta hai, jo exactly OIS rate hota hai. Isliye collateralized swaps ke cash flows ko present value par discount karne ke liye OIS zero curve ka istemaal karna mathematically mandatory ho gaya."
+            }
+          },
+          "onScreenIntent": "Collateralized Pricing Mechanics: Why CSAs Demand OIS Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Collateralized Pricing Mechanics: Why CSAs Demand OIS Discounting",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Under ISDA CSAs, daily cash variation margin is posted to eliminate counterparty credit risk"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "The collateral receiver pays the collateral poster interest at the overnight rate (Fed Funds/ESTR)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "The Multi-Curve Paradigm: Decoupling Projections from Discounting",
+      "purpose": "Single-curve pricing assumed forward rates and discount rates came from the same curve",
+      "takeaways": [
+        "Single-curve pricing assumed forward rates and discount rates came from the same curve",
+        "Modern multi-curve framework builds separate projection curves for 1M, 3M, 6M tenors",
+        "Every projected cash flow regardless of tenor is discounted back using the continuous OIS curve"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Before 2007, quantitative desks operated in a single-curve world, using the same swap curve both to project future floating cash flows and to discount them back to present value. Post-crisis, finance transitioned permanently to the decoupled Multi-Curve Architecture."
+            },
+            "hi": {
+              "display": "Pre-crisis single-curve model mein traders usi LIBOR curve se future floating payments project karte the aur usi curve se discount karte the. Post-crisis is model ko Multi-Curve Architecture ne replace kiya."
+            }
+          },
+          "onScreenIntent": "The Multi-Curve Paradigm: Decoupling Projections from Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under this modern paradigm, two distinct curve families operate concurrently. First, Tenor-Specific Forward Projection Curves—such as one-month, three-month, or six-month curves—are used exclusively to determine expected future floating index fixings, F_i."
+            },
+            "hi": {
+              "display": "Multi-curve framework mein do alag-alag curves operate karti hain. Pehli hai Forward Projection Curve: Tenor benchmark curves jaise one-month, three-month ya six-month forward rates calculate karne ke liye use hoti hain jo future floating cash flows F i determine karti hain."
+            }
+          },
+          "onScreenIntent": "The Multi-Curve Paradigm: Decoupling Projections from Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Second, the OIS Discount Curve is used exclusively to discount those expected cash flows back to present value using exponential discount factors e^(-r_OIS * t). Forward rate forecasting and cash flow discounting are permanently separated."
+            },
+            "hi": {
+              "display": "Doosri hai OIS Discount Curve: Future cash flows determine hone ke baad, unhein present value par discount karne ke liye purely OIS zero rates e to the power minus r OIS t ka use kiya jata hai. Projection aur discounting permanently decouple ho gaye."
+            }
+          },
+          "onScreenIntent": "The Multi-Curve Paradigm: Decoupling Projections from Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Multi-Curve Paradigm: Decoupling Projections from Discounting",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Single-curve pricing assumed forward rates and discount rates came from the same curve"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Modern multi-curve framework builds separate projection curves for 1M, 3M, 6M tenors"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Numerical Walkthrough: Pricing an Interest Rate Swap with OIS Discounting",
+      "purpose": "Forward floating cash flows are calculated using 3-month forward LIBOR/SOFR rates",
+      "takeaways": [
+        "Forward floating cash flows are calculated using 3-month forward LIBOR/SOFR rates",
+        "Discount factors are calculated using OIS continuous zero rates: v(t) = exp(-r_OIS * t)",
+        "The swap fixed rate S equals the sum of OIS-discounted floating flows divided by OIS annuity"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine John Hull's practical numerical walkthrough in Table 9.2, illustrating how a three-year interest rate swap is priced under the multi-curve framework."
+            },
+            "hi": {
+              "display": "Aaiye screen par diye gaye Hull Table nine point two ke numerical model ko observe karte hain. Ek three-year interest rate swap ko multi-curve framework mein kaise price kiya jata hai?"
+            }
+          },
+          "onScreenIntent": "Numerical Walkthrough: Pricing an Interest Rate Swap with OIS Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step One, quarterly forward interest rates F_i are extracted from the three-month forward projection curve to calculate expected floating cash flows for each quarterly settlement date."
+            },
+            "hi": {
+              "display": "Step One: Three-month benchmark curve se har quarterly interval ke forward interest rates project kiye jate hain aur unse expected floating cash flows nikaale jate hain."
+            }
+          },
+          "onScreenIntent": "Numerical Walkthrough: Pricing an Interest Rate Swap with OIS Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step Two, each expected cash flow is multiplied by the corresponding OIS discount factor. Summing these discounted cash flows determines the unique par swap rate that equates the present value of the swap to zero. Because OIS rates trade lower than term borrowing rates, OIS discount factors are slightly higher, producing a modestly lower par swap rate."
+            },
+            "hi": {
+              "display": "Step Two: Har cash flow ko OIS zero curve se calculate kiye gaye discount factor se multiply karke present value sum ki jati hai. Par swap rate wo fixed coupon nikalta hai jahan is multi-curve discounting par net value zero ho. OIS discounting ki wajah se par swap rate traditional single-curve rate se slightly lower nikalta hai."
+            }
+          },
+          "onScreenIntent": "Numerical Walkthrough: Pricing an Interest Rate Swap with OIS Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Numerical Walkthrough: Pricing an Interest Rate Swap with OIS Discounting",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Forward floating cash flows are calculated using 3-month forward LIBOR/SOFR rates"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Discount factors are calculated using OIS continuous zero rates: v(t) = exp(-r_OIS * t)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Credit Valuation Adjustment (CVA): Pricing Counterparty Default Risk",
+      "purpose": "CVA is the present value of expected future losses due to counterparty default",
+      "takeaways": [
+        "CVA is the present value of expected future losses due to counterparty default",
+        "Loss is incurred only when derivative mark-to-market is positive (Expected Positive Exposure)",
+        "CVA equals (1 - R) sum of OIS discount factors times EPE times marginal default probability"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "While collateralized interbank swaps are discounted using OIS, many corporate end-users negotiate uncollateralized swaps. For uncollateralized contracts, banks must price the possibility that the counterparty might default. This deduction is the Credit Valuation Adjustment, or CVA."
+            },
+            "hi": {
+              "display": "Collateralized swaps OIS par discount hote hain, lekin uncollateralized corporate swaps mein counterparty default risk kaise incorporate kiya jata hai? Is adjustment ko kehte hain CVA yaani Credit Valuation Adjustment."
+            }
+          },
+          "onScreenIntent": "Credit Valuation Adjustment (CVA): Pricing Counterparty Default Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "CVA is defined as the expected present value of the dollar loss the bank would suffer if the counterparty defaults over the life of the transaction."
+            },
+            "hi": {
+              "display": "CVA wo dollar amount hai jo bank apne derivative portfolio value se deduct karta hai taaki counterparty ke future default risk ko account kiya ja sake."
+            }
+          },
+          "onScreenIntent": "Credit Valuation Adjustment (CVA): Pricing Counterparty Default Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Mathematically, CVA is calculated by integrating across all future time buckets: multiplying Expected Positive Exposure by the counterparty's marginal default probability and by the Loss Given Default—which equals one minus the recovery rate—discounted back to present value using the OIS zero rate."
+            },
+            "hi": {
+              "display": "CVA calculate karne ke liye teen variables multiply kiye jate hain: Har time bucket par Expected Positive Exposure, us time interval mein counterparty ki Default Probability, aur Loss Given Default yaani one minus recovery rate. Formula dekhiye: CVA equals sum of discount factor times expected exposure times default probability times LGD."
+            }
+          },
+          "onScreenIntent": "Credit Valuation Adjustment (CVA): Pricing Counterparty Default Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Credit Valuation Adjustment (CVA): Pricing Counterparty Default Risk",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "CVA is the present value of expected future losses due to counterparty default"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Loss is incurred only when derivative mark-to-market is positive (Expected Positive Exposure)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Debit Valuation Adjustment (DVA): The Paradox of Own Credit Risk",
+      "purpose": "DVA represents the benefit to a bank from the possibility of its own default on negative MTM",
+      "takeaways": [
+        "DVA represents the benefit to a bank from the possibility of its own default on negative MTM",
+        "If a bank's own credit spreads widen (deteriorating credit), DVA rises, generating accounting profit",
+        "During crisis quarters, troubled banks reported substantial paper profits due solely to DVA gains"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because bilateral derivative contracts expose both parties to credit risk, accounting standards require banks to account for their own potential default. This counterpart adjustment is the Debit Valuation Adjustment, or DVA."
+            },
+            "hi": {
+              "display": "Bilateral derivatives mein dono parties par default risk hota hai. Bank ke khud ke default risk ke adjustment ko Debit Valuation Adjustment ya DVA kaha jata hai."
+            }
+          },
+          "onScreenIntent": "Debit Valuation Adjustment (DVA): The Paradox of Own Credit Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under fair value accounting standards such as IFRS 13, if a bank's own creditworthiness deteriorates and its credit default swap spread widens, the market value of its derivative liabilities decreases."
+            },
+            "hi": {
+              "display": "Accounting rules ke mutabiq, agar ek bank ki financial position kharab hoti hai aur uski credit spread widen hoti hai, toh uski negative derivative liabilities ki fair value market mein gir jati hai."
+            }
+          },
+          "onScreenIntent": "Debit Valuation Adjustment (DVA): The Paradox of Own Credit Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This decline in liability value is booked on the bank's income statement as an accounting gain! This creates the famous DVA Paradox: A bank in financial distress records paper profits from its own declining creditworthiness. Regulators universally exclude DVA gains from regulatory capital calculations."
+            },
+            "hi": {
+              "display": "Is liabilities ke fall ko bank income statement mein profit ke roop mein book karta hai! Ye finance ka ek bizarre paradox hai: Bank creditworthiness kharab hone par accounting profit report karta hai. Risk managers is DVA paper profit par heavily rely karne se caution karte hain."
+            }
+          },
+          "onScreenIntent": "Debit Valuation Adjustment (DVA): The Paradox of Own Credit Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Contractual / Traditional Profile",
+          "tone": "neutral",
+          "points": [
+            "DVA represents the benefit to a bank from the possibility of its own default on negative MTM",
+            "If a bank's own credit spreads widen (deteriorating credit), DVA rises, generating accounting profit"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Institutional / Alternative Profile",
+          "tone": "positive",
+          "points": [
+            "If a bank's own credit spreads widen (deteriorating credit), DVA rises, generating accounting profit",
+            "During crisis quarters, troubled banks reported substantial paper profits due solely to DVA gains"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "DVA represents the benefit to a bank from the possibility of its own default on negative MTM"
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Funding Valuation Adjustment (FVA): The Cost of Margin Financing",
+      "purpose": "Banks face funding asymmetries: client trades uncollateralized, interbank hedge collateralized",
+      "takeaways": [
+        "Banks face funding asymmetries: client trades uncollateralized, interbank hedge collateralized",
+        "If bank hedge requires posting variation margin, bank must borrow at unsecured borrowing spread",
+        "FVA incorporates Funding Cost Adjustment (FCA) and Funding Benefit Adjustment (FBA)"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On modern institutional trading desks, the most commercially debated valuation metric is FVA: Funding Valuation Adjustment."
+            },
+            "hi": {
+              "display": "Modern trading desks par sabse hotly debated adjustment hai FVA: Funding Valuation Adjustment."
+            }
+          },
+          "onScreenIntent": "Funding Valuation Adjustment (FVA): The Cost of Margin Financing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider an asymmetric liquidity reality: An investment bank executes an uncollateralized swap with a corporate client, but simultaneously hedges its market risk by entering an offsetting swap in the collateralized interbank market."
+            },
+            "hi": {
+              "display": "Jab ek bank uncollateralized corporate client ke sath swap enter karta hai aur use exchange ya interbank market mein collateralized swap ke through hedge karta hai, toh ek liquidity mismatch create hota hai."
+            }
+          },
+          "onScreenIntent": "Funding Valuation Adjustment (FVA): The Cost of Margin Financing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If the interbank hedge moves against the bank, the bank must post cash collateral to the clearinghouse. Because the client posts no collateral, the bank must borrow that cash in unsecured money markets at rates above OIS. The cumulative present value of this funding spread is FVA, which the bank charges to the client upfront."
+            },
+            "hi": {
+              "display": "Bank ko hedge par daily cash margin post karne ke liye unsecured borrowing karni padti hai, jiska interest rate OIS rate se higher hota hai. Is cash funding spread ki present value ko FVA kaha jata hai, jise client pricing mein upfront add kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Funding Valuation Adjustment (FVA): The Cost of Margin Financing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Funding Valuation Adjustment (FVA): The Cost of Margin Financing",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Banks face funding asymmetries: client trades uncollateralized, interbank hedge collateralized"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "If bank hedge requires posting variation margin, bank must borrow at unsecured borrowing spread"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "The Holistic XVA Architecture: Total Portfolio Valuation",
+      "purpose": "Holistic derivative price equals Risk-Free PV minus CVA plus DVA minus FVA minus MVA minus KVA",
+      "takeaways": [
+        "Holistic derivative price equals Risk-Free PV minus CVA plus DVA minus FVA minus MVA minus KVA",
+        "MVA prices the lifetime financing cost of posting Initial Margin under regulatory rules",
+        "KVA prices the opportunity cost of regulatory capital allocated under Basel III requirements"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On top-tier quantitative trading desks, derivative valuation is no longer an isolated Black-Scholes formula; it is governed by the holistic XVA architecture."
+            },
+            "hi": {
+              "display": "Modern quantitative trading desks par derivatives ki true fair value kisi single formula se nahi nikalti; ise comprehensive XVA framework govern karta hai."
+            }
+          },
+          "onScreenIntent": "The Holistic XVA Architecture: Total Portfolio Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "As displayed on screen, the comprehensive fair value of an uncollateralized derivative portfolio equals its OIS Risk-Free Value minus CVA plus DVA minus FVA."
+            },
+            "hi": {
+              "display": "Formula screen par dekhiye: Total Fair Value barabar OIS Discounted Risk-Free Value minus CVA plus DVA minus FVA."
+            }
+          },
+          "onScreenIntent": "The Holistic XVA Architecture: Total Portfolio Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "CVA reserves for counterparty default losses, DVA captures the bank's own credit spread asymmetry, and FVA incorporates the real funding costs of financing collateral, pricing real balance sheet and capital constraints directly into the trade."
+            },
+            "hi": {
+              "display": "CVA counterparty credit loss ko protect karta hai, DVA own default asymmetry ko reflect karta hai, aur FVA uncollateralized margin borrowing cost ko absorb karta hai. Ye framework ensure karta hai ki bank balance sheet par real capital aur liquidity cost accurately price ho."
+            }
+          },
+          "onScreenIntent": "The Holistic XVA Architecture: Total Portfolio Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Holistic XVA Architecture: Total Portfolio Valuation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Holistic derivative price equals Risk-Free PV minus CVA plus DVA minus FVA minus MVA minus KVA"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "MVA prices the lifetime financing cost of posting Initial Margin under regulatory rules"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Evaluating CVA and Multi-Curve Discounting",
+      "purpose": "Switching from LIBOR to OIS discounting increases the present value of positive floating cash flows",
+      "takeaways": [
+        "Switching from LIBOR to OIS discounting increases the present value of positive floating cash flows",
+        "Given EPE of $10M, 60% LGD, 2% default prob, and 0.98 OIS DF: CVA equals $117,600",
+        "Uncollateralized derivatives trade at a discount to collateralized derivatives due to CVA + FVA"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us now apply our knowledge to solve an institutional CVA pricing scenario. Carefully examine the parameters on screen."
+            },
+            "hi": {
+              "display": "Chaliye ab ek practical institutional XVA scenario solve karte hain. Screen par diye gaye parameters ko evaluate kijiye."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Evaluating CVA and Multi-Curve Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A bank has an uncollateralized swap position with a corporate client. The risk-free OIS present value of the swap is positive five million dollars. The counterparty has an annual probability of default of four point zero percent, and the estimated recovery rate is forty percent. What is the Credit Valuation Adjustment and the net fair value of the position? Pause and consider."
+            },
+            "hi": {
+              "display": "Ek corporate client ke sath uncollateralized swap ki risk-free OIS present value positive five million dollars hai. Bank calculate karta hai ki counterparty ka cumulative default probability four percent hai aur recovery rate forty percent hai yaani loss severity sixty percent hai. Is contract ka net CVA-adjusted value kitna hoga? Pause and consider."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Evaluating CVA and Multi-Curve Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option B: Net Fair Value is four million eight hundred eighty thousand dollars. First, calculate Loss Given Default: one minus forty percent equals sixty percent. Next, compute CVA: five million dollars times four percent times sixty percent equals one hundred twenty thousand dollars. Subtracting CVA from the risk-free value: five million minus one hundred twenty thousand yields four million eight hundred eighty thousand dollars."
+            },
+            "hi": {
+              "display": "Correct answer hai Option B: Positive four point eight eight million dollars. Calculation dekhiye: CVA barabar positive exposure five million dollars guna four percent default probability guna sixty percent loss given default, jo banta hai one hundred twenty thousand dollars. Net value barabar five million minus one hundred twenty thousand equals $4,880,000."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Evaluating CVA and Multi-Curve Discounting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "A bank holds an uncollateralized swap with 1-year Expected Positive Exposure of $10,000,000. Counterparty default probability is 2.0%, Recovery Rate is 40% (LGD = 60%), and 1-year OIS discount factor is 0.98. What is the CVA deduction?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "CVA = (1 - R) * v_OIS * EPE * P = (1 - 0.40) * 0.98 * $10,000,000 * 0.02 = 0.60 * 0.98 * $200,000 = $117,600."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "The Post-LIBOR Transition: SOFR, SONIA, and Fallback Spreads",
+      "purpose": "LIBOR manipulation and thin trading volume led global regulators to retire LIBOR globally",
+      "takeaways": [
+        "LIBOR manipulation and thin trading volume led global regulators to retire LIBOR globally",
+        "New risk-free rates (SOFR, SONIA, ESTR) are overnight transaction-backed repo/unsecured benchmarks",
+        "Legacy contracts converted using ISDA fallback spreads equal to 5-year historical median LIBOR-RFR spreads"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Following the 2008 liquidity crisis and widespread investigations revealing that interbank panel banks manipulated LIBOR submissions, global regulators permanently mandated the phase-out of LIBOR."
+            },
+            "hi": {
+              "display": "LIBOR manipulation scandals aur 2007 crisis ke baad global regulators ne decide kiya ki interbank survey rates ko permanently eradicate kiya jaye."
+            }
+          },
+          "onScreenIntent": "The Post-LIBOR Transition: SOFR, SONIA, and Fallback Spreads",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Beginning in 2021, the world transitioned to Alternative Reference Rates, or ARRs: the Secured Overnight Financing Rate, or SOFR, in the United States; SONIA in the United Kingdom; and the Euro Short-Term Rate, or €STR, in Europe."
+            },
+            "hi": {
+              "display": "Two thousand twenty-one se global markets ne Alternative Reference Rates ya ARR adopt kiye. US mein Secured Overnight Financing Rate ya SOFR enforce hua, UK mein SONIA, aur Europe mein Euro Short-Term Rate enforce hui."
+            }
+          },
+          "onScreenIntent": "The Post-LIBOR Transition: SOFR, SONIA, and Fallback Spreads",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Unlike LIBOR, which relied on hypothetical quotes, SOFR and SONIA are based on hundreds of billions of dollars in actual overnight repo transactions, eliminating manipulation risk and cementing OIS discounting as the permanent global standard."
+            },
+            "hi": {
+              "display": "Ye naye rates purely transaction-based overnight repo aur interbank markets par base hain, jisse manipulation risk zero ho gaya hai aur OIS discounting pura global standard ban chuka hai."
+            }
+          },
+          "onScreenIntent": "The Post-LIBOR Transition: SOFR, SONIA, and Fallback Spreads",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Post-LIBOR Transition: SOFR, SONIA, and Fallback Spreads",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "LIBOR manipulation and thin trading volume led global regulators to retire LIBOR globally"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "New risk-free rates (SOFR, SONIA, ESTR) are overnight transaction-backed repo/unsecured benchmarks"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Modern Derivative Valuation",
+      "purpose": "OIS is the true risk-free discount rate mandated by CSA collateral interest mechanics",
+      "takeaways": [
+        "OIS is the true risk-free discount rate mandated by CSA collateral interest mechanics",
+        "Multi-curve frameworks separate tenor forecasting from continuous OIS discounting",
+        "Holistic derivative pricing incorporates CVA, DVA, FVA, MVA, and KVA under modern SOFR regimes"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate our mastery of Chapter Nine through the four structural pillars of modern derivative valuation."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Nine ke chaar foundational pricing pillars ko consolidate karte hain."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Modern Derivative Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar One: OIS Discounting Supremacy. Because cash collateral earns overnight interest, the OIS zero curve is the mathematically required risk-free discount rate for collateralized contracts."
+            },
+            "hi": {
+              "display": "Pillar One: OIS Discounting Supremacy. Collateralized derivatives par cash interest overnight rate par milta hai, isliye OIS true risk-free discount rate hai."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Modern Derivative Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Two: Multi-Curve Architecture. Modern quantitative systems permanently decouple forward floating cash flow projection from OIS present value discounting."
+            },
+            "hi": {
+              "display": "Pillar Two: Multi-Curve Architecture. Future floating payments forward projection curve se generate hoti hain aur OIS curve se independently discount hoti hain."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Modern Derivative Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Three: The XVA Ecosystem. Uncollateralized trades require comprehensive valuation adjustments: deducting CVA for counterparty default risk and FVA for collateral funding costs."
+            },
+            "hi": {
+              "display": "Pillar Three: The XVA Ecosystem. Uncollateralized trades par true fair value CVA counterparty risk, DVA own credit risk aur FVA margin funding cost se govern hoti hai."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Modern Derivative Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Four: Transaction-Based ARR Standard. The global elimination of LIBOR in favor of SOFR and SONIA established robust, manipulation-proof foundations across fixed income markets."
+            },
+            "hi": {
+              "display": "Pillar Four: Transaction-Based ARR Standard. Post-LIBOR transition ne SOFR aur SONIA ko establish karke manipulation-proof global financial plumbing deliver ki."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Modern Derivative Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "With our foundation in interest rates, swaps, and credit funding firmly established, we advance in Chapter Ten into Options Markets, contract specifications, and payoff mechanics."
+            },
+            "hi": {
+              "display": "Chapter Ten mein hum Options Contracts, specification rules aur moneyness dynamics ko explore karenge."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Modern Derivative Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary Thread: Four Pillars of Modern Derivative Valuation",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

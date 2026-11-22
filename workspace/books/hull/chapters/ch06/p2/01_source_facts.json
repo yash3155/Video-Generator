@@ -1,0 +1,103 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch06",
+  "partId": "p2",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "definition",
+      "statement": "Eurodollar and SOFR futures utilize price index quotation 100 - R, where R is annualized 3-month interest rate percentage. A 1 bp move equals $25 per $1,000,000 contract ($1M * 0.0001 * 90/360).",
+      "citation": {
+        "chapter": "6",
+        "section": "6.3",
+        "page": "139"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "formula",
+      "statement": "The Convexity Adjustment formula reconciling futures and forward rates is: Forward Rate = Futures Rate - 0.5 * sigma^2 * T_1 * T_2, where sigma is rate volatility, T_1 is futures expiry, and T_2 = T_1 + 0.25.",
+      "citation": {
+        "chapter": "6",
+        "section": "6.4",
+        "page": "142"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "formula",
+      "statement": "The optimal number of futures contracts for duration-based hedging is: N* = (P * D_P) / (F_C * D_F), where P is portfolio value, D_P is portfolio duration, F_C is contract price, and D_F is CTD bond duration.",
+      "citation": {
+        "chapter": "6",
+        "section": "6.5",
+        "page": "145"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "definition",
+      "statement": "Daily marking to market makes futures rates systematically higher than forward rates because positive variation margin is received and reinvested when interest rates rise.",
+      "citation": {
+        "chapter": "6",
+        "section": "6.4",
+        "page": "141"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "numerical_example",
+      "statement": "John Hull's example: hedging a $10,000,000 portfolio with duration 6.80 years using futures trading at 93-06 ($93,187.50) with CTD duration 9.20 years requires N* = ($10M * 6.80) / ($93,187.50 * 9.20) = 79.31 (short 79 contracts).",
+      "citation": {
+        "chapter": "6",
+        "section": "6.5",
+        "page": "146"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "definition",
+      "statement": "Asset-Liability Management (ALM) manages the Duration Gap between long-term bank assets (loans) and short-term liabilities (deposits) using interest rate futures.",
+      "citation": {
+        "chapter": "6",
+        "section": "6.5",
+        "page": "147"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "definition",
+      "statement": "Hedging imperfections include non-parallel yield curve shifts (curve steepening/inversion), credit spread divergence, and CTD bond switching risk.",
+      "citation": {
+        "chapter": "6",
+        "section": "6.5",
+        "page": "148"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "numerical_example",
+      "statement": "Active recall scenario: $50,000,000 portfolio with duration 5.0 years hedged with futures contract price $100,000 and CTD duration 8.0 years requires N* = ($50M * 5.0) / ($100k * 8.0) = 250M / 800k = 312.5 (short 313 contracts).",
+      "citation": {
+        "chapter": "6",
+        "section": "6.5",
+        "page": "146"
+      }
+    }
+  ],
+  "realWorldProblem": {
+    "actors": "Bank ALM committees, fixed income portfolio managers, and short-term interest rate traders",
+    "situation": "Immunizing corporate bond portfolios against interest rate spikes and managing bank balance sheet duration gaps",
+    "failure": "Neglecting the convexity adjustment when constructing swap curves or miscalculating duration hedge ratios creates catastrophic capital losses",
+    "invention": "Eurodollar index quotation, Convexity Adjustment formula, and Duration-Based Hedging ratio N*",
+    "factIds": [
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F05",
+      "F06",
+      "F07",
+      "F08"
+    ]
+  }
+}

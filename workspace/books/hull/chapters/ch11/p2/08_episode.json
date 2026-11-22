@@ -1,0 +1,1642 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch11",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 11",
+  "partLabel": "Part 2",
+  "title": "Properties of Stock Options - Part 2",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 2,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Parity Invariant: Unifying Options & Stock",
+      "purpose": "Put-Call Parity binds Calls, Puts, Stock, and Cash in an unbreakable no-arbitrage equilibrium",
+      "takeaways": [
+        "Put-Call Parity binds Calls, Puts, Stock, and Cash in an unbreakable no-arbitrage equilibrium",
+        "European call plus cash K*exp(-rT) equals European put plus underlying stock",
+        "Part 2 masters replication proofs, dual arbitrage executions, early exercise theorems, and synthetics"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In modern derivatives finance, there exists a mathematical bridge unifying Calls, Puts, stock, and cash into a single unbreakable equation."
+            },
+            "hi": {
+              "display": "Modern derivatives finance mein ek aisa mathematical bridge hai jo Calls, Puts, underlying stock aur risk-free cash ko ek single unbreakable equation mein bind karta hai."
+            }
+          },
+          "onScreenIntent": "The Parity Invariant: Unifying Options & Stock",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Often retail traders trade calls in isolation, failing to realize their value is mathematically chained to the stock and put prices."
+            },
+            "hi": {
+              "display": "Aksar retail traders call option ko ek isolated instrument samajh kar trade karte hain, bina ye realize kiye ki uski value underlying stock aur put price se mathematically chained hoti hai."
+            }
+          },
+          "onScreenIntent": "The Parity Invariant: Unifying Options & Stock",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This foundational theorem is Put-Call Parity, established by Hans Stoll in 1969 and leveraged by Black and Scholes."
+            },
+            "hi": {
+              "display": "Is foundational theorem ko Put-Call Parity kehte hain, jise Hans Stoll ne 1969 mein establish kiya tha aur baad mein Black aur Scholes ne ise utilize kiya."
+            }
+          },
+          "onScreenIntent": "The Parity Invariant: Unifying Options & Stock",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The equation dictates: c + K e^(-rT) must equal p + S0; otherwise market makers execute instant risk-free arbitrage."
+            },
+            "hi": {
+              "display": "Equation kehti hai: c plus K e to the power minus rT hamesha p plus S zero ke barabar hona chahiye; varna market makers instant risk-free arbitrage execute karte hain."
+            }
+          },
+          "onScreenIntent": "The Parity Invariant: Unifying Options & Stock",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Parity Invariant: Unifying Options & Stock",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Put-Call Parity binds Calls, Puts, Stock, and Cash in an unbreakable no-arbitrage equilibrium"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "European call plus cash K*exp(-rT) equals European put plus underlying stock"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Equilibrium vs Arbitrage: The Two Parity Forces",
+      "purpose": "In equilibrium, prices reflect fundamental cash flow equivalence",
+      "takeaways": [
+        "In equilibrium, prices reflect fundamental cash flow equivalence",
+        "If market prices diverge by even pennies, arbitrageurs execute instant self-financing trades",
+        "Arbitrage buying and selling immediately forces prices back into exact mathematical alignment"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In real financial markets, two opposing forces constantly operate: Equilibrium pricing and Arbitrage discipline."
+            },
+            "hi": {
+              "display": "Real financial markets mein do opposing forces lagataar kaam karti hain: Equilibrium pricing aur Arbitrage discipline."
+            }
+          },
+          "onScreenIntent": "Equilibrium vs Arbitrage: The Two Parity Forces",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In equilibrium, the synthetic call price perfectly matches the exchange quoted call price."
+            },
+            "hi": {
+              "display": "Jab market equilibrium mein hota hai, toh synthetic call ka price real exchange quoted call price ke exact barabar hota hai."
+            }
+          },
+          "onScreenIntent": "Equilibrium vs Arbitrage: The Two Parity Forces",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yet if order flow creates even slight dislocations, quantitative desks execute immediate trades."
+            },
+            "hi": {
+              "display": "Lekin agar market sentiment ya order flow ki wajah se options quotes mein slight dislocation bhi aati hai, toh quantitative desks instant trades execute karti hain."
+            }
+          },
+          "onScreenIntent": "Equilibrium vs Arbitrage: The Two Parity Forces",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine Hull's rigorous portfolio dominance proof to see how this parity equation is derived."
+            },
+            "hi": {
+              "display": "Aaiye Hull ke rigorous portfolio dominance method se dekhte hain ki ye parity equation mathematically prove kaise hoti hai."
+            }
+          },
+          "onScreenIntent": "Equilibrium vs Arbitrage: The Two Parity Forces",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Contractual / Traditional Profile",
+          "tone": "neutral",
+          "points": [
+            "In equilibrium, prices reflect fundamental cash flow equivalence",
+            "If market prices diverge by even pennies, arbitrageurs execute instant self-financing trades"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Institutional / Alternative Profile",
+          "tone": "positive",
+          "points": [
+            "If market prices diverge by even pennies, arbitrageurs execute instant self-financing trades",
+            "Arbitrage buying and selling immediately forces prices back into exact mathematical alignment"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "In equilibrium, prices reflect fundamental cash flow equivalence"
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "The Replicating Portfolios: Defining Portfolio A & B",
+      "purpose": "Portfolio A consists of 1 European call and cash K * exp(-rT) invested at rate r",
+      "takeaways": [
+        "Portfolio A consists of 1 European call and cash K * exp(-rT) invested at rate r",
+        "Portfolio B consists of 1 European put and 1 share of underlying stock S0",
+        "Both portfolios require specific upfront capital and mature at the exact same expiration T"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To prove parity, John Hull constructs two elegant replicating portfolios: Portfolio A and Portfolio B."
+            },
+            "hi": {
+              "display": "Parity prove karne ke liye John Hull do elegant replicating portfolios construct karte hain: Portfolio A aur Portfolio B."
+            }
+          },
+          "onScreenIntent": "The Replicating Portfolios: Defining Portfolio A & B",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Portfolio A consists of buying one European call at premium c, and depositing K e^(-rT) cash in the money market."
+            },
+            "hi": {
+              "display": "Portfolio A mein hum ek European call buy karte hain jiska premium c hai, aur sath mein K e to the power minus rT cash risk-free money market mein deposit karte hain."
+            }
+          },
+          "onScreenIntent": "The Replicating Portfolios: Defining Portfolio A & B",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Portfolio B consists of buying one European put at premium p, and purchasing one full share of stock at spot price S0."
+            },
+            "hi": {
+              "display": "Portfolio B mein hum ek European put buy karte hain jiska premium p hai, aur spot price S zero par ek full share of underlying stock purchase karte hain."
+            }
+          },
+          "onScreenIntent": "The Replicating Portfolios: Defining Portfolio A & B",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Both portfolios maintain an identical strike price K and maturity T. Let us observe the terminal outcome at expiration."
+            },
+            "hi": {
+              "display": "Dono portfolios ki strike price K aur maturity T bilkul identical rakhi jaati hai. Aaiye dekhte hain expiration par kya hota hai."
+            }
+          },
+          "onScreenIntent": "The Replicating Portfolios: Defining Portfolio A & B",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Contractual / Traditional Profile",
+          "tone": "neutral",
+          "points": [
+            "Portfolio A consists of 1 European call and cash K * exp(-rT) invested at rate r",
+            "Portfolio B consists of 1 European put and 1 share of underlying stock S0"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Institutional / Alternative Profile",
+          "tone": "positive",
+          "points": [
+            "Portfolio B consists of 1 European put and 1 share of underlying stock S0",
+            "Both portfolios require specific upfront capital and mature at the exact same expiration T"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Portfolio A consists of 1 European call and cash K * exp(-rT) invested at rate r"
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Proof of Put-Call Parity: Terminal Payoff Dominance",
+      "purpose": "If S_T > K: Call pays S_T - K, cash is K => Portfolio A pays S_T; Put expires worthless => Portfolio B pays S_T",
+      "takeaways": [
+        "If S_T > K: Call pays S_T - K, cash is K => Portfolio A pays S_T; Put expires worthless => Portfolio B pays S_T",
+        "If S_T <= K: Call expires worthless, cash is K => Portfolio A pays K; Put pays K - S_T => Portfolio B pays K",
+        "Since Payoff A = Payoff B = max(S_T, K) in all states, their initial costs MUST be equal: c + K*exp(-rT) = p + S0"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us analyze both terminal outcomes at time T: State 1 when stock exceeds strike, and State 2 when stock ends below strike."
+            },
+            "hi": {
+              "display": "Aaiye expiration time T par market ke dono possible outcomes ko analyze karte hain: State One jab stock strike se bada ho, aur State Two jab stock strike se chhota ho."
+            }
+          },
+          "onScreenIntent": "Proof of Put-Call Parity: Terminal Payoff Dominance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In State 1, if stock is $65 and strike is $50, Portfolio A yields $15 from call plus $50 cash = $65 total."
+            },
+            "hi": {
+              "display": "State One mein agar stock price 65 dollars ho aur strike 50 dollars ho, toh Portfolio A call se 15 dollars aur cash se 50 dollars dekar total 65 dollars banata hai."
+            }
+          },
+          "onScreenIntent": "Proof of Put-Call Parity: Terminal Payoff Dominance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Portfolio B, the put expires worthless and the stock delivers exactly $65. Both payoffs are identical."
+            },
+            "hi": {
+              "display": "Portfolio B mein put worthless expire hoti hai aur stock exactly 65 dollars deliver karta hai. Dono portfolios ka payoff bilkul barabar hai."
+            }
+          },
+          "onScreenIntent": "Proof of Put-Call Parity: Terminal Payoff Dominance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In State 2, if stock drops to $35, Portfolio A guarantees $50 cash; while Portfolio B exercises the put to sell stock for $50."
+            },
+            "hi": {
+              "display": "State Two mein agar stock 35 dollars par gir jaye, toh Portfolio A mein cash 50 dollars guarantee karta hai; jabki Portfolio B put exercise karke stock ko 50 dollars mein sell kar deta hai."
+            }
+          },
+          "onScreenIntent": "Proof of Put-Call Parity: Terminal Payoff Dominance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because both portfolios yield max(ST, K) in every future state, their initial costs c + K e^(-rT) = p + S0 must be strictly equal!"
+            },
+            "hi": {
+              "display": "Kyunki har possible future state mein dono portfolios ka payoff maximum of ST and K hota hai, isliye initial cost c plus K e to the power minus rT equals p plus S zero hona mandatory hai!"
+            }
+          },
+          "onScreenIntent": "Proof of Put-Call Parity: Terminal Payoff Dominance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Proof of Put-Call Parity: Terminal Payoff Dominance",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "If S_T > K: Call pays S_T - K, cash is K => Portfolio A pays S_T; Put expires worthless => Portfolio B pays S_T"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "If S_T <= K: Call expires worthless, cash is K => Portfolio A pays K; Put pays K - S_T => Portfolio B pays K"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Arbitrage Strategy 1: Exploiting an Overpriced Call",
+      "purpose": "If c + K*exp(-rT) > p + S0: Call is overpriced (Portfolio A is expensive, Portfolio B is cheap)",
+      "takeaways": [
+        "If c + K*exp(-rT) > p + S0: Call is overpriced (Portfolio A is expensive, Portfolio B is cheap)",
+        "Arbitrage: Sell Call, Borrow K*exp(-rT), Buy Put, Buy Stock",
+        "Locks in positive cash at inception; perfectly neutral terminal cash flow at expiration"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine how a trading desk extracts risk-free profit when parity is violated in the market."
+            },
+            "hi": {
+              "display": "Aaiye ab dekhte hain ki agar market parity violate karta hai, toh trading desk risk-free profit kaise extract karti hai."
+            }
+          },
+          "onScreenIntent": "Arbitrage Strategy 1: Exploiting an Overpriced Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Scenario 1: Suppose c + K e^(-rT) > p + S0. This means the Call option is artificially expensive."
+            },
+            "hi": {
+              "display": "Scenario One: Suppose c plus K e to the power minus rT greater than p plus S zero ho jata hai. Iska matlab Call option artificially expensive hai."
+            }
+          },
+          "onScreenIntent": "Arbitrage Strategy 1: Exploiting an Overpriced Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The arbitrageur shorts the expensive asset by writing the Call, and buys the cheap Put and Stock."
+            },
+            "hi": {
+              "display": "Arbitrageur expensive asset ko short karta hai: yani Call sell karta hai, aur sath mein cheap assets: Put aur Stock ko buy karta hai."
+            }
+          },
+          "onScreenIntent": "Arbitrage Strategy 1: Exploiting an Overpriced Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The net difference is invested in the money market. At expiration, positions settle with zero net liability, preserving risk-free profit."
+            },
+            "hi": {
+              "display": "Initial net difference cash ko money market mein lend kiya jata hai. Expiration par chahe stock 100 dollar ho ya zero, position net zero liability par settle hoti hai aur profit lock rehta hai."
+            }
+          },
+          "onScreenIntent": "Arbitrage Strategy 1: Exploiting an Overpriced Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Arbitrage Strategy 1: Exploiting an Overpriced Call",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "If c + K*exp(-rT) > p + S0: Call is overpriced (Portfolio A is expensive, Portfolio B is cheap)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Arbitrage: Sell Call, Borrow K*exp(-rT), Buy Put, Buy Stock"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Arbitrage Strategy 2: Exploiting an Underpriced Call",
+      "purpose": "If c + K*exp(-rT) < p + S0: Portfolio A is cheap and Portfolio B is expensive",
+      "takeaways": [
+        "If c + K*exp(-rT) < p + S0: Portfolio A is cheap and Portfolio B is expensive",
+        "Arbitrage: Buy Call, Invest K*exp(-rT), Sell Put, Short Stock",
+        "Generates net cash inflow today with zero net cash obligation at expiration T"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Scenario 2: If the European Call is underpriced, c + K e^(-rT) < p + S0."
+            },
+            "hi": {
+              "display": "Scenario Two: Agar market mein European Call underpriced ho, toh c plus K e to the power minus rT less than p plus S zero hoga."
+            }
+          },
+          "onScreenIntent": "Arbitrage Strategy 2: Exploiting an Underpriced Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Here the arbitrageur buys the cheap asset by purchasing the Call and borrowing the strike PV."
+            },
+            "hi": {
+              "display": "Yahan arbitrageur cheap asset ko buy karta hai: yani Call buy karta hai aur strike ka PV borrow karta hai."
+            }
+          },
+          "onScreenIntent": "Arbitrage Strategy 2: Exploiting an Underpriced Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Simultaneously, they short expensive Portfolio B by shorting stock and writing the put to pocket upfront cash."
+            },
+            "hi": {
+              "display": "Simultaneously, expensive Portfolio B ko short karta hai: yani Stock short karta hai aur Put write karke heavy cash upfront pocket kar leta hai."
+            }
+          },
+          "onScreenIntent": "Arbitrage Strategy 2: Exploiting an Underpriced Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At maturity T, option payoffs cover the bank loan exactly, preserving Day 0 cash as pure profit."
+            },
+            "hi": {
+              "display": "Maturity T par chahe stock kitna bhi extreme move kare, options payoff bank loan ko exactly pay off kar deta hai aur Day zero ka cash pure profit ban jata hai."
+            }
+          },
+          "onScreenIntent": "Arbitrage Strategy 2: Exploiting an Underpriced Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Arbitrage Strategy 2: Exploiting an Underpriced Call",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "If c + K*exp(-rT) < p + S0: Portfolio A is cheap and Portfolio B is expensive"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Arbitrage: Buy Call, Invest K*exp(-rT), Sell Put, Short Stock"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Early Exercise Theorem: American Calls on Non-Dividend Stocks",
+      "purpose": "Exercising an American call early destroys time value and pays strike K prematurely",
+      "takeaways": [
+        "Exercising an American call early destroys time value and pays strike K prematurely",
+        "An unexercised call provides downside insurance: if stock collapses, holder loses only premium",
+        "If an investor wants to exit, selling the call on exchange always captures more value than exercising"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we examine a famous counter-intuitive theorem: An American call on a non-dividend stock should NEVER be exercised early."
+            },
+            "hi": {
+              "display": "Ab aate hain quantitative finance ke sabse famous aur counter-intuitive theorem par: Non-dividend paying stock par American call ko expiration se pehle kabhi exercise nahi karna chahiye."
+            }
+          },
+          "onScreenIntent": "Early Exercise Theorem: American Calls on Non-Dividend Stocks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The proof is straightforward: We know call price C is always strictly greater than St - K e^(-r delta t)."
+            },
+            "hi": {
+              "display": "Iska mathematical proof bohot straightforward hai: Hum jante hain ki call price C hamesha St minus K e to the power minus r delta t se bada hota hai."
+            }
+          },
+          "onScreenIntent": "Early Exercise Theorem: American Calls on Non-Dividend Stocks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because rate r is positive, discounted strike is strictly less than K. Hence C strictly exceeds intrinsic value St - K."
+            },
+            "hi": {
+              "display": "Kyunki interest rate r positive hai, discounted strike K hamesha actual cash K se chhota hota hai. Isliye C hamesha intrinsic value St minus K se strictly bada hota hai."
+            }
+          },
+          "onScreenIntent": "Early Exercise Theorem: American Calls on Non-Dividend Stocks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exercising early permanently destroys interest on strike delay and downside protection. If cash is needed, sell the option in the market; never exercise early!"
+            },
+            "hi": {
+              "display": "Agar aap option early exercise karte hain, toh aap strike delay par milne wale interest aur downside insurance protection dono ko permanently destroy kar dete hain. Agar cash chahiye, toh option ko market mein sell kijiye, exercise mat kijiye!"
+            }
+          },
+          "onScreenIntent": "Early Exercise Theorem: American Calls on Non-Dividend Stocks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Early Exercise Theorem: American Calls on Non-Dividend Stocks",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Exercising an American call early destroys time value and pays strike K prematurely"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "An unexercised call provides downside insurance: if stock collapses, holder loses only premium"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "American Puts: Why Deep In-The-Money Puts MUST Be Exercised Early",
+      "purpose": "Unlike calls, exercising a put early receives cash strike K immediately, earning interest",
+      "takeaways": [
+        "Unlike calls, exercising a put early receives cash strike K immediately, earning interest",
+        "When put is deep ITM (e.g. S near 0), intrinsic value is capped at K and time value turns negative",
+        "Hence American put price P can strictly exceed European put price p: P > p"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Opposite to calls, American Puts operate under reverse dynamics: Deep in-the-money puts are strictly optimal to exercise early."
+            },
+            "hi": {
+              "display": "Calls ke opposite, American Puts ke sath bilkul ulta dynamic kaam karta hai: Deep in-the-money American puts ko early exercise karna strictly optimal hota hai."
+            }
+          },
+          "onScreenIntent": "American Puts: Why Deep In-The-Money Puts MUST Be Exercised Early",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Why? Because exercising a put receives cash strike K immediately, earning risk-free money market interest."
+            },
+            "hi": {
+              "display": "Kyun? Kyunki jab aap put exercise karte hain, toh aap cash strike K turant receive karte hain. Us K dollars ko bank mein deposit karke aap risk-free interest earn kar sakte hain."
+            }
+          },
+          "onScreenIntent": "American Puts: Why Deep In-The-Money Puts MUST Be Exercised Early",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider an extreme case: If stock drops to zero, waiting yields K at T, whose present value today is only K e^(-rT)."
+            },
+            "hi": {
+              "display": "Extreme case sochiye: Agar company bankrupt ho jaye aur stock zero ho jaye, toh maturity tak wait karne se aapko time T par K milega, jiska PV aaj sirf K e to the power minus rT hai."
+            }
+          },
+          "onScreenIntent": "American Puts: Why Deep In-The-Money Puts MUST Be Exercised Early",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exercising immediately captures full K cash today. Hence American Put is strictly more valuable than European Put: P > p!"
+            },
+            "hi": {
+              "display": "Turant exercise karke aap full K dollars receive kar lete hain. Isliye American Put hamesha European Put se zyada valuable hota hai: Capital P strictly greater than small p!"
+            }
+          },
+          "onScreenIntent": "American Puts: Why Deep In-The-Money Puts MUST Be Exercised Early",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "American Puts: Why Deep In-The-Money Puts MUST Be Exercised Early",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Unlike calls, exercising a put early receives cash strike K immediately, earning interest"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "When put is deep ITM (e.g. S near 0), intrinsic value is capped at K and time value turns negative"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Put-Call Parity with Discrete Dividends",
+      "purpose": "Dividends paid during option life reduce terminal stock value by D * exp(rT)",
+      "takeaways": [
+        "Dividends paid during option life reduce terminal stock value by D * exp(rT)",
+        "The generalized Put-Call Parity formula becomes: c + D + K * exp(-r*T) = p + S0",
+        "D is the present value of all discrete dividends ex-dividend prior to expiration T"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In the real world, companies pay discrete cash dividends, causing stock prices to drop on ex-dividend dates."
+            },
+            "hi": {
+              "display": "Real world mein companiyan discrete cash dividends pay karti hain. Ex-dividend date par stock price dividend amount se drop ho jata hai."
+            }
+          },
+          "onScreenIntent": "Put-Call Parity with Discrete Dividends",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under Hull Section 11.7, the dividend present value D is added: c + D + K e^(-rT) = p + S0."
+            },
+            "hi": {
+              "display": "Hull Section 11.7 ke according, parity equation mein dividends ka present value D add hota hai: c plus D plus K e to the power minus rT equals p plus S zero."
+            }
+          },
+          "onScreenIntent": "Put-Call Parity with Discrete Dividends",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And an exception arises: If dividend d exceeds interest saved on strike, exercising the call right before the ex-date becomes optimal!"
+            },
+            "hi": {
+              "display": "Aur yahan call non-early-exercise theorem ka exception paida hota hai: Agar dividend d strike par save hone wale interest se bada ho, toh ex-dividend date se theek pehle call exercise karna mathematically optimal ban jata hai!"
+            }
+          },
+          "onScreenIntent": "Put-Call Parity with Discrete Dividends",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Put-Call Parity with Discrete Dividends",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Dividends paid during option life reduce terminal stock value by D * exp(rT)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "The generalized Put-Call Parity formula becomes: c + D + K * exp(-r*T) = p + S0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Put-Call Parity Arbitrage Detection",
+      "purpose": "Given S0 = $31, K = $30, r = 10%, T = 3 months (0.25 yrs): discount factor exp(-0.025) = 0.9753",
+      "takeaways": [
+        "Given S0 = $31, K = $30, r = 10%, T = 3 months (0.25 yrs): discount factor exp(-0.025) = 0.9753",
+        "If c = $3.00 and p = $2.25: c + K*exp(-rT) = 3 + 29.26 = $32.26, while p + S0 = 2.25 + 31 = $33.25",
+        "Parity is violated ($32.26 != $33.25): Buy call, short stock, sell put, invest cash, capturing $0.99 profit"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your active recall understanding on a classic quantitative arbitrage problem from John Hull."
+            },
+            "hi": {
+              "display": "Aaiye ab aapki active recall understanding ko John Hull ke ek classic quantitative arbitrage problem par test karte hain."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Put-Call Parity Arbitrage Detection",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Stock is $31, strike $30, T = 3 months, rate 10%. Discounted strike is $29.26. Call trades at $3.00, Put at $2.25. Calculate the risk-free arbitrage profit."
+            },
+            "hi": {
+              "display": "Stock trades at 31 dollars. Strike is 30 dollars, time to maturity 3 months, risk-free rate 10 percent per annum. Discounted strike price 29 dollars 26 cents hai. European call trades at 3 dollars, jabki European put trades at 2 dollars 25 cents. Parity check karke risk-free arbitrage profit calculate kijiye."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Put-Call Parity Arbitrage Detection",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option B. Portfolio A costs $3.00 + $29.26 = $32.26. Portfolio B costs $2.25 + $31.00 = $33.25."
+            },
+            "hi": {
+              "display": "Sahi answer Option B hai. Portfolio A ka cost 3 dollars plus 29 dollars 26 cents yani 32 dollars 26 cents hai. Jabki Portfolio B ka cost 2 dollars 25 cents plus 31 dollars yani 33 dollars 25 cents hai."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Put-Call Parity Arbitrage Detection",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because Portfolio A is cheap, buying call, borrowing strike, shorting stock and writing put locks in exactly $0.99 profit per share!"
+            },
+            "hi": {
+              "display": "Kyunki Portfolio A underpriced hai, arbitrageur cheap call buy karta hai, strike borrow karta hai, stock short karta hai aur put sell karta hai. Upfront risk-free profit exactly 99 cents per share lock ho jata hai!"
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Put-Call Parity Arbitrage Detection",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "A stock trades at S0 = $31. A 3-month European call with strike K = $30 trades at $3.00. The 3-month European put with strike $30 trades at $2.25. The risk-free rate is 10% (K*exp(-rT) = $29.26). What arbitrage action should you take?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Portfolio A cost = c + K*exp(-rT) = $3.00 + $29.26 = $32.26. Portfolio B cost = p + S0 = $2.25 + $31.00 = $33.25. Since Portfolio A is cheaper than Portfolio B, buy Portfolio A (buy call, lend $29.26) and short Portfolio B (short stock for $31, sell put for $2.25). Net cash generated today = $33.25 - $32.26 = $0.99 risk-free profit."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "The Synthetics Matrix: Replicating Any Financial Position",
+      "purpose": "Synthetic Stock = Long Call + Short Put + Cash Bond: S0 = c - p + K*exp(-rT)",
+      "takeaways": [
+        "Synthetic Stock = Long Call + Short Put + Cash Bond: S0 = c - p + K*exp(-rT)",
+        "Synthetic Long Call = Long Put + Long Stock + Loan: c = p + S0 - K*exp(-rT)",
+        "Synthetic Long Put = Long Call + Short Stock + Cash Bond: p = c - S0 + K*exp(-rT)"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Put-Call Parity is not merely theoretical; it is modern quantitative finance's most versatile engineering engine."
+            },
+            "hi": {
+              "display": "Put-Call Parity sirf theoretical pricing formula nahi hai; ye modern quantitative finance ka sabse powerful financial engineering engine hai."
+            }
+          },
+          "onScreenIntent": "The Synthetics Matrix: Replicating Any Financial Position",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "By rearranging this equation, trading desks can manufacture a synthetic copy of any financial asset."
+            },
+            "hi": {
+              "display": "Is equation ko rearrange karke trading desks kisi bhi financial asset ki synthetic copy manufacture kar sakti hain."
+            }
+          },
+          "onScreenIntent": "The Synthetics Matrix: Replicating Any Financial Position",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For instance, synthetic long stock can be created via long call, short put, and lending the strike present value."
+            },
+            "hi": {
+              "display": "Jaise agar aapko stock buy karna ho lekin capital kam ho, toh synthetic call equals put plus stock minus bond execute kiya ja sakta hai."
+            }
+          },
+          "onScreenIntent": "The Synthetics Matrix: Replicating Any Financial Position",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These synthetics empower institutions to navigate short-sale bans and capital constraints with mathematical precision."
+            },
+            "hi": {
+              "display": "Ye synthetics institutional traders ko short-sale restrictions, borrowing limits aur high taxes ko legal aur mathematically pure tareeqe se manage karne ki freedom dete hain."
+            }
+          },
+          "onScreenIntent": "The Synthetics Matrix: Replicating Any Financial Position",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Synthetics Matrix: Replicating Any Financial Position",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Synthetic Stock = Long Call + Short Put + Cash Bond: S0 = c - p + K*exp(-rT)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Synthetic Long Call = Long Put + Long Stock + Loan: c = p + S0 - K*exp(-rT)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Laws of Put-Call Parity & Exercise Dynamics",
+      "purpose": "Put-Call Parity is an unbreakable equilibrium: c + K*exp(-rT) = p + S0",
+      "takeaways": [
+        "Put-Call Parity is an unbreakable equilibrium: c + K*exp(-rT) = p + S0",
+        "American calls on non-dividend stocks should never be exercised early (C = c)",
+        "Deep ITM American puts should be exercised early; Chapter 12 advances into Trading Strategies"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the four foundational parity and exercise principles of Chapter 11 Part 2."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Eleven Part Two ke chaar foundational parity aur exercise principles ko consolidate karte hain."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Laws of Put-Call Parity & Exercise Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: Exact European Parity. c + K e^(-rT) = p + S0 maintains continuous market equilibrium."
+            },
+            "hi": {
+              "display": "Pillar One: Exact European Parity. c plus K e to the power minus rT equals p plus S zero markets mein continuous equilibrium maintain karta hai."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Laws of Put-Call Parity & Exercise Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: American Call Non-Early-Exercise. C = c on non-dividend stocks; early exercise destroys strike delay interest and insurance."
+            },
+            "hi": {
+              "display": "Pillar Two: American Call Non-Early-Exercise. Non-dividend stock par Capital C equals small c; option exercise karna interest delay aur insurance dono ko destroy karta hai."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Laws of Put-Call Parity & Exercise Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: American Put Acceleration. Deep in-the-money puts are exercised early to capture interest on strike."
+            },
+            "hi": {
+              "display": "Pillar Three: American Put Exercise Acceleration. Deep in-the-money puts ko early exercise karke strike par interest capture kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Laws of Put-Call Parity & Exercise Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 4: Dividend Extension. Discrete dividends adjust parity and can trigger early call exercise before ex-dates."
+            },
+            "hi": {
+              "display": "Pillar Four: Dividend Extension. Discrete dividends parity ko adjust karte hain aur ex-dividend date se pehle call exercise trigger kar sakte hain."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Laws of Put-Call Parity & Exercise Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 12, we master option trading strategies: Bull Spreads, Bear Spreads, Straddles, Strangles, and Butterflies."
+            },
+            "hi": {
+              "display": "Chapter Twelve mein hum options trading strategies: Bull Spreads, Bear Spreads, Straddles, Strangles aur Butterflies ko mathematically master karenge."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Laws of Put-Call Parity & Exercise Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary Thread: Four Laws of Put-Call Parity & Exercise Dynamics",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

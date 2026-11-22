@@ -1,0 +1,1426 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch22",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 22",
+  "partLabel": "Part 2",
+  "title": "Chapter 22: Model-Building VaR, Quadratic Models & Backtesting (Part 2)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 43,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Rogue Desk Dilemma: Linear VaR Blindness",
+      "purpose": "The Rogue Desk Dilemma: Linear VaR Blindness: Foundational quantitative principles",
+      "takeaways": [
+        "The Rogue Desk Dilemma: Linear VaR Blindness: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider a cautionary real-world failure: an options trading desk reported a conservative daily Value at Risk of just $50,000."
+            },
+            "hi": {
+              "display": "Sharma ji, pichle saal ek institutional options trading desk ne report kiya tha ki unka daily VaR sirf fifty thousand dollars hai. Lekin jab market mein sirf four percent ka sudden dip aaya, toh us desk ko forty million dollars ka catastrophic loss ho gaya! Aisa kaise ho sakta hai?"
+            }
+          },
+          "onScreenIntent": "The Rogue Desk Dilemma: Linear VaR Blindness",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yet a modest 4% market correction triggered a catastrophic $40 million loss, completely blindsiding senior risk management!"
+            },
+            "hi": {
+              "display": "Raju, ye catastrophic failure Linear Model ki wajah se hua! Us desk ne deep out-of-the-money put options sell kiye the. Normal market mein deep OTM options ka Delta lagbhag zero hota hai, isliye bank ke linear risk model ne dikhaya ki exposure zero hai!"
+            }
+          },
+          "onScreenIntent": "The Rogue Desk Dilemma: Linear VaR Blindness",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Why did the system fail? Because deep out-of-the-money puts had near-zero Delta, blinding linear VaR to immense negative Gamma curvature!"
+            },
+            "hi": {
+              "display": "Lekin deep OTM puts mein extreme negative Gamma hota hai! Jaise hi market gira, unka delta zero point zero two se accelerate hokar zero point seven five pahunch gaya! Linear VaR options ke second-order curvature ko dekh hi nahi pata!"
+            }
+          },
+          "onScreenIntent": "The Rogue Desk Dilemma: Linear VaR Blindness",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 22 Part 2, we master covariance matrices, Delta-Gamma quadratic models, Cornish-Fisher expansions, and Kupiec backtesting."
+            },
+            "hi": {
+              "display": "Isliye aaj Chapter 22 Part Two mein hum Model-Building Approach ka complete architecture seekhenge: covariance matrices se portfolio VaR calculate karna, Delta-Gamma quadratic models se non-linear options ko capture karna, aur Kupiec backtesting se model flaws ko pakadna!"
+            }
+          },
+          "onScreenIntent": "The Rogue Desk Dilemma: Linear VaR Blindness",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Rogue Desk Dilemma: Linear VaR Blindness",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Rogue Desk Dilemma: Linear VaR Blindness: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Linear Analytical Speed vs Non-Linear Complexity",
+      "purpose": "Linear Analytical Speed vs Non-Linear Complexity: Foundational quantitative principles",
+      "takeaways": [
+        "Linear Analytical Speed vs Non-Linear Complexity: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Quantitative risk departments confront a fundamental architectural trade-off: lightning computational speed versus option non-linearity."
+            },
+            "hi": {
+              "display": "Risk management mein quants ke samne do opposing forces ka sabse bada conflict hota hai: ek taraf Linear Model ki super-fast calculation speed, aur doosri taraf non-linear options ki mathematical complexity."
+            }
+          },
+          "onScreenIntent": "Linear Analytical Speed vs Non-Linear Complexity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Linear models calculate risk for thousands of assets in milliseconds: linear combinations of joint normally distributed returns remain normal."
+            },
+            "hi": {
+              "display": "Linear model hazaron stocks aur currencies ko ek simple matrix multiplication se fractions of a second mein summarize kar deta hai, kyunki Gaussian returns ka linear combination hamesha Gaussian hi rehta hai."
+            }
+          },
+          "onScreenIntent": "Linear Analytical Speed vs Non-Linear Complexity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, derivative contracts bend payoff profiles into convex curves, transforming normal inputs into skewed, heavy-tailed distributions."
+            },
+            "hi": {
+              "display": "Lekin jaise hi portfolio mein options judte hain, payoff curve bend ho jata hai. Distribution skewed aur fat-tailed ban jati hai, aur linear assumption risk ko dangerous scale par underestimate kar deta hai."
+            }
+          },
+          "onScreenIntent": "Linear Analytical Speed vs Non-Linear Complexity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Linear Analytical Speed vs Non-Linear Complexity",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Linear Analytical Speed vs Non-Linear Complexity: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of Model-Building Risk Systems",
+      "purpose": "Four Pillars of Model-Building Risk Systems: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of Model-Building Risk Systems: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To build an institutional risk engine, quantitative systems rely on four structural pillars."
+            },
+            "hi": {
+              "display": "Aaiye Model-Building VaR ke chaar structural pillars ko step-by-step decode karte hain. Pehla Pillar hai Covariance Matrix Architecture, jahan asset dollar positions ko correlation matrix ke sath combine karke portfolio standard deviation nikala jata hai."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Model-Building Risk Systems",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: Covariance Matrix Architecture, aggregating asset dollar exposures with correlations to compute total portfolio volatility."
+            },
+            "hi": {
+              "display": "Doosra Pillar hai Delta-Gamma Quadratic Expansion. Ye Taylor series ka second-order term add karke options ki curvature aur gamma acceleration ko mathematically capture karta hai."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Model-Building Risk Systems",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: Delta-Gamma Quadratic Approximations, capturing second-order Taylor curvature for option books."
+            },
+            "hi": {
+              "display": "Teesra Pillar hai Cornish-Fisher Expansion, jo skewed aur fat-tailed return distributions ke liye standard normal Z-score ko skewness aur kurtosis se analytically adjust karta hai."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Model-Building Risk Systems",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: Cornish-Fisher Expansions, adjusting Gaussian quantiles for skewness; and Pillar 4: Statistical Backtesting via Kupiec Likelihood Ratios."
+            },
+            "hi": {
+              "display": "Aur Chautha Pillar hai Statistical Backtesting aur Basel Traffic Light System, jahan Kupiec Likelihood Ratio test se verify kiya jata hai ki live market mein model fail ho raha hai ya pass."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Model-Building Risk Systems",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of Model-Building Risk Systems",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of Model-Building Risk Systems: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Covariance Matrix Architecture & Linear VaR",
+      "purpose": "Covariance Matrix Architecture & Linear VaR: Foundational quantitative principles",
+      "takeaways": [
+        "Covariance Matrix Architecture & Linear VaR: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us derive the Model-Building Approach per Hull Section 22.4: consider N assets with dollar positions represented by vector alpha."
+            },
+            "hi": {
+              "display": "Aaiye John Hull ke Section twenty-two point four ke mutabiq Model-Building Approach ka mathematical formulation derive karte hain. Maan lijiye portfolio mein N assets hain jin par dollar positions alpha i hain."
+            }
+          },
+          "onScreenIntent": "Covariance Matrix Architecture & Linear VaR",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under multivariate normal daily returns, total portfolio dollar variance equals alpha transpose multiplied by covariance matrix Sigma times alpha."
+            },
+            "hi": {
+              "display": "Agar asset daily returns multivariate normal hain jinme daily drift lagbhag zero hai, toh total portfolio daily variance alpha vector transpose times covariance matrix Sigma times alpha vector hota hai."
+            }
+          },
+          "onScreenIntent": "Covariance Matrix Architecture & Linear VaR",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Hull's benchmark example: $10 million in Microsoft (daily vol 2%) and $5 million in AT&T (daily vol 1%) with 0.3 correlation."
+            },
+            "hi": {
+              "display": "Ek concrete worked example dekhiye: Maan lijiye hamare paas ten million dollars Microsoft mein hain jiski daily volatility two percent hai, aur five million dollars AT and T mein hain jiski daily volatility one percent hai, aur dono ka correlation zero point three hai."
+            }
+          },
+          "onScreenIntent": "Covariance Matrix Architecture & Linear VaR",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Total daily standard deviation is $220,114. Multiplying by standard Gaussian factor 2.326 yields a 99% 1-day VaR of $511,985."
+            },
+            "hi": {
+              "display": "Microsoft ka daily variance forty thousand banta hai, AT and T ka twenty-five hundred, aur cross covariance six thousand hai. Total standard deviation two hundred twenty thousand dollars aati hai. Ninety-nine percent one-day VaR two point three two six se multiply karne par five hundred eleven thousand dollars nikalta hai."
+            }
+          },
+          "onScreenIntent": "Covariance Matrix Architecture & Linear VaR",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Covariance Matrix Architecture & Linear VaR",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Covariance Matrix Architecture & Linear VaR: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Time Horizon Scaling & Basel 10-Day Capital",
+      "purpose": "Time Horizon Scaling & Basel 10-Day Capital: Foundational quantitative principles",
+      "takeaways": [
+        "Time Horizon Scaling & Basel 10-Day Capital: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "International banking regulators under the Basel Accords mandate risk capital based on a 10-day 99% VaR rather than 1-day horizons."
+            },
+            "hi": {
+              "display": "Banking regulations mein Basel Committee one-day VaR nahi, balki ten-day VaR at ninety-nine percent confidence level par regulatory capital demand karti hai."
+            }
+          },
+          "onScreenIntent": "Time Horizon Scaling & Basel 10-Day Capital",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Assuming independent daily returns, 10-day volatility equals 1-day standard deviation multiplied by square root of 10, approximately 3.162."
+            },
+            "hi": {
+              "display": "Agar daily returns independent aur identically distributed hain, toh ten-day standard deviation one-day standard deviation times square root of ten hoti hai, jo lagbhag three point one six two times multiplier banta hai."
+            }
+          },
+          "onScreenIntent": "Time Horizon Scaling & Basel 10-Day Capital",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Our 1-day VaR of $512,000 scales by square root of 10 to establish a 10-day regulatory market risk capital requirement of $1.62 million."
+            },
+            "hi": {
+              "display": "Pichle example mein hamara one-day VaR five hundred eleven thousand dollars tha. Square root ten se multiply karne par ten-day regulatory VaR one point six two million dollars ban jata hai."
+            }
+          },
+          "onScreenIntent": "Time Horizon Scaling & Basel 10-Day Capital",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Time Horizon Scaling & Basel 10-Day Capital",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Time Horizon Scaling & Basel 10-Day Capital: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "When Linearity Fails: The Option Convexity Trap",
+      "purpose": "When Linearity Fails: The Option Convexity Trap: Foundational quantitative principles",
+      "takeaways": [
+        "When Linearity Fails: The Option Convexity Trap: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Remember that Delta is merely a first-order tangent line: when underlying markets experience large moves, option payoffs bend away from linear lines."
+            },
+            "hi": {
+              "display": "Ab dekhiye ki Linear Model options ke aage kyu fail ho jata hai. Delta sirf ek single point par tangent line hoti hai. Jab underlying stock price bada move karta hai, toh option price curve straight line se door chali jati hai."
+            }
+          },
+          "onScreenIntent": "When Linearity Fails: The Option Convexity Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Long options possess positive Gamma: price moves expand gains and cushion losses, meaning linear models actually overstate risk."
+            },
+            "hi": {
+              "display": "Agar aap options ke net buyer hain, toh aapka Gamma positive hota hai, yaani har market move aapke profit ko badhata hai aur losses ko buffer karta hai. Yahan linear VaR actual risk ko overestimate karta hai."
+            }
+          },
+          "onScreenIntent": "When Linearity Fails: The Option Convexity Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, desks short options carry net negative Gamma: losses accelerate quadratically, where linear VaR is dangerously blind!"
+            },
+            "hi": {
+              "display": "Lekin trading desks aksar yield earn karne ke liye options sell karti hain, jisse portfolio net negative Gamma ban jata hai. Yahan losses quadratically compound hote hain aur linear VaR ankh band karke baithe rehta hai!"
+            }
+          },
+          "onScreenIntent": "When Linearity Fails: The Option Convexity Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "When Linearity Fails: The Option Convexity Trap",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "When Linearity Fails: The Option Convexity Trap: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "The Quadratic Delta-Gamma Approximation",
+      "purpose": "The Quadratic Delta-Gamma Approximation: Foundational quantitative principles",
+      "takeaways": [
+        "The Quadratic Delta-Gamma Approximation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To capture option curvature, quants retain second-order Taylor terms: delta P = Delta times delta S + 0.5 Gamma times (delta S) squared."
+            },
+            "hi": {
+              "display": "Is non-linear blind spot ko theek karne ke liye quants Taylor series expansion ka second-order term include karte hain: delta P equals delta times delta S plus half gamma times delta S square."
+            }
+          },
+          "onScreenIntent": "The Quadratic Delta-Gamma Approximation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice a critical mathematical transformation: the squared term (delta S)^2 follows a non-central Chi-Square distribution, destroying Gaussian normality!"
+            },
+            "hi": {
+              "display": "Yahan delta S standard normal shock hai, lekin delta S square ek non-central Chi-Square variable ban jata hai! Iska matlab hai ki portfolio P and L ab Normal distribution follow nahi karega!"
+            }
+          },
+          "onScreenIntent": "The Quadratic Delta-Gamma Approximation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For short Gamma books, expected portfolio return shifts negative and loss distributions develop severe left-tail skewness."
+            },
+            "hi": {
+              "display": "Is quadratic equation se expected change half gamma S square sigma square delta t banti hai. Negative gamma portfolio ka expected drift negative ho jata hai aur distribution left-skewed ho jati hai."
+            }
+          },
+          "onScreenIntent": "The Quadratic Delta-Gamma Approximation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Quadratic Delta-Gamma Approximation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Quadratic Delta-Gamma Approximation: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "The Cornish-Fisher Expansion for Non-Normal Distributions",
+      "purpose": "The Cornish-Fisher Expansion for Non-Normal Distributions: Foundational quantitative principles",
+      "takeaways": [
+        "The Cornish-Fisher Expansion for Non-Normal Distributions: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When distributions deviate from normality due to option Gamma, the standard Gaussian multiplier Z = 2.326 fails completely."
+            },
+            "hi": {
+              "display": "Jab distribution non-normal ho jati hai, toh standard normal cutoff Z of two point three two six galat answer deta hai. Hull Section twenty-two point six mein introduce karte hain Cornish-Fisher Expansion!"
+            }
+          },
+          "onScreenIntent": "The Cornish-Fisher Expansion for Non-Normal Distributions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John Hull details the Cornish-Fisher Expansion, which analytically adjusts Gaussian quantiles using third-moment skewness and fourth-moment kurtosis."
+            },
+            "hi": {
+              "display": "Cornish-Fisher formula portfolio ke skewness xi one aur excess kurtosis xi two ko directly Gaussian critical value Z sub c mein incorporate karke ek adjusted quantile w sub c calculate karta hai."
+            }
+          },
+          "onScreenIntent": "The Cornish-Fisher Expansion for Non-Normal Distributions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under negative skewness, the effective multiplier w_q jumps from 2.326 to over 2.80, restoring capital protection against option crash losses!"
+            },
+            "hi": {
+              "display": "Agar negative skewness hai, toh w sub c standard Z score se bada ho jata hai. For example, ninety-nine percent level par critical value two point three two six se badhkar do point aath ya teen tak chali jati hai, jo actual option tail risk ko fully capture karti hai!"
+            }
+          },
+          "onScreenIntent": "The Cornish-Fisher Expansion for Non-Normal Distributions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Cornish-Fisher Expansion for Non-Normal Distributions",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Cornish-Fisher Expansion for Non-Normal Distributions: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Model Backtesting & Kupiec's POF Test",
+      "purpose": "Model Backtesting & Kupiec's POF Test: Foundational quantitative principles",
+      "takeaways": [
+        "Model Backtesting & Kupiec's POF Test: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "How do regulatory supervisors verify that internal bank models are accurate? Through rigorous empirical Backtesting over 250 trading days."
+            },
+            "hi": {
+              "display": "Ab sabse critical sawaal: bank ke internal risk model ko verify kaise kiya jata hai? Is process ko Backtesting kehte hain, jahan pichle two hundred fifty trading days ke actual daily P and L ko model ke daily VaR se compare kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Model Backtesting & Kupiec's POF Test",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Each day actual trading loss exceeds the forecasted 99% VaR, an Exception is recorded. For 250 days, the expected exception count is exactly 2.5."
+            },
+            "hi": {
+              "display": "Jab bhi actual loss predicted VaR se bada hota hai, use ek Exception ya Breach kehte hain. Ninety-nine percent VaR model mein two hundred fifty days mein expected exceptions two point five hoti hain."
+            }
+          },
+          "onScreenIntent": "Model Backtesting & Kupiec's POF Test",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Kupiec's Proportion of Failures test computes a Likelihood Ratio following a Chi-Square distribution: an LR above 3.841 triggers statistical rejection!"
+            },
+            "hi": {
+              "display": "Kupiec's Proportion of Failures test ek Likelihood Ratio statistic calculate karta hai jo Chi-Square distribution with one degree of freedom follow karta hai. Agar LR statistic three point eight four one se zyada ho, toh model statistically reject ho jata hai!"
+            }
+          },
+          "onScreenIntent": "Model Backtesting & Kupiec's POF Test",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Model Backtesting & Kupiec's POF Test",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Model Backtesting & Kupiec's POF Test: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall: Basel Traffic Light Classification",
+      "purpose": "Active Recall: Basel Traffic Light Classification: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: Basel Traffic Light Classification: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Evaluate the regulatory scenario: An investment bank records 7 exceptions over 250 trading days for its 99% 1-day VaR model. What is its Basel status and capital multiplier? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Raju, ab ek critical supervisory risk quiz: Ek Tier-One investment bank ne 250 trading days ke 99 percent 1-day VaR backtesting mein exact 7 exceptions record kiye. Basel Traffic Light framework ke tahat is bank ka supervisory status aur capital multiplier kya hoga?"
+            }
+          },
+          "onScreenIntent": "Active Recall: Basel Traffic Light Classification",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Apply Basel Accord supervisory traffic light zones (0-4 Green, 5-9 Yellow, 10+ Red) and determine capital penalty scaling."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: Basel Traffic Light Classification",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option B is correct: 7 exceptions place the bank in the Yellow Zone! Baseline capital multiplier 3.00 incurs a +0.65 penalty, rising to 3.65!"
+            },
+            "hi": {
+              "display": "Sahi answer Option B hai. Basel Traffic Light rules ke tahat five se nine exceptions Yellow Zone mein aate hain. Seven exceptions par bank par supervisory penalty lagti hai aur capital multiplier three point zero zero se badhkar three point six five ho jata hai!"
+            }
+          },
+          "onScreenIntent": "Active Recall: Basel Traffic Light Classification",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Beyond VaR: Stress Testing & Scenario Analysis",
+      "purpose": "Beyond VaR: Stress Testing & Scenario Analysis: Foundational quantitative principles",
+      "takeaways": [
+        "Beyond VaR: Stress Testing & Scenario Analysis: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If a bank resides safely in the Basel Green Zone and passes all Kupiec backtests, is it fully insulated from financial crisis?"
+            },
+            "hi": {
+              "display": "Sharma ji, agar koi bank Green Zone mein hai aur Kupiec test pass kar leta hai, toh kya bank black swan financial crisis se completely safe hai?"
+            }
+          },
+          "onScreenIntent": "Beyond VaR: Stress Testing & Scenario Analysis",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Absolutely not: VaR models reflect only normal market volatility, whereas historical market collapses represent five-sigma dislocations!"
+            },
+            "hi": {
+              "display": "Bilkul nahi Raju! VaR sirf normal market conditions ka statistical snapshot hota hai. 2008 Lehman collapse aur 1987 Black Monday jaise events VaR models ke five standard deviation se bhi bahar the!"
+            }
+          },
+          "onScreenIntent": "Beyond VaR: Stress Testing & Scenario Analysis",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Regulators enforce mandatory Stress Testing and Reverse Stress Testing: identifying hypothetical scenarios that would completely threaten institutional solvency."
+            },
+            "hi": {
+              "display": "Isliye regulators ab mandatory Stress Testing aur Reverse Stress Testing enforce karte hain: jahan bank check karta hai ki agar 1987 jaisa twenty-two percent crash dubara hua, ya market mein liquidity zero ho gayi, toh bank survive kar sakta hai ya nahi!"
+            }
+          },
+          "onScreenIntent": "Beyond VaR: Stress Testing & Scenario Analysis",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Beyond VaR: Stress Testing & Scenario Analysis",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Beyond VaR: Stress Testing & Scenario Analysis: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary: 8 Institutional Rules of Model-Building VaR",
+      "purpose": "Summary: 8 Institutional Rules of Model-Building VaR: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Model-Building VaR: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the eight foundational institutional rules of Chapter 22 Part 2:"
+            },
+            "hi": {
+              "display": "Aaiye Model-Building VaR aur Regulatory Risk Management ke aath institutional rules ko codify karte hain. Rule One: Covariance Matrix Architecture. Portfolio volatility alpha transpose Sigma alpha ke square root se derived hoti hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Model-Building VaR",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Portfolio volatility is the square root of alpha transpose Sigma alpha; Rule 2: Square-root scaling applies strictly to i.i.d. returns."
+            },
+            "hi": {
+              "display": "Rule Two: Square-Root of Time Scaling. Multi-day horizon scaling strictly i.i.d. Gaussian returns aur zero drift par depend karta hai. Rule Three: Linear Model Boundary. Delta-normal models sirf linear assets par valid hain; options par convexity miss kar dete hain."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Model-Building VaR",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Linear models fail catastrophically on convex option portfolios; Rule 4: Delta-Gamma expansions capture second-order non-linearities."
+            },
+            "hi": {
+              "display": "Rule Four: Delta-Gamma Quadratic Expansion. Second-order Taylor terms written options ki accelerating negative gamma losses ko capture karte hain. Rule Five: Cornish-Fisher Correction. Skewed aur fat-tailed distributions ke liye critical Z score ko analytically expand kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Model-Building VaR",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Cornish-Fisher expansions adjust quantiles for skewness and kurtosis; Rule 6: Kupiec POF tests statistically audit exception frequencies."
+            },
+            "hi": {
+              "display": "Rule Six: Backtesting Verification. Kupiec POF test 250 days ke exception counts ko Chi-Square distribution se statistically benchmark karta hai. Rule Seven: Basel Traffic Light Penalties. 0 se 4 exceptions par 3.0 multiplier milta hai, 5 se 9 par penalty surcharge lagta hai, aur 10 plus par model reject hota hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Model-Building VaR",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Basel traffic light zones impose severe capital scaling penalties; Rule 8: Mandatory stress testing audits survival under extreme systemic shocks."
+            },
+            "hi": {
+              "display": "Rule Eight: Reverse Stress Testing. Quantitative VaR ko hamesha existential historical crash scenarios ke sath stress test karna mandatory hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Model-Building VaR",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles conclude John Hull's masterclass framework on market risk analytics and institutional capital governance."
+            },
+            "hi": {
+              "display": "Ye aath rules quantitative trading desks par production risk management ka master blueprint form karte hain. Agli video mein hum Chapter 23 shuru karenge: Estimating Volatilities and Correlations!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Model-Building VaR",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Model-Building VaR",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

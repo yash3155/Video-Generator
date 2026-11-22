@@ -1,0 +1,1403 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch25",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 25",
+  "partLabel": "Part 1",
+  "title": "Chapter 25: Credit Default Swaps (Part 1: Mechanics & Valuation)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 48,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The 2008 AIG Financial Products CDS Catastrophe",
+      "purpose": "The 2008 AIG Financial Products CDS Catastrophe: Foundational quantitative principles",
+      "takeaways": [
+        "The 2008 AIG Financial Products CDS Catastrophe: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In September 2008, American International Group—a century-old AAA-rated financial colossus—collapsed overnight, compelling the United States government to orchestrate an unprecedented $182 billion emergency bailout. How did an insurer with a pristine balance sheet vaporize in days?"
+            },
+            "hi": {
+              "display": "Sharma ji, American International Group yaani AIG ek century puraani Triple-A rated insurance company thi. September 2008 mein wo achanak bankrupt kaise ho gayi, aur US government ko one-eighty-two billion dollars ka emergency bailout kyun dena pada?"
+            }
+          },
+          "onScreenIntent": "The 2008 AIG Financial Products CDS Catastrophe",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The catastrophe stemmed directly from the misuse of Credit Default Swaps. Operating from London, AIG Financial Products wrote over $500 billion in credit protection on subprime mortgage CDOs, mistakenly believing nationwide real estate debt could never suffer simultaneous systemic default."
+            },
+            "hi": {
+              "display": "Raju, ye credit derivatives market ka sabse bada disaster tha, jise Naked CDS Trap kehte hain! AIG ke Financial Products division ne subprime mortgage CDOs par paanch sau billion dollars se zyada Credit Default Swaps bech diye the, ye sochkar ki US housing debt kabhi default nahi karega!"
+            }
+          },
+          "onScreenIntent": "The 2008 AIG Financial Products CDS Catastrophe",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Treating CDS spreads as pure fee income, AIG held virtually zero capital reserves. When credit rating agencies slashed CDO ratings, collateral triggers demanded over $40 billion in overnight cash margin, causing immediate structural insolvency."
+            },
+            "hi": {
+              "display": "Unhone CDS spreads ko free premium income ki tarah pocket kiya aur koi collateral reserve nahi rakha. Jab housing bubble burst hua aur bonds downgrade hue, toh collateral triggers ne AIG se overnight forty billion dollars cash margin demand kiya, jisse company instantly insolvent ho gayi!"
+            }
+          },
+          "onScreenIntent": "The 2008 AIG Financial Products CDS Catastrophe",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 25 Part 1, we master the rigorous valuation mechanics of Credit Default Swaps, ISDA credit events, cash auction settlement protocols, and post-Big Bang upfront payments."
+            },
+            "hi": {
+              "display": "Isliye John Hull ke Chapter 25 Part One mein hum Credit Default Swaps ki exact pricing mechanics, ISDA credit events, auction settlement, aur upfront cash payments ko rigorously master karenge!"
+            }
+          },
+          "onScreenIntent": "The 2008 AIG Financial Products CDS Catastrophe",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The 2008 AIG Financial Products CDS Catastrophe",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The 2008 AIG Financial Products CDS Catastrophe: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Physical Corporate Bond Holding vs Synthetic CDS Protection",
+      "purpose": "Physical Corporate Bond Holding vs Synthetic CDS Protection: Foundational quantitative principles",
+      "takeaways": [
+        "Physical Corporate Bond Holding vs Synthetic CDS Protection: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Institutions acquire fixed-income credit exposure through two distinct channels: holding physical corporate bonds or trading synthetic Credit Default Swaps."
+            },
+            "hi": {
+              "display": "Fixed-income credit exposure lene ke do tareeqe hote hain: physical corporate bond khareedna ya synthetic Credit Default Swap use karna."
+            }
+          },
+          "onScreenIntent": "Physical Corporate Bond Holding vs Synthetic CDS Protection",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Purchasing physical bonds requires 100% upfront capital funding, exposing the portfolio to interest rate duration risk and secondary cash bond illiquidity."
+            },
+            "hi": {
+              "display": "Physical bond hold karne ke liye one hundred percent cash capital upfront invest karna padta hai, aur investor interest rate duration risk aur secondary market illiquidity mein phans jata hai."
+            }
+          },
+          "onScreenIntent": "Physical Corporate Bond Holding vs Synthetic CDS Protection",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In contrast, a Credit Default Swap is an unfunded bilateral derivative that isolates pure corporate default risk, offers superior market liquidity, and trades on standardized coupons of 100 or 500 basis points."
+            },
+            "hi": {
+              "display": "Jabki CDS ek unfunded derivative hai jo pure credit default risk ko isolate karta hai, massive secondary liquidity provide karta hai, aur standardized one hundred ya five hundred basis points coupons par trade hota hai!"
+            }
+          },
+          "onScreenIntent": "Physical Corporate Bond Holding vs Synthetic CDS Protection",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Physical Corporate Bond Holding vs Synthetic CDS Protection",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Physical Corporate Bond Holding vs Synthetic CDS Protection: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of Credit Default Swap Contracts",
+      "purpose": "Four Pillars of Credit Default Swap Contracts: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of Credit Default Swap Contracts: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The global CDS market architecture is structured upon four foundational pillars."
+            },
+            "hi": {
+              "display": "CDS contract architecture chaar foundational pillars par stand karti hai."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Credit Default Swap Contracts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: The contractual balance between the Premium Leg and the Protection Leg, where quarterly fee flows offset contingent default payoffs."
+            },
+            "hi": {
+              "display": "Pehla pillar hai Premium Leg aur Protection Leg ka structural balance, jahan quarterly fee payments contingent default payout ko offset karti hain."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Credit Default Swap Contracts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: ISDA Credit Events and standardized Creditex-Markit Cash Auction Settlement, resolving physical bond delivery bottlenecks."
+            },
+            "hi": {
+              "display": "Doosra pillar hai ISDA Credit Events aur Creditex-Markit Cash Auction Settlement, jo physical bond delivery squeeze ko eliminate karta hai."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Credit Default Swap Contracts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: The Quantitative Discounting Engine and default accrual modeling; and Pillar 4: Post-Big Bang fixed coupons and upfront cash settlement."
+            },
+            "hi": {
+              "display": "Teesra pillar hai Quantitative Discounting Engine aur Default Accrual, aur chautha pillar hai Post-Big Bang Fixed Coupons aur Upfront Payment pricing!"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Credit Default Swap Contracts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of Credit Default Swap Contracts",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of Credit Default Swap Contracts: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Credit Events & Contractual Triggers",
+      "purpose": "Credit Events & Contractual Triggers: Foundational quantitative principles",
+      "takeaways": [
+        "Credit Events & Contractual Triggers: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Credit Default Swap triggers only when the ISDA Determinations Committee officially rules that a recognized Credit Event has taken place."
+            },
+            "hi": {
+              "display": "Ek CDS protection tabhi trigger hoti hai jab ISDA Determinations Committee officially ek Credit Event declare karti hai. Isme teen standard triggers hote hain."
+            }
+          },
+          "onScreenIntent": "Credit Events & Contractual Triggers",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Three standard triggers govern North American and European contracts: Bankruptcy, meaning formal insolvency filing; Failure to Pay, occurring when a borrower misses interest or principal past contract grace periods."
+            },
+            "hi": {
+              "display": "Pehla hai Bankruptcy, yaani Chapter 11 filing ya insolvency liquidation. Doosra hai Failure to Pay, jab borrower grace period ke baad bhi interest ya principal pay karne mein fail hota hai."
+            }
+          },
+          "onScreenIntent": "Credit Events & Contractual Triggers",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And Debt Restructuring, where coupon or principal terms are distressed. The ISDA committee decides each case via a super-majority vote of 15 global voting dealers and buy-side institutions."
+            },
+            "hi": {
+              "display": "Teesra trigger hai Debt Restructuring, jahan financial distress ki wajah se principal reduce ya maturity extend ki jati hai. ISDA committee fifteen global dealers aur investors ki voting se decide karti hai!"
+            }
+          },
+          "onScreenIntent": "Credit Events & Contractual Triggers",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Credit Events & Contractual Triggers",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Credit Events & Contractual Triggers: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Settlement Protocols: Physical Delivery vs Cash Auction",
+      "purpose": "Settlement Protocols: Physical Delivery vs Cash Auction: Foundational quantitative principles",
+      "takeaways": [
+        "Settlement Protocols: Physical Delivery vs Cash Auction: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Historically, CDS contracts settled via physical delivery: the protection buyer delivered defaulted bonds to receive full par value. But during the 2005 Delphi bankruptcy, outstanding synthetic CDS notional vastly exceeded deliverable physical bonds."
+            },
+            "hi": {
+              "display": "Purane zamane mein CDS physical settlement use karte the: buyer defaulted bonds deliver karta tha aur par value receive karta tha. Lekin 2005 mein Delphi bankruptcy ke time outstanding CDS bonds se kai guna zyada the!"
+            }
+          },
+          "onScreenIntent": "Settlement Protocols: Physical Delivery vs Cash Auction",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This generated violent short squeezes in defaulted bonds. To eliminate physical delivery distortions, ISDA introduced the standardized two-stage Cash Auction Settlement protocol."
+            },
+            "hi": {
+              "display": "Isse physical bond ka artificial short squeeze paida ho gaya. Is problem ko solve karne ke liye ISDA ne two-stage Cash Auction Settlement protocol introduce kiya."
+            }
+          },
+          "onScreenIntent": "Settlement Protocols: Physical Delivery vs Cash Auction",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Administered by Creditex and Markit, dealers submit binding orders to determine the official recovery rate R-auction. The protection seller then pays 1 minus R-auction directly in cash, requiring zero bond transfers."
+            },
+            "hi": {
+              "display": "Creditex aur Markit auction mein dealers bid aur ask quotes submit karke final auction recovery price R-auction decide karte hain. Protection seller directly one minus R-auction cash payout kar deta hai, zero bond delivery ke sath!"
+            }
+          },
+          "onScreenIntent": "Settlement Protocols: Physical Delivery vs Cash Auction",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Settlement Protocols: Physical Delivery vs Cash Auction",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Settlement Protocols: Physical Delivery vs Cash Auction: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Mathematical Valuation of the Premium (Fee) Leg",
+      "purpose": "Mathematical Valuation of the Premium (Fee) Leg: Foundational quantitative principles",
+      "takeaways": [
+        "Mathematical Valuation of the Premium (Fee) Leg: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To value a Credit Default Swap, quants equate the present value of both legs. On the premium leg, the protection buyer pays contractual spread s quarterly as long as the reference entity survives."
+            },
+            "hi": {
+              "display": "CDS ko value karne ke liye hum dono legs ki present value calculate karte hain. Premium leg mein protection buyer spread s quarterly interval par pay karta hai jab tak entity survive karti hai."
+            }
+          },
+          "onScreenIntent": "Mathematical Valuation of the Premium (Fee) Leg",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The present value of survival payments equals spread s multiplied by the sum of delta t times e^(-r*t) times survival probability S(t)."
+            },
+            "hi": {
+              "display": "Survival payments ki present value s times sum of delta t times e to the power minus r t times survival probability S of t hoti hai."
+            }
+          },
+          "onScreenIntent": "Mathematical Valuation of the Premium (Fee) Leg",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "We also account for Default Accrual: if default occurs midway through a coupon period, the buyer owes the accrued fee up to the default instant. Total fee leg value evaluates to s times the risky duration annuity RPV01."
+            },
+            "hi": {
+              "display": "Iske sath hum Default Accrual add karte hain: agar default do payment dates ke beech mein aata hai, toh buyer half-quarter ka accrued spread owe karta hai! Premium leg ka total value s times RPV01 ban jata hai!"
+            }
+          },
+          "onScreenIntent": "Mathematical Valuation of the Premium (Fee) Leg",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Mathematical Valuation of the Premium (Fee) Leg",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Mathematical Valuation of the Premium (Fee) Leg: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Mathematical Valuation of the Protection Leg",
+      "purpose": "Mathematical Valuation of the Protection Leg: Foundational quantitative principles",
+      "takeaways": [
+        "Mathematical Valuation of the Protection Leg: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Next, examine the protection leg: the protection seller is obligated to pay 1 minus R upon the arrival of a credit event."
+            },
+            "hi": {
+              "display": "Ab protection leg ko dekhiye. Protection seller default hone par one minus recovery rate R pay karta hai."
+            }
+          },
+          "onScreenIntent": "Mathematical Valuation of the Protection Leg",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The present value of this contingent payout is given by the integral of (1 minus R) times e^(-r*t) times hazard intensity lambda(t) times survival probability S(t) dt."
+            },
+            "hi": {
+              "display": "Is contingent payout ki present value integral of one minus R times e to the power minus r t times instantaneous hazard rate lambda times S of t dt hoti hai."
+            }
+          },
+          "onScreenIntent": "Mathematical Valuation of the Protection Leg",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At trade inception, setting the premium leg equal to the protection leg yields the breakeven par spread: spread s approximately equals lambda times (1 minus R)."
+            },
+            "hi": {
+              "display": "At inception, premium leg aur protection leg barabar hone chahiye! Is no-arbitrage condition se breakeven CDS spread s approximately equals lambda times one minus R nikal kar aata hai!"
+            }
+          },
+          "onScreenIntent": "Mathematical Valuation of the Protection Leg",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Mathematical Valuation of the Protection Leg",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Mathematical Valuation of the Protection Leg: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Post-Big Bang Upfront Payments & RPV01",
+      "purpose": "Post-Big Bang Upfront Payments & RPV01: Foundational quantitative principles",
+      "takeaways": [
+        "Post-Big Bang Upfront Payments & RPV01: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Following the 2009 Big Bang protocol, all standardized CDS contracts trade on fixed coupons: 100 basis points for Investment Grade and 500 basis points for High Yield."
+            },
+            "hi": {
+              "display": "2009 ke Big Bang protocol ke baad saare CDS standardized fixed coupons par trade karte hain: Investment Grade ke liye one hundred basis points aur High Yield ke liye five hundred basis points."
+            }
+          },
+          "onScreenIntent": "Post-Big Bang Upfront Payments & RPV01",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When market fair spread s deviates from fixed coupon c, counterparties exchange an upfront cash payment at trade inception equal to (s minus c) times RPV01."
+            },
+            "hi": {
+              "display": "Agar live market ka fair spread s fixed coupon c se alag hai, toh counterparties trade inception par ek Upfront Cash Payment exchange karte hain: s minus c multiplied by RPV01!"
+            }
+          },
+          "onScreenIntent": "Post-Big Bang Upfront Payments & RPV01",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Here RPV01 represents the risky present value of a one-basis-point annuity. If par spread is 150 basis points and coupon is 100 basis points, the buyer pays 50 basis points times RPV01 in upfront cash to the seller."
+            },
+            "hi": {
+              "display": "Yahan RPV01 risky duration annuity multiplier hai. Agar fair spread one-fifty bps hai aur coupon one hundred bps hai, toh buyer seller ko fifty bps times RPV01 upfront cash pay karta hai!"
+            }
+          },
+          "onScreenIntent": "Post-Big Bang Upfront Payments & RPV01",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Post-Big Bang Upfront Payments & RPV01",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Post-Big Bang Upfront Payments & RPV01: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Binary Credit Default Swaps (Digital CDS)",
+      "purpose": "Binary Credit Default Swaps (Digital CDS): Foundational quantitative principles",
+      "takeaways": [
+        "Binary Credit Default Swaps (Digital CDS): Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In standard CDS, contingent payout depends on the uncertain auction recovery rate R. In contrast, a Binary Credit Default Swap pays a fixed 100% of notional upon default."
+            },
+            "hi": {
+              "display": "Standard CDS mein payout recovery rate R par depend karta hai jo uncertain hota hai. Lekin Binary CDS mein default hone par fixed one hundred percent notional pay hota hai!"
+            }
+          },
+          "onScreenIntent": "Binary Credit Default Swaps (Digital CDS)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consequently, the Binary CDS spread s-binary approximately equals the pure hazard rate lambda. Quantitative desks pair standard and binary CDS to trade pure recovery rate dynamics without directional credit exposure."
+            },
+            "hi": {
+              "display": "Isliye Binary CDS spread s-binary approximately equals lambda hota hai! Quants standard CDS aur Binary CDS ko pair karke pure recovery rate R ko directional risk ke bina trade kar sakte hain!"
+            }
+          },
+          "onScreenIntent": "Binary Credit Default Swaps (Digital CDS)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Binary Credit Default Swaps (Digital CDS)",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Binary Credit Default Swaps (Digital CDS): Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall: CDS Fair Spread and Upfront Payment Calculation",
+      "purpose": "Active Recall: CDS Fair Spread and Upfront Payment Calculation: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: CDS Fair Spread and Upfront Payment Calculation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your quantitative mastery of CDS valuation. A 5-year corporate CDS has hazard rate lambda = 2.50% and recovery R = 40%. The fixed contract coupon is 100 bps, and RPV01 is 4.35 years. What is the fair CDS spread and the upfront payment on a $100M notional? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Aaiye CDS valuation par aapki quantitative ability test karte hain. Ek five-year corporate CDS ka constant hazard rate two point five zero percent hai aur recovery rate forty percent hai. Standard fixed coupon one hundred basis points hai aur RPV01 four point three five years hai. Fair CDS spread aur one hundred million dollars notional par upfront payment kitni hogi?"
+            }
+          },
+          "onScreenIntent": "Active Recall: CDS Fair Spread and Upfront Payment Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Compute fair spread s = 0.0250 times (1 - 0.40) = 150 bps. Subtract fixed coupon 100 bps to find 50 bps excess, then multiply by 4.35 RPV01 and $100M notional."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: CDS Fair Spread and Upfront Payment Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option A is correct: Fair spread is 150 bps and upfront cash payment is $2,175,000! Excess coupon of 0.50% times 4.35 risky duration equals 2.175%, which yields exactly $2,175,000 on a $100M notional portfolio!"
+            },
+            "hi": {
+              "display": "Correct option hai Option A: fair spread one-fifty basis points aur upfront payment two point one seven five million dollars! Spread s equals zero point zero two five zero into zero point six zero, jo one-fifty bps banta hai. Coupon difference fifty bps ko four point three five RPV01 se multiply karne par two point one seven five percent banta hai, jo one hundred million dollars par exactly two point one seven five million dollars cash hota hai!"
+            }
+          },
+          "onScreenIntent": "Active Recall: CDS Fair Spread and Upfront Payment Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Institutional Reality: Central Counterparty Clearing & Novation",
+      "purpose": "Institutional Reality: Central Counterparty Clearing & Novation: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Reality: Central Counterparty Clearing & Novation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Following the lessons of the 2008 financial crisis, global regulators radically reshaped credit derivative infrastructure."
+            },
+            "hi": {
+              "display": "Sharma ji, AIG jaise collapse ke baad regulators ne CDS market ko safe banane ke liye kya structural changes kiye?"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Central Counterparty Clearing & Novation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Today, all standardized index and single-name CDS contracts are cleared through Central Counterparties such as ICE Clear Credit via legal novation. Daily variation margin and initial margin requirements have driven bilateral counterparty risk to virtually zero."
+            },
+            "hi": {
+              "display": "Raju, saare standard CDS ab Central Counterparties jaise ICE Clear Credit par novation ke through clear hote hain! Har din variation margin exchange hota hai, jisse bilateral counterparty default risk virtually zero ho gaya hai!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Central Counterparty Clearing & Novation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Having established single-name CDS mechanics, we next examine Total Return Swaps, Basket Default Swaps, and Collateralized Debt Obligations in Part 2."
+            },
+            "hi": {
+              "display": "Ab jab humne single-name CDS master kar liya hai, agle video mein hum multi-name Total Return Swaps aur Collateralized Debt Obligations ko master karenge!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Central Counterparty Clearing & Novation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Institutional Reality: Central Counterparty Clearing & Novation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Institutional Reality: Central Counterparty Clearing & Novation: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary: 8 Institutional Rules of Credit Default Swaps",
+      "purpose": "Summary: 8 Institutional Rules of Credit Default Swaps: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Credit Default Swaps: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the eight foundational quantitative rules of Chapter 25 Part 1."
+            },
+            "hi": {
+              "display": "Chaliye Chapter 25 Part One ke aath core quantitative CDS rules ko consolidate karte hain."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Credit Default Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: The CDS buyer pays periodic spread s in exchange for contingent 1 minus R default protection. Rule 2: ISDA Determinations Committees officially declare Credit Events: Bankruptcy, Failure to Pay, or Restructuring."
+            },
+            "hi": {
+              "display": "Rule 1: CDS protection buyer annual spread s pay karta hai aur contingent one minus R protection pata hai. Rule 2: ISDA Determinations Committee teen Credit Events declare karti hai: Bankruptcy, Failure to Pay, aur Restructuring."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Credit Default Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Markit-Creditex Cash Auctions establish final recovery R-auction, eliminating physical bond short squeezes. Rule 4: Breakeven par spread s ≈ lambda*(1 - R) balances the fee leg with the contingent protection leg."
+            },
+            "hi": {
+              "display": "Rule 3: Markit aur Creditex Cash Auction protocol final recovery price R-auction decide karta hai, physical short squeeze ko khatam karke. Rule 4: Breakeven spread s approximately equals lambda times one minus R premium aur protection legs ko balance karta hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Credit Default Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Premium leg valuation accounts for both quarterly survival payments and default fee accrual. Rule 6: Big Bang contracts trade on 100 or 500 bps fixed coupons, settling fair spread differences via upfront cash (s - c)*RPV01."
+            },
+            "hi": {
+              "display": "Rule 5: Premium leg quarterly coupon payments ke sath default date tak ka accrued spread include karta hai. Rule 6: Big Bang contracts standard fixed coupons one hundred aur five hundred bps par trade karte hain; difference upfront payment s minus c times RPV01 se settle hota hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Credit Default Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Binary Digital CDS pays a fixed 100% notional, isolating pure hazard intensity lambda. Rule 8: Mandatory CCP clearing and daily variation margin have eliminated systemic bilateral counterparty contagion."
+            },
+            "hi": {
+              "display": "Rule 7: Binary Digital CDS fixed one hundred percent notional pay karta hai; iska spread pure hazard rate lambda ke barabar hota hai. Rule 8: Mandatory CCP clearing aur daily variation margin bilateral failure risk ko permanently curb karte hain!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Credit Default Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight quantitative principles govern modern institutional credit derivatives."
+            },
+            "hi": {
+              "display": "Ye aath quantitative rules global credit derivatives market ke foundational mechanics hain!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Credit Default Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b7",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In our next video, we master CDO tranche subordination and multi-name default correlation modeling."
+            },
+            "hi": {
+              "display": "Agle video mein hum CDO tranches aur default correlation modeling ko complete mathematical rigor ke sath master karenge!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Credit Default Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 1000,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Credit Default Swaps",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

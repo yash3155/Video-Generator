@@ -1,0 +1,87 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch13",
+  "partId": "p1",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "market_rule",
+      "statement": "The One-Step Binomial Model assumes a stock price S0 can move over discrete time interval delta_t to either S0 * u (up state) or S0 * d (down state), where u > 1 and d < 1.",
+      "citation": {
+        "chapter": "13",
+        "section": "13.1",
+        "page": "311"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "formula",
+      "statement": "No-Arbitrage Delta Hedging Ratio: A riskless portfolio consists of long delta shares of stock and short one call option. To ensure identical portfolio value across states, delta = (c_u - c_d) / (S0 * u - S0 * d).",
+      "citation": {
+        "chapter": "13",
+        "section": "13.1",
+        "page": "312"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "market_rule",
+      "statement": "Risk-Neutral Valuation Principle: Derivative payoffs can be priced by discounting their expected future payoffs at the risk-free rate r, assuming all assets earn the risk-free return in expectation.",
+      "citation": {
+        "chapter": "13",
+        "section": "13.2",
+        "page": "314"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "formula",
+      "statement": "Risk-Neutral Probability: The synthetic probability of an upward move is p = (exp(r * delta_t) - d) / (u - d), where 0 < p < 1.",
+      "citation": {
+        "chapter": "13",
+        "section": "13.2",
+        "page": "315"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "formula",
+      "statement": "One-Step Call Option Valuation: European call price is c = exp(-r * delta_t) * [p * c_u + (1 - p) * c_d]. Option value is invariant to real-world subjective probabilities.",
+      "citation": {
+        "chapter": "13",
+        "section": "13.2",
+        "page": "315"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "formula",
+      "statement": "Cox, Ross & Rubinstein (CRR) Volatility Calibration: Parameters match continuous lognormal diffusion: u = exp(sigma * sqrt(delta_t)) and d = 1 / u = exp(-sigma * sqrt(delta_t)).",
+      "citation": {
+        "chapter": "13",
+        "section": "13.4",
+        "page": "320"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "market_rule",
+      "statement": "Two-Step Recombining Trees: Price moves over 2 periods produce three terminal states (u^2, ud, d^2) rather than four because u*d = d*u, keeping computational complexity linear O(N).",
+      "citation": {
+        "chapter": "13",
+        "section": "13.3",
+        "page": "317"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "algorithm",
+      "statement": "Backward Induction Rollback: Option terminal payoffs are computed at expiration t = 2*delta_t and discounted recursively backward node-by-node to determine the fair initial option price at t = 0.",
+      "citation": {
+        "chapter": "13",
+        "section": "13.3",
+        "page": "318"
+      }
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch05",
+  "partId": "p1",
+  "formulas": [
+    {
+      "id": "M01",
+      "name": "Forward Price (No Income)",
+      "latex": "F_0 = S_0 e^{rT}",
+      "variables": [
+        {
+          "symbol": "F_0",
+          "description": "Forward price today",
+          "unit": "currency"
+        },
+        {
+          "symbol": "S_0",
+          "description": "Spot price today",
+          "unit": "currency"
+        },
+        {
+          "symbol": "r",
+          "description": "Continuously compounded risk-free rate",
+          "unit": "decimal/year"
+        },
+        {
+          "symbol": "T",
+          "description": "Time to contract maturity",
+          "unit": "years"
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "Forward Price (Known Cash Income)",
+      "latex": "F_0 = (S_0 - I) e^{rT}",
+      "variables": [
+        {
+          "symbol": "I",
+          "description": "Present value of intermediate cash income",
+          "unit": "currency"
+        },
+        {
+          "symbol": "S_0",
+          "description": "Spot price today",
+          "unit": "currency"
+        },
+        {
+          "symbol": "r",
+          "description": "Continuously compounded risk-free rate",
+          "unit": "decimal/year"
+        },
+        {
+          "symbol": "T",
+          "description": "Time to contract maturity",
+          "unit": "years"
+        }
+      ]
+    },
+    {
+      "id": "M03",
+      "name": "Forward Price (Continuous Dividend Yield)",
+      "latex": "F_0 = S_0 e^{(r - q)T}",
+      "variables": [
+        {
+          "symbol": "q",
+          "description": "Continuous dividend yield",
+          "unit": "decimal/year"
+        },
+        {
+          "symbol": "r",
+          "description": "Risk-free rate",
+          "unit": "decimal/year"
+        },
+        {
+          "symbol": "S_0",
+          "description": "Spot price today",
+          "unit": "currency"
+        },
+        {
+          "symbol": "T",
+          "description": "Time to contract maturity",
+          "unit": "years"
+        }
+      ]
+    },
+    {
+      "id": "M04",
+      "name": "Forward Contract Value",
+      "latex": "f = (F_0 - K) e^{-rT} = S_0 - I - K e^{-rT}",
+      "variables": [
+        {
+          "symbol": "f",
+          "description": "Value of long forward contract today",
+          "unit": "currency"
+        },
+        {
+          "symbol": "K",
+          "description": "Contract delivery price agreed at inception",
+          "unit": "currency"
+        },
+        {
+          "symbol": "F_0",
+          "description": "Current forward price for maturity T",
+          "unit": "currency"
+        }
+      ]
+    }
+  ]
+}

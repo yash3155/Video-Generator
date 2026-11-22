@@ -1,0 +1,66 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch09",
+  "partId": "p1",
+  "formulas": [
+    {
+      "id": "M01",
+      "name": "Credit Valuation Adjustment (CVA)",
+      "latex": "\\text{CVA} = (1 - R) \\sum_{i=1}^{N} v(t_i) \\cdot \\text{EPE}(t_i) \\cdot P(t_{i-1} < \\tau \\le t_i)",
+      "variables": [
+        {
+          "symbol": "CVA",
+          "description": "Credit Valuation Adjustment deducted from derivative value",
+          "unit": "currency"
+        },
+        {
+          "symbol": "R",
+          "description": "Expected recovery rate in the event of counterparty default",
+          "unit": "percentage"
+        },
+        {
+          "symbol": "v(t_i)",
+          "description": "OIS discount factor to time t_i",
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "EPE(t_i)",
+          "description": "Expected Positive Exposure at time t_i",
+          "unit": "currency"
+        },
+        {
+          "symbol": "P(...)",
+          "description": "Marginal probability of counterparty default between t_{i-1} and t_i",
+          "unit": "percentage"
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "Total Holistic XVA Valuation",
+      "latex": "V_{\\text{total}} = V_{\\text{risk-free}} - \\text{CVA} + \\text{DVA} - \\text{FVA} - \\text{MVA} - \\text{KVA}",
+      "variables": [
+        {
+          "symbol": "V_total",
+          "description": "True comprehensive derivative economic value",
+          "unit": "currency"
+        },
+        {
+          "symbol": "V_risk-free",
+          "description": "Clean unadjusted OIS discounted present value",
+          "unit": "currency"
+        },
+        {
+          "symbol": "DVA",
+          "description": "Debit Valuation Adjustment (own credit risk gain)",
+          "unit": "currency"
+        },
+        {
+          "symbol": "FVA",
+          "description": "Funding Valuation Adjustment for uncollateralized hedges",
+          "unit": "currency"
+        }
+      ]
+    }
+  ]
+}

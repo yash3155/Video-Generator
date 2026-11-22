@@ -1,0 +1,1404 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch19",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 19",
+  "partLabel": "Part 1",
+  "title": "The Greek Letters: Delta Hedging, Theta & Gamma",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 36,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The $10M OTC Option Dilemma: Naked vs Covered Trap",
+      "purpose": "The Writer's Dilemma: Selling options generates upfront premium but creates massive asymmetric directional liability.",
+      "takeaways": [
+        "The Writer's Dilemma: Selling options generates upfront premium but creates massive asymmetric directional liability.",
+        "Naked Position Trap: Doing nothing exposes the institution to infinite losses if the underlying stock rallies.",
+        "Covered Position Trap: Buying 100 shares causes catastrophic losses if the underlying stock collapses."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Imagine a financial institution sells an over-the-counter call option on ten million dollars of stock to a corporate client, collecting one million dollars in upfront premium."
+            },
+            "hi": {
+              "display": "Imagine kijiye ek financial institution ek corporate client ko ten million dollars ke stock par ek customized over-the-counter call option sell karta hai aur one million dollars ka upfront premium collect karta hai."
+            }
+          },
+          "onScreenIntent": "The $10M OTC Option Dilemma: Naked vs Covered Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now the bank's risk manager faces an existential dilemma: leaving the position naked risks catastrophic losses if the stock doubles."
+            },
+            "hi": {
+              "display": "Ab bank ke risk manager ke saamne ek existential crisis hai: Agar bank kuch nahi karta—yaani naked position rakhta hai—aur stock double ho jata hai, toh bank ko karodo dollar ka catastrophic loss jhelna padega."
+            }
+          },
+          "onScreenIntent": "The $10M OTC Option Dilemma: Naked vs Covered Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yet purchasing underlying shares for a covered position causes a total wipeout if the market crashes, erasing the entire premium income!"
+            },
+            "hi": {
+              "display": "Lekin agar bank stock khareed kar covered position bana leta hai, aur market crash ho jata hai, toh stock par hone wala bhari loss premium income ko poori tarah wipe out kar dega!"
+            }
+          },
+          "onScreenIntent": "The $10M OTC Option Dilemma: Naked vs Covered Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 19 Part 1, John Hull details the calculus of Delta, Theta, and Gamma to immunize portfolios against market swings."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter Nineteen Part One mein hum The Greek Letters ke pehle part ko master karenge—jahan Delta, Theta aur Gamma ke mathematical calculus se bank apne portfolio ko market fluctuations se completely immune karta hai."
+            }
+          },
+          "onScreenIntent": "The $10M OTC Option Dilemma: Naked vs Covered Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The $10M OTC Option Dilemma: Naked vs Covered Trap",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Writer's Dilemma: Selling options generates upfront premium but creates massive asymmetric directional liability."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Naked Position Trap: Doing nothing exposes the institution to infinite losses if the underlying stock rallies."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Dynamic Delta Hedging: The Rebalancing Simulation",
+      "purpose": "Dynamic Rebalancing: Continuously adjusts share holdings to match Delta as stock price fluctuates.",
+      "takeaways": [
+        "Dynamic Rebalancing: Continuously adjusts share holdings to match Delta as stock price fluctuates.",
+        "Cost Convergence: Total rebalancing cost converges to the Black-Scholes theoretical option premium.",
+        "Directional Neutrality: Whether stock rises to $54 or plunges to $38, institutional net wealth remains protected."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To resolve this dilemma, quantitative desks implement Dynamic Delta Hedging, rebalancing share positions continuously as prices move."
+            },
+            "hi": {
+              "display": "Is static dilemma ko solve karne ke liye quants Dynamic Delta Hedging use karte hain—jahan institution har din ya har hafte apne stock holding ko continuously adjust karta hai."
+            }
+          },
+          "onScreenIntent": "Dynamic Delta Hedging: The Rebalancing Simulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Hull's benchmark simulation, whether the stock falls to $38 or rallies to $54, total rebalancing costs converge to the theoretical Black-Scholes price."
+            },
+            "hi": {
+              "display": "Hull ke textbook simulation mein dekhiye: chahe stock price thirty-eight dollars tak gir jaye ya fifty-four dollars tak chala jaye, weekly rebalancing se net hedging cost hamesha theoretical option price ke close converge karti hai."
+            }
+          },
+          "onScreenIntent": "Dynamic Delta Hedging: The Rebalancing Simulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The governing objective is maintaining Delta-neutrality, permanently neutralizing instantaneous directional exposure."
+            },
+            "hi": {
+              "display": "Iska core principle hai Delta-neutrality maintain karna—yaani market chahe upar jaye ya neeche, instantaneous portfolio value par zero directional impact padta hai."
+            }
+          },
+          "onScreenIntent": "Dynamic Delta Hedging: The Rebalancing Simulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Dynamic Delta Hedging: The Rebalancing Simulation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Dynamic Rebalancing: Continuously adjusts share holdings to match Delta as stock price fluctuates."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Cost Convergence: Total rebalancing cost converges to the Black-Scholes theoretical option premium."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "First-Order Sensitivity: Delta (Δ) Mechanics",
+      "purpose": "Delta Definition: Rate of change of option price per unit change in underlying price: Δ = ∂f / ∂S.",
+      "takeaways": [
+        "Delta Definition: Rate of change of option price per unit change in underlying price: Δ = ∂f / ∂S.",
+        "Call & Put Delta Bounds: Call Delta = N(d_1) in [0, 1]; Put Delta = N(d_1) - 1 in [-1, 0].",
+        "Portfolio Neutrality: Take an offsetting position of -Δ_portfolio in underlying shares to achieve Δ = 0."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "First and most foundational is Delta: the first partial derivative of option price with respect to underlying stock price: partial f over partial S."
+            },
+            "hi": {
+              "display": "Aaiye pehle aur sabse mahatvapurna Greek parameter ko samajhte hain: Delta. Delta underlying asset ke price mein ek dollar change hone par option price ke change hone ki rate hai: partial f by partial S."
+            }
+          },
+          "onScreenIntent": "First-Order Sensitivity: Delta (Δ) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For a European call, Delta is N(d_1), bounded strictly between 0 and 1; for a put, Delta is N(d_1) minus 1, bounded between -1 and 0."
+            },
+            "hi": {
+              "display": "European stock call ke liye Delta exact N of d_1 hota hai, jo hamesha zero aur positive one ke beech rehta hai. European put ke liye Delta N of d_1 minus one hota hai, jo minus one aur zero ke beech hota hai."
+            }
+          },
+          "onScreenIntent": "First-Order Sensitivity: Delta (Δ) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To establish a Delta-neutral portfolio, a trading desk holds exactly negative Delta shares per option contract in the cash market."
+            },
+            "hi": {
+              "display": "Pure portfolio ko Delta-neutral banane ke liye, institution pure portfolio ke net Delta ka exact negative position underlying shares mein enter karta hai."
+            }
+          },
+          "onScreenIntent": "First-Order Sensitivity: Delta (Δ) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "First-Order Sensitivity: Delta (Δ) Mechanics",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Delta Definition: Rate of change of option price per unit change in underlying price: Δ = ∂f / ∂S."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Call & Put Delta Bounds: Call Delta = N(d_1) in [0, 1]; Put Delta = N(d_1) - 1 in [-1, 0]."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Delta S-Curve Dynamics Across Moneyness & Expiration",
+      "purpose": "The S-Curve Profile: Delta smoothly traces a cumulative normal distribution S-curve as stock price rises.",
+      "takeaways": [
+        "The S-Curve Profile: Delta smoothly traces a cumulative normal distribution S-curve as stock price rises.",
+        "Expiration Convergence: As T -> 0, the smooth curve collapses into a binary Heavyside step function at strike K.",
+        "Moneyness Sensitivity: At-the-money options experience the steepest slope, requiring the most active rebalancing."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Delta is never static: it traces a non-linear S-curve that evolves dynamically across stock price and time to maturity."
+            },
+            "hi": {
+              "display": "Delta ek static number nahi hai, balki stock price aur time to maturity ke saath ek dynamic S-curve follow karta hai."
+            }
+          },
+          "onScreenIntent": "Delta S-Curve Dynamics Across Moneyness & Expiration",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Deep out-of-the-money call Delta is close to zero; at-the-money Delta hovers around 0.50; and deep in-the-money Delta approaches 1.0."
+            },
+            "hi": {
+              "display": "Deep out-of-the-money options ka Delta zero ke paas hota hai; at-the-money options ka Delta approximately point five zero hota hai; aur deep in-the-money options ka Delta one point zero ko approach karta hai."
+            }
+          },
+          "onScreenIntent": "Delta S-Curve Dynamics Across Moneyness & Expiration",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "As expiration approaches, the smooth curve collapses into a sharp step function, jumping discontinuously from zero to one at strike K."
+            },
+            "hi": {
+              "display": "Expiration jaise-jaise kareeb aati hai, S-curve ek sharp step function ban jata hai, jahan stock strike ke upar hone par Delta instantaneous zero se one mein jump karta hai."
+            }
+          },
+          "onScreenIntent": "Delta S-Curve Dynamics Across Moneyness & Expiration",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Delta S-Curve Dynamics Across Moneyness & Expiration",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The S-Curve Profile: Delta smoothly traces a cumulative normal distribution S-curve as stock price rises."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Expiration Convergence: As T -> 0, the smooth curve collapses into a binary Heavyside step function at strike K."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Time Decay: Theta (Θ) and the Price of Time",
+      "purpose": "Theta Definition: Rate of change of option value with respect to the passage of time: Θ = ∂Π / ∂t.",
+      "takeaways": [
+        "Theta Definition: Rate of change of option value with respect to the passage of time: Θ = ∂Π / ∂t.",
+        "Negative Sign Invariant: Theta is almost universally negative for long option positions (time decay erosion).",
+        "Unhedgeable Metric: Theta cannot be hedged using underlying stock because time elapses deterministically."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second parameter is Theta: the rate of change of portfolio value with respect to the passage of calendar time: partial Pi over partial t."
+            },
+            "hi": {
+              "display": "Doosra parameter hai Theta: Theta time beetne ke saath portfolio value mein hone wale decay ki rate hai: partial Pi by partial t."
+            }
+          },
+          "onScreenIntent": "Time Decay: Theta (Θ) and the Price of Time",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because the erosion of time diminishes option volatility value, Theta is almost universally negative for long option positions."
+            },
+            "hi": {
+              "display": "Kyunki maturity kareeb aane par option ke profitable hone ki probability kam hoti jaati hai, isliye long options ka Theta almost hamesha strictly negative hota hai."
+            }
+          },
+          "onScreenIntent": "Time Decay: Theta (Θ) and the Price of Time",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Crucially, Theta cannot be eliminated by trading stock, because time elapses deterministically without price uncertainty."
+            },
+            "hi": {
+              "display": "Ek mahatvapurna rule yaad rakhein: Theta koi aisa market risk nahi hai jise stock khareed kar hedge kiya ja sake, kyunki time ek deterministic direction mein zero uncertainty ke saath aage badhta hai."
+            }
+          },
+          "onScreenIntent": "Time Decay: Theta (Θ) and the Price of Time",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Time Decay: Theta (Θ) and the Price of Time",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Theta Definition: Rate of change of option value with respect to the passage of time: Θ = ∂Π / ∂t."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Negative Sign Invariant: Theta is almost universally negative for long option positions (time decay erosion)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Second-Order Curvature: Gamma (Γ) Formulation",
+      "purpose": "Gamma Definition: Rate of change of Delta with respect to underlying stock price: Γ = ∂Δ / ∂S.",
+      "takeaways": [
+        "Gamma Definition: Rate of change of Delta with respect to underlying stock price: Γ = ∂Δ / ∂S.",
+        "Positive Convexity: Gamma is strictly positive for both long calls and long puts across all strikes.",
+        "Rebalancing Gauge: Large Gamma dictates rapid Delta drift and demands high rebalancing frequency."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now consider the critical second-order parameter: Gamma, the rate of change of Delta per dollar move in underlying price: partial squared Pi over partial S squared."
+            },
+            "hi": {
+              "display": "Ab aate hain sabse critical second-order parameter par: Gamma. Gamma stock price mein change hone par option ke Delta ke change hone ki rate hai: partial square Pi by partial S square."
+            }
+          },
+          "onScreenIntent": "Second-Order Curvature: Gamma (Γ) Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Its closed form is N prime of d_1 divided by S_0 times volatility times square root of T. Gamma is strictly positive for all long vanilla calls and puts."
+            },
+            "hi": {
+              "display": "Formula dekhiye: Gamma equals N prime of d_1 divided by S_0 times sigma square root of T. Notice kijiye ki Gamma long calls aur long puts dono ke liye hamesha strictly positive hota hai."
+            }
+          },
+          "onScreenIntent": "Second-Order Curvature: Gamma (Γ) Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Gamma measures payoff curvature: a high Gamma implies that Delta drifts rapidly, demanding frequent and aggressive portfolio rebalancing."
+            },
+            "hi": {
+              "display": "Gamma option curve ki geometric curvature ya convexity ko measure karta hai: high Gamma ka matlab hai ki market move hote hi Delta bohot tezi se change hoga, jisse frequent rebalancing mandatory ho jaati hai."
+            }
+          },
+          "onScreenIntent": "Second-Order Curvature: Gamma (Γ) Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Second-Order Curvature: Gamma (Γ) Formulation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Gamma Definition: Rate of change of Delta with respect to underlying stock price: Γ = ∂Δ / ∂S."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Positive Convexity: Gamma is strictly positive for both long calls and long puts across all strikes."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "The Pin Risk Phenomenon: ATM Near-Expiration Gamma Spike",
+      "purpose": "Near-Expiration Explosion: Denominator √T -> 0 causes Gamma to spike toward infinity for ATM options.",
+      "takeaways": [
+        "Near-Expiration Explosion: Denominator √T -> 0 causes Gamma to spike toward infinity for ATM options.",
+        "Delta Instability: Minor penny price fluctuations swing Delta violently between 0.0 and 1.0.",
+        "Pin Risk Threat: Market makers face severe execution slippage and unpredictable delivery assignments."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On institutional trading desks, Gamma's most dangerous manifestation appears on expiration day, universally known as Pin Risk."
+            },
+            "hi": {
+              "display": "Options trading desks par Gamma ka sabse dangerous roop expiration ke din dekhne ko milta hai, jise Pin Risk kehte hain."
+            }
+          },
+          "onScreenIntent": "The Pin Risk Phenomenon: ATM Near-Expiration Gamma Spike",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because square root of time sits in the denominator, as time approaches zero for at-the-money options, Gamma explodes toward infinity!"
+            },
+            "hi": {
+              "display": "Formula mein denominator mein square root of T hota hai: isliye jab time T zero ko approach karta hai aur option at-the-money hota hai, toh Gamma infinite spike karta hai!"
+            }
+          },
+          "onScreenIntent": "The Pin Risk Phenomenon: ATM Near-Expiration Gamma Spike",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A tiny penny wiggle in the underlying swings Delta violently between zero and one, inflicting severe whiplash hedging losses."
+            },
+            "hi": {
+              "display": "Stock ka ek chhota sa dollar move Delta ko instantaneous zero se one aur wapas zero swing kar deta hai, jisse market maker ko violent whiplash rebalancing losses jhelne padte hain."
+            }
+          },
+          "onScreenIntent": "The Pin Risk Phenomenon: ATM Near-Expiration Gamma Spike",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Pin Risk Phenomenon: ATM Near-Expiration Gamma Spike",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Near-Expiration Explosion: Denominator √T -> 0 causes Gamma to spike toward infinity for ATM options."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Delta Instability: Minor penny price fluctuations swing Delta violently between 0.0 and 1.0."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Gamma Neutrality: Why Stock Cannot Hedge Gamma",
+      "purpose": "Zero Gamma of Stock: Underlying shares have a constant Delta of 1.0, meaning Gamma_stock = 0 identically.",
+      "takeaways": [
+        "Zero Gamma of Stock: Underlying shares have a constant Delta of 1.0, meaning Gamma_stock = 0 identically.",
+        "Derivative Requirement: Achieving Gamma-neutrality (Γ = 0) requires trading non-linear option contracts.",
+        "Two-Tier Hedging Sequence: First neutralize Gamma with secondary options, then neutralize Delta with shares."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Observe how desks neutralize Gamma risk: an underlying share of stock has a Delta of one, but its Gamma is identically zero!"
+            },
+            "hi": {
+              "display": "Screen par dekhiye ki institutions Gamma risk ko kaise eliminate karte hain: Stock ka Delta one hota hai, lekin stock ka Gamma hamesha strictly zero hota hai!"
+            }
+          },
+          "onScreenIntent": "Gamma Neutrality: Why Stock Cannot Hedge Gamma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This means trading underlying shares can adjust Delta, but cannot alter portfolio Gamma by a single basis point."
+            },
+            "hi": {
+              "display": "Iska arth yeh hai ki underlying shares khareed ya bech kar aap Delta ko toh neutral kar sakte hain, lekin Gamma ko zero nahi kar sakte."
+            }
+          },
+          "onScreenIntent": "Gamma Neutrality: Why Stock Cannot Hedge Gamma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To establish Gamma-neutrality, traders must buy or sell another derivative contract, and subsequently re-neutralize Delta using shares."
+            },
+            "hi": {
+              "display": "Portfolio ko Gamma-neutral banane ke liye trader ko ek doosra option contract buy ya sell karna padta hai, aur uske baad underlying stock se Delta ko wapas neutralise kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Gamma Neutrality: Why Stock Cannot Hedge Gamma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Gamma Neutrality: Why Stock Cannot Hedge Gamma",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Zero Gamma of Stock: Underlying shares have a constant Delta of 1.0, meaning Gamma_stock = 0 identically."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Derivative Requirement: Achieving Gamma-neutrality (Γ = 0) requires trading non-linear option contracts."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "The PDE Master Synthesis: Delta-Theta-Gamma Tradeoff",
+      "purpose": "Governing Equation: For a Delta-neutral portfolio: Θ + (1/2) σ² S² Γ = r Π.",
+      "takeaways": [
+        "Governing Equation: For a Delta-neutral portfolio: Θ + (1/2) σ² S² Γ = r Π.",
+        "The Convexity Price Tag: Positive Gamma (convex jump profits) is strictly paid for by negative Theta (daily time decay).",
+        "The Writer's Mirror: Negative Gamma option writers collect positive Theta income, but suffer catastrophic jump losses."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Black-Scholes partial differential equation uncovers a profound economic law linking Delta, Theta, and Gamma."
+            },
+            "hi": {
+              "display": "Black-Scholes partial differential equation Delta, Theta aur Gamma ke beech ek fundamental economic truth establish karti hai."
+            }
+          },
+          "onScreenIntent": "The PDE Master Synthesis: Delta-Theta-Gamma Tradeoff",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For any Delta-neutral portfolio, the relation simplifies to: Theta plus one-half sigma squared S squared Gamma equals r times Pi."
+            },
+            "hi": {
+              "display": "Delta-neutral portfolio ke liye: Theta plus half sigma square S square Gamma equals r times Pi."
+            }
+          },
+          "onScreenIntent": "The PDE Master Synthesis: Delta-Theta-Gamma Tradeoff",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The practical takeaway: to harvest positive Gamma gains on price jumps, you must pay daily Theta decay. Convexity is never free!"
+            },
+            "hi": {
+              "display": "Iska deep practical meaning samjhein: Agar aap positive Gamma convexity chahte hain taaki market jump se profit ho, toh aapko daily heavy negative Theta time decay pay karna padega. No-arbitrage market mein convexity free nahi milti!"
+            }
+          },
+          "onScreenIntent": "The PDE Master Synthesis: Delta-Theta-Gamma Tradeoff",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The PDE Master Synthesis: Delta-Theta-Gamma Tradeoff",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Governing Equation: For a Delta-neutral portfolio: Θ + (1/2) σ² S² Γ = r Π."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "The Convexity Price Tag: Positive Gamma (convex jump profits) is strictly paid for by negative Theta (daily time decay)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Calculating Gamma & Theta P&L",
+      "purpose": "Market Setup: Delta-neutral portfolio (Δ = 0), Gamma Γ = +2,000, Theta Θ = -$1,500/day. Overnight move ΔS = +$3.00.",
+      "takeaways": [
+        "Market Setup: Delta-neutral portfolio (Δ = 0), Gamma Γ = +2,000, Theta Θ = -$1,500/day. Overnight move ΔS = +$3.00.",
+        "Taylor Calculation: ΔΠ = 0.5 * 2,000 * (3)^2 + (-1,500 * 1) = $9,000 - $1,500 = +$7,500.",
+        "Core Takeaway: Positive Gamma convexity overwhelms daily Theta decay when market experiences sharp jump moves."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Evaluate the active recall scenario: A desk holds a Delta-neutral portfolio with Gamma of +2,000 and Theta of -$1,500 per day. Overnight the stock gaps up by $3. What is net P&L? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Screen par di gayi trading desk scenario ko evaluate karein: Ek quantitative portfolio Delta-neutral hai, jiska Gamma plus two thousand hai aur daily Theta minus fifteen hundred dollars hai. Yadi overnight underlying stock mein three dollars ka sharp jump move aata hai, toh net overnight portfolio P&L kitna hoga? Screen par दिए गए ऑप्शन्स पर ध्यान से विचार करके कैलकुलेट कीजिए।"
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Calculating Gamma & Theta P&L",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Apply Taylor series expansion P&L = Theta * dt + 0.5 * Gamma * (dS)^2."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Calculating Gamma & Theta P&L",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option A is correct: +$7,500. Gamma gain is 0.5 * 2,000 * 9 = +$9,000. Subtracting daily Theta decay of $1,500 yields an exact net profit of +$7,500!"
+            },
+            "hi": {
+              "display": "Correct choice Option A hai: Plus seventy-five hundred dollars. Taylor series expansion apply karein: Delta Pi equals half Gamma times delta S square plus Theta times delta t. Half into two thousand into three square yaani nine thousand dollars Gamma gain, minus fifteen hundred dollars Theta cost, net seventy-five hundred dollars profit deta hai!"
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Calculating Gamma & Theta P&L",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Institutional Execution: Rebalancing Frequency & Slippage",
+      "purpose": "Transaction Friction: Continuous rebalancing is impossible in practice due to bid-ask spreads and commissions.",
+      "takeaways": [
+        "Transaction Friction: Continuous rebalancing is impossible in practice due to bid-ask spreads and commissions.",
+        "Gamma Tolerance Bands: Desks establish bands; rebalancing occurs only when Delta drifts outside tolerances.",
+        "Jump & Gap Risk: Overnight gaps breach continuous hedging assumptions, requiring Gamma risk limits."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In live market execution, continuous rebalancing is impossible because exchange bid-ask spreads and brokerage fees erode capital."
+            },
+            "hi": {
+              "display": "Real-world trading mein continuous rebalancing impossible hoti hai kyunki bid-ask spreads aur broker commissions profit ko wipe out kar dete hain."
+            }
+          },
+          "onScreenIntent": "Institutional Execution: Rebalancing Frequency & Slippage",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Trading desks establish tolerance bands: hedges are executed only when Delta breaches preset thresholds, balancing tracking error against transaction friction."
+            },
+            "hi": {
+              "display": "Institutional desks Gamma bands set karte hain: jab tak stock un bands ke andar rehta hai, Delta rebalancing defer ki jaati hai, jisse transaction cost aur hedging error balance rehte hain."
+            }
+          },
+          "onScreenIntent": "Institutional Execution: Rebalancing Frequency & Slippage",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Desks also monitor gap risk: unexpected overnight openings create discrete execution slippage, requiring conservative Gamma limits."
+            },
+            "hi": {
+              "display": "Saath hi desks gap risk ko monitor karte hain: agar market overnight gap down open ho jaye, toh discrete Delta hedges slippage suffer karte hain jise Gamma buffers protect karte hain."
+            }
+          },
+          "onScreenIntent": "Institutional Execution: Rebalancing Frequency & Slippage",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Institutional Execution: Rebalancing Frequency & Slippage",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Transaction Friction: Continuous rebalancing is impossible in practice due to bid-ask spreads and commissions."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Gamma Tolerance Bands: Desks establish bands; rebalancing occurs only when Delta drifts outside tolerances."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Master Summary: 8 Institutional Rules of Delta & Gamma",
+      "purpose": "Pillar 1: Delta & Hedging: First-order directional slope; Δ_call = N(d_1) in [0, 1] and Δ_put = N(d_1) - 1 in [-1, 0].",
+      "takeaways": [
+        "Pillar 1: Delta & Hedging: First-order directional slope; Δ_call = N(d_1) in [0, 1] and Δ_put = N(d_1) - 1 in [-1, 0].",
+        "Pillar 2: Theta & Gamma Tradeoff: Θ + 0.5 σ² S² Γ = r Π proves market convexity is strictly funded by time decay.",
+        "Pillar 3: Discrete Execution: Rebalancing bands balance transaction costs against variance; traded options hedge Gamma."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the eight foundational institutional rules of Chapter 19 Part 1:"
+            },
+            "hi": {
+              "display": "Aaiye Chapter Nineteen Part One ke chaar fundamental pillars ko summarize karein:"
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Delta & Gamma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Delta measures directional rate of change; Rule 2: Delta-neutrality requires dynamic -Delta share hedge positions."
+            },
+            "hi": {
+              "display": "Pillar One: Delta Dynamics. Delta underlying ke prati first-order directional slope hai; calls mein zero se one aur puts mein minus one se zero hota hai."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Delta & Gamma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Theta measures deterministic time decay; Rule 4: Gamma measures curvature and accelerates near expiry."
+            },
+            "hi": {
+              "display": "Pillar Two: Theta Time Decay. Theta options ke natural time decay ko quantify karta hai aur long options ke liye hamesha strictly negative hota hai."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Delta & Gamma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: The PDE binds Theta and Gamma (Theta + 0.5 sigma^2 S^2 Gamma = r Pi); Rule 6: Discrete hedging requires tolerance bands."
+            },
+            "hi": {
+              "display": "Pillar Three: Gamma Convexity. Gamma Delta ki curvature hai jo ATM options mein near-expiration spike karti hai, aur ise hedge karne ke liye traded options mandatory hain."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Delta & Gamma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Traded options are mandatory to hedge Gamma; Rule 8: Overnight gap risk demands conservative convexity capital buffers."
+            },
+            "hi": {
+              "display": "Pillar Four: The PDE Tradeoff. Theta plus half sigma square S square Gamma equals r Pi proves that market convexity is strictly funded by time decay."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Delta & Gamma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles constitute the core mathematical and execution foundation of institutional options risk management."
+            },
+            "hi": {
+              "display": "Yeh char pillars modern quantitative risk management ka unbreakable mathematical foundation banate hain."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Delta & Gamma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Master Summary: 8 Institutional Rules of Delta & Gamma",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

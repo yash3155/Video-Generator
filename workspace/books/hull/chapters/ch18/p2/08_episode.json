@@ -1,0 +1,1381 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch18",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 18",
+  "partLabel": "Part 2",
+  "title": "Black's 1976 Model for Futures Options",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 35,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "Black's 1976 Model: The Futures Revolution",
+      "purpose": "Fischer Black's Solution: Bypasses the complexity of estimating storage fees, convenience yields, and dividend schedules.",
+      "takeaways": [
+        "Fischer Black's Solution: Bypasses the complexity of estimating storage fees, convenience yields, and dividend schedules.",
+        "Observable Market Inputs: Directly uses the market futures price F_0, which already discounts all cost-of-carry variables.",
+        "Universal Benchmark: The global pricing engine for commodity options, Treasury bond options, and swaptions."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Black-Scholes was ideal for equities, but estimating storage costs and convenience yields for commodities or bonds was challenging."
+            },
+            "hi": {
+              "display": "Derivatives pricing mein Black-Scholes model shares ke liye perfect tha, lekin jab baat crude oil, agricultural commodities ya Treasury bonds ki aati hai, toh storage costs aur convenience yields ko estimate karna bohot mushkil hota hai."
+            }
+          },
+          "onScreenIntent": "Black's 1976 Model: The Futures Revolution",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 1976, Fischer Black formulated a brilliant solution: modeling options directly on futures prices, impounding all carrying costs."
+            },
+            "hi": {
+              "display": "Nineteen seventy-six mein Fischer Black ne ek brilliant solution nikala: unhone spot price ko bypass karke option ko directly futures price par model kiya, jahan saare carrying costs pehle se market price mein absorb ho chuke hote hain."
+            }
+          },
+          "onScreenIntent": "Black's 1976 Model: The Futures Revolution",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 18 Part 2, we comprehensively master Black's 1976 derivation, risk-neutral dynamics, Greeks, and American early exercise."
+            },
+            "hi": {
+              "display": "Chapter Eighteen Part Two mein hum Fischer Black ke 1976 model ki mathematical derivation, risk-neutral dynamics, Greeks aur American futures options ko comprehensively master karenge."
+            }
+          },
+          "onScreenIntent": "Black's 1976 Model: The Futures Revolution",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Black's 1976 Model: The Futures Revolution",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Fischer Black's Solution: Bypasses the complexity of estimating storage fees, convenience yields, and dividend schedules."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Observable Market Inputs: Directly uses the market futures price F_0, which already discounts all cost-of-carry variables."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Black's 1976 Model Closed-Form Formulas",
+      "purpose": "European Call Formula: c = e^(-rT) [F_0 N(d_1) - K N(d_2)], discounting expected terminal payoff.",
+      "takeaways": [
+        "European Call Formula: c = e^(-rT) [F_0 N(d_1) - K N(d_2)], discounting expected terminal payoff.",
+        "European Put Formula: p = e^(-rT) [K N(-d_2) - F_0 N(-d_1)], derived by symmetry and parity.",
+        "Core Difference from BSM: Spot price S_0 is replaced by discounted futures price F_0 e^(-rT)."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Black's 1976 model, the European futures call price is c = e^(-rT) [F_0 N(d_1) - K N(d_2)]."
+            },
+            "hi": {
+              "display": "Black's 1976 model mein European futures call option ka formula hota hai: c equals e to the power minus r T into bracket F_0 into N of d_1 minus K into N of d_2."
+            }
+          },
+          "onScreenIntent": "Black's 1976 Model Closed-Form Formulas",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Similarly, the European put price is p = e^(-rT) [K N(-d_2) - F_0 N(-d_1)]."
+            },
+            "hi": {
+              "display": "Isi tarah European put option ka formula hai: p equals e to the power minus r T into bracket K into N of minus d_2 minus F_0 into N of minus d_1."
+            }
+          },
+          "onScreenIntent": "Black's 1976 Model Closed-Form Formulas",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice these resemble standard Black-Scholes, but spot S_0 is replaced by discounted futures price F_0 e^(-rT)."
+            },
+            "hi": {
+              "display": "Notice karein ki yeh equations standard Black-Scholes jaisi lagti hain, lekin yahan spot S_0 ki jagah discounted futures price F_0 into e to the power minus r T use hota hai."
+            }
+          },
+          "onScreenIntent": "Black's 1976 Model Closed-Form Formulas",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Black's 1976 Model Closed-Form Formulas",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "European Call Formula: c = e^(-rT) [F_0 N(d_1) - K N(d_2)], discounting expected terminal payoff."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "European Put Formula: p = e^(-rT) [K N(-d_2) - F_0 N(-d_1)], derived by symmetry and parity."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "d_1, d_2 & The Zero-Drift Martingale Principle",
+      "purpose": "d_1 Formula: d_1 = [ln(F_0 / K) + (sigma^2 * T / 2)] / (sigma * sqrt(T)).",
+      "takeaways": [
+        "d_1 Formula: d_1 = [ln(F_0 / K) + (sigma^2 * T / 2)] / (sigma * sqrt(T)).",
+        "d_2 Formula: d_2 = d_1 - sigma * sqrt(T).",
+        "Missing Interest Rate: Risk-free rate r does not appear in d_1 because futures prices have zero expected growth rate."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Look closely at d_1: d_1 = [ln(F_0 / K) + 0.5 * sigma^2 * T] / (sigma * sqrt(T))."
+            },
+            "hi": {
+              "display": "Aaiye d_1 ke formula par gaur karein: d_1 equals ln of F_0 divided by K plus half sigma square T, divided by sigma root T."
+            }
+          },
+          "onScreenIntent": "d_1, d_2 & The Zero-Drift Martingale Principle",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Did you notice? Unlike equity Black-Scholes, the risk-free rate r is completely absent from the d_1 numerator!"
+            },
+            "hi": {
+              "display": "Kya aapne notice kiya? Stock Black-Scholes ke vipreet, yahan d_1 ke numerator mein risk-free rate r bilkul nahi hai!"
+            }
+          },
+          "onScreenIntent": "d_1, d_2 & The Zero-Drift Martingale Principle",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because entering futures requires zero cash upfront, the expected growth rate of futures prices in a risk-neutral world is exactly zero."
+            },
+            "hi": {
+              "display": "Iska kaaran yeh hai ki futures contract enter karne ke liye zero upfront cash lagta hai, isliye risk-neutral world mein futures price ka expected growth rate exactly zero hota hai."
+            }
+          },
+          "onScreenIntent": "d_1, d_2 & The Zero-Drift Martingale Principle",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "d_1, d_2 & The Zero-Drift Martingale Principle",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "d_1 Formula: d_1 = [ln(F_0 / K) + (sigma^2 * T / 2)] / (sigma * sqrt(T))."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "d_2 Formula: d_2 = d_1 - sigma * sqrt(T)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Carrying Cost Absorption Mechanism",
+      "purpose": "Cost-of-Carry Formula: F_0 = S_0 * e^((r + u - y)T) links spot, storage costs u, and convenience yield y.",
+      "takeaways": [
+        "Cost-of-Carry Formula: F_0 = S_0 * e^((r + u - y)T) links spot, storage costs u, and convenience yield y.",
+        "Estimation Pitfalls: Convenience yields and physical storage fees cannot be directly observed in financial markets.",
+        "Market Efficiency: Trading directly on observable futures prices F_0 eliminates all model specification risk."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pricing commodity spot options requires convenience yields and storage costs, which cannot be directly observed in markets."
+            },
+            "hi": {
+              "display": "Commodities mein spot options price karne ke liye convenience yield y aur storage cost u ki zaroorat hoti hai, jo market mein directly observable nahi hote."
+            }
+          },
+          "onScreenIntent": "Carrying Cost Absorption Mechanism",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, exchange-traded futures contracts continuously absorb all these carrying costs into the observable futures price F_0."
+            },
+            "hi": {
+              "display": "Lekin futures contract exchange par continuously trade hota hai, isliye market futures price F_0 in sabhi carrying costs ko automatically absorb kar leta hai."
+            }
+          },
+          "onScreenIntent": "Carrying Cost Absorption Mechanism",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Black's model directly leverages this liquid market price F_0, completely eliminating estimation error and model risk."
+            },
+            "hi": {
+              "display": "Black's model directly is liquid market price F_0 ko use karta hai, jisse estimation errors aur model risk poori tarah eliminate ho jaate hain."
+            }
+          },
+          "onScreenIntent": "Carrying Cost Absorption Mechanism",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Carrying Cost Absorption Mechanism",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Cost-of-Carry Formula: F_0 = S_0 * e^((r + u - y)T) links spot, storage costs u, and convenience yield y."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Estimation Pitfalls: Convenience yields and physical storage fees cannot be directly observed in financial markets."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The Greeks for Futures Options: Delta, Gamma, Vega, Theta",
+      "purpose": "Futures Delta: Delta_call = e^(-rT) * N(d_1) and Delta_put = -e^(-rT) * N(-d_1).",
+      "takeaways": [
+        "Futures Delta: Delta_call = e^(-rT) * N(d_1) and Delta_put = -e^(-rT) * N(-d_1).",
+        "Gamma & Vega Invariance: Gamma and Vega equations mirror spot options, discounted by e^(-rT).",
+        "Theta Decay: Measures time value decay as expiration approaches with zero cost-of-carry drift."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When calculating Greeks for futures options, note a crucial detail: Call Delta is e^(-rT) * N(d_1)."
+            },
+            "hi": {
+              "display": "Futures options ke Greeks calculate karte samay ek critical detail par dhyan dein: European call ka futures delta hota hai e to the power minus r T into N of d_1."
+            }
+          },
+          "onScreenIntent": "The Greeks for Futures Options: Delta, Gamma, Vega, Theta",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice that Delta is less than N(d_1) because futures gains are discounted by e^(-rT)."
+            },
+            "hi": {
+              "display": "Notice karein ki delta N of d_1 se kam hota hai kyunki futures position par gain cash mein turant nahi, balki deferred settlement ke roop mein realize hota hai."
+            }
+          },
+          "onScreenIntent": "The Greeks for Futures Options: Delta, Gamma, Vega, Theta",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Therefore, to delta-hedge a call, a portfolio manager must hold exactly e^(-rT) * N(d_1) futures contracts."
+            },
+            "hi": {
+              "display": "Iska arth yeh hai ki ek call option ko hedge karne ke liye portfolio manager ko exact e to the power minus r T into N of d_1 futures contracts hold karne chahiye."
+            }
+          },
+          "onScreenIntent": "The Greeks for Futures Options: Delta, Gamma, Vega, Theta",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Greeks for Futures Options: Delta, Gamma, Vega, Theta",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Futures Delta: Delta_call = e^(-rT) * N(d_1) and Delta_put = -e^(-rT) * N(-d_1)."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Gamma & Vega Invariance: Gamma and Vega equations mirror spot options, discounted by e^(-rT)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Pricing a 9-Month Crude Oil Call Option",
+      "purpose": "Parameters: F_0 = $60, K = $60, T = 0.75 yrs (9 months), r = 4%, sigma = 25%.",
+      "takeaways": [
+        "Parameters: F_0 = $60, K = $60, T = 0.75 yrs (9 months), r = 4%, sigma = 25%.",
+        "Analytical Calculation: d_1 = 0.1083, d_2 = -0.1083; N(d_1) = 0.5431, N(d_2) = 0.4569.",
+        "Theoretical Price: c = e^(-0.03) * [60 * 0.5431 - 60 * 0.4569] = 0.9704 * 5.172 = $5.02."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us calculate a crude oil call: F_0 = $60, K = $60, T = 9 months (0.75 yrs), r = 4%, and vol = 25%."
+            },
+            "hi": {
+              "display": "Aaiye ek real-world crude oil call option calculate karein: futures price 60 dollar hai, strike 60 dollar hai, maturity 9 months hai, interest rate 4 percent hai aur volatility 25 percent hai."
+            }
+          },
+          "onScreenIntent": "Pricing a 9-Month Crude Oil Call Option",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Calculations give d_1 = 0.1083 and d_2 = -0.1083. From normal distribution tables, N(d_1) = 0.5431."
+            },
+            "hi": {
+              "display": "Calculation se d_1 point one zero eight three aur d_2 minus point one zero eight three aata hai. Normal distribution tables se N of d_1 zero point five four three one milta hai."
+            }
+          },
+          "onScreenIntent": "Pricing a 9-Month Crude Oil Call Option",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Substituting into Black's formula and discounting at 4% yields a fair theoretical call price of $5.02."
+            },
+            "hi": {
+              "display": "Formula mein values rakhkar 4 percent par discount karne par call option ki fair theoretical price five dollars two cents aati hai."
+            }
+          },
+          "onScreenIntent": "Pricing a 9-Month Crude Oil Call Option",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Pricing a 9-Month Crude Oil Call Option",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Parameters: F_0 = $60, K = $60, T = 0.75 yrs (9 months), r = 4%, sigma = 25%."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Analytical Calculation: d_1 = 0.1083, d_2 = -0.1083; N(d_1) = 0.5431, N(d_2) = 0.4569."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "American Futures Options: The Critical Boundary F*",
+      "purpose": "Early Exercise Optimality: American calls on futures can be optimal to exercise early because cash (F - K) earns interest.",
+      "takeaways": [
+        "Early Exercise Optimality: American calls on futures can be optimal to exercise early because cash (F - K) earns interest.",
+        "Critical Boundary F*: There exists a critical threshold F* above which holding the option is sub-optimal.",
+        "Lattice & Analytical Methods: Priced using multi-step binomial trees or Barone-Adesi and Whaley approximations."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "American futures options exhibit a unique dynamic: when futures prices are high, early exercise is mathematically optimal."
+            },
+            "hi": {
+              "display": "American futures options mein ek bohot unique dynamic hoti hai: jab futures price bohot high ho jata hai, toh option ko maturity se pehle exercise karna optimal hota hai."
+            }
+          },
+          "onScreenIntent": "American Futures Options: The Critical Boundary F*",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "There exists a critical boundary F*. Above F*, exercising to earn interest on cash intrinsic yields greater returns than holding."
+            },
+            "hi": {
+              "display": "Ek critical boundary F star hoti hai. Agar futures price F star se upar nikal jaye, toh option hold karne ke bajaye exercise karke cash intrinsic par interest earn karna zyada profitable hota hai."
+            }
+          },
+          "onScreenIntent": "American Futures Options: The Critical Boundary F*",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To compute this critical boundary F*, quantitative trading desks deploy multi-step binomial lattices or quadratic approximations."
+            },
+            "hi": {
+              "display": "Is critical boundary F star ko calculate karne ke liye quantitative desks binomial trees ya quadratic approximations ka use karte hain."
+            }
+          },
+          "onScreenIntent": "American Futures Options: The Critical Boundary F*",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "American Futures Options: The Critical Boundary F*",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Early Exercise Optimality: American calls on futures can be optimal to exercise early because cash (F - K) earns interest."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Critical Boundary F*: There exists a critical threshold F* above which holding the option is sub-optimal."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Analytical Approximations: Barone-Adesi & Whaley (1987)",
+      "purpose": "Analytical Speed: Provides fast analytical approximations for American futures option prices.",
+      "takeaways": [
+        "Analytical Speed: Provides fast analytical approximations for American futures option prices.",
+        "Additive Structure: American price = European Black-76 price + Early Exercise Premium.",
+        "Quadratic Equation: Solves for critical boundary F* using a fast iterative Newton-Raphson scheme."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On high-frequency desks, running binomial trees can be slow; Barone-Adesi & Whaley developed a fast analytical approximation."
+            },
+            "hi": {
+              "display": "High frequency trading desks par binomial tree run karne mein time lagta hai, isliye Barone-Adesi aur Whaley ne 1987 mein ek fast analytical approximation develop kiya."
+            }
+          },
+          "onScreenIntent": "Analytical Approximations: Barone-Adesi & Whaley (1987)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In this method, American option value equals European Black-76 price plus an early exercise premium based on F*."
+            },
+            "hi": {
+              "display": "Is formula mein American option price barabar hota hai European Black-76 price plus ek early exercise premium, jo critical boundary F star par depend karta hai."
+            }
+          },
+          "onScreenIntent": "Analytical Approximations: Barone-Adesi & Whaley (1987)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This approximation provides 1,000-step binomial tree precision while computing in mere microseconds."
+            },
+            "hi": {
+              "display": "Yeh approximation 1,000-step binomial tree jitni accuracy provide karta hai, lekin microseconds mein calculate ho jata hai."
+            }
+          },
+          "onScreenIntent": "Analytical Approximations: Barone-Adesi & Whaley (1987)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Analytical Approximations: Barone-Adesi & Whaley (1987)",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Analytical Speed: Provides fast analytical approximations for American futures option prices."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Additive Structure: American price = European Black-76 price + Early Exercise Premium."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Spot Options vs Futures Options: Definitive Comparison",
+      "purpose": "Underlying Asset: Spot options settle into physical assets; futures options settle into exchange futures.",
+      "takeaways": [
+        "Underlying Asset: Spot options settle into physical assets; futures options settle into exchange futures.",
+        "Early Exercise Nature: Non-dividend stock calls are never exercised early; futures calls can be optimal to exercise early.",
+        "Valuation Benchmark: BSM 1973 governs equities; Black's 1976 governs futures, commodities, and rates."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us summarize the fundamental institutional differences between spot options and futures options."
+            },
+            "hi": {
+              "display": "Aaiye spot options aur futures options ke fundamental differences ko ek institutional comparison matrix mein summarize karte hain."
+            }
+          },
+          "onScreenIntent": "Spot Options vs Futures Options: Definitive Comparison",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Spot options deliver physical assets with storage friction, whereas futures options deliver liquid futures and instant cash."
+            },
+            "hi": {
+              "display": "Spot options physical asset deliver karte hain jahan storage aur delivery friction hoti hai, jabki futures options liquid futures contract aur instant cash settlement provide karte hain."
+            }
+          },
+          "onScreenIntent": "Spot Options vs Futures Options: Definitive Comparison",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Furthermore, non-dividend stock calls are never exercised early, whereas American futures calls can be optimally exercised early."
+            },
+            "hi": {
+              "display": "Saath hi, non-dividend stock call ko kabhi early exercise nahi kiya jata, jabki American futures call ko deep in-the-money hone par early exercise karna fully rational aur profitable hota hai."
+            }
+          },
+          "onScreenIntent": "Spot Options vs Futures Options: Definitive Comparison",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Spot Options vs Futures Options: Definitive Comparison",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Underlying Asset: Spot options settle into physical assets; futures options settle into exchange futures."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Early Exercise Nature: Non-dividend stock calls are never exercised early; futures calls can be optimal to exercise early."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Arbitrage Identification Challenge",
+      "purpose": "Market Scenario: 1-year European futures call F_0 = $100, K = $100, r = 5%, sigma = 20%, market price = $7.50.",
+      "takeaways": [
+        "Market Scenario: 1-year European futures call F_0 = $100, K = $100, r = 5%, sigma = 20%, market price = $7.50.",
+        "Theoretical Price: d_1 = 0.10, d_2 = -0.10; N(d_1) = 0.5398, N(d_2) = 0.4602. Fair price c = $7.98.",
+        "Trading Action: Market price ($7.50) < Fair price ($7.98) => Call is undervalued. Buy call, short futures."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Evaluate the challenge: 1-yr call F_0 = $100, K = $100, r = 5%, vol = 20%. Market price is $7.50. Is it undervalued or overvalued? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Screen par di gayi quantitative challenge ko evaluate karein: Ek 1-year European futures call jahan F_0 $100 hai, strike K $100 hai, risk-free rate 5% hai aur volatility 20% hai. Agar market mein yeh call option $7.50 par trade ho raha ho, toh kya yeh undervalued hai ya overvalued? Screen par diye gaye options par dhyan se vichar karke calculate kijiye."
+            }
+          },
+          "onScreenIntent": "Arbitrage Identification Challenge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Calculate d_1 and Black's call price c = e^(-rT) [F_0 N(d_1) - K N(d_2)]."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Arbitrage Identification Challenge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option A is correct: The call is undervalued. Black's formula gives ~$7.98; buying at $7.50 and selling futures captures positive expected edge."
+            },
+            "hi": {
+              "display": "Correct choice Option A hai: Call option undervalued hai. Black's formula se theoretical fair price approximately seven dollars point ninety-eight cents aata hai, isliye $7.50 market price par call buy karke aur futures sell karke positive expected value create hoti hai."
+            }
+          },
+          "onScreenIntent": "Arbitrage Identification Challenge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Quantitative Implementation Rules & Pitfalls",
+      "purpose": "Zero Interest Rate in d_1: Never add risk-free rate r to the numerator of d_1; futures growth rate is zero.",
+      "takeaways": [
+        "Zero Interest Rate in d_1: Never add risk-free rate r to the numerator of d_1; futures growth rate is zero.",
+        "Discount Factor in Delta: Always multiply futures delta by e^(-rT); omitting it leaves portfolios under-hedged.",
+        "Settlement Alignment: Verify daily marking-to-market mechanics vs European cash delivery rules."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Avoid two fatal quantitative errors: First, never add interest rate r to d_1 because futures growth is zero."
+            },
+            "hi": {
+              "display": "Quantitative modelling mein do fatal mistakes se bachein: Pehla, d_1 formula mein galti se risk-free rate add na karein kyunki futures growth rate zero hota hai."
+            }
+          },
+          "onScreenIntent": "Quantitative Implementation Rules & Pitfalls",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Second, never omit discount factor e^(-rT) when calculating futures delta, or the portfolio will be mis-hedged."
+            },
+            "hi": {
+              "display": "Doosra, futures delta hedge calculate karte samay discount factor e to the power minus r T ko kabhi omit na karein, warna portfolio under-hedged reh jayega."
+            }
+          },
+          "onScreenIntent": "Quantitative Implementation Rules & Pitfalls",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Strictly implementing these mathematical subtleties ensures institutional-grade hedging accuracy."
+            },
+            "hi": {
+              "display": "In mathematical subtleties ko strictly implement karke hi institutional accuracy maintain hoti hai."
+            }
+          },
+          "onScreenIntent": "Quantitative Implementation Rules & Pitfalls",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Quantitative Implementation Rules & Pitfalls",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Zero Interest Rate in d_1: Never add risk-free rate r to the numerator of d_1; futures growth rate is zero."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Discount Factor in Delta: Always multiply futures delta by e^(-rT); omitting it leaves portfolios under-hedged."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Master Summary Thread: 8 Master Rules of Black's 1976 Model",
+      "purpose": "Pillar 1: Black's Closed Form: c = e^(-rT) [F_0 N(d_1) - K N(d_2)] prices European futures calls.",
+      "takeaways": [
+        "Pillar 1: Black's Closed Form: c = e^(-rT) [F_0 N(d_1) - K N(d_2)] prices European futures calls.",
+        "Pillar 2: Zero Drift Dynamics: d_1 contains no interest rate term because futures expected drift is zero.",
+        "Pillar 3: Carrying Cost Absorption: Observable futures price F_0 automatically impounds all storage costs and convenience yields."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Black's formula prices European futures options directly using observable futures prices."
+            },
+            "hi": {
+              "display": "Aaiye Fischer Black ke 1976 model ke 8 mukhya niyam summarize karte hain. Rule 1: Black's closed-form formula European futures call aur put options ko directly observable futures price se price karta hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Master Rules of Black's 1976 Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 2: Zero drift omits interest rate from d_1; Rule 3: Observable futures price F_0 absorbs all carrying costs."
+            },
+            "hi": {
+              "display": "Rule 2: Expected drift zero hone ke kaaran d_1 numerator mein interest rate term shamil nahi hota. Rule 3: Observable futures price F zero storage costs aur convenience yields ko automatically absorb kar leta hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Master Rules of Black's 1976 Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 4: Futures delta scales with e^(-rT); Rule 5: Futures gamma and vega align with spot options."
+            },
+            "hi": {
+              "display": "Rule 4: Precision hedging ke liye futures delta ko discount factor e ki power minus r T ke sath scale karna mandatory hai. Rule 5: Futures options ka gamma aur vega spot options ke sath perfectly align hota hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Master Rules of Black's 1976 Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 6: Deep ITM American calls can be exercised early; Rule 7: Critical boundary F* depends on r and vol."
+            },
+            "hi": {
+              "display": "Rule 6: Deep in-the-money American futures call ko early exercise karna optimal ho sakta hai taaki cash interest earn ho sake. Rule 7: Critical exercise boundary F star interest rate aur volatility par depend karti hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Master Rules of Black's 1976 Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 8: Black's 1976 model is the global institutional benchmark for commodities, bonds, and swaptions."
+            },
+            "hi": {
+              "display": "Rule 8: Commodity options, Treasury bond options aur swaptions ke liye Black's 1976 model global institutional benchmark hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Master Rules of Black's 1976 Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight rules establish the complete mathematical elegance and practical application of Black's 1976 framework."
+            },
+            "hi": {
+              "display": "Yeh aath niyam Black's 1976 framework ki complete mathematical elegance aur practical application ko establish karte hain."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Master Rules of Black's 1976 Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Master Summary Thread: 8 Master Rules of Black's 1976 Model",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

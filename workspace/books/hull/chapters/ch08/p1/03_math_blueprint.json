@@ -1,0 +1,56 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch08",
+  "partId": "p1",
+  "formulas": [
+    {
+      "id": "M01",
+      "name": "Tranche Loss Percentage",
+      "latex": "L_{\\text{mezz}} = \\frac{\\max(0, L_{\\text{pool}} - S_{\\text{equity}})}{W_{\\text{mezz}}}",
+      "variables": [
+        {
+          "symbol": "L_mezz",
+          "description": "Percentage loss suffered by Mezzanine tranche",
+          "unit": "percentage"
+        },
+        {
+          "symbol": "L_pool",
+          "description": "Cumulative portfolio default loss",
+          "unit": "percentage"
+        },
+        {
+          "symbol": "S_equity",
+          "description": "Subordination provided by Equity tranche (e.g. 5%)",
+          "unit": "percentage"
+        },
+        {
+          "symbol": "W_mezz",
+          "description": "Thickness of Mezzanine tranche (e.g. 15%)",
+          "unit": "percentage"
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "ABS CDO Senior Tranche Loss",
+      "latex": "L_{\\text{CDO, AAA}} = \\frac{\\max(0, L_{\\text{mezz}} - S_{\\text{CDO, sub}})}{W_{\\text{CDO, AAA}}}",
+      "variables": [
+        {
+          "symbol": "L_CDO, AAA",
+          "description": "Loss suffered by AAA CDO tranche",
+          "unit": "percentage"
+        },
+        {
+          "symbol": "S_CDO, sub",
+          "description": "Subordination below AAA CDO tranche (e.g. 25%)",
+          "unit": "percentage"
+        },
+        {
+          "symbol": "W_CDO, AAA",
+          "description": "Thickness of AAA CDO tranche (e.g. 75%)",
+          "unit": "percentage"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1380 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch22",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 22",
+  "partLabel": "Part 1",
+  "title": "Chapter 22: Value at Risk (VaR) vs Expected Shortfall (ES) (Part 1)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 42,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Risk Management Mandate",
+      "purpose": "The Risk Management Mandate: Foundational quantitative principles",
+      "takeaways": [
+        "The Risk Management Mandate: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Global investment banks hold hundreds of thousands of complex derivative contracts across equities, commodities, interest rates, and foreign exchange."
+            },
+            "hi": {
+              "display": "Sharma ji, kisi global investment bank ke paas hazaron stocks, bonds, currencies aur complex options hote hain. Bank ke CEO ko sham ko kaise pata chalta hai ki bank kitna paisa lose kar sakta hai?"
+            }
+          },
+          "onScreenIntent": "The Risk Management Mandate",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 1989, J.P. Morgan demanded a daily four-fifteen PM report summarizing firmwide market exposure in a single dollar number, leading to Value at Risk."
+            },
+            "hi": {
+              "display": "Raju, 1989 mein J.P. Morgan ke CEO ne ek single page 4:15 PM report maangi thi jo poore bank ke market risk ko ek single dollar number mein summarize kare. Isse Value at Risk invent hua!"
+            }
+          },
+          "onScreenIntent": "The Risk Management Mandate",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yet the 2008 crash proved VaR is tail-blind. In Chapter 22 Part 1, we master VaR mechanics, Artzner's coherence axioms, and Expected Shortfall."
+            },
+            "hi": {
+              "display": "Lekin 2008 crash ne prove kiya ki standard VaR tail losses par blind hota hai. Aaj Chapter 22 Part 1 mein hum VaR ki mathematics, Artzner ke Coherence Axioms, aur Expected Shortfall ko decode karenge!"
+            }
+          },
+          "onScreenIntent": "The Risk Management Mandate",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Risk Management Mandate",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Risk Management Mandate: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Value at Risk (VaR) Mechanics",
+      "purpose": "Value at Risk (VaR) Mechanics: Foundational quantitative principles",
+      "takeaways": [
+        "Value at Risk (VaR) Mechanics: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The formal definition of Value at Risk states: we are X percent confident that portfolio loss will not exceed V dollars over an N-day horizon."
+            },
+            "hi": {
+              "display": "Sabse pehle formal definition samajhiye: Value at Risk ek statistical statement hai: Hum X percent certain hain ki agle N dinon mein hamara portfolio loss V dollars se zyada nahi hoga."
+            }
+          },
+          "onScreenIntent": "Value at Risk (VaR) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Mathematically, VaR represents a specific quantile cutoff of the portfolio's cumulative projected loss probability distribution."
+            },
+            "hi": {
+              "display": "Mathematical terms mein, VaR portfolio ke loss probability distribution ka ek specific quantile cutoff hota hai."
+            }
+          },
+          "onScreenIntent": "Value at Risk (VaR) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Historically, the Basel Committee established 10-day 99% VaR as the premier international benchmark for determining market risk regulatory capital."
+            },
+            "hi": {
+              "display": "Global banking regulations mein Basel Committee ne historically 10-day time horizon aur 99 percent confidence level ko bank capital ka benchmark banaya tha."
+            }
+          },
+          "onScreenIntent": "Value at Risk (VaR) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Value at Risk (VaR) Mechanics",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Value at Risk (VaR) Mechanics: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Time Horizon Scaling: Square-Root-of-Time",
+      "purpose": "Time Horizon Scaling: Square-Root-of-Time: Foundational quantitative principles",
+      "takeaways": [
+        "Time Horizon Scaling: Square-Root-of-Time: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To convert a 1-day VaR to an N-day horizon, quantitative desks commonly apply the Square-Root-of-Time rule: VaR(N) = VaR(1) times square root of N."
+            },
+            "hi": {
+              "display": "Agar aapke paas 1-day VaR calculated hai, toh N-day VaR nikalne ke liye square-root-of-time rule use kiya jaata hai: VaR of N days equals 1-day VaR multiplied by square root of N."
+            }
+          },
+          "onScreenIntent": "Time Horizon Scaling: Square-Root-of-Time",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A crucial theoretical warning: this scaling strictly requires daily returns to be independently and identically distributed normal variables with zero mean."
+            },
+            "hi": {
+              "display": "Lekin warning: ye rule strictly tabhi valid hai jab daily market returns independent, identically distributed, aur normal distribution follow karte hon jahan drift zero ho."
+            }
+          },
+          "onScreenIntent": "Time Horizon Scaling: Square-Root-of-Time",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "During real-world market crashes featuring volatility clustering and illiquidity, the square root rule severely understates multi-day tail risk!"
+            },
+            "hi": {
+              "display": "Real market crash ke dauran jab volatility cluster hoti hai aur market illiquid ho jata hai, toh square root of time rule actual cumulative losses ko grossly underestimate karta hai!"
+            }
+          },
+          "onScreenIntent": "Time Horizon Scaling: Square-Root-of-Time",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Time Horizon Scaling: Square-Root-of-Time",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Time Horizon Scaling: Square-Root-of-Time: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Artzner's Coherence Axioms",
+      "purpose": "Artzner's Coherence Axioms: Foundational quantitative principles",
+      "takeaways": [
+        "Artzner's Coherence Axioms: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 1999, Philippe Artzner and his colleagues formulated four non-negotiable mathematical axioms defining what constitutes a Coherent Risk Measure."
+            },
+            "hi": {
+              "display": "1999 mein Philippe Artzner aur unke mathematicians ne risk measures ke liye 4 non-negotiable scientific axioms formulate kiye, jinhe Coherent Risk Measures kaha jata hai."
+            }
+          },
+          "onScreenIntent": "Artzner's Coherence Axioms",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The first three are Monotonicity: larger losses mean greater risk; Translation Invariance: adding cash reduces risk; and Positive Homogeneity: scaling positions scales risk."
+            },
+            "hi": {
+              "display": "Pehla hai Monotonicity: zyada loss ka matlab zyada risk. Dusra hai Translation Invariance: cash add karne se capital utna hi badhta hai. Teesra hai Positive Homogeneity: position double karne se risk double hota hai."
+            }
+          },
+          "onScreenIntent": "Artzner's Coherence Axioms",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The fourth and most critical axiom is Subadditivity: merging portfolios must never produce more total risk than the sum of their individual risks."
+            },
+            "hi": {
+              "display": "Aur chautha sabse critical axiom hai Subadditivity: kisi bhi do portfolios ko merge karne par total risk unke individual risks ke sum se kam ya barabar hona chahiye. Diversification se risk kabhi badhna nahi chahiye!"
+            }
+          },
+          "onScreenIntent": "Artzner's Coherence Axioms",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Artzner's Coherence Axioms",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Artzner's Coherence Axioms: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "VaR Subadditivity Failure",
+      "purpose": "VaR Subadditivity Failure: Foundational quantitative principles",
+      "takeaways": [
+        "VaR Subadditivity Failure: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now examine the greatest conceptual flaw of modern risk management: Value at Risk mathematically violates the Subadditivity axiom!"
+            },
+            "hi": {
+              "display": "Ab aate hain derivative finance ke sabse bade shock par: Value at Risk Subadditivity axiom ko mathematically violate karta hai!"
+            }
+          },
+          "onScreenIntent": "VaR Subadditivity Failure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider two independent corporate loans, each with a 0.8% default probability and $1,000 loss. At a 99% confidence level, VaR for each is zero dollars."
+            },
+            "hi": {
+              "display": "Example dekhiye: Maan lijiye Loan A aur Loan B do independent loans hain, jinme se har ek ke default hone ki probability 0.8 percent hai aur default loss 1,000 dollars hai. 99 percent confidence par Loan A ka VaR zero hai aur Loan B ka VaR bhi zero hai."
+            }
+          },
+          "onScreenIntent": "VaR Subadditivity Failure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Merged into a single portfolio, the combined probability of at least one default is 1.59%, causing 99% VaR to surge to $1,000: VaR penalizes diversification!"
+            },
+            "hi": {
+              "display": "Lekin jab aap dono loans ko ek portfolio mein merge karte hain, toh at least ek loan ke default hone ki probability 1.59 percent ho jaati hai, jo 1 percent se badi hai! Toh combined portfolio ka 99 percent VaR 1,000 dollars ho jata hai! VaR diversification ko penalize karta hai!"
+            }
+          },
+          "onScreenIntent": "VaR Subadditivity Failure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "VaR Subadditivity Failure",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "VaR Subadditivity Failure: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Tail Blindness: 'How Bad is Bad?'",
+      "purpose": "Tail Blindness: 'How Bad is Bad?': Foundational quantitative principles",
+      "takeaways": [
+        "Tail Blindness: 'How Bad is Bad?': Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second fatal limitation of Value at Risk is Tail Blindness: it marks the 1% boundary but remains completely blind to the severity beyond it."
+            },
+            "hi": {
+              "display": "VaR ka dusra fatal flaw hai Tail Blindness. VaR aapko ye batata hai ki 1 percent worst cases kahan se shuru hote hain, lekin us line ke paar loss kitna gehra hai, ye bilkul nahi batata!"
+            }
+          },
+          "onScreenIntent": "Tail Blindness: 'How Bad is Bad?'",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If Portfolio A loses $101 in the tail and Portfolio B suffers a catastrophic $10 million collapse, both report identical 99% VaR cutoffs of $100!"
+            },
+            "hi": {
+              "display": "Screen par dekhiye: Agar portfolio A tail mein 101 dollars lose karta hai, aur portfolio B tail mein 10 million dollars lose karta hai, dono ka 99 percent VaR exactly identical 100 dollars report hoga!"
+            }
+          },
+          "onScreenIntent": "Tail Blindness: 'How Bad is Bad?'",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option traders writing deep out-of-the-money puts concealed catastrophic tail risk behind pristine VaR figures until the 2008 financial crisis struck!"
+            },
+            "hi": {
+              "display": "Deep out-of-the-money options write karne wale traders ne 2008 se pehle isi loophole ka faida uthaya: VaR zero dikhaya aur jab black swan crash aaya toh poora institution liquidate ho gaya!"
+            }
+          },
+          "onScreenIntent": "Tail Blindness: 'How Bad is Bad?'",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Tail Blindness: 'How Bad is Bad?'",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Tail Blindness: 'How Bad is Bad?': Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Expected Shortfall (ES): Coherent Tail Risk",
+      "purpose": "Expected Shortfall (ES): Coherent Tail Risk: Foundational quantitative principles",
+      "takeaways": [
+        "Expected Shortfall (ES): Coherent Tail Risk: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The permanent mathematical solution is Expected Shortfall, also known in quantitative risk literature as Conditional VaR."
+            },
+            "hi": {
+              "display": "Is fatal flaw ka permanent mathematical solution hai Expected Shortfall yaani ES, jise Conditional VaR bhi kehte hain."
+            }
+          },
+          "onScreenIntent": "Expected Shortfall (ES): Coherent Tail Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Expected Shortfall is formulated as the conditional expectation of loss given that loss exceeds the VaR threshold: the average of all tail losses!"
+            },
+            "hi": {
+              "display": "Expected Shortfall ka formula hai: E of L given L is greater than VaR. Yaani VaR threshold cross hone ke baad tail ke sabhi catastrophic losses ka conditional average!"
+            }
+          },
+          "onScreenIntent": "Expected Shortfall (ES): Coherent Tail Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Expected Shortfall is strictly coherent and subadditive under all distributions, leading Basel FRTB to replace 99% VaR with 97.5% Expected Shortfall."
+            },
+            "hi": {
+              "display": "Expected Shortfall unconditionally coherent hota hai aur har distribution par Subadditivity satisfy karta hai. Isiliye Basel Committee ne FRTB regulations mein 99 percent VaR ko permanently discard karke 97.5 percent Expected Shortfall mandate kar diya hai!"
+            }
+          },
+          "onScreenIntent": "Expected Shortfall (ES): Coherent Tail Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Expected Shortfall (ES): Coherent Tail Risk",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Expected Shortfall (ES): Coherent Tail Risk: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Historical Simulation: Non-Parametric Engine",
+      "purpose": "Historical Simulation: Non-Parametric Engine: Foundational quantitative principles",
+      "takeaways": [
+        "Historical Simulation: Non-Parametric Engine: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On commercial trading desks, Historical Simulation is the premier risk engine because it imposes zero artificial Gaussian distribution assumptions."
+            },
+            "hi": {
+              "display": "Trading desks par VaR aur Expected Shortfall calculate karne ka sabse widely used method hai Historical Simulation. Iska sabse bada edge hai ki ye koi normal distribution ya bell curve assume nahi karta."
+            }
+          },
+          "onScreenIntent": "Historical Simulation: Non-Parametric Engine",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The methodology replays the bank's current portfolio holdings across the actual empirical market moves of the past 500 or 1,000 trading sessions."
+            },
+            "hi": {
+              "display": "Hum bank ke current portfolio ko pichle 500 ya 1,000 trading days ke actual market moves par replay karte hain."
+            }
+          },
+          "onScreenIntent": "Historical Simulation: Non-Parametric Engine",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Today's asset values are shocked by historical percentage returns, completely re-pricing all complex non-linear options across every scenario."
+            },
+            "hi": {
+              "display": "Formula: Aaj ke asset prices ko historical percentage return se shock kiya jaata hai, aur portfolio ko fully re-price karke 500 hypothetical P&L outcomes generate kiye jaate hain."
+            }
+          },
+          "onScreenIntent": "Historical Simulation: Non-Parametric Engine",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Historical Simulation: Non-Parametric Engine",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Historical Simulation: Non-Parametric Engine: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Worked Example: 500-Day Historical Simulation",
+      "purpose": "Worked Example: 500-Day Historical Simulation: Foundational quantitative principles",
+      "takeaways": [
+        "Worked Example: 500-Day Historical Simulation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine concrete numbers for a $20 million portfolio: we rank the 500 simulated scenarios from worst dollar loss to largest gain."
+            },
+            "hi": {
+              "display": "Sharma ji, kya hum actual 500-day simulation numbers ke sath dekh sakte hain ki VaR aur Expected Shortfall kaise calculate hote hain?"
+            }
+          },
+          "onScreenIntent": "Worked Example: 500-Day Historical Simulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At 99% confidence over 500 historical days, the 1% tail threshold corresponds to the 5th worst loss, yielding a 99% VaR of $420,000."
+            },
+            "hi": {
+              "display": "Bilkul! Maan lijiye 20 million dollar portfolio hai. Hum 500 dinon ke simulated P&L ko sabse bade loss se profit ki taraf sort karte hain: L 1 se lekar L 500 tak."
+            }
+          },
+          "onScreenIntent": "Worked Example: 500-Day Historical Simulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To compute 99% Expected Shortfall, we take the mathematical average of the top 5 worst losses: $750k, $620k, $540k, $480k, and $420k."
+            },
+            "hi": {
+              "display": "99 percent confidence par 500 dinon ka 1 percent hota hai 5th worst loss. Agar 5th worst loss 420,000 dollars hai, toh hamara 99 percent 1-day VaR exactly 420,000 dollars hai!"
+            }
+          },
+          "onScreenIntent": "Worked Example: 500-Day Historical Simulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The resulting Expected Shortfall is $562,000, successfully impounding the extreme $750,000 tail crash into the bank's capital reserve!"
+            },
+            "hi": {
+              "display": "Aur 99 percent Expected Shortfall worst 5 losses ka average hota hai: 750k plus 620k plus 540k plus 480k plus 420k divided by 5 equals 562,000 dollars! Dekha Raju? Expected Shortfall ne tail ke catastrophic 750,000 loss ko capture karke true risk reveal kiya!"
+            }
+          },
+          "onScreenIntent": "Worked Example: 500-Day Historical Simulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Worked Example: 500-Day Historical Simulation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Worked Example: 500-Day Historical Simulation: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Interactive Cognitive Quiz",
+      "purpose": "Interactive Cognitive Quiz: Foundational quantitative principles",
+      "takeaways": [
+        "Interactive Cognitive Quiz: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Evaluate the scenario: Portfolio A has a 99% VaR of $100,000 and Portfolio B has a 99% VaR of $150,000. Is combined VaR guaranteed to be less than or equal to $250,000? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Raju, ab tumhare liye ek critical institutional risk quiz: Portfolio A ka 99 percent 1-day VaR 100,000 dollars hai, aur Portfolio B ka 99 percent 1-day VaR 150,000 dollars hai. Ek junior risk manager claim karta hai ki combined portfolio A plus B ka VaR maximum 250,000 dollars hi ho sakta hai. Kya ye claim guaranteed true hai?"
+            }
+          },
+          "onScreenIntent": "Interactive Cognitive Quiz",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Recall Artzner's axioms and evaluate whether Value at Risk satisfies subadditivity across non-normal distributions."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Interactive Cognitive Quiz",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option B is correct: Not guaranteed! VaR violates Subadditivity on non-normal distributions, short options, and credit portfolios with heavy jump risk!"
+            },
+            "hi": {
+              "display": "Correct answer hai Option B: Guaranteed true nahi hai! Kyunki Value at Risk non-normal distributions, short options, aur credit exposures par Subadditivity ko violate kar sakta hai, jisse combined portfolio ka VaR 250,000 dollars se bada ho sakta hai! Sirf Expected Shortfall subadditivity guarantee karta hai!"
+            }
+          },
+          "onScreenIntent": "Interactive Cognitive Quiz",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Volatility Updating in Historical Simulation",
+      "purpose": "Volatility Updating in Historical Simulation: Foundational quantitative principles",
+      "takeaways": [
+        "Volatility Updating in Historical Simulation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A standard historical simulation treats a calm market move from two years ago with the exact same weight as yesterday's panic selloff."
+            },
+            "hi": {
+              "display": "Standard historical simulation ka ek drawback ye hai ki 2 saal purane calm market data ko kal ke panic shock ke barabar weight milta hai."
+            }
+          },
+          "onScreenIntent": "Volatility Updating in Historical Simulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John Hull and Alan White resolved this distortion through Volatility Updating: scaling past percentage returns by the ratio of current volatility to past volatility."
+            },
+            "hi": {
+              "display": "Is problem ko solve karne ke liye Hull aur White ne Volatility Updating method invent kiya: historical percentage return ko aaj ki current volatility aur historical volatility ke ratio se scale kiya jaata hai."
+            }
+          },
+          "onScreenIntent": "Volatility Updating in Historical Simulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under market stress, historical scenarios are dynamically magnified to reflect heightened current turbulence, eliminating dangerous risk reporting lag."
+            },
+            "hi": {
+              "display": "Isse agar aaj market stressed hai, toh past data current high volatility regime ke hisab se dynamically scale-up ho jata hai, eliminating historical lag!"
+            }
+          },
+          "onScreenIntent": "Volatility Updating in Historical Simulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Volatility Updating in Historical Simulation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Volatility Updating in Historical Simulation: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary: 8 Rules of Market Risk Measurement",
+      "purpose": "Summary: 8 Rules of Market Risk Measurement: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Rules of Market Risk Measurement: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the eight foundational institutional rules of Chapter 22 Part 1:"
+            },
+            "hi": {
+              "display": "Chaliye Chapter 22 Part 1 ke 8 core risk management rules ko consolidate karte hain: Rule 1 — Value at Risk specifies the maximum loss not exceeded at confidence level c over horizon N. Rule 2 — Square root of time scaling requires independent, identically distributed normal returns."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Market Risk Measurement",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: VaR defines a quantile loss cutoff; Rule 2: Square-root-of-time scaling strictly requires i.i.d. Gaussian increments."
+            },
+            "hi": {
+              "display": "Rule 3 — Artzner's 4 coherence axioms mandate Monotonicity, Translation Invariance, Positive Homogeneity, and Subadditivity. Rule 4 — VaR violates Subadditivity on skewed and non-linear option portfolios, penalizing diversification."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Market Risk Measurement",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Artzner's four axioms govern coherence; Rule 4: VaR violates subadditivity on non-linear option books."
+            },
+            "hi": {
+              "display": "Rule 5 — VaR suffers from tail blindness and fails to quantify loss severity beyond the threshold. Rule 6 — Expected Shortfall is unconditionally coherent and measures the average loss in the extreme tail."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Market Risk Measurement",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: VaR exhibits dangerous tail blindness; Rule 6: Expected Shortfall computes coherent conditional tail averages."
+            },
+            "hi": {
+              "display": "Rule 7 — Basel FRTB replaces 99% VaR with 97.5% Expected Shortfall for regulatory capital. Rule 8 — Historical simulation re-prices current holdings across past market returns with zero distribution bias."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Market Risk Measurement",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Basel FRTB mandates 97.5% Expected Shortfall; Rule 8: Hull-White volatility updating adapts historical simulation to live regimes."
+            },
+            "hi": {
+              "display": "Screen par summary table mein sabhi governing formulas aur coherence properties systematically compile kar diye gaye hain."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Market Risk Measurement",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles form the core theoretical and regulatory foundation of modern quantitative risk measurement."
+            },
+            "hi": {
+              "display": "Agli video mein hum shuru karenge Chapter 22 Part 2: Model-Building VaR, Quadratic Models aur Backtesting. Practice jari rakhiye!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Market Risk Measurement",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Rules of Market Risk Measurement",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

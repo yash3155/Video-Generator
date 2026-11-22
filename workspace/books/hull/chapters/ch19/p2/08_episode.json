@@ -1,0 +1,1404 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch19",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 19",
+  "partLabel": "Part 2",
+  "title": "The Greek Letters: Vega, Rho & Portfolio Insurance",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 37,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Volatility Ambush: Beyond Directional Risk",
+      "purpose": "The Delta-Neutral Illusion: A portfolio immune to directional price moves remains completely exposed to volatility shocks.",
+      "takeaways": [
+        "The Delta-Neutral Illusion: A portfolio immune to directional price moves remains completely exposed to volatility shocks.",
+        "The Implied Vol Collapse: Post-event implied volatility collapse (IV crush) can wipe out hundreds of thousands of dollars instantaneously.",
+        "The Core Solution: Mastering Vega, Rho, multi-dimensional stress testing, and portfolio insurance feedback dynamics."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Imagine a trader constructs a perfectly Delta-neutral portfolio, and the underlying stock price does not move by a single penny."
+            },
+            "hi": {
+              "display": "Imagine kijiye ek options trader ne apne pure portfolio ko perfectly Delta-neutral kar diya hai, aur stock price ek dollar bhi nahi hilta."
+            }
+          },
+          "onScreenIntent": "The Volatility Ambush: Beyond Directional Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Suddenly, a macro announcement causes market implied volatility to collapse from 40% down to 20%."
+            },
+            "hi": {
+              "display": "Lekin tabhi earnings announcement aati hai ya central bank meeting hoti hai, aur market ki implied volatility forty percent se girkar twenty percent par aa jaati hai."
+            }
+          },
+          "onScreenIntent": "The Volatility Ambush: Beyond Directional Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The result? Despite zero underlying movement, the portfolio suffers a half-million-dollar loss—a classic Volatility Ambush!"
+            },
+            "hi": {
+              "display": "Instantaneous result? Bina stock ke move hue, trader ka portfolio half a million dollars ka loss suffer karta hai—ise kehte hain Volatility Ambush!"
+            }
+          },
+          "onScreenIntent": "The Volatility Ambush: Beyond Directional Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 19 Part 2, John Hull details Vega, Rho, dynamic hedging, and the systemic lessons of the 1987 Black Monday crash."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter Nineteen Part Two mein hum Vega, Rho, practical dynamic hedging aur 1987 ke Black Monday portfolio insurance crash ko mathematically master karenge."
+            }
+          },
+          "onScreenIntent": "The Volatility Ambush: Beyond Directional Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Volatility Ambush: Beyond Directional Risk",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Delta-Neutral Illusion: A portfolio immune to directional price moves remains completely exposed to volatility shocks."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "The Implied Vol Collapse: Post-event implied volatility collapse (IV crush) can wipe out hundreds of thousands of dollars instantaneously."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Vega (ν) Formulation: The Volatility Exposure",
+      "purpose": "Vega Definition: Rate of change of portfolio value with respect to volatility σ: ν = ∂Π / ∂σ.",
+      "takeaways": [
+        "Vega Definition: Rate of change of portfolio value with respect to volatility σ: ν = ∂Π / ∂σ.",
+        "Symmetric Identity: European call Vega identically equals European put Vega: ν_call = ν_put = S_0 √T N'(d_1).",
+        "Positive Sign Invariant: Vega is strictly positive for all long European and American option positions."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "First let us master Vega: the rate of change of portfolio value with respect to a one percentage point shift in implied volatility: partial Pi over partial sigma."
+            },
+            "hi": {
+              "display": "Aaiye pehle samajhte hain Vega ko: Vega volatility mein ek percent change hone par portfolio value mein hone wale change ki rate hai: partial Pi by partial sigma."
+            }
+          },
+          "onScreenIntent": "Vega (ν) Formulation: The Volatility Exposure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under Black-Scholes, Vega equals S_0 times square root of T times N prime of d_1."
+            },
+            "hi": {
+              "display": "Formula dekhiye: Vega equals S_0 times square root of T times N prime of d_1."
+            }
+          },
+          "onScreenIntent": "Vega (ν) Formulation: The Volatility Exposure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice a critical mathematical identity: European call and put Vega are identical, and strictly positive for all long positions!"
+            },
+            "hi": {
+              "display": "Ek bohot mahatvapurna mathematical identity par gaur karein: European call aur European put ka Vega exact barabar hota hai, aur long options ke liye hamesha strictly positive hota hai!"
+            }
+          },
+          "onScreenIntent": "Vega (ν) Formulation: The Volatility Exposure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Vega (ν) Formulation: The Volatility Exposure",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Vega Definition: Rate of change of portfolio value with respect to volatility σ: ν = ∂Π / ∂σ."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Symmetric Identity: European call Vega identically equals European put Vega: ν_call = ν_put = S_0 √T N'(d_1)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Vega Dynamics Across Moneyness & Expiration",
+      "purpose": "At-the-Money Peak: Vega reaches its maximum peak for at-the-money options (S_0 ≈ K).",
+      "takeaways": [
+        "At-the-Money Peak: Vega reaches its maximum peak for at-the-money options (S_0 ≈ K).",
+        "Square Root Scaling: Vega scales with √T, meaning longer-dated options have exponentially larger volatility risk.",
+        "Deep ITM/OTM Decay: Vega drops asymptotically to zero for deep out-of-the-money and in-the-money strikes."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Understanding how Vega behaves across strike moneyness and expiration horizons is vital for quantitative risk desks."
+            },
+            "hi": {
+              "display": "Vega market moneyness aur time to maturity ke saath kaise behave karta hai, ise samajhna risk desk ke liye critical hai."
+            }
+          },
+          "onScreenIntent": "Vega Dynamics Across Moneyness & Expiration",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At-the-money options possess maximum Vega sensitivity, whereas deep in-the-money and out-of-the-money options exhibit near-zero Vega."
+            },
+            "hi": {
+              "display": "At-the-money options ka Vega sabse peak par hota hai, jabki deep in-the-money aur deep out-of-the-money options ka Vega almost zero drop ho jata hai."
+            }
+          },
+          "onScreenIntent": "Vega Dynamics Across Moneyness & Expiration",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Furthermore, because Vega scales with square root of time, long-dated LEAPS options carry massively greater volatility exposure than short-dated contracts."
+            },
+            "hi": {
+              "display": "Saath hi Vega square root of T ke proportionally badhta hai: yaani long-term LEAPS options mein short-term weekly options ke comparison mein kai guna zyada Vega risk hota hai."
+            }
+          },
+          "onScreenIntent": "Vega Dynamics Across Moneyness & Expiration",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Vega Dynamics Across Moneyness & Expiration",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "At-the-Money Peak: Vega reaches its maximum peak for at-the-money options (S_0 ≈ K)."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Square Root Scaling: Vega scales with √T, meaning longer-dated options have exponentially larger volatility risk."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Two-Tier Hedging Algorithm: Delta-Vega Neutrality",
+      "purpose": "Stock Inadequacy: Underlying shares have Vega_stock = 0; stock cannot alter portfolio Vega by a single cent.",
+      "takeaways": [
+        "Stock Inadequacy: Underlying shares have Vega_stock = 0; stock cannot alter portfolio Vega by a single cent.",
+        "Step 1: Vega Neutrality: Trade traded option contracts w_1 = -Vega_portfolio / Vega_1 to eliminate volatility risk.",
+        "Step 2: Delta Neutrality: Trade underlying shares w_S = -(Delta_portfolio + w_1 * Delta_1) to restore directional neutrality."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Observe how desks hedge Vega: underlying stocks have zero Vega, so trading cash shares can never eliminate volatility exposure!"
+            },
+            "hi": {
+              "display": "Screen par dekhiye ki institutions Vega risk ko kaise hedge karte hain: Underlying stock ka Vega hamesha zero hota hai, isliye stock se Vega kabhi hedge nahi ho sakta!"
+            }
+          },
+          "onScreenIntent": "Two-Tier Hedging Algorithm: Delta-Vega Neutrality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To establish Vega neutrality, step one calculates required traded options: weight equals negative portfolio Vega divided by traded option Vega."
+            },
+            "hi": {
+              "display": "Portfolio ko Vega-neutral banane ke liye, pehle step mein ek traded option contract w_1 calculate kiya jata hai: minus portfolio Vega divided by traded option Vega."
+            }
+          },
+          "onScreenIntent": "Two-Tier Hedging Algorithm: Delta-Vega Neutrality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because trading options introduces new Delta, step two trades cash shares to restore net portfolio Delta to zero."
+            },
+            "hi": {
+              "display": "Lekin option trade karne se portfolio ka Delta hil jata hai, isliye step two mein underlying shares khareed ya bech kar overall Delta ko wapas zero kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Two-Tier Hedging Algorithm: Delta-Vega Neutrality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Two-Tier Hedging Algorithm: Delta-Vega Neutrality",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Stock Inadequacy: Underlying shares have Vega_stock = 0; stock cannot alter portfolio Vega by a single cent."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Step 1: Vega Neutrality: Trade traded option contracts w_1 = -Vega_portfolio / Vega_1 to eliminate volatility risk."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Interest Rate Sensitivity: Rho (ρ) Mechanics",
+      "purpose": "Rho Definition: Rate of change of portfolio value with respect to risk-free interest rate r: ρ = ∂Π / ∂r.",
+      "takeaways": [
+        "Rho Definition: Rate of change of portfolio value with respect to risk-free interest rate r: ρ = ∂Π / ∂r.",
+        "Call vs Put Signs: Call Rho is strictly positive (+K T e^(-rT) N(d_2)); Put Rho is strictly negative (-K T e^(-rT) N(-d_2)).",
+        "Fixed Income Significance: Minor for short-term stock options; critical for LEAPS and fixed-income swaptions."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The next Greek parameter is Rho: the sensitivity of portfolio value to a one percentage point change in the risk-free interest rate: partial Pi over partial r."
+            },
+            "hi": {
+              "display": "Agla parameter hai Rho: Rho interest rate r mein ek percent change hone par portfolio value ke change hone ki rate hai: partial Pi by partial r."
+            }
+          },
+          "onScreenIntent": "Interest Rate Sensitivity: Rho (ρ) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Call Rho is positive because deferring cash strike payment earns more interest; put Rho is negative because delayed receipt forfeits interest."
+            },
+            "hi": {
+              "display": "European call ka Rho hamesha positive hota hai: plus K times T into e to the power minus r T into N of d_2, kyunki higher interest rate par stock khareedne ke bajaye option buy karna attractive hota hai."
+            }
+          },
+          "onScreenIntent": "Interest Rate Sensitivity: Rho (ρ) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For short-dated equity options, Rho risk is minimal, but for multi-year options and fixed-income swaptions, Rho is a dominant risk factor."
+            },
+            "hi": {
+              "display": "European put ka Rho hamesha negative hota hai, aur short-term options ke liye Rho risk kaafi chhota hota hai jab tak hum long-term fixed income options trade na kar rahe hon."
+            }
+          },
+          "onScreenIntent": "Interest Rate Sensitivity: Rho (ρ) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Interest Rate Sensitivity: Rho (ρ) Mechanics",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Rho Definition: Rate of change of portfolio value with respect to risk-free interest rate r: ρ = ∂Π / ∂r."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Call vs Put Signs: Call Rho is strictly positive (+K T e^(-rT) N(d_2)); Put Rho is strictly negative (-K T e^(-rT) N(-d_2))."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Dynamic Hedging in Practice: Real-World Friction",
+      "purpose": "Transaction Cost Drag: Continuous rebalancing generates massive brokerage slippage, eroding gross arbitrage returns.",
+      "takeaways": [
+        "Transaction Cost Drag: Continuous rebalancing generates massive brokerage slippage, eroding gross arbitrage returns.",
+        "Volatility Mismatch: Divergence between priced implied volatility and experienced realized volatility introduces tracking error.",
+        "Tolerance Bands: Desks establish bands; rebalancing occurs only when Greek drift exceeds defined economic thresholds."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In theoretical models, continuous Delta and Vega hedging appears frictionless, but live trading desks confront three major obstacles."
+            },
+            "hi": {
+              "display": "Theory mein Delta aur Vega hedging smooth lagti hai, lekin real trading floors par teen dangerous frictions kaam karti hain."
+            }
+          },
+          "onScreenIntent": "Dynamic Hedging in Practice: Real-World Friction",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "First is execution costs: rebalancing every tick erodes capital, requiring desks to establish disciplined rebalancing tolerance bands."
+            },
+            "hi": {
+              "display": "Pehla hai Transaction Costs: continuous rebalancing brokerage aur bid-ask slippage se saare profits kha jaati hai, isliye desks tolerance bands implement karte hain."
+            }
+          },
+          "onScreenIntent": "Dynamic Hedging in Practice: Real-World Friction",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Second is volatility surface divergence: mismatches between implied volatility and realized price action generate severe tracking error."
+            },
+            "hi": {
+              "display": "Doosra hai Volatility Divergence: option trade karte samay priced implied volatility aur actual realized volatility mein mismatch P&L uncertainty create karta hai."
+            }
+          },
+          "onScreenIntent": "Dynamic Hedging in Practice: Real-World Friction",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Dynamic Hedging in Practice: Real-World Friction",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Transaction Cost Drag: Continuous rebalancing generates massive brokerage slippage, eroding gross arbitrage returns."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Volatility Mismatch: Divergence between priced implied volatility and experienced realized volatility introduces tracking error."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Scenario Analysis & Stress Testing Desks",
+      "purpose": "Limits of Marginal Greeks: Delta and Vega assume tiny instantaneous moves and fail during market crashes.",
+      "takeaways": [
+        "Limits of Marginal Greeks: Delta and Vega assume tiny instantaneous moves and fail during market crashes.",
+        "2-Dimensional Grid: Stress-testing across simultaneous price shifts (S ± 10%) and volatility shocks (σ ± 30%).",
+        "Tail Risk Detection: Exposes non-linear cross-Greek interactions that linear sensitivity sums completely hide."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because first-order Greeks assume infinitesimal price changes, risk managers utilize Scenario Analysis to measure extreme shocks."
+            },
+            "hi": {
+              "display": "Marginal Greeks jaise Delta ya Vega keval small instantaneous moves ke liye valid hote hain; large market shocks ko capture karne ke liye desks Scenario Analysis use karte hain."
+            }
+          },
+          "onScreenIntent": "Scenario Analysis & Stress Testing Desks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Desks generate a comprehensive two-dimensional stress matrix, shocking underlying stock prices by plus or minus 10% against volatility shifts of plus or minus 30%."
+            },
+            "hi": {
+              "display": "Risk managers ek two-dimensional matrix banate hain: jahan underlying stock minus ten percent se plus ten percent aur volatility minus thirty percent se plus thirty percent test hoti hai."
+            }
+          },
+          "onScreenIntent": "Scenario Analysis & Stress Testing Desks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This scenario matrix reveals severe cross-derivative risks and non-linear losses that Taylor series approximations completely conceal."
+            },
+            "hi": {
+              "display": "Yeh matrix non-linear tail risks aur cross-derivative interactions ko expose karti hai jo simple Greek linear sum mein chhip jaate hain."
+            }
+          },
+          "onScreenIntent": "Scenario Analysis & Stress Testing Desks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Scenario Analysis & Stress Testing Desks",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Limits of Marginal Greeks: Delta and Vega assume tiny instantaneous moves and fail during market crashes."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "2-Dimensional Grid: Stress-testing across simultaneous price shifts (S ± 10%) and volatility shocks (σ ± 30%)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Synthetic Put Replication: Portfolio Insurance",
+      "purpose": "Synthetic Put Concept: Replicating protective put payoffs by dynamically shorting index futures or selling stock.",
+      "takeaways": [
+        "Synthetic Put Concept: Replicating protective put payoffs by dynamically shorting index futures or selling stock.",
+        "Target Share Allocation: Hold a fraction N(d_1) of equity portfolio; sell remaining shares into falling markets.",
+        "Institutional Appeal: Avoided paying high exchange put premiums upfront, promising cost-free downside protection."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "During the 1980s, institutional asset managers designed an influential risk strategy known as Portfolio Insurance."
+            },
+            "hi": {
+              "display": "Nineteen-eighties mein institutional asset managers ne ek revolutionary strategy banayi jise Portfolio Insurance kaha gaya."
+            }
+          },
+          "onScreenIntent": "Synthetic Put Replication: Portfolio Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rather than purchasing expensive exchange-traded puts on billions of dollars, they used Black-Scholes Delta equations to dynamically synthesize put payoffs."
+            },
+            "hi": {
+              "display": "Multi-billion dollar portfolios par actual exchange puts khareedne ke bajaye, unhone Black-Scholes Delta formula use karke synthetically put option replicate kiya."
+            }
+          },
+          "onScreenIntent": "Synthetic Put Replication: Portfolio Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The algorithmic rule: as the equity index falls, option Delta drops, triggering automated computer programs to sell index futures into the decline."
+            },
+            "hi": {
+              "display": "Rule yeh tha: jaise-jaise stock market girega, portfolio ka Delta N of d_1 minus one fall karega, jisse algorithmically automatically index shares aur futures sell kiye jayenge."
+            }
+          },
+          "onScreenIntent": "Synthetic Put Replication: Portfolio Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Synthetic Put Replication: Portfolio Insurance",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Synthetic Put Concept: Replicating protective put payoffs by dynamically shorting index futures or selling stock."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Target Share Allocation: Hold a fraction N(d_1) of equity portfolio; sell remaining shares into falling markets."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "The 1987 Black Monday Meltdown: The Feedback Loop",
+      "purpose": "The 22.6% Single-Day Collapse: On October 19, 1987, the Dow Jones plummeted 22.6% in the largest single-day crash in history.",
+      "takeaways": [
+        "The 22.6% Single-Day Collapse: On October 19, 1987, the Dow Jones plummeted 22.6% in the largest single-day crash in history.",
+        "The Pro-Cyclical Feedback Death Loop: Falling prices triggered automated selling, which depressed prices further, triggering more selling.",
+        "Liquidity Evaporation: Exchange market makers withdrew liquidity, breaking continuous hedging assumptions."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On October 19, 1987, Black Monday struck global markets, causing the Dow Jones Industrial Average to plummet 22.6% in a single trading session!"
+            },
+            "hi": {
+              "display": "October nineteen nineteen-eighty-seven ko Wall Street par Black Monday aaya, jahan Dow Jones ek hi din mein twenty-two point six percent collapse kar gaya!"
+            }
+          },
+          "onScreenIntent": "The 1987 Black Monday Meltdown: The Feedback Loop",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The primary structural catalyst was synthetic portfolio insurance: falling markets triggered automated algorithms to dump billions in futures contracts."
+            },
+            "hi": {
+              "display": "Is catastrophic crash ka primary driver yahi dynamic portfolio insurance tha: jaise hi market gira, automated algorithms ne billions of dollars ke sell orders market mein dump kar diye."
+            }
+          },
+          "onScreenIntent": "The 1987 Black Monday Meltdown: The Feedback Loop",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Futures selling overwhelmed exchange liquidity, driving cash markets lower and triggering successive waves of selling in a catastrophic pro-cyclical feedback loop!"
+            },
+            "hi": {
+              "display": "In massive sell orders ne prices ko aur neeche gira diya, jisse agle wave ke selling triggers activate ho gaye—ek vicious pro-cyclical feedback loop create ho gaya jise exchange systems handle nahi kar paaye!"
+            }
+          },
+          "onScreenIntent": "The 1987 Black Monday Meltdown: The Feedback Loop",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The 1987 Black Monday Meltdown: The Feedback Loop",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The 22.6% Single-Day Collapse: On October 19, 1987, the Dow Jones plummeted 22.6% in the largest single-day crash in history."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "The Pro-Cyclical Feedback Death Loop: Falling prices triggered automated selling, which depressed prices further, triggering more selling."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Calculating Delta & Vega Neutrality",
+      "purpose": "Market Setup: Portfolio Delta Δ = -1,000, Vega ν = -4,000. Traded option Delta_1 = 0.50, Vega_1 = 2.0.",
+      "takeaways": [
+        "Market Setup: Portfolio Delta Δ = -1,000, Vega ν = -4,000. Traded option Delta_1 = 0.50, Vega_1 = 2.0.",
+        "Two-Step Solution: Step 1: Buy w_1 = -(-4,000)/2.0 = +2,000 options. Step 2: Net Delta = -1,000 + 2,000 * 0.50 = 0. Trade 0 shares.",
+        "Core Takeaway: Vega neutralization must precede Delta neutralization because option trades alter both Greeks simultaneously."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Evaluate the portfolio challenge: A book has Delta = -1,000 and Vega = -4,000. Traded option C has Delta = +0.50 and Vega = +2.0. How to make both neutral? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Screen par di gayi quantitative challenge ko evaluate karein: Ek desk ka portfolio net Delta minus one thousand shares aur net Vega minus four thousand hai. Traded call option ka Delta point five zero aur Vega two point zero hai. Pure portfolio ko ek saath Delta-neutral aur Vega-neutral banane ke liye kitne option contracts aur kitne stock shares trade karne honge? Screen par दिए गए ऑप्शन्स पर ध्यान से विचार करके कैलकुलेट कीजिए।"
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Calculating Delta & Vega Neutrality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Solve for option quantity w_1 = -Vega / Vega_traded, then evaluate residual Delta."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Calculating Delta & Vega Neutrality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option A is correct: Buy 2,000 options and zero shares! Purchasing 2,000 contracts neutralizes the -4,000 Vega, and their +1,000 Delta perfectly cancels the -1,000 initial Delta!"
+            },
+            "hi": {
+              "display": "Correct choice Option A hai: Buy two thousand option contracts, and sell zero shares (Delta becomes exactly zero). Vega fix: minus minus four thousand divided by two equals plus two thousand calls. In two thousand calls ka Delta two thousand into point five equals plus one thousand shares add karta hai, jo pehle ke minus one thousand Delta ko exactly cancel karke zero kar deta hai!"
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Calculating Delta & Vega Neutrality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Modern Risk Governance: Volatility Surface Hedging",
+      "purpose": "Surface Multi-Dimensionality: Modern desks manage volatility skew and term structure surfaces, not flat BSM volatility.",
+      "takeaways": [
+        "Surface Multi-Dimensionality: Modern desks manage volatility skew and term structure surfaces, not flat BSM volatility.",
+        "Circuit Breakers & Halts: Regulatory halts prevent automated algorithms from creating pro-cyclical liquidity vacuums.",
+        "Real-Time VaR Stressing: Continuous algorithmic simulation of extreme tail events preserves enterprise solvency."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Following the 1987 crash, regulators and exchanges instituted circuit breakers and stringent capital adequacy rules."
+            },
+            "hi": {
+              "display": "Nineteen-eighty-seven ke crash ke baad global financial regulators aur exchanges ne circuit breakers aur modern risk limits mandate kiye."
+            }
+          },
+          "onScreenIntent": "Modern Risk Governance: Volatility Surface Hedging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Today, quantitative desks manage risk across the complete implied volatility surface, hedging strike skews and term structures simultaneously."
+            },
+            "hi": {
+              "display": "Modern derivatives desks pure implied volatility surface—yaani strike skew aur maturity term structure—ko simultaneously hedge karte hain."
+            }
+          },
+          "onScreenIntent": "Modern Risk Governance: Volatility Surface Hedging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Real-time automated stress engines continuously monitor capital buffers to guarantee institutional solvency during extreme market disruptions."
+            },
+            "hi": {
+              "display": "Automated risk systems real-time stress testing run karte hain taaki kisi bhi sudden liquidity shock par portfolio solvency uncompromised rahe."
+            }
+          },
+          "onScreenIntent": "Modern Risk Governance: Volatility Surface Hedging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Modern Risk Governance: Volatility Surface Hedging",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Surface Multi-Dimensionality: Modern desks manage volatility skew and term structure surfaces, not flat BSM volatility."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Circuit Breakers & Halts: Regulatory halts prevent automated algorithms from creating pro-cyclical liquidity vacuums."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Master Summary: 8 Institutional Rules of Vega, Rho & Portfolio Insurance",
+      "purpose": "Pillar 1: Vega Symmetry & Two-Tier Hedging: European calls and puts share identical Vega; neutralize Vega first using options, then Delta using stock.",
+      "takeaways": [
+        "Pillar 1: Vega Symmetry & Two-Tier Hedging: European calls and puts share identical Vega; neutralize Vega first using options, then Delta using stock.",
+        "Pillar 2: Multi-Option Systems: Simultaneous Gamma and Vega hedging requires solving a 2x2 system across two traded options.",
+        "Pillar 3: 2D Stress Testing & Pro-Cyclicality: Full revaluation scenario matrices reveal gap risk; avoid algorithmic feedback cascades."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the eight foundational institutional rules of Chapter 19 Part 2:"
+            },
+            "hi": {
+              "display": "Aaiye Chapter Nineteen Part Two ke chaar master pillars ko summarize karein:"
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Vega, Rho & Portfolio Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Vega is identical for calls and puts, scaling with square root of time; Rule 2: Traded options are mandatory to hedge Vega."
+            },
+            "hi": {
+              "display": "Pillar One: Vega Symmetry. Vega volatility sensitivity hai; European calls aur puts ka Vega identical hota hai aur long positions mein hamesha strictly positive hota hai."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Vega, Rho & Portfolio Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Two-tier hedging adjusts Vega with options, then restores Delta with shares; Rule 4: 2x2 linear systems solve simultaneous Gamma-Vega neutrality."
+            },
+            "hi": {
+              "display": "Pillar Two: Two-Tier Hedging. Vega ko stock se hedge nahi kiya ja sakta; pehle options se Vega neutralize karein, phir stock se Delta neutralize karein."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Vega, Rho & Portfolio Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Rho measures interest rate sensitivity and dominates long horizons; Rule 6: Synthetic portfolio insurance sells into falling markets."
+            },
+            "hi": {
+              "display": "Pillar Three: Scenario Stress Testing. Marginal Greeks large moves mein fail hote hain; two-dimensional price aur vol matrices extreme risk reveal karti hain."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Vega, Rho & Portfolio Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Pro-cyclical feedback cascades can trigger systemic liquidity failure; Rule 8: 2D scenario matrices are essential to capture non-linear tail risks."
+            },
+            "hi": {
+              "display": "Pillar Four: Dynamic Feedback Risk. Algorithmic synthetic put replication pro-cyclical feedback loops trigger kar sakti hai, jaisa 1987 Black Monday ne prove kiya."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Vega, Rho & Portfolio Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles conclude John Hull's masterclass framework on option sensitivity letters and institutional risk management."
+            },
+            "hi": {
+              "display": "Yeh char pillars John C. Hull ke Chapter Nineteen ki complete institutional understanding ko seal karte hain."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Institutional Rules of Vega, Rho & Portfolio Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Master Summary: 8 Institutional Rules of Vega, Rho & Portfolio Insurance",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

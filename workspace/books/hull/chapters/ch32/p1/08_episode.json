@@ -1,0 +1,1488 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch32",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 32",
+  "partLabel": "Part 1",
+  "title": "Hull Chapter 32 (Part 1): HJM, LIBOR Market Model, and Multiple Zero Curves",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 62,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Curse of the Single State Variable",
+      "purpose": "The Curse of the Single State Variable: Foundational quantitative principles",
+      "takeaways": [
+        "The Curse of the Single State Variable: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Sir, we already mastered fantastic short-rate models like Hull-White. Why did quants need to invent massive whole-curve frameworks like HJM and the LIBOR Market Model? Wasn't the single short rate r enough?"
+            },
+            "hi": {
+              "display": "सर, हमने हल-व्हाइट जैसे बेहतरीन शॉर्ट-रेट मॉडल्स सीख लिए। तो फिर क्वांट्स को 'एच.जे.एम.' और 'लिबोर मार्केट मॉडल' जैसे भारी-भरकम पूरे कर्व के मॉडल्स बनाने की क्या जरूरत पड़ी? क्या अकेला शॉर्ट रेट r काफी नहीं था?"
+            }
+          },
+          "onScreenIntent": "The Curse of the Single State Variable",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Raju, in real financial markets, yield curves never just shift up and down in parallel! Yield curves steepen, flatten, and twist! 2-year yields can surge while 30-year yields plummet!"
+            },
+            "hi": {
+              "display": "राजू, असली बाजार में यील्ड कर्व कभी भी सिर्फ ऊपर या नीचे पैरेलल शिफ्ट नहीं होती! यील्ड कर्व स्टीप होती है, फ्लैट होती है, और ट्विस्ट करती है! 2-साल की यील्ड बढ़ सकती है जबकि 30-साल की यील्ड गिर सकती है!"
+            }
+          },
+          "onScreenIntent": "The Curse of the Single State Variable",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If you model only a single short rate r(t), your model forces all bond yields to move in 100% lockstep. When the curve twists, your hedge disintegrates into catastrophic losses!"
+            },
+            "hi": {
+              "display": "अगर तुम सिर्फ एक शॉर्ट रेट r(t) मानोगे, तो तुम्हारा मॉडल मानेगा कि सभी दरें 100% एक साथ चलती हैं। जब कर्व ट्विस्ट होगी, तो तुम्हारा पूरा हेज बिखर जाएगा और करोड़ों का नुकसान होगा!"
+            }
+          },
+          "onScreenIntent": "The Curse of the Single State Variable",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "That is why in John Hull's 32nd chapter, we master the Heath-Jarrow-Morton (HJM) framework, the LIBOR Market Model (LMM), and the post-2008 Dual-Curve revolution!"
+            },
+            "hi": {
+              "display": "इसीलिए जॉन हल के 32वें चैप्टर में हम हीथ-जैरो-मोर्टन यानी एच.जे.एम., लिबोर मार्केट मॉडल यानी एल.एम.एम., और 2008 के बाद की 'डुअल-कर्व' क्रांति को मास्टर करेंगे!"
+            }
+          },
+          "onScreenIntent": "The Curse of the Single State Variable",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Curse of the Single State Variable",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Curse of the Single State Variable: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "1-Factor Short Rates vs Whole-Curve Models",
+      "purpose": "1-Factor Short Rates vs Whole-Curve Models: Foundational quantitative principles",
+      "takeaways": [
+        "1-Factor Short Rates vs Whole-Curve Models: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Two distinct paradigms govern fixed income modeling: One-Factor Short-Rate Models versus Multi-Factor Whole-Curve Models."
+            },
+            "hi": {
+              "display": "फिक्स्ड इनकम मॉडलिंग में दो बुनियादी दुनियाएं हैं: वन-फैक्टर शॉर्ट-रेट मॉडल्स बनाम मल्टी-फैक्टर होल-कर्व मॉडल्स।"
+            }
+          },
+          "onScreenIntent": "1-Factor Short Rates vs Whole-Curve Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "One-factor models rely on a single scalar state variable r(t). This imposes an artificial 100% correlation across all maturities, making it impossible to capture independent slope and curvature shifts!"
+            },
+            "hi": {
+              "display": "वन-फैक्टर मॉडल्स में सिर्फ एक स्टेट वेरिएबल r(t) होता है। इसके कारण पूरी यील्ड कर्व पर परफेक्ट कोरिलेशन थोप दिया जाता है, जिससे कर्व के स्लोप और कर्वेचर के स्वतंत्र मूवमेंट्स को कैप्चर करना असंभव हो जाता है।"
+            }
+          },
+          "onScreenIntent": "1-Factor Short Rates vs Whole-Curve Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, HJM and LMM evolve the entire continuous forward curve f(t, T) or discrete market tenors simultaneously, faithfully reproducing non-parallel twists and realistic correlation matrices!"
+            },
+            "hi": {
+              "display": "दूसरी तरफ, एच.जे.एम. और एल.एम.एम. मॉडल्स पूरी फॉरवर्ड कर्व f(t, T) या डिस्क्रीट मार्केट रेट्स को एक साथ इवॉल्व करते हैं। वे नॉन-पैरेलल ट्विस्ट्स और वास्तविक क्रॉस-टेनर कोरिलेशन मैट्रिक्स को पूरी तरह रीप्रोड्यूस करते हैं!"
+            }
+          },
+          "onScreenIntent": "1-Factor Short Rates vs Whole-Curve Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "1-Factor Short Rates vs Whole-Curve Models",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "1-Factor Short Rates vs Whole-Curve Models: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of Modern Rate Architecture",
+      "purpose": "Four Pillars of Modern Rate Architecture: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of Modern Rate Architecture: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Advanced modern interest rate architecture rests upon four pillars. The first pillar is the HJM Framework, pioneering the revolution of modeling the continuous forward curve directly."
+            },
+            "hi": {
+              "display": "आधुनिक एडवांस्ड रेट्स आर्किटेक्चर चार मुख्य स्तंभों पर टिका है। पहला पिलर है 'एच.जे.एम. फ्रेमवर्क', जिसने शॉर्ट रेट को छोड़कर पूरी कंटीन्यूअस फॉरवर्ड कर्व को मॉडल करने की क्रांति की।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Modern Rate Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second pillar is the HJM No-Arbitrage Drift Condition, proving that choosing volatility uniquely locks in the no-arbitrage drift—leaving zero arbitrary free parameters!"
+            },
+            "hi": {
+              "display": "दूसरा पिलर है 'एच.जे.एम. नो-आर्बिट्राज ड्रिफ्ट कंडीशन', जिसने साबित किया कि वोलेटिलिटी तय होते ही नो-आर्बिट्राज ड्रिफ्ट पूरी तरह फिक्स हो जाता है—कोई फ्री पैरामीटर नहीं बचता!"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Modern Rate Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The third pillar is the LIBOR Market Model (LMM / BGM), modeling market-observable discrete forward rates directly rather than unobservable continuous abstractions."
+            },
+            "hi": {
+              "display": "तीसरा पिलर है 'लिबोर मार्केट मॉडल यानी एल.एम.एम.', जिसने थ्योरिटिकल कंटीन्यूअस दरों के बजाय सीधे स्क्रीन पर दिखने वाली डिस्क्रीट मार्केट दरों को मॉडल किया।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Modern Rate Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The fourth pillar is the post-2008 Dual-Curve Framework, separating risk-free OIS/SOFR discounting from tenor projection curves as modern Wall Street's operating standard!"
+            },
+            "hi": {
+              "display": "चौथा पिलर है 'पोस्ट-2008 डुअल-कर्व फ्रेमवर्क', जिसने रिस्क-फ्री ओ.आई.एस. और सोफर डिस्काउंटिंग को टेनर प्रोजेक्शन कर्व से अलग करके आधुनिक वॉल स्ट्रीट की नींव रखी!"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Modern Rate Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of Modern Rate Architecture",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of Modern Rate Architecture: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "The HJM Continuous Forward Rate Dynamics",
+      "purpose": "The HJM Continuous Forward Rate Dynamics: Foundational quantitative principles",
+      "takeaways": [
+        "The HJM Continuous Forward Rate Dynamics: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 1992, David Heath, Robert Jarrow, and Andrew Morton published the most celebrated paper in fixed income mathematics. Let us examine the HJM SDE."
+            },
+            "hi": {
+              "display": "1992 में डेविड हीथ, रॉबर्ट जैरो और एंड्रयू मोर्टन ने फिक्स्ड इनकम का सबसे क्रांतिकारी पेपर पब्लिश किया। चलिए एच.जे.एम. का एस.डी.ई. देखते हैं।"
+            }
+          },
+          "onScreenIntent": "The HJM Continuous Forward Rate Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The SDE is: df(t, T) = m(t, T) dt + sum_k v_k(t, T) dz_k(t). Here f(t, T) is the instantaneous forward rate, m is drift, and v is the volatility structure."
+            },
+            "hi": {
+              "display": "समीकरण है: df(t, T) बराबर m(t, T) dt प्लस समेशन v_k(t, T) dz_k(t)। यहां f(t, T) इंस्टेंटेनियस फॉरवर्ड रेट है, m ड्रिफ्ट है, और v वोलेटिलिटी है।"
+            }
+          },
+          "onScreenIntent": "The HJM Continuous Forward Rate Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now observe HJM's crowning theorem: under risk-neutral no-arbitrage, drift m(t, T) strictly equals v(t, T) multiplied by the integral of v(t, u) du!"
+            },
+            "hi": {
+              "display": "अब देखिए एच.जे.एम. का मास्टर थ्योरम: नो-आर्बिट्राज की शर्त के तहत, ड्रिफ्ट m(t, T) पूरी तरह वोलेटिलिटी v(t, T) गुना इंटीग्रल v(t, u) du के बराबर होना अनिवार्य है!"
+            }
+          },
+          "onScreenIntent": "The HJM Continuous Forward Rate Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This proves that quantitative modelers have zero freedom to calibrate drift! Once volatility is specified, no-arbitrage uniquely dictates the drift function!"
+            },
+            "hi": {
+              "display": "इसका अर्थ है कि क्वांट्स को ड्रिफ्ट कैलिब्रेट करने की कोई आजादी नहीं है! एक बार आपने वोलेटिलिटी फंक्शन चुन लिया, तो नो-आर्बिट्राज ड्रिफ्ट अपने आप तय हो जाता है!"
+            }
+          },
+          "onScreenIntent": "The HJM Continuous Forward Rate Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The HJM Continuous Forward Rate Dynamics",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The HJM Continuous Forward Rate Dynamics: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The Path-Dependency Trap: Markovian vs Non-Markovian HJM",
+      "purpose": "The Path-Dependency Trap: Markovian vs Non-Markovian HJM: Foundational quantitative principles",
+      "takeaways": [
+        "The Path-Dependency Trap: Markovian vs Non-Markovian HJM: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But the HJM framework carries one formidable institutional bottleneck: its non-Markovian path-dependency!"
+            },
+            "hi": {
+              "display": "लेकिन एच.जे.एम. मॉडल की एक बहुत बड़ी व्यावहारिक चुनौती है: इसका 'नॉन-मार्कोवियन' होना!"
+            }
+          },
+          "onScreenIntent": "The Path-Dependency Trap: Markovian vs Non-Markovian HJM",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In the general case, short rate r(t) depends not just on current state, but on the entire integrated historical path of the driving Brownian motion!"
+            },
+            "hi": {
+              "display": "सामान्य केस में, समय t पर शॉर्ट रेट r(t) केवल आज की स्थिति पर निर्भर नहीं करता, बल्कि इस बात पर निर्भर करता है कि ब्राउनियन मोशन का पिछला पूरा इतिहास क्या रहा है!"
+            }
+          },
+          "onScreenIntent": "The Path-Dependency Trap: Markovian vs Non-Markovian HJM",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When a process becomes path-dependent, recombining lattice trees cannot exist. Nodal explosion forces desks to rely strictly on multi-factor Monte Carlo simulation!"
+            },
+            "hi": {
+              "display": "जब प्रोसेस पाथ-डिपेंडेंट हो जाता है, तो रिकॉम्बाइनिंग ट्रीज बनाना असंभव हो जाता है। नोड्स आपस में नहीं मिलते, जिससे केवल मोंटे कार्लो सिमुलेशन ही एकमात्र रास्ता बचता है!"
+            }
+          },
+          "onScreenIntent": "The Path-Dependency Trap: Markovian vs Non-Markovian HJM",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Trees are only possible if volatility decays exponentially as sigma * exp(-a(T - t))—which collapses identically back into the Hull-White short-rate model!"
+            },
+            "hi": {
+              "display": "केवल तभी ट्री संभव है जब वोलेटिलिटी एक्सपोनेंशियली डिकेइंग v बराबर सिग्मा ई की पावर माइनस a(T-t) हो—जो ठीक हल-व्हाइट मॉडल बन जाता है!"
+            }
+          },
+          "onScreenIntent": "The Path-Dependency Trap: Markovian vs Non-Markovian HJM",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Path-Dependency Trap: Markovian vs Non-Markovian HJM",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Path-Dependency Trap: Markovian vs Non-Markovian HJM: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "The LIBOR Market Model (LMM / BGM 1997)",
+      "purpose": "The LIBOR Market Model (LMM / BGM 1997): Foundational quantitative principles",
+      "takeaways": [
+        "The LIBOR Market Model (LMM / BGM 1997): Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To overcome HJM's unobservable continuous abstractions, Brace, Gatarek, and Musiela introduced the LIBOR Market Model (LMM / BGM) in 1997."
+            },
+            "hi": {
+              "display": "एच.जे.एम. की थ्योरिटिकल जटिलता को दूर करने के लिए 1997 में ब्रेस, गैटारेक, मुसिएला ने 'लिबोर मार्केट मॉडल' यानी एल.एम.एम. पेश किया।"
+            }
+          },
+          "onScreenIntent": "The LIBOR Market Model (LMM / BGM 1997)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Trading desks wanted to model market-observable discrete 3-month and 6-month forward rates F_k(t) directly, rather than unobservable instantaneous mathematical constructs."
+            },
+            "hi": {
+              "display": "ट्रेडर्स स्क्रीन पर दिखने वाले डिस्क्रीट 3-महीने और 6-महीने के फॉरवर्ड रेट्स F_k(t) को सीधे मॉडल करना चाहते थे, न कि अदृश्य इंस्टेंटेनियस दरों को।"
+            }
+          },
+          "onScreenIntent": "The LIBOR Market Model (LMM / BGM 1997)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The crowning beauty of LMM: under its own forward measure Q^{T_{k+1}}, forward rate F_k(t) is a pure driftless martingale! dF_k / F_k = zeta_k * dz!"
+            },
+            "hi": {
+              "display": "एल.एम.एम. का सबसे खूबसूरत पहलू: अपने खुद के फॉरवर्ड मेज़र Q^{T_k+1} के तहत, फॉरवर्ड रेट F_k(t) एक 'प्योर मार्टिंगेल' होता है जिसका ड्रिफ्ट शून्य होता है! dF_k / F_k बराबर ज़ीटा_k dz!"
+            }
+          },
+          "onScreenIntent": "The LIBOR Market Model (LMM / BGM 1997)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because drift vanishes, every individual market caplet prices identically to Black's 1976 formula! Observable market quotes match the model with machine precision!"
+            },
+            "hi": {
+              "display": "चूंकि ड्रिफ्ट शून्य है, इसलिए बाजार के हर कैपलेट का फॉर्मूला बिल्कुल सटीक ब्लैक-1976 फॉर्मूले में बदल जाता है! बाजार के कोट्स सीधे मॉडल से मैच हो जाते हैं!"
+            }
+          },
+          "onScreenIntent": "The LIBOR Market Model (LMM / BGM 1997)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The LIBOR Market Model (LMM / BGM 1997)",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The LIBOR Market Model (LMM / BGM 1997): Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Multi-Rate Simulation & Girsanov Cross-Tenor Drift",
+      "purpose": "Multi-Rate Simulation & Girsanov Cross-Tenor Drift: Foundational quantitative principles",
+      "takeaways": [
+        "Multi-Rate Simulation & Girsanov Cross-Tenor Drift: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But when pricing swaptions or Bermudans depending on joint sums of multiple forward rates, you cannot simulate each rate under a separate disconnected measure!"
+            },
+            "hi": {
+              "display": "लेकिन अगर आपको एक स्वैपशन या बरमूडन स्वैपशन प्राइस करना है, जो कई अलग-अलग फॉरवर्ड रेट्स के जोड़ पर निर्भर करता है, तो आप हर रेट को उसके अलग मेज़र में सिमुलेट नहीं कर सकते!"
+            }
+          },
+          "onScreenIntent": "Multi-Rate Simulation & Girsanov Cross-Tenor Drift",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "You must simulate all rates simultaneously under a single common measure—such as the terminal measure Q^{T_N}. Girsanov's theorem enforces an analytical cross-tenor drift mu_k!"
+            },
+            "hi": {
+              "display": "आपको पूरी कर्व को एक कॉमन मेज़र—जैसे टर्मिनल मेज़र Q^{T_N}—के तहत सिमुलेट करना पड़ता है। गिरसानोव थ्योरम द्वारा यहां एक 'क्रॉस-टेनर ड्रिफ्ट' म्यू_k पैदा हो जाता है!"
+            }
+          },
+          "onScreenIntent": "Multi-Rate Simulation & Girsanov Cross-Tenor Drift",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The drift formula is: - sum [tau * F * zeta_k * zeta_j * rho_{k, j} / (1 + tau * F)]! This is governed by the full inter-tenor correlation matrix rho_{k, j}."
+            },
+            "hi": {
+              "display": "ड्रिफ्ट फॉर्मूला है: माइनस समेशन ताऊ गुना F गुना ज़ीटा_k ज़ीटा_j रो_k,j अपॉन 1 प्लस ताऊ F! यह कोरिलेशन मैट्रिक्स रो_k,j द्वारा नियंत्रित होता है।"
+            }
+          },
+          "onScreenIntent": "Multi-Rate Simulation & Girsanov Cross-Tenor Drift",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In multi-factor Monte Carlo simulation, this drift adjustment evaluates all swaptions and exotics consistently with the full correlation matrix!"
+            },
+            "hi": {
+              "display": "मोंटे कार्लो सिमुलेशन में यह ड्रिफ्ट एडजस्टमेंट एक साथ सभी स्वैपशन्स और एक्सोटिक्स को पूरे कोरिलेशन स्ट्रक्चर के साथ कंसिस्टेंटली प्राइस करता है!"
+            }
+          },
+          "onScreenIntent": "Multi-Rate Simulation & Girsanov Cross-Tenor Drift",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Multi-Rate Simulation & Girsanov Cross-Tenor Drift",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Multi-Rate Simulation & Girsanov Cross-Tenor Drift: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "The 2008 Crisis & The Fall of the Single-Curve World",
+      "purpose": "The 2008 Crisis & The Fall of the Single-Curve World: Foundational quantitative principles",
+      "takeaways": [
+        "The 2008 Crisis & The Fall of the Single-Curve World: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now observe the greatest paradigm shift in modern quantitative finance: the 2008 financial crisis and the birth of the Dual-Curve Framework!"
+            },
+            "hi": {
+              "display": "अब देखिए आधुनिक क्वांट फाइनेंस की सबसे बड़ी क्रांति: 2008 का फाइनेंशियल क्राइसिस और 'डुअल-कर्व फ्रेमवर्क' का उदय!"
+            }
+          },
+          "onScreenIntent": "The 2008 Crisis & The Fall of the Single-Curve World",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Before 2008, global finance assumed LIBOR was completely risk-free. A single LIBOR curve projected forwards and discounted cash flows—the Single-Curve World."
+            },
+            "hi": {
+              "display": "2008 से पहले, पूरी दुनिया मानती थी कि लिबोर ही रिस्क-फ्री रेट है। उसी लिबोर कर्व से फॉरवर्ड रेट्स निकाले जाते थे और उसी से डिस्काउंट किया जाता था—यह 'सिंगल-कर्व वर्ल्ड' था।"
+            }
+          },
+          "onScreenIntent": "The 2008 Crisis & The Fall of the Single-Curve World",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But after Lehman Brothers collapsed, interbank trust shattered! The LIBOR-OIS spread blew out from 10 bps to over 350 bps! The single-curve paradigm died permanently!"
+            },
+            "hi": {
+              "display": "लेकिन लेहमैन ब्रदर्स के पतन के बाद बैंकों का एक-दूसरे पर भरोसा टूट गया! लिबोर और रिस्क-फ्री ओ.आई.एस. के बीच का स्प्रेड 10 बेसिस पॉइंट्स से बढ़कर 350 बेसिस पॉइंट्स हो गया! सिंगल-कर्व मॉडल हमेशा के लिए मर गया!"
+            }
+          },
+          "onScreenIntent": "The 2008 Crisis & The Fall of the Single-Curve World",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The 2008 Crisis & The Fall of the Single-Curve World",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The 2008 Crisis & The Fall of the Single-Curve World: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Active Recall: HJM No-Arbitrage Drift Calculation",
+      "purpose": "Active Recall: HJM No-Arbitrage Drift Calculation: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: HJM No-Arbitrage Drift Calculation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your quantitative mastery! In a one-factor HJM model, instantaneous forward volatility is constant at v = 1.0% = 0.010. For a 5-year forward rate (T - t = 5), what is the no-arbitrage drift m(t, T)?"
+            },
+            "hi": {
+              "display": "चलिए आपकी क्वांटिटेटिव दक्षता का परीक्षण करते हैं! एक वन-फैक्टर एच.जे.एम. मॉडल में फॉरवर्ड रेट वोलेटिलिटी स्थिर v बराबर 1.0% यानी 0.010 है। 5-साल के फॉरवर्ड रेट के लिए नो-आर्बिट्राज ड्रिफ्ट m(t, T) क्या होगा?"
+            }
+          },
+          "onScreenIntent": "Active Recall: HJM No-Arbitrage Drift Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Take a moment to carefully analyze this mathematical concept and derivation."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: HJM No-Arbitrage Drift Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A: 0.05% or 5 basis points per year! Using m = v^2 * (T - t) = (0.010)^2 * 5 = 0.0001 * 5 = 0.0005 = 0.05% annual drift!"
+            },
+            "hi": {
+              "display": "सही उत्तर है ऑप्शन ए: 0.05% यानी 5 बेसिस पॉइंट्स प्रति वर्ष! v गुना v गुना T माइनस t—यानी 0.010 का स्क्वायर गुना 5 बराबर 0.0005, जो कि 0.05% बनता है!"
+            }
+          },
+          "onScreenIntent": "Active Recall: HJM No-Arbitrage Drift Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Institutional Reality: The Dual-Curve Transformation of Fixed Income Desks",
+      "purpose": "Institutional Reality: The Dual-Curve Transformation of Fixed Income Desks: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Reality: The Dual-Curve Transformation of Fixed Income Desks: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John C. Hull emphasizes: 'Post-2008, discounting any collateralized derivative at uncollateralized LIBOR represents an unacceptable pricing error.'"
+            },
+            "hi": {
+              "display": "जॉन हल का स्पष्ट संदेश है: '2008 के बाद किसी भी डेरिवेटिव को अनकोलैटरलाइज्ड लिबोर पर डिस्काउंट करना एक गंभीर और अस्वीकार्य गलती है।'"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The Dual-Curve Transformation of Fixed Income Desks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Today, standard CSA agreements post daily cash collateral earning OIS or SOFR interest. Therefore, the only legitimate discounting curve is the collateralized SOFR/OIS curve!"
+            },
+            "hi": {
+              "display": "आज सभी स्टैंडर्ड सी.एस.ए. कॉन्ट्रैक्ट्स में रोजाना कैश कोलैटरल दिया जाता है, जिसपर ओ.आई.एस. या सोफर ब्याज मिलता है। इसलिए सही डिस्काउंटिंग कर्व केवल और केवल सोफर या ओ.आई.एस. ही है!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The Dual-Curve Transformation of Fixed Income Desks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Cash flows are projected from tenor curves but discounted at SOFR—this is modern Wall Street's inviolable dual-curve mandate!"
+            },
+            "hi": {
+              "display": "फॉरवर्ड कैश फ्लो को उसके संबंधित टेनर कर्व से प्रोजेक्ट किया जाता है, लेकिन डिस्काउंट सोफर से किया जाता है—यही मॉडर्न वॉल स्ट्रीट का निर्विवाद नियम है!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The Dual-Curve Transformation of Fixed Income Desks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Summary: 8 Institutional Rules of Modern Interest Rate Architecture",
+      "purpose": "Summary: 8 Institutional Rules of Modern Interest Rate Architecture: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Modern Interest Rate Architecture: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: HJM evolves the entire continuous forward rate curve f(t, T) simultaneously. Rule 2: Under no-arbitrage, HJM drift m(t, T) is uniquely determined by its volatility functions."
+            },
+            "hi": {
+              "display": "नियम एक: एच.जे.एम. मॉडल पूरी कंटीन्यूअस फॉरवर्ड रेट कर्व f(t, T) को एक साथ इवॉल्व करता है। नियम दो: नो-आर्बिट्राज के तहत एच.जे.एम. ड्रिफ्ट m(t, T) पूरी तरह वोलेटिलिटी फंक्शन से तय होता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Modern Interest Rate Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: General HJM models are non-Markovian and path-dependent, requiring Monte Carlo simulation. Rule 4: Exponentially decaying volatility collapses HJM back into Hull-White."
+            },
+            "hi": {
+              "display": "नियम तीन: सामान्य एच.जे.एम. मॉडल्स नॉन-मार्कोवियन और पाथ-डिपेंडेंट होते हैं, जिन्हें सिमुलेट करने के लिए मोंटे कार्लो अनिवार्य है। नियम चार: जब वोलेटिलिटी एक्सपोनेंशियली डिके होती है, तो एच.जे.एम. वापस हल-व्हाइट मॉडल में बदल जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Modern Interest Rate Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: LMM models observable discrete market forward rates F_k(t). Rule 6: Under its forward measure, each rate is a driftless martingale, matching Black-76 caplets identically."
+            },
+            "hi": {
+              "display": "नियम पांच: लिबोर मार्केट मॉडल यानी एल.एम.एम. स्क्रीन पर दिखने वाले डिस्क्रीट फॉरवर्ड रेट्स F_k(t) को मॉडल करता है। नियम छह: अपने खुद के फॉरवर्ड मेज़र में हर फॉरवर्ड रेट एक ड्रिफ्टलेस मार्टिंगेल होता है, जो ब्लैक कैपलेट्स को परफेक्ट मैच करता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Modern Interest Rate Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Simulating under a common measure requires Girsanov cross-tenor drift corrections. Rule 8: Post-2008 dual-curve mandates SOFR/OIS discounting with tenor-specific projection!"
+            },
+            "hi": {
+              "display": "नियम सात: टर्मिनल मेज़र में सभी दरों को सिमुलेट करने के लिए गिरसानोव क्रॉस-टेनर ड्रिफ्ट लगाना पड़ता है जो कोरिलेशन मैट्रिक्स पर निर्भर करता है। नियम आठ: 2008 के बाद डिस्काउंटिंग को हमेशा कोलैटरलाइज्ड ओ.आई.एस. या सोफर पर किया जाता है, जबकि कैश फ्लो टेनर कर्व से प्रोजेक्ट होते हैं!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Modern Interest Rate Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight rules represent the pinnacle of modern quantitative fixed income engineering deployed across Tier-1 banks and hedge funds."
+            },
+            "hi": {
+              "display": "ये आठ बुनियादी नियम मॉडर्न क्वांटिटेटिव फिक्स्ड इनकम के सबसे ऊंचे शिखर हैं जिन्हें दुनिया के सबसे बड़े हेज फंड्स और इन्वेस्टमेंट बैंक्स फॉलो करते हैं।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Modern Interest Rate Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "You now command the master quantitative blueprint of whole-curve dynamics and dual-curve financial architecture!"
+            },
+            "hi": {
+              "display": "अब आपके पास पूरी यील्ड कर्व मॉडलिंग और डुअल-कर्व आर्किटेक्चर का मास्टर क्वांट ब्लूप्रिंट है!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Modern Interest Rate Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Modern Interest Rate Architecture",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Closing Wisdom: From Short Rates to Modern Market Standards",
+      "purpose": "Closing Wisdom: From Short Rates to Modern Market Standards: Foundational quantitative principles",
+      "takeaways": [
+        "Closing Wisdom: From Short Rates to Modern Market Standards: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Thank you so much, Sir! Today I truly grasp why single-curve models collapsed, and how HJM, LMM, and SOFR discounting rebuilt modern quantitative finance post-2008!"
+            },
+            "hi": {
+              "display": "बहुत-बहुत धन्यवाद सर! आज मुझे समझ आ गया कि वॉल स्ट्रीट पर सिंगल-कर्व मॉडल्स क्यों फेल हुए और कैसे एच.जे.एम., एल.एम.एम. और सोफर डिस्काउंटिंग ने 2008 के बाद आधुनिक फाइनेंस को नया जीवन दिया!"
+            }
+          },
+          "onScreenIntent": "Closing Wisdom: From Short Rates to Modern Market Standards",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Excellent Raju! In the next chapter, we revisit swaps and discover how the post-LIBOR transition, SOFR, and collateralization permanently transformed financial engineering!"
+            },
+            "hi": {
+              "display": "शाबाश राजू! अगले अध्याय में हम स्वैप्स को दोबारा विजिट करेंगे और देखेंगे कि कैसे पोस्ट-लिबोर वर्ल्ड में सोफर और कोलैटरलाइजेशन ने वित्तीय इंजीनियरिंग को हमेशा के लिए बदल दिया!"
+            }
+          },
+          "onScreenIntent": "Closing Wisdom: From Short Rates to Modern Market Standards",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Closing Wisdom: From Short Rates to Modern Market Standards",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

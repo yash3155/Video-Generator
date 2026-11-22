@@ -591,7 +591,7 @@ async function compileLanguage(ctx: PartContext, ep: Episode, lang: string): Pro
   const jobs = scenes.flatMap((s) => s.beats.map((b) => ({ s, b })));
   const metas = new Map<string, BeatAudioMeta>();
   let next = 0;
-  const workers = Array.from({ length: Math.min(3, jobs.length) }, async () => {
+  const workers = Array.from({ length: Math.min(2, jobs.length) }, async () => {
     while (next < jobs.length) {
       const { b } = jobs[next++];
       const n = b.narration[lang];

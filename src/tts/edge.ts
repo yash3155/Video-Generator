@@ -38,7 +38,7 @@ export class EdgeTts implements TtsProvider {
     const proxy = process.env.HTTPS_PROXY || process.env.https_proxy || process.env.HTTP_PROXY || process.env.http_proxy || undefined;
     const { audio, words } = await withRetries(
       async () => {
-        const client = await this.factory({ voice: req.voice, lang: voiceLocale(req.voice, req.lang), rate: req.rate || "+0%", proxy, timeout: this.opts.timeoutMs ?? 30000 });
+        const client = await this.factory({ voice: req.voice, lang: voiceLocale(req.voice, req.lang), rate: req.rate || "+0%", proxy, timeout: this.opts.timeoutMs ?? 60000 });
         const chunks: Buffer[] = [];
         const ws: WordBoundary[] = [];
         for await (const x of client.streamAudio(req.text)) {
@@ -49,8 +49,8 @@ export class EdgeTts implements TtsProvider {
         if (audio.length < 1000) throw new Error(`Edge TTS returned no audio for voice ${req.voice}`);
         return { audio, words: ws };
       },
-      this.opts.attempts ?? 6,
-      this.opts.backoffMs ?? 1000,
+      this.opts.attempts ?? 8,
+      this.opts.backoffMs ?? 2000,
     );
     fs.mkdirSync(path.dirname(audioPath), { recursive: true });
     fs.writeFileSync(audioPath, audio);

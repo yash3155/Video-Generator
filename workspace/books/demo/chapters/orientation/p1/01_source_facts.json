@@ -1,0 +1,300 @@
+{
+  "bookId": "demo",
+  "chapterId": "orientation",
+  "partId": "p1",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "definition",
+      "statement": "Interest is the price a borrower pays for using someone else's money for a period of time.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.1",
+        "page": "1"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "definition",
+      "statement": "The principal is the starting amount of money lent, deposited, or invested.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.1",
+        "page": "1"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "definition",
+      "statement": "Compound interest adds each period's interest to the balance so that interest starts earning interest on itself.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.3",
+        "page": "3"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "formula",
+      "statement": "Compound interest balance formula: A = P(1 + r)^t, where interest is added once per year.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.3",
+        "page": "3"
+      },
+      "formula": {
+        "latex": "A = P(1 + r)^{t}",
+        "expression": "P * (1 + r)^t",
+        "solvesFor": "A",
+        "variables": [
+          {
+            "symbol": "A",
+            "meaning": "future balance after t years",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "P",
+            "meaning": "starting principal",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "r",
+            "meaning": "annual interest rate as a decimal",
+            "unit": "per year"
+          },
+          {
+            "symbol": "t",
+            "meaning": "number of years",
+            "unit": "years"
+          }
+        ]
+      }
+    },
+    {
+      "id": "F05",
+      "category": "numerical_example",
+      "statement": "A 1,000 dollar deposit at 5% annual interest for 3 years compounds to 1,157.63 dollars.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.4",
+        "page": "4"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "P",
+            "label": "principal",
+            "value": 1000,
+            "unit": "dollars"
+          },
+          {
+            "symbol": "r",
+            "label": "annual interest rate",
+            "value": 0.05,
+            "unit": "per year"
+          },
+          {
+            "symbol": "t",
+            "label": "years",
+            "value": 3,
+            "unit": "years"
+          }
+        ],
+        "steps": [
+          {
+            "label": "year 1 balance",
+            "expr": "P * (1 + r)",
+            "value": 1050
+          },
+          {
+            "label": "year 2 balance",
+            "expr": "P * (1 + r)^2",
+            "value": 1102.5
+          },
+          {
+            "label": "year 3 balance",
+            "expr": "P * (1 + r)^3",
+            "value": 1157.63
+          }
+        ],
+        "result": {
+          "symbol": "A",
+          "label": "final balance after 3 years",
+          "value": 1157.63,
+          "unit": "dollars"
+        },
+        "rounding": 2
+      }
+    },
+    {
+      "id": "F06",
+      "category": "definition",
+      "statement": "APR is the yearly rate before compounding within the year, while APY is the actual annual yield earned once compounding is included.",
+      "citation": {
+        "chapter": "2",
+        "section": "2.1",
+        "page": "7"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "rule",
+      "statement": "Rule of 72: the approximate years to double your money is 72 divided by the annual percentage rate.",
+      "citation": {
+        "chapter": "2",
+        "section": "2.3",
+        "page": "9"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "definition",
+      "statement": "Inflation is a general rise in prices over time, which decreases the purchasing power of money.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.1",
+        "page": "11"
+      }
+    },
+    {
+      "id": "F09",
+      "category": "definition",
+      "statement": "The nominal return is the raw cash percentage growth, while the real return measures the growth in purchasing power.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.3",
+        "page": "13"
+      }
+    },
+    {
+      "id": "F10",
+      "category": "rule",
+      "statement": "The real return roughly equals the nominal interest rate minus the inflation rate.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.3",
+        "page": "13"
+      }
+    },
+    {
+      "id": "F11",
+      "category": "misconception",
+      "statement": "Keeping cash in a bank account does not guarantee wealth growth if the inflation rate exceeds the interest rate earned.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.4",
+        "page": "14"
+      }
+    },
+    {
+      "id": "F12",
+      "category": "historical_event",
+      "statement": "Benjamin Franklin left 1,000 pounds each to Boston and Philadelphia in 1790 to demonstrate the two-century power of compounding loans.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.5",
+        "page": "5"
+      }
+    },
+    {
+      "id": "F13",
+      "category": "claim",
+      "statement": "Compounding is powerful only when money stays invested continuously at the assumed rate without sitting idle.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.5",
+        "page": "5"
+      }
+    }
+  ],
+  "realWorldProblem": {
+    "actors": "A saver evaluating bank accounts and an everyday borrower managing debt",
+    "situation": "A beginner assumes nominal dollar numbers reflect real wealth and that all quoted rates can be directly compared",
+    "failure": "They ignore compounding frequency and inflation, finding their purchasing power shrinking and debt growing faster than expected",
+    "invention": "The principles of compound interest, APY, Rule of 72, and real returns",
+    "factIds": [
+      "F03",
+      "F06",
+      "F08",
+      "F11"
+    ]
+  },
+  "terms": [
+    {
+      "term": "interest",
+      "definition": "the price paid for using someone else's money for a time",
+      "factId": "F01"
+    },
+    {
+      "term": "principal",
+      "definition": "the starting amount lent, deposited, or invested",
+      "factId": "F02"
+    },
+    {
+      "term": "compound interest",
+      "definition": "interest added to the balance so that interest earns interest",
+      "factId": "F03"
+    },
+    {
+      "term": "APR",
+      "definition": "annual percentage rate before internal compounding",
+      "factId": "F06"
+    },
+    {
+      "term": "APY",
+      "definition": "annual percentage yield including compounding",
+      "factId": "F06"
+    },
+    {
+      "term": "Rule of 72",
+      "definition": "mental shortcut estimating doubling time by dividing 72 by the percentage rate",
+      "factId": "F07"
+    },
+    {
+      "term": "inflation",
+      "definition": "general rise in prices over time",
+      "factId": "F08"
+    },
+    {
+      "term": "purchasing power",
+      "definition": "the quantity of goods and services money can buy",
+      "factId": "F08"
+    },
+    {
+      "term": "nominal return",
+      "definition": "percentage growth of a dollar balance",
+      "factId": "F09"
+    },
+    {
+      "term": "real return",
+      "definition": "percentage growth of what the money can buy after inflation",
+      "factId": "F09"
+    }
+  ],
+  "dependencies": {
+    "earlier": [],
+    "later": [
+      "ch01",
+      "ch02",
+      "ch03"
+    ]
+  },
+  "quotes": [
+    {
+      "text": "Interest starts earning interest.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.3",
+        "page": "3"
+      }
+    },
+    {
+      "text": "Compounding is powerful, but only for money that is actually invested at the assumed rate, year after year.",
+      "citation": {
+        "chapter": "1",
+        "section": "1.5",
+        "page": "5"
+      }
+    }
+  ]
+}

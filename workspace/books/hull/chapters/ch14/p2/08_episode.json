@@ -1,0 +1,1743 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch14",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 14",
+  "partLabel": "Part 2",
+  "title": "Wiener Processes & Ito's Lemma - Part 2: Ito's Lemma & Geometric Brownian Motion",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 2,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Non-Linear Transformation Barrier: Why Taylor Series Break",
+      "purpose": "In ordinary calculus, chain rule says dG = G'(x) dx because higher-order (dx)^2 terms vanish",
+      "takeaways": [
+        "In ordinary calculus, chain rule says dG = G'(x) dx because higher-order (dx)^2 terms vanish",
+        "For stochastic processes, (dx)^2 contains (dz)^2 = dt, which is first-order and CANNOT be dropped",
+        "Kiyoshi Itô solved this in 1951 by establishing the fundamental lemma of stochastic calculus"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In classical calculus, if you have a function y = f(x), the differential dy is simply the derivative times dx via the chain rule."
+            },
+            "hi": {
+              "display": "Classical calculus mein agar aapke paas koi function y equals f of x hai, toh differential dy simple chain rule se derivative times dx ban jata hai."
+            }
+          },
+          "onScreenIntent": "Introduce the challenge of taking functions of random variables",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Non-linear transformation barrier"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, when the variable x follows a stochastic Wiener process, the standard chain rule fails completely."
+            },
+            "hi": {
+              "display": "Lekin jab variable x ek stochastic Wiener process follow karta hai, toh standard chain rule completely fail ho jata hai."
+            }
+          },
+          "onScreenIntent": "Recall ordinary Taylor series: dG = (dG/dx)dx + (1/2)(d^2G/dx^2)(dx)^2",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Taylor series expansion"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because (dz)^2 = dt, squaring delta x does not vanish, but injects a non-zero drift proportional to time dt."
+            },
+            "hi": {
+              "display": "Kyunki delta z square equals dt hota hai, delta x ka square second-order hokar bhi vanish nahi hota, balki time dt ke proportion mein ek non-zero drift introduce karta hai."
+            }
+          },
+          "onScreenIntent": "Reveal the shock: (dx)^2 equals b^2 dt, which is NOT negligible",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Non-vanishing quadratic term"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 14 Part 2, we derive Kiyosi Itô's revolutionary Lemma and master Geometric Brownian Motion for stock prices."
+            },
+            "hi": {
+              "display": "Chapter Fourteen Part Two mein hum Kiyosi Itô ke revolutionary Lemma ko derive karenge aur stock prices ke Geometric Brownian Motion ko master karenge."
+            }
+          },
+          "onScreenIntent": "Introduce Kiyoshi Ito's breakthrough formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Itô's Lemma"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Non-Linear Transformation Barrier: Why Taylor Series Break",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "In ordinary calculus, chain rule says dG = G'(x) dx because higher-order (dx)^2 terms vanish"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "For stochastic processes, (dx)^2 contains (dz)^2 = dt, which is first-order and CANNOT be dropped"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Taylor Expansion in Stochastic Worlds: Why (dx)^2 Does Not Vanish",
+      "purpose": "Expanding (dx)^2 yields a^2(dt)^2 + 2ab(dt)(dz) + b^2(dz)^2",
+      "takeaways": [
+        "Expanding (dx)^2 yields a^2(dt)^2 + 2ab(dt)(dz) + b^2(dz)^2",
+        "Terms (dt)^2 and (dt)(dz) are of order dt^2 and dt^(1.5), which vanish in the continuous limit",
+        "Term (dz)^2 = dt is exactly of order dt, proving the second-order derivative term survives"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's see mathematically via Taylor series expansion why second-order terms are retained in a stochastic world."
+            },
+            "hi": {
+              "display": "Aaiye Taylor series expansion ke zariye mathematically dekhte hain ki stochastic world mein second-order term kyu retain hota hai."
+            }
+          },
+          "onScreenIntent": "Set up the algebraic expansion of (dx)^2",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Quadratic expansion"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The multi-variable Taylor expansion of G(x, t) gives first-derivative terms plus half the second derivative times (Δx)^2 plus higher order terms."
+            },
+            "hi": {
+              "display": "Function G of x and t ka multi-variable Taylor expansion delta G deta hai: first derivative terms plus half second derivative times delta x square plus higher order terms."
+            }
+          },
+          "onScreenIntent": "Evaluate the order of each term: dt^2, dt^1.5, and (dz)^2",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Order analysis"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In classical math, (Δx)^2 scales with (Δt)^2, which vanishes. But in an Itô process, Δx contains b*ε*sqrt(Δt)."
+            },
+            "hi": {
+              "display": "Classical math mein delta x square time square ke barabar hota hai, jo zero ban jata hai. Lekin stochastic process mein delta x mein b epsilon square root delta t term hota hai."
+            }
+          },
+          "onScreenIntent": "Establish (dz)^2 = dt as a deterministic law in continuous time",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Deterministic limit of (dz)^2"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When squared, this becomes b^2 * dt. This term is of exact first-order in dt, making it impossible to discard."
+            },
+            "hi": {
+              "display": "Jab hum isko square karte hain, toh b square times dt banta hai. Ye term exactly first order dt ka hai, isliye isko ignore karna mathematically impossible hai."
+            }
+          },
+          "onScreenIntent": "Summarize the 3-rule stochastic multiplication table",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Stochastic multiplication table"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Taylor Expansion in Stochastic Worlds: Why (dx)^2 Does Not Vanish",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Expanding (dx)^2 yields a^2(dt)^2 + 2ab(dt)(dz) + b^2(dz)^2"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Terms (dt)^2 and (dt)(dz) are of order dt^2 and dt^(1.5), which vanish in the continuous limit"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Itô's Lemma: The Fundamental Stochastic Chain Rule",
+      "purpose": "If dx = a dt + b dz, then dG = [(dG/dx)*a + dG/dt + 0.5*(d^2G/dx^2)*b^2] dt + (dG/dx)*b dz",
+      "takeaways": [
+        "If dx = a dt + b dz, then dG = [(dG/dx)*a + dG/dt + 0.5*(d^2G/dx^2)*b^2] dt + (dG/dx)*b dz",
+        "The drift of G includes an extra convexity adjustment: 0.5 * (d^2G/dx^2) * b^2",
+        "The diffusion of G scales proportionally with delta: (dG/dx) * b"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's unpack the complete mathematical formulation of Itô's Lemma according to John Hull's Section 14.5."
+            },
+            "hi": {
+              "display": "Aaiye ab John Hull ke Section fourteen point five ke mutabiq Itô's Lemma ke complete mathematical formulation ko unpack karte hain."
+            }
+          },
+          "onScreenIntent": "State the master formula of Itô's Lemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Master Itô equation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If variable x follows dx = a*dt + b*dz, then the differential dG of function G(x, t) becomes a new Itô process."
+            },
+            "hi": {
+              "display": "Agar variable x process dx equals a dt plus b dz follow karta hai, toh function G of x and t ka differential dG ek naya Itô process ban jata hai."
+            }
+          },
+          "onScreenIntent": "Dissect the drift terms: underlying drift, theta time decay, and convexity boost",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Drift dissection",
+            "Convexity boost"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The new drift comprises three terms: directional drift (∂G/∂x)a, time decay ∂G/∂t, and half the second derivative times b^2."
+            },
+            "hi": {
+              "display": "Is naye process ka drift teen cheezon se milkar banta hai: directional drift del G by del x times a, pure time decay del G by del t, aur half second derivative times b square."
+            }
+          },
+          "onScreenIntent": "Dissect the diffusion term: Delta times underlying volatility b",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Transformed diffusion"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And the stochastic noise term simply becomes (∂G/∂x)b*dz. This equation is the most powerful tool in modern quantitative finance."
+            },
+            "hi": {
+              "display": "Aur stochastic noise term seedha del G by del x times b dz ban jata hai. Ye equation modern quantitative finance ki sabse powerful equation hai."
+            }
+          },
+          "onScreenIntent": "Emphasize why this equation is the engine of all option pricing models",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [
+            "Quantitative pricing engine"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Itô's Lemma: The Fundamental Stochastic Chain Rule",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "If dx = a dt + b dz, then dG = [(dG/dx)*a + dG/dt + 0.5*(d^2G/dx^2)*b^2] dt + (dG/dx)*b dz"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "The drift of G includes an extra convexity adjustment: 0.5 * (d^2G/dx^2) * b^2"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Convexity Drift: Jensen's Inequality in Continuous Time",
+      "purpose": "Jensen's inequality proves that for any convex function G, E[G(x)] > G(E[x])",
+      "takeaways": [
+        "Jensen's inequality proves that for any convex function G, E[G(x)] > G(E[x])",
+        "Because call options have positive gamma (convex payoff), random fluctuations generate positive expected profit",
+        "The Itô term (1/2)*G''*b^2 is the exact continuous-time realization of Jensen's inequality"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "What does this term (1/2)(∂^2G/∂x^2)b^2 in Itô's Lemma physically represent? It is called Convexity Drift."
+            },
+            "hi": {
+              "display": "Itô's Lemma ka ye term half del two G by del x square times b square aakhir physical world mein kya represent karta hai? Isko Convexity Drift kehte hain."
+            }
+          },
+          "onScreenIntent": "Introduce the economic intuition behind the second derivative term",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Convexity intuition"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When a function is convex—having a positive second derivative like an option payoff—market volatility automatically boosts its expected value."
+            },
+            "hi": {
+              "display": "Jab koi function convex hota hai—yaani uska second derivative positive ho, jaise ki options ka payoff—toh market volatility automatically us function ki expected value ko boost karti hai."
+            }
+          },
+          "onScreenIntent": "Connect the Itô term to Jensen's inequality: E[f(x)] > f(E[x])",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Jensen's inequality"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This is the continuous-time manifestation of Jensen's Inequality: E[G(x)] is strictly greater than G(E[x])."
+            },
+            "hi": {
+              "display": "Ye continuous time mein Jensen's Inequality ka manifestation hai: E of G of x strictly bada hota hai G of E of x se."
+            }
+          },
+          "onScreenIntent": "Show why option owners benefit from volatility: asymmetry in payoff slopes",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Gamma profit asymmetry"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, when a function is concave, like natural log of S, curvature is negative and volatility creates a permanent geometric drag."
+            },
+            "hi": {
+              "display": "Lekin jab function concave hota hai, jaise ki natural log of S, toh curvature negative hota hai aur volatility ek permanent geometric drag create karti hai."
+            }
+          },
+          "onScreenIntent": "Summarize: Itô's Lemma quantifies the exact value of option convexity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Quantified convexity value"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Linear Asset (G'' = 0)",
+          "tone": "neutral",
+          "points": [
+            "Jensen's inequality proves that for any convex function G, E[G(x)] > G(E[x])",
+            "Because call options have positive gamma (convex payoff), random fluctuations generate positive expected profit"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Convex Option (G'' > 0)",
+          "tone": "positive",
+          "points": [
+            "Because call options have positive gamma (convex payoff), random fluctuations generate positive expected profit",
+            "The Itô term (1/2)*G''*b^2 is the exact continuous-time realization of Jensen's inequality"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Jensen's inequality proves that for any convex function G, E[G(x)] > G(E[x])"
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Geometric Brownian Motion (GBM): The Proportional Law",
+      "purpose": "Under Geometric Brownian Motion, percentage return dS/S has expected drift mu and volatility sigma",
+      "takeaways": [
+        "Under Geometric Brownian Motion, percentage return dS/S has expected drift mu and volatility sigma",
+        "The drift a(S, t) = mu * S and diffusion b(S, t) = sigma * S are proportional to the stock price",
+        "Prices can never become negative, honoring limited liability of equity stockholders"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we arrive at the most celebrated model in quantitative finance: Geometric Brownian Motion, or GBM."
+            },
+            "hi": {
+              "display": "Ab aate hain quantitative finance ke sabse celebrated model par: Geometric Brownian Motion yaani GBM."
+            }
+          },
+          "onScreenIntent": "Formulate the Geometric Brownian Motion stochastic differential equation",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "GBM equation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To prevent negative prices, John Hull formulates: dS/S = μ*dt + σ*dz, or dS = μ*S*dt + σ*S*dz."
+            },
+            "hi": {
+              "display": "Stock prices ko negative hone se bachane ke liye John Hull formulates: dS divided by S equals mu dt plus sigma dz, yaani dS equals mu S dt plus sigma S dz."
+            }
+          },
+          "onScreenIntent": "Identify drift parameter a(S) = mu * S and diffusion parameter b(S) = sigma * S",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Proportional parameters"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice that both drift and volatility scale proportionally with the stock price S."
+            },
+            "hi": {
+              "display": "Notice kijiye ki yahan drift aur volatility dono stock price S ke proportion mein scale hote hain."
+            }
+          },
+          "onScreenIntent": "Explain why GBM preserves scale invariance across cheap and expensive stocks",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Scale invariance"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This means percentage returns are scale-invariant to stock price levels, reflecting the exact empirical reality of equity markets."
+            },
+            "hi": {
+              "display": "Iska matlab hai ki percentage returns stock price ke level se independent hote hain, jo real world stock markets ki exact empirical reality hai."
+            }
+          },
+          "onScreenIntent": "Show why zero is an absorbing boundary that prevents negative prices",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Absorbing zero boundary"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Geometric Brownian Motion (GBM): The Proportional Law",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Under Geometric Brownian Motion, percentage return dS/S has expected drift mu and volatility sigma"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "The drift a(S, t) = mu * S and diffusion b(S, t) = sigma * S are proportional to the stock price"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Applying Itô's Lemma to G = ln S: The Volatility Drag",
+      "purpose": "For G(S) = ln S: first derivative G' = 1/S, second derivative G'' = -1/S^2 (concave)",
+      "takeaways": [
+        "For G(S) = ln S: first derivative G' = 1/S, second derivative G'' = -1/S^2 (concave)",
+        "Because G'' is negative, the Itô term subtracts drift: 0.5 * (-1/S^2) * (sigma * S)^2 = -0.5 * sigma^2",
+        "The stochastic differential for log-price is d(ln S) = (mu - 0.5 * sigma^2) dt + sigma dz"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's apply Itô's Lemma to function G = ln S, one of the most celebrated derivations in finance."
+            },
+            "hi": {
+              "display": "Aaiye ab Itô's Lemma ko function G equals natural log of S par apply karte hain, jo finance ka sabse celebrated derivation hai."
+            }
+          },
+          "onScreenIntent": "Introduce the log transformation G(S) = ln S",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Log transformation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The first derivative of ln S is 1/S, and the second derivative is -1/S^2. The temporal derivative is zero."
+            },
+            "hi": {
+              "display": "Natural log of S ka first derivative one by S hota hai, aur second derivative minus one by S square hota hai. Temporal derivative zero hai."
+            }
+          },
+          "onScreenIntent": "Calculate derivatives: G' = 1/S, G'' = -1/S^2",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Log derivatives"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Substituting into Itô's Lemma: (1/S)(μS) becomes μ, and (1/2)(-1/S^2)(σ^2 S^2) becomes exactly -σ^2/2."
+            },
+            "hi": {
+              "display": "Itô's Lemma mein substitute karne par: one by S times mu S mu ban jata hai, aur half times minus one by S square times sigma square S square exactly minus sigma square by two ban jata hai."
+            }
+          },
+          "onScreenIntent": "Substitute into Itô's formula to produce the -0.5*sigma^2 term",
+          "sourceFactIds": [
+            "F03",
+            "F04"
+          ],
+          "newTerms": [
+            "Volatility drag term"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The result: d(ln S) = (μ - σ^2/2)dt + σ*dz. This exact term is known as Volatility Drag."
+            },
+            "hi": {
+              "display": "Result dekhiye: d natural log S equals mu minus sigma square by two dt plus sigma dz. Yahi term Volatility Drag kehlata hai."
+            }
+          },
+          "onScreenIntent": "Highlight why constant diffusion sigma dz simplifies integration",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Constant diffusion advantage"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Applying Itô's Lemma to G = ln S: The Volatility Drag",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "For G(S) = ln S: first derivative G' = 1/S, second derivative G'' = -1/S^2 (concave)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Because G'' is negative, the Itô term subtracts drift: 0.5 * (-1/S^2) * (sigma * S)^2 = -0.5 * sigma^2"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "The Arithmetic vs Compound Return Paradox",
+      "purpose": "If a stock goes +50% then -50%, average arithmetic return is 0%, but actual portfolio loses 25% (1.5 * 0.5 = 0.75)",
+      "takeaways": [
+        "If a stock goes +50% then -50%, average arithmetic return is 0%, but actual portfolio loses 25% (1.5 * 0.5 = 0.75)",
+        "Continuous compound growth rate g = mu - 0.5*sigma^2 measures the actual wealth growth of a buy-and-hold investor",
+        "Higher volatility sigma widens the gap between arithmetic expectation and realized compounding"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This term μ - σ^2/2 resolves a major financial paradox: the difference between arithmetic return and compound return."
+            },
+            "hi": {
+              "display": "Ye term mu minus sigma square by two ek bohot bada financial paradox resolve karta hai: arithmetic return aur compound return ke beech ka difference."
+            }
+          },
+          "onScreenIntent": "Introduce the famous +50% and -50% coin flip paradox",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Volatility drag paradox"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Parameter μ is the instantaneous expected return, representing the cross-sectional average across parallel universes."
+            },
+            "hi": {
+              "display": "Parameter mu instantaneous expected return hai, yaani cross-sectional parallel universes ka average."
+            }
+          },
+          "onScreenIntent": "Show math: $100 -> $150 -> $75 (average return 0%, actual return -25%)",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Asymmetric recovery loss"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But a real-world investor does not live in parallel universes; they invest along a single timeline where returns compound continuously."
+            },
+            "hi": {
+              "display": "Lekin ek real-world investor parallel universes mein nahi jeeta, wo ek single timeline mein invest karta hai jahan returns continuously compound hote hain."
+            }
+          },
+          "onScreenIntent": "Connect discrete coin flip drag to continuous Itô term -0.5*sigma^2",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Continuous drag equivalence"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If a stock has μ = 15% and volatility σ = 30%, compound growth is 15% - 4.5% = only 10.5%! Volatility destroys 4.5% annually."
+            },
+            "hi": {
+              "display": "Agar ek stock ka mu fifteen percent hai aur volatility thirty percent hai, toh compound growth rate fifteen minus four point five yaani sirf ten point five percent reh jati hai."
+            }
+          },
+          "onScreenIntent": "Emphasize why long-term wealth managers focus on geometric compound growth",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Geometric wealth management"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Arithmetic Expected Return (mu)",
+          "tone": "neutral",
+          "points": [
+            "If a stock goes +50% then -50%, average arithmetic return is 0%, but actual portfolio loses 25% (1.5 * 0.5 = 0.75)",
+            "Continuous compound growth rate g = mu - 0.5*sigma^2 measures the actual wealth growth of a buy-and-hold investor"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Compound Realized Return (g)",
+          "tone": "positive",
+          "points": [
+            "Continuous compound growth rate g = mu - 0.5*sigma^2 measures the actual wealth growth of a buy-and-hold investor",
+            "Higher volatility sigma widens the gap between arithmetic expectation and realized compounding"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "If a stock goes +50% then -50%, average arithmetic return is 0%, but actual portfolio loses 25% (1.5 * 0.5 = 0.75)"
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "The Lognormal Distribution: Moments & Confidence Cones",
+      "purpose": "Log-return ln(S_T / S_0) is normally distributed with mean (mu - 0.5*sigma^2)*T and variance sigma^2*T",
+      "takeaways": [
+        "Log-return ln(S_T / S_0) is normally distributed with mean (mu - 0.5*sigma^2)*T and variance sigma^2*T",
+        "Stock price S_T is lognormally distributed with right-skewed positive tail and natural zero floor",
+        "Median price is S_0 * exp((mu - 0.5*sigma^2)*T), strictly below the arithmetic mean S_0 * exp(mu * T)"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's mathematically evaluate the exact terminal stock price probability distribution for S_T."
+            },
+            "hi": {
+              "display": "Aaiye ab terminal stock price S T ki exact probability distribution ko mathematically evaluate karte hain."
+            }
+          },
+          "onScreenIntent": "Integrate d(ln S) to arrive at the normal distribution of log-returns",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Log-return normality"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because ln(S_T) is Gaussian, stock price S_T strictly follows a Lognormal distribution."
+            },
+            "hi": {
+              "display": "Kyunki natural log of S T normally distributed hai, stock price S T strictly Lognormal distribution follow karti hai."
+            }
+          },
+          "onScreenIntent": "State the lognormal distribution of future stock price S_T",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Lognormal stock distribution"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The lognormal curve is right-skewed: locked at a zero floor with an unlimited exponential upside tail."
+            },
+            "hi": {
+              "display": "Lognormal curve right-skewed hoti hai: iska floor zero par locked rehta hai aur right side par unlimited exponential upside tail hoti hai."
+            }
+          },
+          "onScreenIntent": "Contrast expected mean price S_0*exp(mu*T) with median price S_0*exp((mu - 0.5*sigma^2)*T)",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Mean vs median divergence"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice median price is S_0 e^{(μ - σ^2/2)T}, whereas mean price is S_0 e^{μ T}. Mean is always strictly above median."
+            },
+            "hi": {
+              "display": "Notice kijiye ki median price S zero e to the power mu minus sigma square by two T hoti hai, jabki mean price S zero e to the power mu T hoti hai. Mean median se hamesha bada hota hai."
+            }
+          },
+          "onScreenIntent": "Construct confidence cone expanding as S_0 * exp((mu - 0.5*sigma^2)*T +/- 1.96*sigma*sqrt(T))",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Lognormal confidence cone"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Lognormal Distribution: Moments & Confidence Cones",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Log-return ln(S_T / S_0) is normally distributed with mean (mu - 0.5*sigma^2)*T and variance sigma^2*T"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Stock price S_T is lognormally distributed with right-skewed positive tail and natural zero floor"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Parameter Estimation from Historical Stock Returns",
+      "purpose": "Sample daily closing prices S_i and compute continuously compounded log-returns u_i = ln(S_i / S_{i-1})",
+      "takeaways": [
+        "Sample daily closing prices S_i and compute continuously compounded log-returns u_i = ln(S_i / S_{i-1})",
+        "Compute sample standard deviation s across n observations",
+        "Annualize volatility using the square-root of time: sigma = s / sqrt(tau) where tau = 1/252 years"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In real-world options trading, how are theoretical parameters μ and σ estimated from market data?"
+            },
+            "hi": {
+              "display": "Real world options trading mein theoretical parameters mu aur sigma ko market data se kaise estimate kiya jata hai?"
+            }
+          },
+          "onScreenIntent": "Introduce the practical trading desk requirement: estimating volatility sigma",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Volatility estimation workflow"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John Hull calculates daily log returns u_i = ln(S_i / S_{i-1}) in Section 14.8."
+            },
+            "hi": {
+              "display": "John Hull Section fourteen point eight mein daily log returns u i equals natural log of S i divided by S i minus one calculate karte hain."
+            }
+          },
+          "onScreenIntent": "Explain why quants compute log returns u_i = ln(S_i / S_{i-1}) rather than percentage returns",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Log return calculation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Desks follow a 252 trading day convention. Multiplying daily sample standard deviation s by sqrt(252) yields annualized volatility σ."
+            },
+            "hi": {
+              "display": "Trading desks par do sau baavan trading days ka standard convention hota hai. Daily sample standard deviation s ko square root of two fifty-two se multiply karke annualized volatility sigma mil jati hai."
+            }
+          },
+          "onScreenIntent": "Compute sample standard deviation s of the log-return series",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Sample standard deviation s"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because volatility is generated primarily during exchange trading hours, non-trading days are excluded from time decay calculations."
+            },
+            "hi": {
+              "display": "Kyunki volatility weekend par nahi, balki market trading hours ke dauran generate hoti hai, non-trading days ko time calculation se exclude kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Annualize volatility: multiply by sqrt(252) trading days per year",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Annualization sqrt(252)"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Parameter Estimation from Historical Stock Returns",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Sample daily closing prices S_i and compute continuously compounded log-returns u_i = ln(S_i / S_{i-1})"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Compute sample standard deviation s across n observations"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: 6-Month Lognormal Growth & Confidence Bounds",
+      "purpose": "Given S_0=$40, mu=16%, sigma=20%, T=0.5 years: compound drift is 0.16 - 0.5(0.04) = 0.14 per year",
+      "takeaways": [
+        "Given S_0=$40, mu=16%, sigma=20%, T=0.5 years: compound drift is 0.16 - 0.5(0.04) = 0.14 per year",
+        "Expected log-return is 0.14 * 0.5 = 0.07; median price is $40 * exp(0.07) = $42.90",
+        "Expected mean price is $40 * exp(0.16 * 0.5) = $40 * exp(0.08) = $43.33"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's test your active recall understanding with an institutional asset pricing calculation scenario."
+            },
+            "hi": {
+              "display": "Aaiye ab aapki active recall understanding ko test karte hain ek institutional asset pricing calculation scenario ke zariye."
+            }
+          },
+          "onScreenIntent": "Present the numerical challenge: S_0=$40, mu=16%, sigma=20%, T=0.5 years",
+          "sourceFactIds": [
+            "F03",
+            "F05"
+          ],
+          "newTerms": [
+            "Numerical challenge"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Stock is S_0 = $50. Expected return μ = 18% and volatility σ = 30%. What is compound growth rate g and median stock price in 6 months?"
+            },
+            "hi": {
+              "display": "Stock price S zero fifty dollars hai. Expected return mu eighteen percent aur volatility sigma thirty percent hai. Six months baad expected compound growth rate g aur median stock price kya hogi?"
+            }
+          },
+          "onScreenIntent": "Calculate the Itô-corrected compound growth rate: 0.16 - 0.5(0.20^2) = 0.14 (14%)",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Calculated growth rate"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Take a moment to calculate the continuously compounded growth rate and 95% confidence interval."
+            },
+            "hi": {
+              "display": "Continuously compounded growth rate aur ninety-five percent confidence interval calculate karne ke liye thoda samay lijiye."
+            }
+          },
+          "onScreenIntent": "Calculate the expected median price: $40 * exp(0.07) = $42.90",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Calculated median price"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A: Compound growth rate is 13.5% and median price is $53.49."
+            },
+            "hi": {
+              "display": "Sahi answer Option A hai: Compound growth rate thirteen point five percent hai aur median price fifty-three point four nine dollars hai."
+            }
+          },
+          "onScreenIntent": "Calculate the expected mean price: $40 * exp(0.08) = $43.33",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Calculated mean price"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Step-by-step: Volatility drag is (0.30)^2/2 = 4.5%. 18% - 4.5% = 13.5%. $50 * exp(0.135 * 0.5) = $53.49."
+            },
+            "hi": {
+              "display": "Step-by-step: Volatility drag point three zero square divided by two yaani four point five percent hai. Eighteen minus four point five thirteen point five percent banta hai. Fifty times e to the power zero point zero six seven five exactly fifty-three point four nine dollars nikalta hai."
+            }
+          },
+          "onScreenIntent": "Construct 95% confidence bounds: [$32.48, $56.67]",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Calculated price bounds"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "A stock has S_0 = $40, expected return mu = 16% per year, and volatility sigma = 20% per year. What are the expected arithmetic mean price and 50th percentile median price after 6 months (T = 0.5)?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Mean price is S_0 * exp(mu * T) = $40 * exp(0.16 * 0.5) = $40 * exp(0.08) = $43.33. Median price uses the Itô-corrected rate: S_0 * exp((mu - 0.5*sigma^2) * T) = $40 * exp((0.16 - 0.02) * 0.5) = $40 * exp(0.07) = $42.90!"
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "The Gateway to Black-Scholes: Hedging via Itô's Differential",
+      "purpose": "Form portfolio Pi consisting of short 1 derivative f and long (df/dS) shares of stock",
+      "takeaways": [
+        "Form portfolio Pi consisting of short 1 derivative f and long (df/dS) shares of stock",
+        "Portfolio change dPi = -df + (df/dS) dS completely eliminates Brownian noise dz",
+        "Because dPi is 100% riskless, no-arbitrage enforces dPi = r * Pi * dt, yielding the Black-Scholes PDE"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Why is Itô's Lemma the ultimate game-changer in modern finance? Because it reveals how to completely eliminate derivative risk."
+            },
+            "hi": {
+              "display": "Itô's Lemma modern finance ka sabse bada game-changer kyu hai? Kyunki ye dikhata hai ki derivatives ke risk ko completely eliminate kaise kiya jaye."
+            }
+          },
+          "onScreenIntent": "Set up the delta-hedged portfolio: short 1 option, long df/dS shares of stock",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Delta-hedged portfolio Pi"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Fischer Black, Myron Scholes, and Robert Merton constructed a portfolio: -1 option f plus Delta shares of stock, where Delta = ∂f/∂S."
+            },
+            "hi": {
+              "display": "Fisher Black, Myron Scholes aur Robert Merton ne ek portfolio banaya: minus one option f plus delta times stock S, jahan delta exactly del f by del S hai."
+            }
+          },
+          "onScreenIntent": "Demonstrate that Brownian motion dz cancels out completely from the portfolio differential",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Brownian cancellation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because the option and stock share the exact same Wiener noise dz, holding Delta shares causes the random shocks to cancel to zero."
+            },
+            "hi": {
+              "display": "Kyunki option aur stock dono exact same Wiener noise dz share karte hain, delta shares lene par stochastic shocks mathematically zero ho jate hain."
+            }
+          },
+          "onScreenIntent": "Apply the no-arbitrage rule: riskless portfolio must grow at the risk-free rate r",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Instantaneous riskless growth"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This creates a perfectly riskless portfolio earning the risk-free rate r, leading directly to the Black-Scholes-Merton PDE in Chapter 15."
+            },
+            "hi": {
+              "display": "Ek perfectly riskless portfolio ban jata hai jo risk-free rate r earn karta hai. Yahi se agle chapter mein Black-Scholes-Merton differential equation nikal kar aayegi."
+            }
+          },
+          "onScreenIntent": "Unveil the Black-Scholes partial differential equation: the foundation of Chapter 15",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Black-Scholes PDE"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Gateway to Black-Scholes: Hedging via Itô's Differential",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Form portfolio Pi consisting of short 1 derivative f and long (df/dS) shares of stock"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Portfolio change dPi = -df + (df/dS) dS completely eliminates Brownian noise dz"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Itô's Calculus & Asset Dynamics",
+      "purpose": "Itô's Lemma dG = [G_x a + G_t + 0.5 G_xx b^2] dt + G_x b dz governs all non-linear transformations",
+      "takeaways": [
+        "Itô's Lemma dG = [G_x a + G_t + 0.5 G_xx b^2] dt + G_x b dz governs all non-linear transformations",
+        "Applying Itô to ln(S) reveals the volatility drag -0.5*sigma^2 separating arithmetic return from compounding",
+        "Chapter 15 solves the Black-Scholes PDE to produce closed-form formulas for European calls and puts"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's summarize the four foundational pillars of Chapter 14 Part 2."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Fourteen Part Two ke chaar foundational pillars ko summarize karte hain."
+            }
+          },
+          "onScreenIntent": "Synthesize the profound power of Itô's stochastic calculus",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Executive synthesis"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: Itô's Lemma. Second-order terms do not vanish, adding a non-zero convexity drift (1/2)(∂^2G/∂x^2)b^2."
+            },
+            "hi": {
+              "display": "Pillar One: Itô's Lemma. Stochastic processes mein second-order terms vanish nahi hote, aur half second derivative times b square ek non-zero convexity drift add karta hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 1, 2, and 3: quadratic variation, master Itô equation, and convexity boost",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: Geometric Brownian Motion. dS = μ*S*dt + σ*S*dz keeps returns scale-invariant and prevents negative stock prices."
+            },
+            "hi": {
+              "display": "Pillar Two: Geometric Brownian Motion. dS equals mu S dt plus sigma S dz percentage returns ko scale-invariant banata hai aur stock prices ko negative hone se bachata hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 4, 5, and 6: GBM, volatility drag, and lognormal stock price distribution",
+          "sourceFactIds": [
+            "F02",
+            "F03",
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: Volatility Drag. Compounding growth rate g = μ - σ^2/2, showing volatility geometrically erodes compounding wealth."
+            },
+            "hi": {
+              "display": "Pillar Three: Volatility Drag. Compounding growth rate g equals mu minus sigma square by two hoti hai, yaani volatility compound growth ko geometrically erode karti hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 7 and 8: mean vs median divergence and the Black-Scholes PDE gateway",
+          "sourceFactIds": [
+            "F05",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 4: Lognormal Pricing. Delta hedging cancels Wiener noise dz, unlocking the Black-Scholes-Merton model in Chapter 15."
+            },
+            "hi": {
+              "display": "Pillar Four: Lognormal Pricing. Delta hedging se Wiener shocks cancel ho jate hain, jo Chapter Fifteen mein Black-Scholes-Merton model ka darwaza kholega."
+            }
+          },
+          "onScreenIntent": "Conclude Chapter 14 and bridge to Chapter 15: The Black-Scholes-Merton Model",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Chapter 15 preview"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary Thread: Four Pillars of Itô's Calculus & Asset Dynamics",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1488 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch30",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 30",
+  "partLabel": "Part 1",
+  "title": "Hull Chapter 30: Convexity, Timing, and Quanto Adjustments",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 58,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Cross-Currency Quanto Trap",
+      "purpose": "The Cross-Currency Quanto Trap: Foundational quantitative principles",
+      "takeaways": [
+        "The Cross-Currency Quanto Trap: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider an institutional fund manager who invests in a Quanto Note on the Nikkei 225 index. The note promises Japanese equity returns paid directly in US Dollars at a fixed exchange rate. Assuming growth at the US risk-free rate, at maturity the payout unexpectedly falls short by 400 basis points. What caused this discrepancy?"
+            },
+            "hi": {
+              "display": "सर, मेरे एक फंड मैनेजर दोस्त ने जापानी निक्केई 225 इंडेक्स पर एक 'क्वांटो नोट' खरीदा था। इसमें वादा था कि निक्केई के रिटर्न्स सीधे अमेरिकी डॉलर में एक निश्चित एक्सचेंज रेट पर मिलेंगे। उसने सोचा कि 5% अमेरिकी ब्याज दर से ग्रोथ होगी, लेकिन मैच्योरिटी पर उसका रिटर्न 400 बेसिस पॉइंट्स कम निकला! यह गणितीय गड़बड़ी कैसे हुई?"
+            }
+          },
+          "onScreenIntent": "The Cross-Currency Quanto Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This represents the classic Quanto Drift Trap. When you fix the exchange rate between two currencies, the foreign asset grows neither at the domestic rate nor the foreign rate—it absorbs a cross-currency covariance drag."
+            },
+            "hi": {
+              "display": "राजू, तुम्हारा दोस्त 'क्वांटो ड्रिफ्ट ट्रैप' में फंस गया! जब आप दो अलग-अलग करेंसियों के बीच एक्सचेंज रेट को फिक्स कर देते हैं, तो विदेशी एसेट न तो घरेलू दर पर बढ़ता है और न ही विदेशी दर पर—वह एक क्रॉस-करेंसी कोवेरियंस ड्रैग सोख लेता है!"
+            }
+          },
+          "onScreenIntent": "The Cross-Currency Quanto Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Standard Black-Scholes models only hold when payoffs are linear and payment dates align with observation dates. Once those assumptions break, quantitative analysts must introduce Convexity, Timing, and Quanto Adjustments."
+            },
+            "hi": {
+              "display": "स्टैंडर्ड ब्लैक-स्कोल्स मॉडल केवल तभी काम करता है जब पेऑफ्स लीनियर हों और पेमेंट की तारीख ऑब्जर्वेशन से मेल खाती हो। जैसे ही ये धारणाएं टूटती हैं, हमें 'कॉन्वेक्सिटी, टाइमिंग और क्वांटो एडजस्टमेंट्स' लगाने पड़ते हैं!"
+            }
+          },
+          "onScreenIntent": "The Cross-Currency Quanto Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us master how these subtle mathematical adjustments protect multi-million dollar derivatives portfolios from catastrophic mispricing."
+            },
+            "hi": {
+              "display": "चलिए समझते हैं कि कैसे ये सूक्ष्म गणितीय सुधार डेरिवेटिव्स प्राइसिंग को लाखों डॉलर के नुकसान से बचाते हैं!"
+            }
+          },
+          "onScreenIntent": "The Cross-Currency Quanto Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Cross-Currency Quanto Trap",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Cross-Currency Quanto Trap: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Linear Martingales vs Non-Standard Measure Mismatches",
+      "purpose": "Linear Martingales vs Non-Standard Measure Mismatches: Foundational quantitative principles",
+      "takeaways": [
+        "Linear Martingales vs Non-Standard Measure Mismatches: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Two distinct universes exist in derivative pricing: Standard Linear Markets and Non-Standard Structured Markets."
+            },
+            "hi": {
+              "display": "डेरिवेटिव्स प्राइसिंग में दो अलग-अलग दुनियाएं होती हैं: स्टैंडर्ड लीनियर मार्केट्स और नॉन-स्टैंडर्ड स्ट्रक्चर्ड मार्केट्स।"
+            }
+          },
+          "onScreenIntent": "Linear Martingales vs Non-Standard Measure Mismatches",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In linear markets, the underlying variable is a pure martingale under its natural numeraire. Zero adjustments are required—the forward price directly equals the expected value."
+            },
+            "hi": {
+              "display": "लीनियर मार्केट्स में अंडरलाइंग वेरिएबल अपने नेचुरल न्युमेरेयर के तहत एक प्योर मार्टिंगेल होता है। यहां कोई एडजस्टमेंट की जरूरत नहीं होती—फॉरवर्ड प्राइस सीधे एक्सपेक्टेड वैल्यू के बराबर होता है।"
+            }
+          },
+          "onScreenIntent": "Linear Martingales vs Non-Standard Measure Mismatches",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But in non-standard markets, non-linear convexity, payment date mismatches, or cross-currency fixed exchange rates break martingale symmetry. A major wedge emerges that only analytic adjustment formulas can bridge."
+            },
+            "hi": {
+              "display": "लेकिन नॉन-स्टैंडर्ड मार्केट्स में नॉन-लीनियर कॉन्वेक्सिटी, पेमेंट डेट मिसमैच, या क्रॉस-करेंसी फिक्स्ड रेट्स होते हैं। यहां एक्सपेक्टेशन और मार्केट फॉरवर्ड के बीच एक बड़ा अंतर आ जाता है जिसे केवल एडजस्टमेंट फॉर्मूले ही भर सकते हैं!"
+            }
+          },
+          "onScreenIntent": "Linear Martingales vs Non-Standard Measure Mismatches",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Linear Martingales vs Non-Standard Measure Mismatches",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Linear Martingales vs Non-Standard Measure Mismatches: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "The Three Pillars of Advanced Adjustments",
+      "purpose": "The Three Pillars of Advanced Adjustments: Foundational quantitative principles",
+      "takeaways": [
+        "The Three Pillars of Advanced Adjustments: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In modern quantitative finance, we partition adjustments into three foundational pillars. The first is Convexity Adjustment, correcting futures versus forwards margining and non-linear bond yield pricing."
+            },
+            "hi": {
+              "display": "आधुनिक क्वांट फाइनेंस में एडजस्टमेंट्स को हम तीन मुख्य पिलर्स में विभाजित करते हैं। पहला पिलर है 'कॉन्वेक्सिटी एडजस्टमेंट', जो फ्यूचर्स और फॉरवर्ड्स के मार्जिनिंग अंतर और बॉन्ड यील्ड्स की नॉन-लीनियरिटी को ठीक करता है।"
+            }
+          },
+          "onScreenIntent": "The Three Pillars of Advanced Adjustments",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second pillar is Timing Adjustment, applied whenever an interest rate is observed at date T_1 but cash settled at a different date T_2."
+            },
+            "hi": {
+              "display": "दूसरा पिलर है 'टाइमिंग एडजस्टमेंट', जो तब लागू होता है जब रेट ऑब्जर्व किसी तारीख T-1 पर होता है लेकिन कैश फ्लो का भुगतान किसी अन्य तारीख T-2 पर किया जाता है।"
+            }
+          },
+          "onScreenIntent": "The Three Pillars of Advanced Adjustments",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The third pillar is Quanto Adjustment, mandatory whenever a foreign-denominated asset pays out in domestic currency at a fixed conversion rate."
+            },
+            "hi": {
+              "display": "तीसरा पिलर है 'क्वांटो एडजस्टमेंट', जो तब अनिवार्य होता है जब विदेशी एसेट का पेऑफ किसी फिक्स्ड एक्सचेंज रेट पर घरेलू करेंसी में चुकाया जाता है।"
+            }
+          },
+          "onScreenIntent": "The Three Pillars of Advanced Adjustments",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The unifying fourth principle is Girsanov's Theorem, unifying all these adjustments as rigorous probability measure transformations and drift shifts."
+            },
+            "hi": {
+              "display": "चौथा यूनिफाइंग सिद्धांत है 'गिरसानोव का थ्योरम', जो इन सभी एडजस्टमेंट्स को प्रोबेबिलिटी मेज़र ट्रांजिशन्स और ड्रिफ्ट करेक्शंस के रूप में एकजुट करता है!"
+            }
+          },
+          "onScreenIntent": "The Three Pillars of Advanced Adjustments",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Three Pillars of Advanced Adjustments",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Three Pillars of Advanced Adjustments: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Futures vs Forwards Convexity Adjustment",
+      "purpose": "Futures vs Forwards Convexity Adjustment: Foundational quantitative principles",
+      "takeaways": [
+        "Futures vs Forwards Convexity Adjustment: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The foremost and celebrated adjustment is the Futures versus Forwards Convexity Adjustment."
+            },
+            "hi": {
+              "display": "सबसे पहला और प्रसिद्ध एडजस्टमेंट है 'फ्यूचर्स बनाम फॉरवर्ड्स कॉन्वेक्सिटी एडजस्टमेंट'।"
+            }
+          },
+          "onScreenIntent": "Futures vs Forwards Convexity Adjustment",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In a Forward Rate Agreement, settlement occurs once at maturity. But futures contracts settle daily through marked-to-market margin flows."
+            },
+            "hi": {
+              "display": "एक फॉरवर्ड रेट एग्रीमेंट यानी एफ.आर.ए. में एक ही बार मैच्योरिटी पर सेटलमेंट होता है। लेकिन फ्यूचर्स कॉन्ट्रैक्ट्स में रोजाना 'मार्क-टू-मार्केट' कैश फ्लो होता है।"
+            }
+          },
+          "onScreenIntent": "Futures vs Forwards Convexity Adjustment",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When interest rates rise, a futures long receives immediate cash that can be reinvested at higher rates. This daily margining advantage forces futures rates strictly above forward rates."
+            },
+            "hi": {
+              "display": "जब ब्याज दरें बढ़ती हैं, तो फ्यूचर्स लॉन्ग को तुरंत कैश मिलता है जिसे वह उच्च ब्याज दरों पर री-इन्वेस्ट कर सकता है। इस दैनिक मार्जिनिंग लाभ के कारण फ्यूचर्स रेट हमेशा फॉरवर्ड रेट से अधिक होता है!"
+            }
+          },
+          "onScreenIntent": "Futures vs Forwards Convexity Adjustment",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John Hull's famous formula proves: Futures Rate minus Forward Rate approximately equals 0.5 times sigma squared times T_1 times T_2. On five-year contracts, this gap widens to 40 to 50 basis points."
+            },
+            "hi": {
+              "display": "जॉन हल का प्रसिद्ध फॉर्मूला है: फ्यूचर्स रेट माइनस फॉरवर्ड रेट लगभग आधा सिग्मा स्क्वायर T-1 गुना T-2 होता है! 5 साल के कॉन्ट्रैक्ट्स में यह अंतर 40 से 50 बेसिस पॉइंट्स तक पहुंच जाता है!"
+            }
+          },
+          "onScreenIntent": "Futures vs Forwards Convexity Adjustment",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Futures vs Forwards Convexity Adjustment",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Futures vs Forwards Convexity Adjustment: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Bond Yield Convexity Adjustment",
+      "purpose": "Bond Yield Convexity Adjustment: Foundational quantitative principles",
+      "takeaways": [
+        "Bond Yield Convexity Adjustment: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second major convexity adjustment applies to bond yields. Jensen's Inequality establishes that for non-linear functions, the expected value of a function does not equal the function of the expected value."
+            },
+            "hi": {
+              "display": "दूसरा बड़ा कॉन्वेक्सिटी एडजस्टमेंट बॉन्ड यील्ड्स पर लागू होता है। जेन्सेन्स इनइक्वलिटी का नियम कहता है कि एक नॉन-लीनियर फंक्शन की एक्सपेक्टेड वैल्यू, एक्सपेक्टेड वैल्यू के फंक्शन के बराबर नहीं होती!"
+            }
+          },
+          "onScreenIntent": "Bond Yield Convexity Adjustment",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Bond price B is a non-linear convex function of yield y. If a derivative pays based on future bond yield y_T, expected yield strictly exceeds current forward yield y_0."
+            },
+            "hi": {
+              "display": "बॉन्ड प्राइस B यील्ड y का एक कॉन्वेक्स फंक्शन होता है। यदि कोई डेरिवेटिव भविष्य की बॉन्ड यील्ड y-T पर पेऑफ देता है, तो उसकी अपेक्षित यील्ड वर्तमान फॉरवर्ड यील्ड y-0 से बड़ी होगी!"
+            }
+          },
+          "onScreenIntent": "Bond Yield Convexity Adjustment",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Taylor expansion derives: Expected Yield equals forward yield minus 0.5 times y_0 squared times sigma_y squared times T times the ratio of the second derivative of bond price to its first derivative."
+            },
+            "hi": {
+              "display": "टेलर सीरीज एक्सपेंशन द्वारा हम निकालते हैं: एक्सपेक्टेड यील्ड बराबर फॉरवर्ड यील्ड माइनस आधा y-0 स्क्वायर सिग्मा-y स्क्वायर T गुना B डबल-डैश अपॉन B-डैश।"
+            }
+          },
+          "onScreenIntent": "Bond Yield Convexity Adjustment",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because a bond's price-yield derivative B-prime is negative, this convexity adjustment strictly increases the expected yield."
+            },
+            "hi": {
+              "display": "चूंकि बॉन्ड की पहली डेरिवेटिव B-डैश नेगेटिव होती है, इसलिए यह एडजस्टमेंट अपेक्षित यील्ड को बढ़ा देता है!"
+            }
+          },
+          "onScreenIntent": "Bond Yield Convexity Adjustment",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Bond Yield Convexity Adjustment",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Bond Yield Convexity Adjustment: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Timing Adjustments: Payment Date Mismatch",
+      "purpose": "Timing Adjustments: Payment Date Mismatch: Foundational quantitative principles",
+      "takeaways": [
+        "Timing Adjustments: Payment Date Mismatch: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now observe the Timing Adjustment. Suppose an interest rate is observed at T_1, three years out, but the cash flow payment is delayed until T_2, five years out."
+            },
+            "hi": {
+              "display": "अब देखिए 'टाइमिंग एडजस्टमेंट'। मान लीजिए कोई इंटरेस्ट रेट 3 साल बाद T-1 पर ऑब्जर्व होता है, लेकिन उसका कैश फ्लो 5 साल बाद T-2 पर दिया जाता है।"
+            }
+          },
+          "onScreenIntent": "Timing Adjustments: Payment Date Mismatch",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Shifting the payment date means our numeraire transitions from zero-coupon bond P(t, T_1) to bond P(t, T_2)."
+            },
+            "hi": {
+              "display": "पेमेंट डेट बदलने का मतलब है कि हमारा न्युमेरेयर बॉन्ड P(t, T-1) से बदलकर बॉन्ड P(t, T-2) बन गया है!"
+            }
+          },
+          "onScreenIntent": "Timing Adjustments: Payment Date Mismatch",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "By Girsanov's theorem, an exponential covariance factor enters the expectation: exponential of minus rho times sigma_V times sigma_P times T_1."
+            },
+            "hi": {
+              "display": "गिरसानोव थ्योरम द्वारा एक्सपेक्टेशन में एक एक्सपोनेंशियल कोवेरियंस फैक्टर जुड़ जाता है: e की पावर माइनस रो टाइम्स सिग्मा-V टाइम्स सिग्मा-P टाइम्स T-1!"
+            }
+          },
+          "onScreenIntent": "Timing Adjustments: Payment Date Mismatch",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If the payoff variable and the zero-coupon bond price are negatively correlated, this timing factor increases the expected payoff. Ignoring it leads to massive underpricing."
+            },
+            "hi": {
+              "display": "यदि अंडरलाइंग वेरिएबल और बॉन्ड प्राइस में नेगेटिव कोरिलेशन हो, तो यह टाइमिंग एडजस्टमेंट अपेक्षित पेऑफ को बढ़ा देता है। इसे नजरअंदाज करने पर ट्रेडर को भारी नुकसान हो सकता है!"
+            }
+          },
+          "onScreenIntent": "Timing Adjustments: Payment Date Mismatch",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Timing Adjustments: Payment Date Mismatch",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Timing Adjustments: Payment Date Mismatch: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Quanto Derivation: Cross-Currency Dynamics",
+      "purpose": "Quanto Derivation: Cross-Currency Dynamics: Foundational quantitative principles",
+      "takeaways": [
+        "Quanto Derivation: Cross-Currency Dynamics: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now arrive at the chapter's most thrilling breakthrough: Quanto Adjustments. In a quanto option, the underlying asset is foreign, but payout is settled in domestic currency at a fixed exchange rate."
+            },
+            "hi": {
+              "display": "अब आइए चैप्टर के सबसे रोमांचक विषय पर: 'क्वांटो एडजस्टमेंट्स'। क्वांटो ऑप्शन में अंडरलाइंग एसेट विदेशी होता है, लेकिन भुगतान घरेलू मुद्रा में एक फिक्स्ड एक्सचेंज रेट पर होता है।"
+            }
+          },
+          "onScreenIntent": "Quanto Derivation: Cross-Currency Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For example, a US investor buys a call on Japan's Nikkei 225, with payoffs settled in US Dollars. In the Japanese world, the Nikkei drifts at the Japanese risk-free rate r_F."
+            },
+            "hi": {
+              "display": "उदाहरण के लिए, एक अमेरिकी निवेशक जापानी निक्केई 225 का कॉल ऑप्शन खरीदता है और पेऑफ डॉलर में लेता है। जापानी दुनिया में निक्केई जापानी रिस्क-फ्री रेट r-F पर बढ़ता है।"
+            }
+          },
+          "onScreenIntent": "Quanto Derivation: Cross-Currency Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But when transported into the domestic US risk-neutral measure, the correlation between the exchange rate and asset generates a cross-currency covariance drag."
+            },
+            "hi": {
+              "display": "लेकिन अमेरिकी रिस्क-न्यूट्रल दुनिया में जब हम इसे लाते हैं, तो एक्सचेंज रेट और एसेट प्राइस का कोरिलेशन एक क्रॉस-करेंसी कोवेरियंस ड्रैग पैदा करता है!"
+            }
+          },
+          "onScreenIntent": "Quanto Derivation: Cross-Currency Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Quanto Derivation: Cross-Currency Dynamics",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Quanto Derivation: Cross-Currency Dynamics: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "The Master Quanto Drift Equation",
+      "purpose": "The Master Quanto Drift Equation: Foundational quantitative principles",
+      "takeaways": [
+        "The Master Quanto Drift Equation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now observe the master quanto drift equation, a staple of every quantitative structuring desk."
+            },
+            "hi": {
+              "display": "अब देखिए क्वांटो डेरिवेटिव्स का मास्टर फॉर्मूला, जो हर क्वांट इंटरव्यू में पूछा जाता है!"
+            }
+          },
+          "onScreenIntent": "The Master Quanto Drift Equation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under the domestic risk-neutral measure, the new drift of the foreign asset equals: foreign risk-free rate r_F minus rho times sigma_S times sigma_X."
+            },
+            "hi": {
+              "display": "घरेलू रिस्क-न्यूट्रल मेज़र में विदेशी एसेट का नया ड्रिफ्ट म्यू बराबर होता है: विदेशी ब्याज दर r-F माइनस रो टाइम्स सिग्मा-S टाइम्स सिग्मा-X!"
+            }
+          },
+          "onScreenIntent": "The Master Quanto Drift Equation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Here rho is the cross-currency correlation between asset and exchange rate, sigma_S is asset volatility, and sigma_X is exchange rate volatility."
+            },
+            "hi": {
+              "display": "यहां रो विदेशी एसेट और एक्सचेंज रेट के बीच का कोरिलेशन है, सिग्मा-S एसेट की वोलैटिलिटी है, और सिग्मा-X एक्सचेंज रेट की वोलैटिलिटी है।"
+            }
+          },
+          "onScreenIntent": "The Master Quanto Drift Equation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Black-Scholes, we replace standard drift with this adjusted quanto drift, yielding the exact arbitrage-free price for the quanto option."
+            },
+            "hi": {
+              "display": "ब्लैक-स्कोल्स फॉर्मूले में हम घरेलू ब्याज दर r की जगह इस एडजस्टेड ड्रिफ्ट को रख देते हैं, जिससे क्वांटो ऑप्शन की बिल्कुल सही कीमत निकल आती है!"
+            }
+          },
+          "onScreenIntent": "The Master Quanto Drift Equation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Master Quanto Drift Equation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Master Quanto Drift Equation: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Active Recall: Calculating Quanto Drift Adjustment",
+      "purpose": "Active Recall: Calculating Quanto Drift Adjustment: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: Calculating Quanto Drift Adjustment: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Test your quantitative mastery of quantos. A US investor buys a quanto call on the Nikkei. Japanese risk-free rate is 1.0%, Nikkei volatility is 20%, USD/JPY exchange rate volatility is 15%, and correlation is plus 0.30. What is the domestic risk-neutral drift?"
+            },
+            "hi": {
+              "display": "अब अपनी क्वांटो क्वांट क्षमता का परीक्षण कीजिए। एक अमेरिकी निवेशक निक्केई पर क्वांटो कॉल खरीदता है। जापानी रिस्क-फ्री रेट 1.0% है, निक्केई वोलैटिलिटी 20% है, यूएसडी/जेपीवाई वोलैटिलिटी 15% है, और कोरिलेशन प्लस 0.30 है। घरेलू रिस्क-न्यूट्रल मेज़र में नया ड्रिफ्ट क्या होगा?"
+            }
+          },
+          "onScreenIntent": "Active Recall: Calculating Quanto Drift Adjustment",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and consider: Apply the master drift adjustment formula to calculate the exact net drift."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: Calculating Quanto Drift Adjustment",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option A is correct: 0.10%! Using our master drift formula: mu equals r_F minus rho times sigma_S times sigma_X, which is 1.0% minus 0.30 times 0.20 times 0.15, giving exactly 0.10%."
+            },
+            "hi": {
+              "display": "सही उत्तर है विकल्प ए: 0.10%! फॉर्मूला है r-F माइनस रो टाइम्स सिग्मा-S टाइम्स सिग्मा-X। 1.0% माइनस 0.30 गुना 0.20 गुना 0.15—यानी 1.0% माइनस 0.90% बराबर ठीक 0.10% बनता है!"
+            }
+          },
+          "onScreenIntent": "Active Recall: Calculating Quanto Drift Adjustment",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Institutional Reality: Correlation Risk in Exotic Structuring",
+      "purpose": "Institutional Reality: Correlation Risk in Exotic Structuring: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Reality: Correlation Risk in Exotic Structuring: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In institutional trading, quanto options are classified as pure Correlation Products."
+            },
+            "hi": {
+              "display": "संस्थागत ट्रेडिंग में क्वांटो ऑप्शन्स को 'कोरिलेशन प्रोडक्ट्स' कहा जाता है।"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Correlation Risk in Exotic Structuring",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "While volatility can be dynamically hedged using vanilla options, the cross-currency correlation rho cannot be directly traded or hedged in liquid markets."
+            },
+            "hi": {
+              "display": "वोलैटिलिटी को तो आप वैनिला ऑप्शन्स से हेज कर सकते हैं, लेकिन विदेशी एसेट और एक्सचेंज रेट के बीच का कोरिलेशन रो सीधे बाजार में ट्रेड नहीं होता!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Correlation Risk in Exotic Structuring",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "During financial panics, correlations can violently invert from plus 0.30 to minus 0.50. Structuring desks therefore embed wide risk margins to buffer unhedgeable correlation risk."
+            },
+            "hi": {
+              "display": "संकट के समय कोरिलेशन अचानक बदल सकता है—प्लस 0.30 से माइनस 0.50 हो सकता है! इसलिए स्ट्रक्चरिंग डेस्क क्वांटो प्रोडक्ट्स में बड़ा मार्जिन रखती हैं और कोरिलेशन को लगातार मॉनिटर करती हैं!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Correlation Risk in Exotic Structuring",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Summary: 8 Institutional Rules of Advanced Adjustments",
+      "purpose": "Summary: 8 Institutional Rules of Advanced Adjustments: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Advanced Adjustments: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us codify the eight institutional rules of advanced adjustments. Rule One: Daily margining forces futures rates strictly higher than forward rates."
+            },
+            "hi": {
+              "display": "चलिए एडवांस एडजस्टमेंट्स के 8 मुख्य नियमों को संहिताबद्ध करते हैं। नियम 1: दैनिक मार्जिनिंग के कारण फ्यूचर्स रेट हमेशा फॉरवर्ड रेट से अधिक होता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Adjustments",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule Two: Futures convexity adjustment scales as 0.5 times sigma squared times T_1 times T_2. Rule Three: Jensen's inequality enforces a positive convexity adjustment on bond yields."
+            },
+            "hi": {
+              "display": "नियम 2: फ्यूचर्स कॉन्वेक्सिटी एडजस्टमेंट आधा सिग्मा स्क्वायर T-1 गुना T-2 के बराबर होता है। नियम 3: जेन्सेन्स इनइक्वलिटी के कारण बॉन्ड यील्ड्स पर भी पॉजिटिव कॉन्वेक्सिटी एडजस्टमेंट लगता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Adjustments",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule Four: Payment date mismatches demand an exponential timing adjustment based on bond covariance."
+            },
+            "hi": {
+              "display": "नियम 4: ऑब्जर्वेशन और पेमेंट डेट मिसमैच होने पर e की पावर माइनस रो सिग्मा-V सिग्मा-P T-1 का टाइमिंग एडजस्टमेंट लगाया जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Adjustments",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule Five: Quanto options settle foreign asset returns in domestic currency at a fixed conversion rate."
+            },
+            "hi": {
+              "display": "नियम 5: क्वांटो ऑप्शन्स में विदेशी करेंसी पेऑफ को घरेलू करेंसी में फिक्स्ड रेट पर चुकाया जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Adjustments",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule Six: Under the domestic measure, quanto asset drift adjusts by minus rho times sigma_S times sigma_X."
+            },
+            "hi": {
+              "display": "नियम 6: घरेलू रिस्क-न्यूट्रल मेज़र में क्वांटो एसेट का ड्रिफ्ट r-F माइनस रो सिग्मा-S सिग्मा-X हो जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Adjustments",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule Seven: Girsanov's theorem underpins all adjustments via measure transitions. Rule Eight: Correlation risk remains the paramount unhedgeable factor in quantos."
+            },
+            "hi": {
+              "display": "नियम 7: सभी एडजस्टमेंट्स गिरसानोव थ्योरम द्वारा मेज़र चेंज के रूप में सिद्ध होते हैं। और नियम 8: क्वांटो में सबसे बड़ा अनहेज्ड रिस्क कोरिलेशन रिस्क होता है!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Adjustments",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Advanced Adjustments",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Closing Wisdom & Transition to Chapter 31",
+      "purpose": "Closing Wisdom & Transition to Chapter 31: Foundational quantitative principles",
+      "takeaways": [
+        "Closing Wisdom & Transition to Chapter 31: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When standard assumptions break in structured markets, quantitative analysts deploy convexity, timing, and quanto adjustments to restore exact arbitrage-free pricing."
+            },
+            "hi": {
+              "display": "सर, आज पहली बार समझ आया कि जब स्टैंडर्ड मॉडल्स की सीमाएं आती हैं, तो क्वांट्स हाथ नहीं खड़े करते बल्कि कॉन्वेक्सिटी, टाइमिंग और क्वांटो एडजस्टमेंट्स से उन्हें बिल्कुल सटीक बना देते हैं!"
+            }
+          },
+          "onScreenIntent": "Closing Wisdom & Transition to Chapter 31",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "You have now conquered the most sophisticated mathematical corrections in quantitative finance. In Chapter 31, we advance into Credit Risk and Credit Derivatives."
+            },
+            "hi": {
+              "display": "शाबाश राजू! तुमने डेरिवेटिव्स के सबसे सूक्ष्म गणितीय सुधारों पर विजय पा ली है। अब अगले चैप्टर 31 में हम 'शॉर्ट-रेट मॉडल्स'—वैसिसेक, कॉक्स-इंगरसोल-रॉस, और हल-व्हाइट—का निर्माण करेंगे!"
+            }
+          },
+          "onScreenIntent": "Closing Wisdom & Transition to Chapter 31",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Closing Wisdom & Transition to Chapter 31",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

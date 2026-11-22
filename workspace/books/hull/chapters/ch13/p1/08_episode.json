@@ -1,0 +1,1754 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch13",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 13",
+  "partLabel": "Part 1",
+  "title": "Binomial Trees - Part 1: One-Step Model & Risk-Neutral Valuation",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 1,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Discrete Revolution: The Binomial Tree Breakthrough",
+      "purpose": "In 1979, Cox, Ross, and Rubinstein introduced binomial trees, transforming option calculus into discrete algebra",
+      "takeaways": [
+        "In 1979, Cox, Ross, and Rubinstein introduced binomial trees, transforming option calculus into discrete algebra",
+        "Continuous Black-Scholes equations are derived cleanly as the continuous limit of discrete binomial trees",
+        "Binomial lattices allow transparent valuation of American early exercise and path-dependent options"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 1979, Cox, Ross, and Rubinstein revolutionized finance by converting complex option calculus into simple discrete algebra."
+            },
+            "hi": {
+              "display": "Nineteen seventy-nine mein John Cox, Stephen Ross aur Mark Rubinstein ne quantitative finance ki duniya mein ek kranti la di. Unhone options pricing ki complex calculus ko simple discrete algebra mein convert kar diya."
+            }
+          },
+          "onScreenIntent": "Introduce the 1979 Cox-Ross-Rubinstein breakthrough",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Binomial tree"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "While Black-Scholes-Merton uses continuous stochastic calculus, Binomial Trees divide time into discrete steps."
+            },
+            "hi": {
+              "display": "Black-Scholes-Merton model jahan continuous stochastic calculus use karta hai, wahi Binomial Trees continuous time ko chote discrete intervals mein tod kar solve karte hain."
+            }
+          },
+          "onScreenIntent": "Contrast continuous calculus with intuitive discrete lattice trees",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Discrete lattice"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 13 Part 1, we master the One-Step Model, Delta Hedging, Risk-Neutral Valuation, and Two-Step Recombining Trees."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter Thirteen Part One mein hum One-Step Binomial Model, Delta Hedging replication, Risk-Neutral Valuation Principle, aur Two-Step Recombining Trees ko master karenge."
+            }
+          },
+          "onScreenIntent": "Highlight why binomial models handle American early exercise where formulas fail",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Early exercise"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us first decode the foundational geometry and replicating portfolio mechanics of the One-Step Model."
+            },
+            "hi": {
+              "display": "Aaiye sabse pehle One-Step Binomial Model ki foundational geometry aur replicating portfolio ke mechanics ko decode karte hain."
+            }
+          },
+          "onScreenIntent": "Outline Part 1 roadmap: delta hedging, risk-neutral valuation, and rollback",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Risk-neutral valuation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Discrete Revolution: The Binomial Tree Breakthrough",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "In 1979, Cox, Ross, and Rubinstein introduced binomial trees, transforming option calculus into discrete algebra"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Continuous Black-Scholes equations are derived cleanly as the continuous limit of discrete binomial trees"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "The One-Step Model: Geometry of the Discrete World",
+      "purpose": "In one step delta_t, stock price S0 can only branch to S0 * u (up state) or S0 * d (down state)",
+      "takeaways": [
+        "In one step delta_t, stock price S0 can only branch to S0 * u (up state) or S0 * d (down state)",
+        "Parameters satisfy u > 1 and d < 1, spanning both upward and downward price trajectories",
+        "Option payoffs c_u and c_d at expiration are known with deterministic precision"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider a single time period T where the stock trades at S0 today."
+            },
+            "hi": {
+              "display": "Aaiye ek single time period T par consider karte hain jahan stock price S zero aaj trade ho raha hai."
+            }
+          },
+          "onScreenIntent": "Set up the one-step stock price branching structure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Up multiplier u",
+            "Down multiplier d"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "By period end, the stock can only take two values: multiply by up factor u to S0*u, or by down factor d to S0*d."
+            },
+            "hi": {
+              "display": "Is time period ke end par stock sirf do possible values le sakta hai: Ya toh up factor u se multiply hoke S zero u banega, ya down factor d se multiply hoke S zero d banega."
+            }
+          },
+          "onScreenIntent": "Define call payoffs c_u and c_d at the terminal branches",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Terminal call payoff"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At both states, option payoffs are known: fu = max(S0*u - K, 0) and fd = max(S0*d - K, 0)."
+            },
+            "hi": {
+              "display": "In dono states par option ka terminal payoff completely known hota hai: Up state par f u equals max of S zero u minus K comma zero, aur down state par f d."
+            }
+          },
+          "onScreenIntent": "Emphasize how simplicity unlocks rigorous no-arbitrage replication",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "No-arbitrage replication"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "No-arbitrage requires d < e^(rT) < u; otherwise riskless cash-and-carry arbitrage would exist."
+            },
+            "hi": {
+              "display": "No-arbitrage condition ke mutabik d continuously compounded risk-free growth e to the power rT se chota hona chahiye aur u bada hona chahiye."
+            }
+          },
+          "onScreenIntent": "Preview replicating portfolio derivation in the next scene",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Delta hedge"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Upward Node (S0 * u)",
+          "tone": "neutral",
+          "points": [
+            "In one step delta_t, stock price S0 can only branch to S0 * u (up state) or S0 * d (down state)",
+            "Parameters satisfy u > 1 and d < 1, spanning both upward and downward price trajectories"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Downward Node (S0 * d)",
+          "tone": "positive",
+          "points": [
+            "Parameters satisfy u > 1 and d < 1, spanning both upward and downward price trajectories",
+            "Option payoffs c_u and c_d at expiration are known with deterministic precision"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "In one step delta_t, stock price S0 can only branch to S0 * u (up state) or S0 * d (down state)"
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "The Replicating Portfolio: Deriving Delta",
+      "purpose": "A hedging portfolio consists of long delta shares of stock and short one call option",
+      "takeaways": [
+        "A hedging portfolio consists of long delta shares of stock and short one call option",
+        "Equating up payoff (S0*u*delta - c_u) and down payoff (S0*d*delta - c_d) completely eliminates market risk",
+        "Delta is strictly the ratio of option payoff spread to stock price spread: delta = (c_u - c_d)/(S0*u - S0*d)"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we examine modern financial engineering's core breakthrough: The Replicating Portfolio."
+            },
+            "hi": {
+              "display": "Ab aate hain modern financial engineering ke sabse crucial step par: The Replicating Portfolio."
+            }
+          },
+          "onScreenIntent": "Set up the portfolio: long delta shares of stock and short one call option",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Hedge portfolio"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "We construct a synthetic portfolio holding Delta shares of stock long and shorting one option."
+            },
+            "hi": {
+              "display": "Hum ek synthetic portfolio banate hain jisme Delta shares of stock long kiye jaate hain aur ek option short kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Express terminal portfolio payoffs in up and down branches",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Terminal state value"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In the up state, portfolio value is S0*u*Delta - fu; in the down state, S0*d*Delta - fd."
+            },
+            "hi": {
+              "display": "Up state par portfolio ki value S zero u Delta minus f u hogi, aur down state par S zero d Delta minus f d hogi."
+            }
+          },
+          "onScreenIntent": "Equate up and down payoffs to eliminate randomness and solve for delta",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Riskless hedge condition"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Equating both values eliminates all risk, yielding Delta = (fu - fd) / (S0*u - S0*d)!"
+            },
+            "hi": {
+              "display": "Dono values ko exactly equate karne par market ka sara risk eliminate ho jata hai, jisse Delta ka universal formula nikalta hai: f u minus f d divided by S zero u minus S zero d!"
+            }
+          },
+          "onScreenIntent": "State delta ratio: payoff difference divided by stock price difference",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Delta hedge ratio"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Replicating Portfolio: Deriving Delta",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "A hedging portfolio consists of long delta shares of stock and short one call option"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Equating up payoff (S0*u*delta - c_u) and down payoff (S0*d*delta - c_d) completely eliminates market risk"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "The Riskless Portfolio & Discrete Option Valuation",
+      "purpose": "Because the portfolio payoff is identical in both states, it is 100% riskless and must earn risk-free rate r",
+      "takeaways": [
+        "Because the portfolio payoff is identical in both states, it is 100% riskless and must earn risk-free rate r",
+        "Present value of the portfolio at t=0 equals terminal payoff discounted by exp(-r * delta_t)",
+        "Rearranging yields the option price without making any assumption about investor risk preferences"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because our hedged portfolio is risk-free, by finance's first law it must earn the risk-free rate r."
+            },
+            "hi": {
+              "display": "Kyunki hamara hedged portfolio completely risk-free hai, isliye finance ke first law ke according isko strictly risk-free rate r earn karna hoga."
+            }
+          },
+          "onScreenIntent": "Demonstrate that the hedged portfolio has zero variance and zero market risk",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Zero variance portfolio"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Compounding initial cost (S0*Delta - f) by e^(rT) must equal the deterministic terminal payoff."
+            },
+            "hi": {
+              "display": "Initial portfolio cost S zero Delta minus f ko agar hum e to the power rT se compound karein, toh wo terminal payoff ke barabar honi chahiye."
+            }
+          },
+          "onScreenIntent": "Apply no-arbitrage rule: riskless portfolio must grow exactly at risk-free rate r",
+          "sourceFactIds": [
+            "F02",
+            "F03"
+          ],
+          "newTerms": [
+            "No-arbitrage pricing"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rearranging this equation yields option price f: S0*Delta minus discounted terminal cash flow."
+            },
+            "hi": {
+              "display": "Is equation ko rearrange karke option price f calculate ho jati hai: f equals S zero Delta minus discounted terminal cash flow."
+            }
+          },
+          "onScreenIntent": "Discount terminal payoff to t=0 using continuous discounting exp(-r * delta_t)",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Continuous discounting"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If the market price differs, arbitrageurs lock in risk-free profits until price aligns with fair value."
+            },
+            "hi": {
+              "display": "Agar market mein option is price se alag quote ho, toh arbitrageurs instant risk-free profit lock kar lenge jab tak price fair value par align na ho jaye."
+            }
+          },
+          "onScreenIntent": "Rearrange terms to isolate option price c as a function of S0, u, d, r, and payoffs",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Option price isolation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Initial Setup Cost (t = 0)",
+          "tone": "neutral",
+          "points": [
+            "Because the portfolio payoff is identical in both states, it is 100% riskless and must earn risk-free rate r",
+            "Present value of the portfolio at t=0 equals terminal payoff discounted by exp(-r * delta_t)"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Guaranteed Payoff (t = delta_t)",
+          "tone": "positive",
+          "points": [
+            "Present value of the portfolio at t=0 equals terminal payoff discounted by exp(-r * delta_t)",
+            "Rearranging yields the option price without making any assumption about investor risk preferences"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Because the portfolio payoff is identical in both states, it is 100% riskless and must earn risk-free rate r"
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The Risk-Neutral Valuation Principle: The Grand Paradigm Shift",
+      "purpose": "Dynamic delta hedging immunizes the option against stock direction, rendering real-world probabilities irrelevant",
+      "takeaways": [
+        "Dynamic delta hedging immunizes the option against stock direction, rendering real-world probabilities irrelevant",
+        "Investors may be risk-averse, risk-seeking, or risk-neutral, but option prices remain identical",
+        "We can mathematically price derivatives assuming everyone is risk-neutral and all assets earn rate r"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we arrive at financial economics' profound breakthrough: Risk-Neutral Valuation."
+            },
+            "hi": {
+              "display": "Ab hum financial economics ke sabse deep intellectual breakthrough par aate hain: The Risk-Neutral Valuation Principle."
+            }
+          },
+          "onScreenIntent": "Reveal the astonishing mathematical result: real-world probability does not enter formula",
+          "sourceFactIds": [
+            "F03",
+            "F08"
+          ],
+          "newTerms": [
+            "Real-world probability independence"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "People assume that if the market is 90% likely to rise, calls must cost more. John Hull proves this is false!"
+            },
+            "hi": {
+              "display": "Aam tor par log sochte hain ki agar market bullish hai aur stock ke upar jane ke chances 90 percent hain, toh call option mehenga hona chahiye. Lekin John Hull dikhate hain ki ye bilkul galat hai!"
+            }
+          },
+          "onScreenIntent": "Explain why replication hedges away subjective market beliefs and optimism",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Dynamic hedging invariance"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option prices do not depend on subjective beliefs; options replicate stock, which already embeds all risk preferences."
+            },
+            "hi": {
+              "display": "Option ki price real-world subjective probabilities aur risk aversion par depend nahi karti, kyunki option stock se replicate hota hai aur stock price mein sari risk preferences pehle se embedded hain."
+            }
+          },
+          "onScreenIntent": "Define the risk-neutral world where expected stock return equals risk-free rate r",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Risk-neutral measure Q"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "We can safely assume a risk-neutral world where all assets grow at r and payoffs discount at r!"
+            },
+            "hi": {
+              "display": "Isliye hum safely assume kar sakte hain ki world completely risk-neutral hai, jahan sabhi assets risk-free rate r earn karte hain aur payoffs ko r par discount kiya jata hai!"
+            }
+          },
+          "onScreenIntent": "State the core pricing law: option price equals discounted expected risk-neutral payoff",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Discounted expected payoff"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Risk-Neutral Valuation Principle: The Grand Paradigm Shift",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Dynamic delta hedging immunizes the option against stock direction, rendering real-world probabilities irrelevant"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Investors may be risk-averse, risk-seeking, or risk-neutral, but option prices remain identical"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "The Risk-Neutral Probability: Mathematical Formulation",
+      "purpose": "Synthetic probability p = (exp(r * delta_t) - d) / (u - d) ensures expected stock price grows at rate r",
+      "takeaways": [
+        "Synthetic probability p = (exp(r * delta_t) - d) / (u - d) ensures expected stock price grows at rate r",
+        "Probability p is not a real-world forecast; it is an internal mathematical pricing weight",
+        "One-step option formula is c = exp(-r * delta_t) * [p * c_u + (1 - p) * c_d]"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us derive the exact mathematical formulation of the risk-neutral probability p."
+            },
+            "hi": {
+              "display": "Aaiye ab Risk-Neutral Probability p ke exact mathematical formula ko derive karte hain."
+            }
+          },
+          "onScreenIntent": "Define synthetic risk-neutral probability p mathematically",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Synthetic probability p"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The formula is: p = (e^(rT) - d) / (u - d)."
+            },
+            "hi": {
+              "display": "Formula hai: p equals e to the power rT minus d divided by u minus d."
+            }
+          },
+          "onScreenIntent": "Clarify that p is a mathematical pricing parameter, not real subjective probability",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Pricing weight"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under this probability, expected stock growth is exactly r: p*S0*u + (1-p)*S0*d = S0*e^(rT)."
+            },
+            "hi": {
+              "display": "Is probability p ke under stock ka expected return exactly risk-free rate r hota hai: p S zero u plus one minus p S zero d barabar S zero e to the power rT."
+            }
+          },
+          "onScreenIntent": "Present the general one-step option valuation equation",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "One-step binomial formula"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And option price f is simply the discounted expected payoff: e^(-rT) * [p*fu + (1-p)*fd]!"
+            },
+            "hi": {
+              "display": "Aur option price f simply expected terminal payoff ka risk-free discounted present value ban jati hai: e to the power minus rT times p f u plus one minus p f d!"
+            }
+          },
+          "onScreenIntent": "Emphasize how this simple equation scales seamlessly into complex multi-period trees",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Lattice scaling"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Risk-Neutral Probability: Mathematical Formulation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Synthetic probability p = (exp(r * delta_t) - d) / (u - d) ensures expected stock price grows at rate r"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Probability p is not a real-world forecast; it is an internal mathematical pricing weight"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Numerical Walkthrough: Pricing a European Call",
+      "purpose": "Given S0=$20, u=1.1, d=0.9, K=$21, r=12%, T=0.25 years: up price is $22 (c_u=$1), down price is $18 (c_d=$0)",
+      "takeaways": [
+        "Given S0=$20, u=1.1, d=0.9, K=$21, r=12%, T=0.25 years: up price is $22 (c_u=$1), down price is $18 (c_d=$0)",
+        "Delta ratio is ($1 - $0) / ($22 - $18) = 0.25 shares",
+        "Risk-neutral probability p = 0.6523; discounted option value is c = $0.633"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us calculate John Hull's classic numerical problem from Section 13.1 step-by-step."
+            },
+            "hi": {
+              "display": "Aaiye ab John Hull ke Section thirteen point one ke classic numerical problem ko step-by-step calculate karte hain."
+            }
+          },
+          "onScreenIntent": "Present the numerical problem parameters from John Hull Chapter 13",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [
+            "Numerical parameters"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Stock is $20. In 3 months, it rises 10% to $22 or drops 10% to $18. Strike is $21, rate is 12%."
+            },
+            "hi": {
+              "display": "Stock 20 dollars par trade ho raha hai. Teen mahine mein ye ya toh 10 percent badhkar 22 dollars hoga ya 10 percent girkar 18 dollars hoga. Strike price 21 dollars hai aur interest rate 12 percent hai."
+            }
+          },
+          "onScreenIntent": "Calculate delta: ($1 - $0) / ($22 - $18) = 0.25 shares",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Calculated delta"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Payoffs are fu = $1 and fd = $0. Delta = (1 - 0) / (22 - 18) = exactly 0.25 shares."
+            },
+            "hi": {
+              "display": "Terminal payoffs hain: f u equals 1 dollar aur f d equals zero. Delta hedge ratio 1 minus zero divided by 22 minus 18 yani exactly zero point two five shares nikalta hai."
+            }
+          },
+          "onScreenIntent": "Calculate risk-neutral probability p = 0.6523",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Calculated probability"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Risk-neutral probability p is 0.6523. Discounting yields a call price of exactly $0.633 (63.3 cents)!"
+            },
+            "hi": {
+              "display": "Risk-neutral probability p zero point six five two three aati hai. Expected payoff ko discount karne par call option ki exact fair value zero point six three three dollars yaani sixty-three point three cents banti hai!"
+            }
+          },
+          "onScreenIntent": "Discount expected payoff to arrive at exact call price $0.633",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Calculated call premium"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Numerical Walkthrough: Pricing a European Call",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Given S0=$20, u=1.1, d=0.9, K=$21, r=12%, T=0.25 years: up price is $22 (c_u=$1), down price is $18 (c_d=$0)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Delta ratio is ($1 - $0) / ($22 - $18) = 0.25 shares"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Extending to Two Steps: The Recombining Lattice",
+      "purpose": "In a two-step tree, stock price evolves over 2 periods: up-up (u^2), up-down (ud), and down-down (d^2)",
+      "takeaways": [
+        "In a two-step tree, stock price evolves over 2 periods: up-up (u^2), up-down (ud), and down-down (d^2)",
+        "Because multiplication commutes (u * d = d * u), intermediate nodes recombine, producing 3 terminal nodes instead of 4",
+        "Recombining lattices grow linearly with time steps (N+1 nodes), avoiding exponential explosion"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A one-step model is crude because real stocks move continuously. Hence we divide time into multiple steps."
+            },
+            "hi": {
+              "display": "One-step model bohot crude hota hai kyunki real world mein stock teen mahine mein sirf ek baar move nahi karta. Isliye hum time ko multiple steps mein divide karte hain."
+            }
+          },
+          "onScreenIntent": "Extend analysis from one single step to a two-step multi-period tree",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Two-step tree"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In a two-step tree with intervals Δt, S0 splits into two branches: S0*u and S0*d."
+            },
+            "hi": {
+              "display": "Two-step tree mein do intervals delta t create hote hain: Node S zero do branches mein split hota hai: S zero u aur S zero d."
+            }
+          },
+          "onScreenIntent": "Explain why u*d = d*u causes middle nodes to recombine into a single price",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Recombining property"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At step two, nodes become S0*u^2, S0*d^2, and recombine at the middle node S0*u*d."
+            },
+            "hi": {
+              "display": "Second step par upper node S zero u square banata hai, lower node S zero d square banata hai, aur middle paths S zero u d par recombine ho jaate hain."
+            }
+          },
+          "onScreenIntent": "Contrast linear N+1 node growth with exponential 2^N explosion",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Computational efficiency"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Thanks to recombining symmetry, an N-step tree produces only N + 1 nodes rather than 2^N paths!"
+            },
+            "hi": {
+              "display": "Recombining property ki wajah se tree exponentially explode nahi hota; N steps par two to the power N paths ke bajaye sirf N plus one nodes bante hain!"
+            }
+          },
+          "onScreenIntent": "Show terminal payoffs at the three nodes: u^2, ud, and d^2",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Terminal tree nodes"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Recombining Lattice (u * d = d * u)",
+          "tone": "neutral",
+          "points": [
+            "In a two-step tree, stock price evolves over 2 periods: up-up (u^2), up-down (ud), and down-down (d^2)",
+            "Because multiplication commutes (u * d = d * u), intermediate nodes recombine, producing 3 terminal nodes instead of 4"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Non-Recombining Tree (Path Dependent)",
+          "tone": "positive",
+          "points": [
+            "Because multiplication commutes (u * d = d * u), intermediate nodes recombine, producing 3 terminal nodes instead of 4",
+            "Recombining lattices grow linearly with time steps (N+1 nodes), avoiding exponential explosion"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "In a two-step tree, stock price evolves over 2 periods: up-up (u^2), up-down (ud), and down-down (d^2)"
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Backward Induction: Multi-Period Rollback Algorithm",
+      "purpose": "Option pricing runs backward in time: evaluate intrinsic payoffs at expiration t=T first",
+      "takeaways": [
+        "Option pricing runs backward in time: evaluate intrinsic payoffs at expiration t=T first",
+        "Roll backward node-by-node by applying one-step risk-neutral discounting recursively",
+        "Backward induction dynamically updates hedge ratio delta at every step and node"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To value options on multi-step trees, we deploy Backward Induction: A dynamic programming algorithm."
+            },
+            "hi": {
+              "display": "Two-step tree par pricing karne ke liye hum Backward Induction yaani dynamic programming algorithm use karte hain."
+            }
+          },
+          "onScreenIntent": "Introduce the backward induction rollback principle",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Backward induction"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "We first evaluate terminal payoffs fuu, fud, and fdd at final expiration."
+            },
+            "hi": {
+              "display": "Hum sabse pehle expiration maturity par terminal payoffs f u u, f u d aur f d d evaluate karte hain."
+            }
+          },
+          "onScreenIntent": "Calculate option values at step 1 intermediate nodes using risk-neutral formula",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Intermediate node valuation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "We then roll backward in time to compute intermediate nodes fu and fd, and finally the root present value f."
+            },
+            "hi": {
+              "display": "Phir time mein peeche roll back karke intermediate nodes f u aur f d calculate karte hain, aur aakhir mein root node par option ki present value f nikaal lete hain."
+            }
+          },
+          "onScreenIntent": "Roll back from step 1 to step 0 root node to determine initial option price",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Root node convergence"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Crucially, Delta changes at each node. Market makers must dynamically rebalance their hedge at every step!"
+            },
+            "hi": {
+              "display": "Sabse important baat: Delta har node par change hota hai. Market maker ko apna hedge continuously rebalance karna padta hai: jise Dynamic Delta Hedging kehte hain!"
+            }
+          },
+          "onScreenIntent": "Explain how delta changes across nodes, reflecting dynamic rehedging requirements",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Dynamic rehedging"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Backward Induction: Multi-Period Rollback Algorithm",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Option pricing runs backward in time: evaluate intrinsic payoffs at expiration t=T first"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Roll backward node-by-node by applying one-step risk-neutral discounting recursively"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: One-Step Binomial Call Valuation",
+      "purpose": "Delta is determined purely by the ratio of option payoff spread to stock price spread",
+      "takeaways": [
+        "Delta is determined purely by the ratio of option payoff spread to stock price spread",
+        "Subjective probabilities do not affect option fair value because hedging eliminates risk",
+        "Risk-neutral probability p is a synthetic mathematical weight ensuring no arbitrage"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your active recall understanding on a concrete one-step binomial pricing challenge from John Hull."
+            },
+            "hi": {
+              "display": "Aaiye ab aapki active recall understanding ko John Hull ke ek concrete one-step binomial option pricing challenge par test karte hain."
+            }
+          },
+          "onScreenIntent": "Pose conceptual challenge on why real-world probability disappears",
+          "sourceFactIds": [
+            "F03",
+            "F08"
+          ],
+          "newTerms": [
+            "Challenge scenario"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Stock S0 = $50, moves to $60 or $40 (u = 1.20, d = 0.80) in 6 months. r = 5% (e^(rT) = 1.0253), Strike K = $50. Calculate Delta and Call price."
+            },
+            "hi": {
+              "display": "Stock S zero fifty dollars hai. Six-month period mein stock sixty dollars par up ya forty dollars par down ja sakta hai yaani u one point two zero aur d zero point eight zero hai. Risk-free rate continuous five percent hai aur growth factor e to the power r delta t one point zero two five three hai. Strike price fifty dollars ka European Call option hai. Delta hedge ratio aur call price calculate kijiye."
+            }
+          },
+          "onScreenIntent": "Highlight common beginner misconception that bullish beliefs increase call value",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Subjective belief fallacy"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A. Delta is 0.50 shares and Call option price is $5.50."
+            },
+            "hi": {
+              "display": "Sahi answer Option A hai. Delta zero point five zero shares hai aur Call option price five point five zero dollars hai."
+            }
+          },
+          "onScreenIntent": "Reveal answer: dynamic replication completely eliminates directional exposure",
+          "sourceFactIds": [
+            "F02",
+            "F03"
+          ],
+          "newTerms": [
+            "Replication proof"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Payoff is fu = $10, fd = $0. Delta = 10/20 = 0.50. Probability p = 0.5633, yielding an exact call price of $5.50!"
+            },
+            "hi": {
+              "display": "Calculation dekhiye: f u ten dollars hai aur f d zero hai. Delta ten divided by twenty yani zero point five zero banta hai. Probability p zero point five six three three aati hai, aur discounted expectation exactly five point five zero dollars banta hai!"
+            }
+          },
+          "onScreenIntent": "Reinforce that risk-neutral probability p is an internal mathematical weighting tool",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Mathematical weight reinforcement"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Why does the fair price of an option NOT depend on the real-world probability of the stock rising?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "By holding Delta shares and shorting the option, the portfolio payoff is identical whether the stock rises or falls. Because all risk is hedged away, subjective market beliefs cannot influence fair price."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Put Options & Recombining Efficiency on Trees",
+      "purpose": "Put option payoffs p_u = max(K - S0*u, 0) and p_d = max(K - S0*d, 0) yield negative delta",
+      "takeaways": [
+        "Put option payoffs p_u = max(K - S0*u, 0) and p_d = max(K - S0*d, 0) yield negative delta",
+        "Negative delta signifies a short stock position is required to hedge a short put",
+        "The identical risk-neutral probability p applies to both calls and puts, ensuring put-call parity holds"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Binomial trees are not just for calls; they are the master engine for valuing European and American Put options."
+            },
+            "hi": {
+              "display": "Binomial trees sirf calls ke liye nahi hain; ye European aur American Put options ko price karne ka bhi master engine hain."
+            }
+          },
+          "onScreenIntent": "Apply the binomial lattice framework to European put options",
+          "sourceFactIds": [
+            "F01",
+            "F05"
+          ],
+          "newTerms": [
+            "Binomial put option"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Puts use identical u, d factors and probability p. Evaluating terminal payoffs and rolling back yields the put price."
+            },
+            "hi": {
+              "display": "European Put option ke liye identical up-down factors u aur d aur identical risk-neutral probability p use hoti hai. Terminal nodes par put payoffs evaluate karke backward induction se present value rollback ki jaati hai."
+            }
+          },
+          "onScreenIntent": "Examine negative delta: put payoffs are higher in down state, producing delta < 0",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Negative delta"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Remarkably, Put-Call Parity c + K e^(-rΔt) = p + S holds with zero discrepancy at every single node of the tree."
+            },
+            "hi": {
+              "display": "Sabse remarkable baat ye hai ki tree ke har single node par Put-Call Parity perfectly satisfy hoti hai: c plus K e to the power minus r delta t equals p plus S."
+            }
+          },
+          "onScreenIntent": "Verify that synthetic probability p is universal and prices puts identically",
+          "sourceFactIds": [
+            "F04",
+            "F05"
+          ],
+          "newTerms": [
+            "Universal pricing measure"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This mathematical symmetry proves the binomial lattice is the exact discrete counterpart to continuous option pricing."
+            },
+            "hi": {
+              "display": "Ye mathematical symmetry prove karti hai ki binomial lattice continuous arbitrage-free asset pricing ka exact discrete counterpart hai."
+            }
+          },
+          "onScreenIntent": "Demonstrate that tree prices satisfy discrete put-call parity at every node",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Discrete put-call parity"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Call Option Dynamics",
+          "tone": "neutral",
+          "points": [
+            "Put option payoffs p_u = max(K - S0*u, 0) and p_d = max(K - S0*d, 0) yield negative delta",
+            "Negative delta signifies a short stock position is required to hedge a short put"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Put Option Dynamics",
+          "tone": "positive",
+          "points": [
+            "Negative delta signifies a short stock position is required to hedge a short put",
+            "The identical risk-neutral probability p applies to both calls and puts, ensuring put-call parity holds"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Put option payoffs p_u = max(K - S0*u, 0) and p_d = max(K - S0*d, 0) yield negative delta"
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Binomial Option Valuation",
+      "purpose": "Binomial lattices simplify continuous option pricing into transparent discrete algebra",
+      "takeaways": [
+        "Binomial lattices simplify continuous option pricing into transparent discrete algebra",
+        "Risk-neutral probability p weights future states so expected return equals risk-free rate r",
+        "Part 2 masters multi-step CRR calibration, American early exercise, and dividend lattices"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the four foundational valuation pillars of Chapter 13 Part 1."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Thirteen Part One ke chaar foundational valuation pillars ko consolidate karte hain."
+            }
+          },
+          "onScreenIntent": "Synthesize the core breakthrough of Cox-Ross-Rubinstein discrete pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Executive summary"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: Discrete Lattice Architecture. Binomial trees convert continuous asset diffusion into discrete up-down jumps."
+            },
+            "hi": {
+              "display": "Pillar One: Discrete Lattice Architecture. Binomial trees continuous asset diffusion ko simple discrete up-down jumps mein convert karte hain."
+            }
+          },
+          "onScreenIntent": "Review Rules 1 and 2: branching geometry and delta hedge ratio",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: Delta Replication. Holding Delta shares constructs a riskless portfolio compounding strictly at rate r."
+            },
+            "hi": {
+              "display": "Pillar Two: Delta Replication. Delta shares hold karke banaya gaya synthetic portfolio perfectly riskless hota hai aur compulsory risk-free rate r earn karta hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 3 and 4: no-arbitrage portfolio growth and belief independence",
+          "sourceFactIds": [
+            "F02",
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: Risk-Neutral Measure. Option pricing is independent of risk aversion, governed by synthetic probability p."
+            },
+            "hi": {
+              "display": "Pillar Three: Risk-Neutral Measure. Option pricing real-world subjective beliefs se completely independent hoti hai aur synthetic probability p par chalti hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 5 and 6: risk-neutral probability p and one-step pricing formula",
+          "sourceFactIds": [
+            "F04",
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 4: Backward Induction. Rolling back from terminal payoffs node-by-node provides the multi-period pricing engine."
+            },
+            "hi": {
+              "display": "Pillar Four: Backward Induction Rollback. Terminal expiration payoffs se shuru karke step-by-step peeche discount karna multi-period pricing ka universal engine hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 7 and 8: recombining efficiency and backward induction rollback",
+          "sourceFactIds": [
+            "F07",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 13 Part 2, we master American Options, Early Exercise, Dynamic Delta Hedging, and Black-Scholes Convergence!"
+            },
+            "hi": {
+              "display": "Agli video Chapter Thirteen Part Two mein hum American Options, Early Exercise at Intermediate Nodes, Dynamic Delta Hedging, aur Black-Scholes Convergence ko master karenge!"
+            }
+          },
+          "onScreenIntent": "Conclude Part 1 and bridge to Part 2: CRR volatility calibration and American options",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Part 2 bridge"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary Thread: Four Pillars of Binomial Option Valuation",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

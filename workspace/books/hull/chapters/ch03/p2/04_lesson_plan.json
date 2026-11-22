@@ -1,0 +1,212 @@
+{
+  "outcomes": [
+    "Derive and apply the minimum variance hedge ratio formula h* = rho * (sigma_S / sigma_F)",
+    "Calculate optimal contracts for cross hedges using N* = h* * (Q_A / Q_F)",
+    "Hedging equity portfolios and adjusting beta using stock index futures",
+    "Analyze the liquidity and rollover mechanics of stack and roll, evaluating the Metallgesellschaft case study"
+  ],
+  "coreConcepts": [
+    {
+      "conceptId": "K06",
+      "term": "cross hedging",
+      "stages": {
+        "intuition": {
+          "sceneIndex": 0,
+          "note": "When no exact futures contract exists for the physical asset"
+        },
+        "why": {
+          "sceneIndex": 1,
+          "note": "Variance minimization requires scaling by volatility ratio and correlation"
+        },
+        "what": {
+          "sceneIndex": 1,
+          "note": "Minimum variance hedge ratio formula"
+        },
+        "how": {
+          "sceneIndex": 2,
+          "note": "Airline jet fuel hedge worked calculation"
+        },
+        "workedExample": {
+          "sceneIndex": 2,
+          "note": "Calculation of 37 heating oil contracts"
+        },
+        "guided": {
+          "sceneIndex": 5,
+          "note": "Tactical beta adjustment using stock index futures"
+        },
+        "independent": {
+          "sceneIndex": 9,
+          "note": "Calculate hedge ratio in the quiz"
+        },
+        "limitations": {
+          "sceneIndex": 8,
+          "note": "Metallgesellschaft $1.33B stack and roll disaster"
+        }
+      }
+    }
+  ],
+  "misconception": {
+    "myth": "A hedge ratio should always be one-to-one (100% of physical volume)",
+    "reality": "The optimal hedge ratio balances relative asset volatilities and correlation to minimize variance",
+    "factIds": [
+      "F01",
+      "F02"
+    ],
+    "sceneIndex": 3
+  },
+  "predictionQuestions": [
+    {
+      "question": "If jet fuel is more volatile than heating oil, will the hedge ratio exceed the correlation coefficient?",
+      "sceneIndex": 1,
+      "revealBeat": "s01b3"
+    }
+  ],
+  "causalChain": {
+    "condition": "Airline needs 2M gallons jet fuel; no jet fuel futures exist",
+    "action": "Treasury calculates h* = 0.7777 and shorts 37 heating oil contracts",
+    "mechanism": "Heating oil futures cash flows correlate at 0.928 with jet fuel cost spikes",
+    "result": "Fuel cost volatility is compressed by the correlation squared (R2 = 86%)",
+    "consequence": "Airline locks in predictable operating margins and protects operating solvency",
+    "factIds": [
+      "F02",
+      "F03",
+      "F04"
+    ],
+    "sceneIndex": 5
+  },
+  "sceneOutline": [
+    {
+      "index": 0,
+      "purpose": "Problem-first hook",
+      "concepts": [
+        "cross hedging"
+      ],
+      "factIds": [
+        "F01"
+      ]
+    },
+    {
+      "index": 1,
+      "purpose": "Minimum variance hedge ratio formula",
+      "concepts": [
+        "cross hedging"
+      ],
+      "factIds": [
+        "F02"
+      ]
+    },
+    {
+      "index": 2,
+      "purpose": "Airline worked example",
+      "concepts": [
+        "cross hedging"
+      ],
+      "factIds": [
+        "F03",
+        "F04"
+      ]
+    },
+    {
+      "index": 3,
+      "purpose": "Tailing the hedge and marking to market",
+      "concepts": [
+        "cross hedging"
+      ],
+      "factIds": [
+        "F01",
+        "F03"
+      ]
+    },
+    {
+      "index": 4,
+      "purpose": "Stock index futures formula",
+      "concepts": [
+        "beta hedging"
+      ],
+      "factIds": [
+        "F05"
+      ]
+    },
+    {
+      "index": 5,
+      "purpose": "Tactical beta adjustment causal chain",
+      "concepts": [
+        "beta hedging"
+      ],
+      "factIds": [
+        "F06"
+      ]
+    },
+    {
+      "index": 6,
+      "purpose": "Individual equity hedging progressive cards",
+      "concepts": [
+        "beta hedging"
+      ],
+      "factIds": [
+        "F05"
+      ]
+    },
+    {
+      "index": 7,
+      "purpose": "Stack and roll vs strip hedge table compare",
+      "concepts": [
+        "stack and roll"
+      ],
+      "factIds": [
+        "F07"
+      ]
+    },
+    {
+      "index": 8,
+      "purpose": "Metallgesellschaft stat counter",
+      "concepts": [
+        "stack and roll"
+      ],
+      "factIds": [
+        "F08"
+      ]
+    },
+    {
+      "index": 9,
+      "purpose": "Interactive quiz",
+      "concepts": [
+        "cross hedging"
+      ],
+      "factIds": [
+        "F02",
+        "F09"
+      ]
+    },
+    {
+      "index": 10,
+      "purpose": "Synthesis: Liquidity risk vs basis risk",
+      "concepts": [
+        "cross hedging",
+        "stack and roll"
+      ],
+      "factIds": [
+        "F01",
+        "F07"
+      ]
+    },
+    {
+      "index": 11,
+      "purpose": "Eight rules summary thread",
+      "concepts": [
+        "cross hedging",
+        "beta hedging",
+        "stack and roll"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F03",
+        "F05",
+        "F06",
+        "F07",
+        "F08"
+      ]
+    }
+  ]
+}

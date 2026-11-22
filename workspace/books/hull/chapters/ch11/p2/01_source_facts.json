@@ -1,0 +1,87 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch11",
+  "partId": "p2",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "formula",
+      "statement": "Put-Call Parity for European Options on Non-Dividend Stock: c + K * exp(-r*T) = p + S0. Portfolio A (1 European call + cash K*exp(-rT)) exactly replicates Portfolio B (1 European put + 1 share of stock) with identical terminal payoff max(S_T, K).",
+      "citation": {
+        "chapter": "11",
+        "section": "11.4",
+        "page": "272"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "case_study",
+      "statement": "Parity Arbitrage Example (Overpriced Call): S0 = $31, K = $30, r = 10%, T = 0.25 yrs, c = $3.00, p = $2.25. Replicating cost c + K*exp(-rT) = 3 + 30*exp(-0.025) = 3 + 29.26 = $32.26. Portfolio B cost p + S0 = 2.25 + 31 = $33.25. Parity violated ($32.26 != $33.25), triggering arbitrage: sell put, short stock, buy call, invest cash.",
+      "citation": {
+        "chapter": "11",
+        "section": "11.4",
+        "page": "273"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "market_rule",
+      "statement": "Early Exercise Theorem: It is never optimal to exercise an American call option early on a non-dividend-paying stock (C = c). By exercising early, the holder forfeits remaining time value and pays strike K prematurely, losing interest.",
+      "citation": {
+        "chapter": "11",
+        "section": "11.5",
+        "page": "275"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "market_rule",
+      "statement": "Early Exercise of American Puts: Unlike calls, it CAN be optimal to exercise an American put early when the option is deep in the money and interest earned on received strike cash K exceeds remaining put insurance value.",
+      "citation": {
+        "chapter": "11",
+        "section": "11.6",
+        "page": "278"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "formula",
+      "statement": "Put-Call Parity with Discrete Dividends: c + D + K * exp(-r*T) = p + S0, where D is the present value of all dividends paid during the life of the options.",
+      "citation": {
+        "chapter": "11",
+        "section": "11.7",
+        "page": "280"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "market_rule",
+      "statement": "Dividend Exception for American Calls: The ONLY time it can be optimal to exercise an American call early is immediately prior to an ex-dividend date, if the dividend D exceeds the strike time value lost: D > K * [1 - exp(-r*(T - t_ex))].",
+      "citation": {
+        "chapter": "11",
+        "section": "11.7",
+        "page": "281"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "formula",
+      "statement": "Synthetic Positions via Parity: Synthetic Stock = c - p + K*exp(-rT); Synthetic Long Call = p + S0 - K*exp(-rT); Synthetic Long Put = c - S0 + K*exp(-rT).",
+      "citation": {
+        "chapter": "11",
+        "section": "11.4",
+        "page": "274"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "case_study",
+      "statement": "Business Snapshot 11.1 (Merton Capital Structure Model): A firm's equity can be viewed as a European call option on the firm's assets with strike equal to the face value of debt D: Equity = Call(Assets, D). Debt holders effectively sell a put option to equity holders.",
+      "citation": {
+        "chapter": "11",
+        "section": "11.8",
+        "page": "283"
+      }
+    }
+  ]
+}

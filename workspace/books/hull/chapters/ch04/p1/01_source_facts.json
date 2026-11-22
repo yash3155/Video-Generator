@@ -1,0 +1,120 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch04",
+  "partId": "p1",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "definition",
+      "statement": "Treasury rates are sovereign default-free borrowing rates in national currency. Repo rates represent collateralized borrowing backed by government securities, trading slightly below unsecured benchmark rates.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.1",
+        "page": "77"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "formula",
+      "statement": "Discrete compounding terminal value is A*(1 + R/m)^(mn). As m approaches infinity, continuous compounding yields terminal value A*e^(Rn).",
+      "citation": {
+        "chapter": "4",
+        "section": "4.2",
+        "page": "79"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "formula",
+      "statement": "The conversion between discrete rate R_m compounded m times per annum and continuous equivalent R_c is R_c = m * ln(1 + R_m / m), and conversely R_m = m * (e^(R_c / m) - 1).",
+      "citation": {
+        "chapter": "4",
+        "section": "4.2",
+        "page": "80"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "formula",
+      "statement": "The continuous present value discount factor for cash flow B received at time T is PV = B * e^(-RT), where R is the zero rate for maturity T.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.2",
+        "page": "81"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "definition",
+      "statement": "An n-year zero-coupon interest rate is the rate earned on an investment starting today and lasting for n years with no intermediate coupon payments.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.3",
+        "page": "82"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "formula",
+      "statement": "Theoretical bond price is sum of discounted cash flows: P = sum(C * e^(-R_i * t_i)) + F * e^(-R_n * t_n), which must equal market price to avoid arbitrage.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.4",
+        "page": "82"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "definition",
+      "statement": "The par yield is the coupon rate per year that causes the bond price to equal its par (face) value.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.4",
+        "page": "83"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "process",
+      "statement": "The Bootstrap method determines zero rates recursively from Treasury bills and coupon bond market prices by stripping prior known coupon cash flows.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.5",
+        "page": "84"
+      }
+    },
+    {
+      "id": "F09",
+      "category": "formula",
+      "statement": "The forward rate R_F for the period between T_1 and T_2 implied by zero rates R_1 and R_2 is R_F = (R_2*T_2 - R_1*T_1) / (T_2 - T_1).",
+      "citation": {
+        "chapter": "4",
+        "section": "4.6",
+        "page": "86"
+      }
+    },
+    {
+      "id": "F10",
+      "category": "numerical_example",
+      "statement": "If zero rate for 1 year is 3.0% and for 2 years is 4.0%, the 1-year forward rate starting at year 1 is R_F = (0.04*2 - 0.03*1) / (2 - 1) = 5.0%.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.6",
+        "page": "87"
+      }
+    }
+  ],
+  "realWorldProblem": {
+    "actors": "Fixed income traders, quantitative pricing desks, and bank treasurers",
+    "situation": "Pricing multi-period derivative contracts and discounting corporate bond cash flows across diverse maturities",
+    "failure": "Discounting at flat Yield to Maturity instead of spot zero curves creates mispricing and severe arbitrage vulnerability",
+    "invention": "Continuous compounding, the recursive Bootstrap method, and forward curve extraction",
+    "factIds": [
+      "F01",
+      "F03",
+      "F06",
+      "F08",
+      "F09"
+    ]
+  }
+}

@@ -1,0 +1,1465 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch26",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 26",
+  "partLabel": "Part 1",
+  "title": "Hull Chapter 26 Part 1: Exotic Options (Packages, Nonstandard & Single-Barrier Options)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 50,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Corporate Hedger's Vanilla Premium Dilemma",
+      "purpose": "The Corporate Hedger's Vanilla Premium Dilemma: Foundational quantitative principles",
+      "takeaways": [
+        "The Corporate Hedger's Vanilla Premium Dilemma: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When a corporate treasury seeks one-year downside protection on a $100 million portfolio, why is the standard vanilla put option premium so prohibitively expensive?"
+            },
+            "hi": {
+              "display": "सर, अगर एक कॉर्पोरेट ट्रेजरी को एक साल के लिए 100 करोड़ रुपये के पोर्टफोलियो पर डाउनसाइड प्रोटेक्शन चाहिए, तो स्टैंडर्ड वैनिला पुट ऑप्शन का प्रीमियम इतना महंगा क्यों पड़ता है?"
+            }
+          },
+          "onScreenIntent": "The Corporate Hedger's Vanilla Premium Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exchange-traded vanilla options are strictly standardized products designed to protect against every conceivable market decline, from a minor 5% dip to a catastrophic 80% market collapse. However, corporate risk budgets are strictly finite."
+            },
+            "hi": {
+              "display": "राजू, एक्सचेंज-ट्रेडेड वैनिला ऑप्शन्स पूरी तरह मानकीकृत होते हैं। वे हर संभावित गिरावट को कवर करते हैं, चाहे मार्केट 5% गिरे या 80%। लेकिन कॉर्पोरेट बजट सीमित होते हैं।"
+            }
+          },
+          "onScreenIntent": "The Corporate Hedger's Vanilla Premium Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Paying an upfront 4% premium—$4 million—erodes operating margins. If equity markets simply trade sideways, that entire cash premium is forfeited with zero payout."
+            },
+            "hi": {
+              "display": "अगर 100 करोड़ पर 4% यानी 4 करोड़ रुपये का प्रीमियम अग्रिम देना पड़े, तो कंपनी का प्रॉफिट मार्जिन ही खत्म हो जाता है। और अगर मार्केट क्रैश न हो, तो यह पूरा प्रीमियम डूब जाता है!"
+            }
+          },
+          "onScreenIntent": "The Corporate Hedger's Vanilla Premium Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To resolve this commercial dilemma, investment banks engineer Exotic Options. By embedding barrier conditions and knock-out triggers, desks slash upfront option premiums by up to 50%. Let us analyze their quantitative architecture."
+            },
+            "hi": {
+              "display": "इसी दुविधा को हल करने के लिए इन्वेस्टमेंट बैंक्स 'एक्ज़ोटिक ऑप्शन्स' डिजाइन करते हैं! बैरियर और नॉक-आउट शर्तें जोड़कर वे प्रीमियम को 50% तक घटा देते हैं। चलिए इसके आर्किटेक्चर को समझते हैं!"
+            }
+          },
+          "onScreenIntent": "The Corporate Hedger's Vanilla Premium Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Corporate Hedger's Vanilla Premium Dilemma",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Corporate Hedger's Vanilla Premium Dilemma: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Exchange Vanilla Standardization vs OTC Exotic Bespoke Flexibility",
+      "purpose": "Exchange Vanilla Standardization vs OTC Exotic Bespoke Flexibility: Foundational quantitative principles",
+      "takeaways": [
+        "Exchange Vanilla Standardization vs OTC Exotic Bespoke Flexibility: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The distinction between vanilla and exotic options embodies a fundamental trade-off between exchange liquidity and bespoke contractual flexibility. Exchange-traded vanilla contracts offer supreme liquidity but rigid payoffs."
+            },
+            "hi": {
+              "display": "वैनिला और एक्ज़ोटिक ऑप्शन्स के बीच का अंतर लिक्विडिटी और कस्टमाइजेशन का बुनियादी ट्रेड-ऑफ है। एक्सचेंज-ट्रेडेड वैनिला ऑप्शन्स पूरी तरह से लिक्विड और पारदर्शी होते हैं, लेकिन उनके पेऑफ्स और स्ट्राइक्स रिजिड होते हैं।"
+            }
+          },
+          "onScreenIntent": "Exchange Vanilla Standardization vs OTC Exotic Bespoke Flexibility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, over-the-counter exotic options are tailored to match specific corporate cash flow profiles. By eliminating redundant tail-risk coverage through path-dependent triggers, upfront premiums fall by 30% to 60%."
+            },
+            "hi": {
+              "display": "दूसरी तरफ, ओवर-द-काउंटर एक्ज़ोटिक ऑप्शन्स कॉर्पोरेट की सटीक जरूरत के अनुसार डिजाइन किए जाते हैं। इनमें पाथ-डिपेंडेंट ट्रिगर्स जोड़कर अनावश्यक कवरेज हटा दी जाती है, जिससे प्रीमियम 30% से 60% तक कम हो जाता है।"
+            }
+          },
+          "onScreenIntent": "Exchange Vanilla Standardization vs OTC Exotic Bespoke Flexibility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, exotic options sacrifice secondary market liquidity and introduce extreme hedging complexity near barrier triggers. Quantitative desks must rigorously master their underlying Greeks."
+            },
+            "hi": {
+              "display": "हालांकि, एक्ज़ोटिक ऑप्शन्स में सेकेंडरी मार्केट लिक्विडिटी कम होती है और बैरियर के पास हेजिंग रिस्क अत्यधिक जटिल हो जाता है। यही कारण है कि क्वांट्स को इनके ग्रीक्स का सटीक ज्ञान होना अनिवार्य है।"
+            }
+          },
+          "onScreenIntent": "Exchange Vanilla Standardization vs OTC Exotic Bespoke Flexibility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Exchange Vanilla Standardization vs OTC Exotic Bespoke Flexibility",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Exchange Vanilla Standardization vs OTC Exotic Bespoke Flexibility: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of Exotic Option Architecture",
+      "purpose": "Four Pillars of Exotic Option Architecture: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of Exotic Option Architecture: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "We can systematically classify exotic options into four quantitative pillars. The first pillar encompasses Packages and Nonstandard American options, including zero-cost collars and Bermudan structures."
+            },
+            "hi": {
+              "display": "एक्ज़ोटिक ऑप्शन्स की विशाल दुनिया को हम चार मुख्य आर्किटेक्चरल पिलर्स में वर्गीकृत कर सकते हैं। पहला पिलर है पैकेजेस और नॉन-स्टैंडर्ड अमेरिकन ऑप्शन्स, जिसमें ज़ीरो-कॉस्ट कॉलर्स और बरमूडन ऑप्शन्स शामिल हैं।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Exotic Option Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second pillar covers Forward Start and Compound Options. Forward start contracts activate at future dates at-the-money, while compound options represent options on options with extreme leverage."
+            },
+            "hi": {
+              "display": "दूसरा पिलर है फॉरवर्ड स्टार्ट और कम्पाउंड ऑप्शन्स। फॉरवर्ड स्टार्ट ऑप्शन्स भविष्य में शुरू होते हैं, जबकि कम्पाउंड ऑप्शन्स ऑप्शन्स पर ऑप्शन्स होते हैं, जो अत्यधिक लीवरेज प्रदान करते हैं।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Exotic Option Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The third pillar is Chooser Options, or 'as-you-like-it' options, where the holder chooses at a future decision date whether the contract becomes a call or a put, with an elegant vanilla decomposition."
+            },
+            "hi": {
+              "display": "तीसरा पिलर है चूज़र ऑप्शन्स, जिन्हें 'ऐज़ यू लाइक इट' कहा जाता है। इसमें बायर एक तय तारीख पर तय करता है कि कॉन्ट्रैक्ट कॉल बनेगा या पुट। इसका वैनिला डीकंपोजिशन अत्यंत सुरुचिपूर्ण है।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Exotic Option Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The fourth and most ubiquitous pillar consists of Barrier and Binary Digital Options. Knock-in, knock-out conditions and discontinuous payoffs form the core building blocks of structured finance."
+            },
+            "hi": {
+              "display": "चौथा और सबसे व्यापक पिलर है बैरियर और बाइनरी डिजिटल ऑप्शन्स। नॉक-इन, नॉक-आउट कंडीशंस और डिस्कंटीन्यूअस पेऑफ्स आधुनिक स्ट्रक्चर्ड डेरिवेटिव्स के बुनियादी निर्माण खंड हैं।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Exotic Option Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of Exotic Option Architecture",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of Exotic Option Architecture: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Packages & Nonstandard American Options",
+      "purpose": "Packages & Nonstandard American Options: Foundational quantitative principles",
+      "takeaways": [
+        "Packages & Nonstandard American Options: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The most prevalent package is the Zero-Cost Collar: a corporate hedger purchases downside put protection funded entirely by selling an out-of-the-money call, setting net upfront premium to zero."
+            },
+            "hi": {
+              "display": "पैकेजेस का सबसे लोकप्रिय उदाहरण है ज़ीरो-कॉस्ट कॉलर। इसमें एक कॉर्पोरेट हेजर डाउनसाइड पुट खरीदता है और उतनी ही वैल्यू का आउट-ऑफ-द-मनी कॉल बेच देता है, जिससे नेट अपफ्रंट प्रीमियम शून्य हो जाता है।"
+            }
+          },
+          "onScreenIntent": "Packages & Nonstandard American Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Nonstandard American options, Bermudan contracts permit early exercise only on specific discrete dates, such as coupon payment dates, widely utilized across interest rate derivatives."
+            },
+            "hi": {
+              "display": "अब नॉन-स्टैंडर्ड अमेरिकन ऑप्शन्स को देखें। बरमूडन ऑप्शन्स में एक्सरसाइज की अनुमति पूरी अवधि में नहीं, बल्कि केवल तय तारीखों, जैसे क्वार्टरली कूपन डेट्स पर होती है, जो ब्याज दर डेरिवेटिव्स में आम है।"
+            }
+          },
+          "onScreenIntent": "Packages & Nonstandard American Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Shout options allow the holder to shout once during the option's life to lock in current intrinsic value, while reset options automatically adjust strike prices downward if the underlying asset declines."
+            },
+            "hi": {
+              "display": "शाउट ऑप्शन्स में होल्डर मैच्योरिटी से पहले एक बार 'शाउट' करके करेंट इंट्रिन्सिक वैल्यू लॉक कर सकता है। वहीं रीसेट ऑप्शन्स में अगर अंडरलाइंग एसेट गिरता है, तो स्ट्राइक प्राइस ऑटोमैटिकली रीसेट हो जाती है।"
+            }
+          },
+          "onScreenIntent": "Packages & Nonstandard American Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Packages & Nonstandard American Options",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Packages & Nonstandard American Options: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Forward Start & Compound Options",
+      "purpose": "Forward Start & Compound Options: Foundational quantitative principles",
+      "takeaways": [
+        "Forward Start & Compound Options: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Forward start options are paid for today but activate at a future date T1. Crucially, at inception date T1, the strike K is set exactly equal to spot S1, guaranteeing an at-the-money start."
+            },
+            "hi": {
+              "display": "फॉरवर्ड स्टार्ट ऑप्शन्स का भुगतान आज किया जाता है, लेकिन वे भविष्य की तारीख T1 पर एक्टिवेट होते हैं। इनकी खास बात यह है कि टाइम T1 पर इनकी स्ट्राइक K को उस समय के स्पॉट प्राइस S1 के बराबर सेट किया जाता है।"
+            }
+          },
+          "onScreenIntent": "Forward Start & Compound Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under constant volatility, the time-zero value of a forward start call equals spot S0 discounted by dividend yield multiplied by a standard unit-strike Black-Scholes call formula."
+            },
+            "hi": {
+              "display": "कॉन्सटेंट वोलैटिलिटी के तहत, आज टाइम जीरो पर फॉरवर्ड स्टार्ट कॉल की वैल्यू स्पॉट S0 डिस्काउंटेड बाय डिविडेंड यील्ड और एक स्टैंडर्ड बीएसएम कॉल के गुणनफल के बराबर होती है।"
+            }
+          },
+          "onScreenIntent": "Forward Start & Compound Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Turning to Compound Options—options on options—there are four distinct permutations: Call on Call, Call on Put, Put on Call, and Put on Put, with expiration T1 for strike K1 and T2 for strike K2."
+            },
+            "hi": {
+              "display": "अब कम्पाउंड ऑप्शन्स पर ध्यान दें—यानी ऑप्शन्स ऑन ऑप्शन्स! इनके चार रूप होते हैं: कॉल ऑन कॉल, कॉल ऑन पुट, पुट ऑन कॉल और पुट ऑन पुट। पहली स्ट्राइक K1 टाइम T1 पर होती है और दूसरी K2 टाइम T2 पर।"
+            }
+          },
+          "onScreenIntent": "Forward Start & Compound Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Robert Geske derived analytical closed-form compound option pricing in 1979 using bivariate cumulative normal distributions, providing extreme leverage for real corporate project valuations."
+            },
+            "hi": {
+              "display": "रॉबर्ट गेस्के ने 1979 में बाइवेरिएट नॉर्मल डिस्ट्रीब्यूशन का उपयोग करके कम्पाउंड ऑप्शन्स का क्लोज्ड-फॉर्म फॉर्मूला व्युत्पन्न किया। यह अत्यधिक लीवरेज के साथ कॉर्पोरेट प्रोजेक्ट वैल्यूएशन में प्रयुक्त होता है।"
+            }
+          },
+          "onScreenIntent": "Forward Start & Compound Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Forward Start & Compound Options",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Forward Start & Compound Options: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Chooser Options: Rubinstein's 1991 Decomposition",
+      "purpose": "Chooser Options: Rubinstein's 1991 Decomposition: Foundational quantitative principles",
+      "takeaways": [
+        "Chooser Options: Rubinstein's 1991 Decomposition: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Chooser Option, known as 'as-you-like-it', allows the investor at choice date T1 to decide whether the contract becomes a call or put expiring at T2, sharing the identical strike K."
+            },
+            "hi": {
+              "display": "चूज़र ऑप्शन, जिसे 'ऐज़ यू लाइक इट' कहा जाता है, इन्वेस्टर को टाइम T1 पर यह चुनने की अनुमति देता है कि वह टाइम T2 पर एक्सपायर होने वाला कॉल चाहता है या पुट, दोनों की स्ट्राइक K समान होती है।"
+            }
+          },
+          "onScreenIntent": "Chooser Options: Rubinstein's 1991 Decomposition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At decision date T1, the payoff is the maximum of call and put: max(c, p). By Put-Call Parity at T1, the put equals call plus discounted strike minus discounted spot."
+            },
+            "hi": {
+              "display": "टाइम T1 पर इसका पेऑफ मैक्सिमम ऑफ कॉल और पुट होता है: मैक्स ऑफ सी और पी। लेकिन पुट-कॉल पैरिटी के अनुसार, पुट की वैल्यू कॉल प्लस डिस्काउंटेड स्ट्राइक माइनस डिस्काउंटेड स्पॉट होती है।"
+            }
+          },
+          "onScreenIntent": "Chooser Options: Rubinstein's 1991 Decomposition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Substituting this into the payoff, max(c, p) simplifies algebraically to the call plus the maximum of zero and discounted strike minus discounted spot."
+            },
+            "hi": {
+              "display": "जब हम इसे पेऑफ में सब्स्टिट्यूट करते हैं, तो मैक्स ऑफ सी और पी सरल होकर कॉल प्लस मैक्सिमम ऑफ ज़ीरो और डिस्काउंटेड स्ट्राइक माइनस स्पॉट बन जाता है!"
+            }
+          },
+          "onScreenIntent": "Chooser Options: Rubinstein's 1991 Decomposition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Mark Rubinstein proved in 1991 that a chooser option is mathematically identical to a package of two vanilla options: one standard call expiring at T2, plus one standard put expiring at T1!"
+            },
+            "hi": {
+              "display": "मार्क रुबिनस्टीन ने 1991 में सिद्ध किया कि एक चूज़र ऑप्शन वास्तव में दो वैनिला ऑप्शन्स का पैकेज है: एक स्टैंडर्ड कॉल एक्सपायरिंग एट T2, और एक स्टैंडर्ड पुट एक्सपायरिंग एट T1 विथ डिस्काउंटेड स्ट्राइक!"
+            }
+          },
+          "onScreenIntent": "Chooser Options: Rubinstein's 1991 Decomposition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Chooser Options: Rubinstein's 1991 Decomposition",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Chooser Options: Rubinstein's 1991 Decomposition: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Barrier Options Taxonomy & In-Out Parity",
+      "purpose": "Barrier Options Taxonomy & In-Out Parity: Foundational quantitative principles",
+      "takeaways": [
+        "Barrier Options Taxonomy & In-Out Parity: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Barrier options are path-dependent derivatives whose payoff depends on whether the underlying asset breaches a barrier level H. They are bifurcated into knock-out and knock-in contracts."
+            },
+            "hi": {
+              "display": "बैरियर ऑप्शन्स पाथ-डिपेंडेंट डेरिवेटिव्स हैं, जिनका वजूद इस बात पर निर्भर करता है कि प्राइस किसी पूर्व-निर्धारित बैरियर H को छूता है या नहीं। इन्हें दो मुख्य श्रेणियों में बांटा जाता है: नॉक-आउट और नॉक-इन।"
+            }
+          },
+          "onScreenIntent": "Barrier Options Taxonomy & In-Out Parity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A knock-out option ceases to exist upon touching the barrier, whereas a knock-in option comes into existence only upon barrier contact. The four types are Down-and-Out, Down-and-In, Up-and-Out, and Up-and-In."
+            },
+            "hi": {
+              "display": "नॉक-आउट ऑप्शन बैरियर छूते ही समाप्त हो जाता है, जबकि नॉक-इन ऑप्शन बैरियर छूने पर ही सक्रिय होता है। इसके चार सिंगल-बैरियर प्रकार हैं: डाउन-एंड-आउट, डाउन-एंड-इन, अप-एंड-आउट और अप-एंड-इन।"
+            }
+          },
+          "onScreenIntent": "Barrier Options Taxonomy & In-Out Parity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now master the foundational theorem: In-Out Parity! For identical strike, maturity, and barrier parameters, the price of a knock-in plus knock-out option strictly equals the standard vanilla option."
+            },
+            "hi": {
+              "display": "अब सबसे महत्वपूर्ण सिद्धांत को समझें: 'इन-आउट पैरिटी'! समान स्ट्राइक, मैच्योरिटी और बैरियर के लिए, नॉक-इन ऑप्शन का मूल्य प्लस नॉक-आउट ऑप्शन का मूल्य हमेशा स्टैंडर्ड वैनिला ऑप्शन के बराबर होता है!"
+            }
+          },
+          "onScreenIntent": "Barrier Options Taxonomy & In-Out Parity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The no-arbitrage proof is straightforward: if the barrier is touched, knock-in activates and knock-out dies. If not, knock-out survives. Across all market paths, exactly one delivers the vanilla payoff."
+            },
+            "hi": {
+              "display": "इसका नो-आर्बिट्रेज प्रमाण सरल है: अगर बैरियर हिट होता है, तो नॉक-इन जीवित रहता है और नॉक-आउट मर जाता है। अगर बैरियर हिट नहीं होता, तो नॉक-आउट बचता है। हर स्थिति में ठीक एक ऑप्शन वैनिला पेऑफ देता है!"
+            }
+          },
+          "onScreenIntent": "Barrier Options Taxonomy & In-Out Parity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Barrier Options Taxonomy & In-Out Parity",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Barrier Options Taxonomy & In-Out Parity: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Binary (Digital) Options: Cash-or-Nothing vs Asset-or-Nothing",
+      "purpose": "Binary (Digital) Options: Cash-or-Nothing vs Asset-or-Nothing: Foundational quantitative principles",
+      "takeaways": [
+        "Binary (Digital) Options: Cash-or-Nothing vs Asset-or-Nothing: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Binary or digital options exhibit discontinuous step-function payoffs. A cash-or-nothing call pays a fixed cash sum Q if spot expires in-the-money, and zero otherwise."
+            },
+            "hi": {
+              "display": "बाइनरी या डिजिटल ऑप्शन्स में डिस्कंटीन्यूअस पेऑफ होता है। कैश-ऑर-नथिंग कॉल में अगर एसेट प्राइस स्ट्राइक से ऊपर बंद होता है, तो एक फिक्स्ड कैश राशि Q मिलती है, अन्यथा शून्य मिलता है।"
+            }
+          },
+          "onScreenIntent": "Binary (Digital) Options: Cash-or-Nothing vs Asset-or-Nothing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, an asset-or-nothing call delivers the asset itself—worth ST—if expiring in-the-money. Its analytical closed-form value equals discounted spot times the cumulative normal N(d1)."
+            },
+            "hi": {
+              "display": "वहीं एसेट-ऑर-नथिंग कॉल में इन-द-मनी एक्सपायर होने पर फिक्स्ड कैश के बजाय अंडरलाइंग एसेट स्वयं, यानी एसटी की वैल्यू मिलती है। इसका क्लोज्ड-फॉर्म मूल्य S0 डिस्काउंटेड एन ऑफ डी-वन होता है।"
+            }
+          },
+          "onScreenIntent": "Binary (Digital) Options: Cash-or-Nothing vs Asset-or-Nothing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Observe carefully: the standard Black-Scholes vanilla call formula is literally an asset-or-nothing call minus K times a cash-or-nothing call! Digitals are the atomic building blocks of derivatives."
+            },
+            "hi": {
+              "display": "ध्यान से देखिए: स्टैंडर्ड ब्लैक-स्कोल्स वैनिला कॉल का फॉर्मूला वास्तव में एक एसेट-ऑर-नथिंग कॉल माइनस के टाइम्स कैश-ऑर-नथिंग कॉल है! डिजिटल ऑप्शन्स वैनिला डेरिवेटिव्स के एटॉमिक बिल्डिंग ब्लॉक्स हैं।"
+            }
+          },
+          "onScreenIntent": "Binary (Digital) Options: Cash-or-Nothing vs Asset-or-Nothing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Binary (Digital) Options: Cash-or-Nothing vs Asset-or-Nothing",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Binary (Digital) Options: Cash-or-Nothing vs Asset-or-Nothing: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Active Recall: In-Out Parity & Barrier Option Valuation",
+      "purpose": "Active Recall: In-Out Parity & Barrier Option Valuation: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: In-Out Parity & Barrier Option Valuation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now test your conceptual mastery. A trading desk observes a 1-year European vanilla call with strike $100 trading at $8.50. An identical Down-and-Out call with barrier $90 trades at $5.20. What is the fair arbitrage-free price of the Down-and-In call? Consider the options on screen."
+            },
+            "hi": {
+              "display": "अब अपनी समझ का परीक्षण कीजिए। एक ट्रेडिंग डेस्क 100 डॉलर स्ट्राइक वाले 1-वर्षीय यूरोपियन वैनिला कॉल को 8.50 डॉलर पर ट्रेड होते देखती है। समान पैरामीटर्स वाला 90 डॉलर बैरियर का डाउन-एंड-आउट कॉल 5.20 डॉलर पर ट्रेड हो रहा है। डाउन-एंड-इन कॉल का फेयर आर्बिट्रेज-फ्री मूल्य क्या होगा?"
+            }
+          },
+          "onScreenIntent": "Active Recall: In-Out Parity & Barrier Option Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Apply In-Out Parity: c_in plus c_out equals c_vanilla. Subtract the Down-and-Out price from the vanilla call price."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: In-Out Parity & Barrier Option Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option A is correct: $3.30! By In-Out Parity, c_in plus c_out strictly equals c_vanilla. Therefore, c_in equals $8.50 minus $5.20, which is precisely $3.30!"
+            },
+            "hi": {
+              "display": "सही उत्तर है विकल्प ए, 3.30 डॉलर! इन-आउट पैरिटी के अनुसार, सी इन प्लस सी आउट हमेशा वैनिला कॉल के बराबर होता है। इसलिए सी इन बराबर 8.50 डॉलर माइनस 5.20 डॉलर, यानी ठीक 3.30 डॉलर होगा।"
+            }
+          },
+          "onScreenIntent": "Active Recall: In-Out Parity & Barrier Option Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "The Greek Discontinuity Trap: Infinite Gamma & Pin Risk",
+      "purpose": "The Greek Discontinuity Trap: Infinite Gamma & Pin Risk: Foundational quantitative principles",
+      "takeaways": [
+        "The Greek Discontinuity Trap: Infinite Gamma & Pin Risk: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The greatest institutional challenge in barrier options is the severe discontinuity of Greeks near the barrier. As spot approaches barrier H near expiration, delta shifts abruptly."
+            },
+            "hi": {
+              "display": "बैरियर ऑप्शन्स की सबसे बड़ी संस्थागत चुनौती बैरियर के पास उनके ग्रीक्स की डिस्कंटीन्यूइटी है। जैसे ही स्पॉट प्राइस मैच्योरिटी के निकट बैरियर H के करीब पहुंचता है, डेल्टा अचानक बदल जाता है।"
+            }
+          },
+          "onScreenIntent": "The Greek Discontinuity Trap: Infinite Gamma & Pin Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This abrupt rate of change causes Gamma to approach infinity! This is known as 'pin risk'. Dynamic delta hedging fails catastrophically due to massive market slippage."
+            },
+            "hi": {
+              "display": "डेल्टा में इस तीव्र परिवर्तन के कारण गामा अनंत की ओर बढ़ता है—गामा अप्रोचेस इनफिनिटी! इसे 'पिन रिस्क' कहा जाता है। डायनामिक डेल्टा हेजिंग यहां बुरी तरह विफल हो जाती है क्योंकि ट्रेडर को भारी स्लिपेज सहना पड़ता है।"
+            }
+          },
+          "onScreenIntent": "The Greek Discontinuity Trap: Infinite Gamma & Pin Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To neutralize pin risk, Derman and Kani developed 'Static Barrier Replication' in 1994, hedging the contract using a portfolio of vanilla options that match boundary conditions along the barrier line."
+            },
+            "hi": {
+              "display": "इस जोखिम से बचने के लिए डरमैन और कानी ने 1994 में 'स्टैटिक बैरियर रेप्लिकेशन' विकसित की। इसमें बैरियर लाइन के साथ वैनिला ऑप्शन्स का पोर्टफोलियो बनाकर बैरियर को बिना रीबैलेंसिंग के हेज किया जाता है।"
+            }
+          },
+          "onScreenIntent": "The Greek Discontinuity Trap: Infinite Gamma & Pin Risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Summary: 8 Institutional Rules of Exotic Options",
+      "purpose": "Summary: 8 Institutional Rules of Exotic Options: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Exotic Options: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us codify the eight institutional rules of exotic options."
+            },
+            "hi": {
+              "display": "चलिए एक्ज़ोटिक ऑप्शन्स के 8 संस्थागत नियमों को संक्षेप में संहिताबद्ध करते हैं। नियम 1: ज़ीरो-कॉस्ट कॉलर में पुट खरीदकर और कॉल बेचकर नेट प्रीमियम शून्य किया जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Exotic Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Zero-cost collars eliminate upfront premium by funding an OTM put with an offsetting OTM call sale. Rule 2: Bermudan options restrict exercise to discrete dates, while shout options allow a one-time lock-in of intrinsic value without sacrificing upside."
+            },
+            "hi": {
+              "display": "नियम 2: बरमूडन ऑप्शन्स में एक्सरसाइज डिस्क्रीट तिथियों पर सीमित होती है, जबकि शाउट ऑप्शन्स इंट्रिन्सिक वैल्यू को लॉक करने की सुविधा देते हैं।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Exotic Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Forward start options activate at a future date with an at-the-money strike, widely deployed in executive compensation structuring."
+            },
+            "hi": {
+              "display": "नियम 3: फॉरवर्ड स्टार्ट ऑप्शन्स भविष्य की तारीख पर ऐट-द-मनी स्ट्राइक के साथ शुरू होते हैं और कर्मचारी स्टॉक कॉम्पेंसेशन में प्रयुक्त होते हैं।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Exotic Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 4: Compound options are options on options, analytically priced via Robert Geske's 1979 bivariate cumulative normal framework."
+            },
+            "hi": {
+              "display": "नियम 4: कम्पाउंड ऑप्शन्स ऑप्शन्स पर ऑप्शन्स होते हैं, जिन्हें रॉबर्ट गेस्के के 1979 के बाइवेरिएट नॉर्मल फ्रेमवर्क द्वारा वैल्यू किया जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Exotic Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Rubinstein's chooser decomposition proves that a chooser is identical to a package of one long call and one earlier-expiring discounted put."
+            },
+            "hi": {
+              "display": "नियम 5: चूज़र ऑप्शन का रुबिनस्टीन डीकंपोजिशन यह साबित करता है कि यह एक लॉन्ग कॉल और एक डिस्काउंटेड स्ट्राइक वाले शॉर्ट-टर्म पुट का पैकेज है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Exotic Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 6: In-Out Parity strictly governs barrier options. Rules 7 & 8: Digitals form the atomic basis of vanilla contracts, while pin risk requires static vanilla replication."
+            },
+            "hi": {
+              "display": "नियम 6: बैरियर ऑप्शन्स में इन-आउट पैरिटी का हमेशा पालन होना चाहिए। और नियम 7 व 8: बाइनरी ऑप्शन्स वैनिला के एटॉमिक ब्लॉक्स हैं, जबकि पिन रिस्क को स्टैटिक रेप्लिकेशन से हेज किया जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Exotic Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Exotic Options",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Closing Wisdom & Preview of Part 2",
+      "purpose": "Closing Wisdom & Preview of Part 2: Foundational quantitative principles",
+      "takeaways": [
+        "Closing Wisdom & Preview of Part 2: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Barrier and digital options demonstrate that path-dependent contracts are powerful quantitative instruments for corporate cost and risk optimization."
+            },
+            "hi": {
+              "display": "सर, आज पहली बार समझ आया कि बैरियर और डिजिटल ऑप्शन्स केवल फैंसी कॉन्ट्रैक्ट्स नहीं हैं, बल्कि वे रिस्क और कॉस्ट ऑप्टिमाइजेशन के शक्तिशाली गणितीय टूल्स हैं!"
+            }
+          },
+          "onScreenIntent": "Closing Wisdom & Preview of Part 2",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part 2, we expand into path-dependent Asian options, Lookback extrema, Margrabe exchange formulas, and Volatility Swaps."
+            },
+            "hi": {
+              "display": "बिल्कुल राजू! लेकिन एक्ज़ोटिक ऑप्शन्स का यह केवल पहला भाग था। अगले भाग में हम पाथ-डिपेंडेंट एशियन ऑप्शन्स, लुकबैक ऑप्शन्स, मार्ग्राबे एक्सचेंज ऑप्शन्स और वोलैटिलिटी स्वैप्स का गहन अध्ययन करेंगे!"
+            }
+          },
+          "onScreenIntent": "Closing Wisdom & Preview of Part 2",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Closing Wisdom & Preview of Part 2",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1751 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch15",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 15",
+  "partLabel": "Part 1",
+  "title": "The Black-Scholes-Merton Model - Part 1: The Governing Differential Equation",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 1,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Subjectivity Dilemma: The Nobel-Winning Mystery",
+      "purpose": "Prior to 1973, economists believed option pricing required knowing investor risk aversion and expected stock return mu",
+      "takeaways": [
+        "Prior to 1973, economists believed option pricing required knowing investor risk aversion and expected stock return mu",
+        "Fischer Black, Myron Scholes, and Robert Merton discovered that dynamic delta hedging eliminates risk entirely",
+        "Their 1973 breakthrough was awarded the 1997 Nobel Memorial Prize in Economic Sciences"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Before 1973, financial economists worldwide faced an unsolved puzzle: how to determine the fair theoretical value of an option?"
+            },
+            "hi": {
+              "display": "Nineteen seventy-three se pehle pure world ke financial economists ke paas ek unsolved puzzle thi: option contract ki fair theoretical value kaise nikali jaye?"
+            }
+          },
+          "onScreenIntent": "Introduce the Nobel-winning mystery of option valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Subjectivity dilemma"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Traders believed pricing required forecasting whether the stock moves up or down: the expected drift μ and investor risk preferences."
+            },
+            "hi": {
+              "display": "Traders ka manna tha ki option price nikalne ke liye aapko ye predict karna hoga ki stock upar jayega ya niche, yaani stock ka expected drift mu aur investor ka risk preference."
+            }
+          },
+          "onScreenIntent": "Explain why economists thought expected stock growth mu was mandatory",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Risk premium impasse"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, Fischer Black, Myron Scholes, and Robert Merton created a revolutionary proof where subjective opinions vanish completely."
+            },
+            "hi": {
+              "display": "Lekin Fischer Black, Myron Scholes aur Robert Merton ne ek aisa revolutionary proof create kiya jisme investor ki subjective opinions completely gayab ho gayi."
+            }
+          },
+          "onScreenIntent": "Highlight the genius of Fischer Black, Myron Scholes, and Robert Merton",
+          "sourceFactIds": [
+            "F02",
+            "F03"
+          ],
+          "newTerms": [
+            "Black-Scholes-Merton breakthrough"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 15 Part 1, we derive their master differential equation step-by-step from first principles."
+            },
+            "hi": {
+              "display": "Chapter Fifteen Part One mein hum unki master differential equation ko step-by-step first principles se derive karenge."
+            }
+          },
+          "onScreenIntent": "Outline Part 1 roadmap: assumptions, portfolio Pi, noise eradication, and the PDE",
+          "sourceFactIds": [
+            "F01",
+            "F05"
+          ],
+          "newTerms": [
+            "BSM PDE roadmap"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Subjectivity Dilemma: The Nobel-Winning Mystery",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Prior to 1973, economists believed option pricing required knowing investor risk aversion and expected stock return mu"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Fischer Black, Myron Scholes, and Robert Merton discovered that dynamic delta hedging eliminates risk entirely"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "The Six Governing Assumptions of the BSM Model",
+      "purpose": "Asset price S follows Geometric Brownian Motion dS = mu*S*dt + sigma*S*dz with constant volatility sigma",
+      "takeaways": [
+        "Asset price S follows Geometric Brownian Motion dS = mu*S*dt + sigma*S*dz with constant volatility sigma",
+        "Continuous frictionless trading with no transaction costs, no taxes, and continuous short selling permitted",
+        "Risk-free interest rate r is constant across all maturities; no arbitrage opportunities exist"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's first examine the six fundamental assumptions upon which the entire Black-Scholes-Merton architecture rests."
+            },
+            "hi": {
+              "display": "Aaiye pehle un six fundamental assumptions ko samajhte hain jinpar Black-Scholes-Merton model ka poora architecture khada hai."
+            }
+          },
+          "onScreenIntent": "Present the core assumptions governing the Black-Scholes-Merton derivation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "BSM assumptions"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "First: Stock price follows continuous GBM with constant volatility σ. Second: Short selling is unrestricted with full proceeds available."
+            },
+            "hi": {
+              "display": "Pehla: Stock price continuous Geometric Brownian Motion follow karti hai with constant volatility sigma. Doosra: Short selling par koi restriction nahi hai aur proceeds immediately available hoti hain."
+            }
+          },
+          "onScreenIntent": "Explain Geometric Brownian Motion and constant volatility assumption",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Constant volatility assumption"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Third: Zero transaction costs and taxes. Fourth: The underlying stock pays zero cash dividends during the option's lifespan."
+            },
+            "hi": {
+              "display": "Teesra: Zero transaction costs aur taxes hain. Chautha: Option ki life ke dauran stock par koi dividend pay nahi hota."
+            }
+          },
+          "onScreenIntent": "Clarify frictionless market conditions: zero transaction costs and short-sale freedom",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Frictionless market assumption"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Fifth: Zero riskless arbitrage opportunities exist. And sixth: Continuous borrowing and lending at constant risk-free rate r."
+            },
+            "hi": {
+              "display": "Paanchva: Market mein koi arbitrage opportunity exist nahi karti. Aur chhatva: Constant risk-free interest rate r par continuous borrowing aur lending possible hai."
+            }
+          },
+          "onScreenIntent": "Emphasize how ideal frictionless assumptions unlock pure mathematical replication",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Pure replication benchmark"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Six Governing Assumptions of the BSM Model",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Asset price S follows Geometric Brownian Motion dS = mu*S*dt + sigma*S*dz with constant volatility sigma"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Continuous frictionless trading with no transaction costs, no taxes, and continuous short selling permitted"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "The Architecture of the Hedging Portfolio Π",
+      "purpose": "Construct portfolio Pi by shorting exactly 1 derivative contract f and longing delta = (df/dS) shares of stock",
+      "takeaways": [
+        "Construct portfolio Pi by shorting exactly 1 derivative contract f and longing delta = (df/dS) shares of stock",
+        "The dollar value of portfolio Pi at any instant is Pi = -f + (df/dS) * S",
+        "The short option position creates negative risk exposure that perfectly mirrors the long stock position"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The masterstroke of the derivation is constructing a special portfolio called Portfolio Π."
+            },
+            "hi": {
+              "display": "Derivation ka masterstroke hai ek special portfolio create karna jisko hum portfolio Pi kehte hain."
+            }
+          },
+          "onScreenIntent": "Assemble the Nobel-winning hedging portfolio Pi",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Portfolio Pi"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Black and Scholes defined the portfolio: short one derivative (-f), and long Delta shares of stock, where Delta = ∂f/∂S."
+            },
+            "hi": {
+              "display": "Black aur Scholes ne portfolio define kiya: short one derivative position minus f, aur long delta shares of stock, jahan delta del f by del S ke barabar hai."
+            }
+          },
+          "onScreenIntent": "Specify the exact share quantity: delta = df/dS",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Derivative delta df/dS"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Why does this hedge work? Because an option is not an independent entity—it is derived directly from the spot price S."
+            },
+            "hi": {
+              "display": "Ye hedge kyu kaam karta hai? Kyunki option contract koi independent entity nahi hai—wo stock price S ka ek derivative hai."
+            }
+          },
+          "onScreenIntent": "Examine portfolio value: Pi = -f + (df/dS)*S",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Delta-neutral balance"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When random news hits the market, both positions share the exact same Wiener shock dz, making perfect hedging possible."
+            },
+            "hi": {
+              "display": "Jab market mein koi random news aati hai, toh dono positions exact same Wiener shock dz share karti hain, jisse hedging possible ho jati hai."
+            }
+          },
+          "onScreenIntent": "Preview the differential dPi over infinitesimal time dt",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Portfolio differential dPi"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Short Derivative Position (-1 f)",
+          "tone": "neutral",
+          "points": [
+            "Construct portfolio Pi by shorting exactly 1 derivative contract f and longing delta = (df/dS) shares of stock",
+            "The dollar value of portfolio Pi at any instant is Pi = -f + (df/dS) * S"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Long Delta Shares (+(df/dS) S)",
+          "tone": "positive",
+          "points": [
+            "The dollar value of portfolio Pi at any instant is Pi = -f + (df/dS) * S",
+            "The short option position creates negative risk exposure that perfectly mirrors the long stock position"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Construct portfolio Pi by shorting exactly 1 derivative contract f and longing delta = (df/dS) shares of stock"
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Expanding df via Itô's Lemma",
+      "purpose": "Applying Itô's Lemma yields df = [(df/dS)*mu*S + df/dt + 0.5*(d^2f/dS^2)*sigma^2*S^2] dt + (df/dS)*sigma*S dz",
+      "takeaways": [
+        "Applying Itô's Lemma yields df = [(df/dS)*mu*S + df/dt + 0.5*(d^2f/dS^2)*sigma^2*S^2] dt + (df/dS)*sigma*S dz",
+        "The stochastic shock in the derivative is strictly (df/dS) * sigma * S * dz",
+        "The drift contains expected stock drift (df/dS)*mu*S alongside theta time decay and gamma convexity"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's apply Chapter 14's Itô's Lemma to the change in derivative price df."
+            },
+            "hi": {
+              "display": "Aaiye ab derivative contract f ke change df par Chapter Fourteen ka Itô's Lemma apply karte hain."
+            }
+          },
+          "onScreenIntent": "Apply Itô's Lemma to the contingent claim f(S, t)",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Itô derivative expansion"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because stock drift a = μS and volatility b = σS, Itô's Lemma partitions df into four distinct components."
+            },
+            "hi": {
+              "display": "Kyunki stock drift a equals mu S hai aur volatility b equals sigma S hai, Itô's Lemma df ko char components mein break karta hai."
+            }
+          },
+          "onScreenIntent": "Identify the deterministic drift components: stock drift, theta, and gamma",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Drift component breakdown"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The drift term incorporates (∂f/∂S)μS, calendar time decay ∂f/∂t, and half gamma times σ^2 S^2."
+            },
+            "hi": {
+              "display": "Drift term mein del f by del S times mu S, calendar time decay del f by del t, aur half gamma times sigma square S square shamil hain."
+            }
+          },
+          "onScreenIntent": "Isolate the stochastic diffusion term: (df/dS) * sigma * S * dz",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Isolated Brownian noise"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And the stochastic diffusion term simply becomes (∂f/∂S)σS*dz."
+            },
+            "hi": {
+              "display": "Aur stochastic diffusion term seedha del f by del S times sigma S dz ban jata hai."
+            }
+          },
+          "onScreenIntent": "Set the stage for substitution into portfolio change dPi",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Substitution setup"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Expanding df via Itô's Lemma",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Applying Itô's Lemma yields df = [(df/dS)*mu*S + df/dt + 0.5*(d^2f/dS^2)*sigma^2*S^2] dt + (df/dS)*sigma*S dz"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "The stochastic shock in the derivative is strictly (df/dS) * sigma * S * dz"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The Miracle of Cancellation: Eradicating Market Risk",
+      "purpose": "In portfolio differential dPi = -df + (df/dS) dS, substitute df and dS = mu*S*dt + sigma*S*dz",
+      "takeaways": [
+        "In portfolio differential dPi = -df + (df/dS) dS, substitute df and dS = mu*S*dt + sigma*S*dz",
+        "The noise term -(df/dS)*sigma*S*dz cancels +(df/dS)*sigma*S*dz identically to zero",
+        "The drift term -(df/dS)*mu*S*dt cancels +(df/dS)*mu*S*dt identically to zero: mu disappears!"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we arrive at the most magnificent moment of the proof: calculating the change in portfolio value dΠ."
+            },
+            "hi": {
+              "display": "Ab aate hain is mathematical proof ke sabse magnificent moment par: portfolio Pi ke change d Pi ko calculate karna."
+            }
+          },
+          "onScreenIntent": "Formulate the portfolio differential: dPi = -df + (df/dS) dS",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Portfolio differential formula"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "dΠ = -df + (∂f/∂S)dS. When we substitute the full expressions for df and dS, a mathematical miracle occurs."
+            },
+            "hi": {
+              "display": "d Pi barabar hai minus df plus del f by del S times dS. Jab hum df aur dS dono ki full equations substitute karte hain, toh ek mathematical miracle hota hai."
+            }
+          },
+          "onScreenIntent": "Show the cancellation of Brownian motion dz: noise vanishes to zero",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Brownian eradication"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice the option's shock -(∂f/∂S)σS*dz cancels against the stock's hedge +(∂f/∂S)σS*dz to exactly zero!"
+            },
+            "hi": {
+              "display": "Notice kijiye ki option ka stochastic shock term minus del f by del S sigma S dz stock ke hedge term se cancel hokar exactly zero ho jata hai!"
+            }
+          },
+          "onScreenIntent": "Show the miraculous cancellation of drift mu: subjective expected return disappears",
+          "sourceFactIds": [
+            "F03",
+            "F05"
+          ],
+          "newTerms": [
+            "Drift cancellation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And simultaneously, subjective stock drift μS*dt also cancels completely! The portfolio has zero random shock remaining."
+            },
+            "hi": {
+              "display": "Aur saath hi saath subjective stock drift mu S dt bhi completely cancel ho jata hai! Portfolio mein zero random shock bachta hai."
+            }
+          },
+          "onScreenIntent": "State the resulting deterministic differential: dPi has zero risk and zero variance",
+          "sourceFactIds": [
+            "F03",
+            "F04"
+          ],
+          "newTerms": [
+            "Deterministic differential"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Miracle of Cancellation: Eradicating Market Risk",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "In portfolio differential dPi = -df + (df/dS) dS, substitute df and dS = mu*S*dt + sigma*S*dz"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "The noise term -(df/dS)*sigma*S*dz cancels +(df/dS)*sigma*S*dz identically to zero"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "The No-Arbitrage Law: Earning the Risk-Free Rate",
+      "purpose": "Because dPi contains no dz, it is completely risk-free and carries zero variance",
+      "takeaways": [
+        "Because dPi contains no dz, it is completely risk-free and carries zero variance",
+        "If dPi earned more than risk-free rate r, arbitrageurs would borrow at r and buy Pi, earning free riskless profit",
+        "If dPi earned less than r, arbitrageurs would short Pi and invest in riskless bonds"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because portfolio Π contains zero random shock dz, its return over infinitesimal interval dt is perfectly riskless."
+            },
+            "hi": {
+              "display": "Kyunki portfolio Pi mein koi random shock dz nahi hai, iska return infinitesimal interval dt mein perfectly riskless hai."
+            }
+          },
+          "onScreenIntent": "State the iron law of finance: riskless portfolios must earn the risk-free rate r",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "No-arbitrage growth rate"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The No-Arbitrage Principle states that if a portfolio carries zero risk, it must earn exactly the risk-free rate r."
+            },
+            "hi": {
+              "display": "Finance ka No-Arbitrage Principle kehta hai ki agar kisi portfolio mein zero risk hai, toh usko exactly risk-free interest rate r earn karna hoga."
+            }
+          },
+          "onScreenIntent": "Formulate the arbitrage proof if dPi exceeded r * Pi * dt",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Positive arbitrage proof"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If it earned more than r, arbitrageurs would borrow at r, buy Π, and lock in free riskless profits."
+            },
+            "hi": {
+              "display": "Agar ye r se zyaada return de, toh traders risk-free rate par borrow karke is portfolio ko kharidenge aur free profit kamayenge."
+            }
+          },
+          "onScreenIntent": "Formulate the reverse arbitrage proof if dPi fell below r * Pi * dt",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Reverse arbitrage proof"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Therefore, dΠ must definitively equal r*Π*dt, which is r[-f + (∂f/∂S)S]dt."
+            },
+            "hi": {
+              "display": "Isliye d Pi ko definitely r times Pi times dt ke barabar hona padega, yaani r times minus f plus del f by del S times S."
+            }
+          },
+          "onScreenIntent": "Equate expressions: -[df/dt + 0.5*sigma^2*S^2*d2f/dS2] dt = r * [-f + (df/dS)*S] dt",
+          "sourceFactIds": [
+            "F04",
+            "F05"
+          ],
+          "newTerms": [
+            "Master equation assembly"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "If dPi > r * Pi * dt (Free Money)",
+          "tone": "neutral",
+          "points": [
+            "Because dPi contains no dz, it is completely risk-free and carries zero variance",
+            "If dPi earned more than risk-free rate r, arbitrageurs would borrow at r and buy Pi, earning free riskless profit"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "If dPi < r * Pi * dt (Reverse Arbitrage)",
+          "tone": "positive",
+          "points": [
+            "If dPi earned more than risk-free rate r, arbitrageurs would borrow at r and buy Pi, earning free riskless profit",
+            "If dPi earned less than r, arbitrageurs would short Pi and invest in riskless bonds"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Because dPi contains no dz, it is completely risk-free and carries zero variance"
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "The Black-Scholes-Merton Partial Differential Equation",
+      "purpose": "Rearranging yields: df/dt + r*S*(df/dS) + 0.5*sigma^2*S^2*(d^2f/dS^2) = r*f",
+      "takeaways": [
+        "Rearranging yields: df/dt + r*S*(df/dS) + 0.5*sigma^2*S^2*(d^2f/dS^2) = r*f",
+        "This parabolic PDE governs the price of ANY contingent claim dependent on underlying stock S",
+        "It combines Theta time decay, Delta underlying growth, and Gamma volatility convexity"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's equate both expressions and rearrange terms."
+            },
+            "hi": {
+              "display": "Aaiye ab dono expressions ko equate karte hain aur terms ko rearrange karte hain."
+            }
+          },
+          "onScreenIntent": "Present the canonical Black-Scholes-Merton Partial Differential Equation",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Black-Scholes-Merton PDE"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "-[∂f/∂t + 0.5*σ^2*S^2*∂^2f/∂S^2] equals -rf + rS(∂f/∂S)."
+            },
+            "hi": {
+              "display": "Minus del f by del t minus half gamma sigma square S square barabar hai minus r f plus r S del f by del S ke."
+            }
+          },
+          "onScreenIntent": "Dissect each of the three left-hand terms: Theta, Delta, and Gamma",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Greek PDE dissection"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Bringing all terms to one side yields the most famous equation in modern financial history: the Black-Scholes-Merton PDE."
+            },
+            "hi": {
+              "display": "Sabhi terms ko ek side par laane par humein milti hai modern history ki sabse famous financial equation: Black-Scholes-Merton Partial Differential Equation."
+            }
+          },
+          "onScreenIntent": "Explain right-hand side r*f: the required opportunity cost of option capital",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Required return r*f"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "∂f/∂t + rS(∂f/∂S) + 0.5*σ^2*S^2*(∂^2f/∂S^2) = rf. This equation applies universally to every derivative contract."
+            },
+            "hi": {
+              "display": "del f by del t plus r S del f by del S plus half sigma square S square del two f by del S square equals r f. Ye equation har derivative par universally apply hoti hai."
+            }
+          },
+          "onScreenIntent": "Highlight universal universality: the PDE applies to ALL derivative contracts",
+          "sourceFactIds": [
+            "F05",
+            "F06"
+          ],
+          "newTerms": [
+            "Universal PDE validity"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Black-Scholes-Merton Partial Differential Equation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Rearranging yields: df/dt + r*S*(df/dS) + 0.5*sigma^2*S^2*(d^2f/dS^2) = r*f"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "This parabolic PDE governs the price of ANY contingent claim dependent on underlying stock S"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "The Vanishing Mu: Why Investor Beliefs Don't Matter",
+      "purpose": "Expected stock return mu does not enter the BSM PDE; only volatility sigma matters",
+      "takeaways": [
+        "Expected stock return mu does not enter the BSM PDE; only volatility sigma matters",
+        "Two investors with wildly different views on stock direction (bullish vs bearish) agree on option fair value",
+        "Option pricing is governed by the cost of replication, not subjective directional forecasting"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Look at the most shocking and revolutionary feature of this equation: parameter μ does not exist anywhere!"
+            },
+            "hi": {
+              "display": "Is equation ka sabse shocking aur revolutionary feature dekhiye: yahan parameter mu bilkul exist nahi karta!"
+            }
+          },
+          "onScreenIntent": "Draw attention to the most astonishing feature of the PDE: mu is completely missing",
+          "sourceFactIds": [
+            "F05",
+            "F07"
+          ],
+          "newTerms": [
+            "Vanishing mu mystery"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This means call option fair value is completely independent of whether the stock rises or falls, or whether sentiment is bullish or bearish."
+            },
+            "hi": {
+              "display": "Iska matlab hai ki call option ki fair value is baat par bilkul depend nahi karti ki stock future mein upar jayega ya niche, ya market bullish hai ya bearish."
+            }
+          },
+          "onScreenIntent": "Explain why bull and bear traders agree on option price: identical replication cost",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Belief-independent pricing"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "An ultra-bullish trader and an ultra-bearish trader are mathematically bound to agree on the exact same option price."
+            },
+            "hi": {
+              "display": "Ek ultra-bullish trader aur ek ultra-bearish trader dono exact same option price par agree karne ke liye mathematically bound hain."
+            }
+          },
+          "onScreenIntent": "Contrast stock forecasting (estimating mu) with option pricing (estimating sigma)",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Directional vs volatility trading"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This unlocks Risk-Neutral Valuation: we can price derivatives assuming a risk-neutral world where asset growth is r and discount rate is r."
+            },
+            "hi": {
+              "display": "Yahi se Risk-Neutral Valuation principle nikalta hai: hum derivative ko aise evaluate kar sakte hain jaise market risk-neutral ho, stock growth r ho, aur discount rate bhi r ho."
+            }
+          },
+          "onScreenIntent": "Conclude: the absence of mu is the birth certificate of continuous risk-neutral pricing",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Birth of risk-neutral pricing"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Ultra-Bullish Investor (mu = +30%)",
+          "tone": "neutral",
+          "points": [
+            "Expected stock return mu does not enter the BSM PDE; only volatility sigma matters",
+            "Two investors with wildly different views on stock direction (bullish vs bearish) agree on option fair value"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Ultra-Bearish Investor (mu = -15%)",
+          "tone": "positive",
+          "points": [
+            "Two investors with wildly different views on stock direction (bullish vs bearish) agree on option fair value",
+            "Option pricing is governed by the cost of replication, not subjective directional forecasting"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Expected stock return mu does not enter the BSM PDE; only volatility sigma matters"
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Boundary Conditions: Calls, Puts & Binary Contracts",
+      "purpose": "The BSM PDE has infinite possible solutions; specific derivative prices are pinned down by boundary conditions",
+      "takeaways": [
+        "The BSM PDE has infinite possible solutions; specific derivative prices are pinned down by boundary conditions",
+        "European Call boundary: f(S, T) = max(S - K, 0); European Put boundary: f(S, T) = max(K - S, 0)",
+        "Spatial boundaries: as S -> 0, call c -> 0; as S -> infinity, call c -> S - K*exp(-r(T-t))"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Black-Scholes-Merton PDE is a general equation with infinitely many possible solutions."
+            },
+            "hi": {
+              "display": "Black-Scholes-Merton PDE ek general equation hai jiske infinitely many solutions ho sakte hain."
+            }
+          },
+          "onScreenIntent": "Explain why boundary conditions are needed to isolate specific option prices",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Boundary condition role"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Whether you get a Call option, Put option, or Forward contract depends entirely on the contract's boundary conditions."
+            },
+            "hi": {
+              "display": "Aapko call option milega, put option milega, ya forward contract milega—ye is baat par depend karta hai ki contract ki boundary conditions kya hain."
+            }
+          },
+          "onScreenIntent": "Specify terminal payoff boundary condition for European calls and puts at t=T",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Terminal boundary condition"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For a European Call, the boundary condition at maturity T is f(S, T) = max(S - K, 0)."
+            },
+            "hi": {
+              "display": "European call ke liye expiry par boundary condition f of S and T barabar hoti hai maximum of S minus K comma zero."
+            }
+          },
+          "onScreenIntent": "Examine spatial boundary condition at S = 0: bankruptcy absorbing state",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Zero stock boundary"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Substituting these exact boundary conditions into the PDE allows us to derive the famous Black-Scholes formulas in Part 2."
+            },
+            "hi": {
+              "display": "Inhi boundary conditions ko PDE mein substitute karke agle part mein hum famous Black-Scholes formulas derive karenge."
+            }
+          },
+          "onScreenIntent": "Examine spatial boundary condition as S approaches infinity: deep ITM call behaves like forward",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Infinite stock boundary"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Boundary Conditions: Calls, Puts & Binary Contracts",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The BSM PDE has infinite possible solutions; specific derivative prices are pinned down by boundary conditions"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "European Call boundary: f(S, T) = max(S - K, 0); European Put boundary: f(S, T) = max(K - S, 0)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: BSM PDE Verification for Underlying Stock & Cash Bond",
+      "purpose": "For f = S: df/dt = 0, df/dS = 1, d^2f/dS^2 = 0; Left side: 0 + r*S(1) + 0 = r*S; Right side: r*S. Verified!",
+      "takeaways": [
+        "For f = S: df/dt = 0, df/dS = 1, d^2f/dS^2 = 0; Left side: 0 + r*S(1) + 0 = r*S; Right side: r*S. Verified!",
+        "For cash bond f = exp(rt): df/dt = r*exp(rt), df/dS = 0, d^2f/dS^2 = 0; Left side: r*exp(rt); Right side: r*exp(rt). Verified!",
+        "Proves that underlying assets and risk-free cash bonds are simply trivial special cases of the BSM PDE"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's test your active recall understanding with a deep mathematical verification exercise."
+            },
+            "hi": {
+              "display": "Aaiye ab aapki active recall understanding ko test karte hain ek deep mathematical verification ke zariye."
+            }
+          },
+          "onScreenIntent": "Present conceptual verification challenge: does stock f = S satisfy the PDE?",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "PDE verification challenge"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If we treat the underlying stock itself as a derivative (f = S), does it satisfy the BSM PDE? Carefully evaluate the partial derivatives."
+            },
+            "hi": {
+              "display": "Agar hum underlying stock ko hi ek derivative maan lein, yaani f equals S, toh kya ye Black-Scholes-Merton PDE ko satisfy karega? Dhyan se partial derivatives evaluate kijiye."
+            }
+          },
+          "onScreenIntent": "Calculate derivatives for f = S: df/dt = 0, df/dS = 1, d^2f/dS^2 = 0",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Linear stock derivatives"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Take a moment to substitute f = S and its partial derivatives into the Black-Scholes-Merton PDE."
+            },
+            "hi": {
+              "display": "f = S aur uske partial derivatives ko Black-Scholes-Merton PDE mein substitute karke dekhiye."
+            }
+          },
+          "onScreenIntent": "Substitute into left-hand side: r*S*1 = r*S",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "LHS substitution"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A. The stock's time derivative is 0, delta is 1, and gamma is 0."
+            },
+            "hi": {
+              "display": "Sahi answer Option A hai. Stock ka time derivative zero hai, delta del f by del S one hai, aur gamma second derivative zero hai."
+            }
+          },
+          "onScreenIntent": "Compare with right-hand side r*f = r*S: exact mathematical identity",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Identity verification"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Substituting gives 0 + rS(1) + 0 = rS, which identically equals rf! This proves the PDE is completely consistent with the underlying stock."
+            },
+            "hi": {
+              "display": "PDE mein substitute karne par: zero plus r S times one plus zero barabar r S banta hai, jo exactly right-hand side r f ke barabar hai! Ye prove karta hai ki BSM PDE underlying asset ke sath perfectly consistent hai."
+            }
+          },
+          "onScreenIntent": "Reinforce universal consistency: underlying stock and cash bonds obey BSM PDE",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Framework consistency"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Does the underlying stock itself (f = S) satisfy the Black-Scholes-Merton PDE: df/dt + r*S*(df/dS) + 0.5*sigma^2*S^2*(d^2f/dS^2) = r*f?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Evaluating partial derivatives for f = S: df/dt = 0 (no time decay), df/dS = 1 (delta is 1), and d^2f/dS^2 = 0 (gamma is 0). Substituting into the PDE: 0 + r*S*(1) + 0 = r*S, which identically equals r*f = r*S. The stock satisfies the PDE unconditionally!"
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Institutional Production PDE Solvers on Wall Street",
+      "purpose": "While closed-form formulas exist for vanilla European options, exotic and American options require numerical PDE solvers",
+      "takeaways": [
+        "While closed-form formulas exist for vanilla European options, exotic and American options require numerical PDE solvers",
+        "The Crank-Nicolson implicit-explicit finite difference scheme discretizes S and t onto a computational grid",
+        "Tridiagonal matrix algorithms solve the PDE grid with unconditional numerical stability and O(dt^2 + dS^2) accuracy"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On trading desks, the BSM PDE is used not just for textbook formulas, but to power billion-dollar exotic pricing engines."
+            },
+            "hi": {
+              "display": "Trading desks par Black-Scholes-Merton PDE sirf textbook formula nikalne ke liye nahi, balki billion-dollar exotic pricing systems ko chalane ke liye use hoti hai."
+            }
+          },
+          "onScreenIntent": "Examine industrial Wall Street applications: numerical PDE solvers for exotic options",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Numerical PDE solvers"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When options are American or have barrier features, closed-form analytical formulas do not exist."
+            },
+            "hi": {
+              "display": "Jab options American hote hain ya barrier features hote hain, toh closed-form formulas exist nahi karte."
+            }
+          },
+          "onScreenIntent": "Introduce the Crank-Nicolson finite difference grid architecture",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Crank-Nicolson scheme"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Investment banks deploy finite difference algorithms like Crank-Nicolson to solve this PDE numerically across price-time grids."
+            },
+            "hi": {
+              "display": "Investment banks finite difference algorithms jaise Crank-Nicolson method use karke is PDE ko continuous price-time grid par numerically solve karti hain."
+            }
+          },
+          "onScreenIntent": "Explain tridiagonal matrix execution in production C++ and GPU environments",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Tridiagonal solver"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Furthermore, Dupire local volatility models generalize this exact PDE to perfectly match real-world market volatility surfaces."
+            },
+            "hi": {
+              "display": "Iske alawa Dupire local volatility models bhi isi differential equation ko generalize karke real-world volatility surfaces ko perfectly replicate karte hain."
+            }
+          },
+          "onScreenIntent": "Bridge to Part 2: closed-form analytical solution of the BSM PDE for European options",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Part 2 closed-form bridge"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Institutional Production PDE Solvers on Wall Street",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "While closed-form formulas exist for vanilla European options, exotic and American options require numerical PDE solvers"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "The Crank-Nicolson implicit-explicit finite difference scheme discretizes S and t onto a computational grid"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of the Black-Scholes-Merton PDE",
+      "purpose": "Delta hedging Pi = -f + (df/dS)*S eradicates market noise dz and expected drift mu",
+      "takeaways": [
+        "Delta hedging Pi = -f + (df/dS)*S eradicates market noise dz and expected drift mu",
+        "The governing PDE df/dt + r*S*(df/dS) + 0.5*sigma^2*S^2*(d^2f/dS^2) = r*f applies to all derivatives",
+        "Part 2 solves this PDE to derive the analytical formulas c = S*N(d1) - K*exp(-rT)*N(d2)"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's summarize the four foundational pillars of Chapter 15 Part 1."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Fifteen Part One ke chaar foundational pillars ko summarize karte hain."
+            }
+          },
+          "onScreenIntent": "Synthesize the historical triumph of the Black-Scholes-Merton PDE",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Executive synthesis"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: Hedging Portfolio. Short 1 option and long Delta shares perfectly cancel out both Wiener shocks."
+            },
+            "hi": {
+              "display": "Pillar One: Hedging Portfolio. Short one option aur long delta shares of stock dono positions ke Wiener shocks ko perfectly cancel karte hain."
+            }
+          },
+          "onScreenIntent": "Review Rules 1 and 2: market assumptions and delta-neutral portfolio architecture",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: Double Cancellation. Applying Itô's Lemma algebraically eradicates both random noise dz and subjective drift μ."
+            },
+            "hi": {
+              "display": "Pillar Two: Double Cancellation. Itô's Lemma lagane par random noise dz aur subjective drift mu dono algebraically vanish ho jate hain."
+            }
+          },
+          "onScreenIntent": "Review Rules 3, 4, and 5: shock cancellation, vanishing mu, and no-arbitrage return",
+          "sourceFactIds": [
+            "F03",
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: BSM Master PDE. Enforcing no-arbitrage establishes ∂f/∂t + rS(∂f/∂S) + 0.5*σ^2*S^2*(∂^2f/∂S^2) = rf."
+            },
+            "hi": {
+              "display": "Pillar Three: BSM Master PDE. No-arbitrage enforce karne par del f by del t plus r S del f by del S plus half gamma sigma square S square equals r f nikalta hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 6, 7, and 8: the master PDE, boundary conditions, and continuous risk-neutrality",
+          "sourceFactIds": [
+            "F05",
+            "F06",
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 4: Risk-Neutral Valuation. In Part 2, we solve this PDE with boundary conditions to derive the Black-Scholes pricing formulas."
+            },
+            "hi": {
+              "display": "Pillar Four: Risk-Neutral Valuation. Agle part mein hum is PDE ko boundary conditions ke sath solve karenge aur Black-Scholes formula derive karenge."
+            }
+          },
+          "onScreenIntent": "Conclude Part 1 and bridge to Part 2: Solving the PDE for European Call & Put Formulas",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Part 2 closed-form preview"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary Thread: Four Pillars of the Black-Scholes-Merton PDE",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

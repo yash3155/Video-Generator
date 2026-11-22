@@ -1,0 +1,1380 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch20",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 20",
+  "partLabel": "Part 1",
+  "title": "Chapter 20: Volatility Smiles, Skews & Surfaces (Part 1)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 38,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Black-Scholes Paradox",
+      "purpose": "The Black-Scholes Paradox: Foundational quantitative principles",
+      "takeaways": [
+        "The Black-Scholes Paradox: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Black-Scholes-Merton model assumes that asset volatility sigma is an invariant, known constant throughout an option's life."
+            },
+            "hi": {
+              "display": "Sharma ji, Black-Scholes-Merton model mein hum assume karte hain ki stock ki volatility sigma constant rehti hai. Lekin live market screen par har strike price ka implied volatility alag kyu dikhta hai?"
+            }
+          },
+          "onScreenIntent": "The Black-Scholes Paradox",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yet if you invert observed market prices across different strike prices, this constant volatility assumption is decisively rejected!"
+            },
+            "hi": {
+              "display": "Raju, yahi derivative markets ka sabse bada paradox hai! Jab hum actual market option prices ko Black-Scholes formula mein invert karte hain, toh humein pata chalta hai ki market ek constant volatility par believe nahi karta."
+            }
+          },
+          "onScreenIntent": "The Black-Scholes Paradox",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Real-world markets demand different implied volatilities for different strikes, creating Volatility Smiles, Skews, and 3D Surfaces."
+            },
+            "hi": {
+              "display": "Different strikes ke across is implied volatility ke pattern ko hum Volatility Smile ya Volatility Skew kehte hain. Aaj Chapter 20 mein hum currency smile, equity skew, Put-Call Parity identity, aur 3D volatility surface ko mathematically decode karenge!"
+            }
+          },
+          "onScreenIntent": "The Black-Scholes Paradox",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Black-Scholes Paradox",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Black-Scholes Paradox: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Put-Call Parity Invariance",
+      "purpose": "Put-Call Parity Invariance: Foundational quantitative principles",
+      "takeaways": [
+        "Put-Call Parity Invariance: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "First, remember that Put-Call Parity: c + K e^(-rT) = p + S_0, is completely model-independent, grounded purely in no-arbitrage."
+            },
+            "hi": {
+              "display": "Sabse pehle ek fundamental rule samajhiye: European Put-Call Parity formula c plus K e to the power minus r T equals p plus S zero hota hai. Ye formula completely model-independent hai aur arbitrage-free pricing par based hai."
+            }
+          },
+          "onScreenIntent": "Put-Call Parity Invariance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This yields an inviolable mathematical truth: for identical strike K and maturity T, a European call and put must have the exact same implied volatility."
+            },
+            "hi": {
+              "display": "Iska direct implication ye hai ki same strike K aur same expiration T ke liye, European Call aur European Put ka Black-Scholes Implied Volatility bilkul identical hona chahiye."
+            }
+          },
+          "onScreenIntent": "Put-Call Parity Invariance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If implied volatilities diverged, arbitrageurs would construct synthetic conversions to harvest riskless cash. Parity enforces volatility symmetry."
+            },
+            "hi": {
+              "display": "Agar Call aur Put ka implied volatility alag hua, toh trader synthetic underlying create karke riskless arbitrage profit lock-in kar sakta hai. Isliye volatility smile call aur put dono ke liye mathematically identical shape create karta hai."
+            }
+          },
+          "onScreenIntent": "Put-Call Parity Invariance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Put-Call Parity Invariance",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Put-Call Parity Invariance: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Currency Options: The Symmetric Smile",
+      "purpose": "Currency Options: The Symmetric Smile: Foundational quantitative principles",
+      "takeaways": [
+        "Currency Options: The Symmetric Smile: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In foreign exchange options markets, the relationship between implied volatility and strike traces a classic symmetric U-shaped smile."
+            },
+            "hi": {
+              "display": "Foreign Currency yaani FX options markets mein volatility curve ka shape ek classic U-shaped symmetric smile jaisa hota hai."
+            }
+          },
+          "onScreenIntent": "Currency Options: The Symmetric Smile",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At-the-money currency options exhibit the lowest implied volatility, while deep out-of-the-money calls and puts command substantially higher volatility."
+            },
+            "hi": {
+              "display": "Yahan At-The-Money options ka implied volatility sabse kam hota hai, jabki deep out-of-the-money calls aur deep out-of-the-money puts dono ka implied volatility significantly high hota hai."
+            }
+          },
+          "onScreenIntent": "Currency Options: The Symmetric Smile",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This symmetric smile arises because exchange rate returns exhibit fat tails, or leptokurtosis, compared to standard normal distributions."
+            },
+            "hi": {
+              "display": "Aisa isliye hota hai kyunki currency exchange rates ki actual empirical distribution normal distribution ke mukable heavy tails yaani Leptokurtosis display karti hai."
+            }
+          },
+          "onScreenIntent": "Currency Options: The Symmetric Smile",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Currency Options: The Symmetric Smile",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Currency Options: The Symmetric Smile: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Leptokurtosis & Fat Tails",
+      "purpose": "Leptokurtosis & Fat Tails: Foundational quantitative principles",
+      "takeaways": [
+        "Leptokurtosis & Fat Tails: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Black-Scholes assumes lognormal distributions, but empirical currency returns possess higher central peaks and much heavier tails."
+            },
+            "hi": {
+              "display": "Screen par dekhiye: standard Black-Scholes lognormal distribution assume karta hai. Lekin real-world FX returns mein central peak zyada sharp hota hai aur tails fatter hoti hain."
+            }
+          },
+          "onScreenIntent": "Leptokurtosis & Fat Tails",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Heavy tails mean that geopolitical shocks, currency devaluations, and peg breaks happen far more frequently than Gaussian curves predict."
+            },
+            "hi": {
+              "display": "Fatter tails ka matlab hai ki extreme macroeconomic shocks aur central bank devaluations lognormal model ki prediction se kaafi zyada frequency mein hote hain."
+            }
+          },
+          "onScreenIntent": "Leptokurtosis & Fat Tails",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To compensate for tail risk, option writers demand higher upfront premiums for out-of-the-money strikes, bidding up implied volatility into a smile."
+            },
+            "hi": {
+              "display": "Is extreme tail risk ko compensate karne ke liye, market deep out-of-the-money options ke liye higher premium charge karta hai, jisse U-shaped volatility smile form hoti hai."
+            }
+          },
+          "onScreenIntent": "Leptokurtosis & Fat Tails",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Leptokurtosis & Fat Tails",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Leptokurtosis & Fat Tails: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Equity Options: The Downward Skew",
+      "purpose": "Equity Options: The Downward Skew: Foundational quantitative principles",
+      "takeaways": [
+        "Equity Options: The Downward Skew: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Unlike currency markets, equity and stock index options display a permanent downward-sloping Volatility Skew, commonly called a smirk."
+            },
+            "hi": {
+              "display": "Ab aate hain Equity aur Stock Index options par. Yahan symmetric smile nahi, balki ek downward-sloping Volatility Skew ya Volatility Smirk dekhne ko milta hai."
+            }
+          },
+          "onScreenIntent": "Equity Options: The Downward Skew",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Low-strike out-of-the-money puts trade at the highest implied volatility, which steadily declines as strike price increases toward high-strike calls."
+            },
+            "hi": {
+              "display": "Low strike options yaani deep out-of-the-money puts ka implied volatility sabse high hota hai, aur jaise-jaise strike price badhta hai, implied volatility continuously decline karta hai."
+            }
+          },
+          "onScreenIntent": "Equity Options: The Downward Skew",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Before the 1987 crash, equity smiles were relatively flat; however, post-1987, the steep downward skew became a permanent institutional fixture."
+            },
+            "hi": {
+              "display": "Historical fact: October 1987 ke stock market crash se pehle equity smile kaafi flat hua karta tha, lekin 1987 crash ke baad ye steep downward skew permanent market feature ban chuka hai."
+            }
+          },
+          "onScreenIntent": "Equity Options: The Downward Skew",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Equity Options: The Downward Skew",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Equity Options: The Downward Skew: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Drivers of Equity Skew",
+      "purpose": "Drivers of Equity Skew: Foundational quantitative principles",
+      "takeaways": [
+        "Drivers of Equity Skew: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Two primary forces drive this equity skew: first is the Leverage Effect. As a company's stock falls, its debt-to-equity ratio mechanically increases."
+            },
+            "hi": {
+              "display": "Is equity skew ke peeche pehla financial driver hai Corporate Leverage Effect. Jab kisi company ka stock price girta hai, toh uski equity value kam hoti hai jabki debt fixed rehta hai. Isse debt-to-equity ratio badhta hai aur stock zyada risky aur volatile ban jata hai."
+            }
+          },
+          "onScreenIntent": "Drivers of Equity Skew",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Higher financial leverage increases equity volatility, naturally correlating negative price returns with surging volatility."
+            },
+            "hi": {
+              "display": "Dusra aur sabse powerful driver hai Institutional Crashophobia. 1987 ke baad pension funds aur asset managers market crash ke khauf mein deep out-of-the-money puts ko portfolio insurance ke roop mein aggressively buy karte hain."
+            }
+          },
+          "onScreenIntent": "Drivers of Equity Skew",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second driver is institutional Crashophobia: pension funds and asset managers aggressively bid for out-of-the-money puts as portfolio disaster insurance."
+            },
+            "hi": {
+              "display": "Downside puts ki is continuous institutional demand ki wajah se put premiums inflated rehte hain, jo market mein steep volatility skew establish karta hai."
+            }
+          },
+          "onScreenIntent": "Drivers of Equity Skew",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Drivers of Equity Skew",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Drivers of Equity Skew: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Breeden-Litzenberger Implied Distribution",
+      "purpose": "Breeden-Litzenberger Implied Distribution: Foundational quantitative principles",
+      "takeaways": [
+        "Breeden-Litzenberger Implied Distribution: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 1978, Douglas Breeden and Robert Litzenberger proved that option prices uniquely reveal the market's true risk-neutral probability density function g(K)."
+            },
+            "hi": {
+              "display": "1978 mein Breeden aur Litzenberger ne ek revolutionary discovery ki: option prices se hum directly market ka true risk-neutral probability distribution g of K extract kar sakte hain!"
+            }
+          },
+          "onScreenIntent": "Breeden-Litzenberger Implied Distribution",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The density is given by g(K) = e^(rT) times the second partial derivative of call price with respect to strike: partial squared c over partial K squared."
+            },
+            "hi": {
+              "display": "Formula hai: g of K equals e to the power r T times the second partial derivative of call price with respect to strike K."
+            }
+          },
+          "onScreenIntent": "Breeden-Litzenberger Implied Distribution",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "By observing butterfly spreads across continuous strikes, quants extract the exact risk-neutral probability distribution without imposing arbitrary Gaussian assumptions."
+            },
+            "hi": {
+              "display": "Practically, ek closely spaced butterfly spread create karke market prices se exact state-price density calculate ki jaati hai, bina kisi arbitrary lognormal assumption ke."
+            }
+          },
+          "onScreenIntent": "Breeden-Litzenberger Implied Distribution",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Breeden-Litzenberger Implied Distribution",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Breeden-Litzenberger Implied Distribution: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Volatility Term Structure",
+      "purpose": "Volatility Term Structure: Foundational quantitative principles",
+      "takeaways": [
+        "Volatility Term Structure: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Implied volatility varies not only across strikes, but also across expiration maturities: this relationship is the Volatility Term Structure."
+            },
+            "hi": {
+              "display": "Implied volatility sirf strike par hi nahi, balki expiration time T par bhi depend karti hai. Is relationship ko Volatility Term Structure kehte hain."
+            }
+          },
+          "onScreenIntent": "Volatility Term Structure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In quiet bull markets, short-term implied volatility sits below long-term volatility, producing an upward-sloping term structure."
+            },
+            "hi": {
+              "display": "Jab market calm hota hai, toh short-term IV low hoti hai aur term structure upward-sloping hota hai. Lekin crisis ke dauran short-term panic spikes se term structure inverted yaani downward-sloping ho jata hai."
+            }
+          },
+          "onScreenIntent": "Volatility Term Structure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "During panic crises, short-term volatility spikes dramatically, inverting the curve downward as markets price strong mean reversion toward historical norms."
+            },
+            "hi": {
+              "display": "Dono hi cases mein implied volatility long-term historical mean ki taraf mean-revert karti hai."
+            }
+          },
+          "onScreenIntent": "Volatility Term Structure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Volatility Term Structure",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Volatility Term Structure: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Worked Example: Market Skew Inversion",
+      "purpose": "Worked Example: Market Skew Inversion: Foundational quantitative principles",
+      "takeaways": [
+        "Worked Example: Market Skew Inversion: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine concrete numbers from Hull: suppose spot S_0 = $100, risk-free rate r = 5%, and maturity T = 0.5 years."
+            },
+            "hi": {
+              "display": "Sharma ji, kya hum actual numbers ke sath dekh sakte hain ki option prices skew ko kaise reflect karte hain?"
+            }
+          },
+          "onScreenIntent": "Worked Example: Market Skew Inversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A 6-month out-of-the-money put with strike $90 trading at $2.85 inverts to an implied volatility of 26.5%."
+            },
+            "hi": {
+              "display": "Bilkul! Maan lijiye stock price S zero equals 100 dollars, risk-free rate 5 percent, aur maturity 6 months hai. Agar 90 dollar strike put 2.85 dollars par trade ho raha hai, toh inverted implied volatility 26.5 percent aati hai."
+            }
+          },
+          "onScreenIntent": "Worked Example: Market Skew Inversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The at-the-money $100 call at $5.88 inverts to exactly 20.0% implied volatility."
+            },
+            "hi": {
+              "display": "At-The-Money 100 dollar call option 5.88 dollars par trade hota hai, jiska implied volatility exactly 20.0 percent hai."
+            }
+          },
+          "onScreenIntent": "Worked Example: Market Skew Inversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And the out-of-the-money $110 call at $1.40 yields 16.8%: this monotonic decline from 26.5% down to 16.8% is the classic equity skew!"
+            },
+            "hi": {
+              "display": "Aur 110 dollar out-of-the-money call sirf 1.40 dollars par trade hota hai, jiska implied volatility 16.8 percent hai. Dekha Raju? 26.5 percent se 20 percent aur fir 16.8 percent—ye perfect live equity skew hai!"
+            }
+          },
+          "onScreenIntent": "Worked Example: Market Skew Inversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Worked Example: Market Skew Inversion",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Worked Example: Market Skew Inversion: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Interactive Cognitive Quiz",
+      "purpose": "Interactive Cognitive Quiz: Foundational quantitative principles",
+      "takeaways": [
+        "Interactive Cognitive Quiz: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Evaluate the scenario: In an active market, can a 6-month European call have 22% implied volatility while a European put with the same strike has 28%? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Raju, ab tumhare liye ek quantitative quiz: Ek analyst claim karta hai ki 6-month European stock option par 100 dollar strike call ka IV 22 percent hai, lekin usi 100 dollar strike put ka IV 28 percent hai. Kya ye pricing market mein survive kar sakti hai?"
+            }
+          },
+          "onScreenIntent": "Interactive Cognitive Quiz",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Recall Put-Call Parity and test whether divergent implied volatilities permit riskless arbitrage."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Interactive Cognitive Quiz",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option B is correct: No! Put-Call Parity strictly mandates that implied volatility must be identical. Any divergence allows instant riskless box-spread or conversion arbitrage!"
+            },
+            "hi": {
+              "display": "Correct answer hai Option B: Ye pricing Put-Call Parity ko violate karti hai aur immediate arbitrage offer karti hai! Put overpriced hai aur Call underpriced. Trader Put sell karega, Call buy karega, stock short karega, aur cash lend karke risk-free profit lock-in karega!"
+            }
+          },
+          "onScreenIntent": "Interactive Cognitive Quiz",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "The 3D Volatility Surface",
+      "purpose": "The 3D Volatility Surface: Foundational quantitative principles",
+      "takeaways": [
+        "The 3D Volatility Surface: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Combining strike skews across every available expiration maturity creates a continuous three-dimensional Volatility Surface sigma(K, T)."
+            },
+            "hi": {
+              "display": "Institutional trading desks par strike dimension aur maturity dimension ko combine karke ek continuous 3D Volatility Surface sigma of K and T construct ki jaati hai."
+            }
+          },
+          "onScreenIntent": "The 3D Volatility Surface",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To model this complex surface without arbitrage, quants calibrate Dupire Local Volatility and Heston Stochastic Volatility frameworks."
+            },
+            "hi": {
+              "display": "Is complete surface ko calibrate karne ke liye quantitative quants Dupire ke Local Volatility model aur Heston ke Stochastic Volatility model ka istemal karte hain."
+            }
+          },
+          "onScreenIntent": "The 3D Volatility Surface",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The golden rule of institutional derivatives desks: never rely on constant volatility. The dynamic 3D surface is the ultimate pricing reality!"
+            },
+            "hi": {
+              "display": "Professional advice: Kabhi bhi single Black-Scholes constant volatility par reliance mat kijiye. Real trading mein surface hi supreme truth hai!"
+            }
+          },
+          "onScreenIntent": "The 3D Volatility Surface",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The 3D Volatility Surface",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The 3D Volatility Surface: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary: 8 Rules of Volatility Smiles",
+      "purpose": "Summary: 8 Rules of Volatility Smiles: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Rules of Volatility Smiles: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the eight foundational institutional rules of Chapter 20:"
+            },
+            "hi": {
+              "display": "Chaliye Chapter 20 ke core principles ko 8 crisp quantitative rules mein summarize karte hain: Rule 1 — Black-Scholes constant volatility assumption real market pricing mein fail hota hai. Rule 2 — Put-Call Parity enforces identical implied volatility for European calls and puts of the same strike."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Volatility Smiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Black-Scholes constant volatility is an empirical fallacy; Rule 2: Put-Call Parity enforces identical implied volatilities for calls and puts."
+            },
+            "hi": {
+              "display": "Rule 3 — FX options symmetric U-shaped smile banate hain due to leptokurtic fat tails. Rule 4 — Equity options downward skew banate hain due to corporate leverage and post-1987 crashophobia."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Volatility Smiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Currency options exhibit symmetric leptokurtic smiles; Rule 4: Equity options display downward skews from leverage and crashophobia."
+            },
+            "hi": {
+              "display": "Rule 5 — Breeden-Litzenberger formula extracts the true risk-neutral probability density from second derivative of call prices. Rule 6 — Volatility term structure reflects market stress and exhibits strong mean-reversion."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Volatility Smiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Breeden-Litzenberger extracts the state price density g(K); Rule 6: Volatility term structures reflect powerful mean reversion."
+            },
+            "hi": {
+              "display": "Rule 7 — 3D Volatility Surface combines smile and term structure for pricing exotic and path-dependent derivatives. Rule 8 — Risk management requires minimum variance delta hedging adjusted for volatility skew."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Volatility Smiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Dupire and Heston models calibrate the 3D surface; Rule 8: Delta hedging requires skew-adjusted minimum-variance formulations."
+            },
+            "hi": {
+              "display": "Screen par summary table mein sabhi governing formulas aur empirical profiles systematically compile kar diye gaye hain."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Volatility Smiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles master the empirical reality of option pricing and conclude Chapter 20."
+            },
+            "hi": {
+              "display": "Agli video mein hum shuru karenge Chapter 21: Binomial Trees in Practice, Trinomial Trees aur Advanced Numerical Methods. Practice jari rakhiye!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Rules of Volatility Smiles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Rules of Volatility Smiles",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

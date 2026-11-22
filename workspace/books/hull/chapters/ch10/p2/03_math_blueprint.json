@@ -1,0 +1,61 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch10",
+  "partId": "p2",
+  "formulas": [
+    {
+      "id": "M01",
+      "name": "CBOE Naked Call Margin",
+      "latex": "\\text{Margin}_{\\text{call}} = \\text{Premium} + \\max(0.20 S - \\max(K - S, 0), 0.10 S)",
+      "variables": [
+        {
+          "symbol": "Margin_call",
+          "description": "Dollar margin required per share for a naked call writer",
+          "unit": "currency"
+        },
+        {
+          "symbol": "Premium",
+          "description": "Current market premium of the option",
+          "unit": "currency"
+        },
+        {
+          "symbol": "S",
+          "description": "Current stock spot price",
+          "unit": "currency"
+        },
+        {
+          "symbol": "K",
+          "description": "Strike price of the call option",
+          "unit": "currency"
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "CBOE Naked Put Margin",
+      "latex": "\\text{Margin}_{\\text{put}} = \\text{Premium} + \\max(0.20 S - \\max(S - K, 0), 0.10 K)",
+      "variables": [
+        {
+          "symbol": "Margin_put",
+          "description": "Dollar margin required per share for a naked put writer",
+          "unit": "currency"
+        },
+        {
+          "symbol": "Premium",
+          "description": "Current market premium of the option",
+          "unit": "currency"
+        },
+        {
+          "symbol": "S",
+          "description": "Current stock spot price",
+          "unit": "currency"
+        },
+        {
+          "symbol": "K",
+          "description": "Strike price of the put option",
+          "unit": "currency"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1450 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch17",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 17",
+  "partLabel": "Part 2",
+  "title": "Hull Chapter 17 (Part 2): Currency Options and the Garman-Kohlhagen Model",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 33,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Multinational Corporate Currency Dilemma",
+      "purpose": "Cross-Border FX Mismatches: Global corporations like Airbus manufacture in EUR but sell in USD, facing existential currency risk.",
+      "takeaways": [
+        "Cross-Border FX Mismatches: Global corporations like Airbus manufacture in EUR but sell in USD, facing existential currency risk.",
+        "Limits of Linear Forwards: Forward contracts eliminate exchange rate risk but surrender 100% of favorable currency appreciation.",
+        "Currency Options Solution: Provides asymmetric downside crash insurance while preserving multi-million dollar upside."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider multinational aircraft manufacturer Airbus: manufacturing costs are in Euros, but global aircraft sales are in US Dollars."
+            },
+            "hi": {
+              "display": "Maan lijiye ek international aircraft manufacturer Airbus, jiske manufacturing expenses Europe mein Euro mein hote hain, lekin aircrafts ki sales US Dollar mein hoti hai."
+            }
+          },
+          "onScreenIntent": "The Multinational Corporate Currency Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If the US Dollar weakens 20% against the Euro, corporate operating profits can instantly convert into catastrophic losses."
+            },
+            "hi": {
+              "display": "Yadi agle 6 months mein Dollar Euro ke mukable 20 percent toot jata hai, toh company ke multi-billion dollar profits palak jhapakte hi losses mein badal sakte hain."
+            }
+          },
+          "onScreenIntent": "The Multinational Corporate Currency Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To insulate international balance sheets from FX volatility, global corporations rely on Currency Options."
+            },
+            "hi": {
+              "display": "International trade mein currency ke is severe volatility ko hedge karne ke liye world ke sabse bade corporations Currency Options ka upayog karte hain."
+            }
+          },
+          "onScreenIntent": "The Multinational Corporate Currency Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 17 Part 2, we master how currency options price cross-border exchange rates with dual interest rates."
+            },
+            "hi": {
+              "display": "John Hull ke 17vein adhyay ke is doosre bhag mein, hum seekhenge ki do deshon ki alag-alag interest rates ke beech currency options ka pricing kaise kiya jata hai."
+            }
+          },
+          "onScreenIntent": "The Multinational Corporate Currency Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Multinational Corporate Currency Dilemma",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Cross-Border FX Mismatches: Global corporations like Airbus manufacture in EUR but sell in USD, facing existential currency risk."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Limits of Linear Forwards: Forward contracts eliminate exchange rate risk but surrender 100% of favorable currency appreciation."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Foreign Currency as an Asset Providing a Continuous Yield",
+      "purpose": "Yield Equivalence Principle: Holding foreign cash deposits earns foreign risk-free interest rate r_f continuously.",
+      "takeaways": [
+        "Yield Equivalence Principle: Holding foreign cash deposits earns foreign risk-free interest rate r_f continuously.",
+        "Merton Substitution (q = r_f): Replacing continuous dividend yield q with foreign interest rate r_f adapts stock option formulas to FX.",
+        "Forward Exchange Rate Parity: The forward rate F_0 = S_0 * e^((r - r_f)*T) embodies covered interest rate parity."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To price currency options, John Hull introduces a profound and elegant economic insight."
+            },
+            "hi": {
+              "display": "Forex derivatives ki pricing ko samajhne ke liye John Hull ek behad khoobsurat insight dete hain."
+            }
+          },
+          "onScreenIntent": "Foreign Currency as an Asset Providing a Continuous Yield",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Holding foreign currency allows depositing it in a foreign bank to earn the foreign risk-free rate r_f."
+            },
+            "hi": {
+              "display": "Jab aap kisi foreign currency jaise Euro ko apne paas rakhte hain, toh use foreign bank mein deposit karke foreign interest rate r f kamaya ja sakta hai."
+            }
+          },
+          "onScreenIntent": "Foreign Currency as an Asset Providing a Continuous Yield",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This means the foreign interest rate r_f acts exactly as a continuous dividend yield q: simply substitute q = r_f!"
+            },
+            "hi": {
+              "display": "Iska matlab yeh hua ki foreign interest rate r f theek stock index ke continuous dividend yield q ki tarah kaam karti hai! Bas q ko r f se replace kar dijiye."
+            }
+          },
+          "onScreenIntent": "Foreign Currency as an Asset Providing a Continuous Yield",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Foreign Currency as an Asset Providing a Continuous Yield",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Yield Equivalence Principle: Holding foreign cash deposits earns foreign risk-free interest rate r_f continuously."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Merton Substitution (q = r_f): Replacing continuous dividend yield q with foreign interest rate r_f adapts stock option formulas to FX."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "The 4 Pillars of Currency Derivatives",
+      "purpose": "Pillar 1: Dual Interest Rates: Prices must simultaneously balance domestic rate r and foreign risk-free rate r_f.",
+      "takeaways": [
+        "Pillar 1: Dual Interest Rates: Prices must simultaneously balance domestic rate r and foreign risk-free rate r_f.",
+        "Pillar 2: Garman-Kohlhagen: The closed-form analytical valuation model for European currency options.",
+        "Pillars 3 & 4: Symmetry & Collars: Dual currency inversion symmetry and corporate zero-cost range-forwards."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The architecture of currency options is established upon four core institutional pillars."
+            },
+            "hi": {
+              "display": "Currency Options ke pure framework ko char fundamental pillars par construct kiya gaya hai."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Currency Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1 is Dual Interest Rate Parity, balancing domestic rate r against foreign rate r_f."
+            },
+            "hi": {
+              "display": "Pehla pillar hai Dual Interest Rate Parity, jahan domestic rate r aur foreign rate r f dono ek sath active hoti hain."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Currency Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2 is the Garman-Kohlhagen Model, the universal closed-form pricing engine for currency options."
+            },
+            "hi": {
+              "display": "Doosra pillar hai Garman-Kohlhagen Model, jo currency options ka universally accepted Nobel-standard pricing engine hai."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Currency Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillars 3 and 4 are dual currency inversion symmetry and corporate zero-cost range-forward collars."
+            },
+            "hi": {
+              "display": "Teesra pillar hai Dual Currency Inversion Symmetry, aur chautha pillar hai Corporate Range-Forward Collars."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Currency Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The 4 Pillars of Currency Derivatives",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Pillar 1: Dual Interest Rates: Prices must simultaneously balance domestic rate r and foreign risk-free rate r_f."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Pillar 2: Garman-Kohlhagen: The closed-form analytical valuation model for European currency options."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "The Garman–Kohlhagen Pricing Model",
+      "purpose": "Analytical FX Call: c = S_0 * e^(-r_f * T) * N(d1) - K * e^(-r * T) * N(d2).",
+      "takeaways": [
+        "Analytical FX Call: c = S_0 * e^(-r_f * T) * N(d1) - K * e^(-r * T) * N(d2).",
+        "Analytical FX Put: p = K * e^(-r * T) * N(-d2) - S_0 * e^(-r_f * T) * N(-d1).",
+        "Modified Drift in d1: d1 = [ ln(S_0 / K) + (r - r_f + 0.5*sigma^2)*T ] / [ sigma * sqrt(T) ]."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Examine the most famous currency option formula in global finance: The Garman-Kohlhagen Model."
+            },
+            "hi": {
+              "display": "Screen par dekhiye finance ki duniya ka sabse mashhoor currency formula: The Garman-Kohlhagen Model."
+            }
+          },
+          "onScreenIntent": "The Garman–Kohlhagen Pricing Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In this formula, spot FX rate S_0 discounts at foreign rate r_f, while strike K discounts at domestic rate r."
+            },
+            "hi": {
+              "display": "Is formula mein spot exchange rate S zero ko foreign interest rate r f se discount kiya jata hai, jabki strike K ko domestic interest rate r se discount kiya jata hai."
+            }
+          },
+          "onScreenIntent": "The Garman–Kohlhagen Pricing Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Inside d1, the drift term becomes (r - r_f), capturing the sovereign interest rate spread."
+            },
+            "hi": {
+              "display": "Parameter d 1 ke andar drift term r minus r f ban jati hai, jo do deshon ke interest rate differential ko perfectly capture karti hai."
+            }
+          },
+          "onScreenIntent": "The Garman–Kohlhagen Pricing Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Garman–Kohlhagen Pricing Model",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Analytical FX Call: c = S_0 * e^(-r_f * T) * N(d1) - K * e^(-r * T) * N(d2)."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Analytical FX Put: p = K * e^(-r * T) * N(-d2) - S_0 * e^(-r_f * T) * N(-d1)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Worked Numerical Application: Pricing a GBP/USD Option",
+      "purpose": "Market Parameters: Spot GBP/USD = 1.6000, Strike K = 1.6000, T = 1.0 yr, r = 6.0%, r_f = 8.0%, sigma = 14.0%.",
+      "takeaways": [
+        "Market Parameters: Spot GBP/USD = 1.6000, Strike K = 1.6000, T = 1.0 yr, r = 6.0%, r_f = 8.0%, sigma = 14.0%.",
+        "d1 and d2 Calculations: d1 = [0 + (0.06 - 0.08 + 0.5*0.0196)*1] / 0.14 = -0.0729; d2 = -0.2129.",
+        "Option Value Result: Call c = $0.0639 (6.39 cents per GBP); Put p = $0.0947 (9.47 cents per GBP)."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us calculate Hull's Example 17.1 worked numerical problem step-by-step."
+            },
+            "hi": {
+              "display": "Aaiye Hull ke Example 17.1 ke worked numerical problem ko step-by-step calculate karte hain."
+            }
+          },
+          "onScreenIntent": "Worked Numerical Application: Pricing a GBP/USD Option",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Spot GBP is $1.60, UK rate is 8%, and US rate is 6%. Because UK yield is higher, the pound trades at a forward discount."
+            },
+            "hi": {
+              "display": "British Pound ka spot rate 1.60 dollar hai aur UK interest rate 8 percent hai, jabki US rate 6 percent hai. Chunki UK interest rate zyada hai, isliye pound forward market mein discount par trade karega."
+            }
+          },
+          "onScreenIntent": "Worked Numerical Application: Pricing a GBP/USD Option",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Applying Garman-Kohlhagen yields a call price of 6.39¢ and a put price of 9.47¢, higher due to foreign interest carry."
+            },
+            "hi": {
+              "display": "Garman-Kohlhagen formula apply karne par, Call price 6.39 cents aati hai, jabki Put price 9.47 cents nikal kar aati hai. Put ka call se zyada kimti hona foreign interest spread ki vajah se hai."
+            }
+          },
+          "onScreenIntent": "Worked Numerical Application: Pricing a GBP/USD Option",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Worked Numerical Application: Pricing a GBP/USD Option",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Market Parameters: Spot GBP/USD = 1.6000, Strike K = 1.6000, T = 1.0 yr, r = 6.0%, r_f = 8.0%, sigma = 14.0%."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "d1 and d2 Calculations: d1 = [0 + (0.06 - 0.08 + 0.5*0.0196)*1] / 0.14 = -0.0729; d2 = -0.2129."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Dual Currency Inversion Symmetry: Calls vs Puts",
+      "purpose": "Currency Pair Duality: Every foreign exchange transaction simultaneously involves two currencies.",
+      "takeaways": [
+        "Currency Pair Duality: Every foreign exchange transaction simultaneously involves two currencies.",
+        "Mathematical Identity: Call to buy GBP with USD at K is mathematically identical to Put to sell USD for GBP at 1/K.",
+        "Symmetry Formula: c(S_0, K, r, r_f, T) = S_0 * K * p*(1/S_0, 1/K, r_f, r, T)."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The most unique mathematical feature of FX derivatives is Dual Currency Inversion Symmetry."
+            },
+            "hi": {
+              "display": "Currency options ki sabse anokhi visheshata hoti hai Dual Currency Inversion Symmetry."
+            }
+          },
+          "onScreenIntent": "Dual Currency Inversion Symmetry: Calls vs Puts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A NY call to buy GBP at $1.60 is economically identical to a London put to sell USD at £0.625!"
+            },
+            "hi": {
+              "display": "Jab New York ka ek trader 1.60 dollar ki strike par Pound buy karne ka Call option khareedta hai, toh theek wahi transaction London ke trader ke liye Dollars sell karne ka Put option ban jata hai jiski strike 0.625 pound hoti hai!"
+            }
+          },
+          "onScreenIntent": "Dual Currency Inversion Symmetry: Calls vs Puts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Both cash flows are identical, allowing global desks to seamlessly hedge cross-currency books."
+            },
+            "hi": {
+              "display": "Dono transactions ki cash flows theek barabar hoti hain. John Hull samjhate hain ki yeh symmetry global banks ko dono sides se currency risks seamlessly offset karne ki suvidha deti hai."
+            }
+          },
+          "onScreenIntent": "Dual Currency Inversion Symmetry: Calls vs Puts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Dual Currency Inversion Symmetry: Calls vs Puts",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Currency Pair Duality: Every foreign exchange transaction simultaneously involves two currencies."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Mathematical Identity: Call to buy GBP with USD at K is mathematically identical to Put to sell USD for GBP at 1/K."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Corporate Hedging with Zero-Cost Range-Forward Collars",
+      "purpose": "Corporate Dilemma: Outright puts are expensive; forward contracts eliminate all upside participation.",
+      "takeaways": [
+        "Corporate Dilemma: Outright puts are expensive; forward contracts eliminate all upside participation.",
+        "Range-Forward Structure: Buy protective put at K1 (floor) and simultaneously sell call at K2 (ceiling).",
+        "Zero-Cost Equilibrium: Strikes K1 and K2 are selected such that p(K1) = c(K2), eliminating cash premium outlay."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Examine how global multinationals execute Zero-Cost Range-Forward Collars without paying cash premiums."
+            },
+            "hi": {
+              "display": "Aaiye ab dekhein ki real corporate world mein multinational companies jaise Airbus ya Apple currency options ka upayog bina koi cash premium diye kaise karti hain."
+            }
+          },
+          "onScreenIntent": "Corporate Hedging with Zero-Cost Range-Forward Collars",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Known as a Zero-Cost Range-Forward: The treasurer buys a protective put at floor strike K1."
+            },
+            "hi": {
+              "display": "Ise Zero-Cost Range-Forward ya Cylinder kaha jata hai. Corporate treasurer downside risk ko rokne ke liye ek Put option buy karta hai strike K 1 par."
+            }
+          },
+          "onScreenIntent": "Corporate Hedging with Zero-Cost Range-Forward Collars",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To finance the put, the company sells an out-of-the-money call at ceiling strike K2, achieving a net zero premium outlay!"
+            },
+            "hi": {
+              "display": "Is put ki cost ko balance karne ke liye, company simultaneously strike K 2 par ek Call option sell kar deti hai, jisse received premium se put ka kharcha theek zero ho jata hai!"
+            }
+          },
+          "onScreenIntent": "Corporate Hedging with Zero-Cost Range-Forward Collars",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The company secures an ironclad floor while retaining participation across a defined exchange rate corridor."
+            },
+            "hi": {
+              "display": "Company ko ek guaranteed floor mil jata hai, jabki ek safe corridor mein currency appreciation ka benefit bhi milta hai."
+            }
+          },
+          "onScreenIntent": "Corporate Hedging with Zero-Cost Range-Forward Collars",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Corporate Hedging with Zero-Cost Range-Forward Collars",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Corporate Dilemma: Outright puts are expensive; forward contracts eliminate all upside participation."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Range-Forward Structure: Buy protective put at K1 (floor) and simultaneously sell call at K2 (ceiling)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "American Currency Options & Early Exercise Boundary",
+      "purpose": "Carrying Yield Arbitrage: Because foreign currency earns continuous rate r_f, deep in-the-money American options may be exercised early.",
+      "takeaways": [
+        "Carrying Yield Arbitrage: Because foreign currency earns continuous rate r_f, deep in-the-money American options may be exercised early.",
+        "Call Early Exercise Condition: Optimal to exercise American call early if foreign rate r_f significantly exceeds domestic rate r.",
+        "Put Early Exercise Condition: Optimal to exercise American put early if domestic rate r significantly exceeds foreign rate r_f."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine the early exercise mechanics of American Currency Options."
+            },
+            "hi": {
+              "display": "Ab aaiye American Currency Options ke early exercise mechanics ko samjhein."
+            }
+          },
+          "onScreenIntent": "American Currency Options & Early Exercise Boundary",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Unlike stock calls which exercise only before dividends, foreign currencies accrue interest r_f every day."
+            },
+            "hi": {
+              "display": "Stock options mein American call ko keval dividend se pehle exercise karna optimal hota hai. Lekin currency mein foreign interest rate r f har roz milta hai."
+            }
+          },
+          "onScreenIntent": "American Currency Options & Early Exercise Boundary",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If foreign interest rate r_f significantly exceeds domestic rate r, early call exercise is mathematically optimal."
+            },
+            "hi": {
+              "display": "Yadi foreign interest rate domestic rate se kaafi zyada ho, toh American call ko early exercise karke foreign currency apne account mein lena profitable ho jata hai."
+            }
+          },
+          "onScreenIntent": "American Currency Options & Early Exercise Boundary",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "American Currency Options & Early Exercise Boundary",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Carrying Yield Arbitrage: Because foreign currency earns continuous rate r_f, deep in-the-money American options may be exercised early."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Call Early Exercise Condition: Optimal to exercise American call early if foreign rate r_f significantly exceeds domestic rate r."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "The Volatility Smile in Foreign Exchange Markets",
+      "purpose": "Failure of Lognormal Flat Vol: Market implied volatilities are not constant; deep OTM calls and puts trade at high implied vol.",
+      "takeaways": [
+        "Failure of Lognormal Flat Vol: Market implied volatilities are not constant; deep OTM calls and puts trade at high implied vol.",
+        "Prominent U-Shaped Smile: FX options exhibit a distinct symmetric U-shaped volatility smile reflecting jump risk and fat tails.",
+        "Risk Reversals & Skew: Skew between OTM calls and puts measures the directional bias and central bank intervention likelihood."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In real financial markets, an essential empirical concept is the Volatility Smile."
+            },
+            "hi": {
+              "display": "Real financial markets mein ek aur critical concept hai jise Volatility Smile kaha jata hai."
+            }
+          },
+          "onScreenIntent": "The Volatility Smile in Foreign Exchange Markets",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "While Black-Scholes assumes a flat constant volatility, deep OTM currency options trade at elevated implied volatilities."
+            },
+            "hi": {
+              "display": "Black-Scholes model yeh assume karta hai ki volatility har strike par flat hoti hai. Lekin reality mein, deep out-of-the-money currency calls aur puts bahut higher implied volatility par trade karte hain."
+            }
+          },
+          "onScreenIntent": "The Volatility Smile in Foreign Exchange Markets",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This creates a characteristic U-shaped smile, reflecting that real FX markets experience jumps far more frequently than Gaussian models predict."
+            },
+            "hi": {
+              "display": "Isse graph par ek smile jaisa shape banta hai, jo yeh darshata hai ki real foreign exchange markets mein extreme crashes aur jumps Gaussian model se kahin zyada frequently aate hain."
+            }
+          },
+          "onScreenIntent": "The Volatility Smile in Foreign Exchange Markets",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Volatility Smile in Foreign Exchange Markets",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Failure of Lognormal Flat Vol: Market implied volatilities are not constant; deep OTM calls and puts trade at high implied vol."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Prominent U-Shaped Smile: FX options exhibit a distinct symmetric U-shaped volatility smile reflecting jump risk and fat tails."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Interactive Technical Quiz: Impact of Foreign Interest Rate Shifts",
+      "purpose": "Question Focus: Evaluate the effect of an increase in foreign risk-free rate r_f on European currency call and put prices.",
+      "takeaways": [
+        "Question Focus: Evaluate the effect of an increase in foreign risk-free rate r_f on European currency call and put prices.",
+        "Yield Analogy: Foreign rate r_f is the continuous dividend yield q of the foreign currency.",
+        "Pricing Result: Higher foreign interest rate lowers European call prices and raises European put prices."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your understanding: If foreign interest rate r_f increases, what happens to European currency calls and puts? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Aaiye Garman-Kohlhagen model ki understanding ko test karte hain. Yadi sabhi factors constant rahein aur foreign interest rate r f badh jaye, toh European currency call aur put options ki prices par kya impact padega? Screen par diye gaye options par dhyan se vichar kijiye."
+            }
+          },
+          "onScreenIntent": "Interactive Technical Quiz: Impact of Foreign Interest Rate Shifts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Analyze the foreign risk-free rate r_f as continuous dividend yield q in forward parity."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Interactive Technical Quiz: Impact of Foreign Interest Rate Shifts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option B is correct: Call values decrease and put values increase! Higher foreign yield lowers the forward exchange rate."
+            },
+            "hi": {
+              "display": "Sahi uttar hai Option B! Chunki foreign interest rate r f continuous dividend yield ki tarah kaam karti hai, isliye r f badhne se foreign currency ka forward price gir jata hai, jisse call decrease hoti hai aur put increase ho jati hai."
+            }
+          },
+          "onScreenIntent": "Interactive Technical Quiz: Impact of Foreign Interest Rate Shifts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Macro Reflection: Central Bank Rates & Currency Volatility",
+      "purpose": "Macroeconomic Arena: Foreign exchange derivatives reflect the monetary policies of global central banks (Fed, ECB, BoJ, BoE).",
+      "takeaways": [
+        "Macroeconomic Arena: Foreign exchange derivatives reflect the monetary policies of global central banks (Fed, ECB, BoJ, BoE).",
+        "Interest Rate Differentials: Divergence in rate hike cycles drives multi-billion dollar carry trades and volatility skew shifts.",
+        "Gateway to Chapter 18: Futures options and Black's 1976 model provide the ultimate framework for pricing commodity and index derivatives."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The currency options market is not merely corporate hedging; it is the world's premier macroeconomic battleground."
+            },
+            "hi": {
+              "display": "Currency options ka market keval corporate hedging tak seemit nahi hai, yeh world ka sabse bada macroeconomic arena hai."
+            }
+          },
+          "onScreenIntent": "Macro Reflection: Central Bank Rates & Currency Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When the Fed or ECB adjust rates, shifting interest spreads trigger multi-billion dollar volatility flows across FX desks."
+            },
+            "hi": {
+              "display": "Jab US Federal Reserve ya European Central Bank interest rates change karte hain, toh interest spread r minus r f shift hota hai, jisse global forex options mein heavy volatility create hoti hai."
+            }
+          },
+          "onScreenIntent": "Macro Reflection: Central Bank Rates & Currency Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 18, we will explore how John Hull analyzes options written on futures contracts using Black's 1976 model."
+            },
+            "hi": {
+              "display": "Agle adhyay mein, hum dekhenge ki John Hull kis prakar Futures contracts par likhe gaye options aur Black ke 1976 model ka analysis karte hain."
+            }
+          },
+          "onScreenIntent": "Macro Reflection: Central Bank Rates & Currency Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Macro Reflection: Central Bank Rates & Currency Volatility",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Macroeconomic Arena: Foreign exchange derivatives reflect the monetary policies of global central banks (Fed, ECB, BoJ, BoE)."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Interest Rate Differentials: Divergence in rate hike cycles drives multi-billion dollar carry trades and volatility skew shifts."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary: 8 Institutional Rules of Currency Derivatives",
+      "purpose": "Foreign Rate Yield: Holding foreign cash yields continuous rate r_f, substituting continuous dividend yield q in BSM.",
+      "takeaways": [
+        "Foreign Rate Yield: Holding foreign cash yields continuous rate r_f, substituting continuous dividend yield q in BSM.",
+        "Garman-Kohlhagen Pricing: Discounting S_0 by e^(-r_f*T) and K by e^(-r*T) prices European currency options analytically.",
+        "Zero-Cost Hedging: Collars buying puts at K1 and selling calls at K2 create full insurance corridors at zero premium."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Foreign interest rate r_f functions as continuous dividend yield q, adjusting spot FX to S_0*e^(-r_f*T)."
+            },
+            "hi": {
+              "display": "Aaiye Currency Options aur Garman-Kohlhagen model ke 8 sansthagat niyam codified karte hain. Niyam ek: Foreign currency par milne wali interest rate r f ek continuous dividend yield ki tarah kaam karti hai, jisse spot exchange rate S zero into e ki power minus r f into T ho jata hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Currency Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 2: Garman-Kohlhagen applies dual discounting; Rule 3: Forward rate F_0 locks options to interest parity."
+            },
+            "hi": {
+              "display": "Niyam do: Garman-Kohlhagen model dual discount factors use karta hai, jahan domestic rate r strike ko discount karti hai aur foreign rate r f spot ko discount karti hai. Niyam teen: Covered Interest Parity ke tahat forward exchange rate F zero European FX options ka core anchor hota hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Currency Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 4: Dual currency inversion equates calls to puts; Rule 5: Zero-cost collars self-finance downside floors."
+            },
+            "hi": {
+              "display": "Niyam char: Dual currency symmetry ke mutabiq, foreign currency buy karne ka call option strike K par, domestic currency sell karne ke put option strike 1 by K ke theek barabar hota hai. Niyam paanch: Multinational corporations zero-cost range-forward collars use karti hain, jahan put premium call sale se fully finance ho jata hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Currency Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 6: FX volatility smile reflects fat-tail jump risk; Rule 7: Monetary policy divergence drives carry-trade unwinds."
+            },
+            "hi": {
+              "display": "Niyam cheh: Currency options market mein volatility smile aur skew central bank interventions aur extreme tail risk ko price karte hain. Niyam saat: Global central banks ke rate cycle divergence se interest spread r minus r f change hota hai, jo major FX carry-trade unwinds ko trigger karta hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Currency Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 8: Garman-Kohlhagen bridges directly into Fischer Black's 1976 futures options framework for Chapter 18."
+            },
+            "hi": {
+              "display": "Niyam aath: Garman-Kohlhagen framework seedhe Fischer Black ke 1976 futures model ki neev rakhta hai, jahan continuous yield futures price forward dynamics mein convert ho jata hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Currency Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles conclude our master study of currency options, leading directly into Futures Options in Chapter 18."
+            },
+            "hi": {
+              "display": "Ye aath niyam international financial engineering aur currency risk management ko master karne ke liye anivarya hain, jo agle chapter mein Futures Options ko samajhne ka seedha pathway bante hain."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Currency Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Currency Derivatives",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

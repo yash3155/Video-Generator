@@ -1,0 +1,1450 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch17",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 17",
+  "partLabel": "Part 1",
+  "title": "Hull Chapter 17 (Part 1): Stock Index Options and Portfolio Insurance",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 32,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "Protecting a Multi-Million Dollar Equity Portfolio",
+      "purpose": "Institutional Challenge: Liquidating a $100M equity portfolio during market panics causes ruinous transaction costs and tax friction.",
+      "takeaways": [
+        "Institutional Challenge: Liquidating a $100M equity portfolio during market panics causes ruinous transaction costs and tax friction.",
+        "Synthetic Macro Shield: Stock index options enable instantaneous portfolio hedging without altering physical share holdings.",
+        "Chapter 17 Roadmap: Master continuous dividend yields (q), Merton index formulas, cash settlement, and CAPM beta hedging."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Imagine managing a $100 million institutional equity fund or pension portfolio."
+            },
+            "hi": {
+              "display": "Kalpana kijiye ki aap 100 million dollar ke ek vishal equity mutual fund ya pension fund ka management kar rahe hain."
+            }
+          },
+          "onScreenIntent": "Protecting a Multi-Million Dollar Equity Portfolio",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When panic selling hits, dumping hundreds of physical holdings triggers catastrophic market impact costs and tax friction."
+            },
+            "hi": {
+              "display": "Achanak market mein global crisis ke chalte panic selling shuru ho jati hai. Yadi aap portfolio ke 500 shares ko bechne niklenge, toh impact cost aur taxes aapki capital ko barbad kar denge."
+            }
+          },
+          "onScreenIntent": "Protecting a Multi-Million Dollar Equity Portfolio",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In such crises, financial engineering offers its ultimate macro shield: Stock Index Options."
+            },
+            "hi": {
+              "display": "Aisi situation mein financial engineering ka sabse powerful weapon samne aata hai: Stock Index Options."
+            }
+          },
+          "onScreenIntent": "Protecting a Multi-Million Dollar Equity Portfolio",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 17 Part 1, we master how broad index options provide comprehensive portfolio crash protection."
+            },
+            "hi": {
+              "display": "John Hull ke 17vein adhyay ke is pehle bhag mein, hum seekhenge ki kis prakar S&P 500 ya Nifty jaise index options se pure portfolio ko crash se protect kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Protecting a Multi-Million Dollar Equity Portfolio",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Protecting a Multi-Million Dollar Equity Portfolio",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Institutional Challenge: Liquidating a $100M equity portfolio during market panics causes ruinous transaction costs and tax friction."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Synthetic Macro Shield: Stock index options enable instantaneous portfolio hedging without altering physical share holdings."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "The Settlement Dilemma: Physical Delivery vs Cash Settlement",
+      "purpose": "Logistical Impossibility: Delivering physical shares of 500 distinct companies upon exercise is operationally unviable.",
+      "takeaways": [
+        "Logistical Impossibility: Delivering physical shares of 500 distinct companies upon exercise is operationally unviable.",
+        "Mandatory Cash Settlement: Index options settle purely in cash: Payoff = max(S_T - K, 0) * Multiplier for calls.",
+        "Contract Multiplier ($100): An index quote of 4,000 represents $400,000 underlying economic notional exposure."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Single stock options settle via the physical transfer of underlying shares between counter-parties."
+            },
+            "hi": {
+              "display": "Jab hum kisi individual stock jaise Apple ya Reliance ke option ka trade karte hain, toh exercise hone par physical shares ka delivery possible hota hai."
+            }
+          },
+          "onScreenIntent": "The Settlement Dilemma: Physical Delivery vs Cash Settlement",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In a 500-stock index, physically delivering fractional baskets of 500 individual companies is operationally impossible."
+            },
+            "hi": {
+              "display": "Lekin S&P 500 jaise index mein 500 alag-alag companies hoti hain. Kya kisi trader ke liye expiry par 500 companies ke shares deliver karna practically possible hai? Bilkul nahi."
+            }
+          },
+          "onScreenIntent": "The Settlement Dilemma: Physical Delivery vs Cash Settlement",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John Hull explains that all major index options are cash-settled, transferring purely the net dollar intrinsic value."
+            },
+            "hi": {
+              "display": "John Hull samjhate hain ki isi logistical reason se sabhi major index options cash-settled hote hain, jahan keval net dollar profit ka hi settlement kiya jata hai."
+            }
+          },
+          "onScreenIntent": "The Settlement Dilemma: Physical Delivery vs Cash Settlement",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Settlement Dilemma: Physical Delivery vs Cash Settlement",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Logistical Impossibility: Delivering physical shares of 500 distinct companies upon exercise is operationally unviable."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Mandatory Cash Settlement: Index options settle purely in cash: Payoff = max(S_T - K, 0) * Multiplier for calls."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "The 4 Pillars of Stock Index Options",
+      "purpose": "Pillar 1: Macro Baskets: Aggregates entire national economies into single tradeable benchmark numbers.",
+      "takeaways": [
+        "Pillar 1: Macro Baskets: Aggregates entire national economies into single tradeable benchmark numbers.",
+        "Pillar 2: Continuous Dividend Yield: Daily constituent payouts smooth into continuous yield rate q (1.5%–2.5%).",
+        "Pillars 3 & 4: Cash Settle & Beta: Cash settlement multipliers ($100) and CAPM beta hedging formulas."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The architecture of index options and portfolio insurance is established upon four core pillars."
+            },
+            "hi": {
+              "display": "Stock Index Options aur Portfolio Insurance ke poore framework ko char fundamental pillars par establish kiya gaya hai."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Stock Index Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1 is Broad Market Baskets, tracking the collective equity valuation of national economies."
+            },
+            "hi": {
+              "display": "Pehla pillar hai Broad Market Baskets, jo country ki economy ke collective equity value ko track karte hain."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Stock Index Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2 is Continuous Dividend Yield, where constituent payouts blend into a smooth continuous yield q."
+            },
+            "hi": {
+              "display": "Doosra pillar hai Continuous Dividend Yield, kyunki 500 companies ka dividend flow milkar ek smooth continuous stream ban jata hai."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Stock Index Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillars 3 and 4 are cash settlement multipliers and CAPM beta-adjusted portfolio insurance formulas."
+            },
+            "hi": {
+              "display": "Teesra pillar hai Cash Settlement Multiplier, aur chautha pillar hai CAPM Beta-Adjusted Portfolio Insurance."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Stock Index Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The 4 Pillars of Stock Index Options",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Pillar 1: Macro Baskets: Aggregates entire national economies into single tradeable benchmark numbers."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Pillar 2: Continuous Dividend Yield: Daily constituent payouts smooth into continuous yield rate q (1.5%–2.5%)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "The Continuous Dividend Yield Approximation",
+      "purpose": "From Discrete to Continuous: While single stocks pay discrete quarterly dividends, 500-stock baskets pay dividends nearly every single day.",
+      "takeaways": [
+        "From Discrete to Continuous: While single stocks pay discrete quarterly dividends, 500-stock baskets pay dividends nearly every single day.",
+        "Mathematical Smoothing: Approximating aggregate payouts as continuous yield rate q introduces negligible error (< 0.1%).",
+        "Forward Asset Growth: In a risk-neutral world, the index value drifts at rate (r - q) rather than r."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Examine how John Hull models index dividends into a continuous analytical framework."
+            },
+            "hi": {
+              "display": "Screen par dekhiye ki John Hull kis prakar stock index ke dividends ka mathematical modeling karte hain."
+            }
+          },
+          "onScreenIntent": "The Continuous Dividend Yield Approximation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Though individual firms pay quarterly, in a 500-stock basket, dividends flow continuously every trading day."
+            },
+            "hi": {
+              "display": "Yadyapi individual companies saal mein 4 baar discrete dividends deti hain, lekin jab 500 companies basket mein hoti hain, toh har trading day koi na koi company dividend distribute kar rahi hoti hai."
+            }
+          },
+          "onScreenIntent": "The Continuous Dividend Yield Approximation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Thus, modeling index payouts as a smooth continuous dividend yield q (e.g. 2.0%) is exceptionally accurate."
+            },
+            "hi": {
+              "display": "Isliye index ke liye dividends ko ek continuous annual rate q, jaise 2 percent, ke roop mein model karna statistically perfect hota hai."
+            }
+          },
+          "onScreenIntent": "The Continuous Dividend Yield Approximation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Continuous Dividend Yield Approximation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "From Discrete to Continuous: While single stocks pay discrete quarterly dividends, 500-stock baskets pay dividends nearly every single day."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Mathematical Smoothing: Approximating aggregate payouts as continuous yield rate q introduces negligible error (< 0.1%)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Merton's Dividend-Adjusted Black–Scholes Formulas",
+      "purpose": "Analytical Index Call: c = S_0 * e^(-qT) * N(d1) - K * e^(-rT) * N(d2).",
+      "takeaways": [
+        "Analytical Index Call: c = S_0 * e^(-qT) * N(d1) - K * e^(-rT) * N(d2).",
+        "Analytical Index Put: p = K * e^(-rT) * N(-d2) - S_0 * e^(-qT) * N(-d1).",
+        "Modified Drift in d1: d1 = [ ln(S_0 / K) + (r - q + 0.5*sigma^2)*T ] / [ sigma * sqrt(T) ]."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under Robert Merton's continuous yield extension, how does the Black-Scholes formula adapt?"
+            },
+            "hi": {
+              "display": "Pichhle chapter mein humne Black-Scholes model dekha tha. Ab Robert Merton ke extension ke tahat, jab index continuous yield q pay karta hai, toh formula mein kya modification hota hai?"
+            }
+          },
+          "onScreenIntent": "Merton's Dividend-Adjusted Black–Scholes Formulas",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because continuous dividends reduce forward asset accumulation, spot price S_0 is replaced by S_0*e^(-qT)."
+            },
+            "hi": {
+              "display": "Chunki dividends index value ko continuously kam karte hain, isliye spot index price S_0 ko S_0 e ki power minus q T se replace kar diya jata hai."
+            }
+          },
+          "onScreenIntent": "Merton's Dividend-Adjusted Black–Scholes Formulas",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The European index call formula prices index upside while respecting continuous put-call parity."
+            },
+            "hi": {
+              "display": "Screen par dekhiye index call formula: c barabar S_0 e ki power minus q T N of d 1 minus K e ki power minus r T N of d 2, jo put-call parity ko fully satisfy karta hai."
+            }
+          },
+          "onScreenIntent": "Merton's Dividend-Adjusted Black–Scholes Formulas",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Merton's Dividend-Adjusted Black–Scholes Formulas",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Analytical Index Call: c = S_0 * e^(-qT) * N(d1) - K * e^(-rT) * N(d2)."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Analytical Index Put: p = K * e^(-rT) * N(-d2) - S_0 * e^(-qT) * N(-d1)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Portfolio Insurance Mechanics: The Beta = 1.0 Baseline",
+      "purpose": "Synthetic Floor: Combining an equity portfolio with protective index put options creates a synthetic capital floor.",
+      "takeaways": [
+        "Synthetic Floor: Combining an equity portfolio with protective index put options creates a synthetic capital floor.",
+        "Contract Formula (Beta = 1): Number of put contracts N = V_P / (S_0 * Multiplier).",
+        "Asymmetric Protection: Downside loss is capped at strike K while 100% of bull market gains are retained."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine the practical institutional application of Portfolio Insurance step-by-step."
+            },
+            "hi": {
+              "display": "Aaiye ab Portfolio Insurance ke institutional application ko step-by-step samjhein."
+            }
+          },
+          "onScreenIntent": "Portfolio Insurance Mechanics: The Beta = 1.0 Baseline",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Suppose a fund manager holds a $10 million equity portfolio that mirrors the index with Beta = 1.0."
+            },
+            "hi": {
+              "display": "Maan lijiye ek fund manager ka 10 million dollar ka portfolio theek market index ki tarah behave karta hai, yaani uska Beta theek 1.0 hai."
+            }
+          },
+          "onScreenIntent": "Portfolio Insurance Mechanics: The Beta = 1.0 Baseline",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To protect the portfolio, purchasing put contracts equal to portfolio value divided by contract size creates a hard floor."
+            },
+            "hi": {
+              "display": "Portfolio ko secure karne ke liye manager ko put options buy karne honge. Contracts ki sankhya seedhe portfolio value ko index notional size se divide karke mil jati hai."
+            }
+          },
+          "onScreenIntent": "Portfolio Insurance Mechanics: The Beta = 1.0 Baseline",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Portfolio Insurance Mechanics: The Beta = 1.0 Baseline",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Synthetic Floor: Combining an equity portfolio with protective index put options creates a synthetic capital floor."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Contract Formula (Beta = 1): Number of put contracts N = V_P / (S_0 * Multiplier)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "CAPM Beta Adjustment for Non-Benchmark Portfolios",
+      "purpose": "Non-Benchmark Reality: Real-world portfolios rarely have Beta = 1.0; tech funds have Beta > 1, defensive funds Beta < 1.",
+      "takeaways": [
+        "Non-Benchmark Reality: Real-world portfolios rarely have Beta = 1.0; tech funds have Beta > 1, defensive funds Beta < 1.",
+        "CAPM Hedging Formula: Optimal put contracts N* = Beta * [ V_P / (S_0 * Multiplier) ].",
+        "Strike Floor Adjustment: K/S_0 = 1 + [ -x - (1 - Beta)*r*T ] / Beta."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Real portfolios rarely match index beta: tech portfolios often have Beta = 1.5, defensive funds Beta = 0.8."
+            },
+            "hi": {
+              "display": "Practical world mein mutual funds ka Beta 1.0 nahi hota. Tech funds ka Beta 1.5 ho sakta hai, aur FMCG funds ka Beta 0.8."
+            }
+          },
+          "onScreenIntent": "CAPM Beta Adjustment for Non-Benchmark Portfolios",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "With Beta = 1.5, a 10% market drop produces a 15% portfolio decline, leaving standard hedging inadequate."
+            },
+            "hi": {
+              "display": "Yadi Beta 1.5 hai, toh market 10 percent girne par aapka portfolio 15 percent girega! Isliye standard contracts se hedging adhoori reh jayegi."
+            }
+          },
+          "onScreenIntent": "CAPM Beta Adjustment for Non-Benchmark Portfolios",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Hull Equation 17.8 dictates that optimal put contracts scale by portfolio Beta: N* = Beta * [V_P / (S_0 * Multiplier)]."
+            },
+            "hi": {
+              "display": "Hull Equation 17.8 ke mutabiq, optimal put contracts N star nikalne ke liye baseline contracts ko portfolio Beta se multiply kiya jata hai."
+            }
+          },
+          "onScreenIntent": "CAPM Beta Adjustment for Non-Benchmark Portfolios",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This ensures the put gains exactly offset the amplified portfolio loss during market sell-offs."
+            },
+            "hi": {
+              "display": "Isse market ke girne par put options ka gain theek portfolio ke amplified loss ko offset kar deta hai."
+            }
+          },
+          "onScreenIntent": "CAPM Beta Adjustment for Non-Benchmark Portfolios",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "CAPM Beta Adjustment for Non-Benchmark Portfolios",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Non-Benchmark Reality: Real-world portfolios rarely have Beta = 1.0; tech funds have Beta > 1, defensive funds Beta < 1."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "CAPM Hedging Formula: Optimal put contracts N* = Beta * [ V_P / (S_0 * Multiplier) ]."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Worked Numerical Application: Protecting a $50M Fund",
+      "purpose": "Institutional Scenario: $50M equity portfolio with Beta = 1.20, S&P 500 at 4,000, Multiplier = $100.",
+      "takeaways": [
+        "Institutional Scenario: $50M equity portfolio with Beta = 1.20, S&P 500 at 4,000, Multiplier = $100.",
+        "Contract Calculation: N* = 1.20 * [ $50,000,000 / (4,000 * 100) ] = 1.20 * 125 = 150 contracts.",
+        "Downside Payoff Verification: A 20% index crash is fully absorbed by the $2.0M payout from the 150 puts."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Examine the precision of Hull's Table 17.2 worked numerical application."
+            },
+            "hi": {
+              "display": "Aaiye Hull ke Table 17.2 ke is worked numerical example se calculation ki power ko dekhte hain."
+            }
+          },
+          "onScreenIntent": "Worked Numerical Application: Protecting a $50M Fund",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "With a $50M portfolio, Beta = 1.20, and index at 4,000, single contract size is $400,000, yielding 125 baseline contracts."
+            },
+            "hi": {
+              "display": "Ek 50 million dollar ke portfolio ka Beta 1.20 hai aur index 4000 par hai. 1 contract ki value 4 lakh dollar banti hai. Baseline contracts 125 nikalte hain."
+            }
+          },
+          "onScreenIntent": "Worked Numerical Application: Protecting a $50M Fund",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Multiplying by Beta 1.20 yields exactly 150 put contracts, perfectly neutralizing a $12M equity crash loss with $12M in put gains!"
+            },
+            "hi": {
+              "display": "Beta 1.20 se multiply karne par manager ko theek 150 puts buy karne honge. Yadi market 20 percent crash hota hai, toh put options ka 12 million dollar ka profit equity loss ko theek barabar neutralize kar deta hai!"
+            }
+          },
+          "onScreenIntent": "Worked Numerical Application: Protecting a $50M Fund",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Worked Numerical Application: Protecting a $50M Fund",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Institutional Scenario: $50M equity portfolio with Beta = 1.20, S&P 500 at 4,000, Multiplier = $100."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Contract Calculation: N* = 1.20 * [ $50,000,000 / (4,000 * 100) ] = 1.20 * 125 = 150 contracts."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Institutional Comparison: Single Stock Options vs Index Options",
+      "purpose": "Settlement Style: Single stock options settle physically; stock index options settle purely in cash.",
+      "takeaways": [
+        "Settlement Style: Single stock options settle physically; stock index options settle purely in cash.",
+        "Exercise Convention: US equity options are American style; major index options are European style.",
+        "Risk Decoupling: Single stocks hedge idiosyncratic company risk; indices hedge macroeconomic market risk."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Understand the institutional differences between both option categories in this matrix."
+            },
+            "hi": {
+              "display": "Is comparative matrix mein dono types ke options ke institutional differences ko samjhiye."
+            }
+          },
+          "onScreenIntent": "Institutional Comparison: Single Stock Options vs Index Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Single stock options are American style with physical delivery, dominated by unsystematic corporate risk."
+            },
+            "hi": {
+              "display": "Single stock options American style ke hote hain jinme physical delivery hoti hai aur company-specific unsystematic risk dominate karta hai."
+            }
+          },
+          "onScreenIntent": "Institutional Comparison: Single Stock Options vs Index Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In contrast, index options are European style with mandatory cash settlement, hedging pure systematic market risk."
+            },
+            "hi": {
+              "display": "Iske viprit, Index options European style ke hote hain jinme mandatory cash settlement hota hai aur ve pure systematic market risk ko hedge karte hain."
+            }
+          },
+          "onScreenIntent": "Institutional Comparison: Single Stock Options vs Index Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Institutional Comparison: Single Stock Options vs Index Options",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Settlement Style: Single stock options settle physically; stock index options settle purely in cash."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Exercise Convention: US equity options are American style; major index options are European style."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Interactive Technical Quiz: Calculating Protected Put Contracts with Beta",
+      "purpose": "Question Focus: Calculate optimal index put contracts required to hedge a $20M portfolio with Beta = 1.25.",
+      "takeaways": [
+        "Question Focus: Calculate optimal index put contracts required to hedge a $20M portfolio with Beta = 1.25.",
+        "Base Formula: Base Contracts = $20,000,000 / (4,000 * $100) = 50 contracts.",
+        "Beta Adjustment: N* = 1.25 * 50 = exactly 62.5 contracts (round to 63 contracts)."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your understanding: A $20M portfolio has Beta = 1.25. If index = 4,000 and multiplier = $100, how many puts are needed? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Aaiye Portfolio Insurance ki practical understanding ko test karte hain. Ek fund manager ke paas 20 million dollar ka portfolio hai jiska Beta 1.25 hai. Yadi index 4000 par hai aur multiplier 100 dollar hai, toh kitne puts khareedne honge? Screen par diye gaye options par dhyan se vichar karke calculate kijiye."
+            }
+          },
+          "onScreenIntent": "Interactive Technical Quiz: Calculating Protected Put Contracts with Beta",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Apply Hull's beta-adjusted hedging formula N* = Beta * [ V_P / (S_0 * Multiplier) ]."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Interactive Technical Quiz: Calculating Protected Put Contracts with Beta",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option B is correct: 63 contracts! Multiplying the base 50 contracts by Beta 1.25 yields exactly 62.5 (rounded to 63) contracts."
+            },
+            "hi": {
+              "display": "Sahi uttar hai Option B, 63 contracts! Chunki 20 million divided by 4 lakh barabar 50 hota hai, aur use Beta 1.25 se multiply karne par theek 62.5 yaani 63 contracts prapt hote hain."
+            }
+          },
+          "onScreenIntent": "Interactive Technical Quiz: Calculating Protected Put Contracts with Beta",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Macro Reflection: Lessons from the 1987 Stock Market Crash",
+      "purpose": "Black Monday (October 19, 1987): The Dow Jones crashed 22.6% in a single day, the largest one-day percentage drop in history.",
+      "takeaways": [
+        "Black Monday (October 19, 1987): The Dow Jones crashed 22.6% in a single day, the largest one-day percentage drop in history.",
+        "Dynamic Hedging Cascade: Institutional portfolio insurance programs automatically sold futures as markets fell, creating a vicious feedback loop.",
+        "Regulatory Aftermath: Prompted exchanges to institute coordinated market-wide circuit breakers and collar halts."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Portfolio Insurance is conceptually elegant, yet financial history provides a sobering warning."
+            },
+            "hi": {
+              "display": "Portfolio Insurance theoretically bahut attractive lagta hai, lekin history hume ek severe warning deti hai."
+            }
+          },
+          "onScreenIntent": "Macro Reflection: Lessons from the 1987 Stock Market Crash",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "During the 1987 Black Monday crash, automated portfolio insurance programs triggered a massive selling cascade."
+            },
+            "hi": {
+              "display": "1987 ke Black Monday crash mein, jab दर्जनों bade funds ne ek sath programmatic portfolio insurance ke tahat futures bechna shuru kiya, toh market mein panic selling cascade paida ho gaya."
+            }
+          },
+          "onScreenIntent": "Macro Reflection: Lessons from the 1987 Stock Market Crash",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Dow dropped 22.6% in a day, prompting exchanges to introduce mandatory circuit breakers to halt automated selling cascades."
+            },
+            "hi": {
+              "display": "Dow Jones ek din mein 22 percent gir gaya! Is disaster ke baad exchanges ne circuit breakers introduce kiye, taaki automated hedging pure system ko freeze na kar sake."
+            }
+          },
+          "onScreenIntent": "Macro Reflection: Lessons from the 1987 Stock Market Crash",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Macro Reflection: Lessons from the 1987 Stock Market Crash",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Black Monday (October 19, 1987): The Dow Jones crashed 22.6% in a single day, the largest one-day percentage drop in history."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Dynamic Hedging Cascade: Institutional portfolio insurance programs automatically sold futures as markets fell, creating a vicious feedback loop."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary: 8 Institutional Rules of Index Options & Insurance",
+      "purpose": "Continuous Yield q: Daily constituent payouts smooth into continuous yield rate q, adjusting spot to S_0*e^(-qT).",
+      "takeaways": [
+        "Continuous Yield q: Daily constituent payouts smooth into continuous yield rate q, adjusting spot to S_0*e^(-qT).",
+        "CAPM Beta Scaling: Optimal put contracts scale directly with portfolio beta: N* = Beta * [V_P / (S_0 * Multiplier)].",
+        "1987 Macro Lesson: Dynamic delta hedging cascades triggered circuit breaker governance and liquidity collars."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Constituent dividends in broad equity baskets model as a smooth continuous annualized yield q."
+            },
+            "hi": {
+              "display": "Aaiye Stock Index Options aur Portfolio Insurance ke 8 sansthagat niyam codified karte hain. Niyam ek: Broad equity baskets ka dividend yield smooth continuous rate q ke roop mein model hota hai, jisse forward spot S zero into e ki power minus q T ho jata hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Index Options & Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 2: Merton pricing discounts spot by e^(-qT); Rule 3: Major index options are strictly cash-settled."
+            },
+            "hi": {
+              "display": "Niyam do: Merton formula European call aur put equations ko continuous dividend yield q ke sath modify karta hai. Niyam teen: Sabhi major stock index options mandatory European-style aur cash-settled hote hain, jisme net intrinsic value dollar multiplier se multiply hoti hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Index Options & Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 4: Multipliers scale contract size; Rule 5: Optimal puts scale by portfolio Beta: N* = Beta * [V_P / Contract Size]."
+            },
+            "hi": {
+              "display": "Niyam char: Standard S&P 500 options ka 100 dollar contract multiplier single-contract economic size define karta hai. Niyam paanch: Optimal put contracts portfolio Beta ke anupat mein scale hote hain, jahan N star barabar Beta guna V P divided by contract size hota hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Index Options & Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 6: Puts create a hard downside floor; Rule 7: Programmatic futures selling triggered the 1987 Black Monday cascade."
+            },
+            "hi": {
+              "display": "Niyam cheh: Protective puts portfolio mein hard downside floor establish karte hain, jabki bull market ki poori upside participation preserve rehti hai. Niyam saat: 1987 ke Black Monday crash ne dikhaya ki programmatic synthetic portfolio insurance market mein destabilizing feedback loop paida kar sakta hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Index Options & Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 8: Exchanges instituted coordinated circuit breakers to prevent automated liquidity cascades."
+            },
+            "hi": {
+              "display": "Niyam aath: Post-1987 regulatory reforms ke tahat exchanges ne coordinated circuit breakers aur mandatory trading halts introduce kiye, taaki automated cascade crashes ko roka ja sake."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Index Options & Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles form the bedrock of macro risk management as we advance into Currency Options in Part 2."
+            },
+            "hi": {
+              "display": "Ye aath niyam macro equity risk management ka core foundation hain, jo agle bhag mein hume Currency Options aur Garman-Kohlhagen model ko samajhne ka solid platform dete hain."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Index Options & Insurance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Index Options & Insurance",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

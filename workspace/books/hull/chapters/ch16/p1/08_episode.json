@@ -1,0 +1,1448 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch16",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 16",
+  "partLabel": "Part 1",
+  "title": "Hull Chapter 16: Employee Stock Options (ESOs)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 30,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Boom and Abuse of Employee Stock Options",
+      "purpose": "Executive Equity Compensation: ESOs expanded massively in the 1990s as corporations replaced cash salaries with stock option grants.",
+      "takeaways": [
+        "Executive Equity Compensation: ESOs expanded massively in the 1990s as corporations replaced cash salaries with stock option grants.",
+        "The Incentive Promise: Intended to align manager incentives with shareholders by tying personal wealth to equity upside.",
+        "Corporate Governance Distortions: Accounting loopholes and convex asymmetric payoffs led to excessive leverage and backdating scandals."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Welcome to Chapter 16 of John Hull. Today we decode the quantitative mechanics and corporate governance of Employee Stock Options."
+            },
+            "hi": {
+              "display": "John Hull ke Chapter 16 mein aapka swagat hai. Aaj hum Employee Stock Options yaani ESOs ke quantitative mechanics aur corporate governance ko decode karenge."
+            }
+          },
+          "onScreenIntent": "The Boom and Abuse of Employee Stock Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "During the 1990s tech boom, ESOs became corporate America's most popular pay tool, granting millions of options over cash."
+            },
+            "hi": {
+              "display": "Nineteen nineties ke technology boom mein ESOs corporate America aur Silicon Valley ka sabse lokpriya compensation tool ban gaye the, jahan executives ko cash salary ke bajaye lakho options diye jate the."
+            }
+          },
+          "onScreenIntent": "The Boom and Abuse of Employee Stock Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yet ESOs carry contractual constraints fundamentally distinct from exchange options, permanently altering executive incentives."
+            },
+            "hi": {
+              "display": "Lekin in options mein aam exchange-traded options se bilkul alag contractual rules hote hain, jinhone corporate accounting aur executive behavior ko hamesha ke liye badal diya."
+            }
+          },
+          "onScreenIntent": "The Boom and Abuse of Employee Stock Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Boom and Abuse of Employee Stock Options",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Executive Equity Compensation: ESOs expanded massively in the 1990s as corporations replaced cash salaries with stock option grants."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "The Incentive Promise: Intended to align manager incentives with shareholders by tying personal wealth to equity upside."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "The Structural Divide: Exchange-Traded Options vs ESOs",
+      "purpose": "Liquidity & Transferability: Exchange options are freely tradeable and liquid; ESOs are strictly non-transferable.",
+      "takeaways": [
+        "Liquidity & Transferability: Exchange options are freely tradeable and liquid; ESOs are strictly non-transferable.",
+        "Underlying Issuance: Exchange options trade between market participants; ESO exercise creates brand new corporate shares.",
+        "Vesting & Departure Risk: ESOs cannot be exercised until vesting schedules complete; resignations trigger forfeiture."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "First, let us examine the fundamental divide between ordinary exchange-traded options and ESOs."
+            },
+            "hi": {
+              "display": "Aaiye sabse pehle dekhte hain ki ek ordinary exchange-traded option aur ek Employee Stock Option mein kya basic farq hota hai."
+            }
+          },
+          "onScreenIntent": "The Structural Divide: Exchange-Traded Options vs ESOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exchange-traded options are liquid, freely hedgeable, and their exercise creates zero corporate impact."
+            },
+            "hi": {
+              "display": "Cboe par trade hone wale options puri tarah liquid hote hain, jinhe aap market mein kabhi bhi bech sakte hain ya delta-hedge kar sakte hain, aur unke exercise hone par company par koi asar nahi padta."
+            }
+          },
+          "onScreenIntent": "The Structural Divide: Exchange-Traded Options vs ESOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "ESOs cannot be traded; they are strictly non-transferable, last up to 10 years, and require multi-year vesting."
+            },
+            "hi": {
+              "display": "Lekin ESOs ko becha nahi ja sakta. Yeh non-transferable hote hain, inka maturity time 10 saal tak lamba hota hai, aur exercise karne ke liye pehle multi-year vesting period pura karna padta hai."
+            }
+          },
+          "onScreenIntent": "The Structural Divide: Exchange-Traded Options vs ESOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Structural Divide: Exchange-Traded Options vs ESOs",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Liquidity & Transferability: Exchange options are freely tradeable and liquid; ESOs are strictly non-transferable."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Underlying Issuance: Exchange options trade between market participants; ESO exercise creates brand new corporate shares."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "The 4 Pillars of ESO Governance & Economics",
+      "purpose": "Vesting Schedules: Employees must complete service requirements before gaining legal rights to exercise options.",
+      "takeaways": [
+        "Vesting Schedules: Employees must complete service requirements before gaining legal rights to exercise options.",
+        "Forfeiture Penalties: Unvested options are completely canceled if an employee resigns or is terminated.",
+        "Post-Vesting Expiration: Departing employees typically face a tight 90-day window to exercise vested options."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Four pillars govern ESOs. First is the Vesting Schedule, requiring 3 to 4 years of tenure to earn exercise rights."
+            },
+            "hi": {
+              "display": "ESOs ke contractual framework ko 4 main pillars govern karte hain. Pehla hai 'Vesting Schedule', jahan employee ko options exercise karne ke liye company mein 3 se 4 saal bitane padte hain."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of ESO Governance & Economics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Second is Forfeiture Rules: resigning before vesting cancels all unvested options instantly."
+            },
+            "hi": {
+              "display": "Doosra pillar hai 'Forfeiture Rules'. Agar employee vesting se pehle resign karta hai, toh uske saare unvested options instantly cancel ho jate hain."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of ESO Governance & Economics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Third is Non-Transferability: employees cannot sell their grants to third parties."
+            },
+            "hi": {
+              "display": "Teesra pillar hai 'Non-Transferability'. Employee apne option ko open market mein kisi aur ko bech nahi sakta."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of ESO Governance & Economics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Fourth is At-The-Money Granting: tax laws mandate setting strike equal to market price on grant date."
+            },
+            "hi": {
+              "display": "Aur chautha pillar hai 'At-The-Money Granting', jahan tax rules ke tahat strike price ko hamesha grant date ke market price ke barabar rakha jata hai."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of ESO Governance & Economics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The 4 Pillars of ESO Governance & Economics",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Vesting Schedules: Employees must complete service requirements before gaining legal rights to exercise options."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Forfeiture Penalties: Unvested options are completely canceled if an employee resigns or is terminated."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Principal-Agent Alignment vs Asymmetric Risk-Taking",
+      "purpose": "The Incentive Goal: Compensating managers with equity was designed to overcome shareholder-manager agency conflicts.",
+      "takeaways": [
+        "The Incentive Goal: Compensating managers with equity was designed to overcome shareholder-manager agency conflicts.",
+        "Convex Asymmetry: Call options provide unlimited upside participation with zero downside financial liability.",
+        "Perverse Gambling Incentives: Executives with massive out-of-the-money options are incentivized to increase corporate volatility."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The original economic goal of ESOs was Principal-Agent Alignment—motivating managers to act like owners."
+            },
+            "hi": {
+              "display": "Corporate governance mein ESOs ko shuru karne ka maksad 'Principal-Agent Alignment' tha—yaani managers ko shareholders ke hit mein kaam karwana."
+            }
+          },
+          "onScreenIntent": "Principal-Agent Alignment vs Asymmetric Risk-Taking",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, call payoffs are convex: unlimited upside gains, but zero financial loss on stock declines."
+            },
+            "hi": {
+              "display": "Lekin call options ka payoff convex hota hai: share price badhne par unlimited faayda, lekin girne par zero nuksan. Isse ek gambling mentality paida hoti hai."
+            }
+          },
+          "onScreenIntent": "Principal-Agent Alignment vs Asymmetric Risk-Taking",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Executives pursued excessive risk to expand volatility, since option value increases with Vega."
+            },
+            "hi": {
+              "display": "Executives company ko aisi highly risky strategies mein daalne lage jinse stock volatility badhe, kyunki option ki value volatility badhne se badhti hai."
+            }
+          },
+          "onScreenIntent": "Principal-Agent Alignment vs Asymmetric Risk-Taking",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This asymmetric convex structure fueled catastrophic corporate failures during the dot-com era."
+            },
+            "hi": {
+              "display": "Is asymmetric payoff ne Enron, WorldCom aur Dot-Com bust ke dauran massive corporate crises ko janam diya."
+            }
+          },
+          "onScreenIntent": "Principal-Agent Alignment vs Asymmetric Risk-Taking",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Principal-Agent Alignment vs Asymmetric Risk-Taking",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Incentive Goal: Compensating managers with equity was designed to overcome shareholder-manager agency conflicts."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Convex Asymmetry: Call options provide unlimited upside participation with zero downside financial liability."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Accounting Reform: The Death of the APB 25 Loophole",
+      "purpose": "The APB 25 Illusion: Historically, at-the-money ESOs carried an intrinsic value of zero and required zero P&L expense.",
+      "takeaways": [
+        "The APB 25 Illusion: Historically, at-the-money ESOs carried an intrinsic value of zero and required zero P&L expense.",
+        "Artificial Earnings Inflation: Companies reported billions in profits while granting billions in stock options completely off-income-statement.",
+        "FASB 123R Revolution: Mandated fair-value expensing of all stock option grants on the corporate income statement."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now examine the greatest accounting loophole in corporate history: APB Opinion 25."
+            },
+            "hi": {
+              "display": "Ab aate hain corporate finance ke sabse bade accounting loophole par: 'APB Opinion 25'."
+            }
+          },
+          "onScreenIntent": "Accounting Reform: The Death of the APB 25 Loophole",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under APB 25, at-the-money options had zero intrinsic value, allowing firms to report zero P&L expense!"
+            },
+            "hi": {
+              "display": "Pehle ke niyam ke anusaar, agar option At-The-Money grant kiya gaya hai, toh uska intrinsic value zero mana jata tha. Isliye companies P&L statement par zero expense dikhati thi!"
+            }
+          },
+          "onScreenIntent": "Accounting Reform: The Death of the APB 25 Loophole",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Buffett challenged: 'If options aren't compensation, what are they?' FASB 123R finally mandated fair-value expensing."
+            },
+            "hi": {
+              "display": "Warren Buffett ne ispar famous sawaal poocha tha: 'Agar options compensation nahi hain, toh kya hain? Aur agar compensation expense nahi hai, toh expense kya hai?' FASB 123 R ne aakar fair-value expensing ko mandatory banaya."
+            }
+          },
+          "onScreenIntent": "Accounting Reform: The Death of the APB 25 Loophole",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Accounting Reform: The Death of the APB 25 Loophole",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The APB 25 Illusion: Historically, at-the-money ESOs carried an intrinsic value of zero and required zero P&L expense."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Artificial Earnings Inflation: Companies reported billions in profits while granting billions in stock options completely off-income-statement."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Why Standard Black–Scholes Overvalues ESOs",
+      "purpose": "Optimal Exercise Fallacy: Black-Scholes assumes an unconstrained investor who holds the option until optimal maturity.",
+      "takeaways": [
+        "Optimal Exercise Fallacy: Black-Scholes assumes an unconstrained investor who holds the option until optimal maturity.",
+        "Sub-optimal Early Exercise: Undiversified employees exercise options years before maturity to cash out and diversify.",
+        "Pre-Vesting Forfeiture: Standard BSM assumes zero employee departures, ignoring unvested option cancellations."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When FASB 123R mandated expensing, the challenge arose: how do we calculate fair value? Does standard BSM work?"
+            },
+            "hi": {
+              "display": "Jab FASB 123 R ne options ko expense karna compulsory kiya, toh sawaal utha: ESOs ki fair value kaise nikalein? Kya standard Black-Scholes formula lagaya ja sakta hai?"
+            }
+          },
+          "onScreenIntent": "Why Standard Black–Scholes Overvalues ESOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The answer is no! Black-Scholes assumes an unconstrained investor who holds the option until maturity."
+            },
+            "hi": {
+              "display": "Jawab hai: Nahi! Black-Scholes formula yeh maanta hai ki option holder unconstrained hai aur option ko 10 saal ke maturity tak hold karega."
+            }
+          },
+          "onScreenIntent": "Why Standard Black–Scholes Overvalues ESOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In reality, risk-averse employees exercise sub-optimally early, causing standard BSM to overvalue ESOs by 30% to 40%!"
+            },
+            "hi": {
+              "display": "Lekin real life mein employees risk-averse hote hain. Jaise hi stock badhta hai, ve profit book karne ke liye early exercise kar lete hain. Isliye BSM formula ESOs ko 30 se 40 percent overvalue karta hai!"
+            }
+          },
+          "onScreenIntent": "Why Standard Black–Scholes Overvalues ESOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Why Standard Black–Scholes Overvalues ESOs",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Optimal Exercise Fallacy: Black-Scholes assumes an unconstrained investor who holds the option until optimal maturity."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Sub-optimal Early Exercise: Undiversified employees exercise options years before maturity to cash out and diversify."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "The Hull–White Lattice Valuation Model",
+      "purpose": "Lattice Flexibility: Binomial tree architecture accommodates vesting constraints, early exercise rules, and employee attrition.",
+      "takeaways": [
+        "Lattice Flexibility: Binomial tree architecture accommodates vesting constraints, early exercise rules, and employee attrition.",
+        "The Multiple M Trigger: Employees exercise as soon as stock price reaches M times strike (e.g. S >= 1.5*K or 2.0*K).",
+        "Employee Exit Rate L: Annual departure probability L models option forfeiture pre-vesting and forced exercise post-vesting."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To solve this valuation bias, John Hull and Alan White formulated their famous 2004 lattice model."
+            },
+            "hi": {
+              "display": "Is samasya ko solve karne ke liye John Hull aur Alan White ne 2004 mein apna famous 'Hull-White Lattice Model' develop kiya."
+            }
+          },
+          "onScreenIntent": "The Hull–White Lattice Valuation Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The model adds two key parameters. First is Multiple M: when stock reaches M times strike, the employee exercises."
+            },
+            "hi": {
+              "display": "Is model mein do key parameters jode gaye. Pehla hai 'Multiple M': jaise hi stock price strike ka M times ho jata hai—for example 1.5 ya 2 times—employee option exercise kar leta hai."
+            }
+          },
+          "onScreenIntent": "The Hull–White Lattice Valuation Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Second is Exit Rate L: annual employee departure rate triggering pre-vesting forfeiture or post-vesting forced exercise."
+            },
+            "hi": {
+              "display": "Doosra parameter hai 'Employee Exit Rate L': yeh har saal company chhodne wale employees ka percentage hota hai, jo vesting se pehle zero value aur vesting ke baad immediate exercise trigger karta hai."
+            }
+          },
+          "onScreenIntent": "The Hull–White Lattice Valuation Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "With these behavioral parameters, the binomial tree calculates realistic, auditor-approved fair values."
+            },
+            "hi": {
+              "display": "In do parameters ke karan binomial tree ESOs ka bilkul realistic aur auditor-approved fair value calculate karta hai."
+            }
+          },
+          "onScreenIntent": "The Hull–White Lattice Valuation Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Hull–White Lattice Valuation Model",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Lattice Flexibility: Binomial tree architecture accommodates vesting constraints, early exercise rules, and employee attrition."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "The Multiple M Trigger: Employees exercise as soon as stock price reaches M times strike (e.g. S >= 1.5*K or 2.0*K)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Equity Dilution Mechanics: New Shares vs Secondary Market",
+      "purpose": "Primary Market Issuance: Exercising an ESO forces the corporate treasury to print and issue brand new shares.",
+      "takeaways": [
+        "Primary Market Issuance: Exercising an ESO forces the corporate treasury to print and issue brand new shares.",
+        "Earnings Per Share Dilution: Expanding the denominator of outstanding shares directly dilutes existing shareholders' EPS.",
+        "Corporate Cash Inflow: The company receives the strike price K in cash, expanding firm equity capitalization."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now understand the foremost market impact of ESOs: Equity Dilution."
+            },
+            "hi": {
+              "display": "Ab samjhte hain ESOs ka sabse bada market impact: 'Equity Dilution'."
+            }
+          },
+          "onScreenIntent": "Equity Dilution Mechanics: New Shares vs Secondary Market",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When exchange options are exercised, existing shares merely transfer between traders."
+            },
+            "hi": {
+              "display": "Exchange-traded options mein jab koi exercise karta hai, toh shares market mein ek trader se doosre trader ke paas jate hain; company par koi farq nahi padta."
+            }
+          },
+          "onScreenIntent": "Equity Dilution Mechanics: New Shares vs Secondary Market",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When an employee exercises an ESO, the firm mints new shares, expanding share count and diluting shareholder EPS."
+            },
+            "hi": {
+              "display": "Lekin jab employee ESO exercise karta hai, toh company new shares mint karti hai! Total shares outstanding badh jate hain, jisse existing shareholders ka EPS yaani Earnings Per Share dilute ho jata hai."
+            }
+          },
+          "onScreenIntent": "Equity Dilution Mechanics: New Shares vs Secondary Market",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Equity Dilution Mechanics: New Shares vs Secondary Market",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Primary Market Issuance: Exercising an ESO forces the corporate treasury to print and issue brand new shares."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Earnings Per Share Dilution: Expanding the denominator of outstanding shares directly dilutes existing shareholders' EPS."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Corporate Fraud: The Backdating Scandals of 2006",
+      "purpose": "The Backdating Trick: Falsifying grant dates backward to price troughs to grant instant in-the-money options.",
+      "takeaways": [
+        "The Backdating Trick: Falsifying grant dates backward to price troughs to grant instant in-the-money options.",
+        "Regulatory Violation: Disguised in-the-money grants violated tax laws and falsified SEC financial statements.",
+        "Sarbanes-Oxley Reform: SOX Section 403 mandated reporting all option grants within two business days to end fraud."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The darkest chapter in ESO history was the massive 2006 Option Backdating Scandal."
+            },
+            "hi": {
+              "display": "ESOs ke itihaas ka sabse sharmnak adhyay 2006 ka 'Option Backdating Scandal' tha."
+            }
+          },
+          "onScreenIntent": "Corporate Fraud: The Backdating Scandals of 2006",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rules mandated granting options at current market prices, yet investigations revealed widespread backdating."
+            },
+            "hi": {
+              "display": "Niyam yeh tha ki options grant date ke market price par diye jayein. Lekin investigation mein pata chala ki companies ne beimaani ki."
+            }
+          },
+          "onScreenIntent": "Corporate Fraud: The Backdating Scandals of 2006",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Boards cherry-picked historical price troughs to grant instant in-the-money windfalls, leading to criminal indictments."
+            },
+            "hi": {
+              "display": "Board of Directors calendar mein peeche jakar us date ko choose karte the jab share lowest level par tha, taaki executives ko instantly ITM profit mil sake. Is fraud mein kai CEOs ko jail jana pada."
+            }
+          },
+          "onScreenIntent": "Corporate Fraud: The Backdating Scandals of 2006",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Corporate Fraud: The Backdating Scandals of 2006",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Backdating Trick: Falsifying grant dates backward to price troughs to grant instant in-the-money options."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Regulatory Violation: Disguised in-the-money grants violated tax laws and falsified SEC financial statements."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall: Early Exercise & Forfeiture Impact",
+      "purpose": "Question Focus: Why the Hull-White lattice model values ESOs lower than the standard Black-Scholes formula.",
+      "takeaways": [
+        "Question Focus: Why the Hull-White lattice model values ESOs lower than the standard Black-Scholes formula.",
+        "Core Drivers: Sub-optimal early exercise multiple M and pre-vesting forfeiture exit rate L.",
+        "Economic Rationale: Undiversified risk aversion eliminates the full 10-year time value premium."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your understanding: Why does the Hull-White lattice model value ESOs lower than standard Black-Scholes? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Aaiye Employee Stock Options ki understanding ko test karte hain. Ek normal Black-Scholes formula ke comparison mein Hull-White model ESOs ka fair value kam kyun calculate karta hai? Screen par diye gaye options par dhyan se vichar kijiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: Early Exercise & Forfeiture Impact",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Take a moment to carefully analyze this mathematical concept and derivation."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: Early Exercise & Forfeiture Impact",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option B is correct: Undiversified employees exercise early at multiple M, and departures cause forfeitures, lowering fair value."
+            },
+            "hi": {
+              "display": "Sahi uttar hai Option B! Undiversified employees risk-averse hone ke karan multiple M par jaldi exercise karte hain, aur job chhodne par unvested options forfeit ho jate hain, jisse fair value kam ho jata hai."
+            }
+          },
+          "onScreenIntent": "Active Recall: Early Exercise & Forfeiture Impact",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Academic Reflection: The Modern Shift to RSUs",
+      "purpose": "Decline of Traditional ESOs: Mandatory expensing and backdating crackdowns made options far less appealing to corporate boards.",
+      "takeaways": [
+        "Decline of Traditional ESOs: Mandatory expensing and backdating crackdowns made options far less appealing to corporate boards.",
+        "Rise of RSUs & PSUs: Restricted Stock Units and Performance Share Units now dominate modern tech compensation.",
+        "Symmetric Alignment: RSUs preserve value even if stock drops slightly, reducing the temptation to gamble on extreme volatility."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Following backdating scandals and FASB 123R rules, global firms moved away from over-reliance on ESOs."
+            },
+            "hi": {
+              "display": "Backdating scandals aur FASB 123 R ke strict rules ke baad, global corporations ne ESOs ke over-reliance se peeche hatna shuru kar diya."
+            }
+          },
+          "onScreenIntent": "Academic Reflection: The Modern Shift to RSUs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Today, corporate compensation prioritizes Restricted Stock Units (RSUs) and performance shares, reducing excessive gambling incentives."
+            },
+            "hi": {
+              "display": "Aaj modern corporate governance mein ESOs ke sthan par Restricted Stock Units yaani RSUs aur performance shares ko priority di jati hai, jinme excessive gambling ka incentive kam hota hai."
+            }
+          },
+          "onScreenIntent": "Academic Reflection: The Modern Shift to RSUs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In the next chapter, we explore how John Hull analyzes Stock Index Options, Portfolio Insurance, and Currency Options."
+            },
+            "hi": {
+              "display": "Agle adhyay mein, hum dekhenge ki John Hull kis prakar Stock Index Options, Portfolio Insurance aur Currency Options ka mathematical analysis karte hain."
+            }
+          },
+          "onScreenIntent": "Academic Reflection: The Modern Shift to RSUs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Academic Reflection: The Modern Shift to RSUs",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Decline of Traditional ESOs: Mandatory expensing and backdating crackdowns made options far less appealing to corporate boards."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Rise of RSUs & PSUs: Restricted Stock Units and Performance Share Units now dominate modern tech compensation."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary: 8 Institutional Rules of Employee Stock Options",
+      "purpose": "Summary: 8 Institutional Rules of Employee Stock Options: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Employee Stock Options: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: ESOs are non-transferable, subject to multi-year vesting, and forfeited upon employee departure."
+            },
+            "hi": {
+              "display": "Aaiye Employee Stock Options ke 8 mukhy niyam codified karte hain. Niyam 1: ESOs non-transferable grants hote hain jinhe open exchange markets mein trade nahi kiya ja sakta."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Employee Stock Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 2: Exercising ESOs mints new equity shares, directly diluting existing shareholder ownership and EPS."
+            },
+            "hi": {
+              "display": "Niyam 2: Multi-year vesting periods ensure karte hain ki departure par unvested options forfeit ho jayein. Niyam 3: ESOs exercise hone par company new shares mint karti hai, jisse shareholder EPS dilute hota hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Employee Stock Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Under FASB 123R, grant-date fair value must be recognized as a compensation expense over vesting."
+            },
+            "hi": {
+              "display": "Niyam 4: FASB 123 R ke tahat grant-date fair value ko mandatory expense ke roop mein dikhana anivarya hai. Niyam 5: Standard Black-Scholes formula early exercise aur forfeiture ko ignore karke ESOs ko overvalue karta hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Employee Stock Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 4: Standard BSM overstates ESO value; the Hull-White model adjusts for early exercise multiple M and exit rate L."
+            },
+            "hi": {
+              "display": "Niyam 6: Hull-White lattice model multiple M ke zariye sub-optimal early exercise ko calibrate karta hai. Niyam 7: Annual exit rate L pre-vesting aur post-vesting attrition ko accurately model karta hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Employee Stock Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Corporate governance shifted toward full-value Restricted Stock Units (RSUs) to eliminate extreme leverage incentives."
+            },
+            "hi": {
+              "display": "Niyam 8: Backdating scandals aur expensing reforms ke baad global corporate governance ab full-value Restricted Stock Units yaani RSUs ko apna chuki hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Employee Stock Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight foundational rules form the complete institutional blueprint for ESO economics and corporate governance."
+            },
+            "hi": {
+              "display": "Ye aath foundational rules ESOs aur executive equity compensation ke core quantitative aur governance principles ko complete karte hain!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Employee Stock Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Employee Stock Options",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -32,7 +32,7 @@ function tokenIn(text: string): string | undefined {
 }
 
 /** Keys whose values are identifiers or settings, not on-screen text. */
-const NON_TEXT_KEYS = new Set(["id", "template", "kind", "role", "tone", "color", "mode", "speaker", "status", "arrangement", "type", "expression", "expr", "variable", "generator", "scope", "from", "to", "target", "anchor", "highlightRowId", "icon", "solvesFor", "latex", "symbolLatex"]);
+const NON_TEXT_KEYS = new Set(["id", "template", "kind", "role", "tone", "color", "mode", "speaker", "status", "arrangement", "type", "expression", "expr", "variable", "generator", "scope", "from", "to", "target", "anchor", "highlightRowId", "icon", "solvesFor", "latex", "symbolLatex", "symbol", "formula", "equation", "math"]);
 
 /** Deep scan of template data for values that would render as junk. */
 export function scanRenderable(value: unknown, path = "data"): RenderIssue[] {

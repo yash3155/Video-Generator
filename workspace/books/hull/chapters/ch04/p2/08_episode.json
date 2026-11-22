@@ -1,0 +1,1628 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch04",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 4",
+  "partLabel": "Part 2",
+  "title": "FRAs, Duration, Convexity & Term Structure Theories",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 2,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Over-the-Counter Rate Lock: Introducing FRAs",
+      "purpose": "Introduce FRAs as bespoke OTC instruments to lock future borrowing costs",
+      "takeaways": [
+        "FRAs are bespoke OTC contracts designed to lock in an interest rate over a future window",
+        "Market convention quotes FRAs as X by Y (e.g., 3x9 denotes 6-month borrowing starting in 3 months)",
+        "At inception, agreed rate R_K equals market forward rate R_F, making contract value zero"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "chat_story",
+      "data": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "novice",
+            "text": "How can a corporation lock in borrowing rates for a future 6-month loan starting in 3 months?"
+          },
+          {
+            "id": "m2",
+            "speaker": "mentor",
+            "text": "They enter a Forward Rate Agreement (FRA), an OTC contract that guarantees a fixed borrowing rate between two future dates."
+          },
+          {
+            "id": "m3",
+            "speaker": "mentor",
+            "text": "In market terminology, this is a 3 by 9 FRA: borrowing starts at month 3 and matures at month 9, locking the 6-month rate."
+          },
+          {
+            "id": "m4",
+            "speaker": "mentor",
+            "text": "In Part 2, we master FRA pricing, cash settlement discounting, duration immunization, convexity, and term structure theories."
+          }
+        ],
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "Zero Curves (Part 1)",
+            "FRAs & Payoffs",
+            "Valuing FRAs",
+            "Macaulay Duration",
+            "Convexity",
+            "Orange County Case"
+          ],
+          "current": 1
+        }
+      },
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "novice",
+          "narration": {
+            "en": {
+              "display": "How can a corporation lock in borrowing rates for a future 6-month loan starting in 3 months?"
+            },
+            "hi": {
+              "display": "अगर किसी कंपनी को 3 महीने बाद 6 महीने के लिए लोन लेना हो, तो वो आज ही इंटरेस्ट रेट कैसे लॉक कर सकती है?"
+            }
+          },
+          "onScreenIntent": "Opening dilemma question on forward rate hedging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "forward rate agreement"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part One, we mastered how zero curves and forward rates are constructed. But how does an institution lock in borrowing or lending rates today for a future period? The standard over-the-counter solution is the Forward Rate Agreement, or FRA."
+            },
+            "hi": {
+              "display": "Part One mein humne dekha ki zero curve aur forward rates kaise calculate hote hain. Lekin agar kisi company ko future mein cash borrow ya invest karna ho, toh wo aaj interest rate ko kaise lock karegi? Is problem ka standard over-the-counter solution hai: Forward Rate Agreement, yaani FRA."
+            }
+          },
+          "onScreenIntent": "The mentor connects zero curves to forward contract rate locks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "An FRA is a bespoke over-the-counter contract between two financial institutions that fixes the interest rate applied to a specified future borrowing or lending horizon."
+            },
+            "hi": {
+              "display": "FRA do financial institutions ke beech ek OTC contract hota hai, jisme ek agreed fixed interest rate par specified future time period ke liye borrowing ya lending rate lock kiya jata hai."
+            }
+          },
+          "onScreenIntent": "The mentor defines FRA bilateral mechanics and principal",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "notional principal"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In market convention, an FRA is quoted as X by Y. For example, a three-by-nine FRA begins three months from today and ends nine months from today, locking the borrowing cost over a six-month interest period."
+            },
+            "hi": {
+              "display": "Market convention mein ise aksar X cross Y FRA kaha jata hai. Jaise Three cross Nine FRA ka matlab hai ki contract aaj se teen mahine baad shuru hoga aur nau mahine par khatam hoga, yaani borrowing period total chhe mahine ka hoga."
+            }
+          },
+          "onScreenIntent": "The mentor explains market quotation convention X by Y",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "X by Y convention"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3",
+              "m4"
+            ]
+          },
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "FRA Mechanics: Payer vs. Receiver Profiles",
+      "purpose": "Contrast Fixed Rate Payer (borrower hedge) and Fixed Rate Receiver (lender hedge)",
+      "takeaways": [
+        "Fixed Rate Payer pays R_K and receives floating R_M (hedges against rising interest rates)",
+        "Fixed Rate Receiver pays floating R_M and receives fixed R_K (hedges against falling interest rates)",
+        "Payoffs are zero-sum between counterparties, with cash settlement settling the net difference"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "payer_side",
+          "heading": "Fixed Rate Payer (Borrower)",
+          "tone": "positive",
+          "points": [
+            "Agrees to pay fixed contract rate R_K and receive floating benchmark R_M",
+            "Protects against rising borrowing costs on future debt issuance",
+            "Profits when market rate R_M exceeds agreed fixed rate R_K at expiration"
+          ]
+        },
+        "right": {
+          "id": "receiver_side",
+          "heading": "Fixed Rate Receiver (Lender)",
+          "tone": "neutral",
+          "points": [
+            "Agrees to pay floating benchmark R_M and receive fixed contract rate R_K",
+            "Protects cash investors and lenders against falling interest yields",
+            "Profits when market rate R_M drops below agreed fixed rate R_K at expiration"
+          ]
+        },
+        "verdict": {
+          "id": "verdict_fra",
+          "text": "Fixed payer locks maximum borrowing cost; fixed receiver guarantees minimum investment yield."
+        }
+      },
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "An FRA transaction involves two counterparties: the Fixed Rate Payer and the Fixed Rate Receiver."
+            },
+            "hi": {
+              "display": "FRA mein do parties hoti hain: Fixed Rate Payer aur Fixed Rate Receiver."
+            }
+          },
+          "onScreenIntent": "Introduce the two counterparties in an FRA transaction",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "fixed rate payer",
+            "fixed rate receiver"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The fixed payer pays the agreed fixed rate R_K and receives the floating market benchmark. Corporate borrowers enter this position to hedge against the risk of rising future interest rates."
+            },
+            "hi": {
+              "display": "Payer party agreed fixed rate R K pay karti hai aur floating market rate receive karti hai. Ye position wo corporate borrower leta hai jo future mein interest rates badhne ke darr se apna borrowing cost lock karna chahta hai."
+            }
+          },
+          "onScreenIntent": "Examine Fixed Rate Payer payoff profile and protection",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, the fixed receiver pays the floating market rate and receives the agreed fixed rate R_K. Asset managers and institutional lenders enter this position to lock in yields and guard against falling interest rates."
+            },
+            "hi": {
+              "display": "Doosri taraf, Fixed Rate Receiver floating rate pay karke fixed rate receive karta hai. Ye position asset managers aur lenders lete hain jo future mein interest rates girne ke risk se apne returns ko protect karna chahte hain."
+            }
+          },
+          "onScreenIntent": "Examine Fixed Rate Receiver payoff profile and cash settlement",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "The FRA Cash Settlement Formula & In-Advance Discounting",
+      "purpose": "Derive in-advance FRA cash settlement discounting formula",
+      "takeaways": [
+        "FRA payoffs normally earned at T2 are settled at T1 when borrowing begins",
+        "Cash settlement requires discounting by [1 + R_M * (T2 - T1)] back to T1",
+        "Payoff = L * (R_M - R_K) * (T2 - T1) / [1 + R_M * (T2 - T1)]"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "FRA In-Advance Cash Settlement Payoff Formula",
+        "formula": {
+          "latex": "\\text{Payoff} = \\frac{L (R_M - R_K)(T_2 - T_1)}{1 + R_M(T_2 - T_1)}",
+          "expression": "L * (R_M - R_K) * (T_2 - T_1) / (1 + R_M * (T_2 - T_1))",
+          "solvesFor": "Payoff",
+          "variables": [
+            {
+              "symbol": "L",
+              "latex": "L",
+              "meaning": "Notional Principal Amount",
+              "unit": "USD"
+            },
+            {
+              "symbol": "R_M",
+              "latex": "R_M",
+              "meaning": "Actual Realized Market Rate at T1",
+              "unit": "rate"
+            },
+            {
+              "symbol": "R_K",
+              "latex": "R_K",
+              "meaning": "Agreed Contract Fixed Rate",
+              "unit": "rate"
+            },
+            {
+              "symbol": "T_2 - T_1",
+              "latex": "T_2 - T_1",
+              "meaning": "Borrowing Interval in Years",
+              "unit": "years"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "p1",
+            "symbolLatex": "L (R_M - R_K)(T_2 - T_1)",
+            "meaning": "Interest differential earned over period",
+            "unit": "USD"
+          },
+          {
+            "id": "p2",
+            "symbolLatex": "1 + R_M(T_2 - T_1)",
+            "meaning": "In-advance discount divisor to date T1",
+            "unit": "factor"
+          },
+          {
+            "id": "p3",
+            "symbolLatex": "T_2 - T_1",
+            "meaning": "Fractional year tenor (e.g., 0.5 for 6 months)",
+            "unit": "years"
+          }
+        ],
+        "note": "Settlement occurs at date T1 rather than T2, requiring division by the spot money market factor."
+      },
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Crucially, cash settlement for an FRA occurs at expiration time T-one—the exact start of the borrowing period—rather than at maturity T-two when the loan concludes."
+            },
+            "hi": {
+              "display": "FRA ka cash settlement expiration date T-one par hota hai, yaani borrowing period shuru hone par, na ki period ke end T-two par."
+            }
+          },
+          "onScreenIntent": "Explain why cash settlement occurs at inception date T1",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "in-advance settlement"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If the market floating rate fixes at R_M and the agreed fixed rate is R_K, the cash flow paid to the fixed payer equals principal L, multiplied by R_M minus R_K times the time interval, divided by one plus R_M times the time interval."
+            },
+            "hi": {
+              "display": "Agar market floating rate R M ho aur agreed rate R K ho, toh payer ko milne wala cash flow hai: principal L guna R M minus R K guna time interval, divided by one plus R M guna time interval."
+            }
+          },
+          "onScreenIntent": "Formulate the exact FRA payoff formula with discount divisor",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The presence of one plus R_M times the time interval in the denominator is essential: because loan interest is normally paid in arrears at time T-two, settling the cash compensation in advance at time T-one requires discounting by the prevailing market interest rate."
+            },
+            "hi": {
+              "display": "Denominator mein one plus R M guna time interval isliye aata hai kyunki interest ka actual payment T-two par hona tha, lekin cash compensation T-one par advance mein de diya jata hai. Isliye is payoff ko discount karna mandatory hota hai."
+            }
+          },
+          "onScreenIntent": "Walk through economic intuition of in-advance cash discounting",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Valuing an Existing FRA Prior to Maturity",
+      "purpose": "Calculate mark-to-market value of an existing FRA using current forward rates",
+      "takeaways": [
+        "Prior to expiration, FRA value is determined by comparing R_K with forward rate R_F",
+        "Future cash flow difference is discounted back using continuous zero discount factor e^(-R_2*T_2)",
+        "V_FRA = L * (R_F - R_K) * (T2 - T1) * e^(-R_2*T_2)"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "worked_example",
+      "data": {
+        "title": "Mark-to-Market Valuation of an Existing FRA",
+        "formula": {
+          "latex": "V_{FRA} = L (R_F - R_K)(T_2 - T_1) e^{-R_2 T_2}",
+          "expression": "L * (R_F - R_K) * (T_2 - T_1) * exp(-R_2 * T_2)",
+          "solvesFor": "V_{FRA}",
+          "variables": [
+            {
+              "symbol": "V_{FRA}",
+              "latex": "V_{FRA}",
+              "meaning": "Mark-to-Market FRA Value",
+              "unit": "USD"
+            },
+            {
+              "symbol": "L",
+              "latex": "L",
+              "meaning": "Principal Amount ($100 Million)",
+              "unit": "USD"
+            },
+            {
+              "symbol": "R_F",
+              "latex": "R_F",
+              "meaning": "Current Market Forward Rate (5.0%)",
+              "unit": "rate"
+            },
+            {
+              "symbol": "R_K",
+              "latex": "R_K",
+              "meaning": "Agreed Contract Fixed Rate (4.0%)",
+              "unit": "rate"
+            },
+            {
+              "symbol": "T_2",
+              "latex": "T_2",
+              "meaning": "Final Maturity Date (1.0 Year)",
+              "unit": "years"
+            }
+          ]
+        },
+        "given": [
+          {
+            "id": "g1",
+            "label": "Notional Principal (L)",
+            "value": 100000000,
+            "unit": "USD",
+            "display": "$100,000,000"
+          },
+          {
+            "id": "g2",
+            "label": "Fixed Rate (R_K)",
+            "value": 0.04,
+            "unit": "rate",
+            "display": "4.00%"
+          },
+          {
+            "id": "g3",
+            "label": "Current Forward (R_F)",
+            "value": 0.05,
+            "unit": "rate",
+            "display": "5.00%"
+          },
+          {
+            "id": "g4",
+            "label": "Period (T_2 - T_1)",
+            "value": 0.5,
+            "unit": "years",
+            "display": "0.50 Years"
+          }
+        ],
+        "steps": [
+          {
+            "id": "st1",
+            "label": "Rate Differential",
+            "latex": "0.050 - 0.040 = 0.010 \\text{ (100 bps)}",
+            "value": 0.01
+          },
+          {
+            "id": "st2",
+            "label": "Undiscounted Cash Flow",
+            "latex": "100{,}000{,}000 \\times 0.010 \\times 0.5 = \\$500{,}000",
+            "value": 500000
+          },
+          {
+            "id": "st3",
+            "label": "Discount Factor (e^-R2*T2)",
+            "latex": "e^{-0.045 \\times 1.0} = 0.955997",
+            "value": 0.955997
+          }
+        ],
+        "result": {
+          "id": "res",
+          "label": "FRA Market Value",
+          "value": 477999,
+          "unit": "USD",
+          "display": "$477,999",
+          "rounding": 0
+        },
+        "conclusion": "The fixed rate payer has an unrealized mark-to-market gain of $477,999 because market borrowing rates rose above the locked rate.",
+        "isHypothetical": false
+      },
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "After inception, as the market zero curve shifts, how do we calculate the mark-to-market fair value of an existing FRA?"
+            },
+            "hi": {
+              "display": "Contract enter karne ke baad, market zero curve change hone par FRA ki fair market value kaise calculate hoti hai?"
+            }
+          },
+          "onScreenIntent": "Formulate mark to market valuation equation for existing FRAs",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "mark-to-market value"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under John Hull's formulation, we determine the current forward rate R_F, compute the interest differential relative to R_K, and discount the payoff from maturity T-two back to today using the zero rate R-two: value V equals L times R_F minus R_K times T-two minus T-one, multiplied by e raised to minus R-two times T-two."
+            },
+            "hi": {
+              "display": "Hull ke mutabik, current forward rate R F aur agreed rate R K ke difference ko calculate karke use maturity T-two ke zero rate se present value par discount kiya jata hai: V barabar L guna R F minus R K guna T-two minus T-one guna e to the power minus R-two T-two."
+            }
+          },
+          "onScreenIntent": "Walk through numerical parameters for $100M FRA valuation",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At contract inception, the agreed fixed rate R_K is set precisely equal to the current market forward rate R_F, ensuring the initial theoretical value of the FRA is exactly zero."
+            },
+            "hi": {
+              "display": "Jab contract freshly enter hota hai, toh R K ko exact forward rate R F ke barabar set kiya jata hai, jisse FRA ki initial value exactly zero hoti hai."
+            }
+          },
+          "onScreenIntent": "Calculate continuous present value and conclude with gain",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Macaulay Duration: The Weighted Average Horizon",
+      "purpose": "Define Macaulay duration as cash flow weighted maturity",
+      "takeaways": [
+        "Macaulay duration measures the effective time needed to recover bond cash flows",
+        "Zero-coupon bonds have Macaulay duration exactly equal to maturity T",
+        "Coupon payments pull cash flow weights earlier, reducing duration below maturity"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "progressive_cards",
+      "data": {
+        "cards": [
+          {
+            "id": "c1",
+            "title": "Cash Flow Weighted Maturity",
+            "body": "Macaulay duration weights each cash flow date t_i by the present value proportion of that cash flow relative to total bond price B."
+          },
+          {
+            "id": "c2",
+            "title": "Zero-Coupon Benchmark",
+            "body": "For a zero-coupon bond paying full principal at maturity T, Macaulay duration equals maturity T exactly (D = T)."
+          },
+          {
+            "id": "c3",
+            "title": "Coupon Pull Effect",
+            "body": "Because coupon bonds distribute cash flows prior to maturity, their Macaulay duration is strictly less than their maturity horizon."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we examine the core quantitative metric of fixed income risk management: Duration, formulated by Frederick Macaulay in nineteen thirty-eight."
+            },
+            "hi": {
+              "display": "Ab aate hain fixed income risk management ke core concept par: Duration. Frederick Macaulay ne nineteen thirty-eight mein introduce kiya tha ki bond ki maturity sirf uski final date nahi hoti."
+            }
+          },
+          "onScreenIntent": "Define Macaulay duration and weighted cash flow concept",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Macaulay duration"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "c1"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Macaulay Duration measures the weighted average time until all bond cash flows are received, where each future payment date is weighted by its relative present discounted value."
+            },
+            "hi": {
+              "display": "Macaulay Duration batata hai ki bond ke cash flows ko receive karne mein average kitna time lagta hai, jahan har cash flow ke time ko uski present value se weight kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Contrast zero coupon duration against coupon bond duration",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "c1",
+              "c2"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For a zero-coupon bond, duration equals its stated maturity exactly. But for a coupon-bearing bond, duration is always strictly less than final maturity, because intermediate coupon payments return capital earlier."
+            },
+            "hi": {
+              "display": "Zero-coupon bond ki duration exactly uski maturity ke barabar hoti hai. Lekin coupon bond ki duration hamesha uski maturity se kam hoti hai kyunki intermediate coupons jaldi receive ho jate hain."
+            }
+          },
+          "onScreenIntent": "Summarize how coupon size and yield affect effective maturity",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "c1",
+              "c2",
+              "c3"
+            ]
+          },
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Modified Duration & Price Sensitivity",
+      "purpose": "Formulate Modified duration as first-order percentage price sensitivity",
+      "takeaways": [
+        "Modified duration D* = D / (1 + y/m) measures price sensitivity directly",
+        "First-order price response: Delta B / B ≈ -D* * Delta y",
+        "Higher duration implies greater capital vulnerability to interest rate increases"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Modified Duration Price Sensitivity Equation",
+        "formula": {
+          "latex": "\\frac{\\Delta B}{B} \\approx -D^* \\Delta y",
+          "expression": "Delta_B / B = -D_star * Delta_y",
+          "solvesFor": "Delta B / B",
+          "variables": [
+            {
+              "symbol": "Delta B / B",
+              "latex": "\\frac{\\Delta B}{B}",
+              "meaning": "Percentage Change in Bond Price",
+              "unit": "pct"
+            },
+            {
+              "symbol": "D*",
+              "latex": "D^*",
+              "meaning": "Modified Duration (Years)",
+              "unit": "years"
+            },
+            {
+              "symbol": "Delta y",
+              "latex": "\\Delta y",
+              "meaning": "Parallel Shift in Yield to Maturity",
+              "unit": "rate"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "p1",
+            "symbolLatex": "D^* = \\frac{D}{1 + y/m}",
+            "meaning": "Modified duration adjusted for discrete compounding",
+            "unit": "years"
+          },
+          {
+            "id": "p2",
+            "symbolLatex": "-\\Delta y",
+            "meaning": "Inverse price-yield direction (yield up -> price down)",
+            "unit": "rate"
+          },
+          {
+            "id": "p3",
+            "symbolLatex": "\\frac{\\Delta B}{B}",
+            "meaning": "Percentage capital change in portfolio value",
+            "unit": "pct"
+          }
+        ],
+        "note": "Modified duration provides a linear first-order approximation accurate for small yield shocks."
+      },
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Duration is far more than an effective maturity measure; it is the primary linear metric of interest rate price sensitivity: the percentage change in bond price equals minus Modified Duration D-star, multiplied by the yield change delta y."
+            },
+            "hi": {
+              "display": "Duration sirf time measure nahi hai; ye interest rate sensitivity ka primary formula hai. Percentage price change barabar minus D star guna delta y."
+            }
+          },
+          "onScreenIntent": "Introduce Modified duration and differentiate from Macaulay form",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Modified duration"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under continuous compounding, Modified Duration D-star is mathematically identical to Macaulay Duration D. This indicates that a one percent increase in market yields causes an immediate D percent decline in bond price."
+            },
+            "hi": {
+              "display": "Continuous compounding mein Modified Duration D star exactly Macaulay Duration D ke barabar hota hai. Formula batata hai ki agar yield one percent badhti hai, toh bond ka price approximately D percent se drop ho jayega."
+            }
+          },
+          "onScreenIntent": "Formulate percentage price move equation Delta B / B ≈ -D* Delta y",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Portfolio managers utilize this principle to immunize balance sheets against parallel yield curve shifts, aligning asset duration with liability duration to neutralize net equity exposure."
+            },
+            "hi": {
+              "display": "Portfolio manager apne total asset duration aur liability duration ko match karke balance sheet ko parallel interest rate shifts se immunize kar sakta hai."
+            }
+          },
+          "onScreenIntent": "Explain portfolio immunization: matching asset and liability duration",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "immunization"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Convexity: Correcting the Linear Approximation",
+      "purpose": "Illustrate second-order curvature correction via Convexity",
+      "takeaways": [
+        "Duration is a linear tangent approximation that underestimates price gains and overestimates drops",
+        "Convexity C = (1/B)*(d^2 B/dy^2) measures curvature of the price-yield relationship",
+        "Full Taylor expansion: Delta B / B ≈ -D* * Delta y + 0.5 * C * (Delta y)^2"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "table_compare",
+      "data": {
+        "columns": [
+          "Approximation Order",
+          "Mathematical Formula",
+          "Accuracy Profile & Curvature"
+        ],
+        "rows": [
+          {
+            "id": "r1",
+            "cells": [
+              "1st Order (Duration Only)",
+              "Delta B / B ≈ -D* * Delta y",
+              "Linear tangent; accurate only for infinitesimal yield moves (e.g., < 10 bps)"
+            ]
+          },
+          {
+            "id": "r2",
+            "cells": [
+              "2nd Order (Duration + Convexity)",
+              "Delta B / B ≈ -D* * Delta y + 0.5 * C * (Delta y)^2",
+              "Captures curvature; highly accurate for large market rate shocks (e.g., > 100 bps)"
+            ]
+          },
+          {
+            "id": "r3",
+            "cells": [
+              "Convexity Advantage",
+              "+0.5 * C * (Delta y)^2 is always positive",
+              "Bonds gain more when yields fall than they lose when yields rise by same amount"
+            ]
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, duration is only a first-order linear approximation. In reality, the fundamental relationship between bond price and yield is a curved, convex trajectory."
+            },
+            "hi": {
+              "display": "Lekin duration ek linear approximation hai. Real world mein bond price aur yield ka graph straight line nahi, balki convex curve hota hai."
+            }
+          },
+          "onScreenIntent": "Explain the limitation of linear duration for large rate shocks",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "convexity"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When interest rates experience substantial shocks, linear duration overestimates price declines and underestimates price gains. This curvature error is corrected by Convexity C, the second derivative of price with respect to yield."
+            },
+            "hi": {
+              "display": "Jab yield mein bada change aata hai, toh duration price change ko underestimate karta hai. Is error ko correct karta hai Convexity C, jo price-yield curve ka second derivative hai."
+            }
+          },
+          "onScreenIntent": "Present the second order Taylor series expansion including convexity",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The full Taylor series expansion states that percentage price change approximately equals minus D times delta y, plus one-half C times delta y squared. Because convexity is strictly positive for standard bonds, it cushions losses when yields rise and magnifies gains when yields fall."
+            },
+            "hi": {
+              "display": "Taylor series approximation dekhiye: delta B divided by B barabar minus D guna delta y plus half C guna delta y ka square. Convexity hamesha positive hoti hai, isliye yield badhne par price kam girta hai aur yield girne par price zyada badhta hai."
+            }
+          },
+          "onScreenIntent": "Explain why positive convexity is inherently desirable for investors",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "positive convexity"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Theories of the Term Structure: Expectations vs. Segmentation",
+      "purpose": "Contrast Expectations Theory and Market Segmentation Theory",
+      "takeaways": [
+        "Expectations Theory states forward rates equal expected future spot zero rates",
+        "Market Segmentation Theory asserts supply and demand within maturity buckets dictate rates",
+        "Neither theory alone explains why yield curves are predominantly upward-sloping"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "progressive_cards",
+      "data": {
+        "cards": [
+          {
+            "id": "c1",
+            "title": "Expectations Theory",
+            "body": "Hypothesizes that long-term interest rates reflect market consensus forecasts of future short-term rates. Assumes investors are risk-neutral across maturities."
+          },
+          {
+            "id": "c2",
+            "title": "Market Segmentation Theory",
+            "body": "Argues institutional investors (like pension funds vs commercial banks) have rigid maturity preferences, creating independent supply-demand equilibria in each bucket."
+          },
+          {
+            "id": "c3",
+            "title": "The Empirical Gap",
+            "body": "Expectations theory implies curves should slope downward as often as upward; empirical reality shows upward slopes occur > 85% of the time."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yield curves exhibit varying shapes across market cycles: upward sloping, flat, or inverted. Three classical economic theories explain the morphology of the term structure."
+            },
+            "hi": {
+              "display": "Yield curve ka shape kabhi upward hota hai, kabhi flat aur kabhi inverted. Is term structure ko explain karne ke liye teen classical economic theories hain."
+            }
+          },
+          "onScreenIntent": "Introduce theories explaining the shape of the yield curve",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "expectations theory"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "c1"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Expectations Theory asserts that long-term interest rates equal the pure mathematical average of expected future short-term rates. Under this hypothesis, an upward-sloping yield curve implies the market expects short rates to rise."
+            },
+            "hi": {
+              "display": "Pehli theory hai Expectations Theory: Ye manti hai ki long-term rate market ke expected future short-term rates ka pure average hota hai. Is theory ke mutabik, upward curve ka matlab hai ki market short rates badhne ki expectation kar raha hai."
+            }
+          },
+          "onScreenIntent": "Explain Expectations Theory assumptions and implications",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "c1",
+              "c2"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In contrast, Market Segmentation Theory contends that institutional investors operate in rigid maturity silos. Pension funds buy thirty-year paper while corporate treasurers buy short-term bills, with zero cross-maturity substitution."
+            },
+            "hi": {
+              "display": "Doosri theory hai Market Segmentation Theory: Ye assume karti hai ki alag-alag maturity markets completely independent hote hain. Pension funds long-term bonds khareedte hain aur banks short-term paper, aur inke beech koi switching nahi hoti."
+            }
+          },
+          "onScreenIntent": "Introduce Market Segmentation Theory and maturity clienteles",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "market segmentation theory"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "c1",
+              "c2",
+              "c3"
+            ]
+          },
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Liquidity Preference Theory: Why Curves Slope Upward",
+      "purpose": "Explain Liquidity Preference Theory and liquidity premium mechanics",
+      "takeaways": [
+        "Borrowers prefer locking long-term debt while investors prefer liquid short-term assets",
+        "Borrowers must pay a liquidity premium to induce investors to hold long-term debt",
+        "Forward rates exceed expected future spot rates: R_F = E(spot) + Liquidity Premium"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "causal_chain",
+      "data": {
+        "links": [
+          {
+            "id": "l1",
+            "role": "condition",
+            "text": "Lenders seek short-term liquidity while corporate borrowers demand long-term funding"
+          },
+          {
+            "id": "l2",
+            "role": "action",
+            "text": "Long-term borrowers must offer higher yields to incentivize investors to surrender liquidity"
+          },
+          {
+            "id": "l3",
+            "role": "mechanism",
+            "text": "A positive liquidity risk premium is embedded across ascending maturity horizons"
+          },
+          {
+            "id": "l4",
+            "role": "result",
+            "text": "Forward rates systematically exceed market expectations of future spot zero rates"
+          },
+          {
+            "id": "l5",
+            "role": "consequence",
+            "text": "Produces the persistently upward-sloping yield curve observed in global bond markets"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John C. Hull identifies Liquidity Preference Theory as the most realistic and robust explanation of empirical yield curve behavior."
+            },
+            "hi": {
+              "display": "John C. Hull Liquidity Preference Theory ko real-world markets ka sabse accurate model mante hain."
+            }
+          },
+          "onScreenIntent": "Introduce Liquidity Preference Theory to resolve empirical gaps",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "liquidity preference theory"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Investors naturally value liquidity and demand a positive term premium to lock up capital over long horizons. Conversely, corporate borrowers prefer long-term fixed borrowing to eliminate rollover refinancing risk."
+            },
+            "hi": {
+              "display": "Investors natural liquidity prefer karte hain aur long-term capital lock karne ke liye ek positive Liquidity Premium demand karte hain. Doosri taraf, borrowers refinancing risk se bachne ke liye long-term fixed borrowing chahte hain."
+            }
+          },
+          "onScreenIntent": "Explain maturity mismatch between borrowers and lenders",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "liquidity premium"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because of this structural imbalance, forward rates equal expected future spot rates plus a positive liquidity premium. This term premium explains why normal sovereign yield curves slope naturally upward."
+            },
+            "hi": {
+              "display": "Is asymmetric preference ki wajah se Forward Rate hamesha Expected Future Spot Rate plus Liquidity Premium ke barabar hota hai. Yahi reason hai ki normal conditions mein yield curve naturally upward sloping hoti hai."
+            }
+          },
+          "onScreenIntent": "Prove why forward rates exceed expected future spot rates",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Calculating Bond Price Move via Duration",
+      "purpose": "Test understanding of Modified duration percentage price move calculation",
+      "takeaways": [
+        "Percentage price move: Delta B / B = -D* * Delta y",
+        "A 5-year duration bond drops by 2.5% when yields rise by 50 basis points",
+        "Sign check: yield increase always produces negative capital return"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "interactive_quiz",
+      "data": {
+        "question": "A bond portfolio has a modified duration of 5.0 years. If interest rate yields rise by 50 basis points (+0.50%), what is the approximate percentage price change?",
+        "options": [
+          "A) +2.50%",
+          "B) -0.50%",
+          "C) -2.50%",
+          "D) -5.00%"
+        ],
+        "correctIndex": 2,
+        "explanation": "Delta B / B ≈ -D* * Delta y = -5.0 * (+0.0050) = -0.0250 (-2.50%). Option C is correct."
+      },
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your fixed income risk calculation skills. Suppose a bond portfolio has a Modified Duration of six point zero years and a market value of one hundred million dollars. If interest rates rise by fifty basis points, or point five zero percent, what is the estimated dollar price change?"
+            },
+            "hi": {
+              "display": "Chaliye ek practical risk calculation test karte hain. Ek bond portfolio ki Modified Duration six point zero years hai aur portfolio value one hundred million dollars hai. Agar interest rates fifty basis points badh jate hain, toh portfolio price change kitna hoga?"
+            }
+          },
+          "onScreenIntent": "Present the student with active recall duration question",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Apply the duration sensitivity formula: percentage price change equals minus D-star multiplied by delta y. Pause and consider the options."
+            },
+            "hi": {
+              "display": "Formula apply kijiye: percentage change barabar minus D star guna delta y. Pause and consider."
+            }
+          },
+          "onScreenIntent": "Work through algebraic calculation: -5.0 * 0.0050 = -2.50%",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option B: minus three point zero percent, representing a loss of three million dollars. Calculating directly: minus six point zero times positive point zero zero five zero equals minus point zero three zero, or negative three percent. On a one hundred million dollar portfolio, this produces an exact three million dollar loss."
+            },
+            "hi": {
+              "display": "Correct answer hai Option B: Minus three point zero percent loss, yaani minus three million dollars. Calculation: minus six point zero guna positive zero point zero zero five zero barabar minus zero point zero three zero. Hundred million par three percent loss exact three million dollars hota hai."
+            }
+          },
+          "onScreenIntent": "Reinforce intuition: inverse price-yield relationship",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Case Study: The $1.6B Orange County Bankruptcy",
+      "purpose": "Analyze 1994 Orange County collapse due to extreme duration and leverage",
+      "takeaways": [
+        "Orange County geared a $7.5B equity base into a $20B portfolio using reverse repos",
+        "Portfolio duration reached ~7.4 years, leaving it defenseless against rate hikes",
+        "When the Fed raised rates by 300 bps, collateral calls triggered $1.6B insolvency"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "stat_counter",
+      "data": {
+        "stats": [
+          {
+            "id": "s1",
+            "value": 1.6,
+            "decimals": 1,
+            "prefix": "$",
+            "suffix": "B",
+            "label": "Realized Loss",
+            "sublabel": "December 1994 Bankruptcy"
+          },
+          {
+            "id": "s2",
+            "value": 20,
+            "decimals": 1,
+            "prefix": "$",
+            "suffix": "B",
+            "label": "Leveraged Portfolio",
+            "sublabel": "Financed via Short Repo"
+          },
+          {
+            "id": "s3",
+            "value": 7.4,
+            "decimals": 1,
+            "suffix": " Yrs",
+            "label": "Macaulay Duration",
+            "sublabel": "Extreme rate sensitivity"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The ultimate historical catastrophe illustrating the lethal risk of unhedged duration and leverage is the nineteen ninety-four Orange County bankruptcy."
+            },
+            "hi": {
+              "display": "Interest rate risk ko underestimate karne par kya anjaam hota hai, iska global history mein sabse bada example hai nineteen ninety-four ka Orange County Bankruptcy."
+            }
+          },
+          "onScreenIntent": "Introduce the 1994 Orange County bankruptcy case study",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Orange County collapse"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "County treasurer Robert Citron leveraged seven point five billion dollars of public funds into a twenty billion dollar portfolio using short-term reverse repurchase agreements, heavily concentrating capital in inverse floating-rate notes."
+            },
+            "hi": {
+              "display": "Orange County treasurer Robert Citron ne seven point five billion dollar ke public funds ko reverse repo borrowings ke zariye twenty billion dollars tak heavily leverage kiya, aur sara paisa Inverse Floating-Rate Notes mein invest kar diya."
+            }
+          },
+          "onScreenIntent": "Examine reverse repo leverage structure and duration mismatch",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "reverse repo leverage"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When the Federal Reserve raised interest rates aggressively by three hundred basis points throughout nineteen ninety-four, repo borrowing costs skyrocketed while yields on inverse floaters collapsed."
+            },
+            "hi": {
+              "display": "Jab nineteen ninety-four mein US Federal Reserve ne rates ko rapidly three hundred basis points badhaya, toh repo borrowing costs shoot up ho gayi aur inverse floaters ke yields collapse ho gaye."
+            }
+          },
+          "onScreenIntent": "Explain Fed 300 bps rate hikes and margin call spiral",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This massive duration mismatch triggered massive margin calls, forcing Orange County to realize one point six billion dollars in losses and file the largest municipal bankruptcy in United States history at that time."
+            },
+            "hi": {
+              "display": "Is deadly leverage mismatch ne Orange County ko one point six billion dollars ka loss karwaya aur America ki us waqt ki sabse badi municipal bankruptcy file karni padi. Extreme duration aur repo leverage ek deadly combination hote hain."
+            }
+          },
+          "onScreenIntent": "Summarize risk management lessons on leverage and duration limits",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Fixed Income Risk Management",
+      "purpose": "Synthesize the core risk management principles of Chapter 4 Part 2",
+      "takeaways": [
+        "FRAs lock forward borrowing costs with in-advance cash settlement discounting",
+        "Modified duration predicts linear price moves and immunizes asset-liability portfolios",
+        "Convexity captures second-order curvature essential during large market rate shocks"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "summary_thread",
+      "data": {
+        "title": "Fixed Income Risk in 8 Rules",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "FRA forward locks",
+            "text": "FRAs are bespoke OTC contracts allowing counterparties to lock borrowing rates over future windows."
+          },
+          {
+            "id": "r2",
+            "title": "In-advance cash settlement",
+            "text": "FRA settlement occurs at date T1, requiring discounting by [1 + R_M * (T2 - T1)] back to inception."
+          },
+          {
+            "id": "r3",
+            "title": "Mark-to-market valuation",
+            "text": "Prior to expiry, FRA value is determined by comparing R_K with forward rate R_F discounted by e^(-R_2*T_2)."
+          },
+          {
+            "id": "r4",
+            "title": "Macaulay duration horizon",
+            "text": "Macaulay duration measures the weighted average maturity of all present-value discounted cash flows."
+          },
+          {
+            "id": "r5",
+            "title": "Modified duration sensitivity",
+            "text": "Modified duration D* = D / (1 + y/m) quantifies percentage price move via Delta B / B ≈ -D* * Delta y."
+          },
+          {
+            "id": "r6",
+            "title": "Portfolio immunization",
+            "text": "Matching asset and liability duration immunizes equity against parallel yield curve shifts."
+          },
+          {
+            "id": "r7",
+            "title": "Convexity curvature correction",
+            "text": "Convexity restores precision for large shocks via Delta B / B ≈ -D* * Delta y + 0.5 * C * (Delta y)^2."
+          },
+          {
+            "id": "r8",
+            "title": "Liquidity preference premium",
+            "text": "Borrower demand for long-term debt creates positive liquidity premiums, producing upward-sloping yield curves."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us synthesize the four structural pillars of fixed income risk management covered in Part Two."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Four ke final chaar fixed income pillars ko summarize karte hain."
+            }
+          },
+          "onScreenIntent": "Recap Pillar 1: Forward Rate Agreements and OTC locks",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar One: Forward Rate Agreements. Bespoke over-the-counter contracts that lock future borrowing rates, settled in advance at T-one with discounted payoff mechanics."
+            },
+            "hi": {
+              "display": "Pehla pillar: Forward Rate Agreements. OTC contracts jo future borrowing aur lending rates lock karte hain, jinki settlement T-one par in-advance discount hoti hai."
+            }
+          },
+          "onScreenIntent": "Recap Pillar 2: Macaulay and Modified Duration",
+          "sourceFactIds": [
+            "F04",
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Two: Duration and Immunization. Macaulay duration establishes effective cash flow maturity, while Modified duration quantifies first-order yield sensitivity for balance sheet immunization."
+            },
+            "hi": {
+              "display": "Dusra pillar: Duration & Immunization. Macaulay duration weighted average maturity hai, aur Modified duration delta B divided by B barabar minus D star delta y se first-order price risk measure karti hai."
+            }
+          },
+          "onScreenIntent": "Recap Pillar 3: Convexity and Taylor Series expansions",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Three: Convexity. The second-order curvature adjustment that corrects linear duration errors during large market interest rate shocks."
+            },
+            "hi": {
+              "display": "Teesra pillar: Convexity. Price-yield curve ka curvature jo large rate moves mein duration error ko positive half C delta y square se correct karta hai."
+            }
+          },
+          "onScreenIntent": "Recap Pillar 4: Term structure theories and liquidity premiums",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Four: Liquidity Preference and Leverage Governance. Term premiums explain upward-sloping yield curves, while the Orange County collapse warns against leveraged duration mismatches."
+            },
+            "hi": {
+              "display": "Chautha pillar: Liquidity Preference & Orange County. Yield curves liquidity premium ki wajah se upward slope karti hain. Leverage repo ke sath unhedged duration position fatal bankruptcy create kar sakti hai."
+            }
+          },
+          "onScreenIntent": "Reflect on Orange County and failure of risk governance",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter Five, we transition to the no-arbitrage valuation of forward and futures contracts, exploring the cost of carry model for financial assets and commodities."
+            },
+            "hi": {
+              "display": "Agli video Chapter Five mein hum Forward aur Futures contracts ki No-Arbitrage Pricing mechanics aur Cost of Carry model ko deeply explore karenge."
+            }
+          },
+          "onScreenIntent": "Conclude Chapter 4 and preview Chapter 5: Determination of Forward Prices",
+          "sourceFactIds": [],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    }
+  ]
+}

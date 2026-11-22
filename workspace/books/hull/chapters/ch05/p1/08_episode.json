@@ -1,0 +1,1673 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch05",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 5",
+  "partLabel": "Part 1",
+  "title": "Determination of Forward and Futures Prices - Part 1",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 1,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Engine of Valuation: The No-Arbitrage Principle",
+      "purpose": "Establish that forward pricing is replication cost rather than speculative forecasting",
+      "takeaways": [
+        "Forward pricing is replication, not forecasting",
+        "The Principle of No-Arbitrage dictates identical prices for identical cash flows",
+        "Chapter 5 derives valuation across investment and consumption assets"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "chat_story",
+      "data": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "novice",
+            "text": "Do forward prices represent what the market expects the asset will be worth in the future?"
+          },
+          {
+            "id": "m2",
+            "speaker": "mentor",
+            "text": "A widespread misconception in derivatives trading is that forward and futures prices represent market forecasts. Forward pricing is an exact mathematical equality dictated by replication cost."
+          },
+          {
+            "id": "m3",
+            "speaker": "mentor",
+            "text": "This framework is the Principle of No-Arbitrage: if two strategies generate identical cash flows at all future dates, they must have the exact same price today."
+          },
+          {
+            "id": "m4",
+            "speaker": "mentor",
+            "text": "In Chapter 5, we master forward pricing across non-income assets, discrete dividends, and continuous yields."
+          }
+        ],
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "No-Arbitrage Engine",
+            "Asset Taxonomy",
+            "Short Selling",
+            "Core Formula",
+            "Reverse Carry",
+            "Carry Framework"
+          ],
+          "current": 0
+        }
+      },
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "novice",
+          "narration": {
+            "en": {
+              "display": "Do forward prices represent what the market expects the asset will be worth in the future?"
+            },
+            "hi": {
+              "display": "क्या फॉरवर्ड प्राइस वो एक्सपेक्टेड प्राइस होती है जो मार्केट फ्यूचर में प्रेडिक्ट करता है?"
+            }
+          },
+          "onScreenIntent": "Opening question challenging the forecasting fallacy",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "forward pricing"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A widespread misconception in derivatives trading is that forward and futures prices represent market forecasts of where spot prices will trade in the future. In quantitative finance, forward pricing is not a forecasting exercise; it is an exact mathematical equality dictated by the cost of replicating the asset."
+            },
+            "hi": {
+              "display": "Derivatives pricing mein sabse bada misconception ye hota hai ki Forward ya Futures price market ke future expectations ka guess hota hai. Lekin quantitative finance mein Forward price future price ka prediction nahi hai; ye replication cost par based ek exact mathematical equality hai."
+            }
+          },
+          "onScreenIntent": "The mentor refutes forecasting and introduces mechanical replication",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "replication"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This foundational framework is known as the Principle of No-Arbitrage: if two investment strategies generate identical cash flows at all future dates, they must possess the exact same price today. Any divergence allows market arbitrageurs to immediately extract riskless profit."
+            },
+            "hi": {
+              "display": "Is foundational framework ko kehte hain The Principle of No-Arbitrage. Agar do portfolios future mein identical cash flows generate karte hain, toh aaj unka price exactly equal hona chahiye. Agar thoda bhi price difference hoga, toh arbitrageurs immediately free riskless profit lock kar lenge."
+            }
+          },
+          "onScreenIntent": "The mentor formalizes the Principle of No-Arbitrage",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "no-arbitrage principle"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter Five, we master the complete mathematical architecture of forward and futures pricing: non-income investment assets, assets with known cash dividends, and portfolios with continuous dividend yields."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter Five mein hum Forward aur Futures pricing ke complete mathematical mechanics ko master karenge: No-income assets, known cash dividends, aur continuous dividend yield."
+            }
+          },
+          "onScreenIntent": "The mentor outlines Chapter 5 mathematical architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3",
+              "m4"
+            ]
+          },
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Asset Taxonomy: Investment Assets vs. Consumption Assets",
+      "purpose": "Categorize underlying assets and understand two-sided vs. upper-bound arbitrage",
+      "takeaways": [
+        "Investment assets are held for wealth storage and investment return",
+        "Consumption assets are held for manufacturing and commercial processing",
+        "Two-sided arbitrage holds tightly only for investment assets"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "table_compare",
+      "data": {
+        "title": "Underlying Asset Classification",
+        "columns": [
+          "Feature / Dimension",
+          "Investment Assets",
+          "Consumption Assets"
+        ],
+        "rows": [
+          {
+            "id": "r1",
+            "cells": [
+              "Primary Purpose",
+              "Wealth storage & capital return",
+              "Industrial processing & consumption"
+            ]
+          },
+          {
+            "id": "r2",
+            "cells": [
+              "Representative Assets",
+              "Gold, Silver, Equities, Sovereign Bonds",
+              "Crude Oil, Copper, Wheat, Natural Gas"
+            ]
+          },
+          {
+            "id": "r3",
+            "cells": [
+              "Short Selling Feasibility",
+              "Readily borrowed & shorted via liquid repo",
+              "Extremely difficult / impossible to short physical stock"
+            ]
+          },
+          {
+            "id": "r4",
+            "cells": [
+              "Arbitrage Bound",
+              "Two-sided equality: F_0 = S_0 * e^(r*T)",
+              "Upper bound only: F_0 <= S_0 * e^((r+u)*T)"
+            ]
+          },
+          {
+            "id": "r5",
+            "cells": [
+              "Convenience Yield",
+              "Zero (no benefit to physical custody)",
+              "Significant non-monetary benefit y of physical inventory"
+            ]
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Before applying any forward pricing model, categorizing the underlying asset is mandatory. John Hull divides all assets into two distinct classes: Investment Assets and Consumption Assets."
+            },
+            "hi": {
+              "display": "Forward pricing formula apply karne se pehle underlying asset ko categorize karna mandatory hota hai. Hull assets ko do categories mein divide karte hain: Investment Assets aur Consumption Assets."
+            }
+          },
+          "onScreenIntent": "Introduce asset taxonomy before applying forward models",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [
+            "investment assets",
+            "consumption assets"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Investment Assets are held by significant numbers of investors purely for wealth storage and investment return—such as gold, silver, equities, and sovereign bonds. Because investors can readily buy or sell their holdings, two-sided arbitrage holds tightly."
+            },
+            "hi": {
+              "display": "Investment Assets wo assets hote hain jinhe significant investors solely wealth store karne aur investment purpose ke liye hold karte hain—jaise Gold, Silver, Stocks aur Government Bonds. In assets par two-sided arbitrage tightly hold karta hai."
+            }
+          },
+          "onScreenIntent": "Define investment assets and two-sided arbitrage",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In contrast, Consumption Assets are held primarily for commercial manufacturing or physical consumption—such as crude oil, copper, and agricultural commodities. Because physical short selling is impractical and inventories cannot easily be disinvested, arbitrage enforces only an upper price bound."
+            },
+            "hi": {
+              "display": "Doosri taraf, Consumption Assets primarily manufacturing ya direct consumption ke liye hold kiye jate hain—jaise Crude Oil, Copper aur Wheat. Consumption assets par short selling possible nahi hoti, isliye inka forward price upper bound toh respect karta hai, lekin lower bound violate ho sakta hai."
+            }
+          },
+          "onScreenIntent": "Define consumption assets and upper-bound-only arbitrage",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "convenience yield"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Short Selling: The Arbitrageur's Essential Weapon",
+      "purpose": "Examine the three-step mechanics of borrowing, selling, and returning shares",
+      "takeaways": [
+        "Short selling allows traders to monetize an overvalued spot or undervalued forward",
+        "Short sellers must pass all intermediate dividends directly to the share lender",
+        "Shorts are closed by buying shares in open market or taking forward delivery"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "causal_chain",
+      "data": {
+        "title": "Short Selling Mechanics & Arbitrage Execution",
+        "links": [
+          {
+            "id": "l1",
+            "role": "condition",
+            "text": "Forward contract trades below fair replication value: F_0 < S_0 * e^(r*T)"
+          },
+          {
+            "id": "l2",
+            "role": "action",
+            "text": "Borrow shares from institutional custodian and sell immediately at spot price S_0"
+          },
+          {
+            "id": "l3",
+            "role": "mechanism",
+            "text": "Invest cash proceeds S_0 at risk-free rate r while going long forward at F_0"
+          },
+          {
+            "id": "l4",
+            "role": "result",
+            "text": "Pass any intermediate dividends or corporate distributions back to original lender"
+          },
+          {
+            "id": "l5",
+            "role": "consequence",
+            "text": "At maturity T, take forward delivery at F_0, return borrowed shares, keep riskless profit"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To enforce fair pricing when forward contracts trade too low, arbitrageurs rely on short selling: the borrowing and selling of securities they do not currently own."
+            },
+            "hi": {
+              "display": "Reverse cash-and-carry arbitrage execute karne ke liye Short Selling ek fundamental tool hai. Short selling ka matlab hai aise shares bechna jo aapke paas physically nahi hain."
+            }
+          },
+          "onScreenIntent": "Introduce short selling as the key arbitrage mechanism",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "short selling"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step One, the broker borrows shares from an institutional lender or client account and sells them immediately in the spot market, generating upfront cash proceeds."
+            },
+            "hi": {
+              "display": "Step One mein broker kisi doosre client ke account se shares borrow karke open market mein current spot price par sell karta hai, jisse immediate cash inflow create hota hai."
+            }
+          },
+          "onScreenIntent": "Step 1: Borrowing shares and selling for cash",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step Two, the short seller incurs a legal obligation to pass all intermediate dividends, interest coupons, or corporate distributions directly back to the original stock lender."
+            },
+            "hi": {
+              "display": "Step Two mein short seller ki legal obligation hoti hai ki borrowing period ke dauran jo bhi dividends ya cash coupons declare honge, wo lender ko apni pocket se compensate karega."
+            }
+          },
+          "onScreenIntent": "Step 2: Passing intermediate dividends back to lender",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "manufactured dividend"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step Three, at contract maturity, the short seller buys back the shares in the open market or takes delivery via a forward contract, returning the borrowed shares to close the short position."
+            },
+            "hi": {
+              "display": "Step Three mein specified maturity par short seller market ya forward contract se shares buy karke lender ko wapas return kar deta hai, jise Closing the short position kehte hain."
+            }
+          },
+          "onScreenIntent": "Step 3: Closing the short position at maturity",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "The Core Forward Formula: Assets with No Income",
+      "purpose": "Derive the fundamental pricing formula F_0 = S_0 * e^(r*T) and Cash-and-Carry arbitrage",
+      "takeaways": [
+        "Theoretical forward price equals compounded spot price: F_0 = S_0 * e^(r*T)",
+        "Overpriced forwards (F_0 > S_0 * e^(r*T)) trigger Cash-and-Carry arbitrage",
+        "Arbitrageurs borrow cash, buy spot stock, and short the forward contract"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "The Fundamental No-Arbitrage Forward Price",
+        "formula": {
+          "latex": "F_0 = S_0 e^{rT}",
+          "expression": "Forward Price = Spot Price * exp(Risk-Free Rate * Time)",
+          "solvesFor": "Theoretical Forward Delivery Price (F_0)",
+          "variables": [
+            {
+              "symbol": "F_0",
+              "latex": "F_0",
+              "meaning": "Theoretical forward price agreed today",
+              "unit": "currency"
+            },
+            {
+              "symbol": "S_0",
+              "latex": "S_0",
+              "meaning": "Spot price of the underlying asset today",
+              "unit": "currency"
+            },
+            {
+              "symbol": "r",
+              "latex": "r",
+              "meaning": "Continuously compounded annual risk-free rate",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "T",
+              "latex": "T",
+              "meaning": "Time to forward maturity in years",
+              "unit": "years"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "p1",
+            "symbolLatex": "S_0",
+            "meaning": "Spot acquisition cost paid today",
+            "unit": "currency"
+          },
+          {
+            "id": "p2",
+            "symbolLatex": "e^{rT}",
+            "meaning": "Continuous compounding financing factor",
+            "unit": "dimensionless"
+          },
+          {
+            "id": "p3",
+            "symbolLatex": "F_0 - S_0 e^{rT}",
+            "meaning": "Arbitrage profit if market forward trades at a premium",
+            "unit": "currency"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now consider the fundamental forward pricing formula for an investment asset that provides zero intermediate income, such as a non-dividend paying stock. The theoretical forward price F_0 equals spot price S_0 multiplied by e raised to the power of r times T."
+            },
+            "hi": {
+              "display": "Ab dekhte hain forward pricing ka universal formula aise investment asset ke liye jo koi income provide nahi karta—jaise non-dividend paying stock. Formula hai: F zero barabar S zero guna e to the power r T."
+            }
+          },
+          "onScreenIntent": "Derive the fundamental forward price formula for non-income assets",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "forward price formula"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If the observed market forward price exceeds this theoretical value—meaning F_0 is greater than S_0 times e to the r T—a guaranteed riskless profit is captured via Cash-and-Carry Arbitrage."
+            },
+            "hi": {
+              "display": "Agar market mein actual forward price is theoretical value se bada ho—yaani F zero greater than S zero e to the power r T ho—toh Cash-and-Carry Arbitrage create hota hai."
+            }
+          },
+          "onScreenIntent": "Analyze conditions for Cash-and-Carry Arbitrage when F_0 is high",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "cash-and-carry arbitrage"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The arbitrageur borrows cash S_0 at risk-free rate r, purchases the spot asset today, and sells the forward contract at F_0. At expiration, delivering the asset repays the loan principal and interest, leaving a risk-free cash profit."
+            },
+            "hi": {
+              "display": "Arbitrageur aaj risk-free rate r par S zero cash borrow karta hai, spot asset khareedta hai, aur forward contract sell kar deta hai. Expiration par asset deliver karke loan repay karne ke baad risk-free net profit pocket mein rehta hai."
+            }
+          },
+          "onScreenIntent": "Trace trade execution steps and riskless profit capture",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Reverse Cash-and-Carry: Enforcing the Lower Bound",
+      "purpose": "Establish how underpriced forwards trigger Reverse Cash-and-Carry to enforce lower price bound",
+      "takeaways": [
+        "Underpriced forwards (F_0 < S_0 * e^(r*T)) trigger reverse cash-and-carry arbitrage",
+        "Traders short spot, lend proceeds at rate r, and buy forward contracts",
+        "Compound proceeds S_0 * e^(r*T) exceed delivery obligation F_0"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "causal_chain",
+      "data": {
+        "title": "Reverse Cash-and-Carry Execution Steps",
+        "links": [
+          {
+            "id": "rc1",
+            "role": "condition",
+            "text": "Market forward price trades below theoretical no-arbitrage bound: F_0 < S_0 * e^(r*T)"
+          },
+          {
+            "id": "rc2",
+            "role": "action",
+            "text": "Step 1: Short sell the spot asset today, collecting immediate proceeds S_0"
+          },
+          {
+            "id": "rc3",
+            "role": "mechanism",
+            "text": "Step 2: Invest proceeds S_0 at risk-free rate r and enter long forward contract at price F_0"
+          },
+          {
+            "id": "rc4",
+            "role": "result",
+            "text": "Step 3: At maturity T, cash investment grows to S_0 * e^(r*T)"
+          },
+          {
+            "id": "rc5",
+            "role": "consequence",
+            "text": "Pay F_0 to take delivery, return borrowed shares to lender, keep net profit: S_0 * e^(r*T) - F_0"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, what happens if the market forward price falls below theoretical fair value, such that F_0 is less than S_0 times e to the r T? Arbitrageurs immediately initiate Reverse Cash-and-Carry Arbitrage."
+            },
+            "hi": {
+              "display": "Lekin agar forward price theoretical value se kam ho jaye—yaani F zero less than S zero e to the power r T—toh kya hoga? Yahan execute hota hai Reverse Cash-and-Carry Arbitrage."
+            }
+          },
+          "onScreenIntent": "Introduce condition where market forward price is underpriced",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "reverse cash-and-carry"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step One, the arbitrageur short sells the underlying spot asset, collecting immediate cash proceeds S_0."
+            },
+            "hi": {
+              "display": "Step One mein arbitrageur underlying asset ko short sell karta hai aur S zero cash receive karta hai."
+            }
+          },
+          "onScreenIntent": "Step 1: Short selling spot asset to raise cash",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step Two, the proceeds S_0 are invested at the risk-free rate r for duration T, while simultaneously taking a long position in the forward contract at price F_0."
+            },
+            "hi": {
+              "display": "Step Two mein is cash S zero ko risk-free rate r par time T ke liye invest kar diya jata hai, aur simultaneously ek forward contract buy kar liya jata hai."
+            }
+          },
+          "onScreenIntent": "Step 2: Investing proceeds and locking forward purchase",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step Three, at maturity, the risk-free investment grows to S_0 times e to the r T. Paying forward price F_0 accepts delivery of the asset to close the short loan, pocketing the positive riskless surplus."
+            },
+            "hi": {
+              "display": "Step Three mein maturity par investment se S zero e to the power r T cash collect hota hai, jisme se F zero pay karke asset buy kiya jata hai aur short position close kar di jati hai. Difference risk-free profit hota hai."
+            }
+          },
+          "onScreenIntent": "Step 3: Taking delivery, returning borrowed shares, and pocketing profit",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "The Cost of Carry Framework: A Unified Perspective",
+      "purpose": "Unify forward pricing under generalized cost of carry c",
+      "takeaways": [
+        "Cost of carry c measures net cost of financing, storage, and holding",
+        "For non-income assets, carry cost c equals financing rate r",
+        "Trading algorithms execute arbitrage trades in milliseconds to maintain parity"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Generalized Cost of Carry Equation",
+        "formula": {
+          "latex": "F_0 = S_0 e^{cT}",
+          "expression": "Forward Price = Spot Price * exp(Cost of Carry * Time)",
+          "solvesFor": "Generalized Forward Price across All Asset Classes (F_0)",
+          "variables": [
+            {
+              "symbol": "F_0",
+              "latex": "F_0",
+              "meaning": "Forward or futures market equilibrium price",
+              "unit": "currency"
+            },
+            {
+              "symbol": "S_0",
+              "latex": "S_0",
+              "meaning": "Current spot asset market price",
+              "unit": "currency"
+            },
+            {
+              "symbol": "c",
+              "latex": "c",
+              "meaning": "Net cost of carry: financing r + storage u - yield q",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "T",
+              "latex": "T",
+              "meaning": "Contract time to expiration",
+              "unit": "years"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "c1",
+            "symbolLatex": "c = r",
+            "meaning": "Non-dividend investment asset (pure financing)",
+            "unit": "decimal/year"
+          },
+          {
+            "id": "c2",
+            "symbolLatex": "c = r - q",
+            "meaning": "Dividend-paying stock or equity index",
+            "unit": "decimal/year"
+          },
+          {
+            "id": "c3",
+            "symbolLatex": "c = r + u - y",
+            "meaning": "Physical commodity with storage u and convenience yield y",
+            "unit": "decimal/year"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "All forward and futures arbitrage mechanics unify under the elegant Cost of Carry framework: cost of carry c represents the net storage, financing, and holding costs of the underlying asset."
+            },
+            "hi": {
+              "display": "Cash-and-carry mechanics ko universal banata hai Cost of Carry concept. Cost of Carry c physical asset ko hold karne ka net financing aur storage cost hota hai."
+            }
+          },
+          "onScreenIntent": "Introduce the unifying Cost of Carry framework",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "cost of carry"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For a non-dividend asset, the cost of carry consists solely of the financing rate r. Therefore, forward price F_0 equals spot price S_0 multiplied by e to the power of c times T."
+            },
+            "hi": {
+              "display": "Non-dividend asset ke liye cost of carry pure risk-free interest rate r hota hai. Isliye F zero hamesha S zero e to the power c T ke barabar hota hai."
+            }
+          },
+          "onScreenIntent": "Formulate forward price as F_0 = S_0 * e^(c*T)",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Whenever spot and futures spreads diverge from the theoretical cost of carry, institutional trading algorithms trade both legs in milliseconds, enforcing tight price equilibrium across global exchanges."
+            },
+            "hi": {
+              "display": "Agar market mein futures price aur spot price ka difference cost of carry se match nahi karta, toh automated trading algorithms seconds mein trade execute karke price ko fair value par wapas le aate hain."
+            }
+          },
+          "onScreenIntent": "Highlight algorithmic execution enforcing cost of carry equilibrium",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Forward Pricing with Known Cash Income",
+      "purpose": "Formulate forward pricing when underlying assets distribute discrete cash dividends",
+      "takeaways": [
+        "Forward contract holders do not receive intermediate spot dividends",
+        "Present value of intermediate income I must be subtracted from spot price",
+        "Adjusted forward formula: F_0 = (S_0 - I) * e^(r*T)"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Forward Pricing with Discrete Income Distributions",
+        "formula": {
+          "latex": "F_0 = (S_0 - I) e^{rT}",
+          "expression": "Forward Price = (Spot Price - PV of Cash Income) * exp(r * T)",
+          "solvesFor": "Forward Price with Discrete Cash Dividends (F_0)",
+          "variables": [
+            {
+              "symbol": "F_0",
+              "latex": "F_0",
+              "meaning": "Forward price for asset with discrete income",
+              "unit": "currency"
+            },
+            {
+              "symbol": "S_0",
+              "latex": "S_0",
+              "meaning": "Current spot price of the dividend-paying asset",
+              "unit": "currency"
+            },
+            {
+              "symbol": "I",
+              "latex": "I",
+              "meaning": "Present value of all dividends received before maturity T",
+              "unit": "currency"
+            },
+            {
+              "symbol": "r",
+              "latex": "r",
+              "meaning": "Continuously compounded risk-free rate",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "T",
+              "latex": "T",
+              "meaning": "Time to contract expiration",
+              "unit": "years"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "i1",
+            "symbolLatex": "I = \\sum D_i e^{-r t_i}",
+            "meaning": "Sum of discrete dividends discounted to today",
+            "unit": "currency"
+          },
+          {
+            "id": "i2",
+            "symbolLatex": "S_0 - I",
+            "meaning": "Effective spot investment net of future dividend cash flows",
+            "unit": "currency"
+          },
+          {
+            "id": "i3",
+            "symbolLatex": "e^{rT}",
+            "meaning": "Financing growth factor over time T",
+            "unit": "dimensionless"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In practical markets, many underlying securities provide predictable intermediate cash distributions, such as coupon-bearing bonds or dividend-paying equities."
+            },
+            "hi": {
+              "display": "Real world mein kai assets life ke dauran predictable cash income provide karte hain—jaise coupon-paying bonds ya quarterly dividend stocks."
+            }
+          },
+          "onScreenIntent": "Introduce dividend-paying securities and coupon bonds",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "known cash income"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because the holder of a forward contract does not receive these intermediate cash payouts, the present discounted value of all expected payments, denoted I, must be deducted from the spot price."
+            },
+            "hi": {
+              "display": "Kyunki forward contract holder ko contract maturity tak ye intermediate dividends receive nahi hote, isliye in expected payments ki present value I ko spot price se subtract kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Explain why dividend present value I must be deducted from spot",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The resulting formula is: F_0 equals S_0 minus I, all multiplied by e to the power of r times T, where I is the sum of cash payments discounted at the risk-free rate to the present."
+            },
+            "hi": {
+              "display": "Formula dekhiye: F zero barabar S zero minus I, bracket close, guna e to the power r T. Yahan I contract horizon ke dauran aane wale sabhi coupons ka present value discount sum hai."
+            }
+          },
+          "onScreenIntent": "Present full mathematical equation F_0 = (S_0 - I) * e^(r*T)",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Continuous Dividend Yield: Index & Equity Pricing",
+      "purpose": "Formulate continuous dividend yield pricing for stock indices like S&P 500",
+      "takeaways": [
+        "Broad market indices are modeled with a continuous dividend yield q",
+        "Net financing rate becomes (r - q), giving F_0 = S_0 * e^((r - q)*T)",
+        "When q > r, forward price trades at a discount to spot (backwardation)"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Index Forward Pricing with Continuous Yield",
+        "formula": {
+          "latex": "F_0 = S_0 e^{(r - q)T}",
+          "expression": "Index Forward Price = Spot * exp((Risk-Free Rate - Dividend Yield) * Time)",
+          "solvesFor": "Equity Index Forward / Futures Price (F_0)",
+          "variables": [
+            {
+              "symbol": "F_0",
+              "latex": "F_0",
+              "meaning": "Index forward price agreed today",
+              "unit": "currency"
+            },
+            {
+              "symbol": "S_0",
+              "latex": "S_0",
+              "meaning": "Current equity index level",
+              "unit": "currency"
+            },
+            {
+              "symbol": "r",
+              "latex": "r",
+              "meaning": "Risk-free financing rate",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "q",
+              "latex": "q",
+              "meaning": "Continuous dividend yield paid by index components",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "T",
+              "latex": "T",
+              "meaning": "Time to expiration",
+              "unit": "years"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "q1",
+            "symbolLatex": "r - q > 0",
+            "meaning": "Contango: Forward trades at a premium above spot price",
+            "unit": "regime"
+          },
+          {
+            "id": "q2",
+            "symbolLatex": "r - q < 0",
+            "meaning": "Backwardation: Forward trades at a discount below spot price",
+            "unit": "regime"
+          },
+          {
+            "id": "q3",
+            "symbolLatex": "e^{(r - q)T}",
+            "meaning": "Net carrying factor adjusting for financing cost and dividend inflow",
+            "unit": "dimensionless"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When pricing broad stock market indexes like the S&P 500, tracking individual discrete dividends across hundreds of companies is inefficient. Instead, income is modeled as a continuous dividend yield q."
+            },
+            "hi": {
+              "display": "Jab hum S&P five hundred ya Nifty fifty jaise broad stock indices ko price karte hain, toh individual dividends calculate karna impractical hota hai. Yahan income ko continuous dividend yield q ke roop mein model kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Introduce continuous dividend yield modeling for broad indices",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "continuous dividend yield"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The index forward pricing formula becomes: F_0 equals S_0 multiplied by e to the power of r minus q times T. The financial intuition is transparent: financing the index costs rate r, but holding the shares generates continuous dividend yield q, making net carrying cost r minus q."
+            },
+            "hi": {
+              "display": "Formula dekhiye: F zero barabar S zero guna e to the power r minus q guna T. Financial intuition behad simple hai: asset ko hold karne ka financing cost r hai, aur asset se milne wala dividend yield q hai. Net financing cost r minus q banta hai."
+            }
+          },
+          "onScreenIntent": "Derive index formula F_0 = S_0 * e^((r - q)*T)",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If dividend yield q exceeds the risk-free rate r, the forward price trades below the spot price. This downward-sloping futures curve is known as a forward discount, or backwardation."
+            },
+            "hi": {
+              "display": "Agar dividend yield q risk-free rate r se zyada ho jaye, toh forward price spot price se chhota ho jata hai. Is situation ko forward discount ya backwardation kehte hain."
+            }
+          },
+          "onScreenIntent": "Examine backwardation when dividend yield q exceeds risk-free rate r",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "backwardation",
+            "contango"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Forward Value vs. Forward Price: Mark-to-Market Valuation",
+      "purpose": "Distinguish delivery price K, forward quote F_0, and contract value f",
+      "takeaways": [
+        "Forward price F_0 is agreed delivery price; forward value f is current paper worth",
+        "At inception K = F_0, so contract value f = 0",
+        "Subsequent long forward value: f = (F_0 - K) * e^(-r*T)"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Valuation of Existing Forward Contracts",
+        "formula": {
+          "latex": "f = (F_0 - K) e^{-rT}",
+          "expression": "Contract Value = (Current Forward Price - Delivery Price) * exp(-r * T)",
+          "solvesFor": "Mark-to-Market Long Forward Contract Value (f)",
+          "variables": [
+            {
+              "symbol": "f",
+              "latex": "f",
+              "meaning": "Current mark-to-market value of long forward contract",
+              "unit": "currency"
+            },
+            {
+              "symbol": "F_0",
+              "latex": "F_0",
+              "meaning": "Current forward price available in market for delivery at T",
+              "unit": "currency"
+            },
+            {
+              "symbol": "K",
+              "latex": "K",
+              "meaning": "Predetermined delivery price contracted at inception",
+              "unit": "currency"
+            },
+            {
+              "symbol": "r",
+              "latex": "r",
+              "meaning": "Current risk-free interest rate for remaining maturity T",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "T",
+              "latex": "T",
+              "meaning": "Remaining time to expiration",
+              "unit": "years"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "f1",
+            "symbolLatex": "K = F_0 \\implies f = 0",
+            "meaning": "Contract inception condition (costless entry)",
+            "unit": "boundary"
+          },
+          {
+            "id": "f2",
+            "symbolLatex": "F_0 - K",
+            "meaning": "Payoff at maturity T",
+            "unit": "currency"
+          },
+          {
+            "id": "f3",
+            "symbolLatex": "e^{-rT}",
+            "meaning": "Zero-coupon discount factor back to valuation date",
+            "unit": "dimensionless"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A vital distinction that every risk professional must maintain is the difference between delivery price K, current forward price F_0, and the mark-to-market contract value f."
+            },
+            "hi": {
+              "display": "Ek essential distinction jo har trader ko pata honi chahiye: Delivery Price K, Forward Price F zero, aur Contract Value f ke beech ka difference."
+            }
+          },
+          "onScreenIntent": "Clarify difference between delivery price K, forward price F_0, and value f",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "contract value",
+            "delivery price"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At contract inception, delivery price K is set equal to the prevailing forward quote F_0, ensuring the contract's initial market value f is exactly zero."
+            },
+            "hi": {
+              "display": "Contract enter karte waqt delivery price K ko current forward price F zero ke barabar rakha jata hai, jisse forward contract ki initial value f exactly zero hoti hai."
+            }
+          },
+          "onScreenIntent": "Explain why initial forward value is zero at inception",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "As time elapses and spot prices move, the value f of an existing long forward position becomes F_0 minus K, discounted back to today: f equals F_0 minus K, multiplied by e to the minus r times T."
+            },
+            "hi": {
+              "display": "Lekin time beethne ke sath jab spot price change hota hai, toh existing contract ki market value f nikalne ka formula hai: f barabar F zero minus K, guna e to the power minus r T. Dividend yield ke case mein: f barabar S zero e to the power minus q T minus K e to the power minus r T."
+            }
+          },
+          "onScreenIntent": "Formulate mark-to-market forward valuation f = (F_0 - K) * e^(-r*T)",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Detecting Cash-and-Carry Arbitrage",
+      "purpose": "Test student calculation of theoretical forward price and trade execution",
+      "takeaways": [
+        "Spot = $100, r = 5.0%, T = 1 yr -> Theoretical F_0 = $105.13",
+        "Market quote $108.00 > $105.13 indicates an overpriced forward contract",
+        "Borrow $100, buy spot, short forward -> locks in $2.87 riskless cash profit"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "interactive_quiz",
+      "data": {
+        "title": "Active Recall: Executing Cash-and-Carry Arbitrage",
+        "question": "A non-dividend stock has spot price S_0 = $100. The continuous risk-free rate is r = 5.0%. A 1-year forward contract is quoted at $108.00. What is the optimal arbitrage strategy?",
+        "options": [
+          "Cash-and-Carry: Borrow $100, buy spot stock, short forward at $108.00; lock in $2.87 profit.",
+          "Reverse Cash-and-Carry: Short spot stock at $100, invest cash at 5%, buy forward at $108.00.",
+          "Do nothing: The market is in equilibrium because $108.00 accounts for investor risk tolerance.",
+          "Buy spot stock and buy forward contract to double exposure to upside price appreciation."
+        ],
+        "correctIndex": 0,
+        "explanation": "Theoretical fair forward price is F_0 = 100 * e^(0.05 * 1) = $105.13. Because the market forward price ($108.00) exceeds $105.13, the forward is overpriced. An arbitrageur borrows $100 at 5% to buy the spot stock and sells the forward contract at $108. At T = 1, delivering the stock repays loan principal and interest of $105.13, pocketing $108.00 - $105.13 = $2.87 in pure riskless arbitrage profit."
+      },
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your ability to identify and execute an arbitrage trade. A non-dividend stock trades at a spot price of one hundred dollars. The one-year continuous risk-free rate is five percent, and the one-year forward contract is quoted on the exchange at one hundred eight dollars. What is the optimal trade?"
+            },
+            "hi": {
+              "display": "Chaliye ek practical arbitrage scenario test karte hain. Ek non-dividend stock ka spot price hundred dollars hai, risk-free interest rate five percent continuously compounded hai, aur one-year forward price exchange par one hundred eight dollars quote ho raha hai. Correct trading strategy kya hogi?"
+            }
+          },
+          "onScreenIntent": "Present the active recall arbitrage scenario",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Calculate the theoretical forward price: one hundred times e to the point zero five, which equals approximately one hundred five dollars and thirteen cents. Pause and evaluate the options."
+            },
+            "hi": {
+              "display": "Theoretical forward price calculate kijiye: hundred guna e to the power zero point zero five. Chaar options ko closely evaluate kijiye. Pause and consider."
+            }
+          },
+          "onScreenIntent": "Prompt calculation of theoretical forward price $105.13",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A: Cash-and-Carry Arbitrage. The theoretical forward price is one hundred five dollars and thirteen cents, while the market is trading at one hundred eight dollars. Because the forward is overpriced, you borrow cash, buy the spot stock at one hundred, and sell the forward contract at one hundred eight, locking in a riskless profit of two dollars and eighty-seven cents."
+            },
+            "hi": {
+              "display": "Correct answer hai Option A: Cash-and-Carry Arbitrage. Theoretical price one hundred five point one three dollars hai, jabki market forward price one hundred eight dollars hai. Forward overpriced hai. Isliye cash borrow karke spot khareediye aur forward sell karke two point eight seven dollars ka risk-free profit lock kijiye."
+            }
+          },
+          "onScreenIntent": "Reveal Cash-and-Carry execution and $2.87 profit capture",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Forward vs. Futures Prices: When Do They Diverge?",
+      "purpose": "Compare theoretical pricing equivalence under deterministic rates vs daily settlement dynamics",
+      "takeaways": [
+        "With constant interest rates, theoretical forward and futures prices are identical",
+        "Daily mark-to-market introduces interest rate reinvestment effects",
+        "Positive correlation with rates favors futures, negative correlation favors forwards"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "cmp-const-rate",
+          "heading": "Deterministic Rates",
+          "tone": "neutral",
+          "points": [
+            "Interest rates are known or constant over contract lifespan",
+            "Mark-to-market daily cash flows can be reinvested at deterministic rates",
+            "Forward price F_0 and Futures price G_0 are mathematically identical",
+            "Contract settlement timing differences have zero net financial consequence"
+          ]
+        },
+        "right": {
+          "id": "cmp-stoch-rate",
+          "heading": "Stochastic Rates",
+          "tone": "positive",
+          "points": [
+            "Asset prices correlate with interest rate shifts across market cycles",
+            "Positive correlation: futures daily profits earned when rates are high and reinvested favorably",
+            "Daily margin gains reinvested at higher rates make futures price G_0 > forward price F_0",
+            "Negative correlation makes forward contracts slightly more attractive than futures"
+          ]
+        },
+        "verdict": {
+          "id": "vrd-fwd-fut",
+          "text": "For short maturities (< 1 yr), price differences are negligible; for long horizons, correlation divergence matters."
+        }
+      },
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Both forward and futures contracts fix delivery prices for future horizons. But are their theoretical prices mathematically identical?"
+            },
+            "hi": {
+              "display": "Forward contracts aur Futures contracts dono future delivery lock karte hain. Lekin kya in dono ke theoretical prices identical hote hain?"
+            }
+          },
+          "onScreenIntent": "Pose the fundamental question: are forward and futures prices identical?",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John Hull demonstrates that when interest rates are constant or deterministic, forward and futures prices must be mathematically identical."
+            },
+            "hi": {
+              "display": "John C. Hull prove karte hain ki agar interest rates constant ya non-random hon, toh Forward Price aur Futures Price exactly identical hote hain."
+            }
+          },
+          "onScreenIntent": "Demonstrate exact equality under deterministic interest rates",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "deterministic rates"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, in real-world markets with daily marking to market, positive correlation between asset prices and interest rates makes futures contracts slightly more attractive than forwards, causing futures prices to trade marginally above forward prices."
+            },
+            "hi": {
+              "display": "Lekin real world mein daily marking-to-market ki wajah se futures cash flows immediately reinvest hote hain. Agar underlying asset price aur interest rates positively correlated hon, toh futures price forward price se thoda sa high hota hai. Practical trading mein ye difference kaafi minor hota hai."
+            }
+          },
+          "onScreenIntent": "Analyze daily settlement reinvestment and correlation divergence",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "interest rate correlation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Forward Pricing",
+      "purpose": "Consolidate the core forward valuation frameworks before proceeding to Part 2",
+      "takeaways": [
+        "No-arbitrage replication dictates exact pricing equality",
+        "Cash-and-carry bounds enforce upper and lower price boundaries",
+        "Dividends deduct present value I or continuous yield q from carry cost"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "summary_thread",
+      "data": {
+        "title": "Executive Synthesis: The Four Pillars of Forward Valuation",
+        "rules": [
+          {
+            "id": "rul-1",
+            "title": "Replication over Prediction",
+            "text": "Forward prices reflect mechanical replication financing costs, not subjective expectations."
+          },
+          {
+            "id": "rul-2",
+            "title": "Investment vs. Consumption Bounds",
+            "text": "Two-sided equality holds strictly for investment assets; consumption assets enforce only an upper bound."
+          },
+          {
+            "id": "rul-3",
+            "title": "Non-Income Forward Formula",
+            "text": "The fundamental base formula is F_0 = S_0 * e^(r*T), growing spot at the continuous risk-free rate."
+          },
+          {
+            "id": "rul-4",
+            "title": "Cash-and-Carry Bounds",
+            "text": "Overpriced forwards trigger cash-and-carry (borrow, buy spot, short forward); underpriced trigger reverse carry."
+          },
+          {
+            "id": "rul-5",
+            "title": "Discrete Dividend Adjustment",
+            "text": "For assets with known cash dividends, deduct present value I: F_0 = (S_0 - I) * e^(r*T)."
+          },
+          {
+            "id": "rul-6",
+            "title": "Continuous Dividend Yield",
+            "text": "For equity indices, carrying cost becomes r - q: F_0 = S_0 * e^((r - q)*T)."
+          },
+          {
+            "id": "rul-7",
+            "title": "Mark-to-Market Valuation",
+            "text": "Initial long forward value f = 0 with K = F_0; subsequent value f = (F_0 - K) * e^(-r*T)."
+          },
+          {
+            "id": "rul-8",
+            "title": "Forward vs. Futures Convergence",
+            "text": "Identical under deterministic interest rates; daily margin correlation creates slight divergence for long maturities."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the four structural pillars of forward and futures pricing established in Part One."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Five Part One ke chaar foundational pricing pillars ko summarize karte hain."
+            }
+          },
+          "onScreenIntent": "Introduce the consolidation of the four structural pillars",
+          "sourceFactIds": [
+            "F01",
+            "F03",
+            "F06",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar One: The No-Arbitrage Principle. Forward prices reflect the exact cost of replicating the underlying asset through spot purchase and financing."
+            },
+            "hi": {
+              "display": "Pehla pillar: No-Arbitrage Principle. Forward price future expectations ka guess nahi hai; ye spot asset aur risk-free financing ki replication cost hai."
+            }
+          },
+          "onScreenIntent": "Review Pillar One: The No-Arbitrage Principle",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Two: Cash-and-Carry Arbitrage. Overpriced forwards trigger spot purchases and forward sales; underpriced forwards trigger reverse cash-and-carry."
+            },
+            "hi": {
+              "display": "Dusra pillar: Cash-and-Carry Arbitrage. Overpriced forward par borrow karke spot buy aur forward sell hota hai; underpriced forward par reverse cash-and-carry se lower bound enforce hota hai."
+            }
+          },
+          "onScreenIntent": "Review Pillar Two: Cash-and-Carry Arbitrage Bounds",
+          "sourceFactIds": [
+            "F04",
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Three: Dividend Adjustments. Discrete dividends deduct present value I, while index portfolios adjust carrying costs via F_0 equals S_0 times e to the r minus q times T."
+            },
+            "hi": {
+              "display": "Teesra pillar: Dividend Yield Adjustment. Stock indices par forward price F zero barabar S zero e to the power r minus q guna T se determine hota hai."
+            }
+          },
+          "onScreenIntent": "Review Pillar Three: Dividend Adjustments",
+          "sourceFactIds": [
+            "F06",
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Four: Contract Value Evolution. Delivery price K fixes at entry with zero initial value, while subsequent paper value f tracks discounted price differentials. In Part Two, we will examine foreign currency forwards and commodity storage costs."
+            },
+            "hi": {
+              "display": "Chautha pillar: Contract Value vs Price. Delivery price K par entering value zero hoti hai, lekin spot price move hone par f barabar F zero minus K guna e to the power minus r T ban jata hai. Part Two mein hum Index Arbitrage aur Commodity Futures ko dissect karenge."
+            }
+          },
+          "onScreenIntent": "Review Pillar Four: Contract Value Evolution and preview Part 2",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    }
+  ]
+}

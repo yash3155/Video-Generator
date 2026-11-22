@@ -1,0 +1,1574 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch07",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 7",
+  "partLabel": "Part 1",
+  "title": "Swaps - Part 1",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 1,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Multi-Trillion Dollar Cash Flow Exchange: The Interest Rate Swap",
+      "purpose": "Introduce Interest Rate Swaps as bilateral OTC tools resolving fixed vs. floating debt mismatches",
+      "takeaways": [
+        "Corporate borrowers frequently face structural fixed vs. floating debt mismatches",
+        "An IRS exchanges periodic cash flows without ever transferring principal",
+        "Chapter 7 Part 1 masters swap plumbing, intermediation, comparative advantage, and valuation"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "chat_story",
+      "data": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "novice",
+            "text": "How can a company transform a floating-rate bank loan into a fixed-rate obligation without refinancing the debt?"
+          },
+          {
+            "id": "m2",
+            "speaker": "mentor",
+            "text": "Global financial markets trade hundreds of trillions in debt. To solve fixed vs. floating mismatches, financial engineering invented the Interest Rate Swap."
+          },
+          {
+            "id": "m3",
+            "speaker": "mentor",
+            "text": "An Interest Rate Swap is a bilateral OTC agreement to exchange periodic interest cash flows based on a notional principal without ever transferring principal."
+          },
+          {
+            "id": "m4",
+            "speaker": "mentor",
+            "text": "In Chapter 7, we master plain vanilla swap plumbing, dealer risk intermediation, Comparative Advantage, and dual valuation models."
+          }
+        ],
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "Swap Intro",
+            "Plain Vanilla Mechanics",
+            "Dealer Intermediation",
+            "Comparative Advantage",
+            "Refinancing Risk",
+            "Bond & FRA Valuation"
+          ],
+          "current": 0
+        }
+      },
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "novice",
+          "narration": {
+            "en": {
+              "display": "How can a company transform a floating-rate bank loan into a fixed-rate obligation without refinancing the debt?"
+            },
+            "hi": {
+              "display": "क्या कोई कंपनी बिना लोन रिफाइनेंस किए अपने फ्लोटिंग-रेट लोन को फिक्स्ड-रेट में बदल सकती है?"
+            }
+          },
+          "onScreenIntent": "Opening dilemma question on corporate liability transformation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "interest rate swap"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Global financial markets trade hundreds of trillions of dollars in debt instruments and credit contracts. Yet, a fundamental structural dilemma frequently emerges: corporate borrowers often demand long-term fixed-rate certainty, while commercial banks predominantly offer floating-rate credit tied to interbank benchmarks. To solve this structural mismatch, the financial engineering world invented the most widely used over-the-counter derivative in modern history: The Interest Rate Swap."
+            },
+            "hi": {
+              "display": "Global financial markets mein trillions of dollars ke loan contracts aur corporate debt active hain. Lekin aksar ek corporate borrower fixed rate liability chahta hai jabki bank use floating rate par loan offer karta hai. Is structural mismatch ko solve karne ke liye 1981 mein finance ka sabse powerful over-the-counter derivative invent hua: The Interest Rate Swap."
+            }
+          },
+          "onScreenIntent": "The mentor highlights the multi-trillion dollar scope of interest rate swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "An Interest Rate Swap, or IRS, is a bilateral, over-the-counter agreement between two counterparties to exchange periodic interest rate cash flows based on a specified notional principal amount over an agreed maturity, without ever transferring the underlying principal itself."
+            },
+            "hi": {
+              "display": "Interest Rate Swap, ya IRS, do counterparty institutions ke beech ek private bilateral agreement hota hai jisme wo bina kisi principal amount ko transfer kiye, periodic fixed aur floating interest rate cash flows aapas mein exchange karti hain."
+            }
+          },
+          "onScreenIntent": "The mentor defines the bilateral IRS agreement and notional principal",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "notional principal"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In this masterclass on Chapter Seven of John C. Hull's treatise, we will master the operational plumbing of plain vanilla swaps, examine how swap dealers warehouse risk, dissect the classic Comparative Advantage argument alongside its hidden credit risks, and formulate the two foundational valuation methodologies: the bond portfolio model and the discounted FRA strip."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter Seven ke is first masterclass mein hum Interest Rate Swaps ke complete operational mechanics, financial intermediation, Comparative Advantage model aur dual valuation methods ko second-by-second master karenge."
+            }
+          },
+          "onScreenIntent": "The mentor outlines Chapter 7 Part 1 masterclass objectives",
+          "sourceFactIds": [
+            "F03",
+            "F05",
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3",
+              "m4"
+            ]
+          },
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Plain Vanilla Swaps: Fixed vs. Floating Cash Flow Mechanics",
+      "purpose": "Define Plain Vanilla IRS counterparties, notional principal, and bilateral cash flow netting",
+      "takeaways": [
+        "Fixed Rate Payer pays fixed coupon and receives floating benchmark rate",
+        "Principal amount is purely notional and never exchanged at inception or maturity",
+        "Only the net interest difference transfers on settlement dates: L * (R_floating - R_fixed) * tau"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "cmp-fixed-payer",
+          "heading": "Fixed Rate Payer",
+          "tone": "positive",
+          "points": [
+            "Agrees to pay predetermined fixed swap rate R_K on all payment dates",
+            "Receives floating benchmark rate (e.g. SOFR) from counterparty",
+            "Transforms floating debt into synthetic fixed liability",
+            "Profits when floating interest rates rise above fixed rate R_K"
+          ]
+        },
+        "right": {
+          "id": "cmp-floating-payer",
+          "heading": "Floating Rate Payer",
+          "tone": "neutral",
+          "points": [
+            "Agrees to pay floating benchmark rate reset at start of period",
+            "Receives predetermined fixed swap rate R_K from counterparty",
+            "Transforms fixed debt into synthetic floating liability",
+            "Profits when market interest rates fall below fixed rate R_K"
+          ]
+        },
+        "verdict": {
+          "id": "vrd-netting",
+          "text": "Principal is purely notional; only the net interest spread is transferred on reset dates."
+        }
+      },
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The most standard and liquid contract structure is the Plain Vanilla Interest Rate Swap. In this agreement, one institution acts as the Fixed Rate Payer, agreeing to pay a predetermined fixed coupon, while receiving a floating benchmark rate. The other institution acts as the Floating Rate Payer, paying the benchmark rate and receiving the fixed coupon."
+            },
+            "hi": {
+              "display": "Sabse standard aur liquid swap structure ko Plain Vanilla Interest Rate Swap kaha jata hai. Is contract mein do counterparties hoti hain: Fixed Rate Payer aur Floating Rate Payer."
+            }
+          },
+          "onScreenIntent": "Introduce Plain Vanilla swap structure and counterparties",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "plain vanilla swap",
+            "fixed rate payer",
+            "floating rate payer"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A vital distinction must be recognized: the principal amount, such as one hundred million dollars, is purely notional. It serves exclusively as a scaling reference to calculate periodic percentage interest obligations. Because the principal is never transferred at inception or maturity, the contract entails zero initial principal outlay."
+            },
+            "hi": {
+              "display": "Yahan ek crucial distinction samajhiye: Principal amount ko Notional Principal kaha jata hai. Notional ka matlab hai hypothetical reference value, jaise hundred million dollars. Ye principal kabhi exchange nahi hota; iska istemaal sirf periodic interest payment calculate karne ke liye kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Emphasize notional principal concept: zero initial principal outlay",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On each payment date, cash flows are netted bilaterally. If the floating rate exceeds the fixed coupon, the floating rate payer transfers the net difference to the fixed rate payer. Conversely, if the floating rate falls below the fixed coupon, the fixed rate payer remits the difference. The net payment equals notional principal L multiplied by the interest rate spread and the day-count accrual fraction tau."
+            },
+            "hi": {
+              "display": "Har settlement date par Cash Flow Netting execute hoti hai. Kyunki dono payments same currency mein hain, dono parties full amount transfer nahi karti. Net difference transfer hota hai: Notional principal guna floating rate minus fixed rate guna day count fraction."
+            }
+          },
+          "onScreenIntent": "Explain bilateral cash flow netting formula: L * (R_floating - R_fixed) * tau",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "cash flow netting"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Financial Intermediation: How Swap Dealers Warehouse Risk",
+      "purpose": "Examine why corporations use financial intermediaries and how swap dealers warehouse risk",
+      "takeaways": [
+        "End-user corporations almost never trade swaps directly due to search and credit frictions",
+        "Swap dealers warehouse interest rate risk onto their own trading books",
+        "By matching offsetting swaps with two clients, dealers neutralize market risk and earn bid-ask spreads"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "causal_chain",
+      "data": {
+        "title": "Swap Dealer Risk Intermediation Mechanics",
+        "links": [
+          {
+            "id": "sd1",
+            "role": "condition",
+            "text": "Company A seeks fixed rate protection while Company B seeks floating rate debt"
+          },
+          {
+            "id": "sd2",
+            "role": "action",
+            "text": "Search frictions prevent direct trading; Swap Dealer steps in between counterparties"
+          },
+          {
+            "id": "sd3",
+            "role": "mechanism",
+            "text": "Dealer enters bilateral swap with Company A (receives fixed, pays floating)"
+          },
+          {
+            "id": "sd4",
+            "role": "result",
+            "text": "Dealer enters offsetting swap with Company B (pays fixed, receives floating)"
+          },
+          {
+            "id": "sd5",
+            "role": "consequence",
+            "text": "Net market risk drops to zero; dealer captures clean 3-6 bps bid-ask spread"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In real-world capital markets, end-user corporations almost never search for each other to negotiate bilateral swaps directly. Search frictions, unequal maturities, mismatched notional sizes, and counterparty credit risks make direct matchmaking impractical."
+            },
+            "hi": {
+              "display": "Real-world financial markets mein do corporations direct ek doosre ke sath swap contract execute nahi karti, kyunki search costs aur asymmetric credit risk bohot zyada hote hain."
+            }
+          },
+          "onScreenIntent": "Explain why corporations rely on intermediaries rather than direct trades",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "search frictions"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Instead, global investment banks act as financial intermediaries or Swap Dealers. When Company A wishes to pay fixed and receive floating, the swap dealer enters into a bilateral transaction directly with Company A, warehousing the interest rate risk onto its own trading book."
+            },
+            "hi": {
+              "display": "Is market ko facilitate karte hain Swap Dealers, jo major global investment banks hote hain. Ek dealer Company A ke sath swap enter karta hai jahan wo fixed receive karta hai aur floating pay karta hai."
+            }
+          },
+          "onScreenIntent": "Describe swap dealers warehousing risk on trading desks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "swap dealer",
+            "warehousing risk"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To eliminate directional market risk, the dealer enters an offsetting swap with Company B, agreeing to receive fixed and pay floating. By matching both sides, the dealer's net interest rate exposure drops to zero, allowing the bank to capture a dependable bid-ask spread—typically three to six basis points—without taking outright market risk."
+            },
+            "hi": {
+              "display": "Simultaneously, dealer Company B ke sath offsetting swap enter karta hai jahan wo floating receive karta hai aur slightly lower fixed rate pay karta hai. Dono contracts enter karne ke baad dealer ka net interest rate risk zero ho jata hai aur wo fixed rate ke difference ka clean bid-ask spread kamata hai."
+            }
+          },
+          "onScreenIntent": "Trace offsetting swap execution and bid-ask spread capture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "bid-ask spread"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "The Comparative Advantage Argument: The Quality Spread Differential",
+      "purpose": "Analyze credit spread asymmetry and calculate the 70 bps Quality Spread Differential (QSD)",
+      "takeaways": [
+        "Comparative advantage arises from credit rating spread asymmetries across fixed and floating markets",
+        "Fixed market credit spread (120 bps) exceeds floating market spread (50 bps)",
+        "The difference is the Quality Spread Differential (QSD = 70 bps), representing total economic surplus"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "table_compare",
+      "data": {
+        "title": "The Quality Spread Differential (QSD) Matrix",
+        "columns": [
+          "Borrower",
+          "Fixed Borrowing Rate",
+          "Floating Borrowing Rate",
+          "Market Comparative Advantage"
+        ],
+        "rows": [
+          {
+            "id": "row-aaa",
+            "cells": [
+              "Company A (AAA)",
+              "4.00% fixed",
+              "SOFR + 0.10% floating",
+              "Fixed market (+120 bps spread advantage)"
+            ]
+          },
+          {
+            "id": "row-bbb",
+            "cells": [
+              "Company B (BBB)",
+              "5.20% fixed",
+              "SOFR + 0.60% floating",
+              "Floating market (lower spread penalty)"
+            ]
+          },
+          {
+            "id": "row-spread",
+            "cells": [
+              "Credit Spread",
+              "1.20% (120 bps)",
+              "0.50% (50 bps)",
+              "QSD = 120 bps - 50 bps = 70 bps Surplus"
+            ]
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Historically, the explosive growth of the swap market was explained through the classical Comparative Advantage Argument. Let us examine the credit spread asymmetry that creates the apparent economic surplus known as the Quality Spread Differential."
+            },
+            "hi": {
+              "display": "John C. Hull Chapter Seven mein swap market ke rapid growth ka classical explanation present karte hain: The Comparative Advantage Argument. Aaiye is credit rating asymmetry ko analyze karte hain."
+            }
+          },
+          "onScreenIntent": "Introduce the classical Comparative Advantage argument",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "comparative advantage",
+            "quality spread differential"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider two firms: Company A is an established AAA-rated multinational that can borrow fixed debt at four point zero percent, or floating debt at the benchmark plus ten basis points. Company B is a BBB-rated firm that must pay five point two percent in the fixed market, or the benchmark plus sixty basis points in the floating market."
+            },
+            "hi": {
+              "display": "Maan lijiye Company A triple-A rated hai aur Company B triple-B rated hai. Company A fixed market mein four percent par borrow kar sakti hai aur floating market mein benchmark plus ten basis points par. Company B fixed market mein five point two percent par borrow kar sakti hai aur floating mein benchmark plus sixty basis points par."
+            }
+          },
+          "onScreenIntent": "Present AAA vs BBB borrowing rate schedules",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice the credit spreads: In the fixed market, the spread between BBB and AAA is one hundred twenty basis points. In the floating market, the spread is only fifty basis points. The difference between these two spreads—one hundred twenty minus fifty—equals seventy basis points. This Quality Spread Differential represents the total economic surplus available to be shared among the borrowers and the dealer."
+            },
+            "hi": {
+              "display": "Fixed market mein quality spread one point two zero percent hai, jabki floating market mein quality spread sirf zero point five zero percent hai. Is difference ko Quality Spread Differential ya QSD kehte hain, jo yahan seventy basis points nikalta hai. Yahi total economic surplus hai."
+            }
+          },
+          "onScreenIntent": "Calculate QSD = 120 bps - 50 bps = 70 bps economic surplus",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "economic surplus"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Numerical Walkthrough: Hull's Classic AAA vs. BBB Swap Structuring",
+      "purpose": "Trace step-by-step how the 70 bps surplus is shared among AAA firm, BBB firm, and swap dealer",
+      "takeaways": [
+        "Company A issues fixed bonds at 4.00% and swaps to synthetic floating at SOFR - 0.10% (saves 20 bps)",
+        "Company B borrows floating at SOFR + 0.60% and swaps to synthetic fixed at 4.90% (saves 30 bps)",
+        "Swap dealer captures an intermediation spread of 20 bps, perfectly exhausting the 70 bps surplus"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "technical_panel",
+      "data": {
+        "title": "Hull's Classic 70 bps Swap Structuring",
+        "subtitle": "Bespoke Surplus Distribution Across Parties",
+        "sections": [
+          {
+            "id": "struct-aaa",
+            "title": "Company A (AAA) Leg: 20 bps Saving",
+            "content": "Issues fixed at 4.00%. Receives 3.95% fixed from dealer and pays SOFR. Net cost: SOFR + 0.05% (saves 20 bps vs direct SOFR + 0.25%)."
+          },
+          {
+            "id": "struct-bbb",
+            "title": "Company B (BBB) Leg: 30 bps Saving",
+            "content": "Borrows floating at SOFR + 0.60%. Pays 4.30% fixed to dealer and receives SOFR. Net cost: 4.90% fixed (saves 30 bps vs direct 5.20%)."
+          },
+          {
+            "id": "struct-dealer",
+            "title": "Swap Dealer Spread: 20 bps Margin",
+            "content": "Receives 4.30% fixed from BBB and pays 4.10% fixed to AAA. Captures clean 20 bps riskless intermediation margin."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us trace step-by-step how John Hull structures the swap to distribute this seventy basis point surplus among both corporate borrowers and the facilitating financial intermediary."
+            },
+            "hi": {
+              "display": "Aaiye dekhte hain ki ye seventy basis points surplus parties ke beech kaise distribute hota hai. Hull ke standard numerical structuring ko screen par step-by-step follow kijiye."
+            }
+          },
+          "onScreenIntent": "Introduce Hull's step-by-step structuring of the 70 bps surplus",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Company A has an absolute advantage in both markets, but its comparative advantage lies in fixed borrowing. Therefore, Company A issues fixed bonds at four point zero percent and enters a swap to pay floating at benchmark minus ten basis points. Company A saves twenty basis points compared to borrowing floating directly."
+            },
+            "hi": {
+              "display": "Company A fixed market mein four percent par bond issue karti hai, lekin swap ke through floating receive karti hai aur benchmark minus ten basis points pay karti hai. A ko direct floating rate se twenty basis points ki direct saving milti hai."
+            }
+          },
+          "onScreenIntent": "Detail Company A structuring and 20 bps saving",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Company B borrows floating from its bank at benchmark plus sixty basis points, and enters a swap paying fixed at four point nine zero percent, saving thirty basis points. The swap dealer captures twenty basis points as its intermediation margin. All three institutions achieve an apparent borrowing improvement."
+            },
+            "hi": {
+              "display": "Company B floating loan leti hai, swap ke through floating receive karti hai aur four point nine zero percent fixed pay karti hai. Company B ko direct fixed rate se thirty basis points ki saving milti hai. Swap dealer ko net twenty basis points ka intermediation spread milta hai. Teeno parties gain karti hain."
+            }
+          },
+          "onScreenIntent": "Detail Company B structuring (30 bps saving) and dealer spread (20 bps)",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Hull's Cautionary Analysis: Why Comparative Advantage is an Illusion",
+      "purpose": "Examine John Hull's critique: why comparative advantage is driven by hidden rollover refinancing risk",
+      "takeaways": [
+        "Comparative advantage is not a free lunch; it reflects different contractual credit commitments",
+        "Fixed bond investors lock credit risk for 5 years; floating bank lenders review credit every 6 months",
+        "If Company B's credit deteriorates, floating rollover spreads widen or loans are called"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "cmp-fixed-market",
+          "heading": "5-Year Fixed Market",
+          "tone": "positive",
+          "points": [
+            "Bond investors commit capital and lock credit spread for full 5-year duration",
+            "Borrower cannot have loan recalled if credit rating declines mid-tenor",
+            "Investor demands substantial 120 bps spread upfront to compensate for default risk",
+            "True fixed financing with zero mid-stream refinancing uncertainty"
+          ]
+        },
+        "right": {
+          "id": "cmp-floating-market",
+          "heading": "6-Month Floating Loan",
+          "tone": "trap",
+          "points": [
+            "Commercial bank reviews borrower creditworthiness every 6-month rollover",
+            "If credit deteriorates, bank widens floating spread or refuses loan renewal",
+            "Lower 50 bps initial spread reflects short 6-month exposure, not genuine savings",
+            "Synthetic fixed rate collapses if borrower cannot roll over short-term bank debt"
+          ]
+        },
+        "verdict": {
+          "id": "vrd-illusion",
+          "text": "Comparative advantage reflects rollover refinancing risk, not a free lunch."
+        }
+      },
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At this point, John C. Hull provides an essential pedagogical warning: Comparative Advantage in swap markets is largely an illusion. Finance allows no genuine free lunches, and this apparent surplus conceals critical credit and refinancing asymmetries."
+            },
+            "hi": {
+              "display": "Lekin John C. Hull yahan ek bohot critical academic warning emphasize karte hain: Comparative Advantage koi true free lunch nahi hai; iske peeche hidden credit risks hote hain."
+            }
+          },
+          "onScreenIntent": "Present Hull's critique: comparative advantage is an illusion",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "comparative advantage critique"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In the fixed bond market, long-term investors commit their capital for five or ten years, locking in credit risk over the entire horizon. In contrast, floating-rate bank loans are typically short-term facilities or lines of credit subject to periodic review every six months."
+            },
+            "hi": {
+              "display": "Fixed rate market mein investor five years ke liye credit risk lock kar deta hai. Lekin floating rate bank loan mein bank har six months par company ki creditworthiness review karta hai."
+            }
+          },
+          "onScreenIntent": "Contrast 5-year fixed commitment against 6-month floating reviews",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "rollover refinancing risk"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If Company B's credit rating deteriorates, its lending bank will demand higher credit spreads or refuse to roll over the loan entirely. Company B would still be obligated to pay fixed under the swap, leaving it with severe rollover refinancing risk. The seventy basis points is not free money; it is fair compensation for bearing rollover credit risk."
+            },
+            "hi": {
+              "display": "Agar Company B ki financial health kharab hoti hai, toh bank loan roll over karne se mana kar sakta hai ya floating spread ko drastically badha sakta hai. Is Rollover Refinancing Risk ki wajah se Company B ka synthetic fixed rate completely collapse ho sakta hai."
+            }
+          },
+          "onScreenIntent": "Explain why synthetic fixed rate collapses under credit deterioration",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Institutional Plumbing: The ISDA Master Agreement & Confirmations",
+      "purpose": "Examine ISDA Master Agreements, bilateral netting, and trade Confirmations",
+      "takeaways": [
+        "Over-the-counter swaps are legally anchored by the standardized ISDA Master Agreement",
+        "The Master Agreement defines default, termination events, cross-defaults, and bilateral netting",
+        "Individual swap transactions are documented via a trade Confirmation specifying commercial terms"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "technical_panel",
+      "data": {
+        "title": "The ISDA Institutional Infrastructure",
+        "subtitle": "Master Agreements, Confirmations & Bilateral Netting",
+        "sections": [
+          {
+            "id": "isda-master",
+            "title": "ISDA Master Agreement",
+            "content": "Standardized contract published by International Swaps and Derivatives Association governing all OTC trades between two counterparties."
+          },
+          {
+            "id": "isda-netting",
+            "title": "Close-Out Bilateral Netting",
+            "content": "In counterparty insolvency, all active swap transactions are immediately terminated and netted into a single net cash sum."
+          },
+          {
+            "id": "isda-confirm",
+            "title": "Trade Confirmation",
+            "content": "A short legal document specifying exact commercial terms: notional principal, trade date, fixed rate, floating benchmark, and reset calendar."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because over-the-counter swaps are privately negotiated bilateral contracts rather than exchange-standardized products, legal certainty and institutional enforceability are paramount. This entire global ecosystem relies on the ISDA Master Agreement."
+            },
+            "hi": {
+              "display": "Over-the-counter swaps privately negotiated hote hain, isliye inki legal certainty ensure karne ke liye global standard enforce kiya gaya hai: The ISDA Master Agreement."
+            }
+          },
+          "onScreenIntent": "Introduce ISDA institutional documentation standards",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "ISDA Master Agreement"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Published by the International Swaps and Derivatives Association, this standardized legal umbrella governs the overarching relationship between counterparties, detailing default definitions, termination events, cross-default provisions, and bilateral netting rules."
+            },
+            "hi": {
+              "display": "International Swaps and Derivatives Association ne ek comprehensive legal architecture create kiya hai jo defaults, netting aur contract termination ko govern karta hai."
+            }
+          },
+          "onScreenIntent": "Detail Master Agreement clauses: default events, cross-defaults, and netting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "bilateral netting"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "As Hull highlights in Business Snapshot 7.1, each specific transaction is documented via a trade Confirmation. The Confirmation incorporates the Master Agreement while specifying exact commercial parameters: notional principal, trade date, fixed rate, benchmark floating rate, payment frequencies, and day-count conventions."
+            },
+            "hi": {
+              "display": "Business Snapshot seven point one mein Hull explain karte hain ki har individual swap trade ke liye ek precise Confirmation issue kiya jata hai, jisme notional principal, trade date, fixed rate, floating benchmark reset dates aur day count conventions legally seal hote hain."
+            }
+          },
+          "onScreenIntent": "Explain Business Snapshot 7.1 and trade Confirmations",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "trade confirmation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Swap Valuation Method 1: The Bond Portfolio Formulation",
+      "purpose": "Formulate swap valuation as the difference between floating and fixed bonds: V_swap = B_floating - B_fixed",
+      "takeaways": [
+        "Method 1 models the swap as a portfolio of a floating bond and a fixed bond",
+        "To fixed payer: V_swap = B_floating - B_fixed",
+        "Immediately following any reset date, B_floating equals exactly par notional L"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Swap Valuation: The Bond Portfolio Formulation",
+        "formula": {
+          "latex": "V_{\\text{swap}} = B_{\\text{floating}} - B_{\\text{fixed}}",
+          "expression": "Swap Value = Floating Bond Value - Fixed Bond Value",
+          "solvesFor": "Mark-to-Market Swap Value to Fixed Payer (V_swap)",
+          "variables": [
+            {
+              "symbol": "V_swap",
+              "latex": "V_{\\text{swap}}",
+              "meaning": "Mark-to-market value of swap to fixed-rate payer",
+              "unit": "currency"
+            },
+            {
+              "symbol": "B_floating",
+              "latex": "B_{\\text{floating}}",
+              "meaning": "Value of floating-rate bond leg receiving SOFR",
+              "unit": "currency"
+            },
+            {
+              "symbol": "B_fixed",
+              "latex": "B_{\\text{fixed}}",
+              "meaning": "Value of fixed-rate bond leg paying fixed coupon R_K",
+              "unit": "currency"
+            },
+            {
+              "symbol": "L",
+              "latex": "L",
+              "meaning": "Notional principal amount",
+              "unit": "currency"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "bp1",
+            "symbolLatex": "B_{\\text{floating}} = (L + k^*) e^{-r_1 t_1}",
+            "meaning": "Floating leg equals par L plus next coupon discounted from next payment date",
+            "unit": "currency"
+          },
+          {
+            "id": "bp2",
+            "symbolLatex": "B_{\\text{floating}} = L",
+            "meaning": "Immediately after a coupon reset date, floating bond trades exactly at par",
+            "unit": "par condition"
+          },
+          {
+            "id": "bp3",
+            "symbolLatex": "B_{\\text{fixed}} = \\sum c_i e^{-r_i t_i} + L e^{-r_n t_n}",
+            "meaning": "Fixed bond discounted at risk-free zero rates",
+            "unit": "currency"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Turning to quantitative mechanics: Once interest rates move after trade inception, how do we determine the fair market value of an ongoing swap? Hull formulates two mathematically equivalent methods. Method One is the Bond Portfolio Formulation."
+            },
+            "hi": {
+              "display": "Ab aate hain quantitative pricing par. Ek existing Interest Rate Swap ki fair value kaise calculate ki jati hai? Hull do mathematically equivalent methods demonstrate karte hain. Method One hai The Bond Portfolio Formulation."
+            }
+          },
+          "onScreenIntent": "Introduce swap valuation and the Bond Portfolio Formulation",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "bond portfolio valuation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To the fixed-rate payer who pays fixed coupons and receives floating cash flows, the swap is identical to a portfolio consisting of a long position in a floating-rate bond and a short position in a fixed-rate bond. Thus, the swap value equals B_floating minus B_fixed."
+            },
+            "hi": {
+              "display": "Fixed-rate payer ke perspective se swap ek portfolio hai: long floating rate bond aur short fixed rate bond. Formula dekhiye: V swap barabar B floating minus B fixed."
+            }
+          },
+          "onScreenIntent": "Formulate V_swap = B_floating - B_fixed for fixed payer",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The floating-rate bond exhibits an invaluable pricing property: immediately following any interest payment date, a floating-rate bond is worth exactly par, or notional L. Therefore, valuing the swap simplifies to valuing a standard fixed-rate bond and subtracting it from par plus the next known floating coupon."
+            },
+            "hi": {
+              "display": "Floating rate bond ki sabse elegant property ye hai ki har interest payment date par coupon reset hone ke immediately baad iski value exactly notional principal L ke barabar hoti hai. Isliye swap ki valuation simply fixed-rate bond ki standard discounting ban jati hai."
+            }
+          },
+          "onScreenIntent": "Explain floating par property: B_floating = L immediately after reset",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "par property"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Swap Valuation Method 2: The FRA Forward Rate Discounting Model",
+      "purpose": "Formulate swap valuation as a portfolio of discounted Forward Rate Agreements",
+      "takeaways": [
+        "Method 2 decomposes the swap into an explicit strip of Forward Rate Agreements (FRAs)",
+        "Forward rates F_i are extracted from the zero curve and treated as realized floating rates",
+        "V_swap = sum of L * (F_i - R_K) * tau * e^(-r_i * t_i); initial swap rate sets V_swap = 0"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Swap Valuation: The Discounted FRA Strip Model",
+        "formula": {
+          "latex": "V_{\\text{swap}} = \\sum_{i=1}^{n} L (F_i - R_K) \\tau e^{-r_i t_i}",
+          "expression": "Swap Value = Sum of Discounted FRA Cash Flows",
+          "solvesFor": "Present Value of All Future Swap Net Exchanges (V_swap)",
+          "variables": [
+            {
+              "symbol": "V_swap",
+              "latex": "V_{\\text{swap}}",
+              "meaning": "Mark-to-market value of swap to fixed-rate payer",
+              "unit": "currency"
+            },
+            {
+              "symbol": "L",
+              "latex": "L",
+              "meaning": "Notional principal amount",
+              "unit": "currency"
+            },
+            {
+              "symbol": "F_i",
+              "latex": "F_i",
+              "meaning": "Forward benchmark interest rate for period i",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "R_K",
+              "latex": "R_K",
+              "meaning": "Predetermined fixed swap coupon rate",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "tau",
+              "latex": "\\tau",
+              "meaning": "Day count accrual fraction for period i",
+              "unit": "years"
+            },
+            {
+              "symbol": "r_i",
+              "latex": "r_i",
+              "meaning": "Continuous zero rate for discounting payment at t_i",
+              "unit": "decimal/year"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "fra1",
+            "symbolLatex": "L (F_i - R_K) \\tau",
+            "meaning": "Expected net cash flow for payment period i",
+            "unit": "currency"
+          },
+          {
+            "id": "fra2",
+            "symbolLatex": "e^{-r_i t_i}",
+            "meaning": "Zero-coupon discount factor back to valuation date",
+            "unit": "dimensionless"
+          },
+          {
+            "id": "fra3",
+            "symbolLatex": "V_{\\text{swap}} = 0 \\text{ at } t=0",
+            "meaning": "Par swap rate R_K equates total present value to exactly zero at inception",
+            "unit": "equilibrium"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second valuation technique is the FRA Strip Model, which decomposes the swap into an explicit portfolio of independent Forward Rate Agreements maturing on each payment date."
+            },
+            "hi": {
+              "display": "Swap valuation ka doosra powerful approach hai The FRA Strip Method. Ek swap ko series of Forward Rate Agreements ke portfolio ke roop mein decompose kiya ja sakta hai."
+            }
+          },
+          "onScreenIntent": "Introduce the FRA Strip Model decomposing swaps into forward agreements",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "FRA strip model"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step One, trading desks extract implied forward interest rates F_i for each future payment period from the prevailing zero curve. In Step Two, they calculate the expected net cash flow for each period by treating each implied forward rate as the realized floating rate."
+            },
+            "hi": {
+              "display": "Step One: Current zero rate curve se har payment date ke liye implied forward interest rate F i calculate kijiye. Step Two: Expected net cash flow determine kijiye jahan floating cash flow forward rate par base hota hai."
+            }
+          },
+          "onScreenIntent": "Explain steps: extract forward rates F_i and compute expected net cash flows",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step Three, each expected net cash flow is discounted back to present value using the corresponding risk-free zero rate. Summing these discounted cash flows yields the exact market value of the swap. At trade inception, the fixed swap rate R_K is chosen such that the total present value equals zero."
+            },
+            "hi": {
+              "display": "Step Three: Har future cash flow ko risk-free zero curve se present value par discount kijiye. Jab contract execute hota hai, fixed swap rate R K aise set kiya jata hai ki swap ki initial present value exactly zero ho."
+            }
+          },
+          "onScreenIntent": "Formulate present value sum and zero inception value condition",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Calculating Swap Net Cash Flows",
+      "purpose": "Test student ability to compute the exact net cash exchange on a $100M swap reset",
+      "takeaways": [
+        "Notional L = $100M, Fixed rate = 4.50%, Floating rate = 5.20%, tau = 0.50 yrs",
+        "Rate spread = 5.20% - 4.50% = 0.70% (70 bps)",
+        "Net payment = $100,000,000 * 0.0070 * 0.50 = $350,000 paid by floating payer"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "interactive_quiz",
+      "data": {
+        "title": "Active Recall: Swap Cash Flow Netting Calculation",
+        "question": "A semi-annual swap has Notional L = $100M. Fixed rate is 4.50% and 6-month floating benchmark resets at 5.20% (tau = 0.50). What is the net payment exchanged?",
+        "options": [
+          "$700,000 paid by the fixed rate payer to the floating rate payer.",
+          "$350,000 paid by the floating rate payer to the fixed rate payer.",
+          "$350,000 paid by the fixed rate payer to the floating rate payer.",
+          "$5,200,000 gross transfer from floating payer, $4,500,000 gross transfer from fixed payer."
+        ],
+        "correctIndex": 1,
+        "explanation": "Net Payment = L * (Floating Rate - Fixed Rate) * tau = $100,000,000 * (0.0520 - 0.0450) * 0.50 = $100,000,000 * 0.0070 * 0.50 = $350,000. Because the floating benchmark (5.20%) exceeds the fixed rate (4.50%), the floating rate payer pays the net difference of $350,000 to the fixed rate payer."
+      },
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us now evaluate a practical institutional scenario to test your mastery of swap cash flow mechanics. Carefully review the parameters displayed on screen."
+            },
+            "hi": {
+              "display": "Chaliye ab ek practical institutional scenario evaluate karte hain. Screen par diye gaye parameters ko dhyan se padhiye."
+            }
+          },
+          "onScreenIntent": "Present the swap cash flow netting challenge",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A semi-annual plain vanilla interest rate swap has a notional principal of one hundred million dollars. The fixed rate is four point five zero percent and the six-month floating benchmark resets at five point two zero percent with a day-count fraction of zero point five zero. What is the net payment exchanged at settlement, and which counterparty pays? Pause and consider."
+            },
+            "hi": {
+              "display": "Ek swap ka notional principal one hundred million dollars hai. Semi-annual fixed rate four point five percent hai. Six-month floating benchmark five point two percent par reset hua hai. 180 by 360 day count convention ke according net payment kitni hogi aur kaun pay karega? Pause and consider."
+            }
+          },
+          "onScreenIntent": "Prompt calculation of 70 bps spread on $100M over 0.50 years",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option B: The floating rate payer pays three hundred fifty thousand dollars to the fixed rate payer. Calculating the spread: five point two zero percent minus four point five zero percent equals zero point seven zero percent. Multiplying one hundred million dollars by zero point seven zero percent and by zero point five zero yields three hundred fifty thousand dollars. Because the floating benchmark exceeds the fixed rate, the floating payer transfers the net difference."
+            },
+            "hi": {
+              "display": "Correct answer hai Option B: Floating rate payer three hundred fifty thousand dollars pay karega. Calculation dekhiye: 5.2% minus 4.5% equals 0.7%. Half-year ke liye 0.35% times 100 million equals $350,000. Kyunki floating rate fixed se zyada hai, floating payer net difference transfer karta hai."
+            }
+          },
+          "onScreenIntent": "Reveal Option B: $350,000 paid by floating rate payer",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "The Term Structure of Swap Rates & Zero-Curve Bootstrapping",
+      "purpose": "Define Par Swap Rates and formulate zero curve bootstrapping from the swap curve",
+      "takeaways": [
+        "Major financial institutions use the Par Swap Curve as the primary pricing benchmark",
+        "The Par Swap Rate is the fixed coupon equating swap value to zero (fixed bond to par 100)",
+        "Quantitative desks bootstrap continuous risk-free zero curves directly from quoted par swap rates"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "The Par Swap Rate & Zero-Curve Bootstrapping",
+        "formula": {
+          "latex": "R_{\\text{swap}} = \\frac{1 - e^{-r_n t_n}}{\\sum_{i=1}^{n} \\tau e^{-r_i t_i}}",
+          "expression": "Par Swap Rate = (1 - Discount Factor to Maturity) / Sum of Discount Factors",
+          "solvesFor": "Par Swap Benchmark Fixed Coupon Rate (R_swap)",
+          "variables": [
+            {
+              "symbol": "R_swap",
+              "latex": "R_{\\text{swap}}",
+              "meaning": "Quoted par swap fixed coupon rate setting initial swap value to zero",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "e^{-r_n t_n}",
+              "latex": "d_n",
+              "meaning": "Risk-free discount factor to the final swap maturity date",
+              "unit": "dimensionless"
+            },
+            {
+              "symbol": "tau",
+              "latex": "\\tau",
+              "meaning": "Day count accrual fraction for each payment period",
+              "unit": "years"
+            },
+            {
+              "symbol": "e^{-r_i t_i}",
+              "latex": "d_i",
+              "meaning": "Discount factor corresponding to each intermediate payment date",
+              "unit": "dimensionless"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "psr1",
+            "symbolLatex": "B_{\\text{fixed}} = 100",
+            "meaning": "Par swap rate sets fixed bond value exactly equal to face par",
+            "unit": "par condition"
+          },
+          {
+            "id": "psr2",
+            "symbolLatex": "1 - d_n",
+            "meaning": "Present value of principal repayment obligation at maturity",
+            "unit": "dimensionless"
+          },
+          {
+            "id": "psr3",
+            "symbolLatex": "\\sum \\tau d_i",
+            "meaning": "Annuity factor summing all discount factors across the swap lifespan",
+            "unit": "years"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For major financial institutions, Treasury yields are not the primary benchmark for pricing and discounting derivatives. Instead, trading desks utilize the Par Swap Curve as the definitive interbank benchmark."
+            },
+            "hi": {
+              "display": "Financial institutions ke liye Treasury yields ke bajaye Swap Rates actual benchmark cost of funding represent karte hain. Is continuous curve ko Par Swap Curve kaha jata hai."
+            }
+          },
+          "onScreenIntent": "Introduce the Par Swap Curve as the definitive interbank benchmark",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "par swap curve"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Par Swap Rate for a given maturity is the unique fixed coupon rate that sets the initial value of the swap to zero, meaning it equates the value of the fixed-rate bond leg to par value one hundred."
+            },
+            "hi": {
+              "display": "Par Swap Rate wo unique fixed coupon rate hai jo fixed bond ko exactly par value one hundred par price karta hai jab floating leg par trade ho rahi ho."
+            }
+          },
+          "onScreenIntent": "Define Par Swap Rate equating initial swap value to zero",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "par swap rate"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Just as we bootstrapped the zero-coupon curve from government bonds in Chapter Four, quantitative desks bootstrap continuous risk-free zero curves directly from quoted par swap rates, providing the foundation for pricing exotic interest rate derivatives."
+            },
+            "hi": {
+              "display": "Jaise humne Chapter Four mein coupon bonds se zero rates bootstrap kiye the, exactly waise hi trading desks par swap rates se pure institutional zero rate curve bootstrap ki jati hai."
+            }
+          },
+          "onScreenIntent": "Explain bootstrapping continuous zero curves directly from swap rates",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "swap zero bootstrapping"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Interest Rate Swaps",
+      "purpose": "Consolidate Chapter 7 Part 1 foundational pillars before advancing to Currency Swaps in Part 2",
+      "takeaways": [
+        "Principal is purely notional and never exchanged; only net interest transfers",
+        "Swap dealers warehouse risk to earn dependable bid-ask spreads",
+        "Swaps are valued identically via the bond portfolio model or discounted FRA strip"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "summary_thread",
+      "data": {
+        "title": "Executive Synthesis: The Four Pillars of Plain Vanilla Swaps",
+        "rules": [
+          {
+            "id": "rul-1",
+            "title": "Notional Principal Netting",
+            "text": "Principal is purely reference notional; only the net interest spread transfers on reset dates."
+          },
+          {
+            "id": "rul-2",
+            "title": "Swap Dealer Intermediation",
+            "text": "Dealers match offsetting bilateral swaps, neutralizing market risk to capture bid-ask spreads."
+          },
+          {
+            "id": "rul-3",
+            "title": "Quality Spread Differential",
+            "text": "QSD equals the credit spread gap between fixed and floating markets, defining total economic surplus."
+          },
+          {
+            "id": "rul-4",
+            "title": "Rollover Refinancing Risk",
+            "text": "Comparative advantage is an illusion; floating bank reviews expose borrowers to rollover default."
+          },
+          {
+            "id": "rul-5",
+            "title": "ISDA Legal Infrastructure",
+            "text": "Standardized Master Agreements govern default and close-out netting; Confirmations specify trade terms."
+          },
+          {
+            "id": "rul-6",
+            "title": "Bond Portfolio Valuation",
+            "text": "V_swap = B_floating - B_fixed; floating bond trades at par L immediately following resets."
+          },
+          {
+            "id": "rul-7",
+            "title": "FRA Strip Model",
+            "text": "V_swap = sum of discounted expected forward cash flows; par swap rate sets inception value to zero."
+          },
+          {
+            "id": "rul-8",
+            "title": "Swap Zero Bootstrapping",
+            "text": "Quoted par swap rates provide the market benchmark to bootstrap continuous institutional zero curves."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate our mastery of Chapter Seven Part One through the four structural pillars of plain vanilla interest rate swaps."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Seven Part One ke chaar foundational swap principles ko consolidate karte hain."
+            }
+          },
+          "onScreenIntent": "Introduce consolidation of the four structural pillars",
+          "sourceFactIds": [
+            "F01",
+            "F03",
+            "F05",
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar One: Notional Principal Netting. Principal is purely notional and never exchanged. Only the net interest rate differential transfers on reset dates."
+            },
+            "hi": {
+              "display": "Pillar One: Notional Principal Netting. Principal kabhi exchange nahi hota; cash flows same currency mein net difference ke roop mein transfer hote hain."
+            }
+          },
+          "onScreenIntent": "Review Pillar One: Notional Principal Netting",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Two: Dealer Intermediation. Global swap dealers sit between corporate counterparties, matching offsetting flows to eliminate market risk and capture dependable bid-ask spreads."
+            },
+            "hi": {
+              "display": "Pillar Two: Dealer Intermediation. Banks opposite customer flows ko match karke interest rate risk eliminate karte hain aur clean bid-ask spread kamate hain."
+            }
+          },
+          "onScreenIntent": "Review Pillar Two: Dealer Intermediation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Three: Refinancing Risk Reality. Comparative advantage is not a free lunch; synthetic fixed borrowing leaves the lower-rated borrower exposed to rollover refinancing risk."
+            },
+            "hi": {
+              "display": "Pillar Three: The Refinancing Risk Reality. Comparative advantage absolute free lunch nahi hai; floating borrowers rollover refinancing risk bear karte hain."
+            }
+          },
+          "onScreenIntent": "Review Pillar Three: Refinancing Risk Reality",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Four: Dual Valuation Equivalence. Swaps are valued identically either as differences between floating and fixed bonds, or as discounted strips of forward rate agreements."
+            },
+            "hi": {
+              "display": "Pillar Four: Dual Valuation Equivalence. Ek swap bond portfolio difference ya discounted FRA strip dono methods se mathematically identical value deliver karta hai."
+            }
+          },
+          "onScreenIntent": "Review Pillar Four: Dual Valuation Equivalence",
+          "sourceFactIds": [
+            "F05",
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part Two, we will expand beyond single-currency swaps to master cross-currency swaps, examine why currency swaps carry ten times greater credit risk, and analyze the famous Hammersmith and Fulham municipal swap crisis."
+            },
+            "hi": {
+              "display": "Part Two mein hum Currency Swaps, comparative advantage in foreign borrowing, total return swaps aur Hammersmith municipal crisis ko dissect karenge."
+            }
+          },
+          "onScreenIntent": "Preview Chapter 7 Part 2: Currency swaps and credit risk",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    }
+  ]
+}

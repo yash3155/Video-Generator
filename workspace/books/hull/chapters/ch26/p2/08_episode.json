@@ -1,0 +1,1465 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch26",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 26",
+  "partLabel": "Part 2",
+  "title": "Hull Chapter 26 Part 2: Exotic Options (Lookback, Asian, Exchange Options & Volatility Swaps)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 51,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Airline CFO's Fuel Manipulation Nightmare",
+      "purpose": "The Airline CFO's Fuel Manipulation Nightmare: Foundational quantitative principles",
+      "takeaways": [
+        "The Airline CFO's Fuel Manipulation Nightmare: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When an international airline needs to hedge jet fuel exposure over a six-month horizon, why is the corporate treasury reluctant to utilize standard European vanilla options?"
+            },
+            "hi": {
+              "display": "सर, अगर एक अंतरराष्ट्रीय एयरलाइन कंपनी को छह महीने के लिए जेट ईंधन की हेजिंग करनी हो, तो वे स्टैंडर्ड यूरोपियन ऑप्शन्स लेने से क्यों हिचकिचाते हैं?"
+            }
+          },
+          "onScreenIntent": "The Airline CFO's Fuel Manipulation Nightmare",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Vanilla options suffer from a fatal structural flaw: single-point expiration vulnerability. If speculative funds corner physical cash delivery or manipulate spot prices on expiration Friday, cash settlement spikes artificially, distorting the entire corporate hedge."
+            },
+            "hi": {
+              "display": "राजू, वैनिला ऑप्शन्स की सबसे बड़ी कमजोरी है 'सिंगल-पॉइंट एक्सपायरी'। मान लीजिए ऑप्शन एक्सपायरी शुक्रवार को है। अगर उस एक दिन तेल कार्टेल या सट्टेबाज फ्यूचर्स में कृत्रिम स्पाइक पैदा कर दें, तो एयरलाइन का पूरा कैश सेटलमेंट बिगड़ जाएगा!"
+            }
+          },
+          "onScreenIntent": "The Airline CFO's Fuel Manipulation Nightmare",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Furthermore, a six-month vanilla option premium is extremely costly. Corporate treasurers require contracts that are immune to single-day settlement manipulation while reducing upfront premium expense."
+            },
+            "hi": {
+              "display": "और साथ ही, छह महीने का वैनिला प्रीमियम बहुत महंगा होता है। इसलिए कॉर्पोरेट ट्रेजर्स ऐसे ऑप्शन्स चाहते हैं जो प्राइस मैनिपुलेशन से सुरक्षित हों और जिनकी कॉस्ट भी कम हो!"
+            }
+          },
+          "onScreenIntent": "The Airline CFO's Fuel Manipulation Nightmare",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The quantitative solution is Asian Options and path-dependent exotics. By averaging prices across time, effective volatility collapses and option premiums drop by up to 40%. Let us analyze the mathematics."
+            },
+            "hi": {
+              "display": "इसी का समाधान है 'एशियन ऑप्शन्स' और एडवांस्ड पाथ-डिपेंडेंट एक्ज़ोटिक्स! इसमें दैनिक कीमतों का औसत लिया जाता है, जिससे वोलैटिलिटी घटती है और प्रीमियम 40% तक सस्ता हो जाता है। चलिए इसका विश्लेषण करते हैं!"
+            }
+          },
+          "onScreenIntent": "The Airline CFO's Fuel Manipulation Nightmare",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Airline CFO's Fuel Manipulation Nightmare",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Airline CFO's Fuel Manipulation Nightmare: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Single-Point Expiration vs Continuous Path Averaging",
+      "purpose": "Single-Point Expiration vs Continuous Path Averaging: Foundational quantitative principles",
+      "takeaways": [
+        "Single-Point Expiration vs Continuous Path Averaging: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The dichotomy between vanilla and Asian options centers on terminal expiration vulnerability versus continuous path dependency. Vanilla payoffs depend solely on terminal spot ST, leaving them vulnerable to market manipulation."
+            },
+            "hi": {
+              "display": "वैनिला और एशियन ऑप्शन्स के बीच का अंतर एक्सपायरी जोखिम और पाथ-डिपेंडेंसी का है। वैनिला ऑप्शन्स केवल अंतिम दिन के टर्मिनल स्पॉट ST पर निर्भर करते हैं, जिससे वे एक्सपायरी पिन रिस्क और मैनिपुलेशन के शिकार होते हैं।"
+            }
+          },
+          "onScreenIntent": "Single-Point Expiration vs Continuous Path Averaging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, Asian contracts depend on the path-averaged price S-bar. Single-day spikes cannot distort the average. Moreover, continuous averaging compresses effective volatility to approximately sigma over square-root of 3, roughly 58% of spot volatility!"
+            },
+            "hi": {
+              "display": "इसके विपरीत, एशियन ऑप्शन्स में पूरे पीरियड की औसत कीमत बार-एस ली जाती है। किसी एक दिन का स्पाइक औसत को नहीं हिला सकता। साथ ही, औसत की वोलैटिलिटी एसेट की वोलैटिलिटी की तुलना में लगभग वन अपॉन रूट थ्री यानी 58% हो जाती है!"
+            }
+          },
+          "onScreenIntent": "Single-Point Expiration vs Continuous Path Averaging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This volatility compression substantially reduces option premium. Consequently, Asian options represent the premier hedging choice for airlines, refineries, and commodity importers worldwide."
+            },
+            "hi": {
+              "display": "वोलैटिलिटी में यह तीव्र संपीड़न प्रीमियम को भारी रूप से घटा देता है। इसलिए एयरलाइंस, रिफाइनरीज और कमोडिटी इम्पोर्टर्स के लिए एशियन ऑप्शन्स पहली पसंद बन जाते हैं।"
+            }
+          },
+          "onScreenIntent": "Single-Point Expiration vs Continuous Path Averaging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Single-Point Expiration vs Continuous Path Averaging",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Single-Point Expiration vs Continuous Path Averaging: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of Advanced Path-Dependent Exotics",
+      "purpose": "Four Pillars of Advanced Path-Dependent Exotics: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of Advanced Path-Dependent Exotics: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "We divide advanced exotic options into four powerful quantitative pillars. The first pillar is Lookback Options—hindsight optimization allowing the holder to buy at the absolute minimum or sell at the maximum."
+            },
+            "hi": {
+              "display": "एडवांस्ड एक्ज़ोटिक ऑप्शन्स को हम चार शक्तिशाली पिलर्स में विभाजित करते हैं। पहला पिलर है लुकबैक ऑप्शन्स—यानी हिंडसाइट परफेक्शन! इनमें इन्वेस्टर को सबसे निचले स्तर पर खरीदने या उच्चतम स्तर पर बेचने का अधिकार मिलता है।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Advanced Path-Dependent Exotics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second pillar is Asian Options—average price and average strike structures. The mathematical divergence between arithmetic and geometric averaging underpins corporate risk management."
+            },
+            "hi": {
+              "display": "दूसरा पिलर है एशियन ऑप्शन्स—एवरेज प्राइस और एवरेज स्ट्राइक कॉन्ट्रैक्ट्स। अरिथमेटिक और जियोमेट्रिक एवरेजेस के गणितीय अंतर कॉर्पोरेट रिस्क मैनेजमेंट का आधार हैं।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Advanced Path-Dependent Exotics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The third pillar is Exchange Options—William Margrabe's landmark 1978 formula pricing the option to exchange one risky asset for another, completely independent of the risk-free rate!"
+            },
+            "hi": {
+              "display": "तीसरा पिलर है एक्सचेंज ऑप्शन्स—विलियम मार्ग्राबे का 1978 का ऐतिहासिक फॉर्मूला, जिसमें एक रिस्की एसेट को दूसरे रिस्की एसेट में बदलने का ऑप्शन बिना रिस्क-फ्री रेट के वैल्यू किया जाता है!"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Advanced Path-Dependent Exotics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The fourth pillar encompasses Multi-Asset Rainbows, Basket Portfolios, and Pure Variance Swaps, allowing direct institutional trading of volatility without directional delta contamination."
+            },
+            "hi": {
+              "display": "चौथा पिलर है मल्टी-एसेट रेनबोज़, बास्केट ऑप्शन्स और प्योर वेरियंस स्वैप्स। वेरियंस स्वैप्स द्वारा वोलैटिलिटी को बिना डेल्टा कंटैमिनेशन के ट्रेड किया जाता है।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Advanced Path-Dependent Exotics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of Advanced Path-Dependent Exotics",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of Advanced Path-Dependent Exotics: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Lookback Options: Floating Strike vs Fixed Strike",
+      "purpose": "Lookback Options: Floating Strike vs Fixed Strike: Foundational quantitative principles",
+      "takeaways": [
+        "Lookback Options: Floating Strike vs Fixed Strike: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Lookback options fulfill the investor's hindsight dream. In a Floating Strike Lookback Call, payoff is ST minus S-minimum, allowing the holder to buy the asset at its historical absolute trough!"
+            },
+            "hi": {
+              "display": "लुकबैक ऑप्शन्स इन्वेस्टर को 'काश मुझे पहले पता होता' का सपना पूरा करते हैं। फ्लोटिंग स्ट्राइक लुकबैक कॉल में पेऑफ होता है एसटी माइनस एस-मिनिमम! यानी आप मैच्योरिटी पर इतिहास के न्यूनतम भाव पर एसेट खरीद सकते हैं।"
+            }
+          },
+          "onScreenIntent": "Lookback Options: Floating Strike vs Fixed Strike",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In a Floating Strike Put, payoff is S-maximum minus ST, guaranteeing a sale at the absolute market peak. Because it virtually always expires in-the-money, its upfront premium is exceptionally steep."
+            },
+            "hi": {
+              "display": "फ्लोटिंग स्ट्राइक पुट में पेऑफ होता है एस-मैक्सिमम माइनस एसटी! यानी आप हमेशा उच्चतम पीक पर बेचते हैं। चूंकि यह ऑप्शन हमेशा इन-द-मनी एक्सपायर होता है, इसका प्रीमियम बहुत अधिक होता है।"
+            }
+          },
+          "onScreenIntent": "Lookback Options: Floating Strike vs Fixed Strike",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Fixed Strike Lookbacks, strike K is constant, yielding call payoff max(S-max - K, 0). Goldman, Sosin, and Gatto derived closed-form analytical solutions for these contracts in 1979."
+            },
+            "hi": {
+              "display": "वहीं फिक्स्ड स्ट्राइक लुकबैक में स्ट्राइक के पहले से तय होती है और कॉल का पेऑफ मैक्सिमम ऑफ एस-मैक्स माइनस के होता है। गोल्डमैन, सोसिन और गैट्टो ने 1979 में इसके एनालिटिकल फॉर्मूले व्युत्पन्न किए थे।"
+            }
+          },
+          "onScreenIntent": "Lookback Options: Floating Strike vs Fixed Strike",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Lookback Options: Floating Strike vs Fixed Strike",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Lookback Options: Floating Strike vs Fixed Strike: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Asian Options: Arithmetic vs Geometric Averaging",
+      "purpose": "Asian Options: Arithmetic vs Geometric Averaging: Foundational quantitative principles",
+      "takeaways": [
+        "Asian Options: Arithmetic vs Geometric Averaging: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Asian options compute price averages via two methodologies: Arithmetic Average, the simple discrete mean of prices; and Geometric Average, the m-th root of the continuous price product."
+            },
+            "hi": {
+              "display": "एशियन ऑप्शन्स में एवरेज की गणना दो तरह से की जाती है: अरिथमेटिक एवरेज, जो सभी ऑब्जर्व्ड प्राइसेज का साधारण औसत है; और जियोमेट्रिक एवरेज, जो कीमतों के गुणनफल का एम-वां रूट है।"
+            }
+          },
+          "onScreenIntent": "Asian Options: Arithmetic vs Geometric Averaging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In financial markets, arithmetic averaging is the commercial standard. However, because the sum of lognormals is not lognormal, no exact closed-form analytical formula exists for arithmetic Asians."
+            },
+            "hi": {
+              "display": "वित्तीय बाजारों में अरिथमेटिक एवरेज ही कमर्शियल स्टैंडर्ड है। लेकिन चूंकि लॉग-नॉर्मल वेरिएबल्स का योग लॉग-नॉर्मल नहीं होता, इसलिए अरिथमेटिक एशियन ऑप्शन का कोई सटीक क्लोज्ड-फॉर्म फॉर्मूला नहीं है।"
+            }
+          },
+          "onScreenIntent": "Asian Options: Arithmetic vs Geometric Averaging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Quants therefore deploy Curran and Turnbull-Wakeman approximations or Monte Carlo simulation. Conversely, geometric averages preserve strict lognormality, enabling exact closed-form BSM solutions."
+            },
+            "hi": {
+              "display": "इसलिए क्वांट्स करन और टर्नबुल-वेकमैन के एनालिटिकल एप्रोक्सीमेशन्स या मोंटे कार्लो सिमुलेशन का उपयोग करते हैं। दूसरी ओर, जियोमेट्रिक एवरेज लॉग-नॉर्मलिटी को सुरक्षित रखता है, जिससे इसका क्लोज्ड-फॉर्म समाधान संभव है।"
+            }
+          },
+          "onScreenIntent": "Asian Options: Arithmetic vs Geometric Averaging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The crowning mathematical insight is that continuous averaging compresses effective volatility to sigma over square-root of 3! This 42% volatility drop dramatically lowers corporate hedging costs."
+            },
+            "hi": {
+              "display": "सबसे अहम गणितीय तथ्य यह है कि कंटीन्यूअस एवरेजिंग से इफेक्टिव वोलैटिलिटी सिग्मा अपॉन रूट थ्री हो जाती है! वोलैटिलिटी का यह 42% संकुचन कॉर्पोरेट हेजिंग कॉस्ट को भारी रूप से सस्ता कर देता है।"
+            }
+          },
+          "onScreenIntent": "Asian Options: Arithmetic vs Geometric Averaging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Asian Options: Arithmetic vs Geometric Averaging",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Asian Options: Arithmetic vs Geometric Averaging: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Exchange Options: William Margrabe's (1978) Formula",
+      "purpose": "Exchange Options: William Margrabe's (1978) Formula: Foundational quantitative principles",
+      "takeaways": [
+        "Exchange Options: William Margrabe's (1978) Formula: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "An Exchange Option gives the holder the right to surrender risky asset S2 to acquire risky asset S1 at expiration T. Its terminal payoff is max(S1 - S2, 0)."
+            },
+            "hi": {
+              "display": "एक्सचेंज ऑप्शन धारक को मैच्योरिटी पर एक रिस्की एसेट S2 देकर दूसरा रिस्की एसेट S1 प्राप्त करने का अधिकार देता है। इसका पेऑफ मैक्सिमम ऑफ S1 माइनस S2 और ज़ीरो होता है।"
+            }
+          },
+          "onScreenIntent": "Exchange Options: William Margrabe's (1978) Formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 1978, William Margrabe proved that by selecting asset S2 as the numeraire, the problem transforms into a standard call on the relative price ratio S1/S2 with strike equal to 1!"
+            },
+            "hi": {
+              "display": "1978 में विलियम मार्ग्राबे ने सिद्ध किया कि अगर हम एसेट S2 को न्युमेरेयर मान लें, तो यह समस्या स्ट्राइक 1 वाले रिलेटिव प्राइस S1 अपॉन S2 के स्टैंडर्ड कॉल ऑप्शन में बदल जाती है!"
+            }
+          },
+          "onScreenIntent": "Exchange Options: William Margrabe's (1978) Formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Margrabe's closed-form equation is: V0 equals S1 discounted by dividend yield q1 times N(d1) minus S2 discounted by dividend yield q2 times N(d2)."
+            },
+            "hi": {
+              "display": "मार्ग्राबे का क्लोज्ड-फॉर्म फॉर्मूला है: V0 बराबर S1 डिस्काउंटेड बाय डिविडेंड q1 टाइम्स N(d1) माइनस S2 डिस्काउंटेड बाय डिविडेंड q2 टाइम्स N(d2)।"
+            }
+          },
+          "onScreenIntent": "Exchange Options: William Margrabe's (1978) Formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice an extraordinary feature: the risk-free rate r is completely absent! Net composite volatility hat-sigma depends exclusively on individual asset volatilities and cross-correlation rho."
+            },
+            "hi": {
+              "display": "ध्यान दीजिए: इस फॉर्मूले में रिस्क-फ्री रेट r पूरी तरह गायब है! यहां नेट कम्पोज़िट वोलैटिलिटी हैट-सिग्मा दोनों एसेट्स की वोलैटिलिटीज और उनके बीच के कोरिलेशन रो पर निर्भर करती है।"
+            }
+          },
+          "onScreenIntent": "Exchange Options: William Margrabe's (1978) Formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Exchange Options: William Margrabe's (1978) Formula",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Exchange Options: William Margrabe's (1978) Formula: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Rainbow & Basket Portfolios",
+      "purpose": "Rainbow & Basket Portfolios: Foundational quantitative principles",
+      "takeaways": [
+        "Rainbow & Basket Portfolios: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Multi-asset derivatives feature two prominent structures: Rainbow Options and Basket Options. Rainbow contracts link payoffs to the best-performing or worst-performing asset in a multi-asset pool."
+            },
+            "hi": {
+              "display": "मल्टी-एसेट डेरिवेटिव्स में दो प्रमुख संरचनाएं होती हैं: रेनबो ऑप्शन्स और बास्केट ऑप्शन्स। रेनबो ऑप्शन्स दो या दो से अधिक एसेट्स के बेस्ट-परफॉर्मर या वर्स्ट-परफॉर्मर पर पेऑफ देते हैं।"
+            }
+          },
+          "onScreenIntent": "Rainbow & Basket Portfolios",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For instance, a Best-of Call pays max(max(S1, S2) - K, 0). Conversely, Basket Options are written on a linear weighted portfolio sum of underlying assets sum(w_i * S_i)."
+            },
+            "hi": {
+              "display": "उदाहरण के लिए, बेस्ट-ऑफ कॉल में पेऑफ मैक्सिमम ऑफ S1 या S2 माइनस स्ट्राइक K होता है। वहीं बास्केट ऑप्शन्स एक वेटेड पोर्टफोलियो ऑफ एसेट्स पर लिखे जाते हैं।"
+            }
+          },
+          "onScreenIntent": "Rainbow & Basket Portfolios",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Basket option pricing is hyper-sensitive to the cross-asset correlation matrix. Lower correlation enhances portfolio diversification, suppressing basket volatility and cheapening option premium."
+            },
+            "hi": {
+              "display": "बास्केट ऑप्शन्स की कीमत क्रॉस-एसेट कोरिलेशन मैट्रिक्स पर अत्यधिक संवेदनशील होती है। कम कोरिलेशन डायवर्सिफिकेशन पैदा करता है, जिससे बास्केट वोलैटिलिटी और ऑप्शन का प्रीमियम दोनों घट जाते हैं।"
+            }
+          },
+          "onScreenIntent": "Rainbow & Basket Portfolios",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Rainbow & Basket Portfolios",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Rainbow & Basket Portfolios: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Variance Swaps: Pure Realized Volatility Trading",
+      "purpose": "Variance Swaps: Pure Realized Volatility Trading: Foundational quantitative principles",
+      "takeaways": [
+        "Variance Swaps: Pure Realized Volatility Trading: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In vanilla options, trading volatility is contaminated by directional delta risk. Variance Swaps allow institutional desks to trade pure realized variance with zero directional delta exposure!"
+            },
+            "hi": {
+              "display": "ट्रेडिशनल ऑप्शन्स में वोलैटिलिटी ट्रेड करते समय डेल्टा का डायरेक्शनल रिस्क हमेशा साथ रहता है। लेकिन 'वेरियंस स्वैप्स' निवेशकों को बिना किसी डेल्टा रिस्क के शुद्ध रियलाइज्ड वेरियंस ट्रेड करने की अनुमति देते हैं!"
+            }
+          },
+          "onScreenIntent": "Variance Swaps: Pure Realized Volatility Trading",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A variance swap pays notional times realized annualized variance minus quoted strike variance. Realized variance is computed from the annualized sum of squared daily logarithmic returns."
+            },
+            "hi": {
+              "display": "वेरियंस स्वैप का पेऑफ नोशनल टाइम्स एनुअलाइज्ड रियलाइज्ड वेरियंस माइनस कोटेड स्ट्राइक वेरियंस होता है। रियलाइज्ड वेरियंस की गणना दैनिक लॉग रिटर्न्स के स्क्वेयर्स के योग से की जाती है।"
+            }
+          },
+          "onScreenIntent": "Variance Swaps: Pure Realized Volatility Trading",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Demeterfi and Derman proved in 1999 that realized variance is model-independently replicated via dynamic delta hedging and a static strip of OTM vanilla options weighted by 1/K^2!"
+            },
+            "hi": {
+              "display": "डिमीटरफी और डरमैन ने 1999 में सिद्ध किया कि रियलाइज्ड वेरियंस को डायनामिक डेल्टा हेज और आउट-ऑफ-द-मनी वैनिला ऑप्शन्स की 1 अपॉन K-स्क्वेयर्ड वेटेड स्ट्रिप द्वारा मॉडल-फ्री रूप से रेप्लिकेट किया जा सकता है!"
+            }
+          },
+          "onScreenIntent": "Variance Swaps: Pure Realized Volatility Trading",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "By Jensen's Inequality, because the square-root function is strictly concave, the fair volatility strike is strictly less than the square root of the variance strike—the variance convexity gap!"
+            },
+            "hi": {
+              "display": "और जेनसेन्स इनइक्वलिटी के अनुसार, स्क्वायर-रूट फंक्शन कॉनकेव होने के कारण फेयर वोलैटिलिटी स्ट्राइक हमेशा स्क्वायर-रूट ऑफ वेरियंस स्ट्राइक से कम होती है—यह वेरियंस कॉन्वेक्सिटी गैप कहलाता है!"
+            }
+          },
+          "onScreenIntent": "Variance Swaps: Pure Realized Volatility Trading",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Variance Swaps: Pure Realized Volatility Trading",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Variance Swaps: Pure Realized Volatility Trading: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Active Recall: Margrabe Composite Volatility",
+      "purpose": "Active Recall: Margrabe Composite Volatility: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: Margrabe Composite Volatility: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Test your quantitative mastery. A desk prices a 1-year option to exchange Stock B for Stock A. Volatilities are sigma_A = 30%, sigma_B = 20%, and correlation is rho = 0.50. What is composite volatility hat-sigma in Margrabe's formula? Consider the options on screen."
+            },
+            "hi": {
+              "display": "अब अपनी क्वांट क्षमता का परीक्षण कीजिए। एक डेस्क स्टॉक B को स्टॉक A में बदलने का 1-वर्षीय एक्सचेंज ऑप्शन वैल्यू कर रही है। स्टॉक A की वोलैटिलिटी 30%, स्टॉक B की 20% और दोनों का कोरिलेशन 0.50 है। मार्ग्राबे फॉर्मूले की कम्पोज़िट वोलैटिलिटी हैट-सिग्मा क्या होगी?"
+            }
+          },
+          "onScreenIntent": "Active Recall: Margrabe Composite Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Compute hat-sigma = sqrt(0.30^2 + 0.20^2 - 2 * 0.50 * 0.30 * 0.20) = sqrt(0.09 + 0.04 - 0.06)."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: Margrabe Composite Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A, 26.46%! Hat-sigma equals sqrt(0.09 + 0.04 - 0.06) = sqrt(0.07), which evaluates to exactly 26.46%!"
+            },
+            "hi": {
+              "display": "सही उत्तर है विकल्प ए, 26.46%! हैट-सिग्मा बराबर रूट ऑफ 0.30 स्क्वायर प्लस 0.20 स्क्वायर माइनस 2 टाइम्स 0.50 टाइम्स 0.30 टाइम्स 0.20, यानी रूट ऑफ 0.07, जो लगभग 26.46% आता है।"
+            }
+          },
+          "onScreenIntent": "Active Recall: Margrabe Composite Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Institutional Reality: Model Risk & Correlation Breakdown",
+      "purpose": "Institutional Reality: Model Risk & Correlation Breakdown: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Reality: Model Risk & Correlation Breakdown: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The greatest institutional challenge of multi-asset exotics is Model Risk. Black-Scholes assumptions of constant volatility and lognormality collapse in turbulent real-world markets."
+            },
+            "hi": {
+              "display": "पाथ-डिपेंडेंट और मल्टी-एसेट ऑप्शन्स की सबसे बड़ी संस्थागत सच्चाई है 'मॉडल रिस्क'। ब्लैक-स्कोल्स के कॉन्स्टेंट वोलैटिलिटी और नॉर्मल डिस्ट्रीब्यूशन के अनुमान वास्तविक दुनिया में टूट जाते हैं।"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Model Risk & Correlation Breakdown",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In liquidity crises and market crashes, historical correlation matrices break down completely as all assets plummet simultaneously—correlation approaches one!"
+            },
+            "hi": {
+              "display": "विशेष रूप से लिक्विडिटी क्रंच और मार्केट क्रैश के समय ऐतिहासिक कोरिलेशन ध्वस्त हो जाते हैं और सभी एसेट्स एक साथ गिरने लगते हैं—कोरिलेशन अप्रोचेस वन!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Model Risk & Correlation Breakdown",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Sophisticated desks never rely on static single-model pricing. They deploy regime-switching frameworks, local volatility surfaces, and extreme correlation stress tests."
+            },
+            "hi": {
+              "display": "इसलिए परिष्कृत ट्रेडिंग डेस्क कभी भी सिंगल-मॉडल प्राइसिंग पर निर्भर नहीं रहते। वे रिजीम-स्विचिंग मॉडल्स, लोकल वोलैटिलिटी सरफेसेज और एक्सट्रीम कोरिलेशन स्ट्रेस-टेस्टिंग का उपयोग करते हैं।"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Model Risk & Correlation Breakdown",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Summary: 8 Institutional Rules of Advanced Exotics",
+      "purpose": "Summary: 8 Institutional Rules of Advanced Exotics: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Advanced Exotics: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us codify the eight institutional rules of advanced exotics."
+            },
+            "hi": {
+              "display": "चलिए एडवांस्ड पाथ-डिपेंडेंट और मल्टी-एसेट एक्ज़ोटिक्स के 8 मुख्य नियमों को संहिताबद्ध करते हैं। नियम 1: फ्लोटिंग स्ट्राइक लुकबैक हिंडसाइट परफेक्शन देते हैं लेकिन अत्यधिक महंगे होते हैं।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Exotics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Floating strike lookbacks deliver hindsight perfection but carry exceptionally high premiums. Rule 2: Asian options neutralize single-day expiration manipulation and represent the premier corporate benchmark for continuous cash flows."
+            },
+            "hi": {
+              "display": "नियम 2: एशियन ऑप्शन्स सिंगल-डे प्राइस मैनिपुलेशन को पूरी तरह खत्म करते हैं और कमोडिटी हेजिंग का बेंचमार्क हैं।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Exotics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Continuous averaging compresses volatility to sigma over square-root of 3, delivering substantial premium cost savings to hedgers."
+            },
+            "hi": {
+              "display": "नियम 3: कंटीन्यूअस एवरेजिंग इफेक्टिव वोलैटिलिटी को सिग्मा अपॉन रूट थ्री तक संकुचित कर देती है, जिससे भारी प्रीमियम बचत होती है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Exotics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 4: Margrabe's exchange formula is independent of the risk-free rate r, elegantly derived via change-of-numeraire technology. Rule 5: Multi-asset rainbow and basket options hinge on cross-correlation; low correlation diversifies the basket and compresses premium."
+            },
+            "hi": {
+              "display": "नियम 4: मार्ग्राबे एक्सचेंज ऑप्शन फॉर्मूला रिस्क-फ्री रेट r से स्वतंत्र होता है और न्युमेरेयर चेंज तकनीक पर आधारित है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Exotics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 6: Variance swaps deliver pure realized variance. Rule 7: They are replicated via 1/K^2 strips of OTM vanillas. Rule 8: Always stress-test correlation breakdown!"
+            },
+            "hi": {
+              "display": "नियम 5: मल्टी-एसेट रेनबो और बास्केट ऑप्शन्स क्रॉस-एसेट कोरिलेशन मैट्रिक्स पर निर्भर करते हैं; कम कोरिलेशन बास्केट प्रीमियम को सस्ता करता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Exotics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles form the comprehensive operational foundation for advanced exotic derivatives."
+            },
+            "hi": {
+              "display": "नियम 6: वेरियंस स्वैप्स प्योर रियलाइज्ड वेरियंस एक्सपोजर देते हैं। नियम 7: इन्हें OTM वैनिला ऑप्शन्स की 1 अपॉन K-स्क्वेयर्ड स्ट्रिप से रेप्लिकेट किया जाता है। और नियम 8: क्राइसिस में कोरिलेशन ब्रेकडाउन को हमेशा स्ट्रेस-टेस्ट करें।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Exotics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Advanced Exotics",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Closing Mastery & Capstone Reflection",
+      "purpose": "Closing Mastery & Capstone Reflection: Foundational quantitative principles",
+      "takeaways": [
+        "Closing Mastery & Capstone Reflection: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exotic options reveal how quantitative finance surgically tailors corporate risk profiles and reduces premium costs through pure mathematical ingenuity."
+            },
+            "hi": {
+              "display": "सर, आज एक्ज़ोटिक ऑप्शन्स के दोनों पार्ट्स पूरे करके मुझे समझ आया कि क्वांट्स कैसे गणितीय तकनीकों से कॉर्पोरेट रिस्क और कॉस्ट को पूरी सटीकता से कस्टमाइज करते हैं!"
+            }
+          },
+          "onScreenIntent": "Closing Mastery & Capstone Reflection",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 27, we delve into Advanced Numerical Procedures and Models, mastering trees, finite differences, and Monte Carlo methods."
+            },
+            "hi": {
+              "display": "शाबाश राजू! तुमने डेरिवेटिव्स इंजीनियरिंग का सबसे जटिल शिखर फतह कर लिया है। अब चैप्टर 27 में हम एडवांस्ड न्यूमेरिकल प्रोसीजर्स और मॉडल्स की गहराई में उतरेंगे!"
+            }
+          },
+          "onScreenIntent": "Closing Mastery & Capstone Reflection",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Closing Mastery & Capstone Reflection",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

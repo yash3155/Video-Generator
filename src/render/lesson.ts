@@ -51,7 +51,17 @@ export function pruneBundles(keep = 3): void {
   for (const x of dirs.slice(keep)) rmrf(x.d);
 }
 
-const browserOpts = { chromiumOptions: { gl: "swangle" as const }, logLevel: "error" as const };
+const isWin = process.platform === "win32";
+const isMac = process.platform === "darwin";
+
+const browserOpts = {
+  chromiumOptions: {
+    // Windows headless Remotion uses swangle to prevent D3D11 GPU crashes.
+    // macOS uses angle (Metal-backed) or system GL for high-speed hardware acceleration.
+    gl: (isWin ? "swangle" : isMac ? "angle" : undefined) as any,
+  },
+  logLevel: "error" as const,
+};
 
 export interface RenderVideoOptions {
   partDir: string;
@@ -75,6 +85,7 @@ export async function renderLessonVideo(o: RenderVideoOptions): Promise<void> {
       serveUrl,
       composition,
       inputProps,
+      concurrency: os.cpus().length,
       codec: "h264",
       crf: o.draft ? 28 : 17,
       pixelFormat: "yuv420p",
@@ -167,7 +178,7 @@ export async function renderLessonStills(o: {
   try {
     const composition = await selectComposition({ serveUrl, id: "Lesson", inputProps: props, puppeteerInstance: browser, logLevel: "error" });
     let i = 0;
-    const n = o.concurrency ?? Math.max(1, Math.min(4, Math.floor(os.cpus().length / 2)));
+    const n = o.concurrency ?? os.cpus().length;
     const worker = async () => {
       while (i < specs.length) {
         const s = specs[i++];

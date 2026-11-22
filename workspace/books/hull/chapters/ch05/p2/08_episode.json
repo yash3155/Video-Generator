@@ -1,0 +1,1592 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch05",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 5",
+  "partLabel": "Part 2",
+  "title": "Determination of Forward and Futures Prices - Part 2",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 2,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "Beyond Individual Equities: Macro Asset Pricing",
+      "purpose": "Extend forward pricing from single stocks to broad indices, currencies, and physical commodities",
+      "takeaways": [
+        "Global derivatives volume concentrates in macro assets: indices, FX, and commodities",
+        "Replication algorithms manage hundreds of constituent equities simultaneously",
+        "Part 2 derives Covered Interest Parity and physical commodity carrying costs"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "chat_story",
+      "data": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "novice",
+            "text": "How do trading desks execute arbitrage across five hundred index stocks, foreign currencies, and physical oil barrels?"
+          },
+          {
+            "id": "m2",
+            "speaker": "mentor",
+            "text": "In Part One, we mastered individual equities. But global volume concentrates in macro assets: indices, foreign exchange, and physical commodities."
+          },
+          {
+            "id": "m3",
+            "speaker": "mentor",
+            "text": "How do algorithmic systems trade 500 stocks in milliseconds? How do rate differentials govern FX forwards? How do storage and convenience yields price commodities?"
+          },
+          {
+            "id": "m4",
+            "speaker": "mentor",
+            "text": "In Part Two, we master index arbitrage algorithms, Covered Interest Parity, physical commodity storage, and the master Cost of Carry framework."
+          }
+        ],
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "Macro Pricing Intro",
+            "Index Futures",
+            "CIP & FX Forwards",
+            "Covered Arbitrage",
+            "Commodity Carry",
+            "Cost of Carry Framework"
+          ],
+          "current": 0
+        }
+      },
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "novice",
+          "narration": {
+            "en": {
+              "display": "How do trading desks execute arbitrage across five hundred index stocks, foreign currencies, and physical oil barrels?"
+            },
+            "hi": {
+              "display": "ट्रेडिंग डेस्क 500 स्टॉक्स, फॉरेन करेंसीज और फिजिकल कमोडिटीज पर एक साथ आर्बिट्राज कैसे एग्जीक्यूट करते हैं?"
+            }
+          },
+          "onScreenIntent": "Opening dilemma question on macro asset replication",
+          "sourceFactIds": [
+            "F01",
+            "F03"
+          ],
+          "newTerms": [
+            "macro asset pricing"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part One, we mastered the no-arbitrage pricing of individual equities and known cash dividends. But the vast majority of global trading volume does not occur in single stocks; it takes place in macro assets: broad stock indices, foreign currencies, and physical commodities."
+            },
+            "hi": {
+              "display": "Part One mein humne dekha ki individual stocks aur cash flows par no-arbitrage forward pricing kaise kaam karti hai. Lekin real-world financial markets ka sabse bada volume single stocks mein nahi, balki Macro Assets mein trade hota hai—jaise Stock Indices, Foreign Currencies, aur Physical Commodities."
+            }
+          },
+          "onScreenIntent": "The mentor highlights global trading focus on macro asset classes",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "How do trading desks execute arbitrage across five hundred stocks simultaneously? How do global interest rate differentials govern foreign exchange forwards? And how do physical storage costs and convenience yields dictate commodity futures curves?"
+            },
+            "hi": {
+              "display": "Kya ek pure stock index par arbitrage perform kiya ja sakta hai? Foreign exchange forwards ko currency interest rates kaise govern karte hain? Aur crude oil ya gold jaise commodities par storage cost aur convenience yield ka kya role hota hai?"
+            }
+          },
+          "onScreenIntent": "The mentor poses core quantitative questions across indices, FX, and commodities",
+          "sourceFactIds": [
+            "F03",
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part Two of Chapter Five, we master index arbitrage algorithms, Covered Interest Parity, physical commodity storage economics, and the master Cost of Carry framework."
+            },
+            "hi": {
+              "display": "Chapter Five ke Part Two mein hum index arbitrage algorithms, Covered Interest Parity, Convenience Yield, aur Cost of Carry ke master framework ko deeply explore karenge."
+            }
+          },
+          "onScreenIntent": "The mentor outlines Part 2 roadmap and learning objectives",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3",
+              "m4"
+            ]
+          },
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Stock Index Futures & The Program Trading Engine",
+      "purpose": "Examine index pricing formula and automated program trading execution",
+      "takeaways": [
+        "Index futures price with continuous dividend yield: F_0 = S_0 * e^((r - q)*T)",
+        "Index arbitrage involves trading index futures against underlying equity baskets",
+        "Program trading systems execute basket orders across hundreds of shares in milliseconds"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "technical_panel",
+      "data": {
+        "title": "Index Arbitrage & Algorithmic Program Trading",
+        "subtitle": "Mechanical Replication of Multi-Asset Baskets",
+        "sections": [
+          {
+            "id": "sec-formula",
+            "title": "Index Valuation Formula",
+            "content": "F_0 = S_0 * e^((r - q)*T), where continuous dividend yield q aggregates payouts across all index constituents."
+          },
+          {
+            "id": "sec-basket",
+            "title": "Replication Basket Execution",
+            "content": "Because an index cannot be physically purchased directly, traders trade a synthetic portfolio mimicking exact index weights."
+          },
+          {
+            "id": "sec-program",
+            "title": "Automated Program Trading",
+            "content": "Automated routing engines slice and route orders across hundreds of stocks simultaneously within microseconds of price divergence."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Stock index futures are priced using the continuous dividend yield formula: F_0 equals S_0 multiplied by e to the power of r minus q times T, where q represents the average annualized dividend yield across all constituent index stocks."
+            },
+            "hi": {
+              "display": "Stock index futures ko price karne ke liye hum dividend yield formula use karte hain: F zero barabar S zero guna e to the power r minus q guna T, jahan q index ki average annual dividend yield hai."
+            }
+          },
+          "onScreenIntent": "State the index continuous dividend yield pricing formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "continuous dividend yield"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Whenever the observed futures price diverges from this theoretical benchmark, institutional arbitrage desks initiate Index Arbitrage. But an index is not a single tangible certificate; it is a basket of hundreds of individual underlying stocks."
+            },
+            "hi": {
+              "display": "Agar futures price is theoretical value se diverge hota hai, toh institutional desks Index Arbitrage execute karte hain. Lekin index koi physical asset nahi hai; index paanch sau alag-alag companies ka basket hai."
+            }
+          },
+          "onScreenIntent": "Explain why index replication requires multi-stock baskets",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "index arbitrage"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To exploit these mispricings, investment banks utilize Program Trading: automated computer execution systems that simultaneously buy or sell all underlying stocks in their exact index proportions within fractions of a second."
+            },
+            "hi": {
+              "display": "Isliye investment banks Program Trading use karte hain. High-speed computer algorithms fraction of a second mein simultaneously paanch sau shares ko unke exact weightage ke according open market mein buy ya sell kar dete hain."
+            }
+          },
+          "onScreenIntent": "Introduce program trading automated computer execution",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "program trading"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Index Arbitrage Bounds & The Triple Witching Hour",
+      "purpose": "Detail arbitrage bands caused by transaction costs and quarterly expiration dynamics",
+      "takeaways": [
+        "Bid-ask spreads and brokerage fees create an Arbitrage Band around fair value",
+        "Program trading triggers only when price disparities exceed trading friction",
+        "Quarterly contract expirations create high market volatility (Triple Witching)"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "cmp-band",
+          "heading": "Arbitrage Band Dynamics",
+          "tone": "neutral",
+          "points": [
+            "Broker commissions, bid-ask spreads, and market impact cost create an inert price zone",
+            "Inside the band, theoretical mispricings yield negative net trading return",
+            "Algorithmic execution activates instantly upon breach of upper or lower threshold",
+            "Tighter exchange liquidity narrows the arbitrage corridor over time"
+          ]
+        },
+        "right": {
+          "id": "cmp-witching",
+          "heading": "Triple Witching Hour",
+          "tone": "trap",
+          "points": [
+            "Simultaneous quarterly expiration of index futures, index options, and stock options",
+            "Huge volumes of program arbitrage positions must be unwound or rolled over",
+            "Cash-settlement mechanics trigger sharp spikes in intraday trading volatility",
+            "Modern exchange closing-cross auctions help manage order imbalances"
+          ]
+        },
+        "verdict": {
+          "id": "vrd-band",
+          "text": "Arbitrage bands prevent continuous friction-free trading; unwinding positions creates expiration volume surges."
+        }
+      },
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, real-world index arbitrage is never entirely frictionless. Brokerage commissions, bid-ask spreads, and market execution impact create an Arbitrage Band around theoretical fair value."
+            },
+            "hi": {
+              "display": "Lekin real market mein index arbitrage execute karna frictionless nahi hota. Brokerage commissions, bid-ask spreads, aur market impact costs milkar ek Arbitrage Band create karte hain."
+            }
+          },
+          "onScreenIntent": "Define the Arbitrage Band created by transaction costs",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "arbitrage band"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "As long as the futures price trades within this band, arbitrage is unprofitable. But the moment the pricing disparity breaches transaction cost thresholds, massive algorithmic program orders flood the market."
+            },
+            "hi": {
+              "display": "Jab tak futures price is band ke andar rehta hai, arbitrageurs trade enter nahi karte. Lekin jaise hi spread transaction costs ko cross karta hai, massive automated volume market mein flood ho jata hai."
+            }
+          },
+          "onScreenIntent": "Analyze program order flood when band thresholds are breached",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On quarterly expiration days—historically termed the Triple Witching Hour—unwinding index arbitrage positions simultaneously across index futures, index options, and individual stock options creates severe surges in exchange trading volume."
+            },
+            "hi": {
+              "display": "Quarterly expiration dates par—jise historically Triple Witching Hour kaha jata tha—arbitrageurs apni massive underlying stock positions ko unwind karte hain, jisse market mein sudden volume spikes dekhne ko milti hain."
+            }
+          },
+          "onScreenIntent": "Explain Triple Witching Hour volume surges and market dynamics",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "triple witching hour"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Foreign Currency Forwards: Covered Interest Parity",
+      "purpose": "Derive Covered Interest Parity treating foreign currency as a dividend-paying asset",
+      "takeaways": [
+        "Foreign currency acts analytically as an asset paying continuous dividend yield r_f",
+        "Covered Interest Parity formula: F_0 = S_0 * e^((r - r_f)*T)",
+        "When domestic rate exceeds foreign rate (r > r_f), foreign currency trades at a forward premium"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Covered Interest Parity (CIP) Equation",
+        "formula": {
+          "latex": "F_0 = S_0 e^{(r - r_f)T}",
+          "expression": "Forward Rate = Spot Rate * exp((Domestic Rate - Foreign Rate) * Time)",
+          "solvesFor": "Theoretical Forward FX Exchange Rate (F_0)",
+          "variables": [
+            {
+              "symbol": "F_0",
+              "latex": "F_0",
+              "meaning": "Forward exchange rate agreed today",
+              "unit": "domestic/foreign"
+            },
+            {
+              "symbol": "S_0",
+              "latex": "S_0",
+              "meaning": "Spot exchange rate today (domestic per 1 unit foreign)",
+              "unit": "domestic/foreign"
+            },
+            {
+              "symbol": "r",
+              "latex": "r",
+              "meaning": "Domestic continuously compounded risk-free rate",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "r_f",
+              "latex": "r_f",
+              "meaning": "Foreign continuously compounded risk-free rate",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "T",
+              "latex": "T",
+              "meaning": "Time to forward contract maturity",
+              "unit": "years"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "p1",
+            "symbolLatex": "r - r_f > 0",
+            "meaning": "Forward Premium: Foreign currency trades above spot rate",
+            "unit": "regime"
+          },
+          {
+            "id": "p2",
+            "symbolLatex": "r - r_f < 0",
+            "meaning": "Forward Discount: Foreign currency trades below spot rate",
+            "unit": "regime"
+          },
+          {
+            "id": "p3",
+            "symbolLatex": "e^{(r - r_f)T}",
+            "meaning": "Interest rate differential growth factor",
+            "unit": "dimensionless"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we examine foreign exchange: the largest financial market in the world. A foreign currency can be modeled analytically as an investment asset providing a continuous dividend yield equal to the foreign risk-free interest rate r-sub-f."
+            },
+            "hi": {
+              "display": "Ab aate hain duniya ke sabse bade financial market par: Foreign Exchange. Ek foreign currency ko hum ek aise investment asset ki tarah treat kar sakte hain jo continuously foreign risk-free interest rate r f yield karta hai."
+            }
+          },
+          "onScreenIntent": "Model foreign currency as an asset yielding foreign interest rate r_f",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "covered interest parity"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This insight yields the celebrated Covered Interest Parity theorem: F_0 equals S_0 multiplied by e to the power of r minus r_f times T, where S_0 is the spot exchange rate, r is the domestic interest rate, and r_f is the foreign interest rate."
+            },
+            "hi": {
+              "display": "Is economic insight se banta hai Covered Interest Parity formula: F zero barabar S zero guna e to the power r minus r f guna T. Yahan S zero spot exchange rate hai, r domestic interest rate hai, aur r f foreign interest rate hai."
+            }
+          },
+          "onScreenIntent": "Formulate Covered Interest Parity equation F_0 = S_0 * e^((r - r_f)*T)",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If domestic interest rates exceed foreign interest rates, the foreign currency must trade at a forward premium. If domestic rates are lower than foreign rates, the foreign currency trades at a forward discount."
+            },
+            "hi": {
+              "display": "Agar domestic rate foreign rate se bada ho—yaani r greater than r f—toh forward exchange rate spot rate se bada hoga, jise Forward Premium kehte hain. Agar domestic rate kam ho, toh foreign currency Forward Discount par trade karegi."
+            }
+          },
+          "onScreenIntent": "Explain forward premium and forward discount regimes",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "forward premium",
+            "forward discount"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Covered Interest Arbitrage: Exploiting FX Mispricings",
+      "purpose": "Trace the 4-step execution of covered interest arbitrage when market forward rates diverge",
+      "takeaways": [
+        "Deviations from CIP trigger Covered Interest Arbitrage across money markets",
+        "Borrow domestic currency, convert to foreign spot, and invest in foreign paper",
+        "Selling foreign proceeds forward guarantees repayment and pure riskless profit"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "causal_chain",
+      "data": {
+        "title": "Covered Interest Arbitrage Execution Steps",
+        "links": [
+          {
+            "id": "cia1",
+            "role": "condition",
+            "text": "Market forward rate diverges from theoretical CIP: F_0 > S_0 * e^((r - r_f)*T)"
+          },
+          {
+            "id": "cia2",
+            "role": "action",
+            "text": "Step 1: Borrow domestic currency at rate r and convert immediately to foreign at spot S_0"
+          },
+          {
+            "id": "cia3",
+            "role": "mechanism",
+            "text": "Step 2: Invest foreign currency at foreign rate r_f; sell future proceeds forward at F_0"
+          },
+          {
+            "id": "cia4",
+            "role": "result",
+            "text": "Step 3: At maturity T, foreign investment matures with interest to principal * e^(r_f*T)"
+          },
+          {
+            "id": "cia5",
+            "role": "consequence",
+            "text": "Deliver foreign funds into forward contract: convert to domestic, repay loan, pocket cash profit"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Whenever market forward exchange rates deviate from Covered Interest Parity, international banking desks execute Covered Interest Arbitrage."
+            },
+            "hi": {
+              "display": "Agar actual currency forward price Covered Interest Parity se match na kare, toh international banks Covered Interest Arbitrage execute karte hain."
+            }
+          },
+          "onScreenIntent": "Introduce Covered Interest Arbitrage across global banks",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "covered interest arbitrage"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step One, the bank borrows domestic currency at rate r and converts it into foreign currency at the spot rate S_0."
+            },
+            "hi": {
+              "display": "Step One mein bank domestic currency borrow karta hai aur use spot market mein foreign currency mein convert karta hai."
+            }
+          },
+          "onScreenIntent": "Step 1: Borrowing domestic currency and converting spot",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step Two, this foreign currency is invested in the foreign money market at rate r_f, while simultaneously selling the future foreign principal and interest forward into domestic currency."
+            },
+            "hi": {
+              "display": "Step Two mein is foreign currency ko foreign money market mein rate r f par invest kiya jata hai, aur simultaneously maturity par milne wale foreign principal aur interest ko forward contract ke zariye domestic currency mein lock kar liya jata hai."
+            }
+          },
+          "onScreenIntent": "Step 2: Investing foreign currency and selling proceeds forward",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step Three, at maturity, the foreign proceeds are delivered into the forward contract, generating guaranteed domestic cash that repays the original loan and leaves a riskless profit."
+            },
+            "hi": {
+              "display": "Step Three mein maturity par foreign investment collect karke forward delivery par cash domestic currency mein convert hota hai aur initial loan repay karke risk-free profit pocket mein aa jata hai."
+            }
+          },
+          "onScreenIntent": "Step 3: Delivering into forward contract and pocketing riskless profit",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Commodity Futures: Storage Costs on Investment Metals",
+      "purpose": "Formulate commodity futures pricing incorporating storage cost rate u",
+      "takeaways": [
+        "Physical commodities incur warehousing, insurance, and custodial storage costs u",
+        "Storage costs act as a negative dividend: F_0 = S_0 * e^((r + u)*T)",
+        "Carrying costs lift theoretical commodity futures prices above spot"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Investment Commodity Futures Pricing",
+        "formula": {
+          "latex": "F_0 = S_0 e^{(r + u)T}",
+          "expression": "Futures Price = Spot Price * exp((Financing Rate + Storage Rate) * Time)",
+          "solvesFor": "Investment Commodity Futures Price (F_0)",
+          "variables": [
+            {
+              "symbol": "F_0",
+              "latex": "F_0",
+              "meaning": "Futures price for investment metal",
+              "unit": "currency"
+            },
+            {
+              "symbol": "S_0",
+              "latex": "S_0",
+              "meaning": "Spot price of the commodity today",
+              "unit": "currency"
+            },
+            {
+              "symbol": "r",
+              "latex": "r",
+              "meaning": "Continuously compounded risk-free rate",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "u",
+              "latex": "u",
+              "meaning": "Continuous storage cost per year as fraction of price",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "T",
+              "latex": "T",
+              "meaning": "Time to contract expiration",
+              "unit": "years"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "u1",
+            "symbolLatex": "r + u",
+            "meaning": "Total carrying cost: interest financing plus physical storage",
+            "unit": "decimal/year"
+          },
+          {
+            "id": "u2",
+            "symbolLatex": "e^{(r + u)T}",
+            "meaning": "Compounded carry growth factor",
+            "unit": "dimensionless"
+          },
+          {
+            "id": "u3",
+            "symbolLatex": "U = \\text{PV of dollar storage}",
+            "meaning": "Discrete alternative: F_0 = (S_0 + U) * e^(r*T)",
+            "unit": "currency"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now let us examine physical commodities. Holding tangible commodities requires vault warehousing, insurance, and custodial security, represented by storage cost parameter u."
+            },
+            "hi": {
+              "display": "Ab hum aate hain Physical Commodities par. Commodities ko hold karne ke liye secure vault ya warehouse, insurance, aur security guards ki zaroorat hoti hai, jise Storage Cost u kehte hain."
+            }
+          },
+          "onScreenIntent": "Introduce physical commodity storage costs parameter u",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "storage costs"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For investment commodities such as gold and silver, storage costs are modeled as a continuous percentage of price: F_0 equals S_0 multiplied by e to the power of r plus u times T."
+            },
+            "hi": {
+              "display": "Gold aur Silver jaise investment commodities par storage cost price ke percentage u ke roop mein model hota hai. Formula hai: F zero barabar S zero guna e to the power r plus u guna T."
+            }
+          },
+          "onScreenIntent": "Formulate investment commodity equation F_0 = S_0 * e^((r + u)*T)",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Storage cost acts as a negative dividend: instead of receiving cash yield, the holder incurs carrying costs, lifting the theoretical futures price substantially above the current spot price."
+            },
+            "hi": {
+              "display": "Storage cost ek negative dividend ki tarah act karta hai. Holder ko asset hold karne par yield milne ke bajaye extra cost pay karni padti hai, isliye commodity forward price spot price se substantially high hota hai."
+            }
+          },
+          "onScreenIntent": "Explain why storage acts as a negative dividend lifting futures price",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "negative dividend"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Consumption Commodities & The Convenience Yield",
+      "purpose": "Introduce convenience yield y and formulate consumption commodity pricing",
+      "takeaways": [
+        "Consumption commodities provide non-monetary operational utility (convenience yield y)",
+        "Convenience yield measures the benefit of holding inventory against supply shocks",
+        "Consumption commodity formula: F_0 = S_0 * e^((r + u - y)*T)"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Consumption Commodity Pricing with Convenience Yield",
+        "formula": {
+          "latex": "F_0 = S_0 e^{(r + u - y)T}",
+          "expression": "Futures Price = Spot * exp((Financing + Storage - Convenience Yield) * Time)",
+          "solvesFor": "Consumption Commodity Equilibrium Futures Price (F_0)",
+          "variables": [
+            {
+              "symbol": "F_0",
+              "latex": "F_0",
+              "meaning": "Consumption commodity futures price",
+              "unit": "currency"
+            },
+            {
+              "symbol": "S_0",
+              "latex": "S_0",
+              "meaning": "Current spot commodity price",
+              "unit": "currency"
+            },
+            {
+              "symbol": "r",
+              "latex": "r",
+              "meaning": "Risk-free financing rate",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "u",
+              "latex": "u",
+              "meaning": "Physical storage and warehousing cost rate",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "y",
+              "latex": "y",
+              "meaning": "Convenience yield of holding physical inventory",
+              "unit": "decimal/year"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "y1",
+            "symbolLatex": "y",
+            "meaning": "Non-monetary operational buffer against unexpected supply disruptions",
+            "unit": "decimal/year"
+          },
+          {
+            "id": "y2",
+            "symbolLatex": "r + u - y",
+            "meaning": "Net carrying cost of physical consumption goods",
+            "unit": "decimal/year"
+          },
+          {
+            "id": "y3",
+            "symbolLatex": "F_0 \\le S_0 e^{(r + u)T}",
+            "meaning": "Upper no-arbitrage boundary (shorting inventory is impractical)",
+            "unit": "boundary"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, when evaluating consumption commodities like crude oil, copper, or agricultural crops, a unique economic parameter emerges: The Convenience Yield y."
+            },
+            "hi": {
+              "display": "Lekin jab hum crude oil, copper ya wheat jaise Consumption Commodities par aate hain, toh ek unique economic phenomenon samne aata hai: Convenience Yield y."
+            }
+          },
+          "onScreenIntent": "Introduce consumption commodities and the convenience yield parameter y",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "convenience yield"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Convenience yield represents the non-monetary benefit accrued from holding physical inventory: for an oil refinery, having crude oil on site ensures uninterrupted manufacturing during unexpected pipeline supply shocks."
+            },
+            "hi": {
+              "display": "Convenience Yield wo non-monetary benefit hai jo physical inventory hold karne se milta hai. Ek oil refinery ke paas physical crude oil stock hone se unexpected supply shortage mein bhi refinery band nahi hoti aur commercial contracts fulfill ho jate hain."
+            }
+          },
+          "onScreenIntent": "Explain operational benefits of holding physical oil or metal inventories",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The pricing equation for consumption commodities becomes: F_0 equals S_0 multiplied by e to the power of r plus u minus y times T. If convenience yield exceeds storage and interest costs, futures prices trade below spot."
+            },
+            "hi": {
+              "display": "Consumption commodity ka forward pricing formula hai: F zero barabar S zero guna e to the power r plus u minus y guna T. Agar convenience yield storage cost aur interest rate se bada ho jaye, toh futures price spot se kam ho jata hai."
+            }
+          },
+          "onScreenIntent": "Derive consumption commodity formula F_0 = S_0 * e^((r + u - y)*T)",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "The Unified Cost of Carry Framework",
+      "purpose": "Unify all global asset classes under the master Cost of Carry formula F_0 = S_0 * e^(c*T)",
+      "takeaways": [
+        "Master cost of carry formula F_0 = S_0 * e^(c*T) unifies all asset classes",
+        "Carry c evaluates to r, r - q, r - r_f, or r + u - y depending on asset type",
+        "Global derivatives desks rely on this single mathematical architecture"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "table_compare",
+      "data": {
+        "title": "The Unified Cost of Carry Architecture",
+        "columns": [
+          "Asset Category",
+          "Cost of Carry (c)",
+          "Pricing Formula",
+          "Key Economic Factors"
+        ],
+        "rows": [
+          {
+            "id": "row-stock",
+            "cells": [
+              "Non-Income Stock",
+              "c = r",
+              "F_0 = S_0 * e^(r*T)",
+              "Pure financing interest cost"
+            ]
+          },
+          {
+            "id": "row-index",
+            "cells": [
+              "Stock Index",
+              "c = r - q",
+              "F_0 = S_0 * e^((r-q)*T)",
+              "Financing cost minus dividend yield"
+            ]
+          },
+          {
+            "id": "row-fx",
+            "cells": [
+              "Foreign Currency",
+              "c = r - r_f",
+              "F_0 = S_0 * e^((r - r_f)*T)",
+              "Domestic rate minus foreign rate (CIP)"
+            ]
+          },
+          {
+            "id": "row-metal",
+            "cells": [
+              "Investment Commodity",
+              "c = r + u",
+              "F_0 = S_0 * e^((r+u)*T)",
+              "Financing plus vault storage/insurance"
+            ]
+          },
+          {
+            "id": "row-comm",
+            "cells": [
+              "Consumption Commodity",
+              "c = r + u - y",
+              "F_0 = S_0 * e^((r+u-y)*T)",
+              "Storage minus physical convenience yield"
+            ]
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John Hull synthesizes all financial and physical asset classes into a single master equation: The Cost of Carry Model: F_0 equals S_0 multiplied by e to the power of c times T."
+            },
+            "hi": {
+              "display": "John C. Hull in sabhi asset classes ko ek single universal formula mein synthesize karte hain: The Cost of Carry Model: F zero barabar S zero guna e to the power c T."
+            }
+          },
+          "onScreenIntent": "Introduce John Hull's master Cost of Carry formula F_0 = S_0 * e^(c*T)",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "unified cost of carry"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For non-dividend stocks, c equals r. For stock indices, c equals r minus q. For foreign currencies, c equals r minus r_f. And for physical commodities, c equals r plus u minus y."
+            },
+            "hi": {
+              "display": "Non-dividend stock ke liye cost of carry c barabar interest rate r hota hai. Stock index ke liye c barabar r minus q hota hai. Foreign currency ke liye c barabar r minus r f hota hai. Aur physical commodity ke liye c barabar r plus u minus y hota hai."
+            }
+          },
+          "onScreenIntent": "Map carry parameter c across equities, indices, FX, and commodities",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This single formula forms the quantitative foundation across global derivatives markets, governing forward pricing across every major asset category."
+            },
+            "hi": {
+              "display": "Ye single equation derivatives quantitative finance ka universal backbone hai. Har forward aur futures contract isi carrying cost equation se price hota hai."
+            }
+          },
+          "onScreenIntent": "Highlight universal role of cost of carry in global quantitative finance",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Delivery Options: The Short Seller's Edge",
+      "purpose": "Examine embedded delivery options and their price impact on futures contracts",
+      "takeaways": [
+        "Futures exchanges grant delivery options exclusively to the short position",
+        "Shorts choose delivery timing, warehouse location, and cheapest grade",
+        "Embedded delivery options slightly depress futures prices relative to forwards"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "technical_panel",
+      "data": {
+        "title": "Embedded Delivery Options in Futures Contracts",
+        "subtitle": "Why Futures Prices Trade Slightly Below Forward Quotes",
+        "sections": [
+          {
+            "id": "opt-timing",
+            "title": "Timing Option",
+            "content": "The short party decides which business day during the delivery month to issue notice of delivery."
+          },
+          {
+            "id": "opt-location",
+            "title": "Location Option",
+            "content": "Where contracts allow multiple approved delivery points, the short selects the most logistically advantageous facility."
+          },
+          {
+            "id": "opt-quality",
+            "title": "Quality Option (Cheapest-to-Deliver)",
+            "content": "The short selects among permissible commodity grades or deliverable bonds, choosing the cheapest asset relative to conversion factors."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exchange-traded futures contracts specify precise settlement rules, and exchanges frequently grant valuable Delivery Options to the short position party."
+            },
+            "hi": {
+              "display": "Futures contracts exchange-standardized hote hain, aur exchange aksar short position party ko several Delivery Options provide karti hai."
+            }
+          },
+          "onScreenIntent": "Introduce exchange delivery rules and short position privileges",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "delivery options"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The short seller retains the discretion to choose the specific delivery date during the delivery month, the approved warehouse location, and the cheapest-to-deliver commodity grade."
+            },
+            "hi": {
+              "display": "Short seller ke paas choice hoti hai ki wo delivery month ke kis din physical delivery notice issue kare, approved warehouses mein se kaun sa delivery location select kare, aur allowed grades mein se kaun sa cheapest-to-deliver grade supply kare."
+            }
+          },
+          "onScreenIntent": "Detail timing, location, and cheapest-to-deliver options",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "cheapest-to-deliver"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because these embedded options benefit the short seller and impose uncertainty on the long buyer, they reduce the equilibrium futures price slightly below theoretical forward pricing."
+            },
+            "hi": {
+              "display": "Kyunki ye options short seller ke favor mein hote hain aur long buyer ko disadvantage dete hain, isliye delivery options futures price ko theoretical no-arbitrage level se thoda sa depress kar dete hain."
+            }
+          },
+          "onScreenIntent": "Explain why delivery options depress futures prices below forward quotes",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Calculating Currency Forward Rate",
+      "purpose": "Test student mastery of Covered Interest Parity and FX forward calculations",
+      "takeaways": [
+        "S_0 = 1.5000 USD/GBP, r_US = 5.0%, r_UK = 8.0%, T = 1 yr",
+        "Differential r - r_f = 0.05 - 0.08 = -0.03 (negative carry)",
+        "Theoretical forward rate is F_0 = 1.5000 * e^(-0.03) = 1.4558 USD/GBP"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "interactive_quiz",
+      "data": {
+        "title": "Active Recall: Covered Interest Parity Calculation",
+        "question": "The spot exchange rate is S_0 = 1.5000 USD per GBP. The continuous US rate is r = 5.0%, and the UK rate is r_f = 8.0%. What is the 1-year theoretical forward exchange rate F_0?",
+        "options": [
+          "1.5458 USD per GBP: The pound trades at a premium because UK yields are higher.",
+          "1.4558 USD per GBP: The pound trades at a forward discount because foreign rate r_f exceeds domestic rate r.",
+          "1.5000 USD per GBP: Forward rates equal spot rates in efficient global foreign exchange markets.",
+          "1.6250 USD per GBP: The forward rate reflects simple linear interest rate differentials."
+        ],
+        "correctIndex": 1,
+        "explanation": "Using Covered Interest Parity: F_0 = S_0 * e^((r - r_f) * T) = 1.5000 * e^((0.05 - 0.08) * 1) = 1.5000 * e^(-0.03) ≈ 1.5000 * 0.970446 = 1.4558 USD/GBP. Because the UK interest rate (8.0%) exceeds the US interest rate (5.0%), the pound must trade at a forward discount of approximately 3% to eliminate riskless arbitrage."
+      },
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your mastery of Covered Interest Parity. The spot exchange rate is one point five zero zero zero dollars per British pound. The continuous US risk-free rate is five percent, and the UK risk-free rate is eight percent. What is the one-year forward exchange rate?"
+            },
+            "hi": {
+              "display": "Chaliye ek practical Covered Interest Parity calculation test karte hain. Spot exchange rate one point five zero zero zero dollars per pound hai. US interest rate five percent hai aur UK interest rate eight percent hai continuous compounding par. One-year forward exchange rate kya hoga?"
+            }
+          },
+          "onScreenIntent": "Present the Covered Interest Parity recall challenge",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Apply the formula: F_0 equals S_0 times e to the power of r minus r_f times T, which equals one point five zero times e to the point zero five minus point zero eight. Pause and evaluate the options."
+            },
+            "hi": {
+              "display": "Formula apply kijiye: F zero barabar S zero guna e to the power r minus r f guna T. Chaar options ko closely evaluate kijiye. Pause and consider."
+            }
+          },
+          "onScreenIntent": "Prompt calculation of exponential rate differential e^(-0.03)",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option B: one point four five five eight dollars per pound, or approximately one point four five six dollars. Evaluating one point five zero times e to the minus point zero three yields one point four five five eight. Because UK rates exceed US rates, the pound trades at a forward discount."
+            },
+            "hi": {
+              "display": "Correct answer hai Option B: One point four five五八 dollars per pound, yaani approximately one point four five six dollars. Calculation: one point five zero guna e to the power minus zero point zero three barabar one point four five五八 dollars. UK rate high hone ki wajah se British pound forward discount par trade karega."
+            }
+          },
+          "onScreenIntent": "Reveal Option B: 1.4558 USD/GBP and forward discount mechanics",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Contango, Backwardation & Keynes' Risk Hypothesis",
+      "purpose": "Contrast Contango and Backwardation term structure regimes and explain Keynesian risk transfer",
+      "takeaways": [
+        "Contango: Futures prices trade above spot (carrying costs dominate)",
+        "Backwardation: Futures trade below spot (convenience yields or hedging pressure dominate)",
+        "Keynes' Normal Backwardation explains futures discount as insurance premium to speculators"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "cmp-contango",
+          "heading": "Contango Regime",
+          "tone": "neutral",
+          "points": [
+            "Futures price F_0 trades higher than current spot price S_0",
+            "Upward-sloping forward curve typical when financing and storage costs dominate",
+            "Common in gold, silver, and well-supplied physical commodity markets",
+            "Roll yield for long futures holders is negative as contracts converge down to spot"
+          ]
+        },
+        "right": {
+          "id": "cmp-backwardation",
+          "heading": "Backwardation Regime",
+          "tone": "positive",
+          "points": [
+            "Futures price F_0 trades lower than current spot price S_0",
+            "Downward-sloping curve occurs when physical convenience yield y exceeds carry costs",
+            "Keynes-Hicks Normal Backwardation: commercial hedgers sell futures at a discount to transfer risk",
+            "Speculators earn a positive expected risk premium by providing liquidity"
+          ]
+        },
+        "verdict": {
+          "id": "vrd-regimes",
+          "text": "Contango reflects cost of carry dominance; Backwardation reflects inventory scarcity and hedger risk transfer."
+        }
+      },
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Futures curves across financial and commodity markets exhibit two fundamental term structure regimes: Contango and Backwardation."
+            },
+            "hi": {
+              "display": "Commodity aur financial futures market mein forward curves ka shape do primary market regimes mein divide hota hai: Contango aur Backwardation."
+            }
+          },
+          "onScreenIntent": "Introduce term structure regimes: Contango and Backwardation",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "term structure regimes"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Contango occurs when futures prices trade above current spot prices, reflecting conditions where financing and storage costs outweigh convenience yields."
+            },
+            "hi": {
+              "display": "Contango tab hota hai jab Futures price spot price se bada hota hai—yaani F zero greater than S zero. Ye situation tab aati hai jab positive financing cost aur storage cost convenience yield se zyada hote hain."
+            }
+          },
+          "onScreenIntent": "Define Contango when carrying costs exceed convenience yields",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "contango"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, Backwardation occurs when futures trade below spot prices. John Maynard Keynes and John Hicks formulated Normal Backwardation: commercial hedgers sell futures at a discount to transfer price risk to speculators, compensating them with a risk premium."
+            },
+            "hi": {
+              "display": "Iske opposite, Backwardation tab hota hai jab Futures price spot price se kam hota hai. John Maynard Keynes aur John Hicks ne Normal Backwardation theory di thi: Unka kehna tha ki hedgers market risk transfer karne ke liye futures ko expected spot price se discount par bechte hain taaki risk lene wale speculators ko fair profit mil sake."
+            }
+          },
+          "onScreenIntent": "Explain Backwardation and Keynes-Hicks Normal Backwardation theory",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "normal backwardation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Global Forward Pricing",
+      "purpose": "Consolidate Chapter 5 Part 2 global forward pricing principles before advancing to Chapter 6",
+      "takeaways": [
+        "Program trading enforces index arbitrage parity within transaction cost bands",
+        "Covered Interest Parity models currency forwards as continuous foreign rate dividends",
+        "The unified Cost of Carry equation F_0 = S_0 * e^(c*T) governs all derivatives"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "summary_thread",
+      "data": {
+        "title": "Executive Synthesis: The Four Macro Pillars of Forward Pricing",
+        "rules": [
+          {
+            "id": "rul-1",
+            "title": "Index Arbitrage & Program Trading",
+            "text": "High-speed algorithms trade cash equity baskets against index futures within arbitrage cost bands."
+          },
+          {
+            "id": "rul-2",
+            "title": "Triple Witching Expirations",
+            "text": "Simultaneous quarterly contract settlements create intense volume spikes as arbitrage positions unwind."
+          },
+          {
+            "id": "rul-3",
+            "title": "Covered Interest Parity (CIP)",
+            "text": "Currencies price as dividend assets: F_0 = S_0 * e^((r - r_f)*T), locking forward FX differentials."
+          },
+          {
+            "id": "rul-4",
+            "title": "Covered Interest Arbitrage",
+            "text": "Deviations from CIP trigger cross-currency borrowing and lending hedged with forward contracts."
+          },
+          {
+            "id": "rul-5",
+            "title": "Investment Commodity Storage",
+            "text": "Storage costs u act as negative dividends, lifting forward prices via F_0 = S_0 * e^((r + u)*T)."
+          },
+          {
+            "id": "rul-6",
+            "title": "Convenience Yield in Commodities",
+            "text": "Operational value of physical holding lowers consumption futures: F_0 = S_0 * e^((r + u - y)*T)."
+          },
+          {
+            "id": "rul-7",
+            "title": "Master Cost of Carry Model",
+            "text": "F_0 = S_0 * e^(c*T) unifies all assets, mapping carry c to r, r - q, r - r_f, and r + u - y."
+          },
+          {
+            "id": "rul-8",
+            "title": "Contango & Normal Backwardation",
+            "text": "Carry dominance creates contango; inventory scarcity and hedger risk transfer drive backwardation."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us synthesize the four macro pillars of global forward and futures pricing established in Part Two."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Five Part Two ke chaar global macro forward pricing pillars ko summarize karte hain."
+            }
+          },
+          "onScreenIntent": "Introduce the synthesis of the four macro pillars",
+          "sourceFactIds": [
+            "F01",
+            "F03",
+            "F05",
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar One: Index Arbitrage. High-speed program trading enforces no-arbitrage pricing bands between cash equity baskets and index futures."
+            },
+            "hi": {
+              "display": "Pehla pillar: Index Arbitrage. Program trading ke zariye paanch sau underlying cash stocks aur index futures ke beech theoretical pricing bond maintain hota hai."
+            }
+          },
+          "onScreenIntent": "Review Pillar One: Index Arbitrage and Program Trading",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Two: Covered Interest Parity. Foreign currencies price as dividend assets, locking forward FX spreads via domestic and foreign rate differentials."
+            },
+            "hi": {
+              "display": "Dusra pillar: Covered Interest Parity. Currencies ko dividend yield ki tarah model karke F zero barabar S zero e to the power r minus r f T se forward FX rates determine hote hain."
+            }
+          },
+          "onScreenIntent": "Review Pillar Two: Covered Interest Parity",
+          "sourceFactIds": [
+            "F03",
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Three: Storage Costs and Convenience Yield. Commodity carry incorporates physical storage costs u and inventory convenience yield y."
+            },
+            "hi": {
+              "display": "Teesra pillar: Storage Costs & Convenience Yield. Physical commodities par carrying cost r plus u minus y hota hai, jahan convenience yield inventory utility reflect karta hai."
+            }
+          },
+          "onScreenIntent": "Review Pillar Three: Storage Costs and Convenience Yield",
+          "sourceFactIds": [
+            "F05",
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Four: Unified Cost of Carry and Term Structures. F_0 equals S_0 times e to the c T unites all asset classes and governs Contango and Backwardation regimes."
+            },
+            "hi": {
+              "display": "Chautha pillar: Unified Cost of Carry & Market Regimes. F zero barabar S zero e to the power c T sabhi asset classes ko unite karta hai, aur Contango ya Backwardation term structure define karta hai."
+            }
+          },
+          "onScreenIntent": "Review Pillar Four: Unified Cost of Carry and preview Chapter 6",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    }
+  ]
+}

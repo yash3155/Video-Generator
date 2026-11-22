@@ -1,0 +1,111 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch05",
+  "partId": "p2",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "formula",
+      "statement": "Stock index futures are priced using continuous dividend yield: F_0 = S_0 * e^((r - q) * T), where q is annualized dividend yield of the index.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.4",
+        "page": "111"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "definition",
+      "statement": "Index arbitrage involves trading index futures and a basket of constituent stocks via program trading when the spread exceeds transaction costs (arbitrage band).",
+      "citation": {
+        "chapter": "5",
+        "section": "5.4",
+        "page": "112"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "formula",
+      "statement": "Covered Interest Parity (CIP) states that forward foreign exchange rate is F_0 = S_0 * e^((r - r_f) * T), where S_0 is domestic currency per foreign currency, r is domestic risk-free rate, and r_f is foreign risk-free rate.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.7",
+        "page": "116"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "definition",
+      "statement": "Covered interest arbitrage exploits CIP deviations: borrowing currency with lower synthetic cost and lending in higher yielding currency, fully hedged via forward contracts.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.7",
+        "page": "117"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "formula",
+      "statement": "For investment commodities with storage cost rate u as a fraction of price, F_0 = S_0 * e^((r + u) * T). Storage costs act like negative dividend yield.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.10",
+        "page": "121"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "formula",
+      "statement": "For consumption commodities, convenience yield y reflects non-monetary benefit of physical custody: F_0 = S_0 * e^((r + u - y) * T). Arbitrage enforces only upper bound F_0 <= S_0 * e^((r + u) * T).",
+      "citation": {
+        "chapter": "5",
+        "section": "5.11",
+        "page": "123"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "formula",
+      "statement": "The master Cost of Carry equation is F_0 = S_0 * e^(c * T), where c = r for non-income assets, c = r - q for indices, c = r - r_f for foreign currencies, and c = r + u - y for commodities.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.12",
+        "page": "125"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "definition",
+      "statement": "Delivery options (timing, grade, location) benefit the short party, slightly depressing futures prices relative to forward prices.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.13",
+        "page": "126"
+      }
+    },
+    {
+      "id": "F09",
+      "category": "numerical_example",
+      "statement": "With S_0 = 1.5000 USD/GBP, r_US = 5.0%, r_UK = 8.0%, T = 1 yr, forward rate is F_0 = 1.5000 * e^((0.05 - 0.08) * 1) = 1.5000 * e^(-0.03) = 1.4558 USD/GBP (forward discount).",
+      "citation": {
+        "chapter": "5",
+        "section": "5.7",
+        "page": "117"
+      }
+    }
+  ],
+  "realWorldProblem": {
+    "actors": "Macro FX trading desks, commodity trading houses, and algorithmic index arbitrageurs",
+    "situation": "Pricing futures contracts and enforcing no-arbitrage bounds across global equity indices, foreign exchange, and physical commodities",
+    "failure": "Ignoring storage costs, convenience yields, or foreign interest rates causes mispriced hedges and millions in trading losses",
+    "invention": "Covered Interest Parity, Program Trading algorithms, and the Unified Cost of Carry model",
+    "factIds": [
+      "F01",
+      "F03",
+      "F05",
+      "F06",
+      "F07",
+      "F09"
+    ]
+  }
+}

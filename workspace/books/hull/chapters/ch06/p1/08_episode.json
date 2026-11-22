@@ -1,0 +1,1574 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch06",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 6",
+  "partLabel": "Part 1",
+  "title": "Interest Rate Futures - Part 1",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 1,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Exchange-Traded Rates Engine: Introducing Bond Futures",
+      "purpose": "Introduce Treasury bond futures and contrast delivery mechanics with equity index contracts",
+      "takeaways": [
+        "Treasury bond futures are the world's primary tool for institutional interest rate hedging",
+        "Unlike stock index contracts, bond futures allow delivery of a multi-bond basket",
+        "Chapter 6 Part 1 masters day count accruals, conversion factors, and CTD optimization"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "chat_story",
+      "data": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "novice",
+            "text": "How do institutional traders manage interest rate risk when bond futures allow the delivery of dozens of different bonds?"
+          },
+          {
+            "id": "m2",
+            "speaker": "mentor",
+            "text": "Treasury Bond Futures are the most heavily traded instruments for managing institutional interest rate risk, relied upon by central banks and sovereign funds."
+          },
+          {
+            "id": "m3",
+            "speaker": "mentor",
+            "text": "Yet bond futures differ fundamentally from equity futures: bond pricing requires day count accrual conventions and permits delivery of an entire eligible bond basket."
+          },
+          {
+            "id": "m4",
+            "speaker": "mentor",
+            "text": "In Chapter 6, we master Day Count conventions, the Conversion Factor system, identifying the Cheapest-to-Deliver bond, and exploiting the Wild Card Play."
+          }
+        ],
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "Bond Futures Intro",
+            "Day Count Rules",
+            "Clean vs Dirty Price",
+            "CBOT Specs",
+            "Conversion Factors",
+            "CTD Bond"
+          ],
+          "current": 0
+        }
+      },
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "novice",
+          "narration": {
+            "en": {
+              "display": "How do institutional traders manage interest rate risk when bond futures allow the delivery of dozens of different bonds?"
+            },
+            "hi": {
+              "display": "ट्रेजरी बॉन्ड फ्यूचर्स में जब दर्जनों बॉन्ड्स की डिलीवरी हो सकती है, तो ट्रेडर्स रेट रिस्क कैसे मैनेज करते हैं?"
+            }
+          },
+          "onScreenIntent": "Opening question highlighting multi-bond delivery complexity",
+          "sourceFactIds": [
+            "F01",
+            "F03"
+          ],
+          "newTerms": [
+            "treasury bond futures"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In global financial markets, Treasury Bond Futures are the most heavily traded instruments for managing institutional interest rate risk. Central banks, sovereign wealth funds, and major investment banks rely on these contracts to immunize multi-billion-dollar portfolios against yield curve shocks."
+            },
+            "hi": {
+              "display": "Global financial markets mein interest rate risk ko manage karne ke liye sabse heavily traded derivative instruments Treasury Bond Futures hain. Central banks, pension funds aur global investment banks apne multi-billion dollar portfolios ko protect karne ke liye inhi futures par rely karte hain."
+            }
+          },
+          "onScreenIntent": "The mentor highlights the global role of Treasury bond futures",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yet bond futures differ fundamentally from equity index futures. Bond pricing requires specific day count accrual conventions, and the exchange permits the delivery of not just one bond, but an entire basket of qualifying government bonds."
+            },
+            "hi": {
+              "display": "Lekin bond futures equity futures se kaafi alag hote hain. Yahan interest rate accruals ke liye unique Day Count conventions hoti hain, aur exchange par deliver karne ke liye koi single bond nahi balki multiple eligible bonds available hote hain."
+            }
+          },
+          "onScreenIntent": "The mentor contrasts bond futures against equity index futures",
+          "sourceFactIds": [
+            "F01",
+            "F03"
+          ],
+          "newTerms": [
+            "day count conventions",
+            "deliverable basket"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter Six, we master the complete institutional mechanics of interest rate futures: Day Count conventions, the Conversion Factor system, identifying the Cheapest-to-Deliver bond, and exploiting the Wild Card Play."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter Six mein hum Treasury Bond futures ki complete institutional mechanics—Day Counts, Conversion Factors, Cheapest-to-Deliver bond, aur Wild Card Play ko step-by-step master karenge."
+            }
+          },
+          "onScreenIntent": "The mentor outlines Chapter 6 Part 1 learning objectives",
+          "sourceFactIds": [
+            "F04",
+            "F06",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3",
+              "m4"
+            ]
+          },
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Day Count Conventions: Actual/Actual, 30/360 & Actual/360",
+      "purpose": "Compare the three standard fixed-income day count accrual conventions",
+      "takeaways": [
+        "Day count conventions dictate how accrued interest is calculated between coupon dates",
+        "Actual/Actual is standard for US Treasury bonds",
+        "30/360 applies to corporate/municipal bonds; Actual/360 governs money market instruments"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "table_compare",
+      "data": {
+        "title": "Fixed Income Day Count Conventions",
+        "columns": [
+          "Convention",
+          "Market Segment",
+          "Numerator Rule",
+          "Denominator Rule"
+        ],
+        "rows": [
+          {
+            "id": "dc-act-act",
+            "cells": [
+              "Actual / Actual (in period)",
+              "US Treasury Bonds & Notes",
+              "Exact calendar days elapsed",
+              "Actual calendar days in coupon period (181-184)"
+            ]
+          },
+          {
+            "id": "dc-30-360",
+            "cells": [
+              "30 / 360",
+              "US Corporate & Municipal Bonds",
+              "Assumes 30 days per month",
+              "Assumes exactly 360 days per calendar year"
+            ]
+          },
+          {
+            "id": "dc-act-360",
+            "cells": [
+              "Actual / 360",
+              "US Treasury Bills & Money Market",
+              "Exact calendar days elapsed",
+              "Assumes 360-day annualized money market year"
+            ]
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When a bond is traded between two coupon payment dates, the buyer must pay the seller the interest accrued during the seller's holding period. Calculating this accrued interest is governed by three primary day count conventions."
+            },
+            "hi": {
+              "display": "Fixed income markets mein jab do coupon dates ke beech bond trade hota hai, toh buyer ko seller ko accrued interest pay karna hota hai. Is interest ko calculate karne ke liye teen primary Day Count conventions use hoti hain."
+            }
+          },
+          "onScreenIntent": "Introduce the necessity of accrued interest when trading between coupon dates",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "accrued interest"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The first convention is Actual over Actual, standard for US Treasury bonds. Accrued interest is computed using the exact calendar days elapsed between dates, divided by the actual number of days in the coupon period."
+            },
+            "hi": {
+              "display": "Pehli convention hai Actual by Actual: Ye US Treasury bonds mein use hoti hai. Yahan actual calendar days ko coupon period ke actual total days se divide kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Define Actual/Actual convention for US Treasury bonds",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "actual/actual convention"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second convention is Thirty Three-Sixty, standard for corporate and municipal bonds, which assumes thirty days per month and three hundred sixty days per year. The third convention is Actual Three-Sixty, standard for Treasury bills and money market instruments."
+            },
+            "hi": {
+              "display": "Doosri convention hai Thirty Three-Sixty: Ye US Corporate aur Municipal bonds mein use hoti hai, jahan har mahine ko thirty days aur saal ko three sixty days mana jata hai. Aur teesri convention hai Actual Three-Sixty, jo US Treasury bills aur money market instruments par apply hoti hai."
+            }
+          },
+          "onScreenIntent": "Define 30/360 for corporates and Actual/360 for money market paper",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "30/360 convention",
+            "actual/360 convention"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Clean Price vs. Dirty Price: The Cash Accrual Gap",
+      "purpose": "Distinguish quoted clean screen price from total invoice cash dirty price",
+      "takeaways": [
+        "Clean Price is the display quote that excludes accrued interest",
+        "Dirty Price (Cash Price) is total actual settlement cash paid by the buyer",
+        "Cash Price = Quoted Clean Price + Accrued Interest"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "cmp-clean",
+          "heading": "Clean Price (Quoted)",
+          "tone": "neutral",
+          "points": [
+            "Displayed on market trading terminals and price quotation screens",
+            "Excludes accrued coupon interest to prevent artificial jagged saw-tooth price drops",
+            "Reflects true yield shifts without misleading calendar accrual distortion",
+            "Standard quotation convention across global bond exchanges"
+          ]
+        },
+        "right": {
+          "id": "cmp-dirty",
+          "heading": "Dirty Price (Cash Settled)",
+          "tone": "positive",
+          "points": [
+            "Actual invoice cash delivered from buyer's account to seller upon settlement",
+            "Clean Price + Accrued Interest earned by seller during holding period",
+            "Represents total legal economic value transferred in the transaction",
+            "Directly drives physical futures delivery invoice settlements"
+          ]
+        },
+        "verdict": {
+          "id": "vrd-cash-price",
+          "text": "Clean price isolates interest rate shifts; dirty price delivers actual settlement cash."
+        }
+      },
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The price displayed on bond trading screens is known as the Clean Price. However, the actual total cash paid by the buyer upon settlement is known as the Cash Price, or Dirty Price."
+            },
+            "hi": {
+              "display": "Bond trading screens par jo price quote hota hai, use Clean Price kehte hain. Lekin settlement date par buyer jo total actual cash pay karta hai, use Cash Price ya Dirty Price kaha jata hai."
+            }
+          },
+          "onScreenIntent": "Define Clean Price and Cash (Dirty) Price",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "clean price",
+            "dirty price"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The relationship is straightforward: Cash Price equals Quoted Clean Price plus Accrued Interest, ensuring the seller is fairly compensated for interest earned before the transfer of ownership."
+            },
+            "hi": {
+              "display": "Formula behad straight-forward hai: Cash Price barabar Quoted Price plus Accrued Interest. Accrued interest seller ka earned coupon share hota hai jo usne bond hold karke earn kiya tha."
+            }
+          },
+          "onScreenIntent": "Formulate relationship: Cash Price = Clean Price + Accrued Interest",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider John Hull's numerical example: if an eleven percent coupon Treasury bond is quoted on the screen at forty-one dollars and accrued interest is ninety-seven cents, the buyer pays exactly forty-one dollars and ninety-seven cents per one hundred dollars of face value."
+            },
+            "hi": {
+              "display": "Hull ka numerical example dekhiye: agar ek eleven percent Treasury bond ka quoted price forty-one point zero zero dollars hai aur accrued interest zero point nine seven dollars hai, toh buyer ko exactly forty-one point nine seven dollars cash pay karna hoga."
+            }
+          },
+          "onScreenIntent": "Examine John Hull's numerical example: $41 clean + $0.97 accrued = $41.97 dirty",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Treasury Bond Futures Contract Specifications",
+      "purpose": "Examine CBOT Treasury bond futures specifications, deliverable eligibility, and point quotation",
+      "takeaways": [
+        "CBOT Treasury bond futures standardize a $100,000 par face value contract",
+        "Deliverable bonds must have at least 15 years remaining maturity and non-callability",
+        "Quotes trade in points and 32nds: e.g., 90-05 represents 90 + 5/32 = $90.15625"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "technical_panel",
+      "data": {
+        "title": "CBOT Treasury Bond Futures Specifications",
+        "subtitle": "Institutional Contract Architecture & Delivery Rules",
+        "sections": [
+          {
+            "id": "spec-par",
+            "title": "Contract Notional Par",
+            "content": "$100,000 face value of a synthetic US Treasury bond with a 6.0% annual coupon."
+          },
+          {
+            "id": "spec-delivery",
+            "title": "Deliverable Eligibility",
+            "content": "Any US Treasury bond with remaining maturity >= 15 years and non-callable for >= 15 years from the first day of the delivery month."
+          },
+          {
+            "id": "spec-quote",
+            "title": "32nds Price Quotation",
+            "content": "Quoted in points and 32nds per $100 par. 1 point = $1,000. 1/32 point = $31.25 minimum tick."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now let us examine the flagship Treasury Bond Futures contract traded on the Chicago Board of Trade. This contract has a standardized face value of one hundred thousand dollars par."
+            },
+            "hi": {
+              "display": "Ab aate hain Chicago Board of Trade yaani CBOT par trade hone wale Treasury Bond Futures contract par. Is contract ka face value size exactly one hundred thousand dollars hota hai."
+            }
+          },
+          "onScreenIntent": "Introduce CBOT Treasury bond futures and $100,000 face value",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "CBOT bond futures"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under exchange specifications, the short seller may deliver any US Treasury bond that has at least fifteen years remaining to maturity and is non-callable for at least fifteen years from the first day of the delivery month."
+            },
+            "hi": {
+              "display": "Exchange rule ke mutabik, seller koi bhi aisa US Treasury bond deliver kar sakta hai jisme delivery month ke first day par minimum fifteen years ki maturity bachi ho aur fifteen years tak call na kiya ja sake."
+            }
+          },
+          "onScreenIntent": "Detail deliverable eligibility: 15-year maturity and non-callable rule",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "deliverable eligibility"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Contract prices are quoted in points and thirty-seconds of a point. For instance, a quote of ninety dash zero five represents ninety dollars plus five thirty-seconds, which equals ninety point one five six two five dollars per one hundred dollars par."
+            },
+            "hi": {
+              "display": "Price quotes points aur thirty-seconds of a point mein hoti hain. Jaise ninety dash zero five ka matlab hai ninety dollars plus five divided by thirty-two, yaani ninety point one five six two five dollars."
+            }
+          },
+          "onScreenIntent": "Explain 32nds price quotation convention: 90-05 = $90.15625",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "32nds quotation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The Conversion Factor System: Equalizing the 6% Baseline",
+      "purpose": "Define the Conversion Factor system standardizing multi-bond delivery baskets to a 6% YTM baseline",
+      "takeaways": [
+        "Conversion Factor (CF) normalizes diverse coupon and maturity bonds to a 6% yield baseline",
+        "CF equals theoretical clean price of $1 face value of bond discounted at 6.0% semi-annual",
+        "Bonds with coupon > 6% have CF > 1.0; bonds with coupon < 6% have CF < 1.0"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "The Conversion Factor Equalization Formula",
+        "formula": {
+          "latex": "\\text{CF} = \\text{Clean Price of } \\$1.00 \\text{ Face Value at } 6.0\\% \\text{ YTM}",
+          "expression": "Conversion Factor = Theoretical Clean Price discounted at 6.0% semi-annual",
+          "solvesFor": "Standardized Bond Delivery Conversion Factor (CF)",
+          "variables": [
+            {
+              "symbol": "CF",
+              "latex": "\\text{CF}",
+              "meaning": "Exchange conversion factor published per deliverable bond",
+              "unit": "dimensionless"
+            },
+            {
+              "symbol": "YTM",
+              "latex": "y_0",
+              "meaning": "Standardized benchmark discount yield: exactly 6.0% per annum",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "c",
+              "latex": "c",
+              "meaning": "Semi-annual coupon rate of the deliverable bond",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "M",
+              "latex": "M",
+              "meaning": "Remaining maturity rounded to nearest quarter",
+              "unit": "years"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "cf1",
+            "symbolLatex": "c > 6.0\\% \\implies \\text{CF} > 1.0",
+            "meaning": "Premium bond: generates higher delivery cash credit",
+            "unit": "regime"
+          },
+          {
+            "id": "cf2",
+            "symbolLatex": "c < 6.0\\% \\implies \\text{CF} < 1.0",
+            "meaning": "Discount bond: generates lower delivery cash credit",
+            "unit": "regime"
+          },
+          {
+            "id": "cf3",
+            "symbolLatex": "c = 6.0\\% \\implies \\text{CF} = 1.0",
+            "meaning": "Exact benchmark coupon parity",
+            "unit": "benchmark"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because multiple deliverable bonds trade with different coupon rates and varying maturities, the exchange establishes a Conversion Factor system to standardize the delivery basket."
+            },
+            "hi": {
+              "display": "Kyunki market mein multiple eligible bonds available hote hain jinke coupons aur maturities alag hoti hain, isliye exchange ek Conversion Factor system use karti hai."
+            }
+          },
+          "onScreenIntent": "Explain why conversion factors are necessary across multi-bond baskets",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "conversion factor"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Conversion Factor is defined as the theoretical clean price of one dollar face value of the deliverable bond if its yield to maturity were exactly six point zero percent per annum with semi-annual compounding."
+            },
+            "hi": {
+              "display": "Conversion Factor kisi deliverable bond ka wo theoretical clean price hota hai jo one dollar face value par nikala jata hai agar us bond ki yield to maturity exactly six percent per annum semi-annual compounding ho."
+            }
+          },
+          "onScreenIntent": "Define Conversion Factor as theoretical clean price at 6.0% YTM",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "6% baseline"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The core rule of thumb is intuitive: if a bond's coupon exceeds six percent, its conversion factor exceeds one point zero. If its coupon is below six percent, its conversion factor is less than one point zero."
+            },
+            "hi": {
+              "display": "Rule of thumb yaad rakhiye: agar bond ka coupon six percent se zyada ho, toh conversion factor one point zero se bada hoga. Agar coupon six percent se kam ho, toh CF one point zero se chhota hoga."
+            }
+          },
+          "onScreenIntent": "State rule of thumb: coupon > 6% implies CF > 1.0; coupon < 6% implies CF < 1.0",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "The Invoice Price Formula: What the Buyer Actually Pays",
+      "purpose": "Formulate total cash received by short seller and paid by long buyer upon delivery",
+      "takeaways": [
+        "Invoice Price equals (Futures Settlement Price * Conversion Factor) + Accrued Interest",
+        "Conversion factor scales futures price for coupon and maturity differences",
+        "Accrued interest converts scaled clean futures price into dirty cash settlement"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Futures Delivery Invoice Price Formula",
+        "formula": {
+          "latex": "\\text{Invoice Price} = (\\text{Futures Price} \\times \\text{CF}) + \\text{Accrued Interest}",
+          "expression": "Invoice Price = (Futures Settlement * Conversion Factor) + Accrued Interest",
+          "solvesFor": "Total Cash Settlement per $100 Par Delivered (Invoice Price)",
+          "variables": [
+            {
+              "symbol": "Invoice Price",
+              "latex": "\\text{Invoice}",
+              "meaning": "Actual cash paid by long buyer to short seller upon physical delivery",
+              "unit": "currency"
+            },
+            {
+              "symbol": "Futures Price",
+              "latex": "F_0",
+              "meaning": "Most recent CBOT futures daily settlement price",
+              "unit": "currency"
+            },
+            {
+              "symbol": "CF",
+              "latex": "\\text{CF}",
+              "meaning": "Published conversion factor for the delivered bond",
+              "unit": "dimensionless"
+            },
+            {
+              "symbol": "Accrued Interest",
+              "latex": "\\text{AI}",
+              "meaning": "Accrued coupon interest from last coupon date to delivery settlement date",
+              "unit": "currency"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "ip1",
+            "symbolLatex": "F_0 \\times \\text{CF}",
+            "meaning": "Adjusted clean delivery value standardized to 6% coupon baseline",
+            "unit": "currency"
+          },
+          {
+            "id": "ip2",
+            "symbolLatex": "\\text{AI}",
+            "meaning": "Coupon interest earned by bondholder prior to delivery date",
+            "unit": "currency"
+          },
+          {
+            "id": "ip3",
+            "symbolLatex": "\\times 1,000",
+            "meaning": "Multiply by 1,000 to convert $100 par quote to $100,000 contract face value",
+            "unit": "multiplier"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When the short seller delivers a physical Treasury bond, what exact dollar amount does the long buyer pay? This total cash settlement is known as the Invoice Price."
+            },
+            "hi": {
+              "display": "Jab short seller physical bond deliver karta hai, toh long buyer use kitna actual cash pay karta hai? Is total settlement cash ko Invoice Price kehte hain."
+            }
+          },
+          "onScreenIntent": "Introduce Invoice Price as total cash paid upon delivery",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "invoice price"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The formula is: Invoice Cash Price equals the most recent futures settlement price multiplied by the bond's Conversion Factor, plus Accrued Interest on the delivered bond."
+            },
+            "hi": {
+              "display": "Formula dekhiye: Invoice Cash Price barabar Most Recent Futures Settlement Price guna Conversion Factor, plus Accrued Interest."
+            }
+          },
+          "onScreenIntent": "Formulate Invoice Price = (Futures Settlement * CF) + Accrued Interest",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The conversion factor scales the futures price to account for the bond's coupon and maturity profile, while accrued interest adjusts the clean transaction price to the dirty cash reality."
+            },
+            "hi": {
+              "display": "Yahan conversion factor futures price ko deliverable bond ke coupon aur maturity ke hisab se scale karta hai, aur accrued interest clean price ko dirty cash price mein convert karta hai."
+            }
+          },
+          "onScreenIntent": "Explain dual role of CF scaling clean price and accrued interest adjusting to dirty cash",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "The Cheapest-to-Deliver (CTD) Bond: The Short Seller's Choice",
+      "purpose": "Define the Cheapest-to-Deliver bond and calculate Net Cost across eligible bonds",
+      "takeaways": [
+        "The short party chooses which bond to deliver and selects the Cheapest-to-Deliver (CTD)",
+        "Net Cost = Quoted Cash Price - (Futures Settlement Price * Conversion Factor)",
+        "The eligible bond producing the lowest net cost is the CTD bond"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "causal_chain",
+      "data": {
+        "title": "Identifying the Cheapest-to-Deliver (CTD) Bond",
+        "links": [
+          {
+            "id": "ctd1",
+            "role": "condition",
+            "text": "Multiple Treasury bonds qualify under the CBOT 15-year delivery specification"
+          },
+          {
+            "id": "ctd2",
+            "role": "action",
+            "text": "Calculate Net Delivery Cost for each eligible bond: Cash Price - (Futures Price * CF)"
+          },
+          {
+            "id": "ctd3",
+            "role": "mechanism",
+            "text": "Notice that Accrued Interest cancels out: Net Cost equals Cash Price - (Futures * CF)"
+          },
+          {
+            "id": "ctd4",
+            "role": "result",
+            "text": "Rank all deliverable bonds in order of net cost"
+          },
+          {
+            "id": "ctd5",
+            "role": "consequence",
+            "text": "Short seller delivers the bond minimizing net cost, anchoring theoretical futures price"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because the short position retains the contractual right to choose which eligible bond to deliver, the seller will naturally choose the bond that minimizes their net delivery cost."
+            },
+            "hi": {
+              "display": "Kyunki short position party ke paas eligible basket mein se koi bhi bond deliver karne ka right hota hai, isliye seller hamesha wo bond choose karta hai jo uske liye deliver karna sabse cheap ho."
+            }
+          },
+          "onScreenIntent": "Explain short seller incentive to minimize delivery cost",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "cheapest-to-deliver"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This optimal instrument is known as the Cheapest-to-Deliver, or CTD bond. To identify it, trading desks calculate the net delivery cost across all eligible bonds in the deliverable basket."
+            },
+            "hi": {
+              "display": "Is bond ko Cheapest-to-Deliver yaani CTD bond kehte hain. CTD identify karne ke liye seller har eligible bond ke liye Net Cost calculate karta hai."
+            }
+          },
+          "onScreenIntent": "Define CTD bond and algorithmic search across deliverable basket",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "net delivery cost"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Net Cost equals the bond's quoted cash purchase price, minus the futures settlement price multiplied by the bond's conversion factor. The specific bond producing the lowest net cost is the Cheapest-to-Deliver."
+            },
+            "hi": {
+              "display": "Net Cost barabar Bond Quoted Cash Price minus Futures Price guna Conversion Factor. Jis bond ke liye ye difference sabse minimum ya negative hota hai, wahi bond CTD ban jata hai."
+            }
+          },
+          "onScreenIntent": "Formulate Net Cost = Bond Cash Price - (Futures Settlement * CF)",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Yield Regimes & CTD Behavior: The 6% Tipping Point",
+      "purpose": "Examine CTD selection rules under market yields above vs. below 6.0%",
+      "takeaways": [
+        "The 6.0% benchmark yield acts as a structural tipping point for CTD selection",
+        "When market yields > 6%, low-coupon long-maturity bonds tend to be cheapest to deliver",
+        "When market yields < 6%, high-coupon short-maturity bonds tend to be cheapest to deliver"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "cmp-yield-high",
+          "heading": "Market Yields > 6.0%",
+          "tone": "neutral",
+          "points": [
+            "Conversion factors systematically overcompensate bonds with longer duration",
+            "Long-maturity bonds suffer larger price discounts than conversion factors assume",
+            "Low-coupon, long-maturity bonds are heavily favored as Cheapest-to-Deliver",
+            "Upward-sloping yield curve further reinforces long-maturity delivery advantage"
+          ]
+        },
+        "right": {
+          "id": "cmp-yield-low",
+          "heading": "Market Yields < 6.0%",
+          "tone": "positive",
+          "points": [
+            "Conversion factors undercompensate long-duration bonds at low yields",
+            "Short-maturity bonds experience smaller capital gains, making them cheaper to deliver",
+            "High-coupon, short-maturity bonds become the Cheapest-to-Deliver",
+            "Downward-sloping (inverted) yield curve shifts advantage toward shorter maturities"
+          ]
+        },
+        "verdict": {
+          "id": "vrd-tipping",
+          "text": "Yields > 6% favor low-coupon long bonds; yields < 6% favor high-coupon short bonds."
+        }
+      },
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The identity of the CTD bond is highly sensitive to prevailing market yields and the slope of the yield curve, with six percent acting as the critical structural tipping point."
+            },
+            "hi": {
+              "display": "CTD bond ka selection market interest rates aur yield curve ke slope par strongly depend karta hai. Six percent yield yahan crucial tipping point hoti hai."
+            }
+          },
+          "onScreenIntent": "Introduce 6% yield as critical tipping point for CTD selection",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "6% tipping point"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When market interest rates exceed six percent, the conversion factor system systematically favors long-maturity and low-coupon bonds, making low-coupon long bonds cheapest to deliver."
+            },
+            "hi": {
+              "display": "Jab market yields six percent se zyada hoti hain, toh Conversion Factor system long-maturity aur low-coupon bonds ko favor karta hai, isliye low-coupon long bonds CTD bante hain."
+            }
+          },
+          "onScreenIntent": "Analyze yield regime > 6%: favors low-coupon long-maturity bonds",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, when market interest rates fall below six percent, the system favors short-maturity and high-coupon bonds. An upward-sloping yield curve further tilts the advantage toward longer maturities."
+            },
+            "hi": {
+              "display": "Iske opposite, jab market yields six percent se kam hoti hain, toh high-coupon aur short-maturity bonds CTD banna prefer karte hain. Upward-sloping yield curve hamesha long-maturity bonds ko advantage deti hai."
+            }
+          },
+          "onScreenIntent": "Analyze yield regime < 6%: favors high-coupon short-maturity bonds",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "The Wild Card Play: Exploiting After-Hours Asymmetry",
+      "purpose": "Examine the Wild Card delivery timing option between 2:00 PM and 8:00 PM Chicago time",
+      "takeaways": [
+        "CBOT futures settle at 2:00 PM Chicago time, fixing that day's invoice price",
+        "Short sellers can issue intention to deliver until 8:00 PM that evening",
+        "If bond prices drop after 2:00 PM, short sellers buy cheap bonds and tender delivery at 2:00 PM price"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "technical_panel",
+      "data": {
+        "title": "The Wild Card Play Execution Mechanics",
+        "subtitle": "Exploiting Settlement Timing Asymmetry in Chicago",
+        "sections": [
+          {
+            "id": "wc-fix",
+            "title": "2:00 PM Settlement Fix",
+            "content": "CBOT futures trading halts at 2:00 PM, fixing the day's settlement price F_0 and delivery invoice formula."
+          },
+          {
+            "id": "wc-window",
+            "title": "2:00 PM to 8:00 PM Cash Window",
+            "content": "The cash bond market remains active. The short seller can submit a notice of intention to deliver until 8:00 PM."
+          },
+          {
+            "id": "wc-play",
+            "title": "Wild Card Arbitrage Capture",
+            "content": "If bond prices drop sharply after 2:00 PM, the short buys bonds at depressed cash prices and exercises delivery at the higher 2:00 PM price."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exchange rules grant the short seller an additional tactical advantage historically celebrated as The Wild Card Play."
+            },
+            "hi": {
+              "display": "Exchange rules short seller ko ek aur unique tactical advantage deti hain jise financial history mein The Wild Card Play kaha jata hai."
+            }
+          },
+          "onScreenIntent": "Introduce the Wild Card Play delivery option",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "wild card play"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Trading in CBOT Treasury futures closes at two o'clock afternoon Chicago time, fixing the settlement invoice price for that day. However, the short seller has until eight o'clock in the evening to submit an official notice of intention to deliver."
+            },
+            "hi": {
+              "display": "CBOT futures trading afternoon two o'clock Chicago time par close ho jati hai aur us din ka final settlement price fix ho jata hai. Lekin short seller ke paas intention to deliver notice dene ke liye evening eight o'clock tak ka time hota hai."
+            }
+          },
+          "onScreenIntent": "Explain 2:00 PM futures settlement vs 8:00 PM delivery notice window",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If cash bond prices decline sharply between two o'clock and eight o'clock, the short seller purchases cheap bonds in the late cash market and tenders delivery at the higher two o'clock settlement price, pocketing an unhedged arbitrage profit."
+            },
+            "hi": {
+              "display": "Agar afternoon two o'clock aur evening eight o'clock ke beech cash bond prices sharply gir jate hain, toh seller open cash market se saste bonds buy karke two o'clock ke high settlement price par delivery tender kar deta hai. Is free embedded option ki wajah se futures price thoda sa discount par trade karta hai."
+            }
+          },
+          "onScreenIntent": "Detail how post-2:00 PM bond price declines produce riskless profit",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Calculating the Invoice Price",
+      "purpose": "Test student ability to compute the exact cash invoice price per $100 face value",
+      "takeaways": [
+        "Futures settlement price = $90.00, CF = 1.2000, Accrued Interest = $2.50",
+        "Scaled futures price: $90.00 * 1.2000 = $108.00",
+        "Total invoice price: $108.00 + $2.50 = $110.50 per $100 par ($110,500 total)"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "interactive_quiz",
+      "data": {
+        "title": "Active Recall: Treasury Bond Futures Invoice Price",
+        "question": "A Treasury bond futures contract settles at $90.00. The delivered bond has a Conversion Factor of 1.2000 and Accrued Interest of $2.50 per $100 par. What is the total invoice price per $100 par?",
+        "options": [
+          "$108.00: The futures settlement price scaled by the conversion factor.",
+          "$92.50: The futures settlement price plus accrued coupon interest.",
+          "$110.50: Scaled futures price ($90.00 * 1.2000 = $108.00) plus accrued interest ($2.50).",
+          "$112.50: The futures settlement price multiplied by CF and accrued interest combined."
+        ],
+        "correctIndex": 2,
+        "explanation": "Invoice Price = (Futures Settlement Price * Conversion Factor) + Accrued Interest. Calculating directly: ($90.00 * 1.2000) + $2.50 = $108.00 + $2.50 = $110.50 per $100 of face value. For a standardized $100,000 CBOT contract, the buyer delivers total cash of $110,500."
+      },
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your invoice price calculation. The Treasury bond futures settlement price is ninety dollars. The delivered bond has a Conversion Factor of one point two zero zero zero, and accrued interest is two dollars and fifty cents per one hundred dollars par. What is the total invoice price?"
+            },
+            "hi": {
+              "display": "Chaliye ek practical invoice price calculation test karte hain. Treasury bond futures settlement price ninety point zero zero dollars hai. Deliverable bond ka conversion factor one point two zero zero zero hai, aur accrued interest two point five zero dollars hai. Invoice price kya hoga?"
+            }
+          },
+          "onScreenIntent": "Present the Invoice Price active recall scenario",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Apply the formula: Invoice Price equals Futures Settlement Price multiplied by Conversion Factor, plus Accrued Interest. Pause and evaluate the options."
+            },
+            "hi": {
+              "display": "Formula apply kijiye: Invoice Price barabar Futures Price guna CF plus Accrued Interest. Pause and consider."
+            }
+          },
+          "onScreenIntent": "Prompt calculation of scaled price and accrued interest addition",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option C: one hundred ten dollars and fifty cents. Calculating directly: ninety dollars times one point two zero zero zero equals one hundred eight dollars. Adding accrued interest of two dollars and fifty cents yields exactly one hundred ten dollars and fifty cents per one hundred dollars face value."
+            },
+            "hi": {
+              "display": "Correct answer hai Option C: One hundred ten point five zero dollars. Calculation dekhiye: ninety point zero zero guna one point two zero zero zero barabar one hundred eight point zero zero. Isme accrued interest two point five zero add karne par exactly one hundred ten point five zero dollars nikalta hai."
+            }
+          },
+          "onScreenIntent": "Reveal Option C: $110.50 and trace cash invoice breakdown",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Determining Treasury Futures Theoretical Fair Value",
+      "purpose": "Formulate theoretical futures pricing anchored to the CTD bond",
+      "takeaways": [
+        "Theoretical futures price F_0 is anchored directly to the Cheapest-to-Deliver bond",
+        "Formula deducts coupon PV (I) and delivery accrued interest (A_T)",
+        "F_0 = (1 / CF) * [(S_0 - I) * e^(r*T) - A_T]"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Theoretical Treasury Bond Futures Price Formula",
+        "formula": {
+          "latex": "F_0 = \\frac{1}{\\text{CF}} \\left[ (S_0 - I) e^{rT} - A_T \\right]",
+          "expression": "Futures Price = (1 / CF) * [(Spot Price - Coupon PV) * exp(r * T) - Accrued Interest at Delivery]",
+          "solvesFor": "Theoretical Clean Futures Equilibrium Price (F_0)",
+          "variables": [
+            {
+              "symbol": "F_0",
+              "latex": "F_0",
+              "meaning": "Theoretical clean futures price quoted on exchange",
+              "unit": "currency"
+            },
+            {
+              "symbol": "CF",
+              "latex": "\\text{CF}",
+              "meaning": "Conversion factor of the CTD bond",
+              "unit": "dimensionless"
+            },
+            {
+              "symbol": "S_0",
+              "latex": "S_0",
+              "meaning": "Spot cash price of CTD bond today (dirty price)",
+              "unit": "currency"
+            },
+            {
+              "symbol": "I",
+              "latex": "I",
+              "meaning": "Present value of all intermediate coupons received before delivery T",
+              "unit": "currency"
+            },
+            {
+              "symbol": "A_T",
+              "latex": "A_T",
+              "meaning": "Accrued interest on the CTD bond at delivery date T",
+              "unit": "currency"
+            },
+            {
+              "symbol": "r",
+              "latex": "r",
+              "meaning": "Continuously compounded risk-free rate for horizon T",
+              "unit": "decimal/year"
+            },
+            {
+              "symbol": "T",
+              "latex": "T",
+              "meaning": "Time to futures delivery date",
+              "unit": "years"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "fv1",
+            "symbolLatex": "(S_0 - I) e^{rT}",
+            "meaning": "Forward dirty cash price of CTD bond compounded to maturity T",
+            "unit": "currency"
+          },
+          {
+            "id": "fv2",
+            "symbolLatex": "- A_T",
+            "meaning": "Deduct accrued coupon interest at delivery to isolate clean price",
+            "unit": "currency"
+          },
+          {
+            "id": "fv3",
+            "symbolLatex": "\\frac{1}{\\text{CF}}",
+            "meaning": "Scale down by CTD conversion factor to extract standard futures quote",
+            "unit": "scaling"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we examine the theoretical fair pricing of a Treasury bond futures contract: how is F_0 determined before delivery occurs?"
+            },
+            "hi": {
+              "display": "Ab aate hain final quantitative question par: Treasury bond futures contract ka theoretical fair value F zero kaise calculate hota hai?"
+            }
+          },
+          "onScreenIntent": "Introduce theoretical fair pricing anchored to CTD bond",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "futures theoretical fair value"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under John Hull's model, the futures price is anchored directly to the Cheapest-to-Deliver bond: F_0 equals one over the conversion factor, multiplied by spot cash price S_0 minus present value of coupons I, compounded at the risk-free rate, minus accrued interest at delivery."
+            },
+            "hi": {
+              "display": "Hull ke model ke mutabik, futures price CTD bond ke cash price se determine hota hai. Formula hai: F zero barabar one divided by CF, bracket mein S zero minus I guna e to the power r T minus Accrued Interest at maturity."
+            }
+          },
+          "onScreenIntent": "Formulate F_0 = (1/CF) * [(S_0 - I)*e^(r*T) - A_T]",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "By deducting intermediate coupons and accrued interest at delivery, this formula extracts the clean, unencumbered futures price that prevents cash-and-carry arbitrage against the CTD bond."
+            },
+            "hi": {
+              "display": "Yahan S zero CTD bond ka cash price hai, I intermediate coupons ka present value hai, aur maturity par aane wale accrued interest ko subtract karke clean futures quote nikali jati hai."
+            }
+          },
+          "onScreenIntent": "Explain why deducting intermediate coupons and accrued interest prevents cash-and-carry arbitrage",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Treasury Bond Futures",
+      "purpose": "Consolidate Chapter 6 Part 1 foundational pillars before advancing to Eurodollar futures and hedging",
+      "takeaways": [
+        "Day count rules dictate that invoice cash equals clean price plus accrued interest",
+        "Conversion factors normalize multi-bond baskets to a synthetic 6% yield baseline",
+        "The short party delivers the CTD bond and retains valuable embedded delivery options"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "summary_thread",
+      "data": {
+        "title": "Executive Synthesis: The Four Pillars of Treasury Bond Futures",
+        "rules": [
+          {
+            "id": "rul-1",
+            "title": "Day Count Standards",
+            "text": "Treasury bonds follow Actual/Actual; invoice cash equals clean price plus accrued interest."
+          },
+          {
+            "id": "rul-2",
+            "title": "Conversion Factor Equalization",
+            "text": "The exchange normalizes deliverable bonds to a synthetic 6.0% yield to maturity baseline."
+          },
+          {
+            "id": "rul-3",
+            "title": "Coupon Rule of Thumb",
+            "text": "Bonds with coupon > 6% have CF > 1.0; bonds with coupon < 6% have CF < 1.0."
+          },
+          {
+            "id": "rul-4",
+            "title": "Invoice Price Formula",
+            "text": "Invoice Price = (Futures Settlement Price * Conversion Factor) + Accrued Interest."
+          },
+          {
+            "id": "rul-5",
+            "title": "Cheapest-to-Deliver (CTD) Optimization",
+            "text": "The short seller delivers the bond minimizing Net Cost = Cash Price - (Futures Price * CF)."
+          },
+          {
+            "id": "rul-6",
+            "title": "The 6% Yield Tipping Point",
+            "text": "Market yields > 6% favor low-coupon long bonds; yields < 6% favor high-coupon short bonds."
+          },
+          {
+            "id": "rul-7",
+            "title": "The Wild Card Delivery Option",
+            "text": "Settlement price fixes at 2:00 PM while intention notice is open until 8:00 PM Chicago time."
+          },
+          {
+            "id": "rul-8",
+            "title": "Theoretical Futures Fair Value",
+            "text": "F_0 = (1/CF) * [(S_0 - I)*e^(r*T) - A_T] prevents cash-and-carry arbitrage on the CTD bond."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the four foundational pillars of Treasury bond futures established in Part One."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Six Part One ke chaar core fixed income futures pillars ko summarize karte hain."
+            }
+          },
+          "onScreenIntent": "Introduce consolidation of the four foundational pillars",
+          "sourceFactIds": [
+            "F01",
+            "F04",
+            "F06",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar One: Day Counts and Cash Pricing. Treasury bonds follow Actual over Actual, where total invoice cash equals clean quoted price plus accrued coupon interest."
+            },
+            "hi": {
+              "display": "Pehla pillar: Day Counts & Clean vs Dirty. Treasuries Actual by Actual follow karti hain, aur settlement cash hamesha Quoted clean price plus Accrued interest hota hai."
+            }
+          },
+          "onScreenIntent": "Review Pillar One: Day Counts and Cash Pricing",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Two: Conversion Factors. The exchange normalizes the multi-bond deliverable basket to a synthetic six percent yield to maturity baseline."
+            },
+            "hi": {
+              "display": "Dusra pillar: Conversion Factors. Exchange multi-bond basket ko six percent synthetic baseline par standardize karne ke liye har bond ka unique CF compute karti hai."
+            }
+          },
+          "onScreenIntent": "Review Pillar Two: Conversion Factors",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Three: The CTD Bond. The short seller delivers the specific bond that minimizes Net Cost: Cash Price minus Futures Price times Conversion Factor."
+            },
+            "hi": {
+              "display": "Teesra pillar: The CTD Bond. Short seller wo bond deliver karta hai jiska net cost cash price minus futures price guna CF sabse minimum ho."
+            }
+          },
+          "onScreenIntent": "Review Pillar Three: The CTD Bond",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Four: Embedded Delivery Options. The Wild Card timing window and quality switching options favor the short seller, slightly depressing futures prices below theoretical parity."
+            },
+            "hi": {
+              "display": "Chautha pillar: Embedded Delivery Options. Wild card timing option aur CTD grade switches short party ko benefit dete hain aur futures price ko theoretical level se thoda depress karte hain."
+            }
+          },
+          "onScreenIntent": "Review Pillar Four: Embedded Delivery Options",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part Two, we examine Eurodollar futures, convexity adjustments, and duration-based hedging strategies."
+            },
+            "hi": {
+              "display": "Part Two mein hum Eurodollar Futures, Convexity Adjustment, aur Duration-Based Hedging ko deeply dissect karenge."
+            }
+          },
+          "onScreenIntent": "Preview Chapter 6 Part 2: Eurodollar futures, convexity, and hedging",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1403 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch25",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 25",
+  "partLabel": "Part 2",
+  "title": "Chapter 25: Total Return Swaps, CDOs & Basket Default Correlation (Part 2)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 49,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Subprime AAA CDO Alchemist Illusion",
+      "purpose": "The Subprime AAA CDO Alchemist Illusion: Foundational quantitative principles",
+      "takeaways": [
+        "The Subprime AAA CDO Alchemist Illusion: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Leading up to the 2008 global financial crisis, Wall Street investment banks pooled pools of BBB-rated subprime mortgages and stamped 80% of the newly issued tranches with pristine AAA ratings. How did financial engineering perform this alchemy, and why did those supposedly safe bonds lose 90% of their value?"
+            },
+            "hi": {
+              "display": "Sharma ji, 2008 financial crisis se pehle investment banks ne risky Triple-B rated subprime mortgages ko pool karke unke eighty percent hisse ko Triple-A stamp kar diya tha! Ye alchemist magic kaise kiya gaya, aur wo supposedly safe bonds ninety percent kaise crash hue?"
+            }
+          },
+          "onScreenIntent": "The Subprime AAA CDO Alchemist Illusion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The disaster stemmed directly from the Default Correlation Fallacy. Quantitative rating agency models assumed individual mortgage defaults across different geographic regions were nearly uncorrelated, setting model correlation parameters close to zero."
+            },
+            "hi": {
+              "display": "Raju, ye structured credit ka sabse bada illusion tha, jise Default Correlation Fallacy kehte hain! Rating agency models ne maan liya tha ki regional mortgage defaults ek doosre se uncorrelated hain, yaani correlation lagbhag zero hai!"
+            }
+          },
+          "onScreenIntent": "The Subprime AAA CDO Alchemist Illusion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under low correlation assumptions, defaults occur independently, keeping total portfolio losses contained within the thin equity tranche. But when nationwide housing prices collapsed, default correlation spiked toward 100%! Severe losses ripped through equity and mezzanine cushions, completely wiping out senior AAA tranches."
+            },
+            "hi": {
+              "display": "Low correlation par portfolio losses equity tranche mein absorb ho jate hain. Lekin jab housing market nationwide crash hua, toh correlation spike karke one hundred percent ho gaya! Loss equity aur mezzanine ko cheerte hue senior Triple-A tranches ko evaporate kar gaya!"
+            }
+          },
+          "onScreenIntent": "The Subprime AAA CDO Alchemist Illusion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 25 Part 2, we master Total Return Swaps, CDO tranche subordination, the One-Factor Gaussian Copula model, tranche correlation sensitivities, and base correlation technology."
+            },
+            "hi": {
+              "display": "Isliye Chapter 25 Part Two mein hum Total Return Swaps, CDO Tranche Subordination, One-Factor Gaussian Copula Model, Tranche Correlation Sensitivities, aur Base Correlation ko rigorously master karenge!"
+            }
+          },
+          "onScreenIntent": "The Subprime AAA CDO Alchemist Illusion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Subprime AAA CDO Alchemist Illusion",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Subprime AAA CDO Alchemist Illusion: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Independent Default Diversification vs Systemic One-Factor Contagion",
+      "purpose": "Independent Default Diversification vs Systemic One-Factor Contagion: Foundational quantitative principles",
+      "takeaways": [
+        "Independent Default Diversification vs Systemic One-Factor Contagion: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In multi-name credit risk modeling, two opposing regimes define portfolio outcomes: Independent Default Diversification versus Systemic One-Factor Contagion."
+            },
+            "hi": {
+              "display": "Multi-name credit risk modeling mein do extreme regimes ka confrontation hota hai: Independent Default Diversification aur Systemic One-Factor Contagion."
+            }
+          },
+          "onScreenIntent": "Independent Default Diversification vs Systemic One-Factor Contagion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In the low-correlation regime, defaults occur like independent random events, keeping total losses trapped within subordinated equity tranches and making senior paper appear virtually default-proof."
+            },
+            "hi": {
+              "display": "Low correlation regime mein defaults ek doosre se independent coin flips ki tarah behave karte hain, jisse losses lower tranches mein cap ho jate hain aur senior tranches bulletproof dikhti hain."
+            }
+          },
+          "onScreenIntent": "Independent Default Diversification vs Systemic One-Factor Contagion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In contrast, under systemic contagion, a macroeconomic shock strikes all issuers simultaneously. Defaults cascade across the portfolio, and senior AAA-rated tranches suffer devastating capital impairment."
+            },
+            "hi": {
+              "display": "Lekin systemic contagion regime mein ek single macroeconomic shock pore portfolio ko simultaneously hit karta hai, defaults cascade karte hain, aur AAA rated tranches bhi massive loss suffer karti hain!"
+            }
+          },
+          "onScreenIntent": "Independent Default Diversification vs Systemic One-Factor Contagion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Independent Default Diversification vs Systemic One-Factor Contagion",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Independent Default Diversification vs Systemic One-Factor Contagion: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of Structured Credit & CDO Technology",
+      "purpose": "Four Pillars of Structured Credit & CDO Technology: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of Structured Credit & CDO Technology: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The architecture of structured credit is founded upon four core pillars."
+            },
+            "hi": {
+              "display": "Structured credit architecture chaar fundamental pillars par stand karti hai."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Structured Credit & CDO Technology",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: Total Return Swaps, transferring total asset economic returns in exchange for floating benchmark interest."
+            },
+            "hi": {
+              "display": "Pehla pillar hai Total Return Swaps yaani TRS, jo underlying bond ke pore economic return ko floating interest ke badle transfer karta hai."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Structured Credit & CDO Technology",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: The Capital Subordination Waterfall, where Equity (0% to 3%), Mezzanine (3% to 7%), and Senior (7% to 10%) tranches absorb sequential portfolio losses."
+            },
+            "hi": {
+              "display": "Doosra pillar hai Capital Subordination Waterfall, jahan Equity zero to three percent, Mezzanine three to seven percent, aur Senior seven to ten percent tranches loss absorb karti hain."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Structured Credit & CDO Technology",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: The One-Factor Gaussian Copula Engine linking multi-name default intensities; and Pillar 4: Tranche Correlation Sensitivities and Base Correlation modeling."
+            },
+            "hi": {
+              "display": "Teesra pillar hai One-Factor Gaussian Copula Engine jo multi-name defaults ko link karta hai, aur chautha pillar hai Tranche Correlation Sensitivities aur Base Correlation technology!"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Structured Credit & CDO Technology",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of Structured Credit & CDO Technology",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of Structured Credit & CDO Technology: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Total Return Swaps (TRS) Mechanics",
+      "purpose": "Total Return Swaps (TRS) Mechanics: Foundational quantitative principles",
+      "takeaways": [
+        "Total Return Swaps (TRS) Mechanics: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In a Total Return Swap, two counterparties execute an unfunded transaction: the Total Return Payer passes all coupon cash flows and capital appreciation of a reference bond."
+            },
+            "hi": {
+              "display": "Total Return Swap mein do parties hoti hain: Total Return Payer aur Total Return Receiver. Payer bond ka coupon interest aur capital appreciation transfer karta hai."
+            }
+          },
+          "onScreenIntent": "Total Return Swaps (TRS) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In return, the Total Return Receiver pays floating benchmark interest like SOFR plus a spread, while reimbursing the payer for any capital depreciation if the reference asset price declines."
+            },
+            "hi": {
+              "display": "Receiver floating benchmark jaise SOFR plus margin pay karta hai, aur agar bond ki market price drop hoti hai, toh wo depreciation amount bhi payer ko compensate karta hai."
+            }
+          },
+          "onScreenIntent": "Total Return Swaps (TRS) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Commercial banks utilize Total Return Swaps to hedge balance sheet credit risk without transferring physical loan ownership, while hedge funds deploy them to gain leveraged synthetic market exposure."
+            },
+            "hi": {
+              "display": "Commercial banks is mechanism se risky loans ko legally balance sheet se off-load kar dete hain bina borrower ko pata chale, jabki hedge funds high synthetic leverage achieve karte hain!"
+            }
+          },
+          "onScreenIntent": "Total Return Swaps (TRS) Mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Total Return Swaps (TRS) Mechanics",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Total Return Swaps (TRS) Mechanics: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Cash CDOs vs Synthetic CDOs",
+      "purpose": "Cash CDOs vs Synthetic CDOs: Foundational quantitative principles",
+      "takeaways": [
+        "Cash CDOs vs Synthetic CDOs: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Collateralized Debt Obligations operate in two primary structures: Cash CDOs and Synthetic CDOs. In a Cash CDO, a Special Purpose Vehicle purchases physical loans or bonds and issues tranched debt."
+            },
+            "hi": {
+              "display": "Collateralized Debt Obligation do tarah ke hote hain: Cash CDO aur Synthetic CDO. Cash CDO mein SPV physical bonds ya loans khareedta hai aur tranches issue karta hai."
+            }
+          },
+          "onScreenIntent": "Cash CDOs vs Synthetic CDOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Synthetic CDO does not purchase physical debt. Instead, the SPV sells CDS credit protection across a standardized index of 125 corporate reference entities, investing collateral proceeds in risk-free government securities."
+            },
+            "hi": {
+              "display": "Synthetic CDO physical bonds nahi khareedta. Wo ek reference index jaise CDX par ek sau pachhis corporate names par CDS protection sell karta hai, aur premium ko risk-free Treasury collateral mein hold karta hai."
+            }
+          },
+          "onScreenIntent": "Cash CDOs vs Synthetic CDOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The capital structure prioritizes losses strictly: the Equity tranche (0% to 3%) absorbs first losses, shielding the Mezzanine tranche (3% to 7%), which in turn shields Senior tranches (7% to 10%) at the summit."
+            },
+            "hi": {
+              "display": "Tranche hierarchy losses ko strictly prioritize karti hai: Equity Tranche zero to three percent first loss absorb karti hai, Mezzanine three to seven percent ko protect karti hai, aur Senior seven to ten percent unke baad hit hoti hai!"
+            }
+          },
+          "onScreenIntent": "Cash CDOs vs Synthetic CDOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Cash CDOs vs Synthetic CDOs",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Cash CDOs vs Synthetic CDOs: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Mathematical Tranche Loss Allocation",
+      "purpose": "Mathematical Tranche Loss Allocation: Foundational quantitative principles",
+      "takeaways": [
+        "Mathematical Tranche Loss Allocation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For cumulative portfolio percentage loss L, the tranche loss between attachment point A_L and detachment point A_U is determined by an exact mathematical formula."
+            },
+            "hi": {
+              "display": "Agar portfolio ka cumulative loss L percent hai, toh attachment point A-L aur detachment point A-U ke beech ka tranche loss mathematically exact formula se determine hota hai."
+            }
+          },
+          "onScreenIntent": "Mathematical Tranche Loss Allocation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Tranche loss percentage equals max(0, min(L minus A_L, A_U minus A_L)) divided by the tranche width (A_U minus A_L)."
+            },
+            "hi": {
+              "display": "Tranche Loss equals maximum of zero comma minimum of L minus A-L comma A-U minus A-L, divided by A-U minus A-L."
+            }
+          },
+          "onScreenIntent": "Mathematical Tranche Loss Allocation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For example, if total portfolio loss reaches 5.5%, the Equity tranche (0% to 3%) suffers a 100% total loss, the Mezzanine tranche absorbs a 62.5% principal impairment, while Senior paper remains 100% intact."
+            },
+            "hi": {
+              "display": "Example ke liye, agar portfolio loss five point five percent ho, toh Equity zero to three percent completely wipe out ho jayegi, Mezzanine sixty-two point five percent impair hogi, aur Senior tranche hundred percent safe rahegi!"
+            }
+          },
+          "onScreenIntent": "Mathematical Tranche Loss Allocation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Mathematical Tranche Loss Allocation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Mathematical Tranche Loss Allocation: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "The One-Factor Gaussian Copula Model",
+      "purpose": "The One-Factor Gaussian Copula Model: Foundational quantitative principles",
+      "takeaways": [
+        "The One-Factor Gaussian Copula Model: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To model multi-name default dependency, quantitative finance deploys the One-Factor Gaussian Copula: latent asset variable x_i equals a_i times F plus sqrt(1 minus a_i squared) times Z_i."
+            },
+            "hi": {
+              "display": "Multi-name defaults ko model karne ke liye David Li aur Vasicek ne One-Factor Gaussian Copula formulate kiya: x-i equals a-i times F plus square root of one minus a-i square times Z-i."
+            }
+          },
+          "onScreenIntent": "The One-Factor Gaussian Copula Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Here F is the common macroeconomic systematic factor, and Z_i is the idiosyncratic company-specific shock. Both follow standard normal distributions, creating pairwise correlation rho equal to a squared."
+            },
+            "hi": {
+              "display": "Yahan F common macroeconomic factor hai aur Z-i firm-specific idiosyncratic shock hai. Dono standard normal distributed hote hain, jisse correlation rho equals a-square banta hai."
+            }
+          },
+          "onScreenIntent": "The One-Factor Gaussian Copula Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Crucially, conditional on the realization of common factor F, all individual company defaults become conditionally independent, allowing complex portfolio loss distributions to be calculated using standard binomial methods."
+            },
+            "hi": {
+              "display": "Sabse powerful feature ye hai ki factor F ke given hone par saare individual defaults mathematically conditionally independent ban jate hain, jisse binomial expansion se portfolio loss distribution easily solve ho jati hai!"
+            }
+          },
+          "onScreenIntent": "The One-Factor Gaussian Copula Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The One-Factor Gaussian Copula Model",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The One-Factor Gaussian Copula Model: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Tranche Correlation Sensitivities: Equity vs Senior",
+      "purpose": "Tranche Correlation Sensitivities: Equity vs Senior: Foundational quantitative principles",
+      "takeaways": [
+        "Tranche Correlation Sensitivities: Equity vs Senior: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now examine how correlation shifts alter tranche valuations. The Equity Tranche is Long Correlation! As correlation increases, defaults cluster together."
+            },
+            "hi": {
+              "display": "Ab dekhiye correlation CDO tranches ko kaise affect karti hai. Equity Tranche is Long Correlation! Jab correlation badhti hai, defaults cluster karte hain."
+            }
+          },
+          "onScreenIntent": "Tranche Correlation Sensitivities: Equity vs Senior",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Clustering increases the probability of experiencing zero total defaults, enhancing equity survival odds and increasing equity tranche market values."
+            },
+            "hi": {
+              "display": "Clustering ka matlab hai ki zero defaults aane ki probability badh jati hai, jisse equity tranche ke poori tarah bachne ka chance badhta hai aur uski market value rise karti hai!"
+            }
+          },
+          "onScreenIntent": "Tranche Correlation Sensitivities: Equity vs Senior",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, Senior Tranches are Short Correlation! Higher correlation increases the probability of extreme cluster defaults that overwhelm lower subordination, causing severe principal losses on AAA-rated senior tranches."
+            },
+            "hi": {
+              "display": "Lekin Senior Tranche is Short Correlation! Jab correlation badhti hai, multiple defaults ek sath aakar lower cushions ko explode kar dete hain aur senior AAA tranches ko catastrophic loss pahunchate hain!"
+            }
+          },
+          "onScreenIntent": "Tranche Correlation Sensitivities: Equity vs Senior",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Tranche Correlation Sensitivities: Equity vs Senior",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Tranche Correlation Sensitivities: Equity vs Senior: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Compound Correlation vs Base Correlation",
+      "purpose": "Compound Correlation vs Base Correlation: Foundational quantitative principles",
+      "takeaways": [
+        "Compound Correlation vs Base Correlation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Calibrating a single implied correlation to an individual mezzanine tranche is known as Compound Correlation. However, for mezzanine tranches, the pricing equation frequently yields two conflicting mathematical solutions or no real solution at all."
+            },
+            "hi": {
+              "display": "Individual tranche par single correlation fit karne ko Compound Correlation kehte hain. Lekin mezzanine tranches mein compound correlation equation ke aksar do alag solutions nikalte hain ya koi real solution nahi milta!"
+            }
+          },
+          "onScreenIntent": "Compound Correlation vs Base Correlation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To resolve this breakdown, quantitative desks implement Base Correlation: decomposing each mezzanine tranche into two base tranches starting at 0% attachment, yielding a unique, well-behaved, and monotonic correlation curve."
+            },
+            "hi": {
+              "display": "Is mathematically flawed metric ko replace karne ke liye Wall Street Base Correlation use karti hai: har tranche ko zero se attachment point tak ke base tranches mein break karte hain, jo hamesha unique aur strictly monotonic curve deta hai!"
+            }
+          },
+          "onScreenIntent": "Compound Correlation vs Base Correlation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Compound Correlation vs Base Correlation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Compound Correlation vs Base Correlation: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall: CDO Tranche Loss Allocation & Impairment Calculation",
+      "purpose": "Active Recall: CDO Tranche Loss Allocation & Impairment Calculation: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: CDO Tranche Loss Allocation & Impairment Calculation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your quantitative mastery of CDO tranche mathematics. A $1B synthetic CDO portfolio references 100 equal-sized bonds. The mezzanine tranche attaches at 3% and detaches at 7%. If 10 firms default with 40% recovery, what is the total portfolio loss and mezzanine principal impairment? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Aaiye CDO tranche math par aapki understanding test karte hain. Ek one billion dollar synthetic CDO portfolio mein ek sau equal-sized corporate bonds hain. Mezzanine tranche ka attachment three percent aur detachment seven percent hai. Agar saal ke dauran ten companies default karti hain aur recovery forty percent hoti hai, toh portfolio loss aur mezzanine principal impairment kitna hoga?"
+            }
+          },
+          "onScreenIntent": "Active Recall: CDO Tranche Loss Allocation & Impairment Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Compute total defaulted notional $100M with Loss Given Default 60% = $60M loss (6.0% portfolio loss). Subtract the 3% ($30M) equity attachment to determine mezzanine impairment."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: CDO Tranche Loss Allocation & Impairment Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option A is correct: Portfolio loss is $60M (6.0%) and mezzanine impairment is 75%! The first $30M of losses completely wipes out the equity tranche. The remaining $30M falls into the $40M mezzanine tranche, impairing exactly 75% of its principal!"
+            },
+            "hi": {
+              "display": "Correct option hai Option A: Portfolio Loss sixty million dollars aur Mezzanine Impairment seventy-five percent! Ten companies ka default notional one hundred million dollars hai. Sixty percent loss given default se portfolio loss sixty million dollars banta hai, jo six percent hai. Pehla thirty million dollars equity absorb karegi, aur bacha hua thirty million dollars forty million dollar mezzanine tranche ka seventy-five percent wipe out kar dega!"
+            }
+          },
+          "onScreenIntent": "Active Recall: CDO Tranche Loss Allocation & Impairment Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Institutional Reality: The 2008 Super Senior Wipeout & Risk Governance",
+      "purpose": "Institutional Reality: The 2008 Super Senior Wipeout & Risk Governance: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Reality: The 2008 Super Senior Wipeout & Risk Governance: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This explains why major global banks suffered catastrophic multi-billion dollar losses on Super Senior CDO tranches in 2008."
+            },
+            "hi": {
+              "display": "Sharma ji, iska matlab 2008 mein Wall Street banks ne senior CDO tranches par isliye hazaaron billions kho diye kyunki unhone correlation shock ko stress-test nahi kiya tha?"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The 2008 Super Senior Wipeout & Risk Governance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Risk desks mistakenly believed a 10% subordination cushion made senior tranches impervious, ignoring the mathematical reality that senior paper is short correlation. When systemic correlation spiked, AAA-rated tranches were severely downgraded and wiped out."
+            },
+            "hi": {
+              "display": "Bilkul Raju! Banks ne socha ki ten percent subordination ke baad senior tranche safe hai. Lekin unhone ye nahi samjha ki senior tranches short correlation hoti hain! Jab correlation zero point nine pahunchi, AAA paper junk ban gaya!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The 2008 Super Senior Wipeout & Risk Governance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Today, risk governance mandates rigorous multi-name correlation stress testing across all structured finance desks to prevent concentrated leverage traps."
+            },
+            "hi": {
+              "display": "Modern quantitative desks har portfolio ko correlation extremes par stress-test karti hain taaki structured leverage dobara institutions ko destroy na kare!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The 2008 Super Senior Wipeout & Risk Governance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Institutional Reality: The 2008 Super Senior Wipeout & Risk Governance",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Institutional Reality: The 2008 Super Senior Wipeout & Risk Governance: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary: 8 Institutional Rules of Structured Credit & CDOs",
+      "purpose": "Summary: 8 Institutional Rules of Structured Credit & CDOs: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Structured Credit & CDOs: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the eight core quantitative rules of Chapter 25 Part 2."
+            },
+            "hi": {
+              "display": "Chaliye Chapter 25 Part Two ke aath core quantitative rules ko consolidate karte hain."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Structured Credit & CDOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Total Return Swaps transfer 100% of an asset's economic return in exchange for floating benchmark interest. Rule 2: Synthetic CDOs sell portfolio CDS protection and invest proceeds in risk-free collateral."
+            },
+            "hi": {
+              "display": "Rule 1: Total Return Swaps underlying debt ka total economic performance floating benchmark interest ke badle transfer karte hain. Rule 2: Synthetic CDO portfolio CDS sell karke cash collateral ko risk-free debt mein hold karta hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Structured Credit & CDOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Tranche subordination strictly dictates loss absorption order: Equity (0% to 3%), Mezzanine (3% to 7%), and Senior (7% to 10%). Rule 4: Tranche loss percentage equals max(0, min(L - A_L, A_U - A_L)) / (A_U - A_L)."
+            },
+            "hi": {
+              "display": "Rule 3: Tranche subordination loss absorption tay karta hai: Equity zero to three percent, Mezzanine three to seven percent, aur Senior seven to ten percent. Rule 4: Tranche loss formula max of zero comma min of L minus A-L comma A-U minus A-L divided by A-U minus A-L hota hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Structured Credit & CDOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: The One-Factor Gaussian Copula decomposes latent variables into common factor F and idiosyncratic shock Z_i. Rule 6: Conditioned on factor F, individual defaults become conditionally independent."
+            },
+            "hi": {
+              "display": "Rule 5: One-Factor Gaussian Copula latent variables ko common macro factor F aur idiosyncratic shock Z-i mein decompose karta hai. Rule 6: Conditioned on factor F, individual defaults completely independent ban jate hain."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Structured Credit & CDOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Equity tranches are Long Correlation, while Senior tranches are Short Correlation. Rule 8: Base Correlation curves eliminate the non-uniqueness defects of compound correlation."
+            },
+            "hi": {
+              "display": "Rule 7: Equity tranche is Long Correlation kyunki default clustering se zero-loss survival badhta hai; Senior tranche is Short Correlation kyunki clustering cushions ko penetrate karta hai. Rule 8: Compound correlation failure ko eliminate karne ke liye Base Correlation curve use karein!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Structured Credit & CDOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 800,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight quantitative rules govern structured credit portfolio management."
+            },
+            "hi": {
+              "display": "Ye structural insights multi-name credit risk aur CDO tranching ke absolute foundations hain!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Structured Credit & CDOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b7",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In our next chapter, we advance to Exotic Options, mastering barrier, binary, and compound contracts."
+            },
+            "hi": {
+              "display": "Agle chapter mein hum Exotic Options: Barrier, Binary, aur Compound options ko master karenge!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Structured Credit & CDOs",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 1000,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Structured Credit & CDOs",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1488 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch29",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 29",
+  "partLabel": "Part 1",
+  "title": "Hull Chapter 29 Part 1: Bond Options & Black's Model (Mechanics, Duration Bridge & Valuation)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 56,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Callable Bond Refinancing Trap",
+      "purpose": "The Callable Bond Refinancing Trap: Foundational quantitative principles",
+      "takeaways": [
+        "The Callable Bond Refinancing Trap: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider an investor who purchases an 8% coupon corporate bond. When the central bank slashes interest rates from 8% down to 3%, the investor anticipates substantial capital gains. Yet the bond's price stalls at $1,050, and the issuer abruptly calls it back. What happened?"
+            },
+            "hi": {
+              "display": "सर, पिछले साल मैंने 8% कूपन वाला एक कॉर्पोरेट बॉन्ड खरीदा था। जब केंद्रीय बैंक ने ब्याज दरें 8% से घटाकर 3% कर दीं, तो मुझे लगा बॉन्ड की कीमत में भारी उछाल आएगा। लेकिन बॉन्ड 1,050 डॉलर पर रुक गया और कंपनी ने बॉन्ड वापस खरीद लिया! यह मेरे साथ क्या हुआ?"
+            }
+          },
+          "onScreenIntent": "The Callable Bond Refinancing Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The investor walked straight into fixed income's classic trap: the embedded callable bond. By purchasing that security, the investor unwittingly wrote a call option to the corporate issuer."
+            },
+            "hi": {
+              "display": "राजू, तुम फिक्स्ड इनकम के सबसे बड़े जाल में फंस गए—एम्बेडेड कॉलेबल बॉन्ड! जब तुमने बॉन्ड खरीदा, तो तुमने अनजाने में कंपनी को एक कॉल ऑप्शन भी बेच दिया था!"
+            }
+          },
+          "onScreenIntent": "The Callable Bond Refinancing Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When market rates dropped, the company exercised its call at $1,050, retiring expensive 8% debt and refinancing at cheap 3%. The investor's high yield was terminated, forcing reinvestment at rock-bottom market rates."
+            },
+            "hi": {
+              "display": "जब ब्याज दरें गिरीं, तो कंपनी ने पुराने 8% महंगे कर्ज को 1,050 डॉलर पर कॉल करके खत्म कर दिया और 3% पर सस्ता नया कर्ज ले लिया। तुम्हें 8% का रिटर्न मिलना बंद हो गया और तुम्हें कम दरों पर री-इन्वेस्ट करने पर मजबूर होना पड़ा!"
+            }
+          },
+          "onScreenIntent": "The Callable Bond Refinancing Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Hundreds of billions in options are embedded across fixed-income markets. Let us master how bond options function and how Black's 1976 model values them with mathematical precision."
+            },
+            "hi": {
+              "display": "बॉन्ड मार्केट में करोड़ों डॉलर के ऐसे ऑप्शन्स छिपे होते हैं। चलिए समझते हैं कि बॉन्ड ऑप्शन्स कैसे काम करते हैं और ब्लैक का 1976 मॉडल इनकी सटीक प्राइसिंग कैसे करता है!"
+            }
+          },
+          "onScreenIntent": "The Callable Bond Refinancing Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Callable Bond Refinancing Trap",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Callable Bond Refinancing Trap: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Callable Bonds vs Puttable Bonds",
+      "purpose": "Callable Bonds vs Puttable Bonds: Foundational quantitative principles",
+      "takeaways": [
+        "Callable Bonds vs Puttable Bonds: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Bond options primarily take two structural forms: Callable Bonds and Puttable Bonds. Their payoffs and risk profiles represent polar opposites in fixed income."
+            },
+            "hi": {
+              "display": "बॉन्ड ऑप्शन्स दो मुख्य रूपों में पाए जाते हैं: कॉलेबल बॉन्ड्स और पुटेबल बॉन्ड्स। इन दोनों की संरचना और रिस्क प्रोफाइल एक-दूसरे के बिल्कुल विपरीत होती है।"
+            }
+          },
+          "onScreenIntent": "Callable Bonds vs Puttable Bonds",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In a callable bond, the option belongs to the issuing company. The investor buys a straight bond while shorting an embedded call. Upside price appreciation is capped when rates fall, creating severe negative convexity."
+            },
+            "hi": {
+              "display": "कॉलेबल बॉन्ड में ऑप्शन जारीकर्ता कंपनी के पास होता है। निवेशक वास्तव में एक रेगुलर बॉन्ड खरीदता है और साथ में एक कॉल ऑप्शन शॉर्ट करता है। इसलिए जब दरें गिरती हैं, तो निवेशक का प्रॉफिट सीमित हो जाता है और नेगेटिव कॉन्वेक्सिटी पैदा होती है।"
+            }
+          },
+          "onScreenIntent": "Callable Bonds vs Puttable Bonds",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, in a puttable bond, the option belongs to the investor. If interest rates surge and bond prices crash, the investor can put the bond back to the issuer at par—providing ironclad downside protection."
+            },
+            "hi": {
+              "display": "इसके विपरीत, पुटेबल बॉन्ड में ऑप्शन निवेशक के पास होता है। अगर बाजार में ब्याज दरें बढ़ जाएं और बॉन्ड की कीमतें गिरें, तो निवेशक बॉन्ड को पावर वैल्यू पर वापस बेच सकता है—यानी उसे पूरा डाउनसाइड प्रोटेक्शन मिलता है!"
+            }
+          },
+          "onScreenIntent": "Callable Bonds vs Puttable Bonds",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Callable Bonds vs Puttable Bonds",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Callable Bonds vs Puttable Bonds: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of Bond Option Valuation",
+      "purpose": "Four Pillars of Bond Option Valuation: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of Bond Option Valuation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "We analyze bond option valuation and hedging across four foundational pillars."
+            },
+            "hi": {
+              "display": "बॉन्ड ऑप्शन्स की प्राइसिंग और हेजिंग को हम चार मुख्य पिलर्स में समझते हैं। पहला पिलर है 'एम्बेडेड ऑप्शनैलटी', जो कॉलेबल और पुटेबल बॉन्ड्स के एसिमेट्रिक पेऑफ्स को निर्धारित करता है।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Bond Option Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: Embedded Optionality, governing the asymmetric payoff structures of callable and puttable debt."
+            },
+            "hi": {
+              "display": "दूसरा पिलर है 'क्लीन प्राइस बनाम डर्टी प्राइस'। बॉन्ड मार्केट में कोटेड प्राइस और एक्चुअल कैश सेटलमेंट प्राइस के बीच एक्रूड इंटरेस्ट का अंतर समझना अनिवार्य है।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Bond Option Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: Clean versus Dirty Pricing, establishing how accrued interest separates quoted market prices from actual cash settlement."
+            },
+            "hi": {
+              "display": "तीसरा पिलर है 'ब्लैक का यूरोपियन बॉन्ड ऑप्शन मॉडल'। फॉरवर्ड बॉन्ड प्राइस और कूपन डिस्काउंटिंग को अलग करके ब्लैक मॉडल सटीक कॉल और पुट वैल्यूज निकालता है।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Bond Option Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: Black's 1976 European Bond Option Model; and Pillar 4: The Yield Volatility to Price Volatility Bridge, using modified duration to convert market-quoted yield volatility into Black price volatility."
+            },
+            "hi": {
+              "display": "चौथा पिलर है 'यील्ड वोलैटिलिटी से प्राइस वोलैटिलिटी का ब्रिज'। मॉडिफाइड ड्यूरेशन का उपयोग करके हम बाजार में कोट होने वाली यील्ड वोलैटिलिटी को ब्लैक मॉडल की प्राइस वोलैटिलिटी में बदलते हैं!"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Bond Option Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of Bond Option Valuation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of Bond Option Valuation: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Clean Price vs Dirty Price & Strike Definition",
+      "purpose": "Clean Price vs Dirty Price & Strike Definition: Foundational quantitative principles",
+      "takeaways": [
+        "Clean Price vs Dirty Price & Strike Definition: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Bond markets maintain a critical pricing convention: prices are quoted Clean, but settled Dirty—in actual cash."
+            },
+            "hi": {
+              "display": "बॉन्ड मार्केट्स में एक महत्वपूर्ण परंपरा है: कीमतें 'क्लीन' कोट की जाती हैं, लेकिन भुगतान 'डर्टी' यानी कैश में होता है!"
+            }
+          },
+          "onScreenIntent": "Clean Price vs Dirty Price & Strike Definition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Clean Price excludes accrued interest, preventing artificial saw-tooth price drops on coupon dates. The actual Cash Dirty Price equals Clean Price plus Accrued Interest."
+            },
+            "hi": {
+              "display": "क्लीन प्राइस में एक्रूड इंटरेस्ट शामिल नहीं होता, जिससे कूपन की तारीखों पर कीमतों में कृत्रिम सॉ-टूथ जंप्स नहीं दिखते। कैश प्राइस बराबर क्लीन प्राइस प्लस एक्रूड इंटरेस्ट होता है।"
+            }
+          },
+          "onScreenIntent": "Clean Price vs Dirty Price & Strike Definition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When trading bond options, the strike price K must be explicitly identified. If the strike is specified as a cash strike, the payment on exercise is strictly K."
+            },
+            "hi": {
+              "display": "जब आप बॉन्ड ऑप्शन ट्रेड करते हैं, तो स्ट्राइक प्राइस K को ध्यान से देखना चाहिए। यदि स्ट्राइक कैश स्ट्राइक है, तो मैच्योरिटी पर भुगतान ठीक K होता है।"
+            }
+          },
+          "onScreenIntent": "Clean Price vs Dirty Price & Strike Definition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If the strike is clean, the exercise cash outlay will be K plus accrued interest at maturity T. In Black's model, we strictly calibrate using cash prices and cash strikes."
+            },
+            "hi": {
+              "display": "यदि स्ट्राइक क्लीन है, तो एक्सरसाइज के समय भुगतान K प्लस उस समय का एक्रूड इंटरेस्ट होगा। ब्लैक मॉडल में हम हमेशा कैश प्राइसेज और कैश स्ट्राइक का ही उपयोग करते हैं!"
+            }
+          },
+          "onScreenIntent": "Clean Price vs Dirty Price & Strike Definition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Clean Price vs Dirty Price & Strike Definition",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Clean Price vs Dirty Price & Strike Definition: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Forward Bond Price Formulation",
+      "purpose": "Forward Bond Price Formulation: Foundational quantitative principles",
+      "takeaways": [
+        "Forward Bond Price Formulation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To apply Black's model, the initial step is calculating the Forward Cash Price F_B of the underlying bond."
+            },
+            "hi": {
+              "display": "ब्लैक मॉडल लगाने के लिए सबसे पहला कदम है अंडरलाइंग बॉन्ड का 'फॉरवर्ड कैश प्राइस' F-B निकालना।"
+            }
+          },
+          "onScreenIntent": "Forward Bond Price Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let option maturity be T and spot cash bond price be B_0. If any coupon payments occur during the life of the option, their value drains out of the bond."
+            },
+            "hi": {
+              "display": "मान लीजिए ऑप्शन की मैच्योरिटी T है और आज स्पॉट कैश बॉन्ड प्राइस B-0 है। यदि ऑप्शन की अवधि के दौरान कोई कूपन मिलने वाले हैं, तो वे बॉन्ड की कीमत से बाहर निकल जाएंगे!"
+            }
+          },
+          "onScreenIntent": "Forward Bond Price Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "We calculate the present value at time zero of all interim coupons, denoted by I. Subtracting I from spot price B_0 yields the net coupon-adjusted bond value."
+            },
+            "hi": {
+              "display": "इसलिए हम इन सभी अंतरिम कूपन्स की आज की प्रेजेंट वैल्यू निकालते हैं, जिसे हम I कहते हैं। स्पॉट प्राइस में से I घटाने पर हमें नेट बॉन्ड वैल्यू मिलती है।"
+            }
+          },
+          "onScreenIntent": "Forward Bond Price Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Compounding this net value forward by dividing by the zero-coupon bond discount factor P(0, T) yields the forward bond price: F_B equals (B_0 minus I) divided by P(0, T)."
+            },
+            "hi": {
+              "display": "इस नेट वैल्यू को T-मैच्योरिटी डिस्काउंट फैक्टर P(0, T) से डिवाइड करने पर हमें फॉरवर्ड कैश बॉन्ड प्राइस F-B प्राप्त होता है: B-0 माइनस I अपॉन P(0, T)!"
+            }
+          },
+          "onScreenIntent": "Forward Bond Price Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Forward Bond Price Formulation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Forward Bond Price Formulation: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Black's 1976 European Bond Option Pricing Formula",
+      "purpose": "Black's 1976 European Bond Option Pricing Formula: Foundational quantitative principles",
+      "takeaways": [
+        "Black's 1976 European Bond Option Pricing Formula: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now observe the classic Black 1976 formula, which we rigorously established under the Forward Measure in Chapter 28."
+            },
+            "hi": {
+              "display": "अब देखिए ब्लैक का क्लासिक 1976 फॉर्मूला, जिसे हमने चैप्टर 28 में फॉरवर्ड मेज़र से डिराइव किया था!"
+            }
+          },
+          "onScreenIntent": "Black's 1976 European Bond Option Pricing Formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The European bond call option price is: discount factor P(0, T) multiplied by [F_B N(d1) minus K N(d2)]."
+            },
+            "hi": {
+              "display": "यूरोपियन कॉल ऑप्शन की कीमत होती है: डिस्काउंट फैक्टर P(0, T) गुणा ब्रैकेट में फॉरवर्ड प्राइस F-B टाइम्स N(d1) माइनस स्ट्राइक K टाइम्स N(d2)।"
+            }
+          },
+          "onScreenIntent": "Black's 1976 European Bond Option Pricing Formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Similarly, the European bond put option price is: P(0, T) multiplied by [K N(-d2) minus F_B N(-d1)]."
+            },
+            "hi": {
+              "display": "इसी प्रकार यूरोपियन पुट ऑप्शन की कीमत होती है: P(0, T) गुणा ब्रैकेट में K टाइम्स N(-d2) माइनस F-B टाइम्स N(-d1)।"
+            }
+          },
+          "onScreenIntent": "Black's 1976 European Bond Option Pricing Formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Here d1 and d2 follow the standard lognormal formula, where volatility sigma_B represents the annual volatility of the forward bond price."
+            },
+            "hi": {
+              "display": "यहां d1 और d2 ठीक उसी तरह कैलकुलेट होते हैं, जहां वोलैटिलिटी सिग्मा-B फॉरवर्ड बॉन्ड प्राइस की वार्षिक वोलैटिलिटी है! चलिए देखते हैं कि सिग्मा-B को बाजार से कैसे निकाला जाता है।"
+            }
+          },
+          "onScreenIntent": "Black's 1976 European Bond Option Pricing Formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Black's 1976 European Bond Option Pricing Formula",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Black's 1976 European Bond Option Pricing Formula: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Yield Volatility vs Price Volatility Bridge",
+      "purpose": "Yield Volatility vs Price Volatility Bridge: Foundational quantitative principles",
+      "takeaways": [
+        "Yield Volatility vs Price Volatility Bridge: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A major operational mismatch occurs on trading desks: fixed-income traders rarely quote price volatility; they quote Yield Volatility sigma_y."
+            },
+            "hi": {
+              "display": "ट्रेडिंग फ्लोर पर एक बड़ी समस्या आती है: बॉन्ड ट्रेडर्स कभी भी 'प्राइस वोलैटिलिटी' में बात नहीं करते, वे हमेशा 'यील्ड वोलैटिलिटी' कोट करते हैं!"
+            }
+          },
+          "onScreenIntent": "Yield Volatility vs Price Volatility Bridge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yield volatility measures percentage fluctuations in bond yield—for example, a 20% annual yield volatility. But Black's formula strictly requires price volatility sigma_B."
+            },
+            "hi": {
+              "display": "यील्ड वोलैटिलिटी बताती है कि बॉन्ड की यील्ड में कितने प्रतिशत का उतार-चढ़ाव आ रहा है—उदाहरण के लिए 20% यील्ड वोलैटिलिटी। लेकिन ब्लैक मॉडल को प्राइस वोलैटिलिटी सिग्मा-B चाहिए।"
+            }
+          },
+          "onScreenIntent": "Yield Volatility vs Price Volatility Bridge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The mathematical bridge linking them is Modified Duration D-star. The exact relationship is: sigma_B equals D-star times forward yield y_0 times yield volatility sigma_y!"
+            },
+            "hi": {
+              "display": "दोनों के बीच का पुल है 'मॉडिफाइड ड्यूरेशन' D-स्टार! फॉर्मूला है: सिग्मा-B बराबर मॉडिफाइड ड्यूरेशन टाइम्स फॉरवर्ड यील्ड y-0 टाइम्स यील्ड वोलैटिलिटी सिग्मा-y!"
+            }
+          },
+          "onScreenIntent": "Yield Volatility vs Price Volatility Bridge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Yield Volatility vs Price Volatility Bridge",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Yield Volatility vs Price Volatility Bridge: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Worked Numerical Example: Pricing a Treasury Bond Call",
+      "purpose": "Worked Numerical Example: Pricing a Treasury Bond Call: Foundational quantitative principles",
+      "takeaways": [
+        "Worked Numerical Example: Pricing a Treasury Bond Call: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us work through a live calculation. A Treasury bond trades at spot cash price $1,020, with a $40 coupon arriving in 4 months."
+            },
+            "hi": {
+              "display": "चलिए एक वास्तविक गणना करके देखते हैं। मान लीजिए एक ट्रेजरी बॉन्ड का स्पॉट कैश प्राइस 1,020 डॉलर है, और 4 महीने बाद 40 डॉलर का कूपन मिलने वाला है।"
+            }
+          },
+          "onScreenIntent": "Worked Numerical Example: Pricing a Treasury Bond Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The option expires in T = 0.5 years with strike K = $1,000. PV of coupon I is $39.40, and discount factor P(0, 0.5) is 0.975. The forward cash price F_B evaluates to $1,005.74."
+            },
+            "hi": {
+              "display": "ऑप्शन 6 महीने में मैच्योर होता है और स्ट्राइक 1,000 डॉलर है। कूपन की प्रेजेंट वैल्यू 39.40 डॉलर है और 6 महीने का डिस्काउंट फैक्टर 0.975 है। फॉरवर्ड कैश प्राइस F-B निकला 1,005.74 डॉलर।"
+            }
+          },
+          "onScreenIntent": "Worked Numerical Example: Pricing a Treasury Bond Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The bond has forward yield 5%, modified duration 4.8 years, and yield volatility 15%. Forward price volatility sigma_B equals 4.8 * 0.05 * 0.15 = 3.6%."
+            },
+            "hi": {
+              "display": "बॉन्ड की फॉरवर्ड यील्ड 5% है, मॉडिफाइड ड्यूरेशन 4.8 साल है, और यील्ड वोलैटिलिटी 15% है। तो प्राइस वोलैटिलिटी सिग्मा-B हुई: 4.8 गुना 0.05 गुना 0.15—यानी ठीक 3.6%!"
+            }
+          },
+          "onScreenIntent": "Worked Numerical Example: Pricing a Treasury Bond Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Substituting into Black's formula yields a fair call option premium of $24.18 for the 6-month European option."
+            },
+            "hi": {
+              "display": "जब हम इसे ब्लैक के फॉर्मूले में डालते हैं, तो हमें 6 महीने के कॉल ऑप्शन की फेयर वैल्यू 24.18 डॉलर प्राप्त होती है!"
+            }
+          },
+          "onScreenIntent": "Worked Numerical Example: Pricing a Treasury Bond Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Worked Numerical Example: Pricing a Treasury Bond Call",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Worked Numerical Example: Pricing a Treasury Bond Call: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Active Recall: Yield Volatility to Price Volatility Conversion",
+      "purpose": "Active Recall: Yield Volatility to Price Volatility Conversion: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: Yield Volatility to Price Volatility Conversion: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Test your fixed-income quantitative proficiency. A 10-year Treasury bond has a modified duration of 6.0 years, a forward yield of 4.0%, and a market yield volatility of 20%. What is the implied forward bond price volatility sigma_B for Black's model? Consider the options on screen."
+            },
+            "hi": {
+              "display": "अब अपनी फिक्स्ड इनकम क्वांट क्षमता का परीक्षण कीजिए। एक 10-वर्षीय ट्रेजरी बॉन्ड का मॉडिफाइड ड्यूरेशन 6.0 साल है, फॉरवर्ड यील्ड 4.0% है, और मार्केट यील्ड वोलैटिलिटी 20% है। ब्लैक मॉडल के लिए इम्प्लाइड फॉरवर्ड बॉन्ड प्राइस वोलैटिलिटी सिग्मा-B क्या होगी?"
+            }
+          },
+          "onScreenIntent": "Active Recall: Yield Volatility to Price Volatility Conversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Apply the duration bridge: sigma_B = D* times y_0 times sigma_y = 6.0 * 0.04 * 0.20."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: Yield Volatility to Price Volatility Conversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A: 4.8%! Using our duration bridge: sigma_B = D* * y_0 * sigma_y = 6.0 * 0.04 * 0.20 = 0.048, or 4.8%!"
+            },
+            "hi": {
+              "display": "सही उत्तर है विकल्प ए: 4.8%! ड्यूरेशन ब्रिज फॉर्मूला है सिग्मा-B बराबर D-स्टार टाइम्स y-0 टाइम्स सिग्मा-y। 6.0 गुना 0.04 गुना 0.20 बराबर 0.048 यानी 4.8% बनता है!"
+            }
+          },
+          "onScreenIntent": "Active Recall: Yield Volatility to Price Volatility Conversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Institutional Reality: The Pull-to-Par Constraint",
+      "purpose": "Institutional Reality: The Pull-to-Par Constraint: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Reality: The Pull-to-Par Constraint: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Bond options face a paramount structural boundary known as the Pull-to-Par phenomenon."
+            },
+            "hi": {
+              "display": "बॉन्ड ऑप्शन्स में एक अत्यंत महत्वपूर्ण संरचनात्मक सीमा है जिसे 'पुल-टू-पार' प्रभाव कहते हैं।"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The Pull-to-Par Constraint",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At maturity, a default-free bond must redeem at par. Consequently, as the bond approaches its terminal maturity, its price volatility contracts toward zero."
+            },
+            "hi": {
+              "display": "मैच्योरिटी पर एक डिफॉल्ट-फ्री बॉन्ड की कीमत निश्चित रूप से 100 डॉलर यानी पार वैल्यू होनी ही चाहिए। इसका मतलब है कि जैसे-जैसे बॉन्ड अपनी मैच्योरिटी के करीब आता है, उसकी प्राइस वोलैटिलिटी घटकर शून्य हो जाती है!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The Pull-to-Par Constraint",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Therefore, Black's assumption of constant price volatility holds accurately only when option maturity T is substantially shorter than underlying bond maturity T_B."
+            },
+            "hi": {
+              "display": "इसलिए ब्लैक मॉडल की स्थिर वोलैटिलिटी की धारणा केवल तभी मान्य होती है, जब ऑप्शन की मैच्योरिटी T बॉन्ड की मैच्योरिटी T-B से काफी छोटी हो!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The Pull-to-Par Constraint",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Summary: 8 Institutional Rules of Bond Options & Black's Model",
+      "purpose": "Summary: 8 Institutional Rules of Bond Options & Black's Model: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Bond Options & Black's Model: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us codify the eight institutional rules of bond options and Black's model."
+            },
+            "hi": {
+              "display": "चलिए बॉन्ड ऑप्शन्स और ब्लैक मॉडल के 8 मुख्य नियमों को संहिताबद्ध करते हैं। नियम 1: कॉलेबल बॉन्ड्स में निवेशक शॉर्ट कॉल स्थिति में होता है, जिससे नेगेटिव कॉन्वेक्सिटी पैदा होती है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Bond Options & Black's Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Callable bonds embed a short call for investors, generating negative convexity. Rule 2: Puttable bonds grant downside protection and positive convexity."
+            },
+            "hi": {
+              "display": "नियम 2: पुटेबल बॉन्ड्स निवेशक को डाउनसाइड फ्लोर और पॉजिटिव कॉन्वेक्सिटी प्रदान करते हैं। नियम 3: ब्लैक मॉडल में हमेशा एक्रूड इंटरेस्ट जोड़कर कैश डर्टी प्राइसेज का उपयोग किया जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Bond Options & Black's Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Black's model strictly operates on Cash Dirty prices incorporating accrued interest. Rule 4: Forward bond price F_B strictly deducts the present value of interim coupons I from spot price."
+            },
+            "hi": {
+              "display": "नियम 4: फॉरवर्ड बॉन्ड प्राइस F-B की गणना में अंतरिम कूपन्स की प्रेजेंट वैल्यू I को घटाया जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Bond Options & Black's Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Black's 1976 formula discounts forward payoffs via the zero-coupon bond discount factor P(0, T)."
+            },
+            "hi": {
+              "display": "नियम 5: ब्लैक का 1976 फॉर्मूला फॉरवर्ड बॉन्ड प्राइस और डिस्काउंट फैक्टर P(0, T) द्वारा कॉल और पुट वैल्यू निकालता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Bond Options & Black's Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 6: The modified duration bridge sigma_B = D* * y_0 * sigma_y translates quoted yield volatility to Black price volatility."
+            },
+            "hi": {
+              "display": "नियम 6: यील्ड वोलैटिलिटी को प्राइस वोलैटिलिटी में बदलने के लिए मॉडिफाइड ड्यूरेशन ब्रिज सिग्मा-B बराबर D-स्टार गुना y-0 गुना सिग्मा-y का उपयोग किया जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Bond Options & Black's Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Pull-to-par forces bond price volatility toward zero at maturity. Rule 8: Black's model is valid whenever option maturity is short relative to bond maturity."
+            },
+            "hi": {
+              "display": "नियम 7: पुल-टू-पार प्रभाव के कारण बॉन्ड प्राइस वोलैटिलिटी मैच्योरिटी पर शून्य हो जाती है। और नियम 8: जब ऑप्शन मैच्योरिटी बॉन्ड मैच्योरिटी से छोटी हो, तो ब्लैक मॉडल सटीक परिणाम देता है!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Bond Options & Black's Model",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Bond Options & Black's Model",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Closing Capstone Wisdom & Transition to Caps, Floors & Swaptions",
+      "purpose": "Closing Capstone Wisdom & Transition to Caps, Floors & Swaptions: Foundational quantitative principles",
+      "takeaways": [
+        "Closing Capstone Wisdom & Transition to Caps, Floors & Swaptions: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Fixed-income options require precise treatment of accrued interest, forward bond cash prices, and duration volatility bridges."
+            },
+            "hi": {
+              "display": "सर, आज समझ आया कि फिक्स्ड इनकम मार्केट्स में ऑप्शन्स इक्विटी से बहुत अलग और गहरे हैं—यहां एक्रूड इंटरेस्ट, फॉरवर्ड बॉन्ड प्राइसेज और ड्यूरेशन ब्रिज हर कैलकुलेशन की रीढ़ हैं!"
+            }
+          },
+          "onScreenIntent": "Closing Capstone Wisdom & Transition to Caps, Floors & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part 2, we conquer the institutional pillars of global fixed income: Interest Rate Caps, Floors, and European Swaptions."
+            },
+            "hi": {
+              "display": "बिल्कुल सही राजू! अब जब तुमने बॉन्ड ऑप्शन्स और ब्लैक मॉडल पर महारत हासिल कर ली है, तो पार्ट 2 में हम सबसे बड़े वैश्विक मार्केट्स—'इंटरेस्ट रेट कैप्स, फ्लोर्स और यूरोपियन स्वैपशन्स'—का गहराई से अध्ययन करेंगे!"
+            }
+          },
+          "onScreenIntent": "Closing Capstone Wisdom & Transition to Caps, Floors & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Closing Capstone Wisdom & Transition to Caps, Floors & Swaptions",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

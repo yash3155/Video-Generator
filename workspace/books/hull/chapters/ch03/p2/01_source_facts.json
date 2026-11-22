@@ -1,0 +1,118 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch03",
+  "partId": "p2",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "definition",
+      "statement": "Cross hedging occurs when the asset being hedged differs from the asset underlying the futures contract, requiring a hedge ratio that accounts for relative price volatility and correlation.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.4",
+        "page": "60"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "formula",
+      "statement": "The minimum variance hedge ratio is h* = rho * (sigma_S / sigma_F), where rho is correlation between delta S and delta F, sigma_S is standard deviation of delta S, and sigma_F is standard deviation of delta F.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.4",
+        "page": "60"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "formula",
+      "statement": "The optimal number of futures contracts is N* = h* * (Q_A / Q_F), where Q_A is the size of the position being hedged and Q_F is the size of one futures contract.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.4",
+        "page": "61"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "numerical_example",
+      "statement": "An airline hedging 2,000,000 gallons of jet fuel using heating oil futures (42,000 gallons per contract) with sigma_S = 0.0263, sigma_F = 0.0313, and rho = 0.928 calculates h* = 0.7777, requiring N* = 37 contracts.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.4",
+        "page": "61"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "formula",
+      "statement": "To hedge an equity portfolio against overall market risk using stock index futures, the optimal number of contracts is N* = beta * (P / A), where P is portfolio value, A is futures contract value, and beta is portfolio market sensitivity.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.5",
+        "page": "63"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "formula",
+      "statement": "To change portfolio beta from beta to a target beta*, the required number of index futures contracts is N* = (beta - beta*) * (P / A).",
+      "citation": {
+        "chapter": "3",
+        "section": "3.5",
+        "page": "64"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "definition",
+      "statement": "Stack and roll involves rolling front-month futures contracts forward periodically to hedge long-dated exposures when long-dated contracts lack liquidity.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.6",
+        "page": "68"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "case_study",
+      "statement": "In 1993, German conglomerate Metallgesellschaft lost $1.33 billion when its US subsidiary hedged 160 million barrels of long-term customer commitments using stacked short-term futures that suffered massive margin calls as oil shifted into contango.",
+      "citation": {
+        "chapter": "3",
+        "section": "Snapshot 3.2",
+        "page": "69"
+      }
+    },
+    {
+      "id": "F09",
+      "category": "numerical_example",
+      "statement": "In a quiz scenario, an asset with sigma_S = 0.04, sigma_F = 0.05, and rho = 0.80 yields a minimum variance hedge ratio of h* = 0.80 * (0.04 / 0.05) = 0.64.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.4",
+        "page": "60"
+      }
+    }
+  ],
+  "realWorldProblem": {
+    "actors": "Corporate treasurers, airline risk managers, and equity portfolio managers",
+    "situation": "Managing exposure to assets lacking direct futures contracts, requiring imperfect cross hedges and long-dated rollover strategies",
+    "failure": "Mismatched hedge ratios or severe margin roll friction trigger billions in liquidity insolvency",
+    "invention": "Minimum variance hedge ratios, beta hedging formulas, and stack-and-roll protocols",
+    "factIds": [
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F08"
+    ]
+  },
+  "dependencies": {
+    "earlier": [
+      "ch03-p1"
+    ],
+    "later": [
+      "ch04-p1"
+    ]
+  }
+}

@@ -1,0 +1,1442 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch27",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 27",
+  "partLabel": "Part 2",
+  "title": "Hull Chapter 27 Part 2: More on Models (Advanced Numerical Procedures)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 53,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Trader's Analytical Dead End",
+      "purpose": "The Trader's Analytical Dead End: Foundational quantitative principles",
+      "takeaways": [
+        "The Trader's Analytical Dead End: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When pricing an American barrier option with discrete dividends using Black-Scholes calculus, why does no closed-form analytical formula exist?"
+            },
+            "hi": {
+              "display": "सर, मैं एक अमेरिकन बैरियर ऑप्शन की प्राइसिंग ब्लैक-स्कोल्स के कैलकुलस फॉर्मूले से करने की कोशिश कर रहा था, लेकिन इसका कोई क्लोज्ड-फॉर्म सॉल्यूशन निकल ही नहीं रहा!"
+            }
+          },
+          "onScreenIntent": "The Trader's Analytical Dead End",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This scenario demonstrates the absolute boundary of analytical calculus. Complex early exercise boundaries, path-dependent knock-out triggers, and multi-asset baskets have no closed-form analytical integrals."
+            },
+            "hi": {
+              "display": "राजू, कैलकुलस की सीमाएं यहीं सामने आती हैं। अमेरिकन अर्ली एक्सरसाइज बाउंड्रीज, पाथ-डिपेंडेंट बैरियर्स और मल्टी-एसेट बास्केट्स का कोई एनालिटिकल इंटीग्रल संभव नहीं है!"
+            }
+          },
+          "onScreenIntent": "The Trader's Analytical Dead End",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In institutional markets, over 90% of real-world structured derivatives contracts can only be accurately valued and hedged through Numerical Procedures."
+            },
+            "hi": {
+              "display": "वास्तविक दुनिया के 90% से अधिक डेरिवेटिव्स कॉन्ट्रैक्ट्स केवल और केवल 'न्यूमेरिकल प्रोसीजर्स' द्वारा ही वैल्यू किए जा सकते हैं!"
+            }
+          },
+          "onScreenIntent": "The Trader's Analytical Dead End",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Quantitative trading desks depend on three numerical superpowers: Trinomial Trees, Monte Carlo Simulation, and Finite Difference Methods. Let us master their computational engines."
+            },
+            "hi": {
+              "display": "क्वांट डेस्क तीन महाशक्तियों पर टिकी हैं: ट्राइनोमियल ट्रीज, मोंटे कार्लो सिमुलेशन, और फाइनाइट डिफरेंस मेथड्स! चलिए इनके इंजनों की कार्यप्रणाली में उतरते हैं!"
+            }
+          },
+          "onScreenIntent": "The Trader's Analytical Dead End",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Trader's Analytical Dead End",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Trader's Analytical Dead End: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Analytical Formulas vs Numerical Simulation Engines",
+      "purpose": "Analytical Formulas vs Numerical Simulation Engines: Foundational quantitative principles",
+      "takeaways": [
+        "Analytical Formulas vs Numerical Simulation Engines: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Analytical closed forms and numerical discretization engines represent two distinct paradigms in quantitative finance. Closed forms evaluate instantaneously but are restricted to simple European payoffs."
+            },
+            "hi": {
+              "display": "एनालिटिकल फॉर्मूले और न्यूमेरिकल सिमुलेशन मेथड्स क्वांट फाइनेंस के दो अलग-अलग छोर हैं। एनालिटिकल फॉर्मूले तुरंत और सटीक होते हैं, लेकिन वे केवल सरल यूरोपियन ऑप्शन्स और आदर्श परिस्थितियों तक सीमित हैं।"
+            }
+          },
+          "onScreenIntent": "Analytical Formulas vs Numerical Simulation Engines",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, numerical algorithms can price virtually any non-linear payoff, early exercise boundary, or path-dependent condition, serving as the operational backbone of trading desks."
+            },
+            "hi": {
+              "display": "इसके विपरीत, न्यूमेरिकल मेथड्स दुनिया के किसी भी जटिल पेऑफ, अर्ली एक्सरसाइज बाउंड्री या पाथ-डिपेंडेंट कंडीशन को संभाल सकते हैं। वे वास्तविक दुनिया के ट्रेडिंग सिस्टम्स का रीढ़ हैं।"
+            }
+          },
+          "onScreenIntent": "Analytical Formulas vs Numerical Simulation Engines",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, numerical methods demand rigorous convergence analysis, discretization error control, and latency management. Inadequate grid spacing creates severe pricing errors."
+            },
+            "hi": {
+              "display": "हालांकि, न्यूमेरिकल मेथड्स में एरर एनालिसिस, कन्वर्जेंस स्पीड और कम्प्यूटेशनल लेटेंसी को समझना अनिवार्य है। गलत ग्रिड साइज से लाखों डॉलर का प्राइसिंग एरर हो सकता है!"
+            }
+          },
+          "onScreenIntent": "Analytical Formulas vs Numerical Simulation Engines",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Analytical Formulas vs Numerical Simulation Engines",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Analytical Formulas vs Numerical Simulation Engines: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Three Numerical Superpowers of Quantitative Finance",
+      "purpose": "Three Numerical Superpowers of Quantitative Finance: Foundational quantitative principles",
+      "takeaways": [
+        "Three Numerical Superpowers of Quantitative Finance: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Three primary numerical pillars power modern quantitative finance. The first pillar is Trinomial Trees, specifically the 1990 Hull-White lattice architecture."
+            },
+            "hi": {
+              "display": "आधुनिक क्वांट फाइनेंस को पावर देने वाले तीन मुख्य न्यूमेरिकल पिलर्स हैं। पहला पिलर है ट्राइनोमियल ट्रीज, विशेष रूप से जॉन हल और एलन व्हाइट का 1990 का ट्राइनोमियल आर्किटेक्चर।"
+            }
+          },
+          "onScreenIntent": "Three Numerical Superpowers of Quantitative Finance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second pillar is Monte Carlo Simulation and Variance Reduction. For high-dimensional portfolios and complex path dependencies, Monte Carlo is the ultimate pricing weapon."
+            },
+            "hi": {
+              "display": "दूसरा पिलर है मोंटे कार्लो सिमुलेशन और वेरियंस रिडक्शन। हाई-डायमेंशनल बास्केट्स और पाथ-डिपेंडेंट एशियन ऑप्शन्स के लिए मोंटे कार्लो सबसे शक्तिशाली हथियार है।"
+            }
+          },
+          "onScreenIntent": "Three Numerical Superpowers of Quantitative Finance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The third pillar encompasses Finite Difference Methods for Partial Differential Equations, discretizing the Black-Scholes continuous PDE across discrete space-time grids."
+            },
+            "hi": {
+              "display": "तीसरा पिलर है फाइनाइट डिफरेंस मेथड्स फॉर पार्शियल डिफरेंशियल इक्वेशंस। इसमें ब्लैक-स्कोल्स पीडीई को स्पेस और टाइम ग्रिड पर डिस्क्रीटाइज किया जाता है।"
+            }
+          },
+          "onScreenIntent": "Three Numerical Superpowers of Quantitative Finance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The fourth pillar is Production Selection Architecture—surgically matching each exotic contract to its optimal numerical engine to balance precision with sub-millisecond trading latency."
+            },
+            "hi": {
+              "display": "चौथा पिलर है प्रोडक्शन आर्किटेक्चर—यानी कॉन्ट्रैक्ट के अनुसार सही न्यूमेरिकल इंजन का चयन करना ताकि एक्यूरेसी और सब-मिलीसेकंड लेटेंसी के बीच सही संतुलन बना रहे।"
+            }
+          },
+          "onScreenIntent": "Three Numerical Superpowers of Quantitative Finance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Three Numerical Superpowers of Quantitative Finance",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Three Numerical Superpowers of Quantitative Finance: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Trinomial Trees: The Hull-White Architecture",
+      "purpose": "Trinomial Trees: The Hull-White Architecture: Foundational quantitative principles",
+      "takeaways": [
+        "Trinomial Trees: The Hull-White Architecture: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "While binomial trees bifurcate into two branches—up and down—a trinomial tree branches into three discrete paths at every node: Up, Middle, and Down!"
+            },
+            "hi": {
+              "display": "बाइनोमियल ट्रीज में हर नोड केवल दो दिशाओं—अप और डाउन—में जाता है। लेकिन ट्राइनोमियल ट्री में प्रत्येक नोड तीन शाखाओं में विभाजित होता है: अप, मिडिल और डाउन!"
+            }
+          },
+          "onScreenIntent": "Trinomial Trees: The Hull-White Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John Hull and Alan White formulated the optimal spatial grid step as delta-x = sigma * sqrt(3 * delta-t), mathematically guaranteeing lattice stability."
+            },
+            "hi": {
+              "display": "हल और व्हाइट ने स्टेट स्पेस स्टेप को डेल्टा x बराबर सिग्मा टाइम्स रूट ऑफ 3 डेल्टा t निर्धारित किया। यह स्पेसिंग ट्री की स्टेबिलिटी की गारंटी देती है।"
+            }
+          },
+          "onScreenIntent": "Trinomial Trees: The Hull-White Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The branch probabilities pu, pm, and pd are derived in closed form to match both mean drift M and variance V. The middle branch completely eliminates negative probabilities!"
+            },
+            "hi": {
+              "display": "तीनों ब्रांच प्रोबेबिलिटीज pu, pm और pd को पहले दो मोमेंट्स—मीन चेंज M और वेरियंस V—से मैच करके क्लोज्ड-फॉर्म में निकाला जाता है। मिडिल ब्रांच का अस्तित्व नेगेटिव प्रोबेबिलिटीज को खत्म कर देता है!"
+            }
+          },
+          "onScreenIntent": "Trinomial Trees: The Hull-White Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Trinomial trees converge substantially faster than binomial models with smooth monotonic behavior, eliminating erratic sawtooth oscillation artifacts."
+            },
+            "hi": {
+              "display": "ट्राइनोमियल ट्रीज बाइनोमियल ट्रीज की तुलना में कहीं अधिक तेजी से और बिना किसी ऑसिलेशन के वास्तविक ब्लैक-स्कोल्स प्राइस की ओर कन्वर्ज होते हैं।"
+            }
+          },
+          "onScreenIntent": "Trinomial Trees: The Hull-White Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Trinomial Trees: The Hull-White Architecture",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Trinomial Trees: The Hull-White Architecture: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Monte Carlo Simulation: Path Generation & Error Scaling",
+      "purpose": "Monte Carlo Simulation: Path Generation & Error Scaling: Foundational quantitative principles",
+      "takeaways": [
+        "Monte Carlo Simulation: Path Generation & Error Scaling: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Monte Carlo simulation, we generate thousands of simulated sample paths of risk-neutral geometric Brownian motion using independent standard normal draws epsilon."
+            },
+            "hi": {
+              "display": "मोंटे कार्लो सिमुलेशन में हम रिस्क-न्यूट्रल ज्योमेट्रिक ब्राउनियन मोशन के अनुसार एसेट प्राइस के हजारों रैंडम पाथ्स जनरेट करते हैं। प्रत्येक स्टेप पर एक स्टैंडर्ड नॉर्मल रैंडम नंबर एप्सिलॉन ड्रा किया जाता है।"
+            }
+          },
+          "onScreenIntent": "Monte Carlo Simulation: Path Generation & Error Scaling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The option value is the discounted empirical average of payoffs across all simulated paths. However, Monte Carlo is constrained by its fundamental error scaling law."
+            },
+            "hi": {
+              "display": "ऑप्शन का मूल्य सभी पाथ्स के डिस्काउंटेड पेऑफ्स का साधारण औसत होता है। लेकिन मोंटे कार्लो की सबसे बड़ी सीमा है इसका 'एरर स्केलिंग लॉ'!"
+            }
+          },
+          "onScreenIntent": "Monte Carlo Simulation: Path Generation & Error Scaling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The standard error scales as sample standard deviation s divided by the square root of N. Consequently, halving the pricing uncertainty requires a four-fold increase in simulated paths."
+            },
+            "hi": {
+              "display": "स्टैंडर्ड एरर SE बराबर s अपॉन रूट N होता है। इसका मतलब है कि अगर आपको प्राइसिंग एरर को आधा करना है, तो सिमुलेटेड पाथ्स की संख्या को 4 गुना बढ़ाना होगा!"
+            }
+          },
+          "onScreenIntent": "Monte Carlo Simulation: Path Generation & Error Scaling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A 10x accuracy gain demands a 100x increase in computational power! To conquer this bottleneck, quantitative finance engineers deploy variance reduction techniques."
+            },
+            "hi": {
+              "display": "10 गुना सटीकता के लिए 100 गुना अधिक कम्प्यूटेशनल समय चाहिए! इसी बाधा को तोड़ने के लिए क्वांट्स 'वेरियंस रिडक्शन टेक्निक्स' का आविष्कार करते हैं।"
+            }
+          },
+          "onScreenIntent": "Monte Carlo Simulation: Path Generation & Error Scaling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Monte Carlo Simulation: Path Generation & Error Scaling",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Monte Carlo Simulation: Path Generation & Error Scaling: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "The Four Essential Variance Reduction Techniques",
+      "purpose": "The Four Essential Variance Reduction Techniques: Foundational quantitative principles",
+      "takeaways": [
+        "The Four Essential Variance Reduction Techniques: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The first technique is Antithetic Variates. For every random draw epsilon, we evaluate a complementary path using minus epsilon, exploiting negative covariance to cancel sampling variance."
+            },
+            "hi": {
+              "display": "पहला तरीका है 'एंटीथेटिक वेरिएट्स'। हर रैंडम शॉक एप्सिलॉन के साथ हम एक कॉम्प्लिमेंट्री पाथ माइनस-एप्सिलॉन का भी जनरेट करते हैं। इन दोनों के बीच का निगेटिव कोरिलेशन सैंपलिंग वेरियंस को भारी रूप से घटा देता है।"
+            }
+          },
+          "onScreenIntent": "The Four Essential Variance Reduction Techniques",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second is Control Variates, simulating a correlated proxy with a known analytical price—such as using a geometric Asian option as a control for an arithmetic Asian contract!"
+            },
+            "hi": {
+              "display": "दूसरा तरीका है 'कंट्रोल वेरिएट्स'। इसमें हम टारगेट ऑप्शन के साथ एक ऐसा ऑप्शन भी सिम्युलेट करते हैं जिसका एनालिटिकल फॉर्मूला हमें पता हो, जैसे अरिथमेटिक एशियन के लिए जियोमेट्रिक एशियन ऑप्शन!"
+            }
+          },
+          "onScreenIntent": "The Four Essential Variance Reduction Techniques",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Third is Importance Sampling, shifting drift to sample rare tail crashes; and fourth is Sobol Sequences—quasi-random numbers eliminating clustering and boosting convergence toward 1/N!"
+            },
+            "hi": {
+              "display": "तीसरा है 'इम्पॉर्टेंस सैंपलिंग', जिसमें ड्रिफ्ट को बदलकर रेयर टेल क्रैश पाथ्स को ज्यादा सैंपल किया जाता है। और चौथा है 'सोबोल सीक्वेंसेज'—क्वाज़ी-रैंडम नंबर्स जो क्लस्टरिंग रोककर कन्वर्जेंस को 1 अपॉन N तक तेज कर देते हैं!"
+            }
+          },
+          "onScreenIntent": "The Four Essential Variance Reduction Techniques",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Four Essential Variance Reduction Techniques",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Four Essential Variance Reduction Techniques: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Finite Difference Schemes: Explicit vs Implicit",
+      "purpose": "Finite Difference Schemes: Explicit vs Implicit: Foundational quantitative principles",
+      "takeaways": [
+        "Finite Difference Schemes: Explicit vs Implicit: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Finite Difference Methods discretize the continuous Black-Scholes PDE across a grid of asset prices S and time steps t, approximating continuous derivatives via discrete differences."
+            },
+            "hi": {
+              "display": "फाइनाइट डिफरेंस मेथड्स में हम ब्लैक-स्कोल्स कंटीन्यूअस पीडीई को स्पेस S और टाइम t के डिस्क्रीट ग्रिड पर हल करते हैं। ग्रिड पर डेरिवेटिव्स को फाइनाइट डिफरेंस द्वारा बदला जाता है।"
+            }
+          },
+          "onScreenIntent": "Finite Difference Schemes: Explicit vs Implicit",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Explicit Scheme uses a forward time difference. It is computationally simple but conditionally unstable: if the time step delta-t is too large relative to delta-S, calculations explode!"
+            },
+            "hi": {
+              "display": "एक्सप्लिसिट स्कीम टाइम में फॉरवर्ड डिफरेंस लेती है। यह बहुत तेज और सरल है क्योंकि हर नोड भविष्य के स्टेप्स से सीधे कैलकुलेट हो जाता है। लेकिन यह 'कंडीशनली अनस्टेबल' होती है—अगर टाइम स्टेप ज्यादा बड़ा हो, तो सॉल्यूशन फट जाता है!"
+            }
+          },
+          "onScreenIntent": "Finite Difference Schemes: Explicit vs Implicit",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, the Implicit Scheme evaluates space derivatives at the earlier time, guaranteeing unconditional stability! It solves a tridiagonal linear matrix at each step via the Thomas algorithm."
+            },
+            "hi": {
+              "display": "इसके विपरीत, इम्प्लिसिट स्कीम बैकवर्ड टाइम डिफरेंस लेती है। यह किसी भी ग्रिड साइज के लिए 'अनकंडीशनली स्टेबल' होती है! हालांकि, इसके लिए हर स्टेप पर 'थॉमस एल्गोरिदम' द्वारा एक ट्राइडायगोनल मैट्रिक्स हल करना पड़ता है।"
+            }
+          },
+          "onScreenIntent": "Finite Difference Schemes: Explicit vs Implicit",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Finite Difference Schemes: Explicit vs Implicit",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Finite Difference Schemes: Explicit vs Implicit: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "The Crank-Nicolson Master PDE Scheme",
+      "purpose": "The Crank-Nicolson Master PDE Scheme: Foundational quantitative principles",
+      "takeaways": [
+        "The Crank-Nicolson Master PDE Scheme: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The undisputed gold standard of production derivatives desks is the Crank-Nicolson Scheme—a symmetric 50-50 average of explicit and implicit schemes evaluated at time midpoint t + 1/2."
+            },
+            "hi": {
+              "display": "आधुनिक डेरिवेटिव्स डेस्क का निर्विवाद गोल्ड स्टैंडर्ड है 'क्रैंक-निकोलसन स्कीम'! यह एक्सप्लिसिट और इम्प्लिसिट स्कीम्स का 50-50 सिमेट्रिक एवरेज है, जिसे टाइम t प्लस हाफ पर इवैल्यूएट किया जाता है।"
+            }
+          },
+          "onScreenIntent": "The Crank-Nicolson Master PDE Scheme",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Due to this temporal symmetry, Crank-Nicolson is unconditionally stable while achieving second-order accuracy in both time and space: order (delta-t)^2 plus (delta-S)^2!"
+            },
+            "hi": {
+              "display": "इस सिमेट्री के कारण क्रैंक-निकोलसन स्कीम अनकंडीशनली स्टेबल तो रहती ही है, साथ ही यह टाइम और स्पेस दोनों में सेकेंड-ऑर्डर एक्यूरेसी यानी O(डेल्टा t स्क्वायर प्लस डेल्टा S स्क्वायर) प्राप्त करती है!"
+            }
+          },
+          "onScreenIntent": "The Crank-Nicolson Master PDE Scheme",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The resulting tridiagonal matrix system is solved via the Thomas algorithm in strictly linear O(M) operations, running thousands of times faster than standard Gaussian elimination!"
+            },
+            "hi": {
+              "display": "प्रत्येक टाइम स्टेप पर बनने वाला ट्राइडायगोनल सिस्टम थॉमस एल्गोरिदम द्वारा मात्र O(M) लीनियर टाइम में सॉल्व हो जाता है, जिससे यह क्यूबिक टाइम की तुलना में हजारों गुना तेज चलता है!"
+            }
+          },
+          "onScreenIntent": "The Crank-Nicolson Master PDE Scheme",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Crank-Nicolson Master PDE Scheme",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Crank-Nicolson Master PDE Scheme: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Active Recall: Thomas Algorithm Complexity",
+      "purpose": "Active Recall: Thomas Algorithm Complexity: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: Thomas Algorithm Complexity: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Test your quantitative engineering mastery. A desk must solve an implicit finite difference PDE grid with M = 500 asset price nodes per step. What is the computational complexity per time step using the Thomas algorithm? Consider the options on screen."
+            },
+            "hi": {
+              "display": "अब अपनी क्वांट इंजीनियरिंग क्षमता का परीक्षण कीजिए। एक डेरिवेटिव्स डेस्क को 500 एसेट प्राइस नोड्स वाले इम्प्लिसिट फाइनाइट डिफरेंस ग्रिड को हल करना है। थॉमस एल्गोरिदम का उपयोग करके प्रति टाइम स्टेप कम्प्यूटेशनल कॉम्प्लेक्सिटी क्या होगी?"
+            }
+          },
+          "onScreenIntent": "Active Recall: Thomas Algorithm Complexity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Standard matrix inversion requires cubic O(M^3) time. Recall how tridiagonal Gaussian elimination exploits sparsity."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: Thomas Algorithm Complexity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A: O(M) linear time! Standard matrix inversion requires O(M^3) operations, but the Thomas algorithm exploits tridiagonal sparsity to solve the system in strictly linear O(M) time!"
+            },
+            "hi": {
+              "display": "सही उत्तर है विकल्प ए: O(M) लीनियर टाइम! सामान्य मैट्रिक्स इनवर्ज़न O(M क्यूब) लेता है, लेकिन थॉमस एल्गोरिदम ट्राइडायगोनल संरचना का लाभ उठाकर इसे केवल O(M) ऑपरेशन्स में हल कर देता है!"
+            }
+          },
+          "onScreenIntent": "Active Recall: Thomas Algorithm Complexity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Institutional Reality: Numerical Precision vs Real-Time Latency",
+      "purpose": "Institutional Reality: Numerical Precision vs Real-Time Latency: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Reality: Numerical Precision vs Real-Time Latency: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The ultimate institutional trade-off in production derivatives is Accuracy versus Latency. An ultra-fine Crank-Nicolson grid yields 8 decimal places of accuracy but takes 2 seconds to compute."
+            },
+            "hi": {
+              "display": "संस्थागत ट्रेडिंग में सबसे बड़ा ट्रेड-ऑफ है 'एक्यूरेसी बनाम लेटेंसी'। एक अत्यधिक फाइन क्रैंक-निकोलसन ग्रिड 8 डेसीमल प्लेसेज तक सटीक प्राइस देता है, लेकिन उसे रन होने में 2 सेकंड लग सकते हैं।"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Numerical Precision vs Real-Time Latency",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In algorithmic market making, quotes must update in sub-milliseconds. A 2-second computation delay leads to stale quotes and severe adverse selection by faster arbitrageurs."
+            },
+            "hi": {
+              "display": "लेकिन अगर आप एल्गोरिद्मिक मार्केट मेकिंग कर रहे हैं, तो आपको सब-मिलीसेकंड कोट्स देने होते हैं। 2 सेकंड की देरी में मार्केट प्राइस आगे निकल जाएगी और आपकी डेस्क आर्बिट्रेज का शिकार हो जाएगी!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Numerical Precision vs Real-Time Latency",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Tier-1 desks deploy hybrid architectures: fine PDE grids for end-of-day risk reporting and complex exotics, paired with high-speed trinomial trees or analytic proxies for intraday quoting."
+            },
+            "hi": {
+              "display": "इसलिए शीर्ष डेस्क हाइब्रिड आर्किटेक्चर का उपयोग करती हैं: ईओडी रिस्क और जटिल एक्सोटिक्स के लिए फाइन पीडीई ग्रिड्स, और रियल-टाइम इंट्राडे कोट्स के लिए फास्ट ट्राइनोमियल ट्रीज या एनालिटिकल प्रॉक्सीज!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Numerical Precision vs Real-Time Latency",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Summary: 8 Institutional Rules of Advanced Numerical Procedures",
+      "purpose": "Summary: 8 Institutional Rules of Advanced Numerical Procedures: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Advanced Numerical Procedures: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us codify the eight institutional rules of numerical procedures."
+            },
+            "hi": {
+              "display": "चलिए एडवांस्ड न्यूमेरिकल प्रोसीजर्स के 8 मुख्य नियमों को संहिताबद्ध करते हैं। नियम 1: अमेरिकन एक्सरसाइज और डिस्क्रीट बैरियर्स के लिए न्यूमेरिकल मेथड्स अनिवार्य हैं।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Numerical Procedures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Numerical methods are mandatory for American early exercise and discrete path barriers. Rule 2: Trinomial tree spacing delta-x = sigma*sqrt(3*delta-t) ensures non-negative branch probabilities."
+            },
+            "hi": {
+              "display": "नियम 2: ट्राइनोमियल ट्रीज में स्पेसिंग डेल्टा x बराबर सिग्मा रूट 3 डेल्टा t रखी जाती है, जिससे नेगेटिव प्रोबेबिलिटीज खत्म होती हैं।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Numerical Procedures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Monte Carlo error scales as 1/sqrt(N); prioritize variance reduction over brute-force sample sizes. Rule 4: Antithetic and control variates drastically reduce Monte Carlo variance at near-zero computational cost."
+            },
+            "hi": {
+              "display": "नियम 3: मोंटे कार्लो स्टैंडर्ड एरर 1 अपॉन रूट N से घटता है, जिसके लिए सैंपलिंग बढ़ाने के बजाय वेरियंस रिडक्शन का उपयोग करना चाहिए।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Numerical Procedures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Sobol quasi-random sequences eliminate clustering, accelerating convergence toward 1/N. Rule 6: Explicit PDEs are conditionally unstable."
+            },
+            "hi": {
+              "display": "नियम 4: एंटीथेटिक और कंट्रोल वेरिएट्स बिना अतिरिक्त कॉस्ट के मोंटे कार्लो वेरियंस को भारी रूप से घटा देते हैं।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Numerical Procedures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Implicit schemes are unconditionally stable, solved via Thomas in O(M) operations. Rule 8: Crank-Nicolson delivers optimal second-order accuracy in time and space."
+            },
+            "hi": {
+              "display": "नियम 5: सोबोल क्वाज़ी-रैंडम सीक्वेंसेज क्लस्टरिंग रोककर कन्वर्जेंस रेट को 1 अपॉन N के करीब पहुंचा देते हैं।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Numerical Procedures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight numerical principles form the computational engine of modern derivatives desks."
+            },
+            "hi": {
+              "display": "नियम 6: एक्सप्लिसिट पीडीई स्कीम्स कंडीशनली अनस्टेबल होती हैं। नियम 7: इम्प्लिसिट स्कीम्स अनकंडीशनली स्टेबल होती हैं और थॉमस एल्गोरिदम द्वारा O(M) में सॉल्व होती हैं। और नियम 8: क्रैंक-निकोलसन स्कीम अनकंडीशनल स्टेबिलिटी और सेकेंड-ऑर्डर एक्यूरेसी का सर्वोत्तम संयोजन है!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Advanced Numerical Procedures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Advanced Numerical Procedures",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Closing Capstone Wisdom & Transition",
+      "purpose": "Closing Capstone Wisdom & Transition: Foundational quantitative principles",
+      "takeaways": [
+        "Closing Capstone Wisdom & Transition: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Mastering numerical procedures gives risk managers complete confidence that no complex exotic payoff or early-exercise feature is beyond quantitative reach."
+            },
+            "hi": {
+              "display": "सर, आज न्यूमेरिकल प्रोसीजर्स के इस महासागर को समझकर मुझे विश्वास हो गया कि क्वांट फाइनेंस में कोई भी जटिल पेऑफ अब हमारे लिए अनसुलझा नहीं रह सकता!"
+            }
+          },
+          "onScreenIntent": "Closing Capstone Wisdom & Transition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapters 28 and 29, we enter the advanced domain of Martingales, Measures, and Interest Rate Market Models."
+            },
+            "hi": {
+              "display": "अद्भुत राजू! तुमने बुक का सबसे तकनीकी और गणितीय भाग सफलतापूर्वक पूरा कर लिया है। अब चैप्टर 28 और 29 में हम 'मार्टिंगेल्स, मेजर्स और इंटरेस्ट रेट डेरिवेटिव्स' के साम्राज्य में प्रवेश करेंगे!"
+            }
+          },
+          "onScreenIntent": "Closing Capstone Wisdom & Transition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Closing Capstone Wisdom & Transition",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

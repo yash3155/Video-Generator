@@ -1,0 +1,1488 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch31",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 31",
+  "partLabel": "Part 2",
+  "title": "Hull Chapter 31 (Part 2): No-Arbitrage Short-Rate Models",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 61,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Static Arbitrage Trap on Wall Street",
+      "purpose": "The Static Arbitrage Trap on Wall Street: Foundational quantitative principles",
+      "takeaways": [
+        "The Static Arbitrage Trap on Wall Street: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Sir, in Part 1 we mastered elegant equilibrium models like Vasicek and CIR. Why can't Wall Street trading desks directly deploy Vasicek to price Bermudan swaptions and bond options?"
+            },
+            "hi": {
+              "display": "सर, पिछले भाग में हमने वासिचेक और सी.आई.आर. जैसे खूबसूरत इक्विलिब्रियाम मॉडल्स सीखे। तो फिर वॉल स्ट्रीट ट्रेडिंग डेस्क सीधे वासिचेक मॉडल लगाकर बरमूडन स्वैपशन्स और बॉन्ड ऑप्शन्स की प्राइसिंग क्यों नहीं कर लेती?"
+            }
+          },
+          "onScreenIntent": "The Static Arbitrage Trap on Wall Street",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Raju, deploy pure Vasicek on an active trading floor and your desk will go bankrupt! If a 5-year Treasury trades on Bloomberg at $94 but your Vasicek model prices it at $92, arbitrageurs will immediately exploit your pricing discrepancies!"
+            },
+            "hi": {
+              "display": "राजू, अगर तुम ट्रेडिंग फ्लोर पर वासिचेक मॉडल लगाओगे, तो तुम्हारी डेस्क दिवालिया हो जाएगी! सोचो, अगर ब्लूमबर्ग स्क्रीन पर 5-साल का ट्रेजरी बॉन्ड 94 डॉलर में बिक रहा है, लेकिन तुम्हारा वासिचेक मॉडल उसे 92 डॉलर बताता है, तो आर्बिट्राजर्स तुरंत तुम्हारी मिसप्राइसिंग को लूट लेंगे!"
+            }
+          },
+          "onScreenIntent": "The Static Arbitrage Trap on Wall Street",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "You cannot price complex exotics with a model that misprices simple underlying bonds! That is why trading desks mandate No-Arbitrage Models—such as Ho-Lee (1986) and Hull-White (1990)!"
+            },
+            "hi": {
+              "display": "आप ऐसे मॉडल से कॉम्प्लेक्स डेरिवेटिव्स कभी नहीं बेच सकते जो साधारण बॉन्ड्स की वर्तमान बाजार कीमत को ही गलत बता दे! इसीलिए ट्रेडर्स 'नो-आर्बिट्राज मॉडल्स' का उपयोग करते हैं—जैसे हो-ली और हल-व्हाइट मॉडल!"
+            }
+          },
+          "onScreenIntent": "The Static Arbitrage Trap on Wall Street",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These models ingest today's entire yield curve as an exact input and calibrate with machine precision via trinomial trees! Let us decode the math!"
+            },
+            "hi": {
+              "display": "ये मॉडल्स आज की पूरी यील्ड कर्व को इनपुट के रूप में लेते हैं और ट्राइनोमियल ट्रीज के जरिए 100% सटीक फिट करते हैं! चलिए इसे डिकोड करते हैं!"
+            }
+          },
+          "onScreenIntent": "The Static Arbitrage Trap on Wall Street",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Static Arbitrage Trap on Wall Street",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Static Arbitrage Trap on Wall Street: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Equilibrium Models vs No-Arbitrage Models",
+      "purpose": "Equilibrium Models vs No-Arbitrage Models: Foundational quantitative principles",
+      "takeaways": [
+        "Equilibrium Models vs No-Arbitrage Models: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Two distinct philosophies collide in quantitative finance: Endogenous Equilibrium Models versus Calibrated No-Arbitrage Models."
+            },
+            "hi": {
+              "display": "क्वांटिटेटिव फाइनेंस में दो अलग-अलग फिलॉसफी टकराती हैं: एंडोजेनस इक्विलिब्रियाम मॉडल्स बनाम कैलिब्रेटेड नो-आर्बिट्राज मॉडल्स।"
+            }
+          },
+          "onScreenIntent": "Equilibrium Models vs No-Arbitrage Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Equilibrium models generate their own term structure from a few parameters (a, b, sigma). While insightful for macroeconomics, they fail to match today's market yield curve, exposing desks to static arbitrage!"
+            },
+            "hi": {
+              "display": "इक्विलिब्रियाम मॉडल्स कुछ बुनियादी पैरामीटर्स a, b, सिग्मा से अपनी खुद की टर्म स्ट्रक्चर पैदा करते हैं। वे मैक्रोइकोनॉमिक्स के लिए तो अच्छे हैं, लेकिन आज की वास्तविक बाजार यील्ड कर्व से मेल नहीं खाते, जिससे स्टैटिक आर्बिट्राज पैदा होता है!"
+            }
+          },
+          "onScreenIntent": "Equilibrium Models vs No-Arbitrage Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, no-arbitrage models ingest today's zero-coupon bond prices and forward curve as exact boundary conditions. Through time-dependent drift theta(t), they match every observable bond to the last decimal point!"
+            },
+            "hi": {
+              "display": "दूसरी तरफ, नो-आर्बिट्राज मॉडल्स आज के सभी जीरो-कूपन बॉन्ड प्राइसेस और फॉरवर्ड कर्व को एक सटीक बाउंड्री कंडीशन मान लेते हैं। टाइम-डिपेंडेंट ड्रिफ्ट थीटा ऑफ t के जरिए वे आज के हर बॉन्ड को दशमलव के आखिरी अंक तक सही प्राइस करते हैं!"
+            }
+          },
+          "onScreenIntent": "Equilibrium Models vs No-Arbitrage Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Equilibrium Models vs No-Arbitrage Models",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Equilibrium Models vs No-Arbitrage Models: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of No-Arbitrage Modeling",
+      "purpose": "Four Pillars of No-Arbitrage Modeling: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of No-Arbitrage Modeling: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The no-arbitrage architecture rests on four foundational pillars. The first pillar is Exact Yield Curve Ingestion, embedding today's forward curve f(0, t) as an inviolable boundary condition."
+            },
+            "hi": {
+              "display": "नो-आर्बिट्राज फ्रेमवर्क चार बुनियादी स्तंभों पर खड़ा है। पहला पिलर है 'एग्जैक्ट यील्ड कर्व इंजेक्शन', जहां आज का फॉरवर्ड कर्व f(0, t) मॉडल के भीतर गणितीय नियम बन जाता है।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of No-Arbitrage Modeling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second pillar is the Ho-Lee (1986) model, the pioneering no-arbitrage framework introducing time-dependent drift."
+            },
+            "hi": {
+              "display": "दूसरा पिलर है 'हो-ली 1986 मॉडल', जो इतिहास का पहला नो-आर्बिट्राज मॉडल था जिसने टाइम-डिपेंडेंट ड्रिफ्ट पेश किया।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of No-Arbitrage Modeling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The third pillar is the Hull-White (1990) Extended Vasicek model, uniting mean reversion with exact curve calibration as the global industry benchmark."
+            },
+            "hi": {
+              "display": "तीसरा पिलर है 'हल-व्हाइट 1990 एक्सटेंडेड वासिचेक मॉडल', जिसने मीन रिवर्शन और एग्जैक्ट कर्व फिटिंग को एक साथ जोड़कर आधुनिक उद्योग मानक बनाया।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of No-Arbitrage Modeling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The fourth pillar is Calibrated Trinomial Trees, deploying Arrow-Debreu state prices and vertical displacement to evaluate Bermudan swaptions in seconds!"
+            },
+            "hi": {
+              "display": "चौथा पिलर है 'कैलिब्रेटेड ट्राइनोमियल ट्रीज', जो एरो-डेब्रू स्टेट प्राइसेस और वर्टिकल डिस्प्लेसमेंट के जरिए बरमूडन स्वैपशन्स को सेकंड्स में प्राइस करते हैं!"
+            }
+          },
+          "onScreenIntent": "Four Pillars of No-Arbitrage Modeling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of No-Arbitrage Modeling",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of No-Arbitrage Modeling: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "The Ho-Lee Model (1986) & Its Flat Volatility Flaw",
+      "purpose": "The Ho-Lee Model (1986) & Its Flat Volatility Flaw: Foundational quantitative principles",
+      "takeaways": [
+        "The Ho-Lee Model (1986) & Its Flat Volatility Flaw: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Thomas Ho and Sang-Bin Lee launched the no-arbitrage revolution in 1986. Let us examine their continuous-time SDE."
+            },
+            "hi": {
+              "display": "थॉमस हो और सांग-बिन ली ने 1986 में नो-आर्बिट्राज क्रांति की शुरुआत की। चलिए उनके मॉडल का एस.डी.ई. देखते हैं।"
+            }
+          },
+          "onScreenIntent": "The Ho-Lee Model (1986) & Its Flat Volatility Flaw",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The SDE is: dr = theta(t)dt + sigma dz. Here theta(t) is a time-dependent drift and sigma is constant instantaneous short-rate volatility."
+            },
+            "hi": {
+              "display": "समीकरण है: dr बराबर थीटा ऑफ t dt प्लस सिग्मा dz। यहां थीटा समय के साथ बदलने वाला ड्रिफ्ट है और सिग्मा शॉर्ट रेट की निरंतर वोलेटिलिटी है।"
+            }
+          },
+          "onScreenIntent": "The Ho-Lee Model (1986) & Its Flat Volatility Flaw",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To match the initial term structure, theta(t) analytically equals partial f(0, t) / partial t + sigma^2 * t! This yields closed-form analytical bond pricing."
+            },
+            "hi": {
+              "display": "आज की फॉरवर्ड कर्व को मैच करने के लिए थीटा ऑफ t का मान ठीक d f(0, t)/dt प्लस सिग्मा स्क्वायर t के बराबर रखा जाता है! इससे बॉन्ड प्राइसेस का क्लोज्ड-फॉर्म फॉर्मूला मिल जाता है।"
+            }
+          },
+          "onScreenIntent": "The Ho-Lee Model (1986) & Its Flat Volatility Flaw",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But Ho-Lee suffers from one critical flaw: zero mean reversion (a = 0)! Consequently, all forward rates exhibit flat volatility sigma regardless of maturity, violating the empirical fact that long rates fluctuate far less!"
+            },
+            "hi": {
+              "display": "लेकिन हो-ली की एक गंभीर संरचनात्मक कमजोरी है: इसमें कोई मीन रिवर्शन नहीं है! इसके कारण सभी मैच्योरिटीज के फॉरवर्ड रेट्स की वोलेटिलिटी बिल्कुल फ्लैट सिग्मा रहती है, जो बाजार के इस तथ्य का उल्लंघन करती है कि लॉन्ग-टर्म यील्ड्स हमेशा कम वोलेटाइल होती हैं!"
+            }
+          },
+          "onScreenIntent": "The Ho-Lee Model (1986) & Its Flat Volatility Flaw",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Ho-Lee Model (1986) & Its Flat Volatility Flaw",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Ho-Lee Model (1986) & Its Flat Volatility Flaw: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The Hull-White Extended Vasicek Model (1990)",
+      "purpose": "The Hull-White Extended Vasicek Model (1990): Foundational quantitative principles",
+      "takeaways": [
+        "The Hull-White Extended Vasicek Model (1990): Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 1990, John Hull and Alan White resolved Ho-Lee's flaw by combining Vasicek's mean reversion with time-dependent drift!"
+            },
+            "hi": {
+              "display": "जॉन हल और एलन व्हाइट ने 1990 में हो-ली की इस कमजोरी को पूरी तरह दूर कर दिया। उन्होंने वासिचेक के मीन रिवर्शन को टाइम-डिपेंडेंट ड्रिफ्ट के साथ जोड़ दिया!"
+            }
+          },
+          "onScreenIntent": "The Hull-White Extended Vasicek Model (1990)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Hull-White SDE is: dr = [theta(t) - ar]dt + sigma dz! Here a is the constant speed of mean reversion."
+            },
+            "hi": {
+              "display": "हल-व्हाइट का एस.डी.ई. है: dr बराबर ब्रैकेट में थीटा ऑफ t माइनस ar dt प्लस सिग्मा dz! यहां a मीन रिवर्शन की गति है।"
+            }
+          },
+          "onScreenIntent": "The Hull-White Extended Vasicek Model (1990)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Theta(t) is set analytically to partial f(0, t)/partial t + a*f(0, t) + [sigma^2 / (2a)] * (1 - e^{-2at})! This matches today's observed curve identically."
+            },
+            "hi": {
+              "display": "थीटा ऑफ t को एनालिटिकली सेट किया जाता है: d f(0, t)/dt प्लस a गुना f(0, t) प्लस सिग्मा स्क्वायर अपॉन 2a गुना 1 माइनस ई की पावर माइनस 2at! यह आज की यील्ड कर्व को 100% मैच करता है।"
+            }
+          },
+          "onScreenIntent": "The Hull-White Extended Vasicek Model (1990)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Crucially, forward rate volatility decays exponentially as sigma * exp(-a(T - t))! Long-term rates fluctuate less, perfectly aligning with empirical market reality!"
+            },
+            "hi": {
+              "display": "और सबसे महत्वपूर्ण बात: फॉरवर्ड रेट्स की वोलेटिलिटी सिग्मा गुना ई की पावर माइनस a गुना T माइनस t के रूप में एक्सपोनेंशियली डिके होती है! लंबी अवधि के बॉन्ड्स कम वोलेटाइल होते हैं, जो वास्तविक बाजार से पूरी तरह मेल खाता है!"
+            }
+          },
+          "onScreenIntent": "The Hull-White Extended Vasicek Model (1990)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Hull-White Extended Vasicek Model (1990)",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Hull-White Extended Vasicek Model (1990): Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Trinomial Trees: Stage 1 Zero-Mean Tree Architecture",
+      "purpose": "Trinomial Trees: Stage 1 Zero-Mean Tree Architecture: Foundational quantitative principles",
+      "takeaways": [
+        "Trinomial Trees: Stage 1 Zero-Mean Tree Architecture: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Closed-form formulas evaluate European options, but pricing Bermudan swaptions and callable bonds requires calibrated Trinomial Trees."
+            },
+            "hi": {
+              "display": "जब हमें यूरोपियन ऑप्शंस प्राइस करने होते हैं तो क्लोज्ड-फॉर्म फॉर्मूला काम करता है। लेकिन बरमूडन स्वैपशन्स और कॉलेबल बॉन्ड्स के लिए हमें 'ट्राइनोमियल ट्रीज' की जरूरत पड़ती है।"
+            }
+          },
+          "onScreenIntent": "Trinomial Trees: Stage 1 Zero-Mean Tree Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Each node in a trinomial tree branches into three paths: up, middle, and down. This architecture delivers superior numerical stability for mean-reverting processes."
+            },
+            "hi": {
+              "display": "ट्राइनोमियल ट्री में प्रत्येक नोड से तीन शाखाएं निकलती हैं: अप, मिडिल, और डाउन। बाइनोमियल ट्री की तुलना में यह मीन-रिवर्टिंग प्रोसेस के लिए कहीं अधिक स्थिर और सटीक होता है।"
+            }
+          },
+          "onScreenIntent": "Trinomial Trees: Stage 1 Zero-Mean Tree Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Stage 1, we construct a symmetrical zero-mean tree R* with vertical spacing Delta R = sigma * sqrt(3 * Delta t)."
+            },
+            "hi": {
+              "display": "स्टेज 1 में हम एक सिमेट्रिकल जीरो-मीन ट्री R-स्टार बनाते हैं, जिसका नोड स्पेसिंग डेल्टा R बराबर सिग्मा गुना अंडररूट 3 डेल्टा t होता है।"
+            }
+          },
+          "onScreenIntent": "Trinomial Trees: Stage 1 Zero-Mean Tree Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At extreme vertical boundaries, standard branching is shifted upward or downward to guarantee strictly positive probabilities—called boundary branching!"
+            },
+            "hi": {
+              "display": "जब नोड्स ऊपर या नीचे चरम सीमाओं तक पहुंचते हैं, तो प्रोबेबिलिटी नेगेटिव होने से बचाने के लिए ब्रांचिंग को मॉडिफाई कर दिया जाता है—इसे बाउंड्री ब्रांचिंग कहते हैं!"
+            }
+          },
+          "onScreenIntent": "Trinomial Trees: Stage 1 Zero-Mean Tree Architecture",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Trinomial Trees: Stage 1 Zero-Mean Tree Architecture",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Trinomial Trees: Stage 1 Zero-Mean Tree Architecture: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Stage 2 Tree Calibration: Arrow-Debreu State Prices",
+      "purpose": "Stage 2 Tree Calibration: Arrow-Debreu State Prices: Foundational quantitative principles",
+      "takeaways": [
+        "Stage 2 Tree Calibration: Arrow-Debreu State Prices: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now arrives the masterstroke of Hull-White tree construction: Stage 2 Calibration using Arrow-Debreu State Prices Q(i, j)!"
+            },
+            "hi": {
+              "display": "अब आता है हल-व्हाइट ट्री का सबसे जादुई हिस्सा: स्टेज 2 कैलिब्रेशन! यहां हम 'एरो-डेब्रू स्टेट प्राइसेस' Q(i, j) का इस्तेमाल करते हैं।"
+            }
+          },
+          "onScreenIntent": "Stage 2 Tree Calibration: Arrow-Debreu State Prices",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Q(i, j) is the present value of a pure contingent claim paying $1 if node (i, j) is reached and $0 otherwise."
+            },
+            "hi": {
+              "display": "Q(i, j) उस सिक्योरिटी की वर्तमान कीमत है जो केवल तभी 1 डॉलर देती है जब ट्री उस खास नोड पर पहुंचे, वर्ना शून्य।"
+            }
+          },
+          "onScreenIntent": "Stage 2 Tree Calibration: Arrow-Debreu State Prices",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The exact vertical displacement alpha_i is analytically solved: alpha_i = (1 / Delta t) * ln[ (sum_j Q_{i, j} e^{-j Delta R Delta t}) / P(0, t_{i+1}) ]!"
+            },
+            "hi": {
+              "display": "समय i पर ट्री को वर्टिकली शिफ्ट करने के लिए अल्फा-i का फॉर्मूला होता है: 1 अपॉन डेल्टा t गुना नेचुरल लॉग समेशन Q गुना ई की पावर माइनस j डेल्टा R डेल्टा t अपॉन मार्केट बॉन्ड प्राइस P(0, t_i+1)!"
+            }
+          },
+          "onScreenIntent": "Stage 2 Tree Calibration: Arrow-Debreu State Prices",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Through forward induction, we compute alpha_i and propagate state prices Q forward at each step, exactly reproducing all market discount bonds!"
+            },
+            "hi": {
+              "display": "फॉरवर्ड इंडक्शन के जरिए हम हर समय स्टेप पर अल्फा-i निकालते हैं और Q वैल्यूज को आगे बढ़ाते हैं। इस प्रकार ट्री आज के सभी मार्केट बॉन्ड प्राइसेस को 100% सटीक रीप्रोड्यूस करता है!"
+            }
+          },
+          "onScreenIntent": "Stage 2 Tree Calibration: Arrow-Debreu State Prices",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Stage 2 Tree Calibration: Arrow-Debreu State Prices",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Stage 2 Tree Calibration: Arrow-Debreu State Prices: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Pricing Bermudan Swaptions on the Calibrated Tree",
+      "purpose": "Pricing Bermudan Swaptions on the Calibrated Tree: Foundational quantitative principles",
+      "takeaways": [
+        "Pricing Bermudan Swaptions on the Calibrated Tree: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "With the calibrated tree in hand, we can price the world's most traded exotic fixed income derivative: the Bermudan Swaption!"
+            },
+            "hi": {
+              "display": "अब जब ट्री कैलिब्रेट हो चुका है, तो हम इसपर दुनिया का सबसे लोकप्रिय फिक्स्ड इनकम डेरिवेटिव प्राइस कर सकते हैं: 'बरमूडन स्वैपशन'!"
+            }
+          },
+          "onScreenIntent": "Pricing Bermudan Swaptions on the Calibrated Tree",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Bermudan swaption grants rights to enter a swap on multiple discrete exercise dates. Via backward induction, we compare immediate exercise value against continuation value at every node!"
+            },
+            "hi": {
+              "display": "बरमूडन स्वैपशन में होल्डर के पास स्वैप में प्रवेश करने के लिए कई निश्चित तारीखें होती हैं। बैकवर्ड इंडक्शन में हम हर नोड पर चेक करते हैं: क्या आज स्वैप में एंटर करने की वैल्यू, ऑप्शन को आगे होल्ड करने की कंटिन्युएशन वैल्यू से बड़ी है?"
+            }
+          },
+          "onScreenIntent": "Pricing Bermudan Swaptions on the Calibrated Tree",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The nodal value is strictly max(Exercise Value, Continuation Value). This makes the one-factor Hull-White tree the most trusted workhorse on Wall Street!"
+            },
+            "hi": {
+              "display": "नोड की वैल्यू मैक्सिमम ऑफ एक्सरसाइज वैल्यू कॉमा कंटिन्युएशन वैल्यू बन जाती है। इस प्रकार एक-फैक्टर हल-व्हाइट ट्री वॉल स्ट्रीट का सबसे भरोसेमंद वर्कहॉर्स बन जाता है!"
+            }
+          },
+          "onScreenIntent": "Pricing Bermudan Swaptions on the Calibrated Tree",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Pricing Bermudan Swaptions on the Calibrated Tree",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Pricing Bermudan Swaptions on the Calibrated Tree: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Active Recall: Hull-White Volatility Decay Calculation",
+      "purpose": "Active Recall: Hull-White Volatility Decay Calculation: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: Hull-White Volatility Decay Calculation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your quantitative mastery! A trading desk calibrates a Hull-White model: mean reversion a = 0.10 and short rate volatility sigma = 1.20%. What is the instantaneous volatility of a 10-year forward rate?"
+            },
+            "hi": {
+              "display": "चलिए आपकी क्वांटिटेटिव दक्षता का परीक्षण करते हैं! एक रेट्स डेस्क ने हल-व्हाइट मॉडल कैलिब्रेट किया: मीन रिवर्शन a बराबर 0.10 और शॉर्ट रेट वोलेटिलिटी सिग्मा बराबर 1.20%। 10-साल के फॉरवर्ड रेट की तात्कालिक वोलेटिलिटी क्या होगी?"
+            }
+          },
+          "onScreenIntent": "Active Recall: Hull-White Volatility Decay Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Take a moment to carefully analyze this mathematical concept and derivation."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: Hull-White Volatility Decay Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A: 0.44%! Using sigma_f = sigma * e^{-aT} = 1.20% * e^{-1.0} = 1.20% * 0.3679 = 0.441%! Long-term yields are dampened, confirming empirical reality!"
+            },
+            "hi": {
+              "display": "सही उत्तर है ऑप्शन ए: 0.44%! फॉर्मूला है सिग्मा गुना ई की पावर माइनस aT। 1.20% गुना ई की पावर माइनस 1.0, यानी 1.20% गुना 0.3679 बराबर लगभग 0.441% बनता है! लंबी अवधि की दरें कम वोलेटाइल होती हैं!"
+            }
+          },
+          "onScreenIntent": "Active Recall: Hull-White Volatility Decay Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Institutional Reality: Why Hull-White Rules the Exotic Rates Market",
+      "purpose": "Institutional Reality: Why Hull-White Rules the Exotic Rates Market: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Reality: Why Hull-White Rules the Exotic Rates Market: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John C. Hull famously notes: 'The one-factor Hull-White model remains the undisputed interbank benchmark because it offers the optimal balance between analytical tractability and exact term structure calibration.'"
+            },
+            "hi": {
+              "display": "जॉन हल का प्रसिद्ध उद्धरण है: 'वन-फैक्टर हल-व्हाइट मॉडल अंतरराष्ट्रीय इंटरबैंक मार्केट का निर्विवाद बेंचमार्क है क्योंकि यह एनालिटिकल सरलता और संपूर्ण यील्ड कर्व कैलिब्रेशन का सर्वोत्तम संतुलन पेश करता है।'"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Why Hull-White Rules the Exotic Rates Market",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exactly matching Treasury bond and vanilla swap prices is not a modeling luxury—it is an absolute non-negotiable risk condition!"
+            },
+            "hi": {
+              "display": "ट्रेजरी बॉन्ड्स और प्लेन-वैनिला स्वैप्स के प्राइसेस को बिल्कुल सही मैच करना कोई लग्जरी नहीं, बल्कि रिस्क मैनेजमेंट की अनिवार्य शर्त है!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Why Hull-White Rules the Exotic Rates Market",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "That is why every Tier-1 investment bank maintains Hull-White calibrated trees active at the core of their pricing libraries!"
+            },
+            "hi": {
+              "display": "यही कारण है कि दुनिया का हर टियर-1 इन्वेस्टमेंट बैंक हल-व्हाइट ट्रीज को अपनी कोर लाइब्रेरी में हमेशा सक्रिय रखता है!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Why Hull-White Rules the Exotic Rates Market",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Summary: 8 Institutional Rules of No-Arbitrage Short-Rate Models",
+      "purpose": "Summary: 8 Institutional Rules of No-Arbitrage Short-Rate Models: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of No-Arbitrage Short-Rate Models: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: No-arbitrage models ingest today's yield curve P(0, T) to eliminate static pricing arbitrage. Rule 2: Time-dependent drift theta(t) matches today's initial forward curve identically."
+            },
+            "hi": {
+              "display": "नियम एक: नो-आर्बिट्राज मॉडल्स आज की बाजार यील्ड कर्व P(0, T) को इनपुट के रूप में लेते हैं ताकि स्टैटिक आर्बिट्राज से बचा जा सके। नियम दो: टाइम-डिपेंडेंट ड्रिफ्ट थीटा ऑफ t आज की फॉरवर्ड कर्व को बिल्कुल सटीक रीप्रोड्यूस करता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of No-Arbitrage Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Ho-Lee (1986) introduced time-dependent drift but lacked mean reversion. Rule 4: Ho-Lee exhibits flat forward volatility, violating empirical market dampening."
+            },
+            "hi": {
+              "display": "नियम तीन: हो-ली 1986 मॉडल dr बराबर थीटा dt प्लस सिग्मा dz पहला नो-आर्बिट्राज मॉडल था, लेकिन इसमें कोई मीन रिवर्शन नहीं था। नियम चार: हो-ली में सभी फॉरवर्ड रेट्स की वोलेटिलिटी समान रहती है, जो वास्तविक बाजार व्यवहार के विपरीत है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of No-Arbitrage Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Hull-White (1990) combines mean reversion with exact calibration. Rule 6: Forward rate volatility decays exponentially as sigma * exp(-a(T - t))."
+            },
+            "hi": {
+              "display": "नियम पांच: हल-व्हाइट 1990 एक्सटेंडेड वासिचेक मॉडल dr बराबर [थीटा(t) - ar]dt प्लस सिग्मा dz मीन रिवर्शन और एग्जैक्ट कर्व फिटिंग को जोड़ता है। नियम छह: हल-व्हाइट में फॉरवर्ड वोलेटिलिटी सिग्मा ई की पावर माइनस a(T-t) के रूप में एक्सपोनेंशियली डिके होती है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of No-Arbitrage Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Stage 1 builds a zero-mean tree with spacing sigma*sqrt(3*dt). Rule 8: Stage 2 solves vertical shifts alpha_i via Arrow-Debreu forward induction."
+            },
+            "hi": {
+              "display": "नियम सात: हल-व्हाइट ट्राइनोमियल ट्री स्टेज 1 में सिमेट्रिकल R-स्टार ट्री बनाता है जिसका स्पेसिंग सिग्मा अंडररूट 3 डेल्टा t होता है। नियम आठ: स्टेज 2 में एरो-डेब्रू स्टेट प्राइसेस Q और फॉरवर्ड इंडक्शन से अल्फा-i निकालकर ट्री को एग्जैक्ट फिट किया जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of No-Arbitrage Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight rules form the backbone of no-arbitrage fixed income modeling, powering exact Bermudan swaption and callable debt valuation."
+            },
+            "hi": {
+              "display": "ये आठ नियम नो-आर्बिट्राज फिक्स्ड इनकम मॉडलिंग की रीढ़ हैं, जो बरमूडन स्वैपशन्स और कॉलेबल डेट की सटीक प्राइसिंग संभव बनाते हैं।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of No-Arbitrage Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "You now command the complete quantitative blueprint of Wall Street's most formidable short-rate pricing engine!"
+            },
+            "hi": {
+              "display": "अब आपके पास वॉल स्ट्रीट के सबसे शक्तिशाली शॉर्ट-रेट प्राइसिंग इंजन का संपूर्ण गणितीय ज्ञान है!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of No-Arbitrage Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of No-Arbitrage Short-Rate Models",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Closing Synthesis: The Grand Architecture of Interest Rate Derivatives",
+      "purpose": "Closing Synthesis: The Grand Architecture of Interest Rate Derivatives: Foundational quantitative principles",
+      "takeaways": [
+        "Closing Synthesis: The Grand Architecture of Interest Rate Derivatives: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Incredible, Sir! The entire quantitative roadmap is crystal clear: from Black's model to convexity adjustments, Vasicek equilibrium, and Hull-White no-arbitrage trees! Have we mastered the interest rate universe?"
+            },
+            "hi": {
+              "display": "अद्भुत सर! अब मुझे पूरा रोडमैप समझ आ गया: ब्लैक मॉडल से लेकर कॉन्वेक्सिटी एडजस्टमेंट्स, वासिचेक का इक्विलिब्रियाम और हल-व्हाइट का नो-आर्बिट्राज ट्री! क्या अब हमारा इंटरेस्ट रेट डेरिवेटिव्स का सफर पूरा हो गया?"
+            }
+          },
+          "onScreenIntent": "Closing Synthesis: The Grand Architecture of Interest Rate Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Absolutely, Raju! You have mastered the most sophisticated chapters of John C. Hull. You are now 100% equipped for any Tier-1 quantitative interview and global trading desk!"
+            },
+            "hi": {
+              "display": "बिल्कुल राजू! तुमने जॉन हल के सबसे कठिन और उन्नत अध्यायों को सफलतापूर्वक मास्टर कर लिया है। अब तुम किसी भी टियर-1 क्वांट इंटरव्यू और वॉल स्ट्रीट ट्रेडिंग डेस्क के लिए 100% तैयार हो!"
+            }
+          },
+          "onScreenIntent": "Closing Synthesis: The Grand Architecture of Interest Rate Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Closing Synthesis: The Grand Architecture of Interest Rate Derivatives",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

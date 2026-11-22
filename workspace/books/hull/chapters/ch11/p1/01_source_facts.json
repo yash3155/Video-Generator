@@ -1,0 +1,87 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch11",
+  "partId": "p1",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "market_rule",
+      "statement": "Hull Table 11.1 formalizes the six core market variables governing option values: Stock price S0 (+ call, - put), Strike price K (- call, + put), Time to expiration T (+ American call/put), Volatility sigma (+ call, + put), Risk-free rate r (+ call, - put), and Present value of dividends D (- call, + put).",
+      "citation": {
+        "chapter": "11",
+        "section": "11.1",
+        "page": "265"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "definition",
+      "statement": "Volatility Asymmetry: Because option owners have limited downside (capped at premium paid) but unlimited upside potential, higher volatility expands the probability of extreme positive outcomes without worsening downside loss, strictly increasing option values.",
+      "citation": {
+        "chapter": "11",
+        "section": "11.1",
+        "page": "267"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "formula",
+      "statement": "Absolute Upper Bounds: A call option can never exceed the underlying stock: c <= S0 and C <= S0. A European put option cannot exceed the discounted strike: p <= K * exp(-r*T), while an American put satisfies P <= K.",
+      "citation": {
+        "chapter": "11",
+        "section": "11.2",
+        "page": "268"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "formula",
+      "statement": "Lower Bound for European Calls on Non-Dividend Stock: c >= max(S0 - K * exp(-r*T), 0). Proof via portfolio dominance: Portfolio A (1 call + K*exp(-r*T) cash) >= Portfolio B (1 share of stock) at time T.",
+      "citation": {
+        "chapter": "11",
+        "section": "11.3",
+        "page": "270"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "case_study",
+      "statement": "Hull Section 11.3 Arbitrage Example: Stock S0 = $20, Strike K = $18, r = 10% per annum, T = 1 year, Call price c = $3.00. Lower bound = 20 - 18*exp(-0.10) = 20 - 16.29 = $3.71. Because c = $3.00 < $3.71, arbitrageur buys call for $3.00, shorts stock for $20, invests $17 at 10%, locking in a guaranteed risk-free profit of $0.71.",
+      "citation": {
+        "chapter": "11",
+        "section": "11.3",
+        "page": "271"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "formula",
+      "statement": "Lower Bound for European Puts on Non-Dividend Stock: p >= max(K * exp(-r*T) - S0, 0). Proof via portfolio dominance: Portfolio C (1 put + 1 share) >= Portfolio D (K*exp(-r*T) cash) at time T.",
+      "citation": {
+        "chapter": "11",
+        "section": "11.4",
+        "page": "273"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "case_study",
+      "statement": "Put Lower Bound Arbitrage: Stock S0 = $37, Strike K = $40, r = 5%, T = 0.5 years, Put price p = $1.00. Lower bound = 40*exp(-0.025) - 37 = 39.01 - 37 = $2.01. Arbitrageur buys put for $1.00, buys stock for $37, borrows $38 at 5%, locking in guaranteed $1.01 profit.",
+      "citation": {
+        "chapter": "11",
+        "section": "11.4",
+        "page": "274"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "formula",
+      "statement": "Dividend-Adjusted Lower Bounds: When stock pays dividends with present value D, the lower bounds become c >= max(S0 - D - K * exp(-r*T), 0) and p >= max(D + K * exp(-r*T) - S0, 0).",
+      "citation": {
+        "chapter": "11",
+        "section": "11.5",
+        "page": "276"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1653 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch04",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 4",
+  "partLabel": "Part 1",
+  "title": "Interest Rate Mechanics, Zero Curves & The Bootstrap Method",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 1,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Cornerstone of Derivatives: Interest Rates",
+      "purpose": "Establish interest rates as the fundamental pricing foundation for all derivative contracts",
+      "takeaways": [
+        "Interest rates are the fundamental building block for pricing forwards, swaps, and options",
+        "Multiple benchmark rates exist simultaneously reflecting credit risk, collateral, and maturity",
+        "Chapter 4 masters rate taxonomy, continuous compounding, zero curves, and bootstrapping"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "chat_story",
+      "data": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "novice",
+            "text": "Why do interest rates matter so critically for derivative valuation?"
+          },
+          {
+            "id": "m2",
+            "speaker": "mentor",
+            "text": "Every forward contract, swap, and option model relies on discounting future cash flows and financing underlying assets."
+          },
+          {
+            "id": "m3",
+            "speaker": "mentor",
+            "text": "Yet in real-world markets, no single universal interest rate exists. Rates vary by credit risk, collateral, and maturity."
+          },
+          {
+            "id": "m4",
+            "speaker": "mentor",
+            "text": "In Chapter 4, we master benchmark rates, continuous compounding mathematics, zero curves, and the Bootstrap method."
+          }
+        ],
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "Rate Taxonomy",
+            "Compounding Math",
+            "Zero Curves",
+            "Bond Pricing",
+            "Bootstrap Method",
+            "Forward Rates"
+          ],
+          "current": 0
+        }
+      },
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "novice",
+          "narration": {
+            "en": {
+              "display": "Why do interest rates matter so critically for derivative valuation?"
+            },
+            "hi": {
+              "display": "डेरिवेटिव्स वैल्यूएशन और ऑप्शन प्राइसिंग के लिए इंटरेस्ट रेट्स इतनी ज्यादा जरूरी क्यों हैं?"
+            }
+          },
+          "onScreenIntent": "Opening dilemma question on interest rates in derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "interest rate"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In derivatives markets, interest rates are the fundamental building blocks required to price forward contracts, swaps, and options. Without an exact understanding of yield curves and discounting mechanics, calculating the fair value of any financial derivative is impossible."
+            },
+            "hi": {
+              "display": "Derivatives markets mein Forward contracts, Swaps aur Options ko price karne ke liye sabse fundamental building block Interest Rates hain. Agar aapko yield curve aur discounting ki exact mechanics nahi pata, toh aap kisi bhi financial derivative ka fair value calculate nahi kar sakte."
+            }
+          },
+          "onScreenIntent": "The mentor explains the fundamental building blocks of derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yet in real-world financial markets, an 'interest rate' is not a single uniform number. Multiple benchmark rates exist simultaneously, reflecting differences in borrower credit risk, pledged collateral, and investment maturity."
+            },
+            "hi": {
+              "display": "Lekin financial markets mein 'Interest Rate' koi single universal number nahi hota. Alag-alag borrowers ke credit risk, collateral aur maturity ke hisab se market mein multiple benchmark rates exist karti hain."
+            }
+          },
+          "onScreenIntent": "The mentor explains multiple benchmark rates in real markets",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "benchmark rate"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In this lesson, covering the first half of Chapter Four, we master the benchmark taxonomy, discrete versus continuous compounding mathematics, zero-coupon yield curves, and the investment bank standard Bootstrap method."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter Four mein hum interest rates ki complete taxonomy, discrete versus continuous compounding mathematics, zero-coupon yield curves aur Bootstrap method ko step-by-step master karenge."
+            }
+          },
+          "onScreenIntent": "The mentor outlines Chapter 4 syllabus and core objectives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "m1",
+              "m2",
+              "m3",
+              "m4"
+            ]
+          },
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "The Taxonomy of Rates: Treasury, LIBOR & Repo",
+      "purpose": "Contrast sovereign debt instruments and collateralized repo financing",
+      "takeaways": [
+        "Treasury rates represent sovereign government debt, treated as default-free",
+        "Repo rates represent collateralized money market financing backed by securities",
+        "Collateralization allows repo rates to trade below unsecured interbank lending"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left_col",
+          "heading": "Treasury Rates (Sovereign)",
+          "tone": "positive",
+          "points": [
+            "Issued by national sovereign governments in domestic currency",
+            "Traditionally viewed as free from credit default risk",
+            "Regulatory bank liquidity requirements create artificial high demand"
+          ]
+        },
+        "right": {
+          "id": "right_col",
+          "heading": "Repo Rates (Collateralized)",
+          "tone": "neutral",
+          "points": [
+            "Collateralized money market financing backed by government debt",
+            "Borrower sells securities and repurchases at higher agreed price",
+            "Collateral protection allows repo rates to trade below unsecured loans"
+          ]
+        },
+        "verdict": {
+          "id": "verdict_box",
+          "text": "Repo rates provide secured liquidity; Treasuries define sovereign credit-free benchmarks."
+        }
+      },
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Three primary benchmark interest rates dominate global financial markets: Treasury Rates, LIBOR, and Repo Rates."
+            },
+            "hi": {
+              "display": "Market mein teen primary benchmark rates sabse zyada dominate karti hain: Treasury Rates, LIBOR, aur Repo Rates."
+            }
+          },
+          "onScreenIntent": "Introduce the three global benchmark rates",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Treasury rate",
+            "Repo rate"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Treasury rates are earned on sovereign government debt instruments, such as Treasury bills and Treasury bonds. Because a sovereign government issues debt denominated in its own currency, Treasury rates have traditionally been treated by economists as free from credit default risk."
+            },
+            "hi": {
+              "display": "Treasury Rates national government ke debt instruments par milti hain, jaise Treasury bills aur bonds. Kyunki sovereign government apni currency khud print kar sakti hai, isliye Treasury rates ko traditionally credit default risk-free mana jata hai."
+            }
+          },
+          "onScreenIntent": "Examine Treasury rate risk-free mechanics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In contrast, the Repo Rate, short for Repurchase Agreement, is a collateralized loan rate where an institution sells government securities and agrees to buy them back later at a slightly higher price. Because it is fully secured by collateral, repo rates trade slightly below unsecured interbank lending rates."
+            },
+            "hi": {
+              "display": "Doosri taraf, Repo Rate yaani Repurchase Agreement collateralized loan rate hota hai, jahan ek financial institution government securities girvi rakhkar short-term cash borrow karti hai. Collateral hone ki wajah se Repo rate unsecured borrowing se thoda kam hota hai."
+            }
+          },
+          "onScreenIntent": "Examine Repo rate mechanics and collateral backing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Compounding Frequencies & Continuous Compounding",
+      "purpose": "Derive continuous compounding limit and rate conversion formulas",
+      "takeaways": [
+        "Compounding frequency m dictates capital growth via A*(1 + R/m)^(mn)",
+        "Taking m to infinity produces continuous compounding governed by e^(Rn)",
+        "Rate conversion formula R_c = m * ln(1 + R_m / m) provides exact equivalence"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Continuous Equivalent Compounding Rate",
+        "formula": {
+          "latex": "R_c = m \\ln\\left(1 + \\frac{R_m}{m}\\right)",
+          "expression": "m * ln(1 + R_m / m)",
+          "solvesFor": "R_c",
+          "variables": [
+            {
+              "symbol": "R_c",
+              "latex": "R_c",
+              "meaning": "Continuously compounded annual interest rate",
+              "unit": "pct"
+            },
+            {
+              "symbol": "m",
+              "latex": "m",
+              "meaning": "Compounding frequency per annum",
+              "unit": "count"
+            },
+            {
+              "symbol": "R_m",
+              "latex": "R_m",
+              "meaning": "Discrete interest rate compounded m times per annum",
+              "unit": "pct"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "p1",
+            "symbolLatex": "R_c",
+            "meaning": "Continuously compounded rate",
+            "unit": "pct"
+          },
+          {
+            "id": "p2",
+            "symbolLatex": "m",
+            "meaning": "Compounding intervals per year",
+            "unit": "count"
+          },
+          {
+            "id": "p3",
+            "symbolLatex": "R_m",
+            "meaning": "Nominal discrete rate",
+            "unit": "pct"
+          }
+        ],
+        "note": "As compounding frequency m approaches infinity, discrete capital growth converges to e^(Rn)."
+      },
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When quoting an interest rate, specifying the compounding frequency is mandatory. When interest compounds m times per year at annual rate R, an initial principal A grows after n years to A multiplied by one plus R over m, raised to the power of m times n."
+            },
+            "hi": {
+              "display": "Interest rate quote karte waqt compounding frequency specify karna mandatory hota hai. Ek saal mein m baar interest add hone par future value A guna one plus R divided by m to the power m n hoti hai."
+            }
+          },
+          "onScreenIntent": "Explain compounding frequency and discrete terminal value",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "compounding frequency"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In quantitative finance and derivative pricing models, we take the compounding frequency m to infinity. This is known as continuous compounding, governed by the natural exponential function e raised to the power of R times n."
+            },
+            "hi": {
+              "display": "Quantitative finance aur derivatives pricing mein hum frequency m ko infinity tak le jate hain, jise Continuous Compounding kehte hain. Iska mathematical form exponential function e to the power R n hota hai."
+            }
+          },
+          "onScreenIntent": "Formulate continuous limit taking m to infinity",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "continuous compounding"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The conversion formulas between a discrete rate R_m and its continuous equivalent R_c are exact: R_c equals m times the natural logarithm of one plus R_m divided by m. Inverting this, R_m equals m times e raised to the power of R_c over m, minus one."
+            },
+            "hi": {
+              "display": "Discrete rate R m aur continuous rate R c ke beech conversion formula dekhiye: R c barabar m guna natural log of one plus R m divided by m. Aur R m barabar m guna e to the power R c divided by m minus one."
+            }
+          },
+          "onScreenIntent": "Present exact discrete to continuous conversion formula",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider John Hull's numerical example: if a bank quotes an annual rate of ten percent with semi-annual compounding, where m equals two, the continuous equivalent rate is two times the natural logarithm of one point zero five, which equals exactly nine point seven five eight percent."
+            },
+            "hi": {
+              "display": "Hull ka numerical example dekhiye: agar koi bank ten percent per annum semi-annual compounding quote karta hai, toh continuous equivalent nikalta hai: two guna natural log of one point zero five, yaani exactly nine point seven five eight percent."
+            }
+          },
+          "onScreenIntent": "Summarize mathematical convenience of continuous compounding",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Present Value Discounting via Exponential Form",
+      "purpose": "Demonstrate present value discounting with continuous discount factor PV = B * e^(-RT)",
+      "takeaways": [
+        "Present value equals future payment B multiplied by discount factor e^(-RT)",
+        "Continuous discount factors prevent rounding errors across irregular horizons",
+        "Multi-period compounding simplifies to straightforward summation of exponents"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "worked_example",
+      "data": {
+        "title": "Continuous Present Value Discounting",
+        "formula": {
+          "latex": "PV = B e^{-RT}",
+          "expression": "B * exp(-R * T)",
+          "solvesFor": "PV",
+          "variables": [
+            {
+              "symbol": "PV",
+              "latex": "PV",
+              "meaning": "Present Value",
+              "unit": "USD"
+            },
+            {
+              "symbol": "B",
+              "latex": "B",
+              "meaning": "Future Cash Flow",
+              "unit": "USD"
+            },
+            {
+              "symbol": "R",
+              "latex": "R",
+              "meaning": "Continuous Zero Rate",
+              "unit": "rate"
+            },
+            {
+              "symbol": "T",
+              "latex": "T",
+              "meaning": "Maturity Horizon",
+              "unit": "years"
+            }
+          ]
+        },
+        "given": [
+          {
+            "id": "g1",
+            "label": "Future Cash Flow (B)",
+            "value": 100,
+            "unit": "USD",
+            "display": "$100.00"
+          },
+          {
+            "id": "g2",
+            "label": "Maturity (T)",
+            "value": 2.5,
+            "unit": "years",
+            "display": "2.5 Years"
+          },
+          {
+            "id": "g3",
+            "label": "Continuous Zero Rate (R)",
+            "value": 0.045,
+            "unit": "rate",
+            "display": "4.50%"
+          }
+        ],
+        "steps": [
+          {
+            "id": "st1",
+            "label": "Discount Exponent",
+            "latex": "-0.045 \\times 2.5 = -0.1125",
+            "value": -0.1125
+          },
+          {
+            "id": "st2",
+            "label": "Discount Factor",
+            "latex": "e^{-0.1125} = 0.89360",
+            "value": 0.8936
+          },
+          {
+            "id": "st3",
+            "label": "Present Value",
+            "latex": "100 \\times 0.89360 = \\$89.36",
+            "value": 89.36
+          }
+        ],
+        "result": {
+          "id": "res",
+          "label": "Present Value",
+          "value": 89.36,
+          "unit": "USD",
+          "display": "$89.36",
+          "rounding": 2
+        },
+        "conclusion": "Continuous discounting yields exact, mathematically consistent present values across any fractional horizon.",
+        "isHypothetical": false
+      },
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The greatest analytical advantage of continuous compounding lies in cash flow discounting. The present value of a future cash flow B, received at time T, is simply B multiplied by e raised to the power of minus R times T."
+            },
+            "hi": {
+              "display": "Continuous compounding ka sabse bada advantage cash flow discounting mein milta hai. Future time T par milne wale cash flow B ki present value directly B guna e to the power minus R T hoti hai."
+            }
+          },
+          "onScreenIntent": "Formulate the present value continuous discount factor",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "discount factor"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Here, e to the power of minus R times T is defined as the Discount Factor. It represents the exact present cash value today of one dollar received with complete certainty at future maturity T."
+            },
+            "hi": {
+              "display": "Yahan e to the power minus R T ko Discount Factor kaha jata hai. Ye factor batata hai ki future mein milne wale one dollar ki aaj exact present value kitni hai."
+            }
+          },
+          "onScreenIntent": "Walk through step by step discounting calculation",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Continuous discounting ensures mathematical additivity across time horizons. This elegance simplifies stochastic calculus and makes the valuation of multi-period cash flows analytically tractable."
+            },
+            "hi": {
+              "display": "Continuous discounting derivatives mathematics ko clean aur additive banata hai, jisse multi-period cash flows ko mathematically integrate karna behad aasan ho jata hai."
+            }
+          },
+          "onScreenIntent": "Conclude with analytical power of continuous discounting",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Zero Rates: The Pure Building Blocks of Yield",
+      "purpose": "Define spot zero rates and contrast against flat yield assumptions",
+      "takeaways": [
+        "Spot zero rate is the rate earned from today to maturity T with zero coupons",
+        "Zero rates eliminate intermediate reinvestment rate uncertainty",
+        "All derivative pricing unbundles instruments into pure spot zero cash flows"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "progressive_cards",
+      "data": {
+        "cards": [
+          {
+            "id": "c1",
+            "title": "Spot Zero-Coupon Rate",
+            "body": "The rate earned on an investment starting today with zero intermediate cash flows, paying full principal and interest at maturity T."
+          },
+          {
+            "id": "c2",
+            "title": "Eliminating Reinvestment Risk",
+            "body": "Unlike coupon bonds whose yield assumes reinvestment at a constant rate, zero rates represent clean, uncontaminated spot discount prices."
+          },
+          {
+            "id": "c3",
+            "title": "The Foundation of the Yield Curve",
+            "body": "All derivative valuation models unbundle compound instruments into individual spot zero payments across the term structure."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we examine an essential concept: the Zero Rate, also known as the zero-coupon interest rate. An n-year zero rate is the annual rate of interest earned on an investment that makes zero intermediate coupon payments."
+            },
+            "hi": {
+              "display": "Ab ek critical concept samajhte hain: Zero Rate, jise zero-coupon interest rate bhi kaha jata hai. Ek n-year zero rate wo interest rate hai jo aise investment par earn hota hai jisme koi intermediate coupon payment nahi hoti."
+            }
+          },
+          "onScreenIntent": "Define zero rates and spot discounting",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "zero rate"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "c1"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "All principal and accumulated interest are returned together as a single terminal lump sum at maturity n. Each maturity possesses its own distinct zero rate, and a plot of these zero rates across all maturities forms the Zero Curve, or spot yield curve."
+            },
+            "hi": {
+              "display": "Principal aur pura accumulated interest maturity date n par ek sath single lump sum mein pay hota hai. Har maturity ka apna dedicated zero rate hota hai, aur in sabhi zero rates ka graph Zero Curve ya Spot Curve kehlata hai."
+            }
+          },
+          "onScreenIntent": "Contrast zero rates against reinvestment assumptions",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "reinvestment risk"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "c1",
+              "c2"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In modern derivative pricing, we never assume a single flat interest rate across time. Instead, every individual future cash flow is discounted using its exact maturity-matched zero rate."
+            },
+            "hi": {
+              "display": "Derivatives pricing mein hum kabhi bhi single flat interest rate assume nahi karte. Har cash flow ko uske exact maturity-matched zero rate se discount kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Examine spot zero curve across different maturities",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "c1",
+              "c2",
+              "c3"
+            ]
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, pure zero rates are directly observable in the market only for short maturities via Treasury bills. Longer-term debt trades almost exclusively as coupon-bearing bonds, requiring analysts to construct the zero curve mathematically."
+            },
+            "hi": {
+              "display": "Lekin market mein zero rates sirf short term ke liye directly observe hote hain. Longer maturities ke liye market mein coupon-bearing bonds trade hote hain. Isliye hume Zero Curve construct karni padti hai."
+            }
+          },
+          "onScreenIntent": "Summarize why zero rates are true pricing atoms",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": [
+              "c1",
+              "c2",
+              "c3"
+            ]
+          },
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Bond Pricing, Yield to Maturity (YTM) & Par Yield",
+      "purpose": "Contrast zero curve valuation, Yield to Maturity, and Par Yields",
+      "takeaways": [
+        "Bonds are bundles of individual zero-coupon payments discounted at spot zero rates",
+        "Yield to Maturity is an internal rate of return averaging the term structure",
+        "Par yield is the coupon rate causing bond price to equal face par value"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "table_compare",
+      "data": {
+        "columns": [
+          "Valuation Metric",
+          "Pricing Mechanism",
+          "Risk & Curve Sensitivity"
+        ],
+        "rows": [
+          {
+            "id": "r1",
+            "cells": [
+              "Zero Curve Valuation",
+              "Each cash flow discounted at its exact spot zero maturity rate",
+              "Full curve sensitivity; arbitrage-free pricing"
+            ]
+          },
+          {
+            "id": "r2",
+            "cells": [
+              "Yield to Maturity (YTM)",
+              "Single constant discount rate equating price to cash flows",
+              "Averages curve; assumes flat reinvestment rates"
+            ]
+          },
+          {
+            "id": "r3",
+            "cells": [
+              "Par Yield",
+              "Coupon rate causing bond price to equal 100% of par face value",
+              "Benchmark for interest rate swap fixed leg pricing"
+            ]
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To determine the theoretical fair value of a coupon-bearing bond, every intermediate coupon payment and the final principal return must be discounted at its own respective zero rate."
+            },
+            "hi": {
+              "display": "Ek coupon bond ki theoretical fair value nikalne ke liye uske sabhi future coupons aur principal ko respective zero rates se discount kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Explain theoretical bond valuation via zero curve",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "theoretical bond price"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yield to Maturity, or YTM, is the single constant discount rate that equates the present value of all future bond cash flows to its current market price. But YTM is merely an internal average yield; it is not the true market zero curve."
+            },
+            "hi": {
+              "display": "Yield to Maturity yaani YTM wo single constant interest rate hota hai jo bond ke sabhi cash flows ki present value ko uske market price ke barabar bana deta hai. Lekin YTM ek internal average hai, ye actual market zero curve nahi hai."
+            }
+          },
+          "onScreenIntent": "Define Yield to Maturity and its single-rate limitation",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "yield to maturity"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Par Yield is defined as the coupon rate per annum that causes a bond's theoretical price to equal its par face value. It serves as the primary market benchmark when pricing new debt issuances."
+            },
+            "hi": {
+              "display": "Par Yield wo coupon rate hota hai jo bond ke theoretical price ko uski par value, yaani face value ke exactly barabar bana deta hai. New bond issues ko price karne ke liye Par Yield standard benchmark hota hai."
+            }
+          },
+          "onScreenIntent": "Contrast arbitrage-free zero pricing with flat YTM",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This brings us to the most celebrated algorithm in fixed-income finance, utilized by trading desks worldwide to construct the zero curve: The Bootstrap Method."
+            },
+            "hi": {
+              "display": "Ab aate hain quantitative finance ke sabse famous algorithm par jisse investment banks zero curve generate karte hain: The Bootstrap Method."
+            }
+          },
+          "onScreenIntent": "Define Par Yield and its relationship to par bonds",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "par yield"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "The Bootstrap Method: Extracting Zero Curves",
+      "purpose": "Illustrate recursive coupon stripping in the Bootstrap method",
+      "takeaways": [
+        "The bootstrap extracts zero rates sequentially from market prices of liquid bonds",
+        "Treasury bills provide direct zero rates without intermediate coupon stripping",
+        "The resulting zero curve reproduces the market price of every input benchmark bond"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "diagram_flow",
+      "data": {
+        "mode": "flow",
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "Step 1: T-Bills",
+            "sublabel": "Direct zero rates from 0.25y - 1.0y discount bills"
+          },
+          {
+            "id": "n2",
+            "label": "Step 2: Coupon Stripping",
+            "sublabel": "Discount known earlier cash flows using known zeros"
+          },
+          {
+            "id": "n3",
+            "label": "Step 3: Solve Final Zero",
+            "sublabel": "Isolate single unknown spot zero rate at maturity T"
+          },
+          {
+            "id": "n4",
+            "label": "Step 4: Curve Construction",
+            "sublabel": "Interpolate continuous zero curve across all tenors"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "label": "Base Zero Rates"
+          },
+          {
+            "from": "n2",
+            "to": "n3",
+            "label": "Recursive Strip"
+          },
+          {
+            "from": "n3",
+            "to": "n4",
+            "label": "Term Structure"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Bootstrap Method is a recursive, step-by-step algorithm where known short-term zero rates are utilized to solve for progressively longer-term zero rates."
+            },
+            "hi": {
+              "display": "Bootstrap Method ek recursive step-by-step technique hai jisme short-term zero rates ka use karke progressively longer-term zero rates solve kiye jate hain."
+            }
+          },
+          "onScreenIntent": "Introduce the recursive Bootstrap method",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "bootstrap method"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step One, Treasury bills directly provide zero-coupon rates for maturities such as six months and one year, because they contain zero intermediate coupon payments."
+            },
+            "hi": {
+              "display": "Step One mein Treasury bills se zero point five year aur one point zero year ke zero rates directly mil jate hain kyunki unme koi intermediate coupon nahi hota."
+            }
+          },
+          "onScreenIntent": "Step 1: Obtain short term zeros directly from T-bills",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step Two, we take a one-point-five-year coupon bond. Its first two coupons, arriving at six months and twelve months, are discounted using the known zero-point-five-year and one-year zero rates."
+            },
+            "hi": {
+              "display": "Step Two mein hum one point five year ka coupon bond lete hain. Iske pehle do coupons ko already known zero point five aur one point zero year ke zero rates se discount karte hain."
+            }
+          },
+          "onScreenIntent": "Step 2 & 3: Strip earlier coupons and solve final spot zero",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "coupon stripping"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step Three, these discounted coupon values are subtracted from the bond's total market price, isolating the final cash flow and allowing the unknown one-point-five-year zero rate to be solved algebraically."
+            },
+            "hi": {
+              "display": "Step Three mein bond ke total market price se in discounted coupons ko subtract karke final cash flow ke liye unknown one point five year zero rate ko algebraically solve kar liya jata hai."
+            }
+          },
+          "onScreenIntent": "Step 4: Complete continuous term structure across maturities",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Worked Bootstrap Example: Numerical Progression",
+      "purpose": "Present concrete bootstrap results with unclipped responsive typography",
+      "takeaways": [
+        "0.25y, 0.5y, and 1.0y zero rates derived directly from money market instruments",
+        "1.5y and 2.0y zero rates extracted after discounting prior semiannual coupons",
+        "Ascending zero rates indicate an upward-sloping term structure"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "stat_counter",
+      "data": {
+        "stats": [
+          {
+            "id": "s1",
+            "value": 3,
+            "decimals": 1,
+            "suffix": "%",
+            "label": "1.0-Year Zero Rate",
+            "sublabel": "Derived directly from T-Bill"
+          },
+          {
+            "id": "s2",
+            "value": 4,
+            "decimals": 1,
+            "suffix": "%",
+            "label": "2.0-Year Zero Rate",
+            "sublabel": "Extracted via coupon stripping"
+          },
+          {
+            "id": "s3",
+            "value": 5,
+            "decimals": 1,
+            "suffix": "%",
+            "label": "Year-2 Forward Rate",
+            "sublabel": "Implied forward rate (R_F)"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine John Hull's Table four point five. The zero-point-five-year rate is five point zero percent, and the one-year rate is five point eight percent, continuously compounded."
+            },
+            "hi": {
+              "display": "John C. Hull ki Table four point five ko dekhiye. Zero point five year rate five point zero percent hai, aur one point zero year rate five point eight percent continuous compounding par determined hai."
+            }
+          },
+          "onScreenIntent": "Walk through numerical progression of zero rates",
+          "sourceFactIds": [
+            "F08",
+            "F10"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A one-point-five-year bond with a six-dollar semi-annual coupon and one-hundred-dollar face value trades at ninety-six dollars. Setting up the equation: three e to the minus point zero five times point five, plus three e to the minus point zero five eight times one, plus one hundred and three e to the minus R times one point five equals ninety-six. Solving for R yields an exact one-point-five-year continuous zero rate of six point zero five percent."
+            },
+            "hi": {
+              "display": "One point five year bond par six dollar semi-annual coupon aur hundred dollar face value hai, jiska market price ninety-six dollars hai. Formula mein values substitute karke equation solve karne par one point five year continuous zero rate six point zero five percent nikalta hai."
+            }
+          },
+          "onScreenIntent": "Highlight continuous zero curve progression across tenors",
+          "sourceFactIds": [
+            "F08",
+            "F10"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Forward Rates: Implied Future Borrowing Costs",
+      "purpose": "Formulate implied forward interest rate equation R_F = (R_2*T_2 - R_1*T_1)/(T_2 - T_1)",
+      "takeaways": [
+        "Forward rate is the borrowing rate implied today for a future period T1 to T2",
+        "R_F = (R_2*T_2 - R_1*T_1) / (T_2 - T_1) under continuous compounding",
+        "Deviations between market and implied forward rates trigger risk-free cash-and-carry profits"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Implied Forward Interest Rate Formula",
+        "formula": {
+          "latex": "R_F = \\frac{R_2 T_2 - R_1 T_1}{T_2 - T_1}",
+          "expression": "(R_2 * T_2 - R_1 * T_1) / (T_2 - T_1)",
+          "solvesFor": "R_F",
+          "variables": [
+            {
+              "symbol": "R_F",
+              "latex": "R_F",
+              "meaning": "Forward rate between T1 and T2",
+              "unit": "pct"
+            },
+            {
+              "symbol": "R_1",
+              "latex": "R_1",
+              "meaning": "Zero rate for maturity T1",
+              "unit": "pct"
+            },
+            {
+              "symbol": "R_2",
+              "latex": "R_2",
+              "meaning": "Zero rate for maturity T2",
+              "unit": "pct"
+            },
+            {
+              "symbol": "delta_T",
+              "latex": "T_2 - T_1",
+              "meaning": "Forward interval",
+              "unit": "years"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "p1",
+            "symbolLatex": "R_F",
+            "meaning": "Forward rate between T1 and T2",
+            "unit": "pct"
+          },
+          {
+            "id": "p2",
+            "symbolLatex": "R_1, R_2",
+            "meaning": "Spot zero rates for maturities T1 and T2",
+            "unit": "pct"
+          },
+          {
+            "id": "p3",
+            "symbolLatex": "T_2 - T_1",
+            "meaning": "Forward contract horizon",
+            "unit": "years"
+          }
+        ],
+        "note": "When zero curve rises, Forward Rate > Zero Rate > Par Yield."
+      },
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we examine Forward Rates. A forward rate is the interest rate implied by today's zero curve for borrowing or lending over a specific period in the future."
+            },
+            "hi": {
+              "display": "Ab hum aate hain Forward Rates par. Forward rate wo interest rate hota hai jo current zero curve ke mutabik future time period ke liye automatically imply hota hai."
+            }
+          },
+          "onScreenIntent": "Define implied forward rates and their market role",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [
+            "forward rate"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If R-one is the zero rate for maturity T-one, and R-two is the zero rate for maturity T-two, the continuous forward rate R-sub-F between T-one and T-two is given by: R-two times T-two minus R-one times T-one, divided by T-two minus T-one."
+            },
+            "hi": {
+              "display": "Agar maturity T-one ka zero rate R-one ho aur maturity T-two ka zero rate R-two ho, toh T-one aur T-two ke beech ka forward rate R F barabar hota hai: R-two T-two minus R-one T-one divided by T-two minus T-one."
+            }
+          },
+          "onScreenIntent": "Formulate continuous forward rate formula",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The economic intuition is clear: when committing funds across horizon T-two, the forward rate represents the marginal return required during the final interval to make the total compounded return equal the two-period zero investment."
+            },
+            "hi": {
+              "display": "Is formula ka financial intuition samajhiye: Agar aap T-two duration tak invest karte hain, toh initial period T-one ke baad remaining time mein aapko jo marginal rate milna chahiye, wahi forward rate hai."
+            }
+          },
+          "onScreenIntent": "Explain cash and carry arbitrage preventing deviations",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [
+            "arbitrage"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Calculating the Forward Rate",
+      "purpose": "Test understanding of forward rate extraction from zero curves",
+      "takeaways": [
+        "Forward rate math: multiply each spot rate by its tenor, subtract, and divide by the interval",
+        "When zero curve rises, the forward rate must lie above both spot rates",
+        "Forward rates form the pricing bedrock for Forward Rate Agreements (FRAs)"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "interactive_quiz",
+      "data": {
+        "question": "If the 1-year continuous zero rate is 3% and the 2-year continuous zero rate is 4%, what is the 1-year forward rate for Year 2?",
+        "options": [
+          "A) 3.5% per annum",
+          "B) 4.0% per annum",
+          "C) 5.0% per annum",
+          "D) 7.0% per annum"
+        ],
+        "correctIndex": 2,
+        "explanation": "Using R_F = (R_2*T_2 - R_1*T_1) / (T_2 - T_1) = (0.04*2 - 0.03*1) / (2 - 1) = (0.08 - 0.03) / 1 = 5.0%. Option C is correct."
+      },
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your mastery of forward rate derivation with a practical scenario. Suppose the one-year continuous zero rate is three percent, and the two-year continuous zero rate is four percent. What is the implied forward rate for the second year, from year one to year two?"
+            },
+            "hi": {
+              "display": "Chaliye ek practical forward rate calculation test karte hain. Ek saal ka zero rate three percent hai aur do saal ka zero rate four percent hai continuous compounding par. Year one se year two ke beech ka implied forward rate kya hoga?"
+            }
+          },
+          "onScreenIntent": "Prompt the student with active recall question",
+          "sourceFactIds": [
+            "F10"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Apply the formula: R-two times T-two minus R-one times T-one, divided by T-two minus T-one. Pause and consider the options."
+            },
+            "hi": {
+              "display": "Formula apply kijiye: R-two T-two minus R-one T-one divided by T-two minus T-one. Pause and consider."
+            }
+          },
+          "onScreenIntent": "Work through exact algebraic solution to the quiz",
+          "sourceFactIds": [
+            "F10"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option C: five point zero percent. Evaluating the expression: four percent times two, minus three percent times one, divided by two minus one, equals eight percent minus three percent, which is five point zero percent. In order to achieve a four percent average return across two years, the second year must yield an incremental five percent."
+            },
+            "hi": {
+              "display": "Correct answer hai Option C: Five point zero percent. Calculation dekhiye: four percent guna two minus three percent guna one divided by two minus one. Eight minus three barabar exactly five point zero percent. Two-year average four percent tak pahunchne ke liye second year mein five percent earn hona zaroori hai."
+            }
+          },
+          "onScreenIntent": "Reflect on intuition: forward rates lead zero curves",
+          "sourceFactIds": [
+            "F10"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Yield Curve Anatomy: Upward vs. Downward Sloping",
+      "purpose": "Demonstrate yield curve hierarchy: Forward > Zero > Par in rising curves",
+      "takeaways": [
+        "In upward-sloping markets, Forward Rate > Zero Rate > Par Yield",
+        "In inverted markets, Forward Rate < Zero Rate < Par Yield",
+        "Curve inversion historically signals tight monetary policy and recession risk"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "causal_chain",
+      "data": {
+        "links": [
+          {
+            "id": "l1",
+            "role": "condition",
+            "text": "Spot zero yield curve is upward-sloping across maturities (R_2 > R_1)"
+          },
+          {
+            "id": "l2",
+            "role": "action",
+            "text": "Investor calculates implied future borrowing rate via forward formula"
+          },
+          {
+            "id": "l3",
+            "role": "mechanism",
+            "text": "Higher long-term yield requires higher forward rate to satisfy no-arbitrage"
+          },
+          {
+            "id": "l4",
+            "role": "result",
+            "text": "Forward rate is pulled above both short and long spot zero rates"
+          },
+          {
+            "id": "l5",
+            "role": "consequence",
+            "text": "Establishes definitive term structure hierarchy: Forward > Zero > Par"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The mathematical relationship between forward rates and zero rates creates an inviolable structural law governing the anatomy of all yield curves."
+            },
+            "hi": {
+              "display": "Forward rate aur zero rate ke relationship se yield curve ka fundamental law banta hai jo har derivatives trader ko yaad rakhna chahiye."
+            }
+          },
+          "onScreenIntent": "Analyze upward-sloping yield curve hierarchy",
+          "sourceFactIds": [
+            "F07",
+            "F09"
+          ],
+          "newTerms": [
+            "yield curve hierarchy"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When the Zero Curve slopes upward—meaning spot interest rates increase with maturity—the Forward Rate is always strictly greater than the Zero Rate, and the Zero Rate is strictly greater than the Par Yield."
+            },
+            "hi": {
+              "display": "Jab Zero Curve upward sloping hoti hai—yaani interest rates maturity ke sath badhte hain—toh Forward Rate hamesha Zero Rate se bada hota hai, aur Zero Rate hamesha Par Yield se bada hota hai."
+            }
+          },
+          "onScreenIntent": "Contrast with inverted downward-sloping curves",
+          "sourceFactIds": [
+            "F07",
+            "F09"
+          ],
+          "newTerms": [
+            "inverted yield curve"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, when the Zero Curve is inverted or downward sloping, the Forward Rate is always strictly below the Zero Rate. This mathematical relationship is the core foundation used to structure and price Interest Rate Swaps and Forward Rate Agreements."
+            },
+            "hi": {
+              "display": "Iske opposite, jab Zero Curve inverted ya downward sloping hoti hai, toh Forward Rate hamesha Zero Rate se chhota hota hai. Ye mathematical relationship Swaps aur Forward Rate Agreements ko price karne ka foundation hai."
+            }
+          },
+          "onScreenIntent": "Conclude with macroeconomic implications of curve shape",
+          "sourceFactIds": [
+            "F07",
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Interest Rate Mechanics",
+      "purpose": "Synthesize the core principles of Chapter 4 Part 1",
+      "takeaways": [
+        "Continuous compounding simplifies multi-period valuation to additive exponential math",
+        "Zero rates eliminate reinvestment risk and provide uncontaminated discount factors",
+        "The recursive bootstrap builds complete arbitrage-free curves from market coupon bonds"
+      ],
+      "pedagogicalContinuation": false,
+      "template": "summary_thread",
+      "data": {
+        "title": "Interest Rate Mechanics in 8 Rules",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "Benchmark rate taxonomy",
+            "text": "Treasury, Repo, and Unsecured rates form the benchmark taxonomy across global money markets."
+          },
+          {
+            "id": "r2",
+            "title": "Discrete terminal value",
+            "text": "Compounding frequency m governs capital growth via terminal equation A*(1 + R/m)^(mn)."
+          },
+          {
+            "id": "r3",
+            "title": "Continuous exponential limit",
+            "text": "Continuous compounding simplifies multi-period valuation to additive exponential math via A*e^(Rn)."
+          },
+          {
+            "id": "r4",
+            "title": "Exact rate conversion",
+            "text": "Conversion formula R_c = m*ln(1 + R_m/m) maps discrete compounding frequencies to continuous form."
+          },
+          {
+            "id": "r5",
+            "title": "Present value discount factor",
+            "text": "Continuous discount factor PV = B*e^(-RT) computes exact present values across any tenor."
+          },
+          {
+            "id": "r6",
+            "title": "Pure spot zero atoms",
+            "text": "Zero rates eliminate reinvestment risk and provide uncontaminated building blocks for the yield curve."
+          },
+          {
+            "id": "r7",
+            "title": "Recursive bootstrap standard",
+            "text": "The Bootstrap method unbundles coupon bonds recursively to build complete market zero curves."
+          },
+          {
+            "id": "r8",
+            "title": "Forward rates & yield hierarchy",
+            "text": "Forward rates R_F = (R_2*T_2 - R_1*T_1)/(T_2 - T_1) govern OTC forward locks and determine yield curve hierarchy."
+          }
+        ]
+      },
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the four foundational pillars of interest rate mechanics established in Part One."
+            },
+            "hi": {
+              "display": "Aaiye aaj ke lesson ke chaar essential interest rate pillars ko summarize karte hain."
+            }
+          },
+          "onScreenIntent": "Recap Pillar 1: Benchmark Rate Taxonomy",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar One: Benchmark Rates. Treasury rates form the sovereign baseline, while collateralized repo rates govern institutional money market financing."
+            },
+            "hi": {
+              "display": "Pehla pillar: Benchmark Rates. Treasury rates sovereign risk-free baseline hain, jabki Repo rates collateralized institutional financing provide karti hain."
+            }
+          },
+          "onScreenIntent": "Recap Pillar 2: Continuous Compounding Power",
+          "sourceFactIds": [
+            "F02",
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Two: Continuous Compounding. Discrete rates convert to continuous rates via R_c equals m times the natural log of one plus R_m over m, enabling additive discounting."
+            },
+            "hi": {
+              "display": "Dusra pillar: Continuous Compounding. Discrete quotes ko R c barabar m guna natural log of one plus R m divided by m se continuous banaya jata hai taaki discounting additive ho."
+            }
+          },
+          "onScreenIntent": "Recap Pillar 3: Zero Rates & The Bootstrap Method",
+          "sourceFactIds": [
+            "F05",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Three: Zero Rates and Bootstrapping. Known short-term T-bill rates are used to recursively strip coupon bonds and construct the complete zero curve."
+            },
+            "hi": {
+              "display": "Teesra pillar: Zero Rates & Bootstrap. Coupon bonds se recursive subtraction karke theoretical zero curve construct ki jati hai."
+            }
+          },
+          "onScreenIntent": "Recap Pillar 4: Forward Rates & Curve Geometry",
+          "sourceFactIds": [
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Four: Forward Rates and Yield Curve Geometry. The forward rate reflects implied marginal future borrowing costs. In Part Two, we will explore Forward Rate Agreements, bond duration, and the Orange County bankruptcy."
+            },
+            "hi": {
+              "display": "Chautha pillar: Forward Rates. Zero curve se implied future borrowing rate R F nikalta hai. Part Two mein hum Forward Rate Agreements, Duration, aur Orange County bankruptcy ko dissect karenge."
+            }
+          },
+          "onScreenIntent": "Preview Part 2: FRAs, Duration, Convexity, and Orange County",
+          "sourceFactIds": [],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {},
+          "visualCues": []
+        }
+      ]
+    }
+  ]
+}

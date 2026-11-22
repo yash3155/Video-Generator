@@ -15,8 +15,15 @@ export interface ProcResult {
 /** Find an executable on PATH. Returns the absolute path or null. */
 export function which(name: string): string | null {
   const exts = IS_WIN ? [".exe", ".cmd", ".bat", ".com"] : [""];
-  for (const dir of (process.env.PATH || "").split(path.delimiter)) {
-    if (!dir) continue;
+  const searchDirs = (process.env.PATH || "").split(path.delimiter).filter(Boolean);
+  if (process.platform === "darwin") {
+    // Ensure Apple Silicon Homebrew and Intel Mac paths are searched even if GUI IDE has minimal PATH
+    const macDirs = ["/opt/homebrew/bin", "/usr/local/bin", "/opt/homebrew/sbin", "/usr/local/sbin", "/usr/bin", "/bin"];
+    for (const d of macDirs) {
+      if (!searchDirs.includes(d)) searchDirs.push(d);
+    }
+  }
+  for (const dir of searchDirs) {
     for (const ext of exts) {
       const p = path.join(dir, name + ext.toLowerCase());
       const p2 = path.join(dir, name + ext);

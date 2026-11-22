@@ -226,17 +226,50 @@ export const StatCounter: React.FC<{ data: StatCounterData }> = ({ data }) => {
         const color = theme.colors[accents[i % accents.length]];
         const a = reveal.amount(s.id);
         const shown = formatNumber(s.value * a, s.decimals, lang);
+        const prefixStr = s.prefix ? text(s.prefix, `data.stats[${i}].prefix`) : "";
+        const suffixStr = s.suffix ? text(s.suffix, `data.stats[${i}].suffix`) : "";
+        const totalLen = prefixStr.length + shown.length + suffixStr.length;
+        const baseSize = data.stats.length > 3 ? 56 : (data.stats.length === 3 ? 68 : 80);
+        const numFontSize = totalLen > 15 ? 36 : totalLen > 11 ? 46 : totalLen > 7 ? 56 : baseSize;
         return (
-          <Card key={s.id} id={s.id} accent={color} style={{ flex: 1, justifyContent: "center", alignItems: "center", textAlign: "center", gap: 16 }}>
-            <div style={{ fontSize: data.stats.length > 3 ? 64 : 84, fontWeight: 700, color, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
-              {s.prefix ? text(s.prefix, `data.stats[${i}].prefix`) : ""}
-              {shown}
-              {s.suffix ? text(s.suffix, `data.stats[${i}].suffix`) : ""}
+          <Card key={s.id} id={s.id} accent={color} style={{ flex: 1, justifyContent: "center", alignItems: "center", textAlign: "center", gap: 16, padding: "20px 24px" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "baseline",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                gap: 6,
+                maxWidth: "100%",
+                color,
+                fontVariantNumeric: "tabular-nums",
+                lineHeight: 1.15,
+              }}
+            >
+              <span style={{ fontSize: numFontSize, fontWeight: 700, whiteSpace: "nowrap" }}>
+                {prefixStr}
+                {shown}
+              </span>
+              {suffixStr ? (
+                <span
+                  style={{
+                    fontSize: suffixStr.length > 3 ? Math.max(22, Math.round(numFontSize * 0.55)) : numFontSize,
+                    fontWeight: suffixStr.length > 3 ? 600 : 700,
+                    whiteSpace: suffixStr.length > 8 ? "normal" : "nowrap",
+                  }}
+                >
+                  {suffixStr}
+                </span>
+              ) : null}
             </div>
-            <Body size={28} style={{ fontWeight: 600 }}>
+            <Body size={data.stats.length > 3 ? 24 : 26} style={{ fontWeight: 600, maxWidth: "100%", lineHeight: 1.3 }}>
               {text(s.label, `data.stats[${i}].label`)}
             </Body>
-            {s.sublabel ? <Body color={theme.colors.textMuted}>{text(s.sublabel, `data.stats[${i}].sublabel`)}</Body> : null}
+            {s.sublabel ? (
+              <Body size={20} color={theme.colors.textMuted} style={{ maxWidth: "100%", lineHeight: 1.35 }}>
+                {text(s.sublabel, `data.stats[${i}].sublabel`)}
+              </Body>
+            ) : null}
           </Card>
         );
       })}

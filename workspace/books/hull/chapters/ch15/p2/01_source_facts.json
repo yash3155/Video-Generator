@@ -1,0 +1,87 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch15",
+  "partId": "p2",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "formula",
+      "statement": "The Black-Scholes-Merton Call Pricing Formula: European call price is c = S0 * N(d1) - K * exp(-r*T) * N(d2), where d1 = [ln(S0 / K) + (r + 0.5 * sigma^2) * T] / (sigma * sqrt(T)) and d2 = d1 - sigma * sqrt(T).",
+      "citation": {
+        "chapter": "15",
+        "section": "15.5",
+        "page": "368"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "formula",
+      "statement": "The Black-Scholes-Merton Put Pricing Formula: European put price is p = K * exp(-r*T) * N(-d2) - S0 * N(-d1), exactly satisfying Put-Call Parity: c - p = S0 - K * exp(-r*T).",
+      "citation": {
+        "chapter": "15",
+        "section": "15.5",
+        "page": "369"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "market_rule",
+      "statement": "Economic Interpretation of N(d1) and N(d2): N(d2) is the risk-neutral probability that the call option expires in-the-money (S_T > K). N(d1) represents the option delta (the hedge ratio of shares required).",
+      "citation": {
+        "chapter": "15",
+        "section": "15.5",
+        "page": "370"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "formula",
+      "statement": "Cumulative Normal Symmetry: Standard cumulative normal function N(x) satisfies N(-x) = 1 - N(x), allowing analytical transformation between call and put pricing formulas.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.5",
+        "page": "369"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "market_rule",
+      "statement": "Implied Volatility and Numerical Search: Implied volatility equates BSM model price to observed market price. It lacks closed-form formula and is calculated numerically using Newton-Raphson iteration.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.8",
+        "page": "374"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "market_rule",
+      "statement": "The VIX Index Architecture: The CBOE Volatility Index (VIX) tracks 30-day expected market volatility derived from a model-free portfolio of out-of-the-money S&P 500 options.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.9",
+        "page": "376"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "formula",
+      "statement": "Dividends in the BSM Model: For discrete dividends with present value D, spot stock price S0 is replaced by (S0 - D) in the BSM formula, reducing call prices and increasing put prices.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.12",
+        "page": "380"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "formula",
+      "statement": "Black's Approximation for American Calls with Dividends: An American call on a dividend-paying stock may be exercised early just before an ex-dividend date t_D if dividend D exceeds K * [1 - exp(-r(T - t_D))].",
+      "citation": {
+        "chapter": "15",
+        "section": "15.12",
+        "page": "382"
+      }
+    }
+  ]
+}

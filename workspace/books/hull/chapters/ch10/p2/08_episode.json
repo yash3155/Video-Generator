@@ -1,0 +1,1389 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch10",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 10",
+  "partLabel": "Part 2",
+  "title": "Mechanics of Options Markets - Part 2",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 2,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Institutional Plumbing of Options: Market Microstructure",
+      "purpose": "Trading options in practice requires understanding execution microstructure and clearing",
+      "takeaways": [
+        "Trading options in practice requires understanding execution microstructure and clearing",
+        "Market makers, margin rules, and the OCC ensure trade execution and financial integrity",
+        "Part 2 masters naked margin formulas, OCC novation, warrants vs options, and ESOs"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Every second, millions of options contracts are executed across global derivatives exchanges with virtually zero counterparty default risk. Who provides instant liquidity when natural retail buyers and sellers are mismatched? The answer lies in options market microstructure."
+            },
+            "hi": {
+              "display": "Options market mein har second millions of contracts execute hote hain, lekin kya aapne socha hai ki buyers aur sellers ke beech default risk zero kaise rehta hai? Kaun continuously liquidity provide karta hai jab natural buyers nahi hote? Is machinery ko govern karta hai Options Market Microstructure."
+            }
+          },
+          "onScreenIntent": "The Institutional Plumbing of Options: Market Microstructure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Two foundational institutional pillars govern this entire financial ecosystem: Market Makers, who continuously provide two-sided liquidity, and the Options Clearing Corporation, which permanently eliminates counterparty credit risk through legal novation."
+            },
+            "hi": {
+              "display": "Is institutional plumbing ke center mein do primary pillars hain: Market Makers jo continuous two-sided liquidity deliver karte hain, aur Options Clearing Corporation ya OCC jo legal novation ke through counterparty default risk ko completely eliminate karta hai."
+            }
+          },
+          "onScreenIntent": "The Institutional Plumbing of Options: Market Microstructure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part Two of Chapter Ten, we will master the mechanics of market making and delta inventory hedging, formulate margin requirements for naked versus covered writers, trace the OCC exercise and assignment workflow, contrast warrants against exchange options, and examine the taxation of derivatives."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter Ten Part Two mein hum Market Making mechanics, option writers ke liye margin rules, OCC assignment workflow, Warrants vs Options ka dilution divide aur tax rules ko master karenge."
+            }
+          },
+          "onScreenIntent": "The Institutional Plumbing of Options: Market Microstructure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Institutional Plumbing of Options: Market Microstructure",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Trading options in practice requires understanding execution microstructure and clearing"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Market makers, margin rules, and the OCC ensure trade execution and financial integrity"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Market Makers: Continuous Quotes & Delta Inventory Hedging",
+      "purpose": "Market makers quote two-sided markets, facilitating immediate execution for retail and institutions",
+      "takeaways": [
+        "Market makers quote two-sided markets, facilitating immediate execution for retail and institutions",
+        "Profit is earned from the bid-ask spread while neutralizing directional exposure",
+        "Delta hedging involves dynamically buying or selling underlying shares to offset option delta"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Individual investors and institutional funds never need to wait for another private investor to take the opposing side of a trade; Market Makers stand ready to execute orders instantaneously."
+            },
+            "hi": {
+              "display": "Retail ya institutional investor jab bhi terminal par option buy ya sell karne jata hai, toh use kisi individual buyer ka wait nahi karna padta. Orders ko immediately execute karte hain Market Makers."
+            }
+          },
+          "onScreenIntent": "Market Makers: Continuous Quotes & Delta Inventory Hedging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A market maker continuously quotes both a Bid price—at which they will buy the option—and an Ask price—at which they will sell. The market maker's primary source of revenue is capturing this Bid-Ask spread repeatedly across high trading volume."
+            },
+            "hi": {
+              "display": "Market Maker har active strike aur expiration par continuously Bid price aur Ask price quote karta hai. Unka primary revenue source Bid-Ask Spread hota hai: wo lower price par buy karte hain aur higher price par sell karte hain."
+            }
+          },
+          "onScreenIntent": "Market Makers: Continuous Quotes & Delta Inventory Hedging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Crucially, professional market makers do not take directional speculative bets on stock prices. When a client purchases call options from a market maker, the market maker immediately hedges its directional inventory risk by purchasing underlying stock shares, maintaining a delta-neutral book."
+            },
+            "hi": {
+              "display": "Lekin market makers directional bet nahi lete. Agar ek client unse massive quantity mein call options buy karta hai, toh market maker naked short risk bear nahi karta; wo immediately underlying stock market mein shares buy karke Delta Hedging execute karta hai taaki directional market exposure zero rahe."
+            }
+          },
+          "onScreenIntent": "Market Makers: Continuous Quotes & Delta Inventory Hedging",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Market Makers: Continuous Quotes & Delta Inventory Hedging",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Market makers quote two-sided markets, facilitating immediate execution for retail and institutions"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Profit is earned from the bid-ask spread while neutralizing directional exposure"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Margin Requirements for Option Writers: Naked vs. Covered Positions",
+      "purpose": "Option buyers post zero margin because loss is strictly capped at upfront premium paid",
+      "takeaways": [
+        "Option buyers post zero margin because loss is strictly capped at upfront premium paid",
+        "Covered call writers own the 100 shares of stock, requiring zero additional cash margin",
+        "Naked writers hold unhedged short positions and must post substantial cash collateral"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In futures trading, both the long and short parties post margin. In options markets, however, margin regulations are completely asymmetric."
+            },
+            "hi": {
+              "display": "Futures contracts mein buyer aur seller dono ko initial margin post karna padta hai. Lekin Options market mein margin rules completely asymmetric hote hain."
+            }
+          },
+          "onScreenIntent": "Margin Requirements for Option Writers: Naked vs. Covered Positions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option buyers post zero margin because they pay one hundred percent of the option premium in cash at trade execution; their maximum possible loss is strictly capped at that initial premium."
+            },
+            "hi": {
+              "display": "Option Buyer ko zero margin post karna padta hai, kyunki buyer trade execute karte waqt upfront hundred percent premium cash mein pay kar deta hai; buyer ka loss premium se zyada ho hi nahi sakta."
+            }
+          },
+          "onScreenIntent": "Margin Requirements for Option Writers: Naked vs. Covered Positions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In contrast, naked option writers face potentially catastrophic liabilities if the stock moves against them. Under exchange rules, naked writers must deposit substantial margin collateral, calculated as the option premium plus the maximum of twenty percent of the spot price minus the out-of-the-money amount, or ten percent of the spot price."
+            },
+            "hi": {
+              "display": "Lekin Option Writer ya Seller ko strictly Margin Collateral post karna padta hai. Agar writer ke paas underlying stock shares available nahi hain—jise Naked Option Writing kehte hain—toh exchange strict formula enforce karti hai: Option Premium plus twenty percent of spot price minus Out-of-the-Money amount."
+            }
+          },
+          "onScreenIntent": "Margin Requirements for Option Writers: Naked vs. Covered Positions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Contractual / Traditional Profile",
+          "tone": "neutral",
+          "points": [
+            "Option buyers post zero margin because loss is strictly capped at upfront premium paid",
+            "Covered call writers own the 100 shares of stock, requiring zero additional cash margin"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Institutional / Alternative Profile",
+          "tone": "positive",
+          "points": [
+            "Covered call writers own the 100 shares of stock, requiring zero additional cash margin",
+            "Naked writers hold unhedged short positions and must post substantial cash collateral"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Option buyers post zero margin because loss is strictly capped at upfront premium paid"
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Numerical Walkthrough: Calculating Naked Call & Put Margin",
+      "purpose": "Margin equals Premium + max(20% of Spot - OTM Amount, 10% of Spot for calls)",
+      "takeaways": [
+        "Margin equals Premium + max(20% of Spot - OTM Amount, 10% of Spot for calls)",
+        "For S=$100, K=$110 call, Premium=$4: Margin = $4 + max(20-10, 10) = $14/share ($1,400/contract)",
+        "For naked puts, the floor is 10% of Strike Price K"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine the CBOE margin formula using John Hull's practical numerical model, comparing naked versus covered positions."
+            },
+            "hi": {
+              "display": "Aaiye screen par diye gaye CBOE standard numerical model ko follow karte hain. Ek naked call aur covered position ke margin difference ko evaluate kijiye."
+            }
+          },
+          "onScreenIntent": "Numerical Walkthrough: Calculating Naked Call & Put Margin",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Suppose a stock trades at one hundred dollars per share. An investor writes a naked one-hundred-ten-dollar call option for an upfront premium of three dollars. Twenty percent of the stock price is twenty dollars. Subtracting the ten-dollar out-of-the-money amount leaves ten dollars."
+            },
+            "hi": {
+              "display": "Maan lijiye ek stock hundred dollars par trade ho raha hai. Ek trader one hundred ten dollar strike ka out-of-the-money call option three dollars mein write karta hai. Spot hundred dollars ka twenty percent banta hai twenty dollars. Out-of-the-money amount ten dollars subtract karne par net ten dollars bachta hai."
+            }
+          },
+          "onScreenIntent": "Numerical Walkthrough: Calculating Naked Call & Put Margin",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Adding the three-dollar premium yields thirteen dollars per share, or one thousand three hundred dollars of required margin collateral per contract. However, if the investor already owns one hundred shares of the underlying stock—executing a Covered Call—the shares themselves serve as collateral, and the required cash margin is exactly zero."
+            },
+            "hi": {
+              "display": "Ten dollars plus three dollar premium equals thirteen dollars per share, yaani one thousand three hundred dollars initial cash margin post karna padega. Lekin agar trader ke paas already one hundred shares hain—jise Covered Call kehte hain—toh margin requirement exactly zero hoti hai."
+            }
+          },
+          "onScreenIntent": "Numerical Walkthrough: Calculating Naked Call & Put Margin",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Numerical Walkthrough: Calculating Naked Call & Put Margin",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Margin equals Premium + max(20% of Spot - OTM Amount, 10% of Spot for calls)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "For S=$100, K=$110 call, Premium=$4: Margin = $4 + max(20-10, 10) = $14/share ($1,400/contract)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The Options Clearing Corporation (OCC): Central Clearing & Novation",
+      "purpose": "The OCC acts as the buyer to every seller and seller to every buyer via legal novation",
+      "takeaways": [
+        "The OCC acts as the buyer to every seller and seller to every buyer via legal novation",
+        "Novation eliminates bilateral counterparty credit risk for exchange-traded options",
+        "The OCC guarantees option contract performance through clearing fund deposits and daily margin"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The ultimate guarantor of stability and systemic integrity across North American options exchanges is the Options Clearing Corporation, or OCC."
+            },
+            "hi": {
+              "display": "Exchange-traded options ki ultimate safety guarantee karta hai: The Options Clearing Corporation ya OCC."
+            }
+          },
+          "onScreenIntent": "The Options Clearing Corporation (OCC): Central Clearing & Novation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Immediately upon trade execution, the OCC executes legal Novation: it legally inserts itself into every trade, becoming the buyer to every seller and the seller to every buyer."
+            },
+            "hi": {
+              "display": "Jaise hi exchange par do parties ke beech trade match hoti hai, OCC legal Novation execute karta hai. OCC buyer ke liye permanent seller ban jata hai aur seller ke liye permanent buyer ban jata hai."
+            }
+          },
+          "onScreenIntent": "The Options Clearing Corporation (OCC): Central Clearing & Novation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because of novation, option buyers never need to assess or monitor the creditworthiness of individual option writers. The OCC guarantees one hundred percent performance on all contracts, backed by strict clearing member capital requirements and a multi-tiered mutualized default fund."
+            },
+            "hi": {
+              "display": "Is novation ki wajah se option holder ko is baat se koi farq nahi padta ki original writer solvent hai ya bankrupt. OCC apne robust multi-tiered guarantee fund aur clearing member capital se hundred percent contract fulfillment enforce karta hai."
+            }
+          },
+          "onScreenIntent": "The Options Clearing Corporation (OCC): Central Clearing & Novation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Options Clearing Corporation (OCC): Central Clearing & Novation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The OCC acts as the buyer to every seller and seller to every buyer via legal novation"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Novation eliminates bilateral counterparty credit risk for exchange-traded options"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "The Exercise & Assignment Workflow: How Short Writers Get Assigned",
+      "purpose": "Option buyer submits exercise notice to broker before cutoff time (5:30 PM ET on expiry)",
+      "takeaways": [
+        "Option buyer submits exercise notice to broker before cutoff time (5:30 PM ET on expiry)",
+        "Broker transmits notice to OCC; OCC randomly selects a clearing member firm",
+        "Clearing member allocates assignment to a customer holding short position (random or FIFO)"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When a long option holder decides to exercise their contractual rights, what exact operational workflow occurs behind the scenes? Let us trace the four-stage sequence."
+            },
+            "hi": {
+              "display": "Jab ek call option holder apna right exercise karne ka decide karta hai, toh backend operational sequence kaise execute hota hai? Aaiye is four-step chain ko trace karte hain."
+            }
+          },
+          "onScreenIntent": "The Exercise & Assignment Workflow: How Short Writers Get Assigned",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step One, the option holder submits an exercise notice to their broker by five-thirty PM Eastern Time on an eligible business day. In Step Two, the broker transmits the exercise notice directly to the OCC."
+            },
+            "hi": {
+              "display": "Step One: Option holder trading day ke end par 5:30 PM tak apne broker ko Exercise Notice submit karta hai. Step Two: Broker ye notice OCC ko transmit karta hai."
+            }
+          },
+          "onScreenIntent": "The Exercise & Assignment Workflow: How Short Writers Get Assigned",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Step Three, the OCC assigns the exercise notice to a clearing member holding short positions, selected either completely at random or on a first-in, first-out basis. In Step Four, the clearing broker assigns a specific client writer, who is legally obligated to deliver or purchase the underlying shares at strike price K."
+            },
+            "hi": {
+              "display": "Step Three: OCC apne saare clearing members jinki us series mein short positions hain, unme se random selection ya FIFO basis par ek member ko select karta hai. Step Four: Clearing broker apne individual client writers mein se randomly exercise Assign karta hai. Assigned writer ko contracted strike price par shares deliver karne mandatory hote hain."
+            }
+          },
+          "onScreenIntent": "The Exercise & Assignment Workflow: How Short Writers Get Assigned",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Exercise & Assignment Workflow: How Short Writers Get Assigned",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Option buyer submits exercise notice to broker before cutoff time (5:30 PM ET on expiry)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Broker transmits notice to OCC; OCC randomly selects a clearing member firm"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Warrants vs. Exchange Call Options: The Corporate Dilution Divide",
+      "purpose": "Exchange call options trade between investors without firm involvement or share issuance",
+      "takeaways": [
+        "Exchange call options trade between investors without firm involvement or share issuance",
+        "Warrants are issued directly by the corporation, creating new shares upon exercise",
+        "Warrant exercise brings new cash capital into the company but dilutes existing equity ownership"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In the financial marketplace, corporate warrants and exchange-traded call options appear superficially identical, but in corporate finance they represent a fundamental structural divide."
+            },
+            "hi": {
+              "display": "Financial markets mein Warrants aur Exchange Call Options superficially identical lagte hain, lekin corporate finance ke perspective se inme ek fundamental difference hota hai."
+            }
+          },
+          "onScreenIntent": "Warrants vs. Exchange Call Options: The Corporate Dilution Divide",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exchange-traded call options are issued and cleared by the OCC in secondary markets. When an exchange call is exercised, existing shares are simply transferred between two private investors: the company's balance sheet is entirely unaffected, and no equity dilution occurs."
+            },
+            "hi": {
+              "display": "Exchange-Traded Call Options independent secondary market mein create hote hain. Jab call exercise hoti hai, toh existing shares ek trader se doosre trader ko transfer hote hain; company ki balance sheet par zero impact hota hai aur zero share dilution hota hai."
+            }
+          },
+          "onScreenIntent": "Warrants vs. Exchange Call Options: The Corporate Dilution Divide",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In contrast, Warrants are issued directly by the corporation itself. When a warrant is exercised, the company issues brand-new common shares to the warrant holder: new capital enters the company, but existing shareholders experience permanent earnings-per-share dilution."
+            },
+            "hi": {
+              "display": "Lekin Warrants company khud directly issue karti hai. Jab warrant holder warrant exercise karta hai, toh company brand-new common shares issue karti hai! Company ko cash capital receive hota hai, lekin existing shareholders ki equity permanently Dilute ho jati hai."
+            }
+          },
+          "onScreenIntent": "Warrants vs. Exchange Call Options: The Corporate Dilution Divide",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Contractual / Traditional Profile",
+          "tone": "neutral",
+          "points": [
+            "Exchange call options trade between investors without firm involvement or share issuance",
+            "Warrants are issued directly by the corporation, creating new shares upon exercise"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Institutional / Alternative Profile",
+          "tone": "positive",
+          "points": [
+            "Warrants are issued directly by the corporation, creating new shares upon exercise",
+            "Warrant exercise brings new cash capital into the company but dilutes existing equity ownership"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Exchange call options trade between investors without firm involvement or share issuance"
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Taxation & Wash Sale Rules: Snapshot 10.2",
+      "purpose": "Unexercised options generate capital gains or losses upon sale or expiration",
+      "takeaways": [
+        "Unexercised options generate capital gains or losses upon sale or expiration",
+        "When a call is exercised, the premium paid is added to the stock purchase cost basis",
+        "Wash sale rules disallow tax loss deductions if substantially identical options are repurchased within 30 days"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Understanding tax regulations is essential for active derivative practitioners. In Business Snapshot 10.2, John Hull highlights two critical regulatory tax frameworks."
+            },
+            "hi": {
+              "display": "Options trading mein tax implications ko understand karna critical hai. Business Snapshot ten point two mein Hull do essential regulatory tax frameworks highlight karte hain."
+            }
+          },
+          "onScreenIntent": "Taxation & Wash Sale Rules: Snapshot 10.2",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "First: The Wash Sale Rule. If an investor sells a stock at a loss and acquires substantially identical call options within thirty days before or after the sale, the tax loss deduction is legally disallowed and must be added to the cost basis of the options."
+            },
+            "hi": {
+              "display": "Pehla hai Wash Sale Rule: Agar ek investor tax loss harvest karne ke liye loss-making stock sell karta hai aur thirty days ke andar call option buy karke synthetic position re-create karta hai, toh tax authority us loss deduction ko completely disallow kar deti hai."
+            }
+          },
+          "onScreenIntent": "Taxation & Wash Sale Rules: Snapshot 10.2",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Second: Section 1256 Contracts. Broad market index options enjoy preferential sixty-forty tax treatment under US federal law: sixty percent of capital gains are taxed at favorable long-term rates and forty percent at short-term rates, regardless of holding period."
+            },
+            "hi": {
+              "display": "Doosra hai Section 1256 Contracts: Broad index options jaise S&P 500 options par US law favorable Sixty-Forty rule apply karta hai: Sixty percent profits long-term capital gains tax par aur forty percent short-term par tax hote hain, chahe trade kitne bhi din hold ki gayi ho."
+            }
+          },
+          "onScreenIntent": "Taxation & Wash Sale Rules: Snapshot 10.2",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Taxation & Wash Sale Rules: Snapshot 10.2",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Unexercised options generate capital gains or losses upon sale or expiration"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "When a call is exercised, the premium paid is added to the stock purchase cost basis"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Employee Stock Options (ESOs): Corporate Alignment vs. Distortions",
+      "purpose": "ESOs are call options granted to executives and employees, usually at-the-money on grant date",
+      "takeaways": [
+        "ESOs are call options granted to executives and employees, usually at-the-money on grant date",
+        "ESOs are non-transferable and feature 3-to-5 year vesting schedules requiring employment retention",
+        "Because options reward upside while capping downside, ESOs can incentivize excessive corporate risk-taking"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Public corporations frequently grant Employee Stock Options, or ESOs, to executives and employees to align workforce incentives with long-term shareholder value."
+            },
+            "hi": {
+              "display": "Corporations apne top executives aur engineers ko attract karne ke liye Employee Stock Options ya ESOs grant karti hain. Inki structural mechanics standard options se alag hoti hain."
+            }
+          },
+          "onScreenIntent": "Employee Stock Options (ESOs): Corporate Alignment vs. Distortions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, ESOs differ substantially from exchange-traded options: they are strictly non-transferable, cannot be traded on public exchanges, and feature multi-year vesting periods—such as three to five years—before any exercise rights can be utilized."
+            },
+            "hi": {
+              "display": "ESOs completely Non-Transferable hote hain; inhein kisi exchange par sell nahi kiya ja sakta. Inke sath Vesting Periods attached hote hain: employee ko teen se paanch saal company mein serve karna padta hai tabhi options exercise eligibility unlock hoti hai."
+            }
+          },
+          "onScreenIntent": "Employee Stock Options (ESOs): Corporate Alignment vs. Distortions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Hull documents that historical option backdating scandals led to modern accounting standards, such as FAS 123R, which legally require corporations to expense the fair economic value of stock options on their corporate income statements."
+            },
+            "hi": {
+              "display": "Hull note karte hain ki historical scandals mein executives ne stock options ko Backdate kiya—yaani retrospectively lowest price date par grant dikhaya—jiske baad global accounting standards ne ESOs ko corporate balance sheet par fair value expense ke roop mein book karna mandatory kiya."
+            }
+          },
+          "onScreenIntent": "Employee Stock Options (ESOs): Corporate Alignment vs. Distortions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Employee Stock Options (ESOs): Corporate Alignment vs. Distortions",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "ESOs are call options granted to executives and employees, usually at-the-money on grant date"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "ESOs are non-transferable and feature 3-to-5 year vesting schedules requiring employment retention"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: Calculating Naked Put Margin Requirements",
+      "purpose": "Margin formula for naked put: Premium + max(20% of Spot - OTM Amount, 10% of Strike)",
+      "takeaways": [
+        "Margin formula for naked put: Premium + max(20% of Spot - OTM Amount, 10% of Strike)",
+        "Given S=$50, K=$45 (OTM=$5), Premium=$2: Margin = $2 + max(0.20*$50 - $5, 0.10*$45) = $7/share",
+        "Total margin required per 100-share contract equals $700"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us now apply exchange margin formulas to solve a practical risk management scenario. Carefully review the parameters displayed on screen."
+            },
+            "hi": {
+              "display": "Chaliye ab ek practical naked option margin calculation scenario solve karte hain. Screen par diye gaye parameters ko evaluate kijiye."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Calculating Naked Put Margin Requirements",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A stock trades at fifty dollars per share. A trader writes a naked put option with a strike price of forty-five dollars for an upfront premium of two dollars and fifty cents. The out-of-the-money amount is five dollars. What is the required initial margin collateral per contract? Pause and consider."
+            },
+            "hi": {
+              "display": "Ek stock fifty dollars par trade ho raha hai. Ek trader forty-five dollar strike price ka out-of-the-money naked put option two point five zero dollars premium par write karta hai. Out-of-the-money amount five dollars hai. CBOE standard formula ke according initial required margin kitna hoga? Pause and consider."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Calculating Naked Put Margin Requirements",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option B: Seven hundred fifty dollars per contract. Calculating twenty percent of fifty dollars gives ten dollars. Subtracting the five-dollar out-of-the-money amount leaves five dollars. Adding the two-dollar-fifty-cent premium yields seven dollars and fifty cents per share. Multiplying by one hundred shares gives seven hundred fifty dollars per contract."
+            },
+            "hi": {
+              "display": "Correct answer hai Option B: Seven hundred fifty dollars per contract. Calculation dekhiye: Spot fifty dollars ka twenty percent banta hai ten dollars. Minus out-of-the-money amount five dollars banta hai five dollars. Premium two point five dollars add karke total margin seven point five zero dollars per share nikalta hai. One hundred shares ke contract ke liye required margin seven hundred fifty dollars banta hai."
+            }
+          },
+          "onScreenIntent": "Active Recall Scenario: Calculating Naked Put Margin Requirements",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "An investor writes a naked put option with strike K = $45 on a stock currently trading at S = $50. The current put premium is $2.00. Using CBOE margin rules, what is the required initial margin per share?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "OTM amount = max(S - K, 0) = $50 - $45 = $5. Component A: 20% of $50 - $5 = $10 - $5 = $5. Component B (Floor): 10% of Strike = 10% of $45 = $4.50. Max($5, $4.50) = $5. Total margin = Premium + $5 = $2 + $5 = $7.00 per share ($700 per contract)."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Over-the-Counter (OTC) Options: Bespoke Terms & Interbank Flow",
+      "purpose": "OTC options allow institutional participants to negotiate non-standard strikes, tenors, and barriers",
+      "takeaways": [
+        "OTC options allow institutional participants to negotiate non-standard strikes, tenors, and barriers",
+        "OTC contracts carry bilateral counterparty credit risk and require ISDA master agreements and CSAs",
+        "Interbank dealers manage large exotic books by decomposing OTC options into exchange-traded hedges"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Operating alongside public exchanges is a massive Over-the-Counter Options market traded directly between international investment banks and institutional clients."
+            },
+            "hi": {
+              "display": "Standard exchange markets ke parallel ek massive Over-the-Counter Options universe exist karta hai jahan global banks aur institutional hedge funds trade karte hain."
+            }
+          },
+          "onScreenIntent": "Over-the-Counter (OTC) Options: Bespoke Terms & Interbank Flow",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Unlike standardized exchange options, OTC options are entirely bespoke: corporate treasurers can negotiate non-standard expiration dates, custom notional sizes, and exotic payoff barrier structures."
+            },
+            "hi": {
+              "display": "OTC options standardized cycles ya fixed strikes follow nahi karte. Corporate treasurers bespoke expiration dates, exotic barriers, Asian averaging aur exact custom notional amounts negotiate karte hain."
+            }
+          },
+          "onScreenIntent": "Over-the-Counter (OTC) Options: Bespoke Terms & Interbank Flow",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because OTC options lack OCC clearinghouse protection, counterparties manage credit risk privately through bilateral ISDA documentation and mandatory daily CSA collateral transfers."
+            },
+            "hi": {
+              "display": "Lekin OTC options mein OCC protection nahi hoti; isliye credit risk manage karne ke liye counterparties bilateral ISDA Master Agreements aur Credit Support Annexes ke under daily cash collateral exchange karti hain."
+            }
+          },
+          "onScreenIntent": "Over-the-Counter (OTC) Options: Bespoke Terms & Interbank Flow",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Over-the-Counter (OTC) Options: Bespoke Terms & Interbank Flow",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "OTC options allow institutional participants to negotiate non-standard strikes, tenors, and barriers"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "OTC contracts carry bilateral counterparty credit risk and require ISDA master agreements and CSAs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Options Market Plumbing",
+      "purpose": "Market makers manage inventory via delta hedging; OCC novation guarantees trade performance",
+      "takeaways": [
+        "Market makers manage inventory via delta hedging; OCC novation guarantees trade performance",
+        "Naked writers must post margin equal to premium plus max(20% S - OTM, 10% floor)",
+        "Warrants dilute corporate share count while exchange options represent zero-sum investor transfers"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate our mastery of Chapter Ten Part Two through the four structural pillars of options market microstructure."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Ten Part Two ke chaar foundational market microstructure pillars ko consolidate karte hain."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Options Market Plumbing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar One: Market Maker Inventory Hedging. Market makers provide two-sided liquidity, capturing the bid-ask spread while dynamically hedging inventory delta."
+            },
+            "hi": {
+              "display": "Pillar One: Market Maker Inventory Hedging. Market makers continuous bid-ask spread liquidity provide karte hain aur delta hedging se directional risk eliminate karte hain."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Options Market Plumbing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Two: Asymmetric Margin Protection. Option buyers post zero margin, while naked writers must deposit strict margin collateral to prevent default."
+            },
+            "hi": {
+              "display": "Pillar Two: Asymmetric Margin Protection. Buyers zero margin post karte hain jabki naked writers strict CBOE formula ke according daily collateral maintain karte hain."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Options Market Plumbing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Three: The OCC Clearing Shield. Central clearing novation eliminates counterparty credit risk and automates exercise assignment across clearing members."
+            },
+            "hi": {
+              "display": "Pillar Three: The OCC Clearing Shield. Central novation counterparty default risk ko zero karti hai aur systematic random/FIFO exercise assignment enforce karti hai."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Options Market Plumbing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar Four: Warrants vs Options Dilution. Exchange options transfer existing shares without dilution, whereas corporate warrants create new shares that dilute equity."
+            },
+            "hi": {
+              "display": "Pillar Four: Warrants vs Options Dilution. Exchange options existing shares transfer karte hain jabki corporate warrants new equity issue karke shareholder dilution cause karte hain."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Options Market Plumbing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter Eleven, we advance into the fundamental mathematical properties of stock options, examining upper and lower bounds and Put-Call Parity."
+            },
+            "hi": {
+              "display": "Chapter Eleven mein hum Option Bounds, Arbitrage Boundaries aur Put-Call Parity ke rigorous mathematical proofs ko explore karenge."
+            }
+          },
+          "onScreenIntent": "Summary Thread: Four Pillars of Options Market Plumbing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary Thread: Four Pillars of Options Market Plumbing",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

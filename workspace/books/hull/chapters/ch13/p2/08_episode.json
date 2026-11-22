@@ -1,0 +1,1753 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch13",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 13",
+  "partLabel": "Part 2",
+  "title": "Binomial Trees - Part 2: Multi-Step Trees & American Options",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 2,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "Breaking the European Barrier: The American Option Challenge",
+      "purpose": "American options grant the holder the right to exercise early at any point up to expiration",
+      "takeaways": [
+        "American options grant the holder the right to exercise early at any point up to expiration",
+        "Early exercise creates a moving free boundary problem that cannot be solved by simple closed-form integrals",
+        "Binomial trees evaluate early exercise decision rules at every individual node via backward induction"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Black-Scholes-Merton is finance's crown jewel, but it carries a limitation: It only prices European options."
+            },
+            "hi": {
+              "display": "Black-Scholes-Merton formula quantitative finance ka crown jewel hai, lekin iski ek bohot badi limit hai: Ye sirf European options ko price kar sakta hai jahan exercise strictly expiration par hoti hai."
+            }
+          },
+          "onScreenIntent": "Introduce the American option early exercise dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "American option"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Most exchange equity options are American-style, exercisable anytime. Standard calculus cannot analytically solve this free-boundary problem."
+            },
+            "hi": {
+              "display": "Real world exchange-traded equity options predominantly American-style hote hain, jahan holder expiry se pehle kisi bhi din option exercise kar sakta hai. Is early exercise right ko standard calculus analytically solve nahi kar sakti."
+            }
+          },
+          "onScreenIntent": "Explain why Black-Scholes formulas cannot handle early exercise",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Free boundary problem"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yet Binomial Trees solve this effortlessly: Comparing intrinsic payoff to continuation value at each node prices American options."
+            },
+            "hi": {
+              "display": "Lekin Binomial Trees is problem ko effortlessly solve kar dete hain! Tree ke har intermediate node par early exercise payoff ko continuation value se compare karke exact American price nikal aati hai."
+            }
+          },
+          "onScreenIntent": "Highlight the genius of backward induction on discrete lattices",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Nodal exercise check"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 13 Part 2, we master American early exercise, CRR calibration, multi-asset trees, and Black-Scholes convergence."
+            },
+            "hi": {
+              "display": "Chapter Thirteen Part Two mein hum American Early Exercise mechanics, CRR Volatility Calibration, Multi-Asset Trees, aur Black-Scholes convergence ko master karenge."
+            }
+          },
+          "onScreenIntent": "Outline Part 2 roadmap: nodal rules, puts vs calls, CRR calibration, and convergence",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Lattice engine roadmap"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Breaking the European Barrier: The American Option Challenge",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "American options grant the holder the right to exercise early at any point up to expiration"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Early exercise creates a moving free boundary problem that cannot be solved by simple closed-form integrals"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "The Nodal Early Exercise Rule: Intrinsic vs Continuation Value",
+      "purpose": "At every intermediate node, compare intrinsic payoff (S - K for calls, K - S for puts) against continuation value",
+      "takeaways": [
+        "At every intermediate node, compare intrinsic payoff (S - K for calls, K - S for puts) against continuation value",
+        "Continuation value is discounted risk-neutral expectation: exp(-r * dt) * [p * f_u + (1 - p) * f_d]",
+        "If intrinsic payoff exceeds continuation value, early exercise is optimal and sets the nodal value"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine the core algorithmic decision rule executed at every single node during backward induction."
+            },
+            "hi": {
+              "display": "Aaiye American option ke core algorithmic decision rule ko samajhte hain jo backward induction ke har single node par execute hota hai."
+            }
+          },
+          "onScreenIntent": "Formulate the universal nodal decision rule for American options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Continuation value",
+            "Intrinsic value"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At any intermediate node, the holder has two choices: First, exercise immediately to claim cash intrinsic value."
+            },
+            "hi": {
+              "display": "Tree ke kisi bhi intermediate node par holder ke paas do options hote hain: Pehla, option ko immediately exercise karke cash intrinsic value claim karna."
+            }
+          },
+          "onScreenIntent": "Show how continuation value is calculated from future child nodes",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Discounted continuation expectation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Second, hold the option for continuation value: The discounted risk-neutral expectation of successor nodes."
+            },
+            "hi": {
+              "display": "Doosra, option ko hold karna jisse continuation value milti hai: jo successor nodes ka discounted risk-neutral expectation hoti hai."
+            }
+          },
+          "onScreenIntent": "Explain when early exercise triggers: intrinsic > continuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Early exercise trigger"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A rational investor chooses whichever value is greater: f_node = max(Intrinsic Value, Continuation Value)!"
+            },
+            "hi": {
+              "display": "Rational investor dono mein se jo value badi hogi use choose karta hai: f node equals maximum of Intrinsic Value comma Continuation Value!"
+            }
+          },
+          "onScreenIntent": "Summarize: the lattice automatically traces out the optimal early exercise boundary",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Optimal stopping discovery"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Continuation Value (Hold)",
+          "tone": "neutral",
+          "points": [
+            "At every intermediate node, compare intrinsic payoff (S - K for calls, K - S for puts) against continuation value",
+            "Continuation value is discounted risk-neutral expectation: exp(-r * dt) * [p * f_u + (1 - p) * f_d]"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Immediate Exercise (Cash In)",
+          "tone": "positive",
+          "points": [
+            "Continuation value is discounted risk-neutral expectation: exp(-r * dt) * [p * f_u + (1 - p) * f_d]",
+            "If intrinsic payoff exceeds continuation value, early exercise is optimal and sets the nodal value"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "At every intermediate node, compare intrinsic payoff (S - K for calls, K - S for puts) against continuation value"
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "American Calls on Non-Dividend Stocks: Why Early Exercise Is Suboptimal",
+      "purpose": "Exercising an American call early forfeits the remaining time value of the option",
+      "takeaways": [
+        "Exercising an American call early forfeits the remaining time value of the option",
+        "Delaying payment of cash strike K earns risk-free interest, and provides downside stock protection",
+        "On trees without dividends, American call continuation value strictly exceeds intrinsic value at every node"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we examine a foundational theorem: American calls on non-dividend stocks should NEVER be exercised early!"
+            },
+            "hi": {
+              "display": "Ab aate hain quantitative finance ke ek bohot powerful theorem par: Non-dividend paying stocks par American Call option ko kabhi bhi early exercise nahi karna chahiye!"
+            }
+          },
+          "onScreenIntent": "State the famous financial theorem: never exercise American calls early without dividends",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Call early exercise suboptimality"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At every node on a binomial tree, calculation proves that continuation value strictly exceeds intrinsic value S - K."
+            },
+            "hi": {
+              "display": "Binomial tree ke har single node par calculation ye prove karti hai ki Call option ki continuation value hamesha intrinsic value S minus K se strictly badi hoti hai."
+            }
+          },
+          "onScreenIntent": "Explain interest advantage: keep cash strike K invested earning risk-free rate r",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Strike payment deferral"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exercising early pays strike K prematurely, forfeiting interest while destroying downside crash insurance."
+            },
+            "hi": {
+              "display": "Agar aap call early exercise karte hain, toh aap strike K premature pay kar dete hain jisse interest lose hota hai, aur sath hi crash protection insurance bhi destroy ho jati hai."
+            }
+          },
+          "onScreenIntent": "Demonstrate downside insurance protection retained by keeping the call alive",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Insurance retention"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Therefore, on non-dividend stocks, American call and European call prices are strictly identical: C = c!"
+            },
+            "hi": {
+              "display": "Isliye non-dividend stocks par American Call aur European Call ki theoretical price identical hoti hai: C equals c!"
+            }
+          },
+          "onScreenIntent": "Verify on binomial lattice: C equals c at every node, confirming equivalence",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Lattice call equivalence"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "American Calls on Non-Dividend Stocks: Why Early Exercise Is Suboptimal",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Exercising an American call early forfeits the remaining time value of the option"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Delaying payment of cash strike K earns risk-free interest, and provides downside stock protection"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "American Puts: The Optimal Early Exercise Boundary",
+      "purpose": "Exercising a put early delivers cash strike K immediately, allowing the holder to earn interest at rate r",
+      "takeaways": [
+        "Exercising a put early delivers cash strike K immediately, allowing the holder to earn interest at rate r",
+        "When stock price S drops very low, downside price gains are capped (stock cannot drop below zero)",
+        "At sufficiently low stock prices, interest earned on K outweighs time value, making early exercise optimal"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "However, with American Put options the reality is completely different! Early exercise is frequently optimal."
+            },
+            "hi": {
+              "display": "Lekin American Put options ke sath situation completely different hoti hai! American Puts ko early exercise karna bohot baar mathematically optimal hota hai."
+            }
+          },
+          "onScreenIntent": "Contrast American puts with calls: puts DO benefit from early exercise",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "American put early exercise"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When stock prices plunge deeply, the put becomes deep-in-the-money and further downside gains become negligible."
+            },
+            "hi": {
+              "display": "Jab stock price bohot zyaada gir jati hai, toh Put option deep-in-the-money ban jata hai aur further downside gain negligible ho jata hai."
+            }
+          },
+          "onScreenIntent": "Explain interest motivation: receiving cash strike K early and investing at risk-free rate",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Strike cash acceleration"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Collecting cash K today and earning bank interest becomes far more profitable than waiting for expiry."
+            },
+            "hi": {
+              "display": "Holder ke liye strike cash K aaj hi receive karke use bank mein interest par invest karna zyada profitable hota hai bajaye expiry tak wait karne ke."
+            }
+          },
+          "onScreenIntent": "Examine deep-in-the-money put node where intrinsic payoff K - S dominates continuation",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Deep ITM put node"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On tree nodes where Intrinsic exceeds Continuation, American Put value strictly exceeds European Put: P > p!"
+            },
+            "hi": {
+              "display": "Tree par aise nodes par Intrinsic Value Continuation Value ko surpass kar deti hai, jisse American Put ki value European Put se badi ho jati hai: P strictly greater than p!"
+            }
+          },
+          "onScreenIntent": "Formulate the optimal early exercise boundary S*(t) discovered on the lattice",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Optimal early exercise boundary"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Deep-In-The-Money Put (S << K)",
+          "tone": "neutral",
+          "points": [
+            "Exercising a put early delivers cash strike K immediately, allowing the holder to earn interest at rate r",
+            "When stock price S drops very low, downside price gains are capped (stock cannot drop below zero)"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "At-Or-Out-Of-The-Money Put (S >= K)",
+          "tone": "positive",
+          "points": [
+            "When stock price S drops very low, downside price gains are capped (stock cannot drop below zero)",
+            "At sufficiently low stock prices, interest earned on K outweighs time value, making early exercise optimal"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Exercising a put early delivers cash strike K immediately, allowing the holder to earn interest at rate r"
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Dynamic Delta Hedging on Trees: Rebalancing Across Space and Time",
+      "purpose": "Delta is calculated locally at every tree node: delta = (f_u - f_d) / (S_u - S_d)",
+      "takeaways": [
+        "Delta is calculated locally at every tree node: delta = (f_u - f_d) / (S_u - S_d)",
+        "Because delta changes as stock price moves (gamma), the hedge must be continuously rebalanced",
+        "Discrete binomial hedging converges to continuous delta-neutral hedging in the diffusion limit"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Binomial trees not only price options, but provide market makers an exact dynamic hedging roadmap."
+            },
+            "hi": {
+              "display": "Binomial tree na sirf options ko price karti hai, balki market makers ko exact dynamic hedging roadmap bhi provide karti hai."
+            }
+          },
+          "onScreenIntent": "Demonstrate that delta is not static across tree nodes",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Nodal delta variation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice that Delta is not constant: Δ0 at the root differs from Δu at the up-node and Δd at the down-node."
+            },
+            "hi": {
+              "display": "Notice kijiye ki Delta constant nahi rehta: Root node par Delta zero alag hota hai, upper node par Delta u alag hota hai, aur lower node par Delta d alag hota hai."
+            }
+          },
+          "onScreenIntent": "Calculate delta at up node and down node, revealing curvature (gamma)",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Gamma curvature on lattice"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If the stock rallies, call Delta expands, forcing the market maker to buy additional shares."
+            },
+            "hi": {
+              "display": "Agar stock upar move karta hai toh call ka Delta badh jata hai, jisse market maker ko market se aur shares buy karne padte hain."
+            }
+          },
+          "onScreenIntent": "Explain why trading desks must execute rebalancing trades at every step",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Rebalancing transaction"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If the stock falls, Delta contracts and shares are sold. This node-by-node rebalancing is Dynamic Delta Hedging!"
+            },
+            "hi": {
+              "display": "Agar stock girta hai toh Delta drop ho jata hai aur shares sell karne padte hain. Is node-by-node share adjustment ko Dynamic Delta Hedging kehte hain!"
+            }
+          },
+          "onScreenIntent": "Connect discrete lattice rehedging to continuous Black-Scholes dynamic hedging",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Continuous rehedging limit"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Dynamic Delta Hedging on Trees: Rebalancing Across Space and Time",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Delta is calculated locally at every tree node: delta = (f_u - f_d) / (S_u - S_d)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Because delta changes as stock price moves (gamma), the hedge must be continuously rebalanced"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Cox-Ross-Rubinstein (CRR) Volatility Calibration",
+      "purpose": "To match continuous lognormal diffusion, tree parameters u and d must match variance sigma^2 * dt",
+      "takeaways": [
+        "To match continuous lognormal diffusion, tree parameters u and d must match variance sigma^2 * dt",
+        "Cox, Ross, and Rubinstein set u = exp(sigma * sqrt(dt)) and d = 1 / u = exp(-sigma * sqrt(dt))",
+        "Symmetric geometry ensures recombining condition u * d = 1 holds perfectly, anchoring center nodes"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In practice, u and d are not arbitrary numbers; they are mathematically calibrated to observable market volatility σ."
+            },
+            "hi": {
+              "display": "Real world options trading mein up factor u aur down factor d arbitary numbers nahi hote; unhe market ki observable Volatility sigma se mathematically calibrate kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Pose the calibration challenge: how to choose u and d to match real-world volatility",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Volatility calibration"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 1979, Cox, Ross, and Rubinstein derived the CRR formulas: u = e^(σ*sqrt(Δt)) and d = 1/u."
+            },
+            "hi": {
+              "display": "Nineteen seventy-nine mein Cox, Ross aur Rubinstein ne CRR formula invent kiya: u equals e to the power sigma square root delta t, aur d equals one divided by u."
+            }
+          },
+          "onScreenIntent": "Present the Cox-Ross-Rubinstein parameterization: u = exp(sigma * sqrt(dt))",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "CRR parameters"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This calibration ensures the discrete binomial distribution matches the exact variance of Geometric Brownian Motion."
+            },
+            "hi": {
+              "display": "Ye calibration prove karti hai ki discrete binomial distribution continuous Geometric Brownian Motion ke variance ko penny-for-penny match karti hai."
+            }
+          },
+          "onScreenIntent": "Show why d = 1/u creates symmetric recombining lattices",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Symmetric lattice centering"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And probability p becomes (a - d) / (u - d), where a = e^(r*Δt) represents the risk-free growth factor!"
+            },
+            "hi": {
+              "display": "Aur probability formula p equals a minus d divided by u minus d ban jata hai, jahan a equals e to the power r delta t growth factor hai!"
+            }
+          },
+          "onScreenIntent": "Explain how higher volatility sigma widens the tree branching cone",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Volatility cone dispersion"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Cox-Ross-Rubinstein (CRR) Volatility Calibration",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "To match continuous lognormal diffusion, tree parameters u and d must match variance sigma^2 * dt"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Cox, Ross, and Rubinstein set u = exp(sigma * sqrt(dt)) and d = 1 / u = exp(-sigma * sqrt(dt))"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Multi-Asset Lattice Generalization: Parameter a",
+      "purpose": "Parameter a represents the risk-neutral expected growth factor: a = exp((r - q) * dt)",
+      "takeaways": [
+        "Parameter a represents the risk-neutral expected growth factor: a = exp((r - q) * dt)",
+        "For non-dividend stock: q = 0 -> a = exp(r * dt)",
+        "For dividend stock q > 0; for currency options q = r_f; for futures options q = r (a = 1)"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Section 13.9, John Hull demonstrates the binomial model's universal elegance: Multi-Asset Generalization."
+            },
+            "hi": {
+              "display": "John Hull Section thirteen point nine mein binomial model ki sabse elegant universal property demonstrate karte hain: Multi-Asset Generalization."
+            }
+          },
+          "onScreenIntent": "Introduce parameter a as the unified risk-neutral drift factor",
+          "sourceFactIds": [
+            "F04",
+            "F06"
+          ],
+          "newTerms": [
+            "Parameter a",
+            "Unified drift factor"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "You never need separate tree code for different assets; simply adjust the single growth parameter a."
+            },
+            "hi": {
+              "display": "Aapko alag-alag assets ke liye naya tree code likhne ki bilkul zaroorat nahi hoti; sirf single parameter a ko adjust karna hota hai."
+            }
+          },
+          "onScreenIntent": "Apply parameter a to continuous dividend yields: a = exp((r - q)*dt)",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Continuous dividend drift"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For dividend stocks and indices, a = e^((r - q)Δt), where q is continuous dividend yield."
+            },
+            "hi": {
+              "display": "Dividend-paying stocks aur stock indices ke liye a equals e to the power r minus q delta t ban jata hai, jahan q continuous dividend yield hai."
+            }
+          },
+          "onScreenIntent": "Extend to FX options: replace q with foreign interest rate r_f",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Currency tree drift"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For foreign currencies, a = e^((r - rf)Δt), and for Commodity Futures, a becomes simply exactly 1.0!"
+            },
+            "hi": {
+              "display": "Foreign currencies ke liye a equals e to the power r minus r f delta t hota hai, aur Commodity Futures ke liye a simply exactly one ban jata hai!"
+            }
+          },
+          "onScreenIntent": "Extend to futures contracts: set a = 1 since futures earn zero cost-of-carry",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Futures tree drift a=1"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Multi-Asset Lattice Generalization: Parameter a",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Parameter a represents the risk-neutral expected growth factor: a = exp((r - q) * dt)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "For non-dividend stock: q = 0 -> a = exp(r * dt)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Continuous Limit Convergence: Binomial to Black-Scholes-Merton",
+      "purpose": "As time step delta_t approaches zero (number of steps N -> infinity), tree converges to continuous diffusion",
+      "takeaways": [
+        "As time step delta_t approaches zero (number of steps N -> infinity), tree converges to continuous diffusion",
+        "The discrete binomial probability distribution converges to the continuous lognormal distribution by the Central Limit Theorem",
+        "European option prices computed on trees converge exactly to the analytical Black-Scholes-Merton formula"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now we arrive at modern financial theory's most beautiful convergence: Unifying the Binomial model and BSM."
+            },
+            "hi": {
+              "display": "Ab aate hain modern financial theory ke sabse beautiful mathematical convergence par: Binomial Model aur Black-Scholes-Merton ka unification."
+            }
+          },
+          "onScreenIntent": "Explore the continuous limit as step count N increases from 10 to 1,000",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Continuous limit"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "As step count N increases and Δt approaches zero, the Central Limit Theorem triggers."
+            },
+            "hi": {
+              "display": "Jab hum tree mein steps ki sankhya N ko badhate jaate hain—yaani delta t ko zero ki taraf approach karwate hain—toh Central Limit Theorem trigger hota hai."
+            }
+          },
+          "onScreenIntent": "Show binomial distribution smoothing into continuous lognormal bell curve",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Lognormal distribution convergence"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Discrete binomial jumps transform into continuous lognormal diffusion, converging directly to the Black-Scholes formula!"
+            },
+            "hi": {
+              "display": "Discrete binomial jumps continuous lognormal price distribution mein convert ho jaate hain, aur discrete tree price exact Black-Scholes formula par converge ho jati hai!"
+            }
+          },
+          "onScreenIntent": "Confirm European call price on tree converges to exact Black-Scholes value",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Black-Scholes convergence"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This proof demonstrates that Black-Scholes and Binomial Trees are two perspectives of the exact same financial reality."
+            },
+            "hi": {
+              "display": "Ye mathematical proof dikhata hai ki Black-Scholes aur Binomial Trees do alag cheezein nahi hain, balki ek hi universal financial reality ke do different perspectives hain."
+            }
+          },
+          "onScreenIntent": "Highlight profound insight: discrete lattice is the foundational parent of continuous pricing",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Foundational parent theory"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Discrete Binomial Lattice",
+          "tone": "neutral",
+          "points": [
+            "As time step delta_t approaches zero (number of steps N -> infinity), tree converges to continuous diffusion",
+            "The discrete binomial probability distribution converges to the continuous lognormal distribution by the Central Limit Theorem"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Continuous Black-Scholes-Merton",
+          "tone": "positive",
+          "points": [
+            "The discrete binomial probability distribution converges to the continuous lognormal distribution by the Central Limit Theorem",
+            "European option prices computed on trees converge exactly to the analytical Black-Scholes-Merton formula"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "As time step delta_t approaches zero (number of steps N -> infinity), tree converges to continuous diffusion"
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Lattice Granularity Trade-Off: Precision vs Computational Latency",
+      "purpose": "Binomial tree prices oscillate around the true price as strike K shifts across discrete terminal nodes",
+      "takeaways": [
+        "Binomial tree prices oscillate around the true price as strike K shifts across discrete terminal nodes",
+        "Node count scales quadratically: (N + 1)(N + 2) / 2 nodes requires O(N^2) computational time",
+        "Production trading desks typically utilize N = 50 to 200 steps to balance sub-cent accuracy with sub-millisecond execution"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When designing trading systems, engineers optimize the trade-off between pricing precision and computational latency."
+            },
+            "hi": {
+              "display": "Trading desks par quantitative systems design karte waqt engineers precision aur computational latency ke trade-off ko systematically optimize karte hain."
+            }
+          },
+          "onScreenIntent": "Examine tree price oscillations around the true continuous value",
+          "sourceFactIds": [
+            "F07",
+            "F08"
+          ],
+          "newTerms": [
+            "Sawtooth oscillation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At 5 steps, slight strike oscillation occurs. At 30 steps, oscillation errors fall below 0.1%."
+            },
+            "hi": {
+              "display": "Five steps par tree mein slight strike oscillation error hota hai. Thirty steps par oscillation zero point one percent se kam ho jati hai."
+            }
+          },
+          "onScreenIntent": "Quantify computational complexity: (N+1)(N+2)/2 nodes grows as O(N^2)",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Quadratic complexity O(N^2)"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And at 50 to 100 steps, binomial trees match continuous Black-Scholes benchmarks to the penny."
+            },
+            "hi": {
+              "display": "Aur fifty se one hundred steps par binomial tree exact continuous Black-Scholes benchmark ko penny-for-penny match kar leti hai."
+            }
+          },
+          "onScreenIntent": "Present industrial sweet spot: N = 50 to 150 steps for sub-millisecond pricing",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Industrial step sweet spot"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In high-frequency trading, 30 to 50 steps is standard: sub-millisecond execution with near-perfect American exercise boundaries."
+            },
+            "hi": {
+              "display": "High-frequency market making mein thirty se fifty steps standard industry practice hai: jo sub-millisecond execution ke sath near-perfect American early exercise boundary identify karti hai."
+            }
+          },
+          "onScreenIntent": "Preview advanced alternatives: trinomial trees and finite difference PDE engines",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Trinomial trees",
+            "Finite difference"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Lattice Granularity Trade-Off: Precision vs Computational Latency",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Binomial tree prices oscillate around the true price as strike K shifts across discrete terminal nodes"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Node count scales quadratically: (N + 1)(N + 2) / 2 nodes requires O(N^2) computational time"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: American Put Early Exercise Decision",
+      "purpose": "Early exercise is optimal if and only if Intrinsic Value > Continuation Value",
+      "takeaways": [
+        "Early exercise is optimal if and only if Intrinsic Value > Continuation Value",
+        "Intrinsic value for a put is max(K - S, 0); continuation value is discounted expected child payoff",
+        "Early exercise captures cash strike immediately, avoiding the loss of interest"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your active recall understanding on a concrete American Put early exercise problem from John Hull."
+            },
+            "hi": {
+              "display": "Aaiye ab aapki active recall understanding ko John Hull ke ek concrete American Put early exercise decision problem par test karte hain."
+            }
+          },
+          "onScreenIntent": "Present the numerical challenge: S=$40, K=$50, child payoffs $8 and $12",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [
+            "Nodal decision challenge"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "American Put K = $50. Stock falls to $36. Intrinsic value is $14.00; continuation value is $12.80. What is node value and is early exercise optimal?"
+            },
+            "hi": {
+              "display": "American Put option ka strike K fifty dollars hai. Tree ke step one down node par stock girkar thirty-six dollars ho chuka hai. Intrinsic exercise payoff fourteen dollars hai, jabki discounted continuation holding value twelve point eight zero dollars hai. Is node par option ki value kya hogi aur kya early exercise optimal hai? Calculate kijiye."
+            }
+          },
+          "onScreenIntent": "Calculate intrinsic value: $50 - $40 = $10.00",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Calculated intrinsic payoff"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A: Node value is $14.00 and early exercise is immediately optimal."
+            },
+            "hi": {
+              "display": "Sahi answer Option A hai: Node par option value fourteen dollars hogi aur early exercise immediately optimal hai."
+            }
+          },
+          "onScreenIntent": "Calculate discounted continuation value: exp(-0.03) * $10 = $9.704",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Calculated continuation value"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Apply the rule: Node Value = max($14.00, $12.80). Because $14.00 > $12.80, a rational holder exercises immediately to claim $14 cash!"
+            },
+            "hi": {
+              "display": "Rule apply kijiye: Node Value equals maximum of Intrinsic Value fourteen dollars comma Continuation Value twelve point eight zero dollars. Kyunki fourteen dollars twelve point eight zero se bada hai, isliye rational holder immediately exercise karke fourteen dollars cash claim karega!"
+            }
+          },
+          "onScreenIntent": "Conclude: $10.00 > $9.70 triggers immediate early exercise, unlocking $0.30 surplus",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [
+            "Optimal exercise decision"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "A stock is at S = $40. Strike K = $50. If child node option values are f_u = $8 and f_d = $12 with p = 0.50, r = 6%, dt = 0.5, should the American put be exercised?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Immediate exercise delivers K - S = $50 - $40 = $10.00. Continuation value is exp(-0.06 * 0.5) * [0.5 * 8 + 0.5 * 12] = exp(-0.03) * 10 = $9.704. Because $10.00 > $9.704, immediate early exercise is optimal!"
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Institutional Derivatives Architecture: Production Tree Engines",
+      "purpose": "Trading desks implement trees using vectorized rolling arrays rather than allocating millions of pointer objects",
+      "takeaways": [
+        "Trading desks implement trees using vectorized rolling arrays rather than allocating millions of pointer objects",
+        "Backward induction updates an in-place 1D array of size N+1 from terminal payoffs back to root index 0",
+        "GPU parallelism and CUDA compute thousands of binomial trees simultaneously in real time"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Major investment banks and hedge funds deploy optimized C++ lattice engines to manage billions in derivatives daily."
+            },
+            "hi": {
+              "display": "Wall Street ke major investment banks aur hedge funds roz billions of dollars ke American aur exotic options ko manage karne ke liye highly optimized C++ lattice engines use karte hain."
+            }
+          },
+          "onScreenIntent": "Explore how Wall Street quantitative trading desks implement production tree engines",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Production tree engine"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These production tree engines map early exercise boundaries every morning, enabling automated bots to route exercise notices."
+            },
+            "hi": {
+              "display": "Ye production tree engines har subah market open hone par pura early exercise boundary map generate karte hain, jisse algorithmic bots exact optimal second par exercise notices route karte hain."
+            }
+          },
+          "onScreenIntent": "Highlight the memory architecture: 1D array rollback replacing naive node objects",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "In-place 1D buffer"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Furthermore, trinomial trees and implied trees are used to calibrate to real-world volatility smiles."
+            },
+            "hi": {
+              "display": "Iske alawa trinomial trees aur implied volatility trees jaisi advanced extensions market ke real-world volatility smiles ko calibrate karne mein use hoti hain."
+            }
+          },
+          "onScreenIntent": "Showcase SIMD vectorization and GPU CUDA acceleration for portfolio-wide risk",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "GPU CUDA tree pricing"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The binomial tree is not just a textbook model; it is the absolute backbone of computational quantitative finance."
+            },
+            "hi": {
+              "display": "Binomial tree sirf ek textbook model nahi hai; ye modern computational quantitative finance ka absolute backbone hai."
+            }
+          },
+          "onScreenIntent": "Summarize: software engineering mastery bridges financial theory into trading execution",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Quantitative software engineering"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Naive Object-Oriented Tree",
+          "tone": "neutral",
+          "points": [
+            "Trading desks implement trees using vectorized rolling arrays rather than allocating millions of pointer objects",
+            "Backward induction updates an in-place 1D array of size N+1 from terminal payoffs back to root index 0"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Vectorized Production Engine",
+          "tone": "positive",
+          "points": [
+            "Backward induction updates an in-place 1D array of size N+1 from terminal payoffs back to root index 0",
+            "GPU parallelism and CUDA compute thousands of binomial trees simultaneously in real time"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Trading desks implement trees using vectorized rolling arrays rather than allocating millions of pointer objects"
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Multi-Step Trees & American Options",
+      "purpose": "American options are valued via backward induction with nodal rule f = max(Intrinsic, Continuation)",
+      "takeaways": [
+        "American options are valued via backward induction with nodal rule f = max(Intrinsic, Continuation)",
+        "CRR parameterization u = exp(sigma * sqrt(dt)) guarantees continuous variance matching and recombination",
+        "Chapter 14 advances into continuous stochastic calculus, Ito's Lemma, and the Black-Scholes-Merton PDE"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the four foundational lattice principles of Chapter 13 Part 2."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Thirteen Part Two ke chaar foundational lattice principles ko consolidate karte hain."
+            }
+          },
+          "onScreenIntent": "Synthesize the comprehensive multi-step American option framework",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Executive synthesis"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: Nodal Early Exercise Test. Evaluating max(Intrinsic, Continuation) at every node solves analytical BSM failure."
+            },
+            "hi": {
+              "display": "Pillar One: Nodal Early Exercise Test. American options har node par maximum of Intrinsic value aur Continuation value evaluate karke analytical Black-Scholes failure ko solve karte hain."
+            }
+          },
+          "onScreenIntent": "Review Rules 1 and 2: American nodal rule and call early exercise suboptimality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: CRR Volatility Calibration. u = e^(σ*sqrt(Δt)) aligns discrete lattice variance with continuous market diffusion."
+            },
+            "hi": {
+              "display": "Pillar Two: CRR Volatility Calibration. u equals e to the power sigma square root delta t discrete tree ke variance ko continuous market diffusion se align karta hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 3 and 4: put early exercise boundary and dynamic delta rebalancing",
+          "sourceFactIds": [
+            "F02",
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: Multi-Asset Generalization. Parameter a adapts a single tree across stocks, indices, currencies, and futures."
+            },
+            "hi": {
+              "display": "Pillar Three: Multi-Asset Generalization. Single parameter a modify karke ek hi tree structure stocks, indices, currencies aur futures ko seamlessly price kar sakti hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 5 and 6: CRR volatility calibration and universal drift parameter a",
+          "sourceFactIds": [
+            "F04",
+            "F06",
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 4: Continuous Limit Convergence. As N approaches infinity, the discrete lattice converges into Black-Scholes-Merton."
+            },
+            "hi": {
+              "display": "Pillar Four: Continuous Limit Convergence. Steps N infinity ki taraf approach karne par discrete binomial lattice directly Black-Scholes-Merton formula par converge ho jati hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 7 and 8: asymptotic Black-Scholes convergence and quadratic complexity",
+          "sourceFactIds": [
+            "F07",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 14 Part 1, we master continuous stochastic calculus: Brownian Motion, Wiener Processes, and Itô's Lemma!"
+            },
+            "hi": {
+              "display": "Agli video Chapter Fourteen Part One mein hum continuous stochastic calculus: Brownian Motion, Wiener Processes aur Itô's Lemma ko master karenge!"
+            }
+          },
+          "onScreenIntent": "Conclude Chapter 13 and preview Chapter 14: Wiener Processes and Ito's Lemma",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "Chapter 14 preview"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary Thread: Four Pillars of Multi-Step Trees & American Options",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

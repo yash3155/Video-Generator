@@ -1,0 +1,1403 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch23",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 23",
+  "partLabel": "Part 1",
+  "title": "Chapter 23: Estimating Volatilities and Correlations (Part 1: EWMA & GARCH)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 44,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Ghosting Effect: Artificial Volatility Collapse",
+      "purpose": "The Ghosting Effect: Artificial Volatility Collapse: Foundational quantitative principles",
+      "takeaways": [
+        "The Ghosting Effect: Artificial Volatility Collapse: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider an alarming risk failure: a trading system suddenly reports market volatility dropped by 45%, yet the financial markets are in active turmoil!"
+            },
+            "hi": {
+              "display": "Sharma ji, hamare risk system ne aaj subah report kiya ki portfolio volatility achanak forty-five percent drop ho gayi hai! Lekin live market toh bohot volatile aur nervous hai! Ye risk calculation mein kya gadbad hui?"
+            }
+          },
+          "onScreenIntent": "The Ghosting Effect: Artificial Volatility Collapse",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "What caused this phantom drop? It was the Ghosting Effect: an extreme 8% market crash from 31 days ago simply rolled out of the 30-day moving window!"
+            },
+            "hi": {
+              "display": "Raju, ye classical Thirty-Day Moving Average ka sabse bada defect hai, jise Ghosting Effect kehte hain! Theek thirty-one days pehle market mein eight percent ka massive flash crash aaya tha. Aaj subah wo crash rolling thirty-day window se bahar nikal gaya!"
+            }
+          },
+          "onScreenIntent": "The Ghosting Effect: Artificial Volatility Collapse",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Equal-weighted moving averages create artificial cliff plunges when historical shocks exit, manufacturing dangerous false illusions of market safety."
+            },
+            "hi": {
+              "display": "Simple moving average pichle tees dinon ko barabar weight deta hai. Isliye jab koi purana shock window se bahar girta hai, toh volatility achanak artificial cliff ki tarah plunge kar jati hai, aur traders ko false safety ka illusion dekar over-leverage karwa deti hai!"
+            }
+          },
+          "onScreenIntent": "The Ghosting Effect: Artificial Volatility Collapse",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To eliminate ghosting, quantitative finance replaces moving averages with EWMA and GARCH(1,1). In Chapter 23 Part 1, we master dynamic volatility forecasting."
+            },
+            "hi": {
+              "display": "Isliye modern quants simple moving averages ko dump karke J.P. Morgan ka EWMA model aur Tim Bollerslev ka Nobel-grade GARCH one-one model use karte hain! Aaj Chapter 23 Part One mein hum inhi dynamic models ko master karenge!"
+            }
+          },
+          "onScreenIntent": "The Ghosting Effect: Artificial Volatility Collapse",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Ghosting Effect: Artificial Volatility Collapse",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Ghosting Effect: Artificial Volatility Collapse: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Rolling Windows vs Conditional Heteroskedasticity",
+      "purpose": "Rolling Windows vs Conditional Heteroskedasticity: Foundational quantitative principles",
+      "takeaways": [
+        "Rolling Windows vs Conditional Heteroskedasticity: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Quantitative risk systems confront two competing paradigms: rigid equal-weighted moving averages versus dynamic conditional heteroskedasticity."
+            },
+            "hi": {
+              "display": "Volatility modeling mein quants ke samne do opposite philosophies ka conflict hota hai: ek taraf rigid Equal-Weighted Moving Average, aur doosri taraf dynamic Conditional Heteroskedasticity."
+            }
+          },
+          "onScreenIntent": "Rolling Windows vs Conditional Heteroskedasticity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The equal-weighted moving average weights every past day identically, dropping critical information off a cliff the instant the historical window expires."
+            },
+            "hi": {
+              "display": "Equal-weighted model ek rectangular box ki tarah hota hai jo saare past returns ko same importance deta hai, aur window khatam hote hi data ko cliff se gira deta hai."
+            }
+          },
+          "onScreenIntent": "Rolling Windows vs Conditional Heteroskedasticity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Real markets exhibit volatility clustering: today's volatility depends heavily on yesterday's shock, demanding models where past events decay smoothly."
+            },
+            "hi": {
+              "display": "Lekin financial markets volatility clustering display karti hain, jahan large moves clusters mein aate hain. Isliye recent return shocks ko highest priority milni chahiye aur purane events ko smoothly fade hona chahiye."
+            }
+          },
+          "onScreenIntent": "Rolling Windows vs Conditional Heteroskedasticity",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Rolling Windows vs Conditional Heteroskedasticity",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Rolling Windows vs Conditional Heteroskedasticity: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of Modern Volatility Forecasting",
+      "purpose": "Four Pillars of Modern Volatility Forecasting: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of Modern Volatility Forecasting: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Four foundational pillars govern institutional volatility estimation."
+            },
+            "hi": {
+              "display": "Aaiye modern volatility forecasting ke chaar core pillars ko step-by-step unroll karte hain. Pehla Pillar hai Exponential Weighting yaani EWMA, jahan past data ko lambda decay rate se weight kiya jata hai taaki ghosting cliff na bane."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Modern Volatility Forecasting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: Exponential Weighting, weighting returns with a decay factor lambda to permanently eliminate ghosting cliffs."
+            },
+            "hi": {
+              "display": "Doosra Pillar hai GARCH one-one Mean Reversion. Ye model variance ko ek long-run baseline V sub L par anchor karta hai, jisse market panic ke baad volatility normal level par laut aati hai."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Modern Volatility Forecasting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: GARCH(1,1) Mean Reversion, anchoring short-term volatility to a long-run equilibrium baseline V_L."
+            },
+            "hi": {
+              "display": "Teesra Pillar hai Persistence Rate aur Shock Half-Life. Alpha plus beta se hum quantitatively calculate karte hain ki kisi market shock ko pachas percent fade hone mein kitne trading days lagenge."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Modern Volatility Forecasting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: Persistence and Half-Life, quantifying the exact trading days required for market turbulence to decay; and Pillar 4: Maximum Likelihood Calibration."
+            },
+            "hi": {
+              "display": "Aur Chautha Pillar hai Volatility Term Structure aur Maximum Likelihood Estimation, jahan historical returns ke sequence se parameters ko objectively fit karke options ke liye forward volatility curves draw ki jaati hain."
+            }
+          },
+          "onScreenIntent": "Four Pillars of Modern Volatility Forecasting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of Modern Volatility Forecasting",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of Modern Volatility Forecasting: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "The Classical Estimator & The Ghosting Defect",
+      "purpose": "The Classical Estimator & The Ghosting Defect: Foundational quantitative principles",
+      "takeaways": [
+        "The Classical Estimator & The Ghosting Defect: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine the traditional sample variance estimator per Hull Section 23.1: sigma squared equals 1 over m times the sum of squared percentage returns u_i."
+            },
+            "hi": {
+              "display": "Aaiye Hull Section twenty-three point one ke standard volatility estimator ka mathematical analysis karte hain. Agar daily returns u i hain aur daily mean return ko zero assume kiya jaye, toh m days ka sample variance one upon m times sum of u i square hota hai."
+            }
+          },
+          "onScreenIntent": "The Classical Estimator & The Ghosting Defect",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Every daily return receives the exact same weight 1 over m: yesterday's market panic is weighted identically to a calm session from a month ago."
+            },
+            "hi": {
+              "display": "Yahan har return ko exact one upon m weight milta hai. Chahe event kal hua ho ya tees din pehle, model ke liye dono barabar hain."
+            }
+          },
+          "onScreenIntent": "The Classical Estimator & The Ghosting Defect",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When that historical shock rolls past day m, computed variance plunges abruptly, creating severe ghosting distortions across risk reports."
+            },
+            "hi": {
+              "display": "Problem tab aati hai jab day m plus one par puraani extreme move window se bahar ho jati hai. Model achanak claim karta hai ki risk gayab ho gaya, jabki live market mein koi change nahi hua! Is artificial distortion ko hum Ghosting kehte hain."
+            }
+          },
+          "onScreenIntent": "The Classical Estimator & The Ghosting Defect",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Classical Estimator & The Ghosting Defect",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Classical Estimator & The Ghosting Defect: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The EWMA Model & J.P. Morgan RiskMetrics",
+      "purpose": "The EWMA Model & J.P. Morgan RiskMetrics: Foundational quantitative principles",
+      "takeaways": [
+        "The EWMA Model & J.P. Morgan RiskMetrics: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 1994, J.P. Morgan revolutionized quantitative risk by introducing the Exponentially Weighted Moving Average model in their RiskMetrics framework."
+            },
+            "hi": {
+              "display": "1994 mein J.P. Morgan ne is problem ko permanently solve karne ke liye RiskMetrics framework publish kiya, jisme EWMA model introduce hua: sigma n square equals lambda times sigma n minus one square plus one minus lambda times u n minus one square."
+            }
+          },
+          "onScreenIntent": "The EWMA Model & J.P. Morgan RiskMetrics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The formula is: sigma_n squared = lambda times sigma_{n-1} squared + (1 - lambda) times u_{n-1} squared."
+            },
+            "hi": {
+              "display": "Yahan lambda decay parameter hota hai. Daily financial returns ke liye J.P. Morgan ne lambda equals zero point nine four ko global institutional standard banaya."
+            }
+          },
+          "onScreenIntent": "The EWMA Model & J.P. Morgan RiskMetrics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Parameter lambda is the decay factor: RiskMetrics standardized lambda = 0.94 for daily market volatility, ensuring past shocks fade smoothly without ghosting."
+            },
+            "hi": {
+              "display": "Dekhiye iski computational elegance: aapko hazaron dinon ka data store karne ki zaroorat nahi hai! Sirf kal ka variance aur kal ka return chahiye, aur past shocks smoothly aur exponentially fade hote rehte hain!"
+            }
+          },
+          "onScreenIntent": "The EWMA Model & J.P. Morgan RiskMetrics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The EWMA Model & J.P. Morgan RiskMetrics",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The EWMA Model & J.P. Morgan RiskMetrics: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "The GARCH(1,1) Model: Adding Long-Run Mean Reversion",
+      "purpose": "The GARCH(1,1) Model: Adding Long-Run Mean Reversion: Foundational quantitative principles",
+      "takeaways": [
+        "The GARCH(1,1) Model: Adding Long-Run Mean Reversion: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "While EWMA eliminates ghosting, it lacks long-run mean reversion: projected volatility simply drifts at its current level without returning to baseline."
+            },
+            "hi": {
+              "display": "EWMA ghosting ko toh hata deta hai, lekin isme ek fundamental limitation hai: isme Long-Run Mean Reversion nahi hota! Agar market shock aaya, toh EWMA variance wahi atka reh sakta hai."
+            }
+          },
+          "onScreenIntent": "The GARCH(1,1) Model: Adding Long-Run Mean Reversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Tim Bollerslev formulated the celebrated GARCH(1,1) model: sigma_n squared = omega + alpha times u_{n-1} squared + beta times sigma_{n-1} squared."
+            },
+            "hi": {
+              "display": "Isliye Tim Bollerslev ne 1986 mein GARCH one-one formulate kiya: sigma n square equals omega plus alpha times u n minus one square plus beta times sigma n minus one square."
+            }
+          },
+          "onScreenIntent": "The GARCH(1,1) Model: Adding Long-Run Mean Reversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Weight omega anchors a long-run variance baseline V_L = omega / (1 - alpha - beta), ensuring that post-crisis spikes inevitably mean-revert to normal."
+            },
+            "hi": {
+              "display": "Yahan omega ek long-run baseline variance V sub L ko anchor karta hai: omega equals gamma times V sub L, jahan gamma plus alpha plus beta equals one hota hai. Long-run variance V sub L omega divided by one minus alpha minus beta ke barabar hota hai!"
+            }
+          },
+          "onScreenIntent": "The GARCH(1,1) Model: Adding Long-Run Mean Reversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The GARCH(1,1) Model: Adding Long-Run Mean Reversion",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The GARCH(1,1) Model: Adding Long-Run Mean Reversion: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Volatility Persistence & The Half-Life of Market Shocks",
+      "purpose": "Volatility Persistence & The Half-Life of Market Shocks: Foundational quantitative principles",
+      "takeaways": [
+        "Volatility Persistence & The Half-Life of Market Shocks: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The stationarity condition for GARCH(1,1) mandates that the sum alpha + beta must be strictly less than 1. This sum is the Persistence Rate."
+            },
+            "hi": {
+              "display": "Ab sabse critical quantitative condition: GARCH model stationary tabhi hota hai jab alpha plus beta strictly less than one ho! Is sum ko hum Persistence Rate kehte hain."
+            }
+          },
+          "onScreenIntent": "Volatility Persistence & The Half-Life of Market Shocks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If alpha + beta exceeds 1, forecasted variance explodes infinitely; if equal to 1, it becomes Integrated GARCH with zero mean reversion."
+            },
+            "hi": {
+              "display": "Agar alpha plus beta one se bada ho gaya, toh variance exponentially explode karega. Agar exact one ho, toh ye Integrated GARCH yaani IGARCH ban jata hai jahan mean reversion zero hota hai."
+            }
+          },
+          "onScreenIntent": "Volatility Persistence & The Half-Life of Market Shocks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Trading desks calculate how fast volatility mean-reverts using the Half-Life formula: tau half equals natural log of 0.5 divided by natural log of (alpha + beta)."
+            },
+            "hi": {
+              "display": "Market shocks ki recovery speed calculate karne ke liye quants Half-Life formula use karte hain: tau half equals natural log of zero point five divided by natural log of alpha plus beta. Ye batata hai ki volatility shock kitne dinon mein half ho jayega."
+            }
+          },
+          "onScreenIntent": "Volatility Persistence & The Half-Life of Market Shocks",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Volatility Persistence & The Half-Life of Market Shocks",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Volatility Persistence & The Half-Life of Market Shocks: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Multi-Day Forecasting & Term Structure of Volatility",
+      "purpose": "Multi-Day Forecasting & Term Structure of Volatility: Foundational quantitative principles",
+      "takeaways": [
+        "Multi-Day Forecasting & Term Structure of Volatility: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "GARCH(1,1) delivers closed-form multi-day variance forecasts: expected variance at step n+t equals V_L + (alpha + beta)^t times current variance deviation."
+            },
+            "hi": {
+              "display": "GARCH model ka sabse practical use multi-day volatility forecasting hai. T days aage ka expected variance V sub L plus alpha plus beta to the power t times sigma n square minus V sub L hota hai."
+            }
+          },
+          "onScreenIntent": "Multi-Day Forecasting & Term Structure of Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This creates a dynamic Volatility Term Structure: upward-sloping during calm regimes as low volatility rises toward long-run V_L."
+            },
+            "hi": {
+              "display": "Is formulation se Volatility Term Structure banti hai: calm periods mein jab current volatility kam hoti hai, toh term structure upward sloping hoti hai kyunki volatility mean reversion se badhegi."
+            }
+          },
+          "onScreenIntent": "Multi-Day Forecasting & Term Structure of Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "During panics, spot volatility spikes dramatically, inverting the term structure downward as witnessed in the 2008 and 2020 VIX futures curves!"
+            },
+            "hi": {
+              "display": "Lekin market crash ke time spot volatility bohot high ho jati hai, aur forward term structure downward inverted ban jati hai, jaisa 2008 aur 2020 mein VIX futures curve mein dekha gaya tha!"
+            }
+          },
+          "onScreenIntent": "Multi-Day Forecasting & Term Structure of Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Multi-Day Forecasting & Term Structure of Volatility",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Multi-Day Forecasting & Term Structure of Volatility: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Maximum Likelihood Estimation (MLE)",
+      "purpose": "Maximum Likelihood Estimation (MLE): Foundational quantitative principles",
+      "takeaways": [
+        "Maximum Likelihood Estimation (MLE): Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "How do quantitative engineers determine the exact numerical values for omega, alpha, and beta? Through Maximum Likelihood Estimation."
+            },
+            "hi": {
+              "display": "Ab question ye hai ki hum omega, alpha aur beta ki exact numerical values kaise nikalte hain? Iske liye hum Maximum Likelihood Estimation yaani MLE deploy karte hain."
+            }
+          },
+          "onScreenIntent": "Maximum Likelihood Estimation (MLE)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Assuming daily returns are conditionally Gaussian, each day's log-likelihood equals -ln(sigma_i squared) minus u_i squared divided by sigma_i squared."
+            },
+            "hi": {
+              "display": "Hum assume karte hain ki given variance, daily return normally distributed hai. Har din ka log-likelihood minus natural log of sigma square minus u square upon sigma square banta hai."
+            }
+          },
+          "onScreenIntent": "Maximum Likelihood Estimation (MLE)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Non-linear optimization algorithms iteratively adjust parameters to maximize the cumulative sample log-likelihood across historical data."
+            },
+            "hi": {
+              "display": "Non-linear optimization algorithms historical returns ke sequence ko process karke optimal parameter values estimate karte hain jo live market dynamics ko perfectly fit karein."
+            }
+          },
+          "onScreenIntent": "Maximum Likelihood Estimation (MLE)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Maximum Likelihood Estimation (MLE)",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Maximum Likelihood Estimation (MLE): Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall: GARCH Shock Half-Life Calculation",
+      "purpose": "Active Recall: GARCH Shock Half-Life Calculation: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: GARCH Shock Half-Life Calculation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Evaluate the scenario: An equity index GARCH(1,1) model is calibrated with alpha = 0.07 and beta = 0.89. What is its persistence rate and shock half-life? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Raju, ab ek critical econometric risk quiz: Ek equity index ka daily GARCH one-one model calibrate kiya gaya hai jisme alpha equals zero point zero seven hai aur beta equals zero point eight nine hai. Is model ka persistence rate aur volatility shock ka half-life kitna hoga?"
+            }
+          },
+          "onScreenIntent": "Active Recall: GARCH Shock Half-Life Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Compute persistence = alpha + beta, then evaluate half-life tau = ln(0.5) / ln(alpha + beta)."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: GARCH Shock Half-Life Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option A is correct: Persistence is 0.96 (0.07 + 0.89), and shock half-life ln(0.5)/ln(0.96) is approximately 17.0 trading days!"
+            },
+            "hi": {
+              "display": "Sahi answer Option A hai. Persistence rate alpha plus beta equals zero point nine six hai. Half-life formula natural log of zero point five divided by natural log of zero point nine six se lagbhag seventeen point zero trading days nikalta hai!"
+            }
+          },
+          "onScreenIntent": "Active Recall: GARCH Shock Half-Life Calculation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Institutional Volatility Trading: VIX & Variance Swaps",
+      "purpose": "Institutional Volatility Trading: VIX & Variance Swaps: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Volatility Trading: VIX & Variance Swaps: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Where do institutional desks apply GARCH multi-day term structures in live trading? On VIX futures and Variance Swap trading desks!"
+            },
+            "hi": {
+              "display": "Sharma ji, trading desks is GARCH multi-day term structure ko live markets mein kahan execute karti hain?"
+            }
+          },
+          "onScreenIntent": "Institutional Volatility Trading: VIX & Variance Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When a market dislocation spikes spot VIX to 50, GARCH term structures accurately project three-month forward variance back toward 20."
+            },
+            "hi": {
+              "display": "Raju, VIX futures aur Variance Swaps ke trading desks par! Jab market crash hota hai aur VIX fifty par chala jata hai, toh traders jaante hain ki mean reversion ke mutabiq three-month forward volatility twenty par aayegi."
+            }
+          },
+          "onScreenIntent": "Institutional Volatility Trading: VIX & Variance Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Variance swap contracts settle directly on realized variance across expiration, making analytical GARCH forecasts an essential pricing tool."
+            },
+            "hi": {
+              "display": "Isliye options ki pricing spot volatility par nahi, balki expiry tak ke integrated expected variance par hoti hai, jo GARCH term structure integrate karke deliver karta hai!"
+            }
+          },
+          "onScreenIntent": "Institutional Volatility Trading: VIX & Variance Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Institutional Volatility Trading: VIX & Variance Swaps",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Institutional Volatility Trading: VIX & Variance Swaps: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary: 8 Institutional Rules of Volatility Forecasting",
+      "purpose": "Summary: 8 Institutional Rules of Volatility Forecasting: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Volatility Forecasting: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us consolidate the eight foundational institutional rules of Chapter 23 Part 1:"
+            },
+            "hi": {
+              "display": "Aaiye Volatility Modeling aur Econometric Forecasting ke aath institutional rules ko codify karte hain. Rule One: Ghosting Defect. Equal-weighted moving averages artificial cliff drops produce karte hain jab purane shocks window se bahar giren."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Volatility Forecasting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Equal-weighted windows suffer catastrophic ghosting cliff drops; Rule 2: EWMA recursive updating uses lambda = 0.94."
+            },
+            "hi": {
+              "display": "Rule Two: EWMA Memory Architecture. Exponential weighting past shocks ko smoothly fade karta hai aur daily memory update simplify karta hai. Rule Three: RiskMetrics Standard. Daily asset return volatility ke liye lambda equals zero point nine four industry benchmark hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Volatility Forecasting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: GARCH(1,1) anchors mean reversion via omega / (1 - alpha - beta); Rule 4: Stationarity strictly mandates alpha + beta < 1."
+            },
+            "hi": {
+              "display": "Rule Four: GARCH Mean Reversion. GARCH one-one parameter omega se variance ko long-run baseline V sub L par anchor karta hai. Rule Five: Persistence Condition. Alpha plus beta strictly less than one hona zaroori hai taaki variance explosive na bane."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Volatility Forecasting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Volatility shock half-life is ln(0.5)/ln(alpha + beta); Rule 6: Calm regimes produce upward-sloping volatility term structures."
+            },
+            "hi": {
+              "display": "Rule Six: Shock Half-Life. Natural log of zero point five divided by log of persistence market shock recovery days quantify karta hai. Rule Seven: Volatility Term Structure. Calm markets mein term structure upward sloping hoti hai aur crash periods mein downward inverted hoti hai."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Volatility Forecasting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Panic shocks invert the term structure; Rule 8: Maximum Likelihood Estimation objectively calibrates governing parameters."
+            },
+            "hi": {
+              "display": "Rule Eight: Maximum Likelihood Calibration. Historical returns ke log-likelihood ko maximize karke parameters objectively calibrate kiye jaate hain."
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Volatility Forecasting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles master univariate volatility modeling and prepare us for multivariate correlation and copula architecture."
+            },
+            "hi": {
+              "display": "Ye aath rules quantitative trading desks par volatility pricing aur risk engineering ka bedrock hain. Agli video mein hum Chapter 23 Part 2 shuru karenge: Correlation Models aur Cholesky Factorization!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Volatility Forecasting",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Volatility Forecasting",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

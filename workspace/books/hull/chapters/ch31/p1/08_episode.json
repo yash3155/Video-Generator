@@ -1,0 +1,1488 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch31",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 31",
+  "partLabel": "Part 1",
+  "title": "Hull Chapter 31 (Part 1): Equilibrium Short-Rate Models",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 60,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Exploding Interest Rate Trap",
+      "purpose": "The Exploding Interest Rate Trap: Foundational quantitative principles",
+      "takeaways": [
+        "The Exploding Interest Rate Trap: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Sir, a quant friend used a standard Black-Scholes geometric Brownian motion model for US Treasury bond yields. But in a 10-year Monte Carlo simulation, simulated interest rates exploded to 90% or stagnated near zero! All his bond option hedges blew up! Why did this fail so catastrophically?"
+            },
+            "hi": {
+              "display": "सर, मेरे एक क्वांट दोस्त ने यूएस ट्रेजरी बॉन्ड्स के लिए ब्लैक-स्कोल्स जैसा इक्विटी मॉडल लगाया। उसने माना कि ब्याज दरें भी स्टॉक की तरह जियोमेट्रिक ब्राउनियन मोशन पर चलती हैं। लेकिन 10 साल के सिमुलेशन में ब्याज दरें 90% तक पहुंच गईं या फिर शून्य के करीब अटक गईं! उसके सारे बॉन्ड ऑप्शंस के हेज फेल हो गए! यह गड़बड़ क्यों हुई?"
+            }
+          },
+          "onScreenIntent": "The Exploding Interest Rate Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Raju, interest rates are not corporate equities that can drift upwards indefinitely! Macroeconomic gravity governs interest rates. Central banks raise rates during inflation and cut them during recessions. This pull is called Mean Reversion!"
+            },
+            "hi": {
+              "display": "राजू, ब्याज दरें किसी कंपनी के शेयर नहीं हैं जो बिना किसी सीमा के आसमान छूती रहें! अर्थव्यवस्था में 'मैक्रोइकॉनॉमिक ग्रैविटी' होती है। जब महंगाई बढ़ती है तो सेंट्रल बैंक रेट्स बढ़ाता है, और मंदी में घटाता है। इस खिंचाव को हम 'मीन रिवर्शन' कहते हैं!"
+            }
+          },
+          "onScreenIntent": "The Exploding Interest Rate Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "That is why in John Hull's 31st chapter, we study Equilibrium Short-Rate Models—such as Vasicek (1977) and the Cox-Ingersoll-Ross (CIR 1985) model!"
+            },
+            "hi": {
+              "display": "इसीलिए जॉन हल के 31वें चैप्टर में हम शॉर्ट रेट r के 'इक्विलिब्रियाम मॉडल्स' सीखते हैं—जैसे वासिचेक का मॉडल और कॉक्स-इन्गर्सोल-रॉस यानी सी.आई.आर. मॉडल!"
+            }
+          },
+          "onScreenIntent": "The Exploding Interest Rate Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us master how mean reversion, affine term structures, and Jamshidian's decomposition accurately price interest rate derivatives!"
+            },
+            "hi": {
+              "display": "चलिए समझते हैं कि कैसे मीन रिवर्शन, एफाइन टर्म स्ट्रक्चर और जमशीदियन डिकम्पोज़िशन ब्याज दरों के ऑप्शंस को सही तरीके से प्राइस करते हैं!"
+            }
+          },
+          "onScreenIntent": "The Exploding Interest Rate Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Exploding Interest Rate Trap",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Exploding Interest Rate Trap: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Random Walk vs Economic Mean Reversion",
+      "purpose": "Random Walk vs Economic Mean Reversion: Foundational quantitative principles",
+      "takeaways": [
+        "Random Walk vs Economic Mean Reversion: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Two foundational paradigms collide in interest rate modeling: Unconstrained Random Walk versus Economic Mean Reversion."
+            },
+            "hi": {
+              "display": "ब्याज दरों की मॉडलिंग में दो बुनियादी दृष्टिकोण टकराते हैं: अनकंस्ट्रेंड रैंडम वॉक और इकोनॉमिक मीन रिवर्शन।"
+            }
+          },
+          "onScreenIntent": "Random Walk vs Economic Mean Reversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Geometric Brownian motion works for equities, but applied to rates, variance grows without bound. Simulated rates drift to 100% or zero, which violates economic reality!"
+            },
+            "hi": {
+              "display": "स्टॉक प्राइस के लिए जियोमेट्रिक ब्राउनियन मोशन सही हो सकता है, लेकिन ब्याज दरों पर लगाने से वेरियंस समय के साथ अनंत की ओर बढ़ता है। दरें 100% या शून्य पर ड्रिफ्ट कर जाती हैं, जो वास्तविक अर्थव्यवस्था में पूरी तरह असंभव है!"
+            }
+          },
+          "onScreenIntent": "Random Walk vs Economic Mean Reversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, equilibrium models introduce a structural restoring drift a(b - r). This constantly pulls rates back toward long-term equilibrium b, stabilizing asymptotic variance at sigma^2 / (2a)!"
+            },
+            "hi": {
+              "display": "दूसरी तरफ, इक्विलिब्रियाम शॉर्ट-रेट मॉडल्स में एक संरचनात्मक आकर्षण बल a गुना b माइनस r होता है। यह दर को हमेशा उसके दीर्घकालिक संतुलन b की ओर खींचता है, जिससे वेरियंस एक सीमित स्तर सिग्मा स्क्वायर अपॉन 2a पर स्थिर हो जाता है!"
+            }
+          },
+          "onScreenIntent": "Random Walk vs Economic Mean Reversion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Random Walk vs Economic Mean Reversion",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Random Walk vs Economic Mean Reversion: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of Short-Rate Modeling",
+      "purpose": "Four Pillars of Short-Rate Modeling: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of Short-Rate Modeling: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The equilibrium short-rate framework rests upon four structural pillars. The first pillar is the Instantaneous Short Rate r, the fundamental state variable generating the entire term structure."
+            },
+            "hi": {
+              "display": "इक्विलिब्रियाम शॉर्ट-रेट फ्रेमवर्क चार मजबूत स्तंभों पर खड़ा है। पहला पिलर है 'इंस्टेंटेनियस शॉर्ट रेट r', जो पूरी यील्ड कर्व और सभी डिस्काउंट बॉन्ड्स का मुख्य स्टेट वेरिएबल है।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Short-Rate Modeling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second pillar is the Vasicek (1977) model, introducing Ornstein-Uhlenbeck linear mean reversion and closed-form analytical zero-coupon bond pricing."
+            },
+            "hi": {
+              "display": "दूसरा पिलर है 'वासिचेक 1977 मॉडल', जिसने ऑर्नस्टीन-उहलेनबेक प्रोसेस के जरिए पहली बार लीनियर मीन रिवर्शन और एनालिटिकल बॉन्ड प्राइसेस पेश किए।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Short-Rate Modeling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The third pillar is the Cox-Ingersoll-Ross (CIR 1985) model, solving the negative rate dilemma via square-root diffusion and the Feller condition."
+            },
+            "hi": {
+              "display": "तीसरा पिलर है 'कॉक्स-इन्गर्सोल-रॉस यानी सी.आई.आर. 1985 मॉडल', जिसने स्क्वायर-रूट वोलेटिलिटी और फेलर कंडीशन के जरिए ब्याज दरों को नेगेटिव होने से बचाया।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Short-Rate Modeling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The fourth pillar is Jamshidian's Decomposition, converting complex coupon bond options into an exact sum of individual zero-coupon bond options!"
+            },
+            "hi": {
+              "display": "चौथा पिलर है 'जमशीदियन डिकम्पोज़िशन', जो एक कूपन बॉन्ड ऑप्शन को स्वतंत्र जीरो-कूपन बॉन्ड ऑप्शंस के पोर्टफोलियो में तोड़कर एनालिटिकली हल करता है!"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Short-Rate Modeling",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of Short-Rate Modeling",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of Short-Rate Modeling: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Vasicek (1977) Dynamics & Negative Rate Flaw",
+      "purpose": "Vasicek (1977) Dynamics & Negative Rate Flaw: Foundational quantitative principles",
+      "takeaways": [
+        "Vasicek (1977) Dynamics & Negative Rate Flaw: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine the Stochastic Differential Equation (SDE) of the classic Vasicek (1977) model."
+            },
+            "hi": {
+              "display": "चलिए सबसे पहले वासिचेक के क्लासिक 1977 मॉडल के स्टोकेस्टिक डिफरेंशियल इक्वेशन यानी एस.डी.ई. को देखते हैं।"
+            }
+          },
+          "onScreenIntent": "Vasicek (1977) Dynamics & Negative Rate Flaw",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The SDE is: dr = a(b - r)dt + sigma dz. Here b is the long-run mean rate, a is the mean-reversion speed, and sigma is instantaneous annual volatility."
+            },
+            "hi": {
+              "display": "समीकरण है: dr बराबर a गुना b माइनस r dt प्लस सिग्मा dz। यहां b दीर्घकालिक औसत दर है, a मीन रिवर्शन की गति है, और सिग्मा एनुअल वोलेटिलिटी है।"
+            }
+          },
+          "onScreenIntent": "Vasicek (1977) Dynamics & Negative Rate Flaw",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At time t, expected rate is r_0 e^{-at} + b(1 - e^{-at}). As t approaches infinity, the rate distribution converges to a stationary Gaussian normal distribution N(b, sigma^2 / (2a))!"
+            },
+            "hi": {
+              "display": "समय t पर शॉर्ट रेट का अपेक्षित मान r-0 ई की पावर माइनस at प्लस b गुना 1 माइनस ई की पावर माइनस at होता है। जैसे-जैसे t अनंत की ओर बढ़ता है, रेट सामान्य डिस्ट्रीब्यूशन नॉर्मल b कॉमा सिग्मा स्क्वायर अपॉन 2a में बदल जाता है!"
+            }
+          },
+          "onScreenIntent": "Vasicek (1977) Dynamics & Negative Rate Flaw",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But Vasicek has one fatal structural flaw: because the conditional distribution is Gaussian normal, the mathematical probability of negative interest rates is strictly greater than zero!"
+            },
+            "hi": {
+              "display": "लेकिन वासिचेक मॉडल की एक गंभीर खामी है: चूंकि डिस्ट्रीब्यूशन नॉर्मल है, इसलिए ब्याज दरों के नेगेटिव होने की संभावना हमेशा शून्य से बड़ी रहती है!"
+            }
+          },
+          "onScreenIntent": "Vasicek (1977) Dynamics & Negative Rate Flaw",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Vasicek (1977) Dynamics & Negative Rate Flaw",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Vasicek (1977) Dynamics & Negative Rate Flaw: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Affine Term Structure & Vasicek Bond Pricing",
+      "purpose": "Affine Term Structure & Vasicek Bond Pricing: Foundational quantitative principles",
+      "takeaways": [
+        "Affine Term Structure & Vasicek Bond Pricing: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Vasicek's greatest analytical power lies in its Affine Term Structure property. In affine models, zero-coupon bond price strictly takes the exponential-affine form P(t, T) = A(t, T) exp(-B(t, T) r(t))!"
+            },
+            "hi": {
+              "display": "वासिचेक मॉडल की सबसे बड़ी गणितीय ताकत इसका 'एफाइन टर्म स्ट्रक्चर' होना है। एफाइन क्लास में जीरो-कूपन बॉन्ड का मूल्य हमेशा P बराबर A गुना ई की पावर माइनस B गुना r होता है!"
+            }
+          },
+          "onScreenIntent": "Affine Term Structure & Vasicek Bond Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Here B(t, T) depends strictly on time to maturity T - t and reversion speed a: B = [1 - exp(-a(T - t))] / a."
+            },
+            "hi": {
+              "display": "यहां B फंक्शन केवल मैच्योरिटी T माइनस t और गति a पर निर्भर करता है: B बराबर 1 माइनस ई की पावर माइनस a गुना T माइनस t, पूरे के बटे a।"
+            }
+          },
+          "onScreenIntent": "Affine Term Structure & Vasicek Bond Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Function A captures the long-term mean b and convexity volatility drag sigma^2 / (2a^2), precisely shaping term structure curvature."
+            },
+            "hi": {
+              "display": "फंक्शन A में लॉन्ग-टर्म मीन b और वोलेटिलिटी ड्रैग सिग्मा स्क्वायर अपॉन 2a स्क्वायर शामिल होता है। यह बॉन्ड प्राइसेस में कॉन्वेक्सिटी और यील्ड कर्व के ढलान को सटीक रूप से कैप्चर करता है।"
+            }
+          },
+          "onScreenIntent": "Affine Term Structure & Vasicek Bond Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If current rate r_0 is below long-run mean b, the yield curve is upward sloping; if r_0 exceeds b, the term structure is downward sloping or humped!"
+            },
+            "hi": {
+              "display": "यदि प्रारंभिक दर r-0 औसत b से कम है, तो यील्ड कर्व ऊपर की ओर झुकती है; यदि r-0 अधिक है, तो कर्व इनवर्टेड यानी नीचे की ओर झुकती है!"
+            }
+          },
+          "onScreenIntent": "Affine Term Structure & Vasicek Bond Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Affine Term Structure & Vasicek Bond Pricing",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Affine Term Structure & Vasicek Bond Pricing: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "The Cox-Ingersoll-Ross (CIR) Square-Root Diffusion",
+      "purpose": "The Cox-Ingersoll-Ross (CIR) Square-Root Diffusion: Foundational quantitative principles",
+      "takeaways": [
+        "The Cox-Ingersoll-Ross (CIR) Square-Root Diffusion: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To eliminate Vasicek's negative interest rate flaw, John Cox, Jonathan Ingersoll, and Stephen Ross introduced the CIR model in 1985."
+            },
+            "hi": {
+              "display": "वासिचेक की नेगेटिव रेट वाली कमजोरी को 1985 में कॉक्स, इन्गर्सोल और रॉस ने हल किया। उन्होंने 'सी.आई.आर. मॉडल' पेश किया।"
+            }
+          },
+          "onScreenIntent": "The Cox-Ingersoll-Ross (CIR) Square-Root Diffusion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The CIR stochastic differential equation is: dr = a(b - r)dt + sigma * sqrt(r) dz!"
+            },
+            "hi": {
+              "display": "सी.आई.आर. का एस.डी.ई. है: dr बराबर a गुना b माइनस r dt प्लस सिग्मा गुना स्क्वायर-रूट r dz!"
+            }
+          },
+          "onScreenIntent": "The Cox-Ingersoll-Ross (CIR) Square-Root Diffusion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice the crucial square-root term: as the short rate r approaches zero, sqrt(r) approaches zero, extinguishing diffusion volatility completely!"
+            },
+            "hi": {
+              "display": "ध्यान दीजिए: वोलेटिलिटी टर्म में अंडररूट r आ गया है! जब ब्याज दर शून्य की ओर गिरती है, तो अंडररूट r शून्य हो जाता है, जिससे वोलेटिलिटी पूरी तरह गायब हो जाती है!"
+            }
+          },
+          "onScreenIntent": "The Cox-Ingersoll-Ross (CIR) Square-Root Diffusion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At zero, the strictly positive drift term a*b remains active, propelling the short rate instantly back into positive territory! Thus CIR guarantees non-negative interest rates!"
+            },
+            "hi": {
+              "display": "उस समय पॉजिटिव ड्रिफ्ट a गुना b सक्रिय रहता है, जो ब्याज दर को तुरंत धक्का देकर वापस सकारात्मक क्षेत्र में धकेल देता है! यही कारण है कि सी.आई.आर. में दरें नॉन-नेगेटिव रहती हैं!"
+            }
+          },
+          "onScreenIntent": "The Cox-Ingersoll-Ross (CIR) Square-Root Diffusion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Cox-Ingersoll-Ross (CIR) Square-Root Diffusion",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Cox-Ingersoll-Ross (CIR) Square-Root Diffusion: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "The Feller Boundary Condition Test",
+      "purpose": "The Feller Boundary Condition Test: Foundational quantitative principles",
+      "takeaways": [
+        "The Feller Boundary Condition Test: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But can the short rate in a CIR process ever actually touch zero? That depends strictly on the celebrated Feller condition: 2ab >= sigma^2!"
+            },
+            "hi": {
+              "display": "लेकिन क्या सी.आई.आर. में ब्याज दर कभी वास्तव में शून्य को छू सकती है? यह निर्भर करता है प्रसिद्ध 'फेलर कंडीशन' पर: 2ab ग्रेटर देन या इक्वल टू सिग्मा स्क्वायर!"
+            }
+          },
+          "onScreenIntent": "The Feller Boundary Condition Test",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If 2ab >= sigma^2, the upward drift at zero is so overwhelming that the short rate can never touch zero; zero is a strictly inaccessible boundary!"
+            },
+            "hi": {
+              "display": "यदि 2ab सिग्मा स्क्वायर से बड़ा या बराबर है, तो शून्य पर अपवर्ड ड्रिफ्ट इतना शक्तिशाली होता है कि ब्याज दर शून्य को कभी छू ही नहीं सकती! शून्य एक इनएक्सेसिबल बाउंड्री बन जाता है!"
+            }
+          },
+          "onScreenIntent": "The Feller Boundary Condition Test",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, if 2ab < sigma^2, volatility shocks can occasionally pull the rate to zero, where it acts as an instantaneously reflecting boundary!"
+            },
+            "hi": {
+              "display": "लेकिन यदि 2ab सिग्मा स्क्वायर से छोटा है, तो वोलेटिलिटी कभी-कभी दर को शून्य तक खींच सकती है, जहां से यह तुरंत परावर्तित यानी रिफ्लेक्ट होकर वापस ऊपर उठ जाती है!"
+            }
+          },
+          "onScreenIntent": "The Feller Boundary Condition Test",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Feller Boundary Condition Test",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Feller Boundary Condition Test: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Jamshidian's Option Decomposition on Coupon Bonds",
+      "purpose": "Jamshidian's Option Decomposition on Coupon Bonds: Foundational quantitative principles",
+      "takeaways": [
+        "Jamshidian's Option Decomposition on Coupon Bonds: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now a critical institutional challenge: how do we price a European option on a coupon-paying bond? A coupon bond is a multi-cash-flow portfolio, making option evaluation complex."
+            },
+            "hi": {
+              "display": "अब एक बड़ी व्यावहारिक चुनौती: एक कूपन बॉन्ड पर यूरोपियन ऑप्शन को कैसे प्राइस करें? कूपन बॉन्ड कई अलग-अलग कैश फ्लोज़ का जोड़ होता है, जिसकी प्राइसिंग बहुत जटिल होती है।"
+            }
+          },
+          "onScreenIntent": "Jamshidian's Option Decomposition on Coupon Bonds",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 1989, Farshid Jamshidian uncovered a brilliant property: in single-factor short-rate models, every zero-coupon bond price is strictly monotonic decreasing in the short rate r!"
+            },
+            "hi": {
+              "display": "1989 में फरशीद जमशीदियन ने एक शानदार खोज की: एक-फैक्टर शॉर्ट रेट मॉडल में सभी जीरो-कूपन बॉन्ड की कीमतें r के साथ मोनोटोनिकली यानी लगातार घटती हैं!"
+            }
+          },
+          "onScreenIntent": "Jamshidian's Option Decomposition on Coupon Bonds",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This proves that at option maturity T, there exists a unique critical short rate r* where the coupon bond price exactly equals the strike price K!"
+            },
+            "hi": {
+              "display": "इसका अर्थ है कि ऑप्शन मैच्योरिटी T पर एक अनोखा क्रिटिकल शॉर्ट रेट r-स्टार मौजूद होता है, जिस पर कूपन बॉन्ड की कुल वैल्यू ठीक स्ट्राइक K के बराबर होती है!"
+            }
+          },
+          "onScreenIntent": "Jamshidian's Option Decomposition on Coupon Bonds",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Jamshidian's theorem proves a coupon bond call option equals an exact sum of individual zero-coupon bond call options, each struck at K_i = P(T, c_i; r*)!"
+            },
+            "hi": {
+              "display": "जमशीदियन के थ्योरम के अनुसार, पूरे कूपन बॉन्ड पर कॉल ऑप्शन ठीक उतना ही होता है जितना कि अलग-अलग कूपन कैश फ्लोज़ पर जीरो-कूपन कॉल ऑप्शंस का पोर्टफोलियो, जहां हर एक का स्ट्राइक K-i बराबर P(T, c_i; r-स्टार) होता है!"
+            }
+          },
+          "onScreenIntent": "Jamshidian's Option Decomposition on Coupon Bonds",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Jamshidian's Option Decomposition on Coupon Bonds",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Jamshidian's Option Decomposition on Coupon Bonds: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Active Recall: The CIR Feller Condition Test",
+      "purpose": "Active Recall: The CIR Feller Condition Test: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: The CIR Feller Condition Test: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your quantitative mastery! A risk desk calibrates a CIR model: mean reversion speed a = 0.20, long-run mean b = 0.05, and annual volatility sigma = 0.16. Under this calibrated CIR process, can interest rates ever touch zero?"
+            },
+            "hi": {
+              "display": "चलिए आपकी समझ का परीक्षण करते हैं! एक रिस्क टीम ने सी.आई.आर. मॉडल को कैलिब्रेट किया: मीन रिवर्शन स्पीड a बराबर 0.20, लॉन्ग-टर्म मीन b बराबर 0.05, और एनुअल वोलेटिलिटी सिग्मा बराबर 0.16। क्या इस प्रोसेस में ब्याज दरें कभी शून्य को छू सकती हैं?"
+            }
+          },
+          "onScreenIntent": "Active Recall: The CIR Feller Condition Test",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Take a moment to carefully analyze this mathematical concept and derivation."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: The CIR Feller Condition Test",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Correct answer is Option A! 2(0.20)(0.05) = 0.020, while sigma^2 = (0.16)^2 = 0.0256. Because 2ab < sigma^2, the Feller condition fails, meaning interest rates can touch zero as a reflecting boundary!"
+            },
+            "hi": {
+              "display": "सही उत्तर है ऑप्शन ए! 2 गुना 0.20 गुना 0.05 बराबर 0.020 होता है, जबकि सिग्मा स्क्वायर 0.16 का स्क्वायर यानी 0.0256 है। चूंकि 2ab सिग्मा स्क्वायर से छोटा है, इसलिए फेलर कंडीशन पूरी नहीं होती और दरें शून्य को छूकर रिफ्लेक्ट हो सकती हैं!"
+            }
+          },
+          "onScreenIntent": "Active Recall: The CIR Feller Condition Test",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Institutional Reality: Equilibrium vs No-Arbitrage Reality",
+      "purpose": "Institutional Reality: Equilibrium vs No-Arbitrage Reality: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Reality: Equilibrium vs No-Arbitrage Reality: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Institutional reality check: While equilibrium models like Vasicek and CIR offer profound economic insights, they cannot perfectly fit today's observed market yield curve!"
+            },
+            "hi": {
+              "display": "ट्रेडिंग फ्लोर की कड़वी सच्चाई: वासिचेक और सी.आई.आर. जैसे इक्विलिब्रियाम मॉडल्स सिद्धांतों को समझाने के लिए बेहतरीन हैं, लेकिन वे आज की वास्तविक यील्ड कर्व को बिल्कुल सटीक फिट नहीं कर सकते!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Equilibrium vs No-Arbitrage Reality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If you price derivatives with Vasicek, model bond prices will deviate from observed market prices, creating immediate static arbitrage!"
+            },
+            "hi": {
+              "display": "यदि आप वासिचेक मॉडल के बॉन्ड प्राइसेस से ट्रेडिंग करेंगे, तो मॉडल के प्राइसेस और स्क्रीन पर दिखने वाले बॉन्ड प्राइसेस में फर्क होगा, जिससे आर्बिट्राज पैदा हो जाएगा!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Equilibrium vs No-Arbitrage Reality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To eliminate this defect, trading desks deploy No-Arbitrage models like Hull-White and Ho-Lee, which fit today's entire observed yield curve with 100% precision!"
+            },
+            "hi": {
+              "display": "इसी कमी को दूर करने के लिए ट्रेडर्स 'नो-आर्बिट्राज मॉडल्स' जैसे हल-व्हाइट और हो-ली का उपयोग करते हैं, जो आज की पूरी यील्ड कर्व को इनपुट के रूप में 100% सटीक फिट करते हैं!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Equilibrium vs No-Arbitrage Reality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Summary: 8 Institutional Rules of Equilibrium Short-Rate Models",
+      "purpose": "Summary: 8 Institutional Rules of Equilibrium Short-Rate Models: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Equilibrium Short-Rate Models: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Short rate r(t) is the fundamental state variable generating the term structure. Rule 2: Interest rates do not follow random walks—mean reversion a(b - r) pulls rates toward economic equilibrium b."
+            },
+            "hi": {
+              "display": "नियम एक: शॉर्ट रेट r(t) तात्कालिक ब्याज दर है जो पूरी यील्ड कर्व और सभी डिस्काउंट बॉन्ड प्राइसेस को संचालित करती है। नियम दो: ब्याज दरें अनकंस्ट्रेंड रैंडम वॉक पर नहीं चलतीं—मैक्रोइकॉनॉमिक ग्रैविटी उन्हें हमेशा मीन रिवर्शन स्पीड a से लॉन्ग-टर्म मीन b की ओर खींचती है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Equilibrium Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: Vasicek generates a Gaussian distribution with stationary variance sigma^2 / (2a). Rule 4: Vasicek's fatal flaw is that normal distribution permits positive probability of negative interest rates."
+            },
+            "hi": {
+              "display": "नियम तीन: वासिचेक मॉडल dr बराबर a(b-r)dt प्लस सिग्मा dz एक नॉर्मल डिस्ट्रीब्यूशन बनाता है जिसका लॉन्ग-टर्म वेरियंस सिग्मा स्क्वायर अपॉन 2a होता है। नियम चार: वासिचेक का मुख्य दोष यह है कि नॉर्मल डिस्ट्रीब्यूशन के कारण नेगेटिव ब्याज दरों की संभावना हमेशा शून्य से बड़ी रहती है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Equilibrium Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: CIR introduces square-root diffusion sigma*sqrt(r), collapsing volatility near zero and preventing negative rates. Rule 6: Feller condition 2ab >= sigma^2 determines whether zero is strictly inaccessible or reflecting."
+            },
+            "hi": {
+              "display": "नियम पांच: कॉक्स-इन्गर्सोल-रॉस मॉडल वोलेटिलिटी में अंडररूट r जोड़ता है, जिससे दर शून्य के करीब पहुंचने पर वोलेटिलिटी समाप्त हो जाती है और दरें पॉजिटिव रहती हैं। नियम छह: फेलर कंडीशन 2ab ग्रेटर देन या इक्वल टू सिग्मा स्क्वायर तय करती है कि क्या शून्य एक इनएक्सेसिबल बाउंड्री है या रिफ्लेक्टिंग बाउंड्री।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Equilibrium Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Both models belong to the affine class P(t, T) = A(t, T) exp(-B(t, T) r). Rule 8: Jamshidian's decomposition converts coupon bond options into an exact portfolio of zero-coupon bond options!"
+            },
+            "hi": {
+              "display": "नियम सात: दोनों मॉडल एफाइन टर्म स्ट्रक्चर क्लास से संबंधित हैं, जहां जीरो-कूपन बॉन्ड प्राइस P(t, T) बराबर A(t, T) ई की पावर माइनस B(t, T) गुना r होता है। नियम आठ: जमशीदियन डिकम्पोज़िशन मोनोटोनिसिटी का उपयोग करके कूपन बॉन्ड ऑप्शन को जीरो-कूपन बॉन्ड ऑप्शंस के सटीक पोर्टफोलियो में बदल देता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Equilibrium Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Both models belong to the affine class P(t, T) = A(t, T) exp(-B(t, T) r). Rule 8: Jamshidian's decomposition converts coupon bond options into an exact portfolio of zero-coupon bond options!"
+            },
+            "hi": {
+              "display": "नियम सात: दोनों मॉडल एफाइन टर्म स्ट्रक्चर क्लास से संबंधित हैं, जहां जीरो-कूपन बॉन्ड प्राइस P(t, T) बराबर A(t, T) ई की पावर माइनस B(t, T) गुना r होता है। नियम आठ: जमशीदियन डिकम्पोज़िशन मोनोटोनिसिटी का उपयोग करके कूपन बॉन्ड ऑप्शन को जीरो-कूपन बॉन्ड ऑप्शंस के सटीक पोर्टफोलियो में बदल देता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Equilibrium Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight structural rules form the bedrock of short-rate modeling that every quantitative professional must master. You now hold the complete quantitative roadmap of equilibrium short-rate dynamics!"
+            },
+            "hi": {
+              "display": "ये आठ बुनियादी नियम शॉर्ट-रेट मॉडलिंग की नींव हैं जिन्हें हर क्वांट ट्रेडर को अपनी उंगलियों पर याद रखना चाहिए। अब आपके पास शॉर्ट रेट इक्विलिब्रियाम डायनामिक्स का संपूर्ण गणितीय नक्शा है!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Equilibrium Short-Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Equilibrium Short-Rate Models",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Closing Wisdom & Preview of Part 2",
+      "purpose": "Closing Wisdom & Preview of Part 2: Foundational quantitative principles",
+      "takeaways": [
+        "Closing Wisdom & Preview of Part 2: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Thank you so much, Sir! I now see the fundamental distinction between equity and rates, and how Vasicek and CIR grounded rates in mean reversion! What are No-Arbitrage models?"
+            },
+            "hi": {
+              "display": "बहुत-बहुत धन्यवाद सर! आज मुझे समझ आ गया कि स्टॉक और ब्याज दरों में क्या बुनियादी फर्क है, और कैसे वासिचेक और सी.आई.आर. ने रेट्स को मीन रिवर्शन का दायरा दिया! अब नो-आर्बिट्राज मॉडल्स क्या होते हैं?"
+            }
+          },
+          "onScreenIntent": "Closing Wisdom & Preview of Part 2",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Excellent Raju! In Part 2, we will decode Ho-Lee and Hull-White No-Arbitrage models with trinomial trees—the true workhorses of modern Wall Street fixed income desks!"
+            },
+            "hi": {
+              "display": "शाबाश राजू! पार्ट 2 में हम हल-व्हाइट और हो-ली के नो-आर्बिट्राज मॉडल्स और ट्राइनोमियल ट्रीज को विस्तार से डिकोड करेंगे, जो आज की वॉल स्ट्रीट ट्रेडिंग डेस्क का असली वर्कहॉर्स हैं!"
+            }
+          },
+          "onScreenIntent": "Closing Wisdom & Preview of Part 2",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Closing Wisdom & Preview of Part 2",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

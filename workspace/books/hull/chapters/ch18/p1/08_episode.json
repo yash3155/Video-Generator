@@ -1,0 +1,1381 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch18",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 18",
+  "partLabel": "Part 1",
+  "title": "Futures Options: Mechanics, Bounds & Put-Call Parity",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 34,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "Futures Options: Mechanics & Advantages",
+      "purpose": "Underlying Asset Shift: Futures options give the right to acquire standardized futures contracts rather than physical cash assets.",
+      "takeaways": [
+        "Underlying Asset Shift: Futures options give the right to acquire standardized futures contracts rather than physical cash assets.",
+        "Logistical Elimination: Avoids costly commodity storage, transport friction, and physical delivery bottlenecks.",
+        "Dual Settlement: Exercise immediately produces an open futures position plus an instant cash settlement payout."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In financial markets, writing options on physical commodities or bonds creates immense logistical costs and storage friction."
+            },
+            "hi": {
+              "display": "Financial markets mein jab traders crude oil, agricultural commodities ya Treasury bonds par options trade karna chahte hain, toh physical spot assets par option likhna bohot complex aur costly hota hai."
+            }
+          },
+          "onScreenIntent": "Futures Options: Mechanics & Advantages",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To eliminate this friction, exchanges created Futures Options, where the underlying is a standardized futures contract."
+            },
+            "hi": {
+              "display": "Is commercial challenge ko solve karne ke liye exchanges ne Futures Options introduce kiye — jahan option ka underlying koi physical asset nahi, balki ek standardized futures contract hota hai."
+            }
+          },
+          "onScreenIntent": "Futures Options: Mechanics & Advantages",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 18 Part 1, John Hull details exercise mechanics, no-arbitrage bounds, parity, and binomial tree valuation."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter Eighteen Part One mein hum futures options ke unique exercise mechanics, no-arbitrage bounds, put-call parity aur binomial valuation ko step-by-step master karenge."
+            }
+          },
+          "onScreenIntent": "Futures Options: Mechanics & Advantages",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Futures Options: Mechanics & Advantages",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Underlying Asset Shift: Futures options give the right to acquire standardized futures contracts rather than physical cash assets."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Logistical Elimination: Avoids costly commodity storage, transport friction, and physical delivery bottlenecks."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Dual Delivery: Futures Contract + Instant Cash",
+      "purpose": "Call Exercise Result: Long futures position at strike K plus instant cash payout of (F - K).",
+      "takeaways": [
+        "Call Exercise Result: Long futures position at strike K plus instant cash payout of (F - K).",
+        "Put Exercise Result: Short futures position at strike K plus instant cash payout of (K - F).",
+        "Clearing Mark-to-Market: Daily futures marking-to-market begins immediately upon option exercise."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exercising a futures call delivers two things: a long futures contract at strike K, plus cash equal to (F - K)."
+            },
+            "hi": {
+              "display": "Jab aap ek Futures Call Option exercise karte hain, toh aapko do cheezein milti hain: pehla, strike price K par ek Long Futures contract, aur doosra, market settlement price aur strike ka difference cash ke roop mein."
+            }
+          },
+          "onScreenIntent": "Dual Delivery: Futures Contract + Instant Cash",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, exercising a put delivers a short futures contract at K, plus immediate cash payout equal to (K - F)."
+            },
+            "hi": {
+              "display": "Iske vipreet, jab Put Option exercise hota hai, toh holder ko strike price K par ek Short Futures position milti hai, aur strike minus settlement price ka positive cash payout turant account mein credit hota hai."
+            }
+          },
+          "onScreenIntent": "Dual Delivery: Futures Contract + Instant Cash",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The clearinghouse credits cash to the margin account, and daily marking-to-market applies to the new futures position."
+            },
+            "hi": {
+              "display": "Exchange clearinghouse is cash ko instant margin account mein credit karta hai aur newly created futures position par daily marking-to-market rule laagu ho jata hai."
+            }
+          },
+          "onScreenIntent": "Dual Delivery: Futures Contract + Instant Cash",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Dual Delivery: Futures Contract + Instant Cash",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Call Exercise Result: Long futures position at strike K plus instant cash payout of (F - K)."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Put Exercise Result: Short futures position at strike K plus instant cash payout of (K - F)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Institutional Popularity Factors",
+      "purpose": "Superior Order Book Depth: Futures markets boast substantially greater liquidity than spot commodity markets.",
+      "takeaways": [
+        "Superior Order Book Depth: Futures markets boast substantially greater liquidity than spot commodity markets.",
+        "Zero Physical Bottlenecks: No warehouse storage fees, transportation logistics, or inspection delays.",
+        "Capital Efficiency: Standardized cross-margining across futures and options reduces total margin capital."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In institutional finance, futures options are vastly more popular due to deep order book liquidity and narrow spreads."
+            },
+            "hi": {
+              "display": "Institutional finance mein futures options spot options se kai guna zyada popular hain kyunki futures contracts mein deep liquidity aur narrow bid-ask spreads hote hain."
+            }
+          },
+          "onScreenIntent": "Institutional Popularity Factors",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second major advantage is bypassing physical delivery: exercising crude oil options avoids managing physical storage tanks."
+            },
+            "hi": {
+              "display": "Doosra sabse bada advantage physical delivery ki pareshani se bachna hai; crude oil ya wheat option exercise hone par trader ko hazaron barrels store nahi karne padte, balki liquid futures milte hain."
+            }
+          },
+          "onScreenIntent": "Institutional Popularity Factors",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Furthermore, standardized exchange margins and portfolio cross-margining deliver massive capital efficiencies."
+            },
+            "hi": {
+              "display": "Saath hi, standardized exchange margins aur portfolio cross-margining ke kaaran institutional desks ke liye capital efficiency kaafi badh jaati hai."
+            }
+          },
+          "onScreenIntent": "Institutional Popularity Factors",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Institutional Popularity Factors",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Superior Order Book Depth: Futures markets boast substantially greater liquidity than spot commodity markets."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Zero Physical Bottlenecks: No warehouse storage fees, transportation logistics, or inspection delays."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Spot-Futures Option Equivalence at Horizon T",
+      "purpose": "Simultaneous Expiration Condition: When the option and underlying futures contract expire on the exact same date T.",
+      "takeaways": [
+        "Simultaneous Expiration Condition: When the option and underlying futures contract expire on the exact same date T.",
+        "Terminal Price Convergence: At maturity T, arbitrage forces the futures price to converge to spot: F_T = S_T.",
+        "Payoff Identity: European spot and futures options have identical terminal payoffs and identical market values."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider a critical theoretical relationship: suppose the option and futures contract share the exact same expiration date T."
+            },
+            "hi": {
+              "display": "Ek mahatvapurna theoretical relationship par gaur karein: agar option aur underlying futures contract dono ka expiration date aur time bilkul same ho."
+            }
+          },
+          "onScreenIntent": "Spot-Futures Option Equivalence at Horizon T",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At maturity T, futures price converges to spot (F_T = S_T), making terminal call payoffs completely identical."
+            },
+            "hi": {
+              "display": "Maturity T par futures price spot price ke bilkul barabar ho jata hai, yaani F_T equals S_T. Isliye call ka terminal payoff max of S_T minus K aur max of F_T minus K identical hota hai."
+            }
+          },
+          "onScreenIntent": "Spot-Futures Option Equivalence at Horizon T",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Therefore, at identical strikes and expirations, European spot and futures options must have identical market values."
+            },
+            "hi": {
+              "display": "Iska arth yeh hai ki same expiration aur strike par European spot option aur European futures option ki fair market value exact barabar honi chahiye."
+            }
+          },
+          "onScreenIntent": "Spot-Futures Option Equivalence at Horizon T",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Spot-Futures Option Equivalence at Horizon T",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Simultaneous Expiration Condition: When the option and underlying futures contract expire on the exact same date T."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Terminal Price Convergence: At maturity T, arbitrage forces the futures price to converge to spot: F_T = S_T."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Futures Put-Call Parity Formulation",
+      "purpose": "Core Parity Equation: c + K e^(-rT) = p + F_0 e^(-rT) links European calls, puts, and futures.",
+      "takeaways": [
+        "Core Parity Equation: c + K e^(-rT) = p + F_0 e^(-rT) links European calls, puts, and futures.",
+        "Discounted Futures Replacement: Spot price S_0 is replaced by discounted futures price F_0 e^(-rT).",
+        "Arbitrage Enforcement: Violations trigger synthetic conversions or reversals to capture riskless spreads."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For futures options, Put-Call Parity takes a special form: c + K e^(-rT) = p + F_0 e^(-rT)."
+            },
+            "hi": {
+              "display": "Futures options ke liye Put-Call Parity ek vishesh roop leti hai: c plus K into e to the power minus r T equals p plus F_0 into e to the power minus r T."
+            }
+          },
+          "onScreenIntent": "Futures Put-Call Parity Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Here F_0 is current futures price. Instead of spot price, the discounted futures price F_0 e^(-rT) is used."
+            },
+            "hi": {
+              "display": "Yahan F_0 current futures price hai. Notice karein ki stock options ki tarah yahan spot price nahi, balki discounted futures price F_0 into e to the power minus r T use hota hai."
+            }
+          },
+          "onScreenIntent": "Futures Put-Call Parity Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If parity is violated, arbitrageurs build synthetic portfolios to lock in immediate risk-free profits."
+            },
+            "hi": {
+              "display": "Agar market mein yeh equality violate hoti hai, toh arbitrageurs synthetic portfolio banakar bina kisi risk ke instant arbitrage profit lock kar lete hain."
+            }
+          },
+          "onScreenIntent": "Futures Put-Call Parity Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Futures Put-Call Parity Formulation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Core Parity Equation: c + K e^(-rT) = p + F_0 e^(-rT) links European calls, puts, and futures."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Discounted Futures Replacement: Spot price S_0 is replaced by discounted futures price F_0 e^(-rT)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Lower Theoretical Price Bounds",
+      "purpose": "European Call Lower Bound: c >= max((F_0 - K)e^(-rT), 0) establishes the minimum call value.",
+      "takeaways": [
+        "European Call Lower Bound: c >= max((F_0 - K)e^(-rT), 0) establishes the minimum call value.",
+        "European Put Lower Bound: p >= max((K - F_0)e^(-rT), 0) establishes the minimum put value.",
+        "Full Intrinsic Discounting: Because futures cost zero upfront, the entire intrinsic spread is discounted."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A European futures call theoretical price can never fall below discounted intrinsic value: c >= (F_0 - K) e^(-rT)."
+            },
+            "hi": {
+              "display": "European futures call option ka theoretical price kabhi bhi discounted intrinsic value se kam nahi ho sakta, yaani c must be greater than or equal to F_0 minus K into e to the power minus r T."
+            }
+          },
+          "onScreenIntent": "Lower Theoretical Price Bounds",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Similarly, the minimum European put price is: p >= (K - F_0) e^(-rT)."
+            },
+            "hi": {
+              "display": "Isi tarah European put option ka minimum price formula hai: p must be greater than or equal to K minus F_0 into e to the power minus r T."
+            }
+          },
+          "onScreenIntent": "Lower Theoretical Price Bounds",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because entering a futures contract requires zero upfront cash, the entire intrinsic spread is discounted by e^(-rT)."
+            },
+            "hi": {
+              "display": "Kyunki futures contract enter karne ke liye zero upfront capital lagta hai, poore intrinsic difference ko risk-free rate r par discount kiya jata hai."
+            }
+          },
+          "onScreenIntent": "Lower Theoretical Price Bounds",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Lower Theoretical Price Bounds",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "European Call Lower Bound: c >= max((F_0 - K)e^(-rT), 0) establishes the minimum call value."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "European Put Lower Bound: p >= max((K - F_0)e^(-rT), 0) establishes the minimum put value."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Early Exercise Optimality of American Futures Options",
+      "purpose": "Undiscounted American Bounds: American options can be exercised at any time: C >= F_0 - K and P >= K - F_0.",
+      "takeaways": [
+        "Undiscounted American Bounds: American options can be exercised at any time: C >= F_0 - K and P >= K - F_0.",
+        "Immediate Cash Extraction: Exercising American calls on futures releases immediate cash of (F_0 - K).",
+        "The Early Exercise Paradox: Unlike stock calls, American futures calls can be optimal to exercise early to earn interest."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "American options can be exercised at any time; therefore C >= F_0 - K without any discount factor."
+            },
+            "hi": {
+              "display": "American options ko maturity se pehle kisi bhi din exercise kiya ja sakta hai, isliye American call ka price C hamesha greater than or equal to F_0 minus K hota hai, bina kisi discount factor ke."
+            }
+          },
+          "onScreenIntent": "Early Exercise Optimality of American Futures Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Note a fascinating difference: early exercise of non-dividend stock calls is never optimal because you forfeit interest by paying K."
+            },
+            "hi": {
+              "display": "Yahan ek bohot rochak difference samjhein: stock call ko maturity se pehle exercise karna bekar hota hai kyunki aapko strike K cash mein pay karna padta hai."
+            }
+          },
+          "onScreenIntent": "Early Exercise Optimality of American Futures Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But exercising a futures call requires no payment; instead you receive cash (F_0 - K) immediately, earning interest!"
+            },
+            "hi": {
+              "display": "Lekin futures call exercise karne par aapko strike pay nahi karni padti, balki F_0 minus K cash turant mil jata hai, jise bank mein rakhkar aap interest earn kar sakte hain!"
+            }
+          },
+          "onScreenIntent": "Early Exercise Optimality of American Futures Options",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Early Exercise Optimality of American Futures Options",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Undiscounted American Bounds: American options can be exercised at any time: C >= F_0 - K and P >= K - F_0."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Immediate Cash Extraction: Exercising American calls on futures releases immediate cash of (F_0 - K)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Risk-Neutral Binomial Tree Formulation",
+      "purpose": "Zero Expected Futures Drift: In a risk-neutral world, expected change in futures price is zero: E[dF] = 0.",
+      "takeaways": [
+        "Zero Expected Futures Drift: In a risk-neutral world, expected change in futures price is zero: E[dF] = 0.",
+        "Risk-Neutral Probability: p = (1 - d) / (u - d), replacing the traditional (e^(r dt) - d) numerator.",
+        "Discounted Backward Induction: f = e^(-r dt) [p f_u + (1 - p) f_d] yields exact lattice valuation."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us examine binomial tree pricing for futures options. In a risk-neutral world, futures price expected drift is zero."
+            },
+            "hi": {
+              "display": "Aaiye ab dekhte hain ki binomial tree se futures options ko kaise price kiya jata hai. Risk-neutral world mein futures price ka expected drift bilkul zero hota hai."
+            }
+          },
+          "onScreenIntent": "Risk-Neutral Binomial Tree Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because entering futures requires no capital, the risk-neutral probability formula is p = (1 - d) / (u - d)."
+            },
+            "hi": {
+              "display": "Kyunki futures enter karne ke liye koi capital nahi lagti, isliye risk-neutral probability p ka formula hota hai: one minus d divided by u minus d."
+            }
+          },
+          "onScreenIntent": "Risk-Neutral Binomial Tree Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice there is no e^(r dt) in the numerator! Interest rate r appears solely in the discount factor e^(-r dt)."
+            },
+            "hi": {
+              "display": "Notice karein ki yahan numerator mein e to the power r delta t nahi hai! Risk-free rate r keval cash flow ko discount karne ke liye e to the power minus r delta t ke roop mein use hota hai."
+            }
+          },
+          "onScreenIntent": "Risk-Neutral Binomial Tree Formulation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Risk-Neutral Binomial Tree Formulation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Zero Expected Futures Drift: In a risk-neutral world, expected change in futures price is zero: E[dF] = 0."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Risk-Neutral Probability: p = (1 - d) / (u - d), replacing the traditional (e^(r dt) - d) numerator."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Pricing a 6-Month Crude Oil Futures Call",
+      "purpose": "Market Parameters: F_0 = $50, K = $50, T = 0.5 years (6 months), sigma = 30%, r = 5%.",
+      "takeaways": [
+        "Market Parameters: F_0 = $50, K = $50, T = 0.5 years (6 months), sigma = 30%, r = 5%.",
+        "Binomial Parameters: u = 1.2362, d = 0.8089, p = (1 - 0.8089)/(1.2362 - 0.8089) = 0.4472.",
+        "Valuation Result: Call payoff f_u = $11.81, f_d = $0. Option value f = e^(-0.025) * [0.4472 * 11.81] = $5.15."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us calculate a crude oil futures call: F_0 = $50, K = $50, T = 0.5 years, sigma = 30%, and r = 5%."
+            },
+            "hi": {
+              "display": "Aaiye ek real-world crude oil futures call option ko calculate karein: current futures price 50 dollar hai, strike 50 dollar hai, maturity 6 months hai, volatility 30 percent hai aur interest rate 5 percent hai."
+            }
+          },
+          "onScreenIntent": "Pricing a 6-Month Crude Oil Futures Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In step 1, jump factor u = 1.2362 and d = 0.8089, giving F_u = $61.81 and F_d = $40.45."
+            },
+            "hi": {
+              "display": "Step one mein jump factor u nikalte hain jo 1.2362 aata hai, aur d 0.8089 aata hai. Isse up node par crude oil 61.81 dollar aur down node par 40.45 dollar ho jata hai."
+            }
+          },
+          "onScreenIntent": "Pricing a 6-Month Crude Oil Futures Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Using p = (1 - d)/(u - d) = 0.4472 and discounting at 5% yields an exact call price of $5.15."
+            },
+            "hi": {
+              "display": "Formula p equals 1 minus d divided by u minus d se probability 0.4472 milti hai. Isko discount karne par European futures call ki exact theoretical price 5.15 dollars aati hai."
+            }
+          },
+          "onScreenIntent": "Pricing a 6-Month Crude Oil Futures Call",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Pricing a 6-Month Crude Oil Futures Call",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Market Parameters: F_0 = $50, K = $50, T = 0.5 years (6 months), sigma = 30%, r = 5%."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Binomial Parameters: u = 1.2362, d = 0.8089, p = (1 - 0.8089)/(1.2362 - 0.8089) = 0.4472."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Arbitrage Identification Challenge",
+      "purpose": "Market Scenario: 6-month European futures call c = $4, put p = $2, strike K = $50, futures F_0 = $51.50, r = 0%.",
+      "takeaways": [
+        "Market Scenario: 6-month European futures call c = $4, put p = $2, strike K = $50, futures F_0 = $51.50, r = 0%.",
+        "Parity Check: c + K = $4 + $50 = $54.00 vs p + F_0 = $2 + $51.50 = $53.50.",
+        "Arbitrage Execution: Sell call, buy put, buy futures to capture riskless $0.50 cash profit per contract."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Read the case study: 6-month call is $4, put is $2, strike is $50, futures is $51.50, and r = 0%. Does parity hold? Consider the options on screen."
+            },
+            "hi": {
+              "display": "Screen par di gayi case study ko dhyan se padhein: Ek 6-month European futures call ka price $4 hai, put ka price $2 hai, strike $50 hai, aur current futures price $51.50 hai jab risk-free rate zero percent hai. Kya put-call parity satisfy ho rahi hai? Screen par diye gaye options par dhyan se vichar karke calculate kijiye."
+            }
+          },
+          "onScreenIntent": "Arbitrage Identification Challenge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Test parity equation c + K = p + F_0 and determine the arbitrage trading strategy."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Arbitrage Identification Challenge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option B is correct: 4 + 50 = $54 vs 2 + 51.50 = $53.50. Sell overpriced call, buy put and long futures to lock in $0.50 risk-free profit."
+            },
+            "hi": {
+              "display": "Correct choice Option B hai. Parity equation c plus K equals p plus F_0 test karein: left side 4 plus 50 equals 54, jabki right side 2 plus 51.5 equals 53.5 hai. Left side overpriced hai, isliye call sell karke aur put plus futures buy karke $0.50 ka riskless profit banaya ja sakta hai."
+            }
+          },
+          "onScreenIntent": "Arbitrage Identification Challenge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Institutional Execution & Margin Controls",
+      "purpose": "Instant Margin Activation: Option exercise instantly triggers futures maintenance margin requirements.",
+      "takeaways": [
+        "Instant Margin Activation: Option exercise instantly triggers futures maintenance margin requirements.",
+        "Delivery Mismatch Management: Futures expiration dates often differ from option expiration dates.",
+        "Gamma & Pin Risk Control: Active monitoring of delta and gamma as expiration approaches to avoid unwanted futures delivery."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Monitoring margin availability is critical because option exercise instantly activates futures margin requirements."
+            },
+            "hi": {
+              "display": "Futures options mein trade karte samay clearing margin ki availability monitor karna critical hai kyunki option exercise hote hi futures margin requirement activate ho jati hai."
+            }
+          },
+          "onScreenIntent": "Institutional Execution & Margin Controls",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Also, note that futures contract expiration often differs from option expiry, requiring careful calendar management."
+            },
+            "hi": {
+              "display": "Saath hi trader ko dhyan rakhna chahiye ki futures contract ki expiry date aksar option expiry date se alag hoti hai, isliye delivery cycle mismatch ko hedge karna zaroori hai."
+            }
+          },
+          "onScreenIntent": "Institutional Execution & Margin Controls",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Following these execution protocols allows institutional desks to manage portfolio volatility with precision."
+            },
+            "hi": {
+              "display": "In rules ko dhyan mein rakh kar institutional desks portfolio volatility ko precision ke saath control karte hain."
+            }
+          },
+          "onScreenIntent": "Institutional Execution & Margin Controls",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Institutional Execution & Margin Controls",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Instant Margin Activation: Option exercise instantly triggers futures maintenance margin requirements."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Delivery Mismatch Management: Futures expiration dates often differ from option expiration dates."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Master Summary Thread: 8 Core Principles",
+      "purpose": "Pillar 1: Dual Settlement: Exercise delivers an open futures contract at strike K plus immediate cash of (F - K).",
+      "takeaways": [
+        "Pillar 1: Dual Settlement: Exercise delivers an open futures contract at strike K plus immediate cash of (F - K).",
+        "Pillar 2: Terminal Equivalence: When option and futures expire together, spot and futures European options have identical value.",
+        "Pillar 3: Futures Put-Call Parity: c + K e^(-rT) = p + F_0 e^(-rT) governs no-arbitrage relationships and synthetic replication."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Exercise delivers an underlying futures position plus instant cash settlement credit."
+            },
+            "hi": {
+              "display": "Aaiye Futures Options ke 8 sansthagat rules ko summarize karte hain. Rule 1: Option exercise par underlying futures position ke sath instant cash settlement account mein credit hota hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Core Principles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 2: Zero physical friction ensures superior liquidity; Rule 3: Simultaneous expiration produces identical option values."
+            },
+            "hi": {
+              "display": "Rule 2: Physical delivery avoidance ke kaaran futures options spot options se zyada liquid hain. Rule 3: Agar option aur futures ek sath expire hon, toh spot aur futures options ki value identical hoti hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Core Principles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 4: Parity uses discounted futures price F_0 e^(-rT); Rule 5: Call lower bound is (F_0 - K)e^(-rT)."
+            },
+            "hi": {
+              "display": "Rule 4: Futures put-call parity mein discounted futures price F zero into e ki power minus r T use hota hai. Rule 5: European call ka lower bound F zero minus K into e ki power minus r T hota hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Core Principles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 6: Deep ITM American calls are optimal to exercise early; Rule 7: Zero drift yields p = (1 - d)/(u - d)."
+            },
+            "hi": {
+              "display": "Rule 6: Deep in-the-money American futures call ko early exercise karna optimal hota hai taaki cash par interest earn ho sake. Rule 7: Zero drift ke kaaran risk-neutral probability 1 minus d divided by u minus d hoti hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Core Principles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 8: Exercise instantly triggers futures maintenance margin, requiring disciplined liquidity buffering."
+            },
+            "hi": {
+              "display": "Rule 8: Exercise hote hi futures initial margin activate ho jata hai, isliye trading desks ko surplus liquidity maintain karna mandatory hota hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Core Principles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles form the comprehensive theoretical and operational framework of Chapter 18 Part 1."
+            },
+            "hi": {
+              "display": "Yeh aath sutra John C. Hull ke Chapter 18 Part 1 ke mathematical aur operational execution ka complete framework pradan karte hain."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Core Principles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Master Summary Thread: 8 Core Principles",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

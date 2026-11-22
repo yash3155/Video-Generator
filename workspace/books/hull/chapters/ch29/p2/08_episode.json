@@ -1,0 +1,1488 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch29",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 29",
+  "partLabel": "Part 2",
+  "title": "Hull Chapter 29 Part 2: Interest Rate Caps, Floors & European Swaptions",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 57,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Floating-Rate Debt Trap",
+      "purpose": "The Floating-Rate Debt Trap: Foundational quantitative principles",
+      "takeaways": [
+        "The Floating-Rate Debt Trap: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider a corporate borrower that secures a $100 million floating-rate facility. When SOFR benchmarks sit at 0.5%, annual debt service is easily managed at $2 million. But when the central bank aggressively hikes rates to 5.5%, annual interest expense abruptly skyrockets to $7 million. How can borrowers insulate their cash flows against such catastrophic rate shocks?"
+            },
+            "hi": {
+              "display": "सर, मेरी एक रियल एस्टेट क्लाइंट कंपनी ने 100 मिलियन डॉलर का फ्लोटिंग रेट लोन लिया था। जब सोफर दरें 0.5% थीं, तो ब्याज केवल 2% था। लेकिन जब केंद्रीय बैंक ने दरें बढ़ाकर 5.5% कर दीं, तो कंपनी का ब्याज खर्च 2 मिलियन से उछलकर 7 मिलियन डॉलर हो गया! क्या इस तरह के ब्याज झटके से बचने का कोई तरीका है?"
+            }
+          },
+          "onScreenIntent": "The Floating-Rate Debt Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "That existential cash flow vulnerability prompted Wall Street to engineer Interest Rate Caps. By purchasing a cap, a corporate borrower places an ironclad legal ceiling on their maximum borrowing rate, capping financial liability regardless of market turmoil."
+            },
+            "hi": {
+              "display": "बिल्कुल राजू! यही वह वित्तीय संकट है जिससे बचाने के लिए वॉल स्ट्रीट ने 'इंटरेस्ट रेट कैप्स' का आविष्कार किया था। एक कैप खरीदकर कॉर्पोरेट बॉरोअर अपनी अधिकतम ब्याज दर पर कानूनी सीलिंग लगा सकता है!"
+            }
+          },
+          "onScreenIntent": "The Floating-Rate Debt Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If the company purchases a 4% cap, even if market rates surge to 10% or 15%, every dollar of interest liability exceeding 4% is fully reimbursed by the cap seller, providing pure asymmetric insurance."
+            },
+            "hi": {
+              "display": "यदि कंपनी ने 4% का कैप खरीदा होता, तो बाजार दर चाहे 10% या 15% तक चली जाए, बैंक से 4% से ऊपर का सारा अतिरिक्त ब्याज कैप सेलर को चुकाना पड़ता!"
+            }
+          },
+          "onScreenIntent": "The Floating-Rate Debt Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Today, the global market for caps, floors, and European swaptions exceeds hundreds of trillions of dollars in notional volume. Let us explore the mathematical forward measures and pricing engines that value these titanic contracts."
+            },
+            "hi": {
+              "display": "वैश्विक डेरिवेटिव्स बाजार में कैप्स, फ्लोर्स और स्वैपशन्स का आकार सैकड़ों ट्रिलियन डॉलर है। चलिए इन विशाल डेरिवेटिव्स के गणितीय मॉडल्स में उतरते हैं!"
+            }
+          },
+          "onScreenIntent": "The Floating-Rate Debt Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Floating-Rate Debt Trap",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Floating-Rate Debt Trap: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Caps vs Floors vs Collars",
+      "purpose": "Caps vs Floors vs Collars: Foundational quantitative principles",
+      "takeaways": [
+        "Caps vs Floors vs Collars: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Three primary structural instruments manage floating-rate interest rate exposure: Caps, Floors, and Collars."
+            },
+            "hi": {
+              "display": "फ्लोटिंग रेट रिस्क को मैनेज करने के लिए तीन बुनियादी वित्तीय संरचनाएं उपयोग की जाती हैं: कैप्स, फ्लोर्स, और कॉलर्स।"
+            }
+          },
+          "onScreenIntent": "Caps vs Floors vs Collars",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Cap protects floating-rate borrowers against surging rates. It is structurally a portfolio of European call options on interest rates, known as Caplets."
+            },
+            "hi": {
+              "display": "कैप बॉरोअर्स के लिए होता है जो बढ़ती ब्याज दरों से सुरक्षा चाहते हैं। यह वास्तव में इंटरेस्ट रेट्स पर यूरोपियन कॉल ऑप्शन्स का एक पोर्टफोलियो है, जिसे 'कैपलेट्स' कहा जाता है।"
+            }
+          },
+          "onScreenIntent": "Caps vs Floors vs Collars",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Floor protects lenders and fixed-income investors against plunging rates—a portfolio of put options or Floorlets. Combining both constructs a Collar, delivering zero-cost protection!"
+            },
+            "hi": {
+              "display": "फ्लोर लेंडर्स और इन्वेस्टर्स के लिए होता है जो गिरती दरों से सुरक्षा चाहते हैं—यह पुट ऑप्शन्स यानी 'फ्लोरलेट्स' का पोर्टफोलियो है। और दोनों को मिलाकर हम 'कॉलर' बनाते हैं, जो बिना किसी प्रीमियम के शून्य लागत पर सुरक्षा देता है!"
+            }
+          },
+          "onScreenIntent": "Caps vs Floors vs Collars",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Caps vs Floors vs Collars",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Caps vs Floors vs Collars: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of Rate Options & Swaptions",
+      "purpose": "Four Pillars of Rate Options & Swaptions: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of Rate Options & Swaptions: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "We analyze interest rate options and swaptions across four structural pillars. The first is the Payment in Arrears Convention."
+            },
+            "hi": {
+              "display": "रेट ऑप्शन्स और स्वैपशन्स की संरचना को हम चार मुख्य पिलर्स में विभाजित करते हैं। पहला पिलर है 'पेमेंट इन एरियर्स कन्वेंशन'।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Rate Options & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second pillar is Black's Caplet and Floorlet Model, discounting single-period rate payoffs rigorously under forward measures."
+            },
+            "hi": {
+              "display": "दूसरा पिलर है 'ब्लैक का कैपलेट और फ्लोरलेट मॉडल', जो फॉरवर्ड मेज़र के तहत हर पीरियड के पेऑफ को सटीक रूप से डिस्काउंट करता है।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Rate Options & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The third pillar is Flat versus Spot Volatility Stripping, converting quoted flat broker volatilities into individual caplet spot volatilities."
+            },
+            "hi": {
+              "display": "तीसरा पिलर है 'फ्लैट वोलैटिलिटी बनाम स्पॉट वोलैटिलिटी स्ट्रिपिंग'। बाजार में एक सिंगल फ्लैट वोलैटिलिटी कोट होती है, जिससे डेस्क प्रत्येक कैपलेट की मार्जिनल वोलैटिलिटी निकालती है।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Rate Options & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The fourth pillar is European Swaptions and the Swap Annuity Measure, treating the par swap rate as a martingale to value swaptions globally!"
+            },
+            "hi": {
+              "display": "चौथा पिलर है 'यूरोपियन स्वैपशन्स और स्वैप एन्युइटी मेज़र'। पार स्वैप रेट को मार्टिंगेल मानकर ब्लैक मॉडल स्वैपशन्स की यूनिवर्सल प्राइसिंग करता है!"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Rate Options & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of Rate Options & Swaptions",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of Rate Options & Swaptions: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Payment in Arrears & Forward Rate Dynamics",
+      "purpose": "Payment in Arrears & Forward Rate Dynamics: Foundational quantitative principles",
+      "takeaways": [
+        "Payment in Arrears & Forward Rate Dynamics: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A foundational timing rule governs fixed income options: Payment in Arrears. The interest rate is fixed today, but cash settlement occurs at the end of the period!"
+            },
+            "hi": {
+              "display": "फिक्स्ड इनकम डेरिवेटिव्स में समय का एक बड़ा नियम है: 'पेमेंट इन एरियर्स'। यानी ब्याज दर तय आज होती है, लेकिन उसका भुगतान अवधि के अंत में होता है!"
+            }
+          },
+          "onScreenIntent": "Payment in Arrears & Forward Rate Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider date t_k when the 3-month floating rate R_k is observed. The caplet payoff is not disbursed at t_k, but exactly 3 months later at date t_{k+1}!"
+            },
+            "hi": {
+              "display": "मान लीजिए टाइम t-k पर 3 महीने की फ्लोटिंग दर R-k ऑब्जर्व हुई। तो कैपलेट का पेऑफ टाइम t-k पर नहीं, बल्कि ठीक 3 महीने बाद टाइम t-k-प्लस-वन पर मिलेगा!"
+            }
+          },
+          "onScreenIntent": "Payment in Arrears & Forward Rate Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The payoff formula evaluates to: Notional L multiplied by accrual fraction delta times max(R_k - R_K, 0)."
+            },
+            "hi": {
+              "display": "इसका पेऑफ फॉर्मूला है: नोशनल L गुणा एक्रूअल फ्रैक्शन डेल्टा गुणा मैक्सिमम ऑफ R-k माइनस कैप रेट R-K, कॉमा शून्य।"
+            }
+          },
+          "onScreenIntent": "Payment in Arrears & Forward Rate Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under the t_{k+1}-forward measure, forward rate F_k becomes a pure driftless martingale, unlocking exact analytical valuation!"
+            },
+            "hi": {
+              "display": "जब हम t-k-प्लस-वन फॉरवर्ड मेज़र लगाते हैं, तो फॉरवर्ड रेट F-k स्वयं एक प्योर मार्टिंगेल बन जाता है, जिससे प्राइसिंग का रास्ता पूरी तरह साफ हो जाता है!"
+            }
+          },
+          "onScreenIntent": "Payment in Arrears & Forward Rate Dynamics",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Payment in Arrears & Forward Rate Dynamics",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Payment in Arrears & Forward Rate Dynamics: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Black's Caplet & Floorlet Formulas",
+      "purpose": "Black's Caplet & Floorlet Formulas: Foundational quantitative principles",
+      "takeaways": [
+        "Black's Caplet & Floorlet Formulas: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now observe Black's classic formulation for caplets and floorlets. Each caplet behaves precisely as a European call option on a forward rate."
+            },
+            "hi": {
+              "display": "अब देखिए ब्लैक का कैपलेट और फ्लोरलेट फॉर्मूला। प्रत्येक कैपलेट एक यूरोपियन कॉल ऑप्शन की तरह व्यवहार करता है।"
+            }
+          },
+          "onScreenIntent": "Black's Caplet & Floorlet Formulas",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The caplet price is: Notional L * delta * discount factor P(0, t_{k+1}) * [F_k N(d1) - R_K N(d2)]."
+            },
+            "hi": {
+              "display": "कैपलेट की कीमत होती है: नोशनल L गुणा डेल्टा गुणा डिस्काउंट फैक्टर P(0, t-k-प्लस-वन) टाइम्स ब्रैकेट में फॉरवर्ड रेट F-k टाइम्स N(d1) माइनस कैप रेट R-K टाइम्स N(d2)।"
+            }
+          },
+          "onScreenIntent": "Black's Caplet & Floorlet Formulas",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Similarly, the floorlet price is: discounted notional multiplied by [R_K N(-d2) - F_k N(-d1)]."
+            },
+            "hi": {
+              "display": "इसी प्रकार फ्लोरलेट की कीमत होती है: डिस्काउंटेड नोशनल गुणा ब्रैकेट में R-K टाइम्स N(-d2) माइनस F-k टाइम्स N(-d1)।"
+            }
+          },
+          "onScreenIntent": "Black's Caplet & Floorlet Formulas",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And the foundational arbitrage identity is Cap-Floor Parity: Cap minus Floor identically equals an Interest Rate Swap!"
+            },
+            "hi": {
+              "display": "और सबसे सुंदर संबंध है 'कैप-फ्लोर पैरिटी': कैप माइनस फ्लोर ठीक एक इंटरेस्ट रेट स्वैप के बराबर होता है!"
+            }
+          },
+          "onScreenIntent": "Black's Caplet & Floorlet Formulas",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Black's Caplet & Floorlet Formulas",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Black's Caplet & Floorlet Formulas: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Cap Stripping: Flat Volatility vs Spot Caplet Volatility",
+      "purpose": "Cap Stripping: Flat Volatility vs Spot Caplet Volatility: Foundational quantitative principles",
+      "takeaways": [
+        "Cap Stripping: Flat Volatility vs Spot Caplet Volatility: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In broker markets, asking for a 5-year cap quote returns a single volatility number—such as 22%. This is known as Flat Volatility."
+            },
+            "hi": {
+              "display": "ब्रोकर मार्केट्स में जब आप 5 साल का कैप पूछते हैं, तो ब्रोकर आपको एक ही वोलैटिलिटी नंबर देता है—उदाहरण के लिए 22%। इसे 'फ्लैट वोलैटिलिटी' कहते हैं।"
+            }
+          },
+          "onScreenIntent": "Cap Stripping: Flat Volatility vs Spot Caplet Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But in reality, a 5-year cap contains 19 separate quarterly caplets! Can a 6-month caplet share the exact same volatility as a 5-year caplet? Absolutely not!"
+            },
+            "hi": {
+              "display": "लेकिन वास्तव में 5 साल के कैप में 19 अलग-अलग कैपलेट्स होते हैं! क्या पहले साल के कैपलेट और पांचवें साल के कैपलेट की वोलैटिलिटी एक समान हो सकती है? बिल्कुल नहीं!"
+            }
+          },
+          "onScreenIntent": "Cap Stripping: Flat Volatility vs Spot Caplet Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Quantitative desks run Cap Stripping algorithms. Bootstrapping across sequential 1-year, 2-year, and 3-year caps extracts the true marginal Spot Volatility sigma_k for each caplet."
+            },
+            "hi": {
+              "display": "क्वांट डेस्क 'कैप स्ट्रिपिंग' एल्गोरिदम चलाती हैं। हम 1 साल, 2 साल, 3 साल के कैप प्राइसेज से बूटस्ट्रैप करके प्रत्येक व्यक्तिगत कैपलेट की असली 'स्पॉट वोलैटिलिटी' सिग्मा-k निकालते हैं।"
+            }
+          },
+          "onScreenIntent": "Cap Stripping: Flat Volatility vs Spot Caplet Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This spot volatility term structure typically exhibits a pronounced hump at the 1-to-2-year tenor, reflecting peak monetary policy uncertainty!"
+            },
+            "hi": {
+              "display": "यह स्पॉट वोलैटिलिटी कर्व आमतौर पर 1 से 2 साल के बीच में एक 'हंप' बनाता है, जो मॉनेटरी पॉलिसी की अनिश्चितता को दर्शाता है!"
+            }
+          },
+          "onScreenIntent": "Cap Stripping: Flat Volatility vs Spot Caplet Volatility",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Cap Stripping: Flat Volatility vs Spot Caplet Volatility",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Cap Stripping: Flat Volatility vs Spot Caplet Volatility: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "European Swaptions: Payer vs Receiver",
+      "purpose": "European Swaptions: Payer vs Receiver: Foundational quantitative principles",
+      "takeaways": [
+        "European Swaptions: Payer vs Receiver: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now enter the largest options market on earth: European Swaptions! A swaption is the right to enter an interest rate swap at a predetermined fixed strike rate."
+            },
+            "hi": {
+              "display": "अब आइए दुनिया के सबसे बड़े ऑप्शन्स मार्केट पर: यूरोपियन स्वैपशन्स! स्वैपशन भविष्य में एक तय फिक्स्ड रेट पर इंटरेस्ट रेट स्वैप में प्रवेश करने का अधिकार है।"
+            }
+          },
+          "onScreenIntent": "European Swaptions: Payer vs Receiver",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Payer Swaption grants the right to pay fixed and receive floating. When market rates rise, the payer swaption gains massive value—behaving as a call option on swap rates!"
+            },
+            "hi": {
+              "display": "'पेयर स्वैपशन' होल्डर को फिक्स्ड रेट देने और फ्लोटिंग रेट पाने का अधिकार देता है। जब भविष्य में ब्याज दरें बढ़ती हैं, तो पेयर स्वैपशन में भारी मुनाफा होता है—यह स्वैप रेट पर एक कॉल ऑप्शन है!"
+            }
+          },
+          "onScreenIntent": "European Swaptions: Payer vs Receiver",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A Receiver Swaption grants the right to receive fixed and pay floating. When market rates plunge, it yields substantial profit—behaving as a put option on swap rates!"
+            },
+            "hi": {
+              "display": "'रिसीवर स्वैपशन' होल्डर को फिक्स्ड रेट पाने और फ्लोटिंग देने का अधिकार देता है। जब ब्याज दरें गिरती हैं, तो यह मुनाफा देता है—यानी यह स्वैप रेट पर एक पुट ऑप्शन है!"
+            }
+          },
+          "onScreenIntent": "European Swaptions: Payer vs Receiver",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "European Swaptions: Payer vs Receiver",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "European Swaptions: Payer vs Receiver: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Black's Swaption Formula & The Annuity Measure",
+      "purpose": "Black's Swaption Formula & The Annuity Measure: Foundational quantitative principles",
+      "takeaways": [
+        "Black's Swaption Formula & The Annuity Measure: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For swaption pricing, Black's model adopts the Swap Annuity A(t) as numeraire. The annuity equals the weighted sum of all coupon discount factors."
+            },
+            "hi": {
+              "display": "स्वैपशन की प्राइसिंग के लिए ब्लैक मॉडल 'स्वैप एन्युइटी' A(t) को न्युमेरेयर बनाता है। एन्युइटी सभी कैश फ्लो डिस्काउंट फैक्टर्स का कुल जोड़ है।"
+            }
+          },
+          "onScreenIntent": "Black's Swaption Formula & The Annuity Measure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under this Annuity Measure, the forward par swap rate s(t) becomes a driftless martingale—its expected future value strictly equals spot forward swap rate s_0!"
+            },
+            "hi": {
+              "display": "इस एन्युइटी मेज़र में फॉरवर्ड पार स्वैप रेट s(t) एक ड्रिफ्टलेस मार्टिंगेल बन जाता है—यानी इसका अपेक्षित टर्मिनल मान वर्तमान फॉरवर्ड स्वैप रेट s-0 के बराबर होता है!"
+            }
+          },
+          "onScreenIntent": "Black's Swaption Formula & The Annuity Measure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The European payer swaption value evaluates to: Notional L * Annuity A(0) * [s_0 N(d1) - s_K N(d2)]."
+            },
+            "hi": {
+              "display": "यूरोपियन पेयर स्वैपशन की वैल्यू होती है: नोशनल L गुणा एन्युइटी A(0) गुणा ब्रैकेट में s-0 N(d1) माइनस स्ट्राइक s-K N(d2)।"
+            }
+          },
+          "onScreenIntent": "Black's Swaption Formula & The Annuity Measure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And the receiver swaption evaluates to: Notional L * Annuity A(0) * [s_K N(-d2) - s_0 N(-d1)]! This elegant formula is Wall Street's universal gold standard!"
+            },
+            "hi": {
+              "display": "और रिसीवर स्वैपशन की वैल्यू होती है: नोशनल L गुणा एन्युइटी A(0) गुणा ब्रैकेट में s-K N(-d2) माइनस s-0 N(-d1)! यह एलिगेंट फॉर्मूला पूरे वॉल स्ट्रीट का गोल्ड स्टैंडर्ड है!"
+            }
+          },
+          "onScreenIntent": "Black's Swaption Formula & The Annuity Measure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Black's Swaption Formula & The Annuity Measure",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Black's Swaption Formula & The Annuity Measure: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Active Recall: Caplet Payment in Arrears Timing",
+      "purpose": "Active Recall: Caplet Payment in Arrears Timing: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: Caplet Payment in Arrears Timing: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Test your comprehension of fixed income option timing. A corporate treasurer buys a 3-month caplet with cap rate 4.0% on a $10M notional. The 3-month floating rate resets at 5.0% on date t_k. Exactly when and how much cash is paid?"
+            },
+            "hi": {
+              "display": "अब अपनी फिक्स्ड इनकम डेरिवेटिव्स टाइमिंग समझ का परीक्षण कीजिए। एक कॉर्पोरेट ट्रेजरर 10 मिलियन डॉलर नोशनल पर 4.0% कैप रेट वाला 3-महीने का कैपलेट खरीदता है। रीसेट तारीख t-k पर 3-महीने की फ्लोटिंग दर 5.0% फिक्स होती है। वास्तव में कब और कितना कैश पेऑफ मिलेगा?"
+            }
+          },
+          "onScreenIntent": "Active Recall: Caplet Payment in Arrears Timing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Consider the accrual fraction delta of 0.25 years, the 1.0% interest rate excess, and the strict market payment-in-arrears convention."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: Caplet Payment in Arrears Timing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A: $25,000 paid at date t_{k+1}! Notional $10M * 0.25 years * 1.0% excess rate = $25,000, paid in arrears at period end t_{k+1}!"
+            },
+            "hi": {
+              "display": "सही उत्तर है विकल्प ए: 25,000 डॉलर, तारीख t-k-प्लस-वन पर! 10 मिलियन डॉलर गुणा 0.25 साल गुणा 1.0% का अंतर बराबर 25,000 डॉलर बनता है, और 'पेमेंट इन एरियर्स' नियम के कारण यह अवधि के अंत में t-k-प्लस-वन पर मिलता है!"
+            }
+          },
+          "onScreenIntent": "Active Recall: Caplet Payment in Arrears Timing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Institutional Reality: The Swaption Matrix & Volatility Smile",
+      "purpose": "Institutional Reality: The Swaption Matrix & Volatility Smile: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Reality: The Swaption Matrix & Volatility Smile: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In interbank markets, swaptions are quoted across a massive 2D grid known as the Swaption Matrix."
+            },
+            "hi": {
+              "display": "इंटरबैंक मार्केट्स में स्वैपशन्स की कोट्स एक विशाल 2D ग्रिड में दी जाती हैं जिसे 'स्वैपशन मैट्रिक्स' कहते हैं।"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The Swaption Matrix & Volatility Smile",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "One axis lists Option Expiry—from 1 month to 10 years—while the other lists Underlying Swap Tenor—from 1 year to 30 years."
+            },
+            "hi": {
+              "display": "एक अक्ष पर ऑप्शन की मैच्योरिटी होती है—जैसे 1 महीना से 10 साल—और दूसरे अक्ष पर अंडरलाइंग स्वैप का टेनर होता है—जैसे 1 साल से 30 साल।"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The Swaption Matrix & Volatility Smile",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When interest rates hit zero and turned negative, Black's lognormal model failed. Modern markets transitioned to the Bachelier Normal Model, quoting normal volatility in basis points!"
+            },
+            "hi": {
+              "display": "जब 2008 के बाद ब्याज दरें शून्य और नेगेटिव हो गईं, तो ब्लैक का लॉग-नॉर्मल मॉडल फेल होने लगा। इसलिए आज मार्केट्स 'बैशेलिए नॉर्मल मॉडल' का उपयोग करते हैं, जहां वोलैटिलिटी बेसिस पॉइंट्स में कोट होती है!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: The Swaption Matrix & Volatility Smile",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Summary: 8 Institutional Rules of Caps, Floors & Swaptions",
+      "purpose": "Summary: 8 Institutional Rules of Caps, Floors & Swaptions: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Caps, Floors & Swaptions: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us codify the 8 institutional rules of caps, floors, and swaptions. Rule 1: Caplet rates fix at t_k, but cash settlements occur in arrears at t_{k+1}."
+            },
+            "hi": {
+              "display": "चलिए कैप्स, फ्लोर्स और स्वैपशन्स के 8 मुख्य नियमों को संहिताबद्ध करते हैं। नियम 1: कैपलेट की दर t-k पर तय होती है, लेकिन भुगतान एरियर्स में t-k-प्लस-वन पर होता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Caps, Floors & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 2: A cap is structurally a portfolio of European call caplets on forward rates. Rule 3: A floor is a portfolio of European put floorlets."
+            },
+            "hi": {
+              "display": "नियम 2: एक कैप वास्तव में फॉरवर्ड रेट्स पर यूरोपियन कॉल ऑप्शन्स यानी कैपलेट्स का पोर्टफोलियो है। नियम 3: एक फ्लोर फ्लोटिंग रेट्स पर पुट ऑप्शन्स यानी फ्लोरलेट्स का पोर्टफोलियो है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Caps, Floors & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 4: Cap minus Floor identically equals an Interest Rate Swap, enabling zero-cost collars."
+            },
+            "hi": {
+              "display": "नियम 4: कैप माइनस फ्लोर ठीक एक इंटरेस्ट रेट स्वैप के बराबर होता है, जो कॉलर संरचना को जन्म देता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Caps, Floors & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Cap stripping recursively bootstraps marginal spot volatilities from quoted flat volatilities."
+            },
+            "hi": {
+              "display": "नियम 5: कोटेड फ्लैट वोलैटिलिटी से प्रत्येक व्यक्तिगत कैपलेट की मार्जिनल स्पॉट वोलैटिलिटी निकालने के लिए कैप स्ट्रिपिंग की जाती है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Caps, Floors & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 6: Payer swaptions grant the right to pay fixed, gaining when rates rise. Rule 7: Receiver swaptions grant the right to receive fixed."
+            },
+            "hi": {
+              "display": "नियम 6: पेयर स्वैपशन फिक्स्ड देने का अधिकार है और यह बढ़ती दरों में लाभ देता है। नियम 7: रिसीवर स्वैपशन फिक्स्ड पाने का अधिकार है और गिरती दरों में लाभ देता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Caps, Floors & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 8: Using Swap Annuity A(t) as numeraire, Black's formula prices swaptions exactly, with Bachelier normal models deployed for negative rates!"
+            },
+            "hi": {
+              "display": "और नियम 8: स्वैप एन्युइटी A(t) को न्युमेरेयर मानकर ब्लैक का फॉर्मूला पार स्वैप रेट पर सटीक रूप से लागू होता है, और नेगेटिव रेट्स में बैशेलिए नॉर्मल मॉडल का उपयोग किया जाता है!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Caps, Floors & Swaptions",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Caps, Floors & Swaptions",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Closing Wisdom & Gateway to Chapter 30",
+      "purpose": "Closing Wisdom & Gateway to Chapter 30: Foundational quantitative principles",
+      "takeaways": [
+        "Closing Wisdom & Gateway to Chapter 30: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "You have now mastered the mathematical foundations, forward measures, and institutional conventions of Caps, Floors, and European Swaptions."
+            },
+            "hi": {
+              "display": "सर, आज इंटरेस्ट रेट डेरिवेटिव्स के सबसे विशाल मार्केट्स—कैप्स, फ्लोर्स और स्वैपशन्स—का गणित और संस्थागत नियम पूरी तरह स्पष्ट हो गए हैं!"
+            }
+          },
+          "onScreenIntent": "Closing Wisdom & Gateway to Chapter 30",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "With standard market models firmly established, we next confront the subtle nonlinear realities of fixed income. In Chapter 30, we advance into Convexity, Timing, and Quanto Adjustments."
+            },
+            "hi": {
+              "display": "बहुत खूब राजू! तुमने फिक्स्ड इनकम के स्टैंडर्ड मार्केट मॉडल्स पर विजय प्राप्त कर ली है। अब अगले चैप्टर 30 में हम 'कॉन्वेक्सिटी, टाइमिंग और क्वांटो एडजस्टमेंट्स' के सूक्ष्म गणित में प्रवेश करेंगे!"
+            }
+          },
+          "onScreenIntent": "Closing Wisdom & Gateway to Chapter 30",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Closing Wisdom & Gateway to Chapter 30",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1427 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch34",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 34",
+  "partLabel": "Part 1",
+  "title": "Energy and Commodity Derivatives: Carrying Costs & Seasonality",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 66,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "Commodity Derivatives: The Physical Reality",
+      "purpose": "Spot vs Derivative Disconnect: Financial derivatives on physical commodities behave radically differently from financial stocks and bonds.",
+      "takeaways": [
+        "Spot vs Derivative Disconnect: Financial derivatives on physical commodities behave radically differently from financial stocks and bonds.",
+        "Carrying Cost Reality: Physical storage, insurance, transport friction, and convenience yield dictate commodity forward curves.",
+        "The Roll Yield Trap: Buying upward-sloping futures curves in contango creates relentless capital decay for long-term investors."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Sharma ji, I noticed that even when spot crude oil rose from $40 to $60, several commodity ETFs suffered 20-30% losses! How is this paradox possible?"
+            },
+            "hi": {
+              "display": "Sharma ji, maine notice kiya ki jab spot crude oil price 40 dollar se badhkar 60 dollar hua, tab bhi kai retail commodity ETFs ne 20 se 30 percent ka loss report kiya! Aisa paradox kaise sambhav hai?"
+            }
+          },
+          "onScreenIntent": "Commodity Derivatives: The Physical Reality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Raju, financial shares and physical commodities are fundamentally different. Holding shares in a demat account incurs zero storage cost and yields dividends."
+            },
+            "hi": {
+              "display": "Raju, financial shares aur physical commodities mein zameen-aasmaan ka farq hai. Share ko vault ya demat account mein rakhne par koi storage kharcha nahi hota, balki dividend milta hai."
+            }
+          },
+          "onScreenIntent": "Commodity Derivatives: The Physical Reality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But physical oil, wheat, or copper incurs immense storage, tank, and insurance costs. This cost of carry pushes futures into contango, inflicting severe negative roll yields upon rolling."
+            },
+            "hi": {
+              "display": "Lekin physical crude oil, wheat ya copper ko store karne ke liye tank farm, silo aur insurance ka bhari cost lagta hai. Is cost of carry ke kaaran futures curve contango mein chali jati hai, jisse har mahine futures contract roll karte samay negative roll yield ka bhari nuksan hota hai."
+            }
+          },
+          "onScreenIntent": "Commodity Derivatives: The Physical Reality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In John Hull's Chapter 34 Part 1, we master physical carrying costs, convenience yields, contango, backwardation, and 3:2:1 crack spreads from first principles."
+            },
+            "hi": {
+              "display": "John C. Hull ke Chapter 34 Part 1 mein hum commodity derivatives ke physical carrying costs, convenience yield, contango, backwardation aur 3:2:1 crack spreads ko first-principles se master karenge."
+            }
+          },
+          "onScreenIntent": "Commodity Derivatives: The Physical Reality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Commodity Derivatives: The Physical Reality",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Spot vs Derivative Disconnect: Financial derivatives on physical commodities behave radically differently from financial stocks and bonds."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Carrying Cost Reality: Physical storage, insurance, transport friction, and convenience yield dictate commodity forward curves."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "The Structural Divide: Contango vs. Backwardation",
+      "purpose": "Contango (F_0 > S_0): Forward prices exceed spot due to financing and storage costs (r + u > y).",
+      "takeaways": [
+        "Contango (F_0 > S_0): Forward prices exceed spot due to financing and storage costs (r + u > y).",
+        "Backwardation (S_0 > F_0): Spot trades at a premium due to acute physical scarcity and high convenience yield (y > r + u).",
+        "Roll Yield Driver: Contango penalizes long investors; backwardation rewards long futures positions."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In commodity markets, forward curves trade in two contrasting structural regimes: Contango and Backwardation."
+            },
+            "hi": {
+              "display": "Commodity markets mein forward curve do contrasting regimes mein trade karti hai: pehla Contango aur doosra Backwardation."
+            }
+          },
+          "onScreenIntent": "The Structural Divide: Contango vs. Backwardation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When physical inventory is abundant, storage costs and interest push futures above spot — this is Contango, where F_0 > S_0."
+            },
+            "hi": {
+              "display": "Jab physical inventory prachur matra mein available hoti hai, toh storage cost aur interest rate milkar futures price ko spot se upar push kar dete hain — ise Contango kehte hain, jahan F zero S zero se bada hota hai."
+            }
+          },
+          "onScreenIntent": "The Structural Divide: Contango vs. Backwardation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But during acute physical shortages, buyers pay spot premiums to keep factories operating. High convenience yields push spot above futures: Backwardation."
+            },
+            "hi": {
+              "display": "Lekin jab market mein immediate physical scarcity hoti hai, toh factory ya refinery ko chalaye rakhne ke liye spot premium pay kiya jata hai. Is high convenience yield ke kaaran spot price futures se upar nikal jata hai, jise Backwardation kehte hain."
+            }
+          },
+          "onScreenIntent": "The Structural Divide: Contango vs. Backwardation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Structural Divide: Contango vs. Backwardation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Contango (F_0 > S_0): Forward prices exceed spot due to financing and storage costs (r + u > y)."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Backwardation (S_0 > F_0): Spot trades at a premium due to acute physical scarcity and high convenience yield (y > r + u)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "The Four Pillars of Commodity Derivatives",
+      "purpose": "Pillar 1: Generalized Carrying Cost: Integrates interest financing r, physical storage u, and convenience yield y.",
+      "takeaways": [
+        "Pillar 1: Generalized Carrying Cost: Integrates interest financing r, physical storage u, and convenience yield y.",
+        "Pillar 2: Endogenous Convenience Yield: Quantifies the unhedgeable operational value of holding physical stock.",
+        "Pillar 3: Storage Capacity Boundaries: Physical infrastructure limits that can trigger violent market dislocations."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Understanding commodity derivatives requires mastering four essential institutional pillars."
+            },
+            "hi": {
+              "display": "Commodity derivatives ke framework ko samajhne ke liye chaar sansthagat pillars ko master karna mandatory hai."
+            }
+          },
+          "onScreenIntent": "The Four Pillars of Commodity Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1 is Generalized Cost of Carry (r + u); Pillar 2 is Convenience Yield y, measuring the operational benefit of physical stock."
+            },
+            "hi": {
+              "display": "Pillar One hai Generalized Cost of Carry, jisme financial rate r ke sath physical warehouse lease cost u shamil hota hai. Pillar Two hai Convenience Yield y, jo physical inventory ke holding benefit ko measure karta hai."
+            }
+          },
+          "onScreenIntent": "The Four Pillars of Commodity Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3 represents Storage Saturation Limits; Pillar 4 encompasses Processing Spreads like the refining industry's 3:2:1 crack spread."
+            },
+            "hi": {
+              "display": "Pillar Three hai Storage Saturation Limits, jahan tank full hone par prices negative zone mein gir sakti hain. Aur Pillar Four hai Cross-Commodity Processing Spreads, jaise refining industry ka prasiddh 3:2:1 crack spread."
+            }
+          },
+          "onScreenIntent": "The Four Pillars of Commodity Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These four pillars bridge financial martingale theory with the inviolable physical laws of commodity supply chains."
+            },
+            "hi": {
+              "display": "Yeh chaar pillars equity derivatives ke martingales ko physical reality ke laws ke sath integrate karte hain."
+            }
+          },
+          "onScreenIntent": "The Four Pillars of Commodity Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Four Pillars of Commodity Derivatives",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Pillar 1: Generalized Carrying Cost: Integrates interest financing r, physical storage u, and convenience yield y."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Pillar 2: Endogenous Convenience Yield: Quantifies the unhedgeable operational value of holding physical stock."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Mathematical Derivation of Commodity Forward Pricing",
+      "purpose": "Forward Valuation Equation: F_0 = S_0 * e^((r + u - y)T) defines the continuous theoretical forward price.",
+      "takeaways": [
+        "Forward Valuation Equation: F_0 = S_0 * e^((r + u - y)T) defines the continuous theoretical forward price.",
+        "Implied Convenience Yield: y = r + u - (1/T) ln(F_0 / S_0) extracts operational value directly from market prices.",
+        "Arbitrage Boundary Asymmetry: Reverse cash-and-carry is restricted because shorting physical commodities without inventory is impossible."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us derive the commodity forward pricing equation: F_0 = S_0 e^{(r + u - y)T}."
+            },
+            "hi": {
+              "display": "Aaiye commodity forward price ke mathematical derivation ko dekhein: F zero equals S zero into e ki power r plus u minus y into T."
+            }
+          },
+          "onScreenIntent": "Mathematical Derivation of Commodity Forward Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Here u is storage cost rate and y is convenience yield. Note that y cannot be traded directly; it is inferred endogenously from forward prices."
+            },
+            "hi": {
+              "display": "Yahan u continuous storage cost rate hai aur y convenience yield hai. Notice karein ki convenience yield ko directly trade nahi kiya ja sakta; iski value market forward curve se mathematically extract hoti hai."
+            }
+          },
+          "onScreenIntent": "Mathematical Derivation of Commodity Forward Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rearranging yields y = r + u - (1/T)ln(F_0 / S_0). During backwardation, convenience yield substantially exceeds carrying costs."
+            },
+            "hi": {
+              "display": "Formula ko rearrange karne par y barabar r plus u minus one by T into natural log of F zero divided by S zero banta hai. Jab market backwardation mein hota hai, toh convenience yield carrying costs se kaafi zyada hoti hai."
+            }
+          },
+          "onScreenIntent": "Mathematical Derivation of Commodity Forward Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Mathematical Derivation of Commodity Forward Pricing",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Forward Valuation Equation: F_0 = S_0 * e^((r + u - y)T) defines the continuous theoretical forward price."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Implied Convenience Yield: y = r + u - (1/T) ln(F_0 / S_0) extracts operational value directly from market prices."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "Metals Divide: Precious vs Industrial Base Metals",
+      "purpose": "Precious Metals (Gold/Silver): Enormous historical stockpiles ensure convenience yield y ≈ 0, keeping forward curves in perpetual contango.",
+      "takeaways": [
+        "Precious Metals (Gold/Silver): Enormous historical stockpiles ensure convenience yield y ≈ 0, keeping forward curves in perpetual contango.",
+        "Gold Lease Rate Arbitrage: F_0 = S_0 * e^((r - r_l)T) links gold forwards to central bank bullion lending rates.",
+        "Base Metals (Copper/Zinc): Pure industrial inputs with low inventory cushions that experience violent backwardation spikes."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In metals markets, a profound structural divide exists between precious metals and industrial base metals."
+            },
+            "hi": {
+              "display": "Metals market mein precious metals aur industrial base metals ke beech ek profound structural difference hota hai."
+            }
+          },
+          "onScreenIntent": "Metals Divide: Precious vs Industrial Base Metals",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Gold and silver possess high stock-to-flow ratios; virtually all mined bullion exists in vaults, ensuring y ≈ 0 and perpetual contango."
+            },
+            "hi": {
+              "display": "Gold aur Silver ka Stock-to-Flow ratio bohot uncha hota hai; duniya ka lagbhag saara sona vaults mein surakshit hai, isliye convenience yield lagbhag zero hoti hai aur gold curve hamesha contango mein rehti hai."
+            }
+          },
+          "onScreenIntent": "Metals Divide: Precious vs Industrial Base Metals",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, copper and aluminum are industrial inputs with tight stockpiles; supply shocks drive copper into sharp backwardation."
+            },
+            "hi": {
+              "display": "Iske vipreet, Copper aur Aluminum pure industrial inputs hain jinki inventory limited hoti hai. Demand surge ya mine strike ke samay copper backwardation mein chala jata hai kyunki physical delivery immediate chahiye hoti hai."
+            }
+          },
+          "onScreenIntent": "Metals Divide: Precious vs Industrial Base Metals",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Metals Divide: Precious vs Industrial Base Metals",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Precious Metals (Gold/Silver): Enormous historical stockpiles ensure convenience yield y ≈ 0, keeping forward curves in perpetual contango."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Gold Lease Rate Arbitrage: F_0 = S_0 * e^((r - r_l)T) links gold forwards to central bank bullion lending rates."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Agricultural Seasonality & Storage Cycles",
+      "purpose": "Harvest Seasonality: Annual agricultural harvest cycles produce predictable seasonal forward curve shifts.",
+      "takeaways": [
+        "Harvest Seasonality: Annual agricultural harvest cycles produce predictable seasonal forward curve shifts.",
+        "Pre-Harvest Scarcity: Old-crop inventories deplete, driving cash grain into backwardation.",
+        "Post-Harvest Glut: Fresh crops flood storage elevators, causing local storage costs u to spike and pushing the curve into steep contango."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Agricultural commodities like wheat, corn, and soybeans adhere strictly to biological harvest calendars."
+            },
+            "hi": {
+              "display": "Agricultural commodities jaise wheat, corn aur soybeans biological harvest cycles ke niyam follow karte hain."
+            }
+          },
+          "onScreenIntent": "Agricultural Seasonality & Storage Cycles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Just before harvest, old-crop grain inventories hit annual troughs, driving cash prices into backwardation."
+            },
+            "hi": {
+              "display": "Harvest se theek pehle pichle saal ka bacha hua stock sabse kam hota hai, isliye convenience yield badhne se cash market backwardation display karti hai."
+            }
+          },
+          "onScreenIntent": "Agricultural Seasonality & Storage Cycles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "But as new harvests flood elevators, storage space commands high premia, shifting forward curves into steep contango."
+            },
+            "hi": {
+              "display": "Lekin jaise hi nayi fasal aati hai, grain elevators bhar jaate hain aur local storage capacity mehengi ho jaati hai, jisse forward curve steep contango mein shift ho jaati hai."
+            }
+          },
+          "onScreenIntent": "Agricultural Seasonality & Storage Cycles",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Agricultural Seasonality & Storage Cycles",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Harvest Seasonality: Annual agricultural harvest cycles produce predictable seasonal forward curve shifts."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Pre-Harvest Scarcity: Old-crop inventories deplete, driving cash grain into backwardation."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Energy Refining Economics: The 3:2:1 Crack Spread",
+      "purpose": "Refining Transformation: 3 barrels of crude oil yield approximately 2 barrels of gasoline and 1 barrel of distillate (diesel/heating oil).",
+      "takeaways": [
+        "Refining Transformation: 3 barrels of crude oil yield approximately 2 barrels of gasoline and 1 barrel of distillate (diesel/heating oil).",
+        "Crack Margin Formula: Crack = [2 * P_gas * 42 + 1 * P_heat * 42 - 3 * P_crude] / 3.",
+        "Institutional Hedging: Refiners lock in processing margins by buying crude oil futures and simultaneously selling product futures."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In energy, the 3:2:1 crack spread is the benchmark for measuring and hedging petroleum refining margins."
+            },
+            "hi": {
+              "display": "Energy sector mein petroleum refiners ke profit margin ko measure aur hedge karne ke liye 3:2:1 Crack Spread benchmark mana jata hai."
+            }
+          },
+          "onScreenIntent": "Energy Refining Economics: The 3:2:1 Crack Spread",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A standard refinery cracks three barrels of crude oil into two barrels of gasoline and one barrel of diesel or heating oil."
+            },
+            "hi": {
+              "display": "Ek standard refinery teen barrel crude oil ko process karke do barrel gasoline aur ek barrel diesel ya heating oil produce karti hai."
+            }
+          },
+          "onScreenIntent": "Energy Refining Economics: The 3:2:1 Crack Spread",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To lock margins, desks buy 3 crude contracts and sell 2 gasoline plus 1 heating oil contract, insulating cash flows from crude volatility."
+            },
+            "hi": {
+              "display": "Refinery margin lock karne ke liye desks teen crude oil contracts buy karte hain aur do gasoline tatha ek heating oil contract sell karke crude price fluctuations se apne operating cash flow ko insulate karte hain."
+            }
+          },
+          "onScreenIntent": "Energy Refining Economics: The 3:2:1 Crack Spread",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Energy Refining Economics: The 3:2:1 Crack Spread",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Refining Transformation: 3 barrels of crude oil yield approximately 2 barrels of gasoline and 1 barrel of distillate (diesel/heating oil)."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Crack Margin Formula: Crack = [2 * P_gas * 42 + 1 * P_heat * 42 - 3 * P_crude] / 3."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Storage Saturation & April 2020 Negative Oil",
+      "purpose": "Physical Delivery Reality: WTI futures settle into physical crude oil tanks in Cushing, Oklahoma.",
+      "takeaways": [
+        "Physical Delivery Reality: WTI futures settle into physical crude oil tanks in Cushing, Oklahoma.",
+        "Tank Saturation: When regional storage reaches 100%, marginal storage cost u -> infinity.",
+        "Negative Pricing Breakdown: On April 20, 2020, financial longs without physical storage were forced to pay physical buyers -$37.63 per barrel to take delivery."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On April 20, 2020, derivatives history saw its most dramatic shock when May WTI crude futures settled at -$37.63 per barrel!"
+            },
+            "hi": {
+              "display": "Bees April do hazaar bees ko derivatives history ki sabse dramatic ghatna ghati, jab May do hazaar bees WTI crude futures minus thirty-seven dollars sixty-three cents par settle hua!"
+            }
+          },
+          "onScreenIntent": "Storage Saturation & April 2020 Negative Oil",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "WTI settles into physical delivery in Cushing, Oklahoma. When pandemic lockdowns filled all storage to 100%, storage costs exploded."
+            },
+            "hi": {
+              "display": "WTI contract physical delivery par settle hota hai Cushing, Oklahoma mein. Jab global lockdowns ke dauran Cushing ke saare storage tanks hundred percent bhar gaye, tab storage cost u infinity tak chali gayi."
+            }
+          },
+          "onScreenIntent": "Storage Saturation & April 2020 Negative Oil",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Financial paper traders lacking storage infrastructure were forced to pay physical operators $37.50 cash per barrel just to take the oil!"
+            },
+            "hi": {
+              "display": "Non-physical paper traders jinke paas crude store karne ka koi saadhan nahi tha, unhe delivery se bachne ke liye physical operators ko har barrel par saadhe saintees dollar cash dena pada!"
+            }
+          },
+          "onScreenIntent": "Storage Saturation & April 2020 Negative Oil",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Storage Saturation & April 2020 Negative Oil",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Physical Delivery Reality: WTI futures settle into physical crude oil tanks in Cushing, Oklahoma."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Tank Saturation: When regional storage reaches 100%, marginal storage cost u -> infinity."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Electricity Derivatives: The Non-Storability Frontier",
+      "purpose": "Non-Storability: Electricity cannot be stored at grid scale; supply and demand must match continuously.",
+      "takeaways": [
+        "Non-Storability: Electricity cannot be stored at grid scale; supply and demand must match continuously.",
+        "Extreme Volatility: Power prices can surge from $30/MWh to over $5,000/MWh within minutes during grid emergencies.",
+        "Spark Spread Options: Natural gas power plants value generating capacity as real call options on the power-gas spark spread."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The most extreme commodity is electricity, because power cannot be economically stored at grid scale."
+            },
+            "hi": {
+              "display": "Commodity universe ka sabse extreme asset Electricity hai, kyunki ise grid scale par economically store nahi kiya ja sakta."
+            }
+          },
+          "onScreenIntent": "Electricity Derivatives: The Non-Storability Frontier",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Transmission grids require continuous second-by-second supply-demand balance. Outages can spike power from $30 to over $5,000/MWh."
+            },
+            "hi": {
+              "display": "Har second transmission grid par supply aur demand exact barabar hona chahiye. Heatwaves ya generator outages ke dauran power prices tees dollar se paanch hazaar dollar prati megawatt hour tak jump kar jaati hain."
+            }
+          },
+          "onScreenIntent": "Electricity Derivatives: The Non-Storability Frontier",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To manage this extreme volatility, electric utilities deploy Spark Spreads and weather derivatives extensively."
+            },
+            "hi": {
+              "display": "Is extreme volatility ko hedge karne ke liye power utilities Spark Spreads aur weather derivatives ka extensive use karti hain."
+            }
+          },
+          "onScreenIntent": "Electricity Derivatives: The Non-Storability Frontier",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Electricity Derivatives: The Non-Storability Frontier",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Non-Storability: Electricity cannot be stored at grid scale; supply and demand must match continuously."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Extreme Volatility: Power prices can surge from $30/MWh to over $5,000/MWh within minutes during grid emergencies."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Convenience Yield & Market Regime Challenge",
+      "purpose": "Numerical Scenario: Spot crude S_0 = $80, 6-month futures F_0 = $76, risk-free rate r = 4%, storage cost u = 3%.",
+      "takeaways": [
+        "Numerical Scenario: Spot crude S_0 = $80, 6-month futures F_0 = $76, risk-free rate r = 4%, storage cost u = 3%.",
+        "Calculated Yield: Implied convenience yield y = 4% + 3% - (1/0.5) ln(76/80) = 7% - 2(-0.05129) = 17.26%.",
+        "Market Classification: Backwardation (y > r + u), confirming physical supply tightness."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Evaluate the numerical scenario: Spot oil is $80, 6-mo futures is $76, r = 4%, storage is 3%. What is implied convenience yield y and market regime? Ponder the options."
+            },
+            "hi": {
+              "display": "Screen par diye gaye numerical scenario ko evaluate kijiye: Spot crude oil price 80 dollar hai, 6-month futures price 76 dollar hai, risk-free rate 4 percent hai aur storage cost 3 percent hai. Market ka implied annual convenience yield y kya hai aur forward curve kis structure mein hai? Options par vichar kijiye."
+            }
+          },
+          "onScreenIntent": "Convenience Yield & Market Regime Challenge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Apply y = r + u - (1/T) ln(F_0 / S_0) and compare y against (r + u)."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Convenience Yield & Market Regime Challenge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option B is correct: Convenience yield is 17.26% and market is in Backwardation. F_0 < S_0 confirms backwardation; formula yields 17.26%."
+            },
+            "hi": {
+              "display": "Uchit vikalp Option B hai: Convenience yield 17.26 percent hai aur market Backwardation mein hai. Kyunki futures price spot se kam hai, market backwardation mein hai. Formula mein values rakhne par: four plus three minus two into log of 76 divided by 80 calculate karne par y seventeen point twenty-six percent nikalta hai."
+            }
+          },
+          "onScreenIntent": "Convenience Yield & Market Regime Challenge",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Cautionary Desk Wisdom: The Delivery Trap",
+      "purpose": "First Notice Day Discipline: Financial traders must close out or roll physical delivery futures prior to First Notice Day.",
+      "takeaways": [
+        "First Notice Day Discipline: Financial traders must close out or roll physical delivery futures prior to First Notice Day.",
+        "Terminal Liquidity Evaporation: In expiring commodity contracts, open interest drops precipitously as commercial players demand physical settlement.",
+        "Operational Readiness: Without pipelines, storage leases, or barge offloading rights, holding expiring contracts is catastrophic."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Sharma ji, what is the single biggest lesson quant traders must learn from the April 2020 negative oil collapse?"
+            },
+            "hi": {
+              "display": "Sharma ji, April 2020 ki negative crude price ghatna se retail aur quant traders ko sabse bada sabak kya seekhna chahiye?"
+            }
+          },
+          "onScreenIntent": "Cautionary Desk Wisdom: The Delivery Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Raju, the ultimate rule is: if you lack pipeline connections, storage tanks, or refinery rights, you must roll or close before First Notice Day."
+            },
+            "hi": {
+              "display": "Raju, sabse bada sansthagat niyam yeh hai ki agar aapke paas pipeline connection, storage tank ya refinery nahi hai, toh First Notice Day se pehle contract ko roll ya close karna anivarya hai."
+            }
+          },
+          "onScreenIntent": "Cautionary Desk Wisdom: The Delivery Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Paper derivatives ultimately anchor to physical reality. At expiry, contracts are no longer numbers; they become thousands of physical oil barrels!"
+            },
+            "hi": {
+              "display": "Paper derivatives hamesha physical reality ke anukool hote hain. Expiry par contract abstract number nahi rehta, balki hazaron barrel heavy crude oil ban jata hai!"
+            }
+          },
+          "onScreenIntent": "Cautionary Desk Wisdom: The Delivery Trap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Cautionary Desk Wisdom: The Delivery Trap",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "First Notice Day Discipline: Financial traders must close out or roll physical delivery futures prior to First Notice Day."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Terminal Liquidity Evaporation: In expiring commodity contracts, open interest drops precipitously as commercial players demand physical settlement."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Master Summary: 8 Rules of Commodity Derivatives",
+      "purpose": "Pillar 1: Carrying Cost Foundation: F_0 = S_0 * e^((r + u - y)T) defines the cost-of-carry for physical commodities.",
+      "takeaways": [
+        "Pillar 1: Carrying Cost Foundation: F_0 = S_0 * e^((r + u - y)T) defines the cost-of-carry for physical commodities.",
+        "Pillar 2: Convenience Yield Metric: y measures the implicit operational utility of holding physical inventory.",
+        "Pillar 3: Contango vs Backwardation: Roll yield is negative in contango and positive in backwardation."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Commodity forwards differ from financial assets due to physical storage cost u and convenience yield y."
+            },
+            "hi": {
+              "display": "Aaiye Commodity Derivatives ke 8 sansthagat niyam summarize karte hain. Rule 1: Commodity forward pricing financial assets se alag hoti hai kyunki isme physical storage cost u aur convenience yield y shamil hota hai."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Rules of Commodity Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 2: Inventory gluts produce Contango (F_0 > S_0); Rule 3: Physical scarcity drives convenience yield up into Backwardation (S_0 > F_0)."
+            },
+            "hi": {
+              "display": "Rule 2: Jab inventory surplus hoti hai, market Contango mein hota hai jahan futures price spot se upar rehti hai. Rule 3: Physical scarcity ke dauran convenience yield surge hone se market Backwardation mein chala jata hai."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Rules of Commodity Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 4: Long index funds suffer heavy negative roll yield in contango; Rule 5: High stock-to-flow keeps precious metals in contango."
+            },
+            "hi": {
+              "display": "Rule 4: Long commodity futures index funds Contango mein lagatar negative roll yield ka shikar hote hain. Rule 5: High stock-to-flow ke kaaran Gold aur Silver lagbhag hamesha contango mein rehte hain."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Rules of Commodity Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 6: Ags exhibit seasonal pre-harvest backwardation and post-harvest contango; Rule 7: Refiners lock margins via 3:2:1 crack spreads."
+            },
+            "hi": {
+              "display": "Rule 6: Agricultural commodities harvest seasons ke anuroop pre-harvest backwardation aur post-harvest contango display karti hain. Rule 7: Energy refiners 3:2:1 crack spread se crude-to-fuel margin lock karte hain."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Rules of Commodity Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 8: Non-physical traders must exit before First Notice Day to avoid devastating physical storage saturation traps."
+            },
+            "hi": {
+              "display": "Rule 8: Physical delivery futures mein non-physical traders ko First Notice Day se pehle mandatory exit lena zaroori hai taaki storage saturation traps se bacha ja sake."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Rules of Commodity Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight rules establish the complete institutional pricing and risk management framework of Chapter 34 Part 1."
+            },
+            "hi": {
+              "display": "Yeh aath niyam John C. Hull ke Chapter 34 Part 1 ke physical commodity pricing aur risk management ka complete institutional framework pradan karte hain."
+            }
+          },
+          "onScreenIntent": "Master Summary: 8 Rules of Commodity Derivatives",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Master Summary: 8 Rules of Commodity Derivatives",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

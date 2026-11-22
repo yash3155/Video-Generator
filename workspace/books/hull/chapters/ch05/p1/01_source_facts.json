@@ -1,0 +1,112 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch05",
+  "partId": "p1",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "definition",
+      "statement": "An investment asset is an asset held for investment purposes by significant numbers of investors (e.g., gold, silver, stocks, bonds). Arbitrageurs can readily buy or sell them, enforcing two-sided no-arbitrage bounds.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.1",
+        "page": "103"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "definition",
+      "statement": "A consumption asset is an asset held primarily for commercial consumption or manufacturing (e.g., crude oil, copper, corn). Because short selling physical inventory is difficult, arbitrage enforces only an upper price bound.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.1",
+        "page": "103"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "formula",
+      "statement": "For an investment asset providing no income, the forward price is F_0 = S_0 * e^(r * T), where S_0 is spot price, r is risk-free rate, and T is time to maturity.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.2",
+        "page": "105"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "definition",
+      "statement": "Cash-and-carry arbitrage occurs when F_0 > S_0 * e^(r * T): the trader borrows S_0 at rate r, buys spot asset, and shorts forward contract at F_0, locking in riskless profit F_0 - S_0 * e^(r * T).",
+      "citation": {
+        "chapter": "5",
+        "section": "5.2",
+        "page": "106"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "definition",
+      "statement": "Reverse cash-and-carry arbitrage occurs when F_0 < S_0 * e^(r * T): the trader short sells the spot asset, invests proceeds at rate r, and buys the forward contract at F_0, locking in profit S_0 * e^(r * T) - F_0.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.2",
+        "page": "107"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "formula",
+      "statement": "For an investment asset providing known cash income with present value I, the forward price is F_0 = (S_0 - I) * e^(r * T).",
+      "citation": {
+        "chapter": "5",
+        "section": "5.3",
+        "page": "108"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "formula",
+      "statement": "For an investment asset providing a known continuous dividend yield q, the forward price is F_0 = S_0 * e^((r - q) * T).",
+      "citation": {
+        "chapter": "5",
+        "section": "5.4",
+        "page": "111"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "formula",
+      "statement": "The value f of a long forward contract with delivery price K is f = (F_0 - K) * e^(-r * T) = S_0 - I - K * e^(-r * T). At contract initiation when K = F_0, f = 0.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.5",
+        "page": "114"
+      }
+    },
+    {
+      "id": "F09",
+      "category": "numerical_example",
+      "statement": "Consider a 1-year forward on a non-dividend stock trading at $100 with r = 5.0%. Theoretical forward price is $100 * e^(0.05 * 1) = $105.13. If market forward price is $108.00, cash-and-carry locks in $2.87 riskless profit.",
+      "citation": {
+        "chapter": "5",
+        "section": "5.2",
+        "page": "106"
+      }
+    }
+  ],
+  "realWorldProblem": {
+    "actors": "Equity index arbitrageurs, institutional derivatives desks, and corporate hedging officers",
+    "situation": "Pricing forward and futures contracts and enforcing no-arbitrage bounds across equities, indices, and bonds",
+    "failure": "Mispricing forwards or misunderstanding short-sale dividend obligations creates fatal tracking errors and massive trading losses",
+    "invention": "Cash-and-carry replication, reverse cash-and-carry, and continuous dividend yield pricing models",
+    "factIds": [
+      "F01",
+      "F03",
+      "F04",
+      "F05",
+      "F06",
+      "F07",
+      "F08"
+    ]
+  }
+}

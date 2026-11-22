@@ -1,0 +1,1427 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch33",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 33",
+  "partLabel": "Part 1",
+  "title": "Hull Chapter 33 (Part 1): Swaps Revisited — Multi-Curve Framework & Collateralized Valuation",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 64,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The 2008 Lehman Shock & The Death of Single-Curve Swap Pricing",
+      "purpose": "Lehman Shock: In September 2008, the LIBOR-OIS spread exploded from 10 bps to 364 bps overnight.",
+      "takeaways": [
+        "Lehman Shock: In September 2008, the LIBOR-OIS spread exploded from 10 bps to 364 bps overnight.",
+        "Single-Curve Failure: The pre-2008 assumption that unsecured bank lending is risk-free caused catastrophic mispricing.",
+        "Collateralized Reality: Standardized swaps cleared under CSAs must be discounted using the risk-free overnight rate (OIS/SOFR)."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Sharma ji, in Chapter 7 we learned that swap valuation was simple—floating rate notes always trade at par! Why did global banks suffer billions in unexplained swap losses in 2008?"
+            },
+            "hi": {
+              "display": "Sharma ji, Chapter 7 mein humne padha tha ki swap valuation kitna aasan hota hai—floating rate note hamesha par par trade karta hai! Toh 2008 crisis mein global banks ko swaps mein billions ke unexplained losses kyun jhelne pade?"
+            }
+          },
+          "onScreenIntent": "The 2008 Lehman Shock & The Death of Single-Curve Swap Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because the classical model assumed interbank lending was risk-free! When Lehman collapsed in September 2008, panic exploded the LIBOR-OIS spread from 10 bps to 364 bps overnight!"
+            },
+            "hi": {
+              "display": "Kyunki purana classical model yeh assume karta tha ki interbank lending risk-free hai! September 2008 mein jab Lehman Brothers dooba, toh pure market mein panic fail gaya aur LIBOR-OIS spread 10 basis points se badhkar seedhe 364 basis points par pahunch gaya!"
+            }
+          },
+          "onScreenIntent": "The 2008 Lehman Shock & The Death of Single-Curve Swap Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Swaps were fully secured with cash collateral under CSAs, yet discounted using unsecured LIBOR rates. This single-curve flaw caused massive pricing errors."
+            },
+            "hi": {
+              "display": "Swaps bilateral CSA agreements ke tahat cash collateral se fully protected the, lekin unki discounting unsecured LIBOR rate se ki ja rahi thi. Is single-curve mismatch ne banks ke cash flows ko galat price kar diya."
+            }
+          },
+          "onScreenIntent": "The 2008 Lehman Shock & The Death of Single-Curve Swap Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 33, we rebuild swap pricing to modern institutional standards, decoupling cash flow projection from collateral discounting."
+            },
+            "hi": {
+              "display": "John Hull ke 33vein adhyay mein, hum swap valuation ko completely modern institutional standards par rebuild karenge, jahan cash flow projection aur collateral discounting ko alag-alag curves se model kiya jata hai."
+            }
+          },
+          "onScreenIntent": "The 2008 Lehman Shock & The Death of Single-Curve Swap Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The 2008 Lehman Shock & The Death of Single-Curve Swap Pricing",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Lehman Shock: In September 2008, the LIBOR-OIS spread exploded from 10 bps to 364 bps overnight."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Single-Curve Failure: The pre-2008 assumption that unsecured bank lending is risk-free caused catastrophic mispricing."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Pre-2008 Single-Curve vs Post-2008 Multi-Curve Paradigm",
+      "purpose": "Pre-2008 Single Curve: One LIBOR curve used simultaneously to project forward floating rates and discount cash flows.",
+      "takeaways": [
+        "Pre-2008 Single Curve: One LIBOR curve used simultaneously to project forward floating rates and discount cash flows.",
+        "Post-2008 Multi-Curve: Separate curves: Tenor curve projects floating rates; OIS/SOFR curve discounts collateralized cash flows.",
+        "CSA Margin Impact: Cash posted as variation margin earns the overnight rate, making OIS the true risk-free funding cost."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Observe this structural divide: Pre-2008, a single LIBOR curve projected floating cash flows and discounted all future payments."
+            },
+            "hi": {
+              "display": "Screen par is structural divide ko dhyan se dekhiye. Pre-2008 era mein, keval ek single LIBOR curve se floating rates bhi project hote the aur future cash flows ko discount bhi kiya jata tha."
+            }
+          },
+          "onScreenIntent": "Pre-2008 Single-Curve vs Post-2008 Multi-Curve Paradigm",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under modern Credit Support Annexes (CSAs), counterparties post daily cash variation margin, earning the overnight interest rate."
+            },
+            "hi": {
+              "display": "Lekin post-2008 financial architecture mein, Credit Support Annex yaani CSA ke tahat dono counterparties daily cash margin exchange karti hain, jis par overnight interest rate milta hai."
+            }
+          },
+          "onScreenIntent": "Pre-2008 Single-Curve vs Post-2008 Multi-Curve Paradigm",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because posted collateral earns the overnight rate, no-arbitrage mandates discounting all collateralized cash flows strictly on the OIS curve."
+            },
+            "hi": {
+              "display": "Chunki posted collateral par overnight return milta hai, isliye no-arbitrage principle ke tahat swap ke sabhi cash flows ko keval OIS curve se hi discount kiya jana anivarya hai."
+            }
+          },
+          "onScreenIntent": "Pre-2008 Single-Curve vs Post-2008 Multi-Curve Paradigm",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Pre-2008 Single-Curve vs Post-2008 Multi-Curve Paradigm",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Pre-2008 Single Curve: One LIBOR curve used simultaneously to project forward floating rates and discount cash flows."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Post-2008 Multi-Curve: Separate curves: Tenor curve projects floating rates; OIS/SOFR curve discounts collateralized cash flows."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "The 4 Pillars of Modern Multi-Curve Swap Valuation",
+      "purpose": "Pillar 1: OIS Discounting: All future expected cash flows discounted using the collateralized OIS/SOFR curve.",
+      "takeaways": [
+        "Pillar 1: OIS Discounting: All future expected cash flows discounted using the collateralized OIS/SOFR curve.",
+        "Pillar 2: Tenor Projection Curves: Dedicated forward curves for each payment frequency (1M, 3M, 6M, 12M).",
+        "Pillars 3 & 4: Cash-by-Cash & Basis: Cash-by-cash coupon forecasting and non-zero cross-currency basis spreads."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The modern swap valuation framework is built upon four fundamental institutional pillars."
+            },
+            "hi": {
+              "display": "Modern Swap Valuation ke poore framework ko char fundamental pillars par establish kiya gaya hai."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Modern Multi-Curve Swap Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1 is OIS Collateral Discounting, determining the true risk-free present value of secured cash flows."
+            },
+            "hi": {
+              "display": "Pehla pillar hai OIS Collateral Discounting, jo swap ke risk-free cash flows ka true present value nikalta hai."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Modern Multi-Curve Swap Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2 is Tenor-Specific Projection Curves, capturing the distinct credit and liquidity premia across 3M and 6M tenors."
+            },
+            "hi": {
+              "display": "Doosra pillar hai Tenor-Specific Projection Curves, kyunki 3-month aur 6-month borrowing costs ke beech ka spread ab constant nahi hota."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Modern Multi-Curve Swap Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillars 3 and 4 are cash-by-cash coupon forecasting and cross-currency basis spreads in global FX swaps."
+            },
+            "hi": {
+              "display": "Teesra pillar hai Cash-by-Cash Individual Forecasting, aur chautha pillar hai Cross-Currency Basis Spreads."
+            }
+          },
+          "onScreenIntent": "The 4 Pillars of Modern Multi-Curve Swap Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The 4 Pillars of Modern Multi-Curve Swap Valuation",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Pillar 1: OIS Discounting: All future expected cash flows discounted using the collateralized OIS/SOFR curve."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Pillar 2: Tenor Projection Curves: Dedicated forward curves for each payment frequency (1M, 3M, 6M, 12M)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "Decoupling Projection from Discounting & Why FRN Does Not Equal Par",
+      "purpose": "The Classical Fallacy: A floating-rate note equals par only when the coupon rate exactly equals the discount rate.",
+      "takeaways": [
+        "The Classical Fallacy: A floating-rate note equals par only when the coupon rate exactly equals the discount rate.",
+        "Multi-Curve Reality: Floating coupons pay term forward rates (F_k) but are discounted at overnight OIS rates (r_OIS).",
+        "Result: Because F_k > r_OIS, a newly reset floating-rate note trades at a premium to par, invalidating bond shortcuts."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Classical textbooks used a shortcut: on reset dates, floating-rate bonds equal par. In a multi-curve reality, this rule fails completely!"
+            },
+            "hi": {
+              "display": "Classical finance textbooks mein ek shortcut sikhaya jata tha: reset date par floating-rate bond hamesha par value 100 par hota hai. Lekin multi-curve reality mein yeh rule bilkul toot jata hai!"
+            }
+          },
+          "onScreenIntent": "Decoupling Projection from Discounting & Why FRN Does Not Equal Par",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because coupons pay 6-month forward rates but discount at lower OIS rates! When coupon exceeds discount yield, the bond trades at a premium to par."
+            },
+            "hi": {
+              "display": "Kyunki bond ka coupon 6-month floating rate par calculate hota hai, lekin use discount lower OIS rate par kiya ja raha hai! Jab coupon rate discount rate se zyada ho, toh bond par par nahi balki premium par trade karega."
+            }
+          },
+          "onScreenIntent": "Decoupling Projection from Discounting & Why FRN Does Not Equal Par",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Thus, John Hull emphasizes that bond shortcuts are obsolete; we must forecast each floating coupon individually and discount via OIS."
+            },
+            "hi": {
+              "display": "Isliye John Hull samjhate hain ki ab hum bond-difference shortcut use nahi kar sakte; hume har ek expected cash flow ko alag se forecast karke OIS discount factor se multiply karna hoga."
+            }
+          },
+          "onScreenIntent": "Decoupling Projection from Discounting & Why FRN Does Not Equal Par",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Decoupling Projection from Discounting & Why FRN Does Not Equal Par",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Classical Fallacy: A floating-rate note equals par only when the coupon rate exactly equals the discount rate."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Multi-Curve Reality: Floating coupons pay term forward rates (F_k) but are discounted at overnight OIS rates (r_OIS)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The General Multi-Curve Swap Valuation Formula",
+      "purpose": "Swap Net Present Value: V_swap = L * sum tau_i [ F_i(0, t_{i-1}, t_i) - R_K ] * P_OIS(0, t_i).",
+      "takeaways": [
+        "Swap Net Present Value: V_swap = L * sum tau_i [ F_i(0, t_{i-1}, t_i) - R_K ] * P_OIS(0, t_i).",
+        "Forward Rate Projection: F_i calculated from tenor projection zero-curve: F_i = (1/tau_i) * [ P_proj(t_{i-1})/P_proj(t_i) - 1 ].",
+        "Annuity Factor (DV01): A_n = sum tau_i * P_OIS(0, t_i) represents the dollar value of 1 basis point change in fixed rate."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Examine Hull Equation 33.4: The universal multi-curve interest rate swap valuation formula."
+            },
+            "hi": {
+              "display": "Screen par dekhiye Hull Equation 33.4: Modern Vanilla Interest Rate Swap ka universal valuation formula."
+            }
+          },
+          "onScreenIntent": "The General Multi-Curve Swap Valuation Formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notional principal L multiplies day-count fraction tau, computing the spread between floating forward rate F_i and fixed rate R_K."
+            },
+            "hi": {
+              "display": "Notional L ko time interval tau se multiply kiya jata hai, aur floating forward rate F i aur fixed rate R K ke difference ko calculate kiya jata hai."
+            }
+          },
+          "onScreenIntent": "The General Multi-Curve Swap Valuation Formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Each net cash flow is discounted via P_OIS. Dividing total floating PV by the annuity factor yields the fair market par swap rate."
+            },
+            "hi": {
+              "display": "Phir har ek net cash flow ko OIS discount factor P OIS se multiply karke sum kar diya jata hai. Fair market Par Swap Rate nikalne ke liye, floating cash flows ke present value ko annuity factor se divide kiya jata hai."
+            }
+          },
+          "onScreenIntent": "The General Multi-Curve Swap Valuation Formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The General Multi-Curve Swap Valuation Formula",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Swap Net Present Value: V_swap = L * sum tau_i [ F_i(0, t_{i-1}, t_i) - R_K ] * P_OIS(0, t_i)."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Forward Rate Projection: F_i calculated from tenor projection zero-curve: F_i = (1/tau_i) * [ P_proj(t_{i-1})/P_proj(t_i) - 1 ]."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Worked Numerical Example: Valuing a Collateralized Swap",
+      "purpose": "Contract Terms: $100M notional, 1-year swap, semi-annual payments (tau = 0.5), receiving 6M floating, paying 4.0% fixed.",
+      "takeaways": [
+        "Contract Terms: $100M notional, 1-year swap, semi-annual payments (tau = 0.5), receiving 6M floating, paying 4.0% fixed.",
+        "Input Data: Period 1 floating set at 4.20%, Period 2 forward projected at 4.60%; P_OIS(0.5) = 0.9850, P_OIS(1.0) = 0.9680.",
+        "Valuation Output: Period 1 Net PV = $98,500; Period 2 Net PV = $290,400; Total Collateralized Swap Value = +$388,900."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us execute Hull's numerical example step-by-step to master multi-curve swap calculation."
+            },
+            "hi": {
+              "display": "Aaiye Hull ke is numerical example se multi-curve valuation ki calculation ko step-by-step execute karte hain."
+            }
+          },
+          "onScreenIntent": "Worked Numerical Example: Valuing a Collateralized Swap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On a $100M swap, paying 4.0% fixed and receiving 6M floating: Period 1 coupon is locked at 4.20%, yielding a net $100,000 inflow."
+            },
+            "hi": {
+              "display": "100 million dollar ke swap par party 4.0 percent fixed pay kar rahi hai aur 6-month floating receive kar rahi hai. Pehle 6 mahine ka coupon 4.20 percent par lock hai, jisse net 1 lakh dollar ka profit banta hai."
+            }
+          },
+          "onScreenIntent": "Worked Numerical Example: Valuing a Collateralized Swap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Period 2 projects a 4.60% forward rate, generating $300,000. Discounting both via OIS yields an exact swap value of +$388,900!"
+            },
+            "hi": {
+              "display": "Doosre period ke liye projection curve se forward rate 4.60 percent nikalta hai, jisse net 3 lakh dollar milte hain. Dono cash flows ko OIS discount factors se discount karne par swap ki total value theek 3 lakh 88 hazaar 900 dollar prapt hoti hai!"
+            }
+          },
+          "onScreenIntent": "Worked Numerical Example: Valuing a Collateralized Swap",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Worked Numerical Example: Valuing a Collateralized Swap",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Contract Terms: $100M notional, 1-year swap, semi-annual payments (tau = 0.5), receiving 6M floating, paying 4.0% fixed."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Input Data: Period 1 floating set at 4.20%, Period 2 forward projected at 4.60%; P_OIS(0.5) = 0.9850, P_OIS(1.0) = 0.9680."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Guided Reasoning: Impact of OIS Discount Rate Shifts",
+      "purpose": "Diagnostic Question: What happens to swap value if OIS discount rates rise by 50 bps while floating forward rates remain unchanged?",
+      "takeaways": [
+        "Diagnostic Question: What happens to swap value if OIS discount rates rise by 50 bps while floating forward rates remain unchanged?",
+        "Causal Mechanism: Higher discount rates reduce discount factors P_OIS, compressing the present value of future positive net cash flows.",
+        "Intuition: In-the-money swap assets lose value when discount rates increase, while out-of-the-money swap liabilities shrink."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us solve an intermediate reasoning problem: If floating projection curves remain unchanged but OIS discount rates rise 50 bps, what happens to swap NPV?"
+            },
+            "hi": {
+              "display": "Aaiye ab ek intermediate reasoning question solve karte hain. Maan lijiye floating projection curve theek wahi rehti hai, lekin OIS discount rates 50 basis points se badh jate hain. Toh hamare swap ki net present value par kya asar padega?"
+            }
+          },
+          "onScreenIntent": "Guided Reasoning: Impact of OIS Discount Rate Shifts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Sharma ji, higher OIS discount rates compress future discount factors P_OIS. This means the present value of our future net cash inflows must drop!"
+            },
+            "hi": {
+              "display": "Sharma ji, chunki OIS discount rates badh gaye hain, isliye future ke discount factors P OIS kam ho jayenge. Iska matlab hai ki aane wale positive cash flows ki present value ghati hui dikhegi!"
+            }
+          },
+          "onScreenIntent": "Guided Reasoning: Impact of OIS Discount Rate Shifts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exactly, Raju! Because the swap was an asset, higher discounting compressed its PV. Traders must hedge discount risk and projection risk independently."
+            },
+            "hi": {
+              "display": "Bilkul sahi Raju! Chunki swap positive asset tha, isliye higher discount rates ne uski present value ko compress kar diya. Yeh dikhata hai ki multi-curve swaps mein trader ko discount curve risk aur projection curve risk dono ko separately hedge karna padta hai."
+            }
+          },
+          "onScreenIntent": "Guided Reasoning: Impact of OIS Discount Rate Shifts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Guided Reasoning: Impact of OIS Discount Rate Shifts",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Diagnostic Question: What happens to swap value if OIS discount rates rise by 50 bps while floating forward rates remain unchanged?"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Causal Mechanism: Higher discount rates reduce discount factors P_OIS, compressing the present value of future positive net cash flows."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Cross-Currency Swaps & The Cross-Currency Basis Spread",
+      "purpose": "Classical Flat Parity: Swapping floating rate in currency A for floating rate in currency B should theoretically trade with zero spread.",
+      "takeaways": [
+        "Classical Flat Parity: Swapping floating rate in currency A for floating rate in currency B should theoretically trade with zero spread.",
+        "Offshore USD Premium: Heavy global demand by European and Asian banks to fund USD assets creates a persistent non-zero cross-currency basis (b).",
+        "Collateral Currency Risk: The interest rate paid on posted collateral depends on the currency specified in the CSA, requiring currency-adjusted discount curves."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now let us examine one of the largest derivative instruments in global finance: Cross-Currency Swaps."
+            },
+            "hi": {
+              "display": "Ab aaiye global financial markets ke sabse bade derivative instrument par chalte hain: Cross-Currency Swaps."
+            }
+          },
+          "onScreenIntent": "Cross-Currency Swaps & The Cross-Currency Basis Spread",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Theoretically, swapping floating EUR for floating USD should trade flat. In reality, massive offshore USD demand forces non-US banks to pay a basis premium!"
+            },
+            "hi": {
+              "display": "Theoretically, yadi ek European bank floating Euro dekar floating US Dollar leta hai, toh dono sides flat trade honi chahiye. Lekin reality mein, non-US banks ko US Dollars ki itni massive demand hoti hai ki ve negative spread dene ko taiyar ho jate hain!"
+            }
+          },
+          "onScreenIntent": "Cross-Currency Swaps & The Cross-Currency Basis Spread",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This spread is the Cross-Currency Basis. Furthermore, the currency of collateral posted under CSAs dictates the exact discount curve required."
+            },
+            "hi": {
+              "display": "Is extra spread ko Cross-Currency Basis Spread kaha jata hai. Iske alawa, CSA mein posted collateral ki currency swap discounting ko fundamentally alter kar sakti hai."
+            }
+          },
+          "onScreenIntent": "Cross-Currency Swaps & The Cross-Currency Basis Spread",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Cross-Currency Swaps & The Cross-Currency Basis Spread",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Classical Flat Parity: Swapping floating rate in currency A for floating rate in currency B should theoretically trade with zero spread."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Offshore USD Premium: Heavy global demand by European and Asian banks to fund USD assets creates a persistent non-zero cross-currency basis (b)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "The Post-LIBOR Benchmark Reform: Transition to SOFR & SONIA",
+      "purpose": "Death of LIBOR: Manipulation scandals and drying interbank term lending forced global regulators to decommission LIBOR by June 2023.",
+      "takeaways": [
+        "Death of LIBOR: Manipulation scandals and drying interbank term lending forced global regulators to decommission LIBOR by June 2023.",
+        "Overnight Risk-Free Rates: US transitioned to SOFR (repo-backed), UK to SONIA, Europe to €STR.",
+        "Compounding in Arrears: Because overnight rates are backward-looking, coupon cash flows are calculated by compounding daily overnight rates over the accrual period."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In 2023, the financial world witnessed a historic revolution: LIBOR was permanently decommissioned."
+            },
+            "hi": {
+              "display": "2023 mein financial world ne ek itihaasik badlav dekha: LIBOR ko hamesha ke liye retire kar diya gaya."
+            }
+          },
+          "onScreenIntent": "The Post-LIBOR Benchmark Reform: Transition to SOFR & SONIA",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In place of term LIBOR, major markets now operate on Overnight Risk-Free Rates—such as SOFR in USD and SONIA in GBP."
+            },
+            "hi": {
+              "display": "Purane term LIBOR ke sthan par, ab sabhi major currencies Overnight Risk-Free Rates use karti hain—jaise US Dollar mein SOFR aur UK mein SONIA."
+            }
+          },
+          "onScreenIntent": "The Post-LIBOR Benchmark Reform: Transition to SOFR & SONIA",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rather than fixing in advance, daily overnight rates are compounded in arrears over the period to determine the final coupon payout."
+            },
+            "hi": {
+              "display": "In rates mein term fixing pehle se pata nahi hoti; har roz ke overnight rates ko period ke end mein compound in arrears karke final swap coupon pay kiya jata hai."
+            }
+          },
+          "onScreenIntent": "The Post-LIBOR Benchmark Reform: Transition to SOFR & SONIA",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Post-LIBOR Benchmark Reform: Transition to SOFR & SONIA",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Death of LIBOR: Manipulation scandals and drying interbank term lending forced global regulators to decommission LIBOR by June 2023."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Overnight Risk-Free Rates: US transitioned to SOFR (repo-backed), UK to SONIA, Europe to €STR."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Interactive Technical Quiz: Floating Rate Bond Par Valuation",
+      "purpose": "Question Focus: Explain why a floating-rate note paying 6M forward rate does NOT trade at par on coupon reset dates under OIS discounting.",
+      "takeaways": [
+        "Question Focus: Explain why a floating-rate note paying 6M forward rate does NOT trade at par on coupon reset dates under OIS discounting.",
+        "Core Reason: Coupon rate (unsecured term yield) differs from discount rate (secured overnight yield).",
+        "Rule: A bond trades at par only when its coupon rate exactly matches its discount yield."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us test your understanding: Under modern OIS discounting, why does a newly reset floating-rate bond paying 6M forward rate NOT trade at par on coupon dates? Consider the four options on screen."
+            },
+            "hi": {
+              "display": "Aaiye multi-curve swap valuation ki conceptual understanding ko test karte hain. Modern financial markets mein, ek newly reset floating-rate bond jiska coupon 6-month floating rate pay karta hai, coupon payment ke turant baad par value 100 par trade kyun nahi karta? Screen par diye gaye charon options par dhyan se vichar kijiye."
+            }
+          },
+          "onScreenIntent": "Interactive Technical Quiz: Floating Rate Bond Par Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and consider: Compare the floating forward coupon rate against the collateralized OIS discount rate."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Interactive Technical Quiz: Floating Rate Bond Par Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option B is correct! A bond trades at par only if coupon matches discount rate. Under multi-curve, 6M coupons exceed OIS discount rates, causing the note to trade at a premium!"
+            },
+            "hi": {
+              "display": "Sahi uttar hai Option B! Ek bond par value par tabhi trade karta hai jab uska coupon rate theek discount rate ke barabar ho. Multi-curve framework mein coupon 6-month term rate se derive hota hai jabki discounting lower OIS rate se hoti hai, jisse bond typically premium par trade karta hai!"
+            }
+          },
+          "onScreenIntent": "Interactive Technical Quiz: Floating Rate Bond Par Valuation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Academic Reflection: Adapting Financial Theory to Institutional Reality",
+      "purpose": "Models Must Match Markets: When institutions shift from unsecured bilateral credit to mandatory central clearing and CSAs, valuation models must adapt.",
+      "takeaways": [
+        "Models Must Match Markets: When institutions shift from unsecured bilateral credit to mandatory central clearing and CSAs, valuation models must adapt.",
+        "Dual-Curve Independence: Risk managers must monitor projection curve delta (DV01) and discount curve delta independently.",
+        "Gateway to Part 2: Part 2 explores Non-Standard Swaps: Constant Maturity Swaps (CMS), Compounding Swaps, and Bermudan Swaptions."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Sharma ji, today I realized financial models are dynamic. When collateral posting changed post-2008, the entire swap valuation engine evolved!"
+            },
+            "hi": {
+              "display": "Sharma ji, aaj mujhe samajh aaya ki financial formulas static nahi hote. Jab 2008 mein counterparty credit aur collateral posting badli, toh pura swap valuation model badal gaya!"
+            }
+          },
+          "onScreenIntent": "Academic Reflection: Adapting Financial Theory to Institutional Reality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Exactly, Raju! A true quantitative professional understands the institutional reality behind theoretical formulas."
+            },
+            "hi": {
+              "display": "Bilkul Raju! Ek professional quant ya trader wahi hai jo theoretical formulas ke piche ke institutional assumptions ko samjhe. Multi-curve model ne financial markets ko real-world collateral dynamics ke sath align kiya hai."
+            }
+          },
+          "onScreenIntent": "Academic Reflection: Adapting Financial Theory to Institutional Reality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 33 Part 2, we will master Constant Maturity Swaps (CMS), Compounding Swaps, and Bermudan Swaptions."
+            },
+            "hi": {
+              "display": "Chapter 33 ke agle bhag mein, hum Constant Maturity Swaps yaani CMS, Compounding Swaps aur Bermudan Swaptions ke advanced valuation ko master karenge."
+            }
+          },
+          "onScreenIntent": "Academic Reflection: Adapting Financial Theory to Institutional Reality",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Academic Reflection: Adapting Financial Theory to Institutional Reality",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Models Must Match Markets: When institutions shift from unsecured bilateral credit to mandatory central clearing and CSAs, valuation models must adapt."
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Dual-Curve Independence: Risk managers must monitor projection curve delta (DV01) and discount curve delta independently."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Master Summary Thread: 8 Institutional Rules of Modern Swaps",
+      "purpose": "Decoupled Multi-Curve: Projection and collateral discounting curves are fundamentally separated.",
+      "takeaways": [
+        "Decoupled Multi-Curve: Projection and collateral discounting curves are fundamentally separated.",
+        "CSA Collateral Margin: Overnight interest paid on posted margin dictates the true risk-free discount rate.",
+        "Post-LIBOR Compounding: Modern swaps reference overnight benchmarks (SOFR, SONIA) compounded in arrears daily."
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: Pre-2008 single-curve pricing is obsolete; cash flow projection and discounting are fundamentally decoupled."
+            },
+            "hi": {
+              "display": "Aaiye Modern Swap Valuation ke 8 sansthagat niyam codified karte hain. Niyam ek: Pre-2008 single curve obsolete ho chuka hai; projection aur discounting curves fundamentally decoupled hain."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Institutional Rules of Modern Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 2: Overnight interest on CSA margin sets the risk-free discount rate; Rule 3: Floating rate notes do not trade at par on reset dates."
+            },
+            "hi": {
+              "display": "Niyam do: CSA collateral par milne wali overnight interest rate true risk-free rate banti hai, isliye discounting keval OIS/SOFR se hoti hai. Niyam teen: Floating rate notes reset date par par par trade nahi karte kyunki coupon rate OIS discount rate se zyada hoti hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Institutional Rules of Modern Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 4: Swaps must be valued cash-by-cash via individual OIS discounting; Rule 5: Par swap rates equal floating PV divided by the OIS annuity factor."
+            },
+            "hi": {
+              "display": "Niyam char: Swaps ko bond shortcut se nahi, balki har ek expected cash flow ko alag se forecast karke OIS discount factor se multiply karke value kiya jata hai. Niyam paanch: Par Swap Rate floating present value ko OIS annuity factor se divide karke nikali jati hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Institutional Rules of Modern Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 6: Cross-currency swaps exhibit non-zero basis spreads driven by offshore USD scarcity; Rule 7: Collateral currency dictates FX discount curves."
+            },
+            "hi": {
+              "display": "Niyam cheh: Global cross-currency swaps mein non-zero basis spread hota hai jo offshore USD funding scarcity ko reflect karta hai. Niyam saat: Cross-currency swaps ki discounting CSA mein pledged collateral currency par depend karti hai."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Institutional Rules of Modern Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 8: Modern post-LIBOR swaps reference overnight risk-free rates (SOFR, SONIA) compounded in arrears daily."
+            },
+            "hi": {
+              "display": "Niyam aath: Post-LIBOR era mein sabhi vanilla swaps overnight risk-free rates jaise SOFR aur SONIA ko daily compound in arrears karke execute hote hain."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Institutional Rules of Modern Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "These eight principles form the core operating standard of modern fixed-income desks, enabling precise institutional swap valuation."
+            },
+            "hi": {
+              "display": "Ye aath niyam modern fixed income trading desks ka foundational operating standard hain, jinhe master karke aap kisi bhi institutional swap portfolio ko accurately price kar sakte hain."
+            }
+          },
+          "onScreenIntent": "Master Summary Thread: 8 Institutional Rules of Modern Swaps",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Master Summary Thread: 8 Institutional Rules of Modern Swaps",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

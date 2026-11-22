@@ -1,0 +1,1488 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch28",
+  "partId": "p1",
+  "kind": "chapter_part",
+  "courseTitle": "John C. Hull — Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 28",
+  "partLabel": "Part 1",
+  "title": "Hull Chapter 28 Part 1: Martingales and Measures (Theoretical Bedrock & Forward Measures)",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 54,
+    "total": 72
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Stochastic Discounting Dilemma",
+      "purpose": "The Stochastic Discounting Dilemma: Foundational quantitative principles",
+      "takeaways": [
+        "The Stochastic Discounting Dilemma: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When pricing long-term interest rate derivatives such as swaptions or interest rate caps, interest rates themselves fluctuate stochastically across time. How do quantitative models account for this stochastic discounting?"
+            },
+            "hi": {
+              "display": "सर, जब हम लंबी अवधि के इंटरेस्ट रेट डेरिवेटिव्स जैसे स्वैपशन्स या कैप्स की वैल्यू निकालते हैं, तो इंटरेस्ट रेट्स स्वयं रैंडमली बदलते रहते हैं। इस स्टोकेस्टिक डिस्काउंटिंग को हम कैसे हैंडल करते हैं?"
+            }
+          },
+          "onScreenIntent": "The Stochastic Discounting Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In traditional risk-neutral pricing, stochastic discounting sits inside the expectation operator. If discount factors and terminal option payoffs are both random variables, calculating their covariance becomes an analytical nightmare."
+            },
+            "hi": {
+              "display": "बहुत गहरा सवाल है राजू! ट्रेडिशनल रिस्क-न्यूट्रल वैल्यूएशन में एक्सपेक्टेशन के अंदर e की पावर माइनस इंटीग्रल r dt का टर्म होता है। अगर डिस्काउंट रेट और टर्मिनल पेऑफ दोनों रैंडम हों, तो उनका कोवेरियंस निकालना गणितीय सिरदर्द बन जाता है!"
+            }
+          },
+          "onScreenIntent": "The Stochastic Discounting Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For decades, quantitative analysts struggled with these complex stochastic integrals until the monumental breakthrough of Change of Numeraire and Forward Measures."
+            },
+            "hi": {
+              "display": "दशकों तक क्वांट्स इस इंटीग्रल में उलझे रहे, जब तक कि 'चेंज ऑफ न्युमेरेयर' और 'फॉरवर्ड मेज़र्स' की खोज नहीं हुई!"
+            }
+          },
+          "onScreenIntent": "The Stochastic Discounting Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "By adopting a zero-coupon bond instead of the money market account as the valuation numeraire, stochastic discounting factors cleanly outside the expectation. Let us master this foundational martingale architecture."
+            },
+            "hi": {
+              "display": "यदि हम मनी मार्केट के बजाय ज़ीरो-कूपन बॉन्ड को अपना न्युमेरेयर बना लें, तो स्टोकेस्टिक डिस्काउंटिंग एक्सपेक्टेशन से बाहर आ जाती है! चलिए मार्टिंगेल्स और मेज़र्स के इस जादू को समझते हैं!"
+            }
+          },
+          "onScreenIntent": "The Stochastic Discounting Dilemma",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Stochastic Discounting Dilemma",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Stochastic Discounting Dilemma: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "Real-World Measure P vs Equivalent Martingale Measure Q",
+      "purpose": "Real-World Measure P vs Equivalent Martingale Measure Q: Foundational quantitative principles",
+      "takeaways": [
+        "Real-World Measure P vs Equivalent Martingale Measure Q: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The entire foundation of derivative valuation hinges on two distinct probability universes: the real-world physical measure P and the Equivalent Martingale Measure Q."
+            },
+            "hi": {
+              "display": "डेरिवेटिव्स प्राइसिंग का पूरा ढांचा दो अलग-अलग प्रोबेबिलिटी दुनियाओं पर निर्भर करता है: रियल-वर्ल्ड मेज़र P और इक्विवेलेंट मार्टिंगेल मेज़र Q।"
+            }
+          },
+          "onScreenIntent": "Real-World Measure P vs Equivalent Martingale Measure Q",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under the physical measure P, assets earn subjective risk premia with drift mu driven by investor risk aversion, which is unobservable and cannot be objectively calibrated from market prices."
+            },
+            "hi": {
+              "display": "रियल-वर्ल्ड मेज़र P में एसेट्स में पॉजिटिव रिस्क प्रीमियम और ड्रिफ्ट म्यू होता है, जो निवेशकों की व्यक्तिगत रिस्क एवर्ज़न पर निर्भर करता है। इसे सीधे मापना असंभव है।"
+            }
+          },
+          "onScreenIntent": "Real-World Measure P vs Equivalent Martingale Measure Q",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, under the Equivalent Martingale Measure Q, all relative asset prices become martingales—their expected future value equals their current price. Subjective risk preferences wash out entirely."
+            },
+            "hi": {
+              "display": "इसके विपरीत, इक्विवेलेंट मार्टिंगेल मेज़र Q में सभी रिलेटिव एसेट प्राइसेज 'मार्टिंगेल्स' बन जाती हैं—यानी उनका अपेक्षित भविष्य मूल्य वर्तमान मूल्य के बराबर होता है! यहां रिस्क प्रेफरेंसेस पूरी तरह गायब हो जाती हैं।"
+            }
+          },
+          "onScreenIntent": "Real-World Measure P vs Equivalent Martingale Measure Q",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Real-World Measure P vs Equivalent Martingale Measure Q",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Real-World Measure P vs Equivalent Martingale Measure Q: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "Four Pillars of Martingale Pricing Theory",
+      "purpose": "Four Pillars of Martingale Pricing Theory: Foundational quantitative principles",
+      "takeaways": [
+        "Four Pillars of Martingale Pricing Theory: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "We divide martingale pricing theory into four foundational pillars. The first is the Market Price of Risk theta, which must be strictly identical across all securities in an arbitrage-free market."
+            },
+            "hi": {
+              "display": "मार्टिंगेल प्राइसिंग थ्योरी को हम चार मुख्य आर्किटेक्चरल पिलर्स में विभाजित करते हैं। पहला पिलर है 'मार्केट प्राइस ऑफ रिस्क थीटा', जो नो-आर्बिट्रेज मार्केट में सभी सिक्योरिटीज के लिए समान होना चाहिए।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Martingale Pricing Theory",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second pillar is the Fundamental Theorems of Asset Pricing. The First Fundamental Theorem links no-arbitrage to the existence of an equivalent martingale measure; the Second links market completeness to its uniqueness."
+            },
+            "hi": {
+              "display": "दूसरा पिलर है 'फंडामेंटल थ्योरम्स ऑफ एसेट प्राइसिंग'। पहला थ्योरम नो-आर्बिट्रेज को ईएमएम के अस्तित्व से जोड़ता है, और दूसरा थ्योरम मार्केट कम्पलीटनेस को ईएमएम की यूनिकनेस से जोड़ता है।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Martingale Pricing Theory",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The third pillar is Choice of Numeraire and Girsanov's theorem, utilizing the Radon-Nikodym derivative to seamlessly transform probability measures between different asset benchmarks."
+            },
+            "hi": {
+              "display": "तीसरा पिलर है 'चॉइस ऑफ न्युमेरेयर' और गिरसानोव का थ्योरम। रेडॉन-निकोडिम डेरिवेटिव द्वारा हम एक प्रोबेबिलिटी मेज़र से दूसरे मेज़र में निर्बाध रूप से ट्रांजिशन करते हैं।"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Martingale Pricing Theory",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The fourth pillar encompasses Canonical Measures—the classical risk-neutral measure Q, the T-forward measure Q^T, and the annuity swap measure Q^A, guaranteeing that Black's model holds rigorously under stochastic interest rates."
+            },
+            "hi": {
+              "display": "चौथा पिलर है 'कैनोनिकल मेज़र्स'—मनी मार्केट मेज़र Q, टी-फॉरवर्ड मेज़र क्यू-टी, और स्वैप एन्युइटी मेज़र क्यू-ए, जो ब्लैक मॉडल को स्टोकेस्टिक रेट्स में भी पूरी तरह सटीक बनाते हैं!"
+            }
+          },
+          "onScreenIntent": "Four Pillars of Martingale Pricing Theory",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Four Pillars of Martingale Pricing Theory",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Four Pillars of Martingale Pricing Theory: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "The Market Price of Risk Invariant",
+      "purpose": "The Market Price of Risk Invariant: Foundational quantitative principles",
+      "takeaways": [
+        "The Market Price of Risk Invariant: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Market Price of Risk theta is the ratio of excess expected return per unit of volatility: (mu minus r) divided by sigma."
+            },
+            "hi": {
+              "display": "मार्केट प्राइस ऑफ रिस्क थीटा एक्सेस रिटर्न पर यूनिट वोलैटिलिटी का अनुपात है: म्यू माइनस r अपॉन सिग्मा।"
+            }
+          },
+          "onScreenIntent": "The Market Price of Risk Invariant",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Consider two derivatives f1 and f2 dependent on the same underlying asset. The no-arbitrage condition dictates that both securities must share the exact same market price of risk: theta_1 equals theta_2!"
+            },
+            "hi": {
+              "display": "मान लीजिए एक ही अंडरलाइंग एसेट पर दो डेरिवेटिव्स f1 और f2 ट्रेड हो रहे हैं। नो-आर्बिट्रेज का नियम कहता है कि दोनों का थीटा ठीक एक समान होना चाहिए: थीटा-वन बराबर थीटा-टू!"
+            }
+          },
+          "onScreenIntent": "The Market Price of Risk Invariant",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If theta_1 exceeded theta_2, an arbitrageur would buy f1 and short f2 in a delta-neutral ratio, earning an excess risk-free return—generating riskless arbitrage profits from thin air."
+            },
+            "hi": {
+              "display": "अगर थीटा-वन, थीटा-टू से बड़ा हो, तो ट्रेडर f1 को खरीदकर और f2 को शॉर्ट करके एक डेल्टा-न्यूट्रल पोर्टफोलियो बना सकता है, जो रिस्क-फ्री रेट से ज्यादा रिटर्न देगा—यानी मुफ्त का पैसा!"
+            }
+          },
+          "onScreenIntent": "The Market Price of Risk Invariant",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Therefore, an identical market price of risk theta must prevail across all dependent securities, locking their relative price dynamics into strict arbitrage-free alignment."
+            },
+            "hi": {
+              "display": "इसलिए पूरे बाजार में एक यूनिक मार्केट प्राइस ऑफ रिस्क स्थापित होता है, जो सभी डेरिवेटिव्स के प्राइसिंग डिस्ट्रीब्यूशन को बांध कर रखता है।"
+            }
+          },
+          "onScreenIntent": "The Market Price of Risk Invariant",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Market Price of Risk Invariant",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Market Price of Risk Invariant: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The Two Fundamental Theorems of Asset Pricing",
+      "purpose": "The Two Fundamental Theorems of Asset Pricing: Foundational quantitative principles",
+      "takeaways": [
+        "The Two Fundamental Theorems of Asset Pricing: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now observe the two most sacred laws of modern financial mathematics: The First and Second Fundamental Theorems of Asset Pricing."
+            },
+            "hi": {
+              "display": "अब क्वांट फाइनेंस के दो सबसे पवित्र नियमों को देखिए: द फर्स्ट एंड सेकंड फंडामेंटल थ्योरम्स ऑफ एसेट प्राइसिंग!"
+            }
+          },
+          "onScreenIntent": "The Two Fundamental Theorems of Asset Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The First Fundamental Theorem states: A financial market is free of arbitrage if and only if there exists at least one Equivalent Martingale Measure Q."
+            },
+            "hi": {
+              "display": "पहला फंडामेंटल थ्योरम कहता है: एक वित्तीय बाजार नो-आर्बिट्रेज केवल और केवल तब होता है, जब कम से कम एक इक्विवेलेंट मार्टिंगेल मेज़र Q मौजूद हो!"
+            }
+          },
+          "onScreenIntent": "The Two Fundamental Theorems of Asset Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Second Fundamental Theorem states: An arbitrage-free market is complete—meaning every contingent claim can be perfectly replicated—if and only if that Equivalent Martingale Measure Q is unique."
+            },
+            "hi": {
+              "display": "दूसरा फंडामेंटल थ्योरम कहता है: एक आर्बिट्रेज-फ्री मार्केट पूरी तरह कम्पलीट—यानी हर डेरिवेटिव को परफेक्टली रेप्लिकेट किया जा सकता है—केवल और केवल तब होता है, जब यह ईएमएम यूनिक हो!"
+            }
+          },
+          "onScreenIntent": "The Two Fundamental Theorems of Asset Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When markets feature unhedged stochastic volatility or discontinuous jumps, multiple equivalent martingale measures exist, rendering the market incomplete and requiring calibration directly to traded options."
+            },
+            "hi": {
+              "display": "अगर बाजार में स्टोकेस्टिक वोलैटिलिटी या जंप्स हों और पर्याप्त ऑप्शन्स ट्रेड न हो रहे हों, तो कई ईएमएम मौजूद होते हैं—यानी मार्केट इनकम्प्लीट हो जाता है!"
+            }
+          },
+          "onScreenIntent": "The Two Fundamental Theorems of Asset Pricing",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Two Fundamental Theorems of Asset Pricing",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The Two Fundamental Theorems of Asset Pricing: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Choice of Numeraire & Radon-Nikodym Transition",
+      "purpose": "Choice of Numeraire & Radon-Nikodym Transition: Foundational quantitative principles",
+      "takeaways": [
+        "Choice of Numeraire & Radon-Nikodym Transition: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A numeraire is simply a reference unit of value. Any strictly positive, non-dividend-paying traded asset N(t) can serve as an approved numeraire."
+            },
+            "hi": {
+              "display": "न्युमेरेयर का सीधा अर्थ है 'मापने की इकाई'। कोई भी स्ट्रिक्टली पॉजिटिव, नॉन-डिविडेंड पेइंग ट्रेडेड एसेट N(t) एक न्युमेरेयर बन सकता है।"
+            }
+          },
+          "onScreenIntent": "Choice of Numeraire & Radon-Nikodym Transition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The universal law of quantitative finance states: Under any numeraire N, the relative price of any other traded asset S divided by N is strictly a martingale."
+            },
+            "hi": {
+              "display": "क्वांट फाइनेंस का यूनिवर्सल नियम है: किसी भी न्युमेरेयर N के तहत, किसी भी अन्य ट्रेडेड एसेट S का रिलेटिव प्राइस S अपॉन N हमेशा एक मार्टिंगेल होता है!"
+            }
+          },
+          "onScreenIntent": "Choice of Numeraire & Radon-Nikodym Transition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To transition from numeraire g to numeraire f, we apply the Radon-Nikodym derivative dQ^f / dQ^g, equal to the terminal-to-initial ratio [f(T)/f(0)] divided by [g(T)/g(0)]."
+            },
+            "hi": {
+              "display": "एक न्युमेरेयर g से दूसरे न्युमेरेयर f में बदलने के लिए हम रेडॉन-निकोडिम डेरिवेटिव dQ-f अपॉन dQ-g का उपयोग करते हैं, जो f(T)/f(0) अपॉन g(T)/g(0) के बराबर होता है।"
+            }
+          },
+          "onScreenIntent": "Choice of Numeraire & Radon-Nikodym Transition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Girsanov's theorem specifies the exact drift adjustment of the underlying Brownian motion, transforming mathematically intractable integrals into elementary expectations."
+            },
+            "hi": {
+              "display": "गिरसानोव का थ्योरम हमें बताता है कि न्युमेरेयर बदलने से ब्राउनियन मोशन का ड्रिफ्ट कैसे एडजस्ट होता है, जिससे सभी कैलकुलेशन्स जादुई रूप से सरल हो जाती हैं।"
+            }
+          },
+          "onScreenIntent": "Choice of Numeraire & Radon-Nikodym Transition",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Choice of Numeraire & Radon-Nikodym Transition",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Choice of Numeraire & Radon-Nikodym Transition: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Three Canonical Numeraires of Quantitative Finance",
+      "purpose": "Three Canonical Numeraires of Quantitative Finance: Foundational quantitative principles",
+      "takeaways": [
+        "Three Canonical Numeraires of Quantitative Finance: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Modern financial engineering relies primarily on three canonical numeraires. The first is the Money Market Account B(t), generating the classical risk-neutral measure Q."
+            },
+            "hi": {
+              "display": "वित्तीय बाजारों में तीन सबसे महत्वपूर्ण न्युमेरेयर्स का उपयोग किया जाता है। पहला है मनी मार्केट अकाउंट B(t), जिसके तहत ट्रेडिशनल रिस्क-न्यूट्रल मेज़र Q बनता है।"
+            }
+          },
+          "onScreenIntent": "Three Canonical Numeraires of Quantitative Finance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The second is the Zero-Coupon Bond P(t, T), yielding the T-Forward Measure Q^T. Because P(T, T) identically equals 1 at maturity, discounting factors completely outside the expectation!"
+            },
+            "hi": {
+              "display": "दूसरा है ज़ीरो-कूपन बॉन्ड P(t, T), जिसके तहत T-फॉरवर्ड मेज़र Q-T बनता है। चूंकि मैच्योरिटी T पर बॉन्ड की वैल्यू निश्चित रूप से 1 होती है, इसलिए डिस्काउंटिंग पूरी तरह एक्सपेक्टेशन से बाहर आ जाती है!"
+            }
+          },
+          "onScreenIntent": "Three Canonical Numeraires of Quantitative Finance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The third is the Swap Annuity A(t), generating the Swap Measure Q^A. Under this measure, the par swap rate becomes a driftless martingale—the global institutional standard for pricing swaptions."
+            },
+            "hi": {
+              "display": "तीसरा है स्वैप एन्युइटी A(t), जिसके तहत स्वैप मेज़र Q-A बनता है। इसमें पार स्वैप रेट स्वयं एक मार्टिंगेल बन जाता है, जो स्वैपशन्स की प्राइसिंग का ग्लोबल स्टैंडर्ड है।"
+            }
+          },
+          "onScreenIntent": "Three Canonical Numeraires of Quantitative Finance",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Three Canonical Numeraires of Quantitative Finance",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Three Canonical Numeraires of Quantitative Finance: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "Rigorous Derivation of Black's Model via Forward Measure",
+      "purpose": "Rigorous Derivation of Black's Model via Forward Measure: Foundational quantitative principles",
+      "takeaways": [
+        "Rigorous Derivation of Black's Model via Forward Measure: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now witness the profound analytical power of the Forward Measure! The forward price F(t) = S(t) / P(t, T) is the ratio of two traded assets, making F(t) a pure martingale under Q^T."
+            },
+            "hi": {
+              "display": "अब देखिए फॉरवर्ड मेज़र की असली ताकत! फॉरवर्ड प्राइस F(t) बराबर स्पॉट S(t) अपॉन ज़ीरो-कूपन बॉन्ड P(t, T) होता है। चूंकि यह दो ट्रेडेड एसेट्स का अनुपात है, इसलिए F(t) फॉरवर्ड मेज़र Q-T में एक प्योर मार्टिंगेल है!"
+            }
+          },
+          "onScreenIntent": "Rigorous Derivation of Black's Model via Forward Measure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This establishes that the expected terminal forward price E^T[F(T)] identically equals the spot forward price F(t)—the forward process has zero drift."
+            },
+            "hi": {
+              "display": "इसका मतलब है कि फॉरवर्ड प्राइस का एक्सपेक्टेड फ्यूचर वैल्यू E-T ऑफ F(T) ठीक वर्तमान फॉरवर्ड प्राइस F(t) के बराबर होता है—इसमें कोई ड्रिफ्ट नहीं होता!"
+            }
+          },
+          "onScreenIntent": "Rigorous Derivation of Black's Model via Forward Measure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Evaluating the European call expectation, the discount factor P(t, T) factors outside, yielding: P(t, T) times [F(t) N(d1) minus K N(d2)]—the legendary Black 1976 formula!"
+            },
+            "hi": {
+              "display": "जब हम कॉल ऑप्शन की वैल्यू निकालते हैं, तो डिस्काउंट फैक्टर P(t, T) बाहर आ जाता है और हमें मिलता है: P(t, T) टाइम्स F(t) N(d1) माइनस K N(d2)—यानी ब्लैक का 1976 का फॉर्मूला!"
+            }
+          },
+          "onScreenIntent": "Rigorous Derivation of Black's Model via Forward Measure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This proves that Black's model is not restricted to constant interest rates; it is mathematically exact even under complex stochastic interest rate environments."
+            },
+            "hi": {
+              "display": "यह साबित करता है कि ब्लैक मॉडल केवल स्थिर ब्याज दरों के लिए नहीं, बल्कि स्टोकेस्टिक ब्याज दरों में भी 100% सटीक और वैध है!"
+            }
+          },
+          "onScreenIntent": "Rigorous Derivation of Black's Model via Forward Measure",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Rigorous Derivation of Black's Model via Forward Measure",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Rigorous Derivation of Black's Model via Forward Measure: Foundational quantitative principles"
+              },
+              {
+                "id": "p2",
+                "title": "Quantitative Valuation",
+                "description": "Continuous time replication"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "Active Recall: Forward Measure Expectation",
+      "purpose": "Active Recall: Forward Measure Expectation: Foundational quantitative principles",
+      "takeaways": [
+        "Active Recall: Forward Measure Expectation: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Test your martingale comprehension. Under the T-forward measure Q^T, what is the expected value of the terminal asset price E^T[S(T)] relative to the current forward price F(t)? Consider the options on screen."
+            },
+            "hi": {
+              "display": "अब अपनी मार्टिंगेल समझ का परीक्षण कीजिए। T-फॉरवर्ड मेज़र Q-T के तहत, मैच्योरिटी T पर टर्मिनल एसेट प्राइस की अपेक्षित वैल्यू E-T ऑफ S(T), वर्तमान फॉरवर्ड प्राइस F(t) के संदर्भ में क्या होगी?"
+            }
+          },
+          "onScreenIntent": "Active Recall: Forward Measure Expectation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate: Recall that at maturity T, S(T) identically equals F(T), and forward price F(t) is a martingale under Q^T."
+            },
+            "hi": {
+              "display": "Is mathematical concept aur financial derivation ko dhyan se samajhiye."
+            }
+          },
+          "onScreenIntent": "Active Recall: Forward Measure Expectation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 6500,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A: Exactly equal to F(t)! At maturity, S(T) identically equals F(T). Because F is a martingale under Q^T, E^T[S(T)] strictly equals the current forward price F(t)!"
+            },
+            "hi": {
+              "display": "सही उत्तर है विकल्प ए: बिल्कुल F(t) के बराबर! मैच्योरिटी पर S(T) और F(T) एक समान होते हैं। और चूंकि F फॉरवर्ड मेज़र में मार्टिंगेल है, इसलिए E-T ऑफ S(T) बराबर F(t) होता है।"
+            }
+          },
+          "onScreenIntent": "Active Recall: Forward Measure Expectation",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Institutional Reality: Numeraire Selection as Quantitative Alchemy",
+      "purpose": "Institutional Reality: Numeraire Selection as Quantitative Alchemy: Foundational quantitative principles",
+      "takeaways": [
+        "Institutional Reality: Numeraire Selection as Quantitative Alchemy: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In quantitative finance, numeraire selection is often described as mathematical alchemy. An analyst who chooses an awkward numeraire struggles with intractable stochastic discount integrals."
+            },
+            "hi": {
+              "display": "वॉल स्ट्रीट पर क्वांट्स न्युमेरेयर के चयन को 'क्वांटिटेटिव एल्केमी' कहते हैं। एक अनाड़ी ट्रेडर जटिल स्टोकेस्टिक इंटीग्रल्स में उलझ कर घंटों सिमुलेशन चलाता है।"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Numeraire Selection as Quantitative Alchemy",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, a skilled quant selects the natural numeraire—the zero-coupon bond or swap annuity—erasing stochastic discount factors and reducing complex exotics to closed-form Black formulas."
+            },
+            "hi": {
+              "display": "वहीं एक चतुर क्वांट सही न्युमेरेयर—जैसे ज़ीरो-कूपन बॉन्ड या एन्युइटी—चुनता है, जिससे सारे स्टोकेस्टिक डिस्काउंटिंग टर्म्स गायब हो जाते हैं और जटिल समस्या सेकंडों में एक साधारण ब्लैक फॉर्मूले में बदल जाती है!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Numeraire Selection as Quantitative Alchemy",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The highest standard of quantitative mastery is not solving difficult equations, but choosing the coordinates that make the equations solve themselves."
+            },
+            "hi": {
+              "display": "इसलिए याद रखिए: गणित में सबसे बड़ी बुद्धिमानी कठिन गणना करना नहीं, बल्कि ऐसी मापने की इकाई चुनना है जिससे गणना स्वतः सरल हो जाए!"
+            }
+          },
+          "onScreenIntent": "Institutional Reality: Numeraire Selection as Quantitative Alchemy",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "Which statement accurately describes the core derivatives principle?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Risk-neutral replication eliminates subjective risk preferences from derivatives pricing."
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "Summary: 8 Institutional Rules of Martingales and Measures",
+      "purpose": "Summary: 8 Institutional Rules of Martingales and Measures: Foundational quantitative principles",
+      "takeaways": [
+        "Summary: 8 Institutional Rules of Martingales and Measures: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us codify the eight institutional rules of martingales and measures."
+            },
+            "hi": {
+              "display": "चलिए मार्टिंगेल्स और मेज़र्स के 8 संस्थागत सिद्धांतों को संहिताबद्ध करते हैं। नियम 1: नो-आर्बिट्रेज मार्केट में सभी सिक्योरिटीज का मार्केट प्राइस ऑफ रिस्क थीटा समान होना चाहिए।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Martingales and Measures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1: All dependent securities must share an identical market price of risk theta. Rule 2: The First Fundamental Theorem links no-arbitrage to equivalent martingale measure existence."
+            },
+            "hi": {
+              "display": "नियम 2: पहला फंडामेंटल थ्योरम नो-आर्बिट्रेज को ईएमएम के अस्तित्व से जोड़ता है। नियम 3: दूसरा फंडामेंटल थ्योरम कम्प्लीट मार्केट को ईएमएम की यूनिकनेस से जोड़ता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Martingales and Measures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3: The Second Fundamental Theorem links market completeness to equivalent martingale measure uniqueness. Rule 4: Under any valid numeraire N, the relative asset price S/N is strictly a driftless martingale."
+            },
+            "hi": {
+              "display": "नियम 4: किसी भी वैलिड न्युमेरेयर N के तहत रिलेटिव प्राइस S अपॉन N हमेशा एक ड्रिफ्टलेस मार्टिंगेल होता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Martingales and Measures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5: Radon-Nikodym derivatives and Girsanov's theorem govern rigorous probability measure transitions."
+            },
+            "hi": {
+              "display": "नियम 5: रेडॉन-निकोडिम डेरिवेटिव और गिरसानोव थ्योरम द्वारा प्रोबेबिलिटी मेज़र्स के बीच सुरक्षित ट्रांजिशन किया जाता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Martingales and Measures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 6: The T-forward measure factors stochastic discounting outside the expectation via the zero-coupon bond numeraire."
+            },
+            "hi": {
+              "display": "नियम 6: T-फॉरवर्ड मेज़र ज़ीरो-कूपन बॉन्ड को न्युमेरेयर मानकर स्टोकेस्टिक डिस्काउंटिंग को एक्सपेक्टेशन से बाहर निकाल देता है।"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Martingales and Measures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7: Forward prices are martingales under Q^T, validating Black's formula under stochastic rates. Rule 8: The swap measure drives par swap rates to be driftless martingales."
+            },
+            "hi": {
+              "display": "नियम 7: फॉरवर्ड प्राइस फॉरवर्ड मेज़र में मार्टिंगेल है, जिससे ब्लैक का 1976 फॉर्मूला स्टोकेस्टिक रेट्स में भी पूरी तरह सटीक रहता है। और नियम 8: स्वैप मेज़र पार स्वैप रेट को मार्टिंगेल बनाता है!"
+            }
+          },
+          "onScreenIntent": "Summary: 8 Institutional Rules of Martingales and Measures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary: 8 Institutional Rules of Martingales and Measures",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Closing Capstone Wisdom & Gateway to Interest Rate Models",
+      "purpose": "Closing Capstone Wisdom & Gateway to Interest Rate Models: Foundational quantitative principles",
+      "takeaways": [
+        "Closing Capstone Wisdom & Gateway to Interest Rate Models: Foundational quantitative principles"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Probability measures and numeraires are not abstract mathematics, but the indispensable operational framework for mastering stochastic interest rate markets."
+            },
+            "hi": {
+              "display": "सर, आज पहली बार समझ आया कि क्वांट फाइनेंस में 'मेज़र्स और न्युमेरेयर्स' कोई अमूर्त गणित नहीं हैं, बल्कि वे स्टोकेस्टिक ब्याज दरों को वश में करने के सबसे शक्तिशाली औजार हैं!"
+            }
+          },
+          "onScreenIntent": "Closing Capstone Wisdom & Gateway to Interest Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 29, we harness these powerful tools to analyze Interest Rate Derivatives and Standard Market Models."
+            },
+            "hi": {
+              "display": "शाबाश राजू! तुमने क्वांट फाइनेंस की सबसे गहरी नींव रख ली है। अब अगले चैप्टर 29 में हम इन टूल्स का उपयोग करके 'इंटरेस्ट रेट डेरिवेटिव्स'—बॉन्ड ऑप्शन्स, कैप्स और स्वैपशन्स—का संपूर्ण विश्लेषण करेंगे!"
+            }
+          },
+          "onScreenIntent": "Closing Capstone Wisdom & Gateway to Interest Rate Models",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 600,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Closing Capstone Wisdom & Gateway to Interest Rate Models",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}

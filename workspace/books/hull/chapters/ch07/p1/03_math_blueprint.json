@@ -1,0 +1,78 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch07",
+  "partId": "p1",
+  "formulas": [
+    {
+      "id": "M01",
+      "name": "Swap Net Cash Flow",
+      "latex": "\\text{Net Payment} = L \\times (R_{\\text{floating}} - R_{\\text{fixed}}) \\times \\tau",
+      "variables": [
+        {
+          "symbol": "L",
+          "description": "Notional principal amount",
+          "unit": "currency"
+        },
+        {
+          "symbol": "R_floating",
+          "description": "Observed floating benchmark interest rate",
+          "unit": "decimal/year"
+        },
+        {
+          "symbol": "R_fixed",
+          "description": "Agreed fixed swap coupon rate",
+          "unit": "decimal/year"
+        },
+        {
+          "symbol": "tau",
+          "description": "Day count accrual fraction",
+          "unit": "years"
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "Swap Valuation: Bond Portfolio Model",
+      "latex": "V_{\\text{swap}} = B_{\\text{floating}} - B_{\\text{fixed}}",
+      "variables": [
+        {
+          "symbol": "V_swap",
+          "description": "Market value of interest rate swap to fixed payer",
+          "unit": "currency"
+        },
+        {
+          "symbol": "B_floating",
+          "description": "Value of floating-rate bond leg (par L at resets)",
+          "unit": "currency"
+        },
+        {
+          "symbol": "B_fixed",
+          "description": "Value of fixed-rate bond leg discounted at zero rates",
+          "unit": "currency"
+        }
+      ]
+    },
+    {
+      "id": "M03",
+      "name": "Swap Valuation: FRA Strip Model",
+      "latex": "V_{\\text{swap}} = \\sum_{i=1}^{n} L (F_i - R_K) \\tau e^{-r_i t_i}",
+      "variables": [
+        {
+          "symbol": "F_i",
+          "description": "Forward interest rate for period i",
+          "unit": "decimal/year"
+        },
+        {
+          "symbol": "R_K",
+          "description": "Fixed swap rate agreed at inception",
+          "unit": "decimal/year"
+        },
+        {
+          "symbol": "r_i",
+          "description": "Zero rate for maturity t_i",
+          "unit": "decimal/year"
+        }
+      ]
+    }
+  ]
+}

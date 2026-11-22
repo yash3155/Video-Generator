@@ -1,0 +1,87 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch15",
+  "partId": "p1",
+  "facts": [
+    {
+      "id": "F01",
+      "category": "market_rule",
+      "statement": "Core BSM Assumptions: Continuous trading, constant volatility sigma, constant risk-free rate r, Geometric Brownian Motion for stock prices, no transaction costs or taxes, and no arbitrage opportunities.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.1",
+        "page": "360"
+      }
+    },
+    {
+      "id": "F02",
+      "category": "formula",
+      "statement": "Delta-Neutral Hedging Portfolio: A riskless portfolio Pi is constructed by shorting 1 derivative f and buying delta = df/dS shares of stock S: Pi = -f + (df/dS) * S.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.2",
+        "page": "362"
+      }
+    },
+    {
+      "id": "F03",
+      "category": "formula",
+      "statement": "Itô Shock Cancellation: Expanding df via Itô's Lemma reveals that the stochastic Wiener term sigma * S * (df/dS) * dz in derivative return exactly cancels against the stock price shock (df/dS) * dS, making portfolio change dPi completely deterministic.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.2",
+        "page": "363"
+      }
+    },
+    {
+      "id": "F04",
+      "category": "market_rule",
+      "statement": "No-Arbitrage Growth on Riskless Portfolio: Because portfolio Pi carries zero stochastic risk over time interval dt, no-arbitrage equilibrium dictates that it must earn the risk-free rate r: dPi = r * Pi * dt.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.2",
+        "page": "363"
+      }
+    },
+    {
+      "id": "F05",
+      "category": "formula",
+      "statement": "The Black-Scholes-Merton PDE: Equating portfolio return to the risk-free rate produces the governing BSM PDE: df/dt + r * S * (df/dS) + 0.5 * sigma^2 * S^2 * (d^2f/dS^2) = r * f. Expected stock drift mu is completely absent.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.2",
+        "page": "364"
+      }
+    },
+    {
+      "id": "F06",
+      "category": "formula",
+      "statement": "Boundary Conditions: The BSM PDE applies to all claims dependent on stock S. Specific prices require terminal boundary conditions: f(S, T) = max(S - K, 0) for calls, and f(S, T) = max(K - S, 0) for puts.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.3",
+        "page": "365"
+      }
+    },
+    {
+      "id": "F07",
+      "category": "market_rule",
+      "statement": "Continuous Risk-Neutral Valuation: Because expected stock return mu does not enter the BSM PDE, derivative prices are invariant to investor risk aversion. Prices can be calculated by assuming a risk-neutral world where expected stock return is r and discounting expected payoffs at r.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.4",
+        "page": "366"
+      }
+    },
+    {
+      "id": "F08",
+      "category": "formula",
+      "statement": "Linear Asset Solutions: Any linear combination of underlying asset S and riskless cash bond exp(r(T-t)) satisfies the BSM PDE identically, confirming the mathematical consistency of the framework.",
+      "citation": {
+        "chapter": "15",
+        "section": "15.2",
+        "page": "364"
+      }
+    }
+  ]
+}

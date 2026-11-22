@@ -1,0 +1,51 @@
+{
+  "bookId": "hull",
+  "chapterId": "ch12",
+  "partId": "p2",
+  "formulas": [
+    {
+      "id": "M01",
+      "name": "Long Straddle Payoff and Breakevens",
+      "latex": "\\text{Payoff} = |S_T - K| - (c + p), \\quad \\text{BE}_{\\text{upper}} = K + (c + p), \\quad \\text{BE}_{\\text{lower}} = K - (c + p)",
+      "variables": [
+        {
+          "symbol": "S_T",
+          "description": "Stock price at expiration",
+          "unit": "currency"
+        },
+        {
+          "symbol": "K",
+          "description": "Strike price of call and put",
+          "unit": "currency"
+        },
+        {
+          "symbol": "c + p",
+          "description": "Combined premium paid for straddle",
+          "unit": "currency"
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "Long Strangle Payoff and Breakevens",
+      "latex": "\\text{Payoff} = \\max(S_T - K_2, 0) + \\max(K_1 - S_T, 0) - (c_2 + p_1)",
+      "variables": [
+        {
+          "symbol": "K_1",
+          "description": "Lower put strike price",
+          "unit": "currency"
+        },
+        {
+          "symbol": "K_2",
+          "description": "Higher call strike price",
+          "unit": "currency"
+        },
+        {
+          "symbol": "c_2 + p_1",
+          "description": "Combined premium paid for strangle",
+          "unit": "currency"
+        }
+      ]
+    }
+  ]
+}

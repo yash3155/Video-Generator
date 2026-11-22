@@ -1,0 +1,1754 @@
+{
+  "schemaVersion": 1,
+  "bookId": "hull",
+  "chapterId": "ch15",
+  "partId": "p2",
+  "kind": "chapter_part",
+  "courseTitle": "Options, Futures, and Other Derivatives",
+  "chapterLabel": "Chapter 15",
+  "partLabel": "Part 2",
+  "title": "The Black-Scholes-Merton Model - Part 2: Analytical Valuation & Cumulative Normals",
+  "displayLanguage": "en",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "personas": {
+    "en": {
+      "novice": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "mentor": {
+        "name": "Christopher",
+        "voice": "en-US-ChristopherNeural"
+      }
+    },
+    "hi": {
+      "novice": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "mentor": {
+        "name": "Madhur",
+        "voice": "hi-IN-MadhurNeural"
+      }
+    }
+  },
+  "progress": {
+    "index": 2,
+    "total": 2
+  },
+  "theme": "dark-classroom",
+  "provenance": {
+    "mock": false
+  },
+  "scenes": [
+    {
+      "id": "s00",
+      "index": 0,
+      "title": "The Closed-Form Crown: Solving the Master PDE",
+      "purpose": "In Part 1, we derived the governing Black-Scholes PDE: df/dt + r*S*(df/dS) + 0.5*sigma^2*S^2*(d^2f/dS^2) = r*f",
+      "takeaways": [
+        "In Part 1, we derived the governing Black-Scholes PDE: df/dt + r*S*(df/dS) + 0.5*sigma^2*S^2*(d^2f/dS^2) = r*f",
+        "By transforming coordinates into the heat diffusion equation, Fischer Black and Myron Scholes solved it analytically",
+        "Part 2 explores the resulting formulas, the meaning of N(d1) and N(d2), and implied volatility"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part 1, we derived the Black-Scholes-Merton Partial Differential Equation from first principles."
+            },
+            "hi": {
+              "display": "Part One mein humne Black-Scholes-Merton Partial Differential Equation ko first principles se derive kiya tha."
+            }
+          },
+          "onScreenIntent": "Celebrate the analytical breakthrough: transforming PDE into closed-form equations",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Closed-form crown"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now the question is: how do we solve this differential equation with boundary conditions into closed-form pricing formulas?"
+            },
+            "hi": {
+              "display": "Ab sawal ye hai ki is complex differential equation ko terminal payoff boundary condition ke sath solve karke closed-form formula kaise banaya jaye?"
+            }
+          },
+          "onScreenIntent": "Explain how variable transformation connects financial options to heat diffusion",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Heat diffusion mapping"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Its solution produces the most celebrated formula in economics: c = S_0 N(d_1) - K e^{-rT} N(d_2)."
+            },
+            "hi": {
+              "display": "Iska solution modern economics ka sabse celebrated mathematical formula deta hai: c equals S zero N d one minus K e to the minus r T N d two."
+            }
+          },
+          "onScreenIntent": "Highlight the practical impact: instantaneous evaluation of vanilla contracts",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Instantaneous evaluation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Chapter 15 Part 2, we master this formula's anatomy, the economic meanings of N(d1) and N(d2), and Implied Volatility inversion."
+            },
+            "hi": {
+              "display": "Chapter Fifteen Part Two mein hum is formula ke exact anatomy, N d one aur N d two ke economic meaning, aur Implied Volatility inversion ko master karenge."
+            }
+          },
+          "onScreenIntent": "Outline Part 2 roadmap: call formula, N(d1)/N(d2), put formula, and implied volatility",
+          "sourceFactIds": [
+            "F01",
+            "F05"
+          ],
+          "newTerms": [
+            "Part 2 analytical roadmap"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Closed-Form Crown: Solving the Master PDE",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "In Part 1, we derived the governing Black-Scholes PDE: df/dt + r*S*(df/dS) + 0.5*sigma^2*S^2*(d^2f/dS^2) = r*f"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "By transforming coordinates into the heat diffusion equation, Fischer Black and Myron Scholes solved it analytically"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s01",
+      "index": 1,
+      "title": "The Black-Scholes Call Formula: The Cash Flow Split",
+      "purpose": "The formula decomposes the call into two distinct cash legs: asset leg S0*N(d1) and cash leg K*exp(-rT)*N(d2)",
+      "takeaways": [
+        "The formula decomposes the call into two distinct cash legs: asset leg S0*N(d1) and cash leg K*exp(-rT)*N(d2)",
+        "Offset d1 = [ln(S0/K) + (r + 0.5*sigma^2)*T] / (sigma * sqrt(T)) measures moneyness plus volatility drift",
+        "Offset d2 = d1 - sigma * sqrt(T) subtracts volatility dispersion to measure exercise probability"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's mathematically unpack the exact parameters d1 and d2 of the Black-Scholes call formula."
+            },
+            "hi": {
+              "display": "Aaiye Black-Scholes call formula ke exact parameters d one aur d two ko mathematically unpack karte hain."
+            }
+          },
+          "onScreenIntent": "State the famous Black-Scholes European call pricing formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "BSM call formula"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "d1 = [ln(S0/K) + (r + σ^2/2)T] / [σ*sqrt(T)]."
+            },
+            "hi": {
+              "display": "d one barabar hai: natural log of S zero by K plus r plus sigma square by two times T, divided by sigma square root of T."
+            }
+          },
+          "onScreenIntent": "Formulate d1 and d2 mathematically",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "d1 formula",
+            "d2 formula"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And d2 is simply d1 - σ*sqrt(T), where the numerator replaces r + σ^2/2 with r - σ^2/2."
+            },
+            "hi": {
+              "display": "Aur d two simply d one minus sigma square root T hota hai, yaani numerator mein r plus ki jagah r minus sigma square by two aata hai."
+            }
+          },
+          "onScreenIntent": "Dissect the two cash legs: asset received S0*N(d1) minus strike paid K*exp(-rT)*N(d2)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Two-leg cash flow decomposition"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s01b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Notice the numerator represents a standard normal z-score normalizing current moneyness against market volatility."
+            },
+            "hi": {
+              "display": "Notice kijiye ki numerator standard normal z-score represent karta hai jo current moneyness ko volatility scale se normalize karta hai."
+            }
+          },
+          "onScreenIntent": "Introduce the standard normal cumulative distribution function N(x)",
+          "sourceFactIds": [
+            "F01",
+            "F04"
+          ],
+          "newTerms": [
+            "Standard normal CDF N(x)"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Black-Scholes Call Formula: The Cash Flow Split",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The formula decomposes the call into two distinct cash legs: asset leg S0*N(d1) and cash leg K*exp(-rT)*N(d2)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Offset d1 = [ln(S0/K) + (r + 0.5*sigma^2)*T] / (sigma * sqrt(T)) measures moneyness plus volatility drift"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "title": "The Meaning of N(d2): Risk-Neutral ITM Probability",
+      "purpose": "N(d2) is the exact risk-neutral probability that S_T > K at expiration: P_Q(S_T > K) = N(d2)",
+      "takeaways": [
+        "N(d2) is the exact risk-neutral probability that S_T > K at expiration: P_Q(S_T > K) = N(d2)",
+        "It determines whether the strike payment K must be paid at time T",
+        "Multiplying strike K by N(d2) gives expected strike payment; discounting by exp(-rT) gives present value"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "What does the term N(d2) mathematically and economically represent?"
+            },
+            "hi": {
+              "display": "Formula ka term N of d two aakhir mathematically aur economically kya represent karta hai?"
+            }
+          },
+          "onScreenIntent": "Reveal the probabilistic interpretation of N(d2)",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "N(d2) interpretation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "N(d2) is the exact risk-neutral probability that the option expires in-the-money, meaning spot price S_T > K."
+            },
+            "hi": {
+              "display": "N of d two exact risk-neutral probability hai ki option expiration par in-the-money close hoga, yaani stock price strike K se badi hogi."
+            }
+          },
+          "onScreenIntent": "Derive N(d2) as the risk-neutral probability that ln(S_T) > ln(K)",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Risk-neutral ITM probability"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The proof is direct: under risk-neutral measure, compound growth is r - σ^2/2, matching d2's numerator exactly."
+            },
+            "hi": {
+              "display": "Iska mathematical proof seedha hai: risk-neutral measure mein stock compound growth r minus sigma square by two hoti hai, jo exactly d two ke numerator se match karti hai."
+            }
+          },
+          "onScreenIntent": "Connect N(d2) to the binary cash-or-nothing call option",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Binary option equivalence"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s02b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Therefore, K e^{-rT} N(d2) is the present value of the expected strike cash paid upon exercise."
+            },
+            "hi": {
+              "display": "Isliye K e to the power minus r T times N of d two strike payment ka present value hai jo holder ko exercise karne par pay karna padega."
+            }
+          },
+          "onScreenIntent": "Summarize: N(d2) sizes the cash leg of the option payment",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Cash leg sizing"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "N(d2) = Risk-Neutral ITM Probability",
+          "tone": "neutral",
+          "points": [
+            "N(d2) is the exact risk-neutral probability that S_T > K at expiration: P_Q(S_T > K) = N(d2)",
+            "It determines whether the strike payment K must be paid at time T"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Binary Cash-or-Nothing Call",
+          "tone": "positive",
+          "points": [
+            "It determines whether the strike payment K must be paid at time T",
+            "Multiplying strike K by N(d2) gives expected strike payment; discounting by exp(-rT) gives present value"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "N(d2) is the exact risk-neutral probability that S_T > K at expiration: P_Q(S_T > K) = N(d2)"
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "title": "The Meaning of N(d1): The Delta Hedge Engine",
+      "purpose": "N(d1) is the partial derivative of call price with respect to stock price: dc/dS = N(d1) = Delta",
+      "takeaways": [
+        "N(d1) is the partial derivative of call price with respect to stock price: dc/dS = N(d1) = Delta",
+        "It tells the trader exactly how many shares of stock must be purchased to delta-hedge a short call",
+        "N(d1) is strictly greater than N(d2) because stock received in higher price states has greater conditional value"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now let's examine the first term: S0 * N(d1). What does N(d1) represent?"
+            },
+            "hi": {
+              "display": "Ab aate hain formula ke pehle term par: S zero times N of d one. N of d one kya represent karta hai?"
+            }
+          },
+          "onScreenIntent": "Introduce the financial meaning of N(d1)",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "N(d1) interpretation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "First: N(d1) is the option's exact Delta: ∂c/∂S. It indicates how many shares a trader must buy to replicate the call."
+            },
+            "hi": {
+              "display": "Pehla: N of d one option ka exact Delta hai: del c by del S zero. Yaani call option ko replicate karne ke liye trader ko kitne shares khareedne chahiye."
+            }
+          },
+          "onScreenIntent": "Differentiate the BSM formula with respect to S to prove dc/dS = N(d1)",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Delta derivation dc/dS"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Second: S0 * N(d1) is the value of an Asset-or-Nothing call: the present value of receiving the stock upon exercise."
+            },
+            "hi": {
+              "display": "Doosra: S zero times N of d one Asset-or-Nothing call ka value hai, yaani exercise hone par stock receive karne ki present value."
+            }
+          },
+          "onScreenIntent": "Explain why N(d1) strictly exceeds N(d2): conditional stock expectation",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "N(d1) vs N(d2) divergence"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s03b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because d1 > d2, N(d1) is always strictly greater than N(d2): Delta always exceeds the risk-neutral exercise probability."
+            },
+            "hi": {
+              "display": "Kyunki d one d two se bada hota hai, N of d one hamesha N of d two se bada hota hai: Delta hamesha exercise probability se zyada hota hai."
+            }
+          },
+          "onScreenIntent": "Showcase N(d1) as the real-time execution engine for dynamic delta hedging desks",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Dynamic hedge execution engine"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "N(d1) = Option Delta (Hedge Ratio)",
+          "tone": "neutral",
+          "points": [
+            "N(d1) is the partial derivative of call price with respect to stock price: dc/dS = N(d1) = Delta",
+            "It tells the trader exactly how many shares of stock must be purchased to delta-hedge a short call"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "N(d2) = ITM Exercise Probability",
+          "tone": "positive",
+          "points": [
+            "It tells the trader exactly how many shares of stock must be purchased to delta-hedge a short call",
+            "N(d1) is strictly greater than N(d2) because stock received in higher price states has greater conditional value"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "N(d1) is the partial derivative of call price with respect to stock price: dc/dS = N(d1) = Delta"
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "title": "The Black-Scholes European Put Formula",
+      "purpose": "Applying Put-Call Parity p = c - S0 + K*exp(-rT) yields p = K*exp(-rT)*N(-d2) - S0*N(-d1)",
+      "takeaways": [
+        "Applying Put-Call Parity p = c - S0 + K*exp(-rT) yields p = K*exp(-rT)*N(-d2) - S0*N(-d1)",
+        "Put delta is N(d1) - 1 = -N(-d1), which is strictly negative (-1 <= Delta_put <= 0)",
+        "Risk-neutral probability of put exercise is N(-d2) = 1 - N(d2)"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Following the European Call, let's examine the Black-Scholes European Put formula."
+            },
+            "hi": {
+              "display": "European call ke baad aaiye Black-Scholes European Put formula ko dekhte hain."
+            }
+          },
+          "onScreenIntent": "Derive the European put formula using Put-Call Parity",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "BSM put formula derivation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A put gives the right to receive strike K and surrender the stock: p = K e^{-rT} N(-d2) - S0 N(-d1)."
+            },
+            "hi": {
+              "display": "Put option holder ko strike K receive karne ka right deta hai aur stock surrender karna padta hai: p equals K e to the minus r T N of minus d two minus S zero N of minus d one."
+            }
+          },
+          "onScreenIntent": "Apply symmetry property N(-x) = 1 - N(x)",
+          "sourceFactIds": [
+            "F02",
+            "F04"
+          ],
+          "newTerms": [
+            "Normal symmetry transformation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Here N(-d2) is the risk-neutral probability that the stock closes below strike, meaning the put is exercised."
+            },
+            "hi": {
+              "display": "Yahan N of minus d two risk-neutral probability hai ki stock price strike se niche close hogi, yaani put exercise hogi."
+            }
+          },
+          "onScreenIntent": "Examine put delta: -N(-d1), requiring short stock shares to hedge",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Put delta -N(-d1)"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s04b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And when calculating c - p, it unconditionally simplifies to the Put-Call Parity identity S0 - K e^{-rT}."
+            },
+            "hi": {
+              "display": "Aur jab hum c minus p calculate karte hain, toh ye unconditionally Put-Call Parity identity S zero minus K e to the minus r T ban jata hai."
+            }
+          },
+          "onScreenIntent": "Confirm Put-Call Parity: c - p = S0 - K*exp(-rT) holds identically",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "Parity identity verification"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Black-Scholes European Put Formula",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Applying Put-Call Parity p = c - S0 + K*exp(-rT) yields p = K*exp(-rT)*N(-d2) - S0*N(-d1)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Put delta is N(d1) - 1 = -N(-d1), which is strictly negative (-1 <= Delta_put <= 0)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "title": "Limiting Asymptotics: Extreme Volatilities & Expirations",
+      "purpose": "As sigma -> 0 (zero volatility): call becomes deterministic forward c -> max(S0 - K*exp(-rT), 0)",
+      "takeaways": [
+        "As sigma -> 0 (zero volatility): call becomes deterministic forward c -> max(S0 - K*exp(-rT), 0)",
+        "As sigma -> infinity (infinite volatility): call price approaches full underlying stock price c -> S0",
+        "As T -> 0: option collapses cleanly to intrinsic payoff max(S - K, 0)"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's verify the mathematical robustness of the formula at extreme asymptotic limits."
+            },
+            "hi": {
+              "display": "Aaiye ab formula ki mathematical robustness ko verify karte hain extreme asymptotic limits par."
+            }
+          },
+          "onScreenIntent": "Examine asymptotic boundary tests of the BSM formula",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Asymptotic limits"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "As volatility σ approaches 0, uncertainty disappears and call price converges to max(S0 - K e^{-rT}, 0)."
+            },
+            "hi": {
+              "display": "Jab volatility sigma zero ko approach karti hai, toh uncertainty khatam ho jati hai aur call price exactly max of S zero minus K e to the minus r T zero ban jata hai."
+            }
+          },
+          "onScreenIntent": "Analyze zero volatility limit: call behaves as pure deterministic forward",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Zero volatility limit"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When volatility is infinite, the call price approaches the entire stock price S0."
+            },
+            "hi": {
+              "display": "Jab volatility infinite hoti hai, toh call price pure stock price S zero ke barabar ho jata hai."
+            }
+          },
+          "onScreenIntent": "Analyze infinite volatility limit: call approaches stock price S0",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Infinite volatility limit"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s05b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "And as time T approaches zero, the formula converges to intrinsic payoff max(S0 - K, 0), proving the model is flawless."
+            },
+            "hi": {
+              "display": "Aur jab time to maturity T zero ko approach karta hai, toh formula seedha intrinsic payoff max S zero minus K ban jata hai. Ye prove karta hai ki model flawless hai."
+            }
+          },
+          "onScreenIntent": "Analyze expiration collapse as T -> 0 to intrinsic value",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Intrinsic collapse at expiration"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "Limiting Asymptotics: Extreme Volatilities & Expirations",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "As sigma -> 0 (zero volatility): call becomes deterministic forward c -> max(S0 - K*exp(-rT), 0)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "As sigma -> infinity (infinite volatility): call price approaches full underlying stock price c -> S0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "title": "Implied Volatility: Inverting the Black-Scholes Formula",
+      "purpose": "In theory, volatility sigma is an input; in practice, market price c_market is observed and sigma_implied is backed out",
+      "takeaways": [
+        "In theory, volatility sigma is an input; in practice, market price c_market is observed and sigma_implied is backed out",
+        "Because N(d1) and N(d2) contain sigma inside non-linear integrals, closed-form inversion is mathematically impossible",
+        "Implied volatility represents the consensus forward-looking market price of risk"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In real-world trading, the Black-Scholes formula is often used in reverse: to calculate Implied Volatility."
+            },
+            "hi": {
+              "display": "Real-world options trading mein Black-Scholes formula ko aksar reverse direction mein use kiya jata hai: Implied Volatility calculate karne ke liye."
+            }
+          },
+          "onScreenIntent": "Introduce the practical market inversion: from price to implied volatility",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Implied volatility"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Of the five formula inputs, four—spot price, strike, maturity, and interest rate—are directly visible on exchanges."
+            },
+            "hi": {
+              "display": "Formula ke paanch inputs mein se chaar—stock price, strike, maturity aur interest rate—exchange par directly visible hote hain."
+            }
+          },
+          "onScreenIntent": "Explain why sigma cannot be solved with elementary algebra (non-linear CDF)",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Non-invertibility barrier"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Only volatility σ is unobservable. Equating market price to the BSM formula and solving for σ yields Implied Volatility."
+            },
+            "hi": {
+              "display": "Keval volatility sigma unobservable hoti hai. Jab hum market ke actual option price ko BSM formula ke barabar set karke sigma ke liye solve karte hain, toh use Implied Volatility kehte hain."
+            }
+          },
+          "onScreenIntent": "Contrast backward-looking historical volatility with forward-looking implied volatility",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Historical vs implied volatility"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s06b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On trading desks, options are quoted not in dollars, but in percentage points of Implied Volatility."
+            },
+            "hi": {
+              "display": "Trading desks par options dollars mein nahi, balki Implied Volatility ke percentage points mein quote kiye jate hain."
+            }
+          },
+          "onScreenIntent": "Set the stage for numerical root-finding algorithms",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Numerical root finding"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Theoretical BSM (Forward Direction)",
+          "tone": "neutral",
+          "points": [
+            "In theory, volatility sigma is an input; in practice, market price c_market is observed and sigma_implied is backed out",
+            "Because N(d1) and N(d2) contain sigma inside non-linear integrals, closed-form inversion is mathematically impossible"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Market Reality (Inverse Direction)",
+          "tone": "positive",
+          "points": [
+            "Because N(d1) and N(d2) contain sigma inside non-linear integrals, closed-form inversion is mathematically impossible",
+            "Implied volatility represents the consensus forward-looking market price of risk"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "In theory, volatility sigma is an input; in practice, market price c_market is observed and sigma_implied is backed out"
+        }
+      }
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "title": "The Newton-Raphson Numerical Engine",
+      "purpose": "Newton-Raphson iteration formula: sigma_{n+1} = sigma_n - [c(sigma_n) - c_market] / Vega(sigma_n)",
+      "takeaways": [
+        "Newton-Raphson iteration formula: sigma_{n+1} = sigma_n - [c(sigma_n) - c_market] / Vega(sigma_n)",
+        "Vega is the derivative of option price with respect to volatility: Vega = S0 * sqrt(T) * N'(d1)",
+        "Because Vega is strictly positive for all vanilla options, Newton-Raphson converges quadratically in 3 to 4 iterations"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because the BSM formula involves a normal integral, inverting it algebraically for σ is impossible."
+            },
+            "hi": {
+              "display": "Kyunki Black-Scholes formula mein normal distribution integral shamil hai, isko algebraically invert karke sigma ka closed-form formula banana impossible hai."
+            }
+          },
+          "onScreenIntent": "Introduce the Newton-Raphson root-finding algorithm",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Newton-Raphson algorithm"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Trading software employs the Newton-Raphson numerical algorithm to solve this root-finding problem."
+            },
+            "hi": {
+              "display": "Trading software isko solve karne ke liye Newton-Raphson numerical algorithm use karta hai."
+            }
+          },
+          "onScreenIntent": "Define Vega: the slope derivative of option price with respect to sigma",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Option Vega"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At each step, pricing error is divided by Option Vega: σ_{n+1} = σ_n - Error / Vega."
+            },
+            "hi": {
+              "display": "Har step par formula price aur market price ke error ko option ke Vega se divide kiya jata hai: sigma n plus one equals sigma n minus error divided by Vega."
+            }
+          },
+          "onScreenIntent": "Walk through step update: subtract pricing error divided by Vega",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Newton update step"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s07b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because Vega is strictly positive everywhere, this algorithm converges to 6 decimal places within 3 to 4 iterations."
+            },
+            "hi": {
+              "display": "Kyunki Vega hamesha strictly positive hota hai, ye algorithm sirf teen se chaar iterations mein six decimal places tak exact implied volatility calculate kar leta hai."
+            }
+          },
+          "onScreenIntent": "Highlight quadratic convergence: achieves 6 decimal places of accuracy in 3 steps",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Quadratic convergence rate"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Newton-Raphson Numerical Engine",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "Newton-Raphson iteration formula: sigma_{n+1} = sigma_n - [c(sigma_n) - c_market] / Vega(sigma_n)"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "Vega is the derivative of option price with respect to volatility: Vega = S0 * sqrt(T) * N'(d1)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "title": "The Volatility Smile & Skew: The Reality Gap",
+      "purpose": "The BSM model assumes volatility sigma is constant across all strikes and maturities",
+      "takeaways": [
+        "The BSM model assumes volatility sigma is constant across all strikes and maturities",
+        "In real markets, plotting implied volatility against strike reveals a curve: the Volatility Smile or Skew",
+        "Equity options exhibit a downward skew: out-of-the-money puts trade at elevated implied volatilities to price crash risk"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When quants calculated Implied Volatility from live market prices, a massive contradiction emerged."
+            },
+            "hi": {
+              "display": "Jab quants ne market ke actual option prices se Implied Volatility calculate karna shuru kiya, toh ek bohot bada contradiction samne aaya."
+            }
+          },
+          "onScreenIntent": "Expose the breakdown of constant volatility: the volatility smile",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Volatility smile"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The Black-Scholes model predicts volatility should be a completely flat horizontal line across all strikes."
+            },
+            "hi": {
+              "display": "Black-Scholes model predict karta hai ki sabhi strikes par volatility flat horizontal line honi chahiye."
+            }
+          },
+          "onScreenIntent": "Explain the post-1987 crash equity skew: elevated demand for OTM downside puts",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Volatility skew",
+            "Crash risk premium"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Yet in real markets, out-of-the-money puts trade at significantly higher IV than ATM options. This is the Volatility Skew or Smirk."
+            },
+            "hi": {
+              "display": "Lekin real markets mein out-of-the-money put options ki implied volatility ATM options se bohot zyaada unchi hoti hai. Isko Volatility Skew ya Volatility Smirk kehte hain."
+            }
+          },
+          "onScreenIntent": "Identify fat tails (leptokurtosis) and jump diffusion as the root causes",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Fat tails",
+            "Leptokurtosis"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s08b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "This proves real-world markets are not pure Gaussian—they exhibit fat tails and crash risk, which we master in Chapter 20."
+            },
+            "hi": {
+              "display": "Ye prove karta hai ki real world markets pure Gaussian nahi hain—unme fat tails aur crash risk hota hai, jisko hum Chapter Twenty mein detail mein master karenge."
+            }
+          },
+          "onScreenIntent": "Summarize: quants use Black-Scholes as a quotation language while pricing off the smile",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Quotation language paradigm"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "left",
+          "heading": "Black-Scholes Theoretical World",
+          "tone": "neutral",
+          "points": [
+            "The BSM model assumes volatility sigma is constant across all strikes and maturities",
+            "In real markets, plotting implied volatility against strike reveals a curve: the Volatility Smile or Skew"
+          ]
+        },
+        "right": {
+          "id": "right",
+          "heading": "Empirical Reality: Volatility Skew",
+          "tone": "positive",
+          "points": [
+            "In real markets, plotting implied volatility against strike reveals a curve: the Volatility Smile or Skew",
+            "Equity options exhibit a downward skew: out-of-the-money puts trade at elevated implied volatilities to price crash risk"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "The BSM model assumes volatility sigma is constant across all strikes and maturities"
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "title": "Active Recall Scenario: BSM Call Pricing & ITM Probability Calculation",
+      "purpose": "Given S0=$42, K=$40, r=10%, sigma=20%, T=0.5 years: d1 = 0.7693, d2 = 0.6278",
+      "takeaways": [
+        "Given S0=$42, K=$40, r=10%, sigma=20%, T=0.5 years: d1 = 0.7693, d2 = 0.6278",
+        "N(d1) = 0.7791 (option delta); N(d2) = 0.7349 (ITM exercise probability)",
+        "Call price c = 42(0.7791) - 40*exp(-0.05)(0.7349) = $32.72 - $27.96 = $4.76"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's test your active recall understanding with John Hull's classic numerical walkthrough scenario."
+            },
+            "hi": {
+              "display": "Aaiye ab aapki active recall understanding ko test karte hain John Hull ke classic numerical walkthrough scenario ke zariye."
+            }
+          },
+          "onScreenIntent": "Present John Hull's benchmark numerical problem: S0=$42, K=$40, r=10%, sigma=20%, T=0.5",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Hull benchmark example"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Stock S0 = $42, strike K = $40, r = 5%, σ = 20%, T = 0.5 yrs. Given N(d1) = 0.7791 and N(d2) = 0.7349, what is the call price and exercise probability?"
+            },
+            "hi": {
+              "display": "Stock S zero forty-two dollars hai, strike K forty dollars hai, r five percent hai, sigma twenty percent hai aur T zero point five years hai. Diya gaya hai ki N of d one point seven seven nine one hai aur N of d two point seven three four nine hai. Fair call price aur risk-neutral exercise probability kya hogi?"
+            }
+          },
+          "onScreenIntent": "Calculate d1 = 0.7693 and d2 = 0.6278",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Calculated d1 and d2"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Take a moment to calculate d1, d2, N(d1), and N(d2) to price the call option."
+            },
+            "hi": {
+              "display": "d1, d2, N(d1), aur N(d2) calculate karke call option ka price determine karne ke liye thoda samay lijiye."
+            }
+          },
+          "onScreenIntent": "Look up normal CDF values: N(d1) = 0.7791 and N(d2) = 0.7349",
+          "sourceFactIds": [
+            "F01",
+            "F03"
+          ],
+          "newTerms": [
+            "Normal cumulative values"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The correct answer is Option A: Call price is $4.76 and risk-neutral exercise probability is 73.49%."
+            },
+            "hi": {
+              "display": "Sahi answer Option A hai: Call price four point seven six dollars hai aur exercise probability seventy-three point four nine percent hai."
+            }
+          },
+          "onScreenIntent": "Calculate the two cash legs: $32.72 minus $27.96",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Cash leg calculation"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s09b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Step-by-step: S0*N(d1) = $32.72. K*e^(-rT)*N(d2) = $28.67. The difference is $4.76. And exercise probability is strictly N(d2) = 73.49%."
+            },
+            "hi": {
+              "display": "Step-by-step: S zero times N of d one thirty-two point seven two dollars hai. K e to the minus r T times N of d two twenty-eight point six seven dollars hai. Dono ka difference four point seven six dollars banta hai. Aur exercise probability strictly N of d two hoti hai, yaani seventy-three point four nine percent."
+            }
+          },
+          "onScreenIntent": "Conclude with fair call price $4.76 and verify against intrinsic value ($2.00)",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Final call price verification"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "A stock trades at S0 = $42. Strike K = $40, r = 10% per year, sigma = 20% per year, and T = 6 months (0.5 years). Given d1 = 0.7693 (N(d1)=0.7791) and d2 = 0.6278 (N(d2)=0.7349), what is the European call option price?",
+        "options": [
+          "The equilibrium condition holds via continuous risk-neutral replication.",
+          "Expected asset drift determines contingent claim value directly.",
+          "Arbitrage bounds can be systematically violated in liquid markets.",
+          "Discrete binomial tree steps eliminate all underlying price variance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Evaluating the BSM formula: Asset leg = S0 * N(d1) = $42 * 0.7791 = $32.722. Cash leg = K * exp(-rT) * N(d2) = $40 * exp(-0.10 * 0.5) * 0.7349 = $40 * 0.95123 * 0.7349 = $27.962. Call price c = $32.722 - $27.962 = $4.76!"
+      }
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "title": "The Cboe VIX Index: The Market's Fear Gauge",
+      "purpose": "The VIX index measures 30-day expected annualized market volatility derived from S&P 500 option prices",
+      "takeaways": [
+        "The VIX index measures 30-day expected annualized market volatility derived from S&P 500 option prices",
+        "It uses a model-free formula integrating across a strip of out-of-the-money calls and puts",
+        "Known as Wall Street's Fear Gauge, VIX spikes during market crashes, providing a liquid hedging instrument"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The most famous global benchmark for implied volatility is the Cboe VIX Index, known as Wall Street's Fear Gauge."
+            },
+            "hi": {
+              "display": "Implied volatility ka sabse famous global benchmark hai Cboe VIX Index, jisko Wall Street ka Fear Gauge bhi kaha jata hai."
+            }
+          },
+          "onScreenIntent": "Introduce the Cboe Volatility Index (VIX)",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Cboe VIX Index"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "The VIX measures the 30-day expected annualized volatility of the S&P 500 index."
+            },
+            "hi": {
+              "display": "VIX agle thirty days mein S and P five hundred index ki expected annualized volatility ko measure karta hai."
+            }
+          },
+          "onScreenIntent": "Explain why VIX is model-free: independent of Black-Scholes assumptions",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Model-free volatility formula"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Few realize modern VIX does not invert Black-Scholes—it is a model-free metric integrating across all out-of-the-money SPX options."
+            },
+            "hi": {
+              "display": "Bohot kam log jaante hain ki modern VIX calculation Black-Scholes formula par depend nahi karti—ye model-free metric hai jo S and P 500 ke sabhi out-of-the-money options ko integrate karti hai."
+            }
+          },
+          "onScreenIntent": "Explain why VIX is called the Fear Gauge: negative correlation with equity indices",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Wall Street Fear Gauge"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s10b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Traders use the Rule of 16: dividing VIX by 16 gives the expected daily percentage fluctuation of the market."
+            },
+            "hi": {
+              "display": "Traders Rule of Sixteen use karte hain: VIX ko sixteen se divide karne par stock market ka expected daily percentage move mil jata hai."
+            }
+          },
+          "onScreenIntent": "Summarize: volatility has evolved into its own standalone institutional asset class",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Volatility asset class"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "single_concept",
+        "pillars": {
+          "primaryCard": {
+            "title": "The Cboe VIX Index: The Market's Fear Gauge",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Institutional Structure",
+                "description": "The VIX index measures 30-day expected annualized market volatility derived from S&P 500 option prices"
+              },
+              {
+                "id": "p2",
+                "title": "Pricing & Risk Mechanics",
+                "description": "It uses a model-free formula integrating across a strip of out-of-the-money calls and puts"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "s11",
+      "index": 11,
+      "title": "Summary Thread: Four Pillars of Black-Scholes Option Pricing",
+      "purpose": "Call formula c = S0*N(d1) - K*exp(-rT)*N(d2) and put formula p = K*exp(-rT)*N(-d2) - S0*N(-d1)",
+      "takeaways": [
+        "Call formula c = S0*N(d1) - K*exp(-rT)*N(d2) and put formula p = K*exp(-rT)*N(-d2) - S0*N(-d1)",
+        "N(d1) is option delta; N(d2) is risk-neutral ITM exercise probability",
+        "Chapter 16 advances into the Greeks: Delta, Gamma, Vega, Theta, and Rho risk management"
+      ],
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let's summarize the four foundational pillars of Chapter 15 Part 2."
+            },
+            "hi": {
+              "display": "Aaiye Chapter Fifteen Part Two ke chaar foundational pillars ko summarize karte hain."
+            }
+          },
+          "onScreenIntent": "Synthesize the complete Black-Scholes-Merton analytical framework",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "Executive synthesis"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 1: Black-Scholes Closed Form. c = S0*N(d1) - K*e^(-rT)*N(d2) separates asset inflow from cash strike outflow."
+            },
+            "hi": {
+              "display": "Pillar One: Black-Scholes Closed Form. c equals S zero N d one minus K e to the minus r T N d two asset inflow aur cash outflow ko perfectly separate karta hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 1, 2, and 3: Call formula, d1/d2 offsets, and the meaning of N(d2)",
+          "sourceFactIds": [
+            "F01",
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 2: Economic Meanings. N(d2) is the exact exercise probability, and N(d1) is the replicating Delta hedge ratio."
+            },
+            "hi": {
+              "display": "Pillar Two: Economic Meanings. N of d two option exercise hone ki exact probability hai, aur N of d one option ka hedge Delta hai."
+            }
+          },
+          "onScreenIntent": "Review Rules 4 and 5: Option delta N(d1) and the European put formula",
+          "sourceFactIds": [
+            "F02",
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 3: Implied Volatility. Inverting market prices via Newton-Raphson allows traders to quote options in volatility points."
+            },
+            "hi": {
+              "display": "Pillar Three: Implied Volatility. Market prices ko invert karke Newton-Raphson algorithm se traders volatility points quote karte hain."
+            }
+          },
+          "onScreenIntent": "Review Rules 6, 7, and 8: Implied volatility, volatility skew, and the VIX index",
+          "sourceFactIds": [
+            "F05",
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pillar 4: Volatility Surfaces and VIX. Real-world skews and VIX prove options trading is dynamic volatility management."
+            },
+            "hi": {
+              "display": "Pillar Four: Volatility Surfaces aur VIX. Real world skews aur model-free VIX Index prove karte hain ki options trading sirf static models nahi, dynamic volatility management hai."
+            }
+          },
+          "onScreenIntent": "Conclude Chapter 15 and bridge to Chapter 16: The Greeks and Risk Management",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Chapter 16 Greeks preview"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false,
+          "visual": {
+            "show": []
+          },
+          "visualCues": []
+        }
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Core Principles: Summary Thread: Four Pillars of Black-Scholes Option Pricing",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "1. Market Foundations",
+            "text": "Arbitrage-free markets enforce exact equilibrium pricing."
+          },
+          {
+            "id": "r2",
+            "title": "2. Replicating Portfolios",
+            "text": "Dynamic hedging eliminates stochastic asset price shocks."
+          },
+          {
+            "id": "r3",
+            "title": "3. Risk-Neutral Valuation",
+            "text": "Derivative values do not depend on subjective expected drift."
+          },
+          {
+            "id": "r4",
+            "title": "4. Boundary Conditions",
+            "text": "Terminal payoffs dictate exact call and put solution spaces."
+          },
+          {
+            "id": "r5",
+            "title": "5. Greeks & Risk Sensitivity",
+            "text": "Delta, Gamma, Vega, and Theta provide precise risk management."
+          },
+          {
+            "id": "r6",
+            "title": "6. Volatility Dynamics",
+            "text": "Implied volatility smiles and surfaces reveal tail risk realities."
+          },
+          {
+            "id": "r7",
+            "title": "7. Institutional Calibration",
+            "text": "Lattices and PDE finite differences solve complex early exercise."
+          },
+          {
+            "id": "r8",
+            "title": "8. Corporate Governance",
+            "text": "Disciplined quantitative models protect balance sheets against tail risk."
+          }
+        ]
+      }
+    }
+  ]
+}
