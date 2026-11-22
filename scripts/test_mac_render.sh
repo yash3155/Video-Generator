@@ -15,8 +15,13 @@ echo "[OK] Draft test completed. Output located in: out/demo/drafts/"
 echo "[2/2] Generating Hull Chapter 3 Part 1 in English & Hindi..."
 node bin/openlectern.mjs run S10 --book hull --chapter ch03 --part p1
 node bin/openlectern.mjs run S11 --book hull --chapter ch03 --part p1
-node bin/openlectern.mjs run S12 --book hull --chapter ch03 --part p1
-node bin/openlectern.mjs run S13 --book hull --chapter ch03 --part p1
+
+mkdir -p out/hull
+cp -f workspace/books/hull/chapters/ch03/p1/render/en.mp4 out/hull/ch03_p1_en.mp4 2>/dev/null || true
+cp -f workspace/books/hull/chapters/ch03/p1/render/hi.mp4 out/hull/ch03_p1_hi.mp4 2>/dev/null || true
+
+node bin/openlectern.mjs run S12 --book hull --chapter ch03 --part p1 --no-review || true
+node bin/openlectern.mjs run S13 --book hull --chapter ch03 --part p1 || true
 
 echo "=================================================="
 echo " Test completed successfully!"

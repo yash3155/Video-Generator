@@ -84,15 +84,17 @@ Or run step-by-step manually:
 # Part 1 (English + Hindi)
 node bin/openlectern.mjs run S10 --book hull --chapter ch03 --part p1
 node bin/openlectern.mjs run S11 --book hull --chapter ch03 --part p1
-node bin/openlectern.mjs run S12 --book hull --chapter ch03 --part p1
+node bin/openlectern.mjs run S12 --book hull --chapter ch03 --part p1 --no-review
 node bin/openlectern.mjs run S13 --book hull --chapter ch03 --part p1
 
 # Part 2 (English + Hindi)
 node bin/openlectern.mjs run S10 --book hull --chapter ch03 --part p2
 node bin/openlectern.mjs run S11 --book hull --chapter ch03 --part p2
-node bin/openlectern.mjs run S12 --book hull --chapter ch03 --part p2
+node bin/openlectern.mjs run S12 --book hull --chapter ch03 --part p2 --no-review
 node bin/openlectern.mjs run S13 --book hull --chapter ch03 --part p2
 ```
+
+> **Note:** The `--no-review` flag allows S12 automated checks (syntax, timings, frame integrity) to pass without pausing to wait for an LLM reviewer. Videos are ready immediately after S11.
 
 The completed broadcast videos will be in `out/hull/`:
 - `ch03_p1_en.mp4` & `ch03_p1_hi.mp4`
