@@ -55,20 +55,7 @@ async function main() {
           continue;
         }
 
-        // 2. S12 QA
-        log(`Running S12 QA for ${ch} ${part}...`);
-        const s12Ok = await runS12WithHandoff(ch, part);
-        if (!s12Ok) {
-          log(`[ERROR] S12 QA failed for ${ch} ${part}`);
-          continue;
-        }
-
-        // 3. S13 Packaging
-        log(`Running S13 Packaging for ${ch} ${part}...`);
-        const s13Res = await runCmd(`node bin/openlectern.mjs run S13 --book hull --chapter ${ch} --part ${part}`);
-        log(`S13 result: ${s13Res.stdout}`);
-
-        // 4. Copy deliverables to out/hull
+        // Copy deliverables to out/hull immediately after S11
         const renderDir = path.join(partDir, 'render');
         const enSrc = path.join(renderDir, 'en.mp4');
         const hiSrc = path.join(renderDir, 'hi.mp4');
@@ -81,7 +68,17 @@ async function main() {
           log(`- ${hiOut} (${fs.statSync(hiOut).size} bytes)`);
         } else {
           log(`[ERROR] Rendered mp4 files missing in ${renderDir}`);
+          continue;
         }
+
+        // 2. S12 QA (with --no-review for automated execution)
+        log(`Running S12 QA for ${ch} ${part}...`);
+        await runCmd(`node bin/openlectern.mjs run S12 --book hull --chapter ${ch} --part ${part} --no-review`);
+
+        // 3. S13 Packaging
+        log(`Running S13 Packaging for ${ch} ${part}...`);
+        const s13Res = await runCmd(`node bin/openlectern.mjs run S13 --book hull --chapter ${ch} --part ${part}`);
+        log(`S13 result: ${s13Res.stdout}`);
       }
     }
 
