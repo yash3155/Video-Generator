@@ -71,34 +71,64 @@ Generates a draft educational video in `out/demo/drafts/`:
 npm start -- --non-interactive --book demo --chapter ch01 --part p1 --lang en --llm replay --tts mock --draft
 ```
 
-### 2. Generate Any Chapter in English and Hindi
-OpenLectern comes pre-loaded with all 36 chapters of John C. Hull's *Options, Futures, and Other Derivatives*.
+### 2. Generate Chapter 3 (Part 1 & Part 2) in Both English & Hindi
 
-To generate both English (`en-US-ChristopherNeural`) and Hindi (`hi-IN-MadhurNeural`) videos for any chapter:
-
+To generate the complete Chapter 3 in both languages with a single command:
 ```bash
-# Example: Chapter 3 Part 1
-# Step 1: Speech & Timeline Synthesis (Free Microsoft Edge TTS)
-node bin/openlectern.mjs run S10 --book hull --chapter ch03 --part p1
-
-# Step 2: 1080p Broadcast Video Render (Metal GPU hardware-accelerated)
-node bin/openlectern.mjs run S11 --book hull --chapter ch03 --part p1
-
-# Step 3: Automated QA Review Gate
-node bin/openlectern.mjs run S12 --book hull --chapter ch03 --part p1
-
-# Step 4: Package Video Deliverables
-node bin/openlectern.mjs run S13 --book hull --chapter ch03 --part p1
+chmod +x scripts/generate_ch03_both_languages.sh
+./scripts/generate_ch03_both_languages.sh
 ```
 
-The completed broadcast videos will be located in:
-- `out/hull/ch03_p1_en.mp4`
-- `out/hull/ch03_p1_hi.mp4`
+Or run step-by-step manually:
+```bash
+# Part 1 (English + Hindi)
+node bin/openlectern.mjs run S10 --book hull --chapter ch03 --part p1
+node bin/openlectern.mjs run S11 --book hull --chapter ch03 --part p1
+node bin/openlectern.mjs run S12 --book hull --chapter ch03 --part p1
+node bin/openlectern.mjs run S13 --book hull --chapter ch03 --part p1
+
+# Part 2 (English + Hindi)
+node bin/openlectern.mjs run S10 --book hull --chapter ch03 --part p2
+node bin/openlectern.mjs run S11 --book hull --chapter ch03 --part p2
+node bin/openlectern.mjs run S12 --book hull --chapter ch03 --part p2
+node bin/openlectern.mjs run S13 --book hull --chapter ch03 --part p2
+```
+
+The completed broadcast videos will be in `out/hull/`:
+- `ch03_p1_en.mp4` & `ch03_p1_hi.mp4`
+- `ch03_p2_en.mp4` & `ch03_p2_hi.mp4`
 
 ### 3. Run the Automated Continuous Master Render Queue
 To let your Mac render all remaining textbook chapters in an automated continuous loop:
 ```bash
 node scripts/render_queue.mjs
+```
+
+---
+
+## 🧹 Complete Teardown & Cleanup (Testing on a Guest Mac)
+
+If you are testing on someone else's Mac and want to leave zero trace, run the automated teardown script:
+
+```bash
+chmod +x scripts/teardown_mac.sh
+./scripts/teardown_mac.sh
+```
+
+This automatically cleans up:
+- Project `node_modules/`, `out/`, `.build/`, and local workspace caches
+- Remotion's Chromium browser download cache (`~/Library/Caches/remotion`)
+- NPM cache
+
+Then delete the project folder:
+```bash
+cd ..
+rm -rf Video-Generator
+```
+
+*(Optional)* If you installed Homebrew packages specifically for this test and wish to remove them:
+```bash
+brew uninstall ffmpeg node@20
 ```
 
 ---
