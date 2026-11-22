@@ -20,6 +20,8 @@ OpenLectern is an open-source, autonomous book-to-video lesson engine. It transf
 
 ---
 
+> 🍎 **Using a Mac?** See [MAC_QUICKSTART.md](MAC_QUICKSTART.md) or run `./scripts/setup_mac.sh` for an automated 1-command setup optimized for Apple Silicon (M1/M2/M3/M4/M5) and Intel Macs.
+
 ## 60-Second Quick Start
 
 Prerequisites: Node.js 20+, Git. Optional: ffmpeg on PATH (falls back to `ffmpeg-static`).
