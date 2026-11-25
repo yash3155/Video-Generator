@@ -21,6 +21,50 @@
         "chapter": "4",
         "section": "4.7",
         "page": "89"
+      },
+      "formula": {
+        "id": "f_fra_payoff",
+        "latex": "\\text{Payoff} = \\frac{L \\times (R_M - R_K) \\times (T_2 - T_1)}{1 + R_M \\times (T_2 - T_1)}",
+        "expression": "L * (R_M - R_K) * (T_2 - T_1) / (1 + R_M * (T_2 - T_1))",
+        "solvesFor": "Payoff",
+        "variables": [
+          {
+            "symbol": "Payoff",
+            "latex": "\\text{Payoff}",
+            "meaning": "cash settlement payoff at time T1 to fixed rate payer",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "L",
+            "latex": "L",
+            "meaning": "notional principal amount",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "R_M",
+            "latex": "R_M",
+            "meaning": "observed market reference rate at time T1",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "R_K",
+            "latex": "R_K",
+            "meaning": "agreed fixed contract rate",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "T_1",
+            "latex": "T_1",
+            "meaning": "settlement date in years",
+            "unit": "years"
+          },
+          {
+            "symbol": "T_2",
+            "latex": "T_2",
+            "meaning": "end of borrowing period in years",
+            "unit": "years"
+          }
+        ]
       }
     },
     {
@@ -31,6 +75,56 @@
         "chapter": "4",
         "section": "4.7",
         "page": "90"
+      },
+      "formula": {
+        "id": "f_fra_val",
+        "latex": "V_{\\text{FRA}} = L \\times (R_F - R_K) \\times (T_2 - T_1) \\times e^{-R_2 \\times T_2}",
+        "expression": "L * (R_F - R_K) * (T_2 - T_1) * exp(-R_2 * T_2)",
+        "solvesFor": "V_FRA",
+        "variables": [
+          {
+            "symbol": "V_FRA",
+            "latex": "V_{\\text{FRA}}",
+            "meaning": "value of existing FRA prior to settlement",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "L",
+            "latex": "L",
+            "meaning": "notional principal amount",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "R_F",
+            "latex": "R_F",
+            "meaning": "current market forward rate for period T1 to T2",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "R_K",
+            "latex": "R_K",
+            "meaning": "agreed fixed contract rate",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "T_1",
+            "latex": "T_1",
+            "meaning": "settlement date in years",
+            "unit": "years"
+          },
+          {
+            "symbol": "T_2",
+            "latex": "T_2",
+            "meaning": "end of period in years",
+            "unit": "years"
+          },
+          {
+            "symbol": "R_2",
+            "latex": "R_2",
+            "meaning": "zero rate for maturity T2",
+            "unit": "dimensionless"
+          }
+        ]
       }
     },
     {
@@ -41,6 +135,44 @@
         "chapter": "4",
         "section": "4.8",
         "page": "92"
+      },
+      "formula": {
+        "id": "f_mac_duration",
+        "latex": "D = \\frac{\\sum_{i=1}^{n} t_i \\times c_i \\times e^{-y \\times t_i}}{B}",
+        "expression": "sum(t_i * c_i * exp(-y * t_i)) / B",
+        "solvesFor": "D",
+        "variables": [
+          {
+            "symbol": "D",
+            "latex": "D",
+            "meaning": "Macaulay duration in years",
+            "unit": "years"
+          },
+          {
+            "symbol": "t_i",
+            "latex": "t_i",
+            "meaning": "time of cash flow i",
+            "unit": "years"
+          },
+          {
+            "symbol": "c_i",
+            "latex": "c_i",
+            "meaning": "cash flow payment at time t_i",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "y",
+            "latex": "y",
+            "meaning": "yield to maturity continuously compounded",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "B",
+            "latex": "B",
+            "meaning": "bond market price",
+            "unit": "dollars"
+          }
+        ]
       }
     },
     {
@@ -51,6 +183,32 @@
         "chapter": "4",
         "section": "4.8",
         "page": "93"
+      },
+      "formula": {
+        "id": "f_mod_duration",
+        "latex": "\\frac{\\Delta B}{B} = -D^* \\times \\Delta y",
+        "expression": "-D_star * delta_y",
+        "solvesFor": "rel_change",
+        "variables": [
+          {
+            "symbol": "rel_change",
+            "latex": "\\frac{\\Delta B}{B}",
+            "meaning": "proportional bond price change",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "D_star",
+            "latex": "D^*",
+            "meaning": "modified duration",
+            "unit": "years"
+          },
+          {
+            "symbol": "delta_y",
+            "latex": "\\Delta y",
+            "meaning": "change in yield",
+            "unit": "dimensionless"
+          }
+        ]
       }
     },
     {
@@ -61,11 +219,43 @@
         "chapter": "4",
         "section": "4.9",
         "page": "95"
+      },
+      "formula": {
+        "id": "f_convexity",
+        "latex": "\\frac{\\Delta B}{B} = -D^* \\times \\Delta y + \\frac{1}{2} \\times C \\times (\\Delta y)^2",
+        "expression": "-D_star * delta_y + 0.5 * C * (delta_y)^2",
+        "solvesFor": "rel_change",
+        "variables": [
+          {
+            "symbol": "rel_change",
+            "latex": "\\frac{\\Delta B}{B}",
+            "meaning": "second order price change",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "D_star",
+            "latex": "D^*",
+            "meaning": "modified duration",
+            "unit": "years"
+          },
+          {
+            "symbol": "delta_y",
+            "latex": "\\Delta y",
+            "meaning": "yield change",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "C",
+            "latex": "C",
+            "meaning": "bond convexity",
+            "unit": "dimensionless"
+          }
+        ]
       }
     },
     {
       "id": "F07",
-      "category": "definition",
+      "category": "claim",
       "statement": "Liquidity Preference Theory states that forward rates exceed expected future zero rates because lenders prefer short-term liquidity while borrowers prefer locking long-term debt, giving upward-sloping yield curves.",
       "citation": {
         "chapter": "4",
@@ -86,11 +276,166 @@
     {
       "id": "F09",
       "category": "numerical_example",
-      "statement": "A bond with modified duration of 5.0 years experiences a 0.50% (50 bps) increase in yield, causing an estimated price drop of Delta B / B = -5.0 * 0.005 = -2.50%.",
+      "statement": "A bond with modified duration of 5.0 years experiences a 0.50% (50 bps) increase in yield, causing an estimated price drop of 2.50% (Delta B / B = -5.0 * 0.005 = -0.025 or -2.50%).",
       "citation": {
         "chapter": "4",
         "section": "4.8",
         "page": "93"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "D_star",
+            "label": "Modified duration",
+            "value": 5,
+            "unit": "years"
+          },
+          {
+            "symbol": "delta_y",
+            "label": "Yield change",
+            "value": 0.005,
+            "unit": "dimensionless"
+          }
+        ],
+        "steps": [
+          {
+            "label": "Duration price shift",
+            "expr": "-5.0 * 0.005",
+            "value": -0.025
+          },
+          {
+            "label": "Magnitude of price drop",
+            "expr": "5.0 * 0.005",
+            "value": 0.025
+          }
+        ],
+        "result": {
+          "symbol": "rel_change",
+          "label": "Percentage price change",
+          "value": -0.025,
+          "unit": "dimensionless"
+        },
+        "rounding": 4
+      }
+    },
+    {
+      "id": "F10",
+      "category": "rule",
+      "statement": "To hedge an asset with portfolio value P and duration D_P using interest rate futures with contract price F_C and duration D_F, the required number of futures contracts is N* = (P * D_P) / (F_C * D_F).",
+      "citation": {
+        "chapter": "4",
+        "section": "4.8",
+        "page": "94"
+      },
+      "formula": {
+        "id": "f_duration_hedge",
+        "latex": "N^* = \\frac{P \\times D_P}{F_C \\times D_F}",
+        "expression": "(P * D_P) / (F_C * D_F)",
+        "solvesFor": "N",
+        "variables": [
+          {
+            "symbol": "N",
+            "latex": "N^*",
+            "meaning": "number of futures contracts for duration hedge",
+            "unit": "contracts"
+          },
+          {
+            "symbol": "P",
+            "latex": "P",
+            "meaning": "portfolio market value",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "D_P",
+            "latex": "D_P",
+            "meaning": "duration of portfolio being hedged",
+            "unit": "years"
+          },
+          {
+            "symbol": "F_C",
+            "latex": "F_C",
+            "meaning": "market price of interest rate futures contract",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "D_F",
+            "latex": "D_F",
+            "meaning": "duration of underlying asset in futures contract",
+            "unit": "years"
+          }
+        ]
+      }
+    },
+    {
+      "id": "F11",
+      "category": "numerical_example",
+      "statement": "A company enters an FRA with notional 100,000,000 dollars paying fixed rate 4.0% and receiving market rate 5.0% for 0.25 years. The cash settlement payoff is 100,000,000 * (0.05 - 0.04) * 0.25 / (1 + 0.05 * 0.25) = 250,000 / 1.0125 ≈ 246,913.58 dollars.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.7",
+        "page": "89"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "L",
+            "label": "Notional principal",
+            "value": 100000000,
+            "unit": "dollars"
+          },
+          {
+            "symbol": "R_K",
+            "label": "Fixed agreed rate",
+            "value": 0.04,
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "R_M",
+            "label": "Observed market rate",
+            "value": 0.05,
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "tau",
+            "label": "Accrual fraction T2 minus T1",
+            "value": 0.25,
+            "unit": "years"
+          }
+        ],
+        "steps": [
+          {
+            "label": "Undiscounted interest difference",
+            "expr": "100000000 * (0.05 - 0.04) * 0.25",
+            "value": 250000
+          },
+          {
+            "label": "Advance discount divisor",
+            "expr": "1 + 0.05 * 0.25",
+            "value": 1.0125
+          },
+          {
+            "label": "Discounted cash payoff",
+            "expr": "250000 / 1.0125",
+            "value": 246913.58
+          }
+        ],
+        "result": {
+          "symbol": "Payoff",
+          "label": "Cash settlement payoff",
+          "value": 246913.58,
+          "unit": "dollars"
+        },
+        "rounding": 2
+      }
+    },
+    {
+      "id": "F12",
+      "category": "claim",
+      "statement": "Expectations Theory states that long-term zero rates reflect the average of expected future short-term spot rates, implying forward rates are unbiased predictors of future spot rates.",
+      "citation": {
+        "chapter": "4",
+        "section": "4.10",
+        "page": "97"
       }
     }
   ],
@@ -107,5 +452,45 @@
       "F06",
       "F08"
     ]
-  }
+  },
+  "terms": [
+    {
+      "term": "Forward Rate Agreement",
+      "fullForm": "FRA",
+      "definition": "An OTC contract locking the interest rate to be paid or received over a future period on a specified principal.",
+      "factId": "F01"
+    },
+    {
+      "term": "Macaulay duration",
+      "definition": "The weighted average maturity of a bond's cash flows, measuring interest rate sensitivity.",
+      "factId": "F04"
+    },
+    {
+      "term": "Modified duration",
+      "definition": "Macaulay duration divided by one plus yield per period, measuring percentage price change per unit yield shift.",
+      "factId": "F05"
+    },
+    {
+      "term": "convexity",
+      "definition": "The rate of change of duration with respect to yield, measuring curvature in bond price-yield relationships.",
+      "factId": "F06"
+    },
+    {
+      "term": "Liquidity Preference Theory",
+      "definition": "Theory stating forward rates exceed expected future zero rates due to risk premiums demanded by lenders for longer maturities.",
+      "factId": "F07"
+    },
+    {
+      "term": "Expectations Theory",
+      "definition": "Theory stating long-term rates reflect expected future short-term rates without term premiums.",
+      "factId": "F12"
+    }
+  ],
+  "dependencies": {
+    "earlier": [
+      "ch04/p1"
+    ],
+    "later": []
+  },
+  "quotes": []
 }

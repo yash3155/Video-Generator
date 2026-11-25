@@ -1,4 +1,4 @@
-# Hedging Strategies Using Futures
+# Basic Principles, Short/Long Hedges & Basis Risk
 
 ## Scene 0: The Corporate Dilemma: Why Companies Hedge
 
@@ -18,14 +18,14 @@ _Problem-first hook: why commercial enterprises trade futures without seeking sp
 
 **s00b3** (mentor; facts F01)
 
-- en: The foundational philosophy of corporate hedging is straightforward: its purpose is never to generate speculative trading profits, but to minimize the variance and unpredictability of corporate cash flows. By stabilizing revenues and raw material input costs, a company can focus on its core operating activities without fearing catastrophic market price swings.
-- hi: Hedging ka fundamental rule samajhna bahut zaroori hai. Hedging ka maksad spot market se outsmart karke extra profit kamana nahi hota. Iska sole objective corporate cash flows ki variance ko minimize karna hai, taaki ek business predictable prices par safely operate kar sake.
+- en: The foundational philosophy of corporate hedging is straightforward. Hedging means entering a financial position to neutralize severe commercial price risks and reduce cash flow variance. By stabilizing revenues and raw material costs, a company can operate safely.
+- hi: Hedging ka fundamental rule samajhna bahut zaroori hai. Hedging ka matlab hai price risk ko neutralize karke cash flow variance ko kam karna. Iska objective cash flows ko stabilize karna hai taaki business safely operate kar sake.
 - on screen: Variance minimization as the foundational corporate philosophy
 
-**s00b4** (mentor; facts F01)
+**s00b4** (mentor; facts F01, F12)
 
-- en: In Section 3.1, John Hull establishes the two core categories of corporate hedging strategies: the Short Hedge, deployed to protect physical inventories and future production against falling market prices, and the Long Hedge, utilized to lock in acquisition costs for essential raw materials. Let us explore the mechanics of both strategies.
-- hi: John C. Hull ne corporate hedging ko do core categories mein classify kiya hai: pehla, Short Hedge, jo existing inventory ya future production ko protect karta hai; aur doosra, Long Hedge, jo raw material purchase costs ko lock karta hai.
+- en: In Section 3.1, John Hull establishes the two core categories of corporate hedging. The Short Hedge protects physical inventories and future production against falling market prices. In contrast, the Long Hedge locks in acquisition costs for essential raw materials.
+- hi: Section 3.1 mein John C. Hull ne do core categories classify ki hain. Pehla, Short Hedge, jo inventory ko falling prices se protect karta hai. Aur doosra, Long Hedge, jo raw material acquisition costs ko lock karta hai.
 - on screen: Introduction of Short Hedge and Long Hedge categories
 
 ## Scene 1: The Mechanics of Short and Long Hedges
@@ -34,14 +34,14 @@ _Contrasting physical commercial exposure with offsetting futures contracts_
 
 **s01b1** (mentor; facts F01, F02)
 
-- en: A Short Hedge is implemented when a commercial enterprise already owns an asset, or expects to produce a commodity in the future, and fears that market prices might decline before the asset can be sold in the physical marketplace. To eliminate downside price risk, the company takes a short position in futures contracts.
-- hi: Short Hedge tab lagaya jata hai jab kisi company ke paas koi physical asset already maujood ho, ya wo future date par use produce karne wali ho, aur use darr ho ki selling date tak market prices gir na jayein.
+- en: A Short Hedge is implemented when a commercial enterprise owns an asset or expects to produce commodities. The firm fears that market prices might decline before physical sale. To eliminate downside price risk, the company sells futures contracts.
+- hi: Short Hedge tab lagaya jata hai jab company ke paas physical asset ho ya wo commodity produce karne wali ho. Selling date tak market prices girne ka darr rehta hai. Is downside risk ko hatane ke liye company futures contracts short karti hai.
 - on screen: Defining the short hedger natural long exposure
 
 **s01b2** (mentor; facts F02)
 
-- en: Consider John Hull's classic crude oil producer example: on May 15, an independent oil company anticipates having one million barrels of crude oil ready for physical sale in mid-August. The current spot price is eighty dollars per barrel, and the August NYMEX crude oil futures contract trades at seventy-nine dollars per barrel.
-- hi: John C. Hull ka classic crude oil producer example dekhiye. May ke mahine mein ek oil company ke paas ten lakh barrels crude oil hai, jise use August mein sell karna hai. Current spot price eighty dollars per barrel hai, aur August futures contract NYMEX par seventy-nine dollars per barrel quote ho raha hai.
+- en: Consider John Hull's classic crude oil producer example. On May 15, an independent oil producer anticipates having one million barrels ready for physical sale in mid-August. Current spot is eighty dollars, and August futures on the NYMEX exchange trade at seventy-nine dollars.
+- hi: John C. Hull ka classic crude oil producer example dekhiye. May 15 ko oil company ke paas ten lakh barrels crude oil hai jise August mein sell karna hai. Current spot price eighty dollars hai, aur NYMEX exchange par August futures seventy-nine dollars par quote ho raha hai.
 - on screen: Crude oil producer example initial setup
 
 **s01b3** (mentor; facts F01, F03)
@@ -52,8 +52,8 @@ _Contrasting physical commercial exposure with offsetting futures contracts_
 
 **s01b4** (mentor; facts F03, F11)
 
-- en: Suppose by August 15, global spot crude prices have plunged to seventy-five dollars per barrel. The producer sells its physical oil in the spot market for seventy-five million dollars, suffering a five-million-dollar loss relative to May. However, the short futures position is bought back at seventy-five dollars, generating a four-dollar-per-barrel profit, or four million dollars cash. Adding the four-million-dollar futures gain to the seventy-five-million-dollar physical sale locks in an effective selling price of exactly seventy-nine million dollars, completely immunizing the firm against the market crash.
-- hi: Agar August aate-aate crude oil ka spot price girkar seventy-five dollars ho jata hai, toh physical oil seventy-five million dollars mein bikega. Lekin futures position par company ko four dollars per barrel ka profit hoga, yaani four million dollars. Dono milakar total revenue exactly seventy-nine million dollars par lock ho gayi.
+- en: Suppose by August 15, global spot crude plunges to seventy-five dollars per barrel. The producer sells physical oil for seventy-five million dollars, losing five million relative to May. However, the short futures gain four dollars per barrel, or four million dollars. Combined net revenue is exactly seventy-nine million dollars, locking in seventy-nine dollars per barrel.
+- hi: Agar August 15 ko spot price girkar seventy-five dollars ho jata hai, toh physical oil seventy-five million dollars mein bikega. Lekin short futures position par four million dollars ka profit hoga. Dono milakar total revenue exactly seventy-nine million dollars par lock ho jati hai.
 - on screen: Copper fabricator example capping raw material costs
 
 ## Scene 2: Four Pillars of Corporate Hedging
@@ -62,14 +62,14 @@ _Architectural principles underpinning corporate derivatives usage_
 
 **s02b1** (mentor; facts F01, F04)
 
-- en: Conversely, a Long Hedge is deployed when a commercial manufacturer knows it must purchase a physical commodity or raw material in the future, and fears that an unexpected market price surge might squeeze profit margins or cause severe operational losses.
-- hi: Doosri taraf, Long Hedge tab use hota hai jab kisi company ko future mein koi raw material purchase karna ho, aur use darr ho ki input prices tezi se surge ho sakti hain.
+- en: Conversely, a Long Hedge is deployed when a commercial manufacturer must purchase raw materials in the future. The firm fears that an unexpected market price surge might squeeze profit margins. To eliminate upside risk, the company buys futures contracts.
+- hi: Doosri taraf, Long Hedge tab use hota hai jab company ko future mein raw material purchase karna ho. Use darr hota hai ki market price surge profit margins squeeze kar dega. Upside risk ko hatane ke liye company futures buy karti hai.
 - on screen: Pillar 1 and 2 introduction
 
 **s02b2** (mentor; facts F06)
 
-- en: Analyze John Hull's copper fabricator example: on January 15, a copper manufacturing company wins a commercial contract to supply pipe fittings in mid-May. Fulfilling the order requires purchasing one hundred thousand pounds of physical copper on May 15. The current spot price is three dollars and forty cents per pound, and the May COMEX copper futures contract trades at three dollars and twenty cents per pound.
-- hi: Hull ke copper fabricator example ko analyze kijiye. January fifteenth ko ek manufacturing company ko pata chalta hai ki May fifteenth ko use one lakh pounds copper ki zaroorat padegi. Current spot price three hundred forty cents per pound hai, aur May COMEX futures three hundred twenty cents per pound chal raha hai.
+- en: Analyze John Hull's copper fabricator example. On January 15, a manufacturing company wins a contract for mid-May delivery, requiring one hundred thousand pounds of copper on May 15. Spot is 340 cents, and May futures on the COMEX exchange trade at 320 cents per pound.
+- hi: Hull ke copper fabricator example ko analyze kijiye. January 15 ko company ko May 15 ke liye one lakh pounds copper ki zaroorat hoti hai. Current spot price 340 cents hai, aur COMEX exchange par May futures 320 cents per pound chal raha hai.
 - on screen: Pillar 3 basis dynamics
 
 **s02b3** (mentor; facts F07)
@@ -96,8 +96,8 @@ _Mathematical definition of basis and the net realized price formula_
 
 **s03b3** (mentor; facts F04, F05)
 
-- en: However, this raises a crucial practical question: are real-world corporate hedges always mathematically perfect? In real commercial markets, the answer is almost never. Real-world corporate treasurers face an unavoidable financial reality known as Basis Risk.
-- hi: Lekin ab ek critical sawal uthta hai: kya real world mein ye hedges hamesha hundred percent perfect hote hain? Bilkul nahi. Real world mein hume face karna padta hai Basis Risk.
+- en: Are real-world corporate hedges always mathematically perfect? In commercial markets, the answer is almost never. Treasurers face Basis Risk, which means the risk that spot and futures prices diverge unexpectedly before contract closeout.
+- hi: Kya real world mein corporate hedges hamesha mathematically perfect hote hain? Bilkul nahi. Treasurers ko Basis Risk face karna padta hai, यानी which means spot aur futures prices ka unexpected divergence.
 - on screen: Basis convergence and substitution insight
 
 ## Scene 4: The Causal Architecture of Corporate Hedging
@@ -134,8 +134,8 @@ _Step-by-step mathematical demonstration of NYMEX short hedge payoff_
 
 **s05b1** (mentor; facts F02)
 
-- en: In financial risk management, two standard technical terms describe basis movements over time: Strengthening of the Basis and Weakening of the Basis.
-- hi: Basis ke behavior ko describe karne ke liye finance mein do standard terms use hoti hain: Strengthening of Basis aur Weakening of Basis.
+- en: If global spot oil plunges by five dollars, does the producer lose money? Let us examine the mechanics of strengthening and weakening basis to discover the exact answer.
+- hi: Agar global spot oil paanch dollar gir jaye, toh kya producer ko loss hoga? Chaliye strengthening aur weakening basis ke mathematical concepts ko detail mein samajhte hain taaki answer mil sake.
 - on screen: Givens: 1M barrels, $80 spot, $79 August futures
 
 **s05b2** (mentor; facts F02)
@@ -146,8 +146,8 @@ _Step-by-step mathematical demonstration of NYMEX short hedge payoff_
 
 **s05b3** (mentor; facts F02)
 
-- en: Conversely, a Weakening of the Basis occurs when the basis decreases—meaning the spot price falls faster than futures, or rises more slowly. A weakening basis benefits the long hedger by lowering the net acquisition price paid for raw materials. Understanding basis direction is essential for corporate treasurers.
-- hi: Doosri taraf, Weakening of Basis ka matlab hai basis ka decrease hona. Yaani spot price futures price ke comparison mein kam badha hai ya zyada gira hai. Ye situation Long Hedger ke liye favorable hoti hai kyunki purchase cost reduce ho jati hai.
+- en: Conversely, a Weakening of the Basis occurs when the basis decreases—meaning the spot price falls faster than futures. For this oil producer, the hedge locks in exactly 79 dollars per barrel. Understanding basis direction is essential for corporate treasurers.
+- hi: Doosri taraf, Weakening of Basis ka matlab hai basis ka decrease hona. Yaani spot price futures price ke comparison mein kam badha hai ya zyada gira hai. Is short hedge se oil producer ko exactly 79 dollars per barrel lock ho jate hain.
 - on screen: Combined net revenue of $79M proves perfect hedge neutralization
 
 ## Scene 6: Hedging vs Speculation: The Novice Trap
@@ -156,8 +156,8 @@ _Debunking the myth that hedging exists to beat market price trends_
 
 **s06b1** (mentor; facts F01)
 
-- en: In Section 3.2, John Hull explores a profound academic debate in corporate finance: should non-financial corporations hedge price risks at all? Theoretical finance presents a skeptical view rooted in the Capital Asset Pricing Model, or CAPM.
-- hi: Ab ek important academic debate ko samajhte hain jo corporate finance mein aksar puchi jati hai: Kya companies ko sach mein hedge karna chahiye?
+- en: In Section 3.2, John Hull explores an academic debate: should non-financial corporations hedge price risks at all? Theoretical finance presents a skeptical view rooted in the Capital Asset Pricing Model, which is called CAPM.
+- hi: Section 3.2 mein John Hull academic debate explore karte hain: Kya companies ko hedge karna chahiye? Theoretical finance mein CAPM yaani Capital Asset Pricing Model ka matlab hota hai diversified investors ka portfolio model.
 - on screen: The novice trap of treating treasury as profit center
 
 **s06b2** (mentor; facts F01, F08)
@@ -234,8 +234,8 @@ _Check student mastery of basis calculation and net realized price_
 
 **s09b3** (mentor; facts F05, F10)
 
-- en: The correct answer is Option B: eighty-eight dollars per barrel. The terminal basis b two is S two minus F two, or eighty-five minus eighty-seven, which equals negative two dollars. The net realized price for a short hedger is F one plus b two, which is ninety plus negative two, yielding eighty-eight dollars. Physically, the oil sold for eighty-five dollars, and the short futures gained three dollars, locking in eighty-eight dollars. The basis weakened by two dollars, reducing net proceeds.
-- hi: Correct answer hai Option B: Eighty-eight dollars per barrel. Calculation dekhiye: b-two barabar S-two minus F-two, yaani eighty-five minus eighty-seven equals minus two dollars. Net realized price F-one plus b-two hai, yaani ninety minus two barabar eighty-eight dollars. Basis do dollars se weaken hua tha, isliye short hedger ka realized price ninety se girkar eighty-eight ho gaya.
+- en: The correct answer is Option B: eighty-eight dollars per barrel. Terminal basis b two is eighty-five minus eighty-seven, or negative two dollars. Net realized price is initial futures ninety plus negative two, yielding eighty-eight dollars. The two-dollar basis weakening reduced net proceeds.
+- hi: Correct answer hai Option B: eighty-eight dollars per barrel. Terminal basis b-two eighty-five minus eighty-seven, yaani minus two dollars hai. Net realized price ninety minus two barabar eighty-eight dollars banta hai.
 - on screen: Reveal Option B ($88) with complete mathematical walkthrough
 
 ## Scene 10: Where We Are: Synthesis & Bridge to Part 2
@@ -248,10 +248,10 @@ _Synthesis of Part 1 and intellectual bridge to minimum variance hedge ratio_
 - hi: Is lesson se hume ek central takeaway milta hai: Real-world financial markets mein risk kabhi complete vanish nahi hota, wo transform hota hai. Futures hedging outright price volatility ko remove karke use manageable Basis Risk mein convert kar deti hai.
 - on screen: Core pedagogical synthesis: risk transformation into basis risk
 
-**s10b2** (mentor; facts F01)
+**s10b2** (mentor; facts F01, F13)
 
-- en: However, when the asset being hedged differs from the asset underlying the futures contract—such as an airline hedging jet fuel with heating oil futures—we encounter Cross Hedging. In Part 2, we will develop the mathematical formulas for the Minimum Variance Hedge Ratio, portfolio beta hedging, and the infamous one-point-three-billion-dollar collapse of Metallgesellschaft.
-- hi: Lekin jab hedged asset aur futures contract ka underlying asset identical na ho—jaise jet fuel ko heating oil futures se hedge karna—toh hume Cross Hedging aur minimum variance hedge ratio calculate karna padta hai. Is mathematical optimization ko hum Part Two mein explore karenge.
+- en: When the exposure asset differs from the futures contract asset, we encounter cross hedging. In Part 2, we will develop the Minimum Variance Hedge Ratio and analyze the 1.3 billion dollar collapse of Metallgesellschaft.
+- hi: Jab exposure asset futures contract se alag ho, use cross hedging kehte hain. Part 2 mein hum Minimum Variance Hedge Ratio aur Metallgesellschaft ke 1.3 billion dollar rollover disaster ko samjhenge.
 - on screen: Roadmap preview and intellectual bridge to Part 2
 
 ## Scene 11: Eight Rules to Remember
@@ -260,37 +260,36 @@ _Institutional rules codifying hedging strategies and basis mechanics_
 
 **s11b1** (mentor; facts F01)
 
-- en: Let us summarize the four structural pillars of corporate hedging that every quantitative finance student and risk manager must remember.
-- hi: Aaiye aaj ke lesson ke chaar essential pillars ko summarize karte hain jo har finance professional ko hamesha yaad rakhne chahiye.
+- en: Let us now summarize the four foundational pillars and eight structural rules of corporate hedging that every quantitative risk manager and treasury professional must remember.
+- hi: Aaiye ab corporate hedging ke chaar main pillars aur aath foundational rules ko summarize karte hain jo har finance professional aur treasury risk manager ko hamesha yaad rakhne chahiye.
 - on screen: Overview of the 8 rules
 
 **s11b2** (mentor; facts F01, F02)
 
-- en: First Pillar: Short versus Long Hedging. Producers enter short hedges to lock in selling prices for physical inventory; manufacturers enter long hedges to cap raw material acquisition costs.
-- hi: Pehla pillar: Short Hedge versus Long Hedge. Producer price drop ke risk ko lock karne ke liye futures sell karta hai; manufacturer raw material price hike se bachne ke liye futures buy karta hai.
+- en: Rule 1 dictates that producers enter short hedges to lock in selling prices for physical inventory. Rule 2 establishes that commercial manufacturers enter long hedges to cap raw material acquisition costs.
+- hi: Rule 1 ke mutabik producers inventory selling prices ko lock karne ke liye short hedge karte hain. Rule 2 ke mutabik manufacturers raw material costs ko cap karne ke liye long hedge deploy karte hain.
 - on screen: Rules 1 and 2 highlighted
 
 **s11b3** (mentor; facts F03, F04)
 
-- en: Second Pillar: Nature of Basis. Basis is defined as Spot Price minus Futures Price. Hedging substitutes extreme spot price volatility with manageable basis risk.
-- hi: Dusra pillar: The Nature of Basis. Basis spot aur futures price ka spread hai. Hedging price uncertainty ko basis risk se substitute karti hai.
+- en: Rule 3 defines basis as spot price minus futures price. Rule 4 shows that corporate hedging substitutes extreme outright price volatility with smaller, manageable basis risk across operating cycles.
+- hi: Rule 3 basis ko spot price minus futures price ke roop mein define karta hai. Rule 4 kehta hai ki hedging outright price volatility ko chote aur manageable basis risk se substitute karti hai.
 - on screen: Rules 3 and 4 highlighted
 
 **s11b4** (mentor; facts F05, F06)
 
-- en: Third Pillar: Strengthening versus Weakening Basis. A strengthening basis increases net realized proceeds for a short hedger, whereas a weakening basis reduces net acquisition costs for a long hedger.
-- hi: Teesra pillar: Strengthening versus Weakening. Strengthening basis short hedger ko reward karta hai, jabki weakening basis long hedger ke favor mein kaam karta hai.
+- en: Rule 5 demonstrates that a strengthening basis increases net realized selling prices for short hedgers. Rule 6 shows that a weakening basis reduces net acquisition costs for long hedgers during procurement.
+- hi: Rule 5 dikhata hai ki strengthening basis short hedgers ke net realized price ko badhata hai. Rule 6 batata hai ki weakening basis long hedgers ke net procurement cost ko efficiently reduce karta hai.
 - on screen: Rules 5 and 6 highlighted
 
 **s11b5** (mentor; facts F06, F07)
 
-- en: Fourth Pillar: The Delivery Month Rule. Hedgers must always select a futures contract maturing after the hedge closeout date to avoid delivery month illiquidity and unexpected delivery notices.
-- hi: Chautha pillar: Delivery Month Rule. Contract hamesha closeout date ke baad ka select kijiye taaki delivery month ke liquidity traps aur physical notice se bacha ja sake.
+- en: Rule 7 establishes the golden delivery month rule, selecting contracts maturing strictly after hedge closeout. Rule 8 warns against delivery month illiquidity and unexpected delivery notices from exchange clearinghouses.
+- hi: Rule 7 golden delivery month rule establish karta hai jisme contract maturity closeout ke baad hoti hai. Rule 8 delivery month ki illiquidity aur exchange clearinghouse ke physical delivery notice se protect karta hai.
 - on screen: Rules 7 and 8 highlighted
 
-**s11b6** (mentor; facts none)
+**s11b6** (mentor; facts F01, F02)
 
-- en: In Part 2, we will master the Minimum Variance Hedge Ratio, optimal contract calculation, stock index beta hedging, and Metallgesellschaft's multi-billion dollar rollover disaster.
-- hi: Next part mein hum cross-hedging formulas, stock portfolio beta adjustments, aur Metallgesellschaft ke famous one point three billion dollar hedging disaster ko dissect karenge.
+- en: Remember all 8 rules when structuring hedges. In Part 2, we will master the Minimum Variance Hedge Ratio, beta hedging, and Metallgesellschaft's multi-billion dollar rollover disaster.
+- hi: In sabhi 8 rules ko hamesha dhyan mein rakhiye. Part 2 mein hum Minimum Variance Hedge Ratio, beta hedging, aur Metallgesellschaft ke multi-billion dollar disaster ko master karenge.
 - on screen: Compact summary overview of all 8 rules
-

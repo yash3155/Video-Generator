@@ -1,256 +1,295 @@
-# Teaching Script: Chapter 4 Part 1
-## Interest Rate Mechanics, Zero Curves & The Bootstrap Method
+# Interest Rate Mechanics, Zero Curves & The Bootstrap Method
 
-### Scene 0: The Cornerstone of Derivatives: Interest Rates
+## Scene 0: The Single Rate Trap
 
-#### Beat b01
-**English:** "In derivatives markets, interest rates are the fundamental building blocks required to price forward contracts, swaps, and options. Without an exact understanding of yield curves and discounting mechanics, calculating the fair value of any financial derivative is impossible."
+_Hook: The single-rate discount trap and the real-world demand for zero curves_
 
-**Hindi:** "Derivatives markets mein Forward contracts, Swaps aur Options ko price karne ke liye sabse fundamental building block Interest Rates hain. Agar aapko yield curve aur discounting ki exact mechanics nahi pata, toh aap kisi bhi financial derivative ka fair value calculate nahi kar sakte."
+**s00b1** (novice; facts F01, F06)
 
-#### Beat b02
-**English:** "Yet in real-world financial markets, an 'interest rate' is not a single uniform number. Multiple benchmark rates exist simultaneously, reflecting differences in borrower credit risk, pledged collateral, and investment maturity."
+- en: How can a bank price a multi-year corporate derivative contract when cash flows stretch across ten years? Can we simply discount every cash flow using a single yield to maturity?
+- hi: जब किसी बैंक को दस साल में फैले कैश फ्लो वाले कॉर्पोरेट डेरिवेटिव की कीमत तय करनी हो, तो क्या हम सभी कैश फ्लो को केवल एक ही यील्ड टू मैच्योरिटी से डिस्काउंट कर सकते हैं?
+- on screen: Opening novice struggle: pricing 10-year cash flows with single flat yield
 
-**Hindi:** "Lekin financial markets mein 'Interest Rate' koi single universal number nahi hota. Alag-alag borrowers ke credit risk, collateral aur maturity ke hisab se market mein multiple benchmark rates exist karti hain."
+**s00b2** (mentor; facts F06)
 
-#### Beat b03
-**English:** "In this lesson, covering the first half of Chapter Four, we master the benchmark taxonomy, discrete versus continuous compounding mathematics, zero-coupon yield curves, and the investment bank standard Bootstrap method."
+- en: A novice analyst might use a single yield to maturity, but that is a dangerous trap. Yield to maturity is a single internal rate that assumes flat interest rates across all maturities.
+- hi: एक नौसिखिया विश्लेषक एकल यील्ड टू मैच्योरिटी का उपयोग कर सकता है, लेकिन यह एक खतरनाक जाल है। यील्ड टू मैच्योरिटी वह एकल आंतरिक दर है जो सभी मैच्योरिटी पर फ्लैट ब्याज दरें मानती है।
+- on screen: Mentor response: flat yield to maturity assumption causes severe pricing distortion
 
-**Hindi:** "John C. Hull ke Chapter Four mein hum interest rates ki complete taxonomy, discrete versus continuous compounding mathematics, zero-coupon yield curves aur Bootstrap method ko step-by-step master karenge."
+**s00b3** (novice; facts F06)
 
----
+- en: What goes wrong when yield curves slope upward? Do arbitrage traders exploit the pricing mismatch and create severe trading losses for the bank?
+- hi: जब यील्ड कर्व ऊपर की ओर ढलान वाला होता है तो क्या गलत होता है? क्या आर्बिट्राज ट्रेडर कीमत के इस अंतर का फायदा उठाकर बैंक को भारी नुकसान पहुंचाते हैं?
+- on screen: Novice question: arbitrage exploitation and trading losses on upward curves
 
-### Scene 1: The Taxonomy of Rates: Treasury, LIBOR & Repo
+**s00b4** (mentor; facts F01, F08)
 
-#### Beat b04
-**English:** "Three primary benchmark interest rates dominate global financial markets: Treasury Rates, LIBOR, and Repo Rates."
+- en: Yes, severe losses occur. A Treasury rate is the interest rate a government pays to borrow its currency without default. Desks construct the spot zero curve using sovereign Treasury rates and recursive bootstrapping techniques.
+- hi: हाँ, भारी नुकसान होता है। ट्रेजरी रेट वह ब्याज दर है जो सरकार बिना डिफॉल्ट के अपनी मुद्रा उधार लेने के लिए चुकाती है। डेस्क सॉवरेन ट्रेजरी रेट्स और रिकर्सिव बूटस्ट्रैपिंग से स्पॉट जीरो कर्व बनाते हैं।
+- on screen: Show resolution: constructing sovereign zero curve from Treasury rates
 
-**Hindi:** "Market mein teen primary benchmark rates sabse zyada dominate karti hain: Treasury Rates, LIBOR, aur Repo Rates."
+## Scene 1: Discrete vs Continuous Compounding
 
-#### Beat b05
-**English:** "Treasury rates are earned on sovereign government debt instruments, such as Treasury bills and Treasury bonds. Because a sovereign government issues debt denominated in its own currency, Treasury rates have traditionally been treated by economists as free from credit default risk."
+_Tension: Discrete compounding conventions versus continuous compounding mathematical reality_
 
-**Hindi:** "Treasury Rates national government ke debt instruments par milti hain, jaise Treasury bills aur bonds. Kyunki sovereign government apni currency khud print kar sakti hai, isliye Treasury rates ko traditionally credit default risk-free mana jata hai."
+**s01b1** (narrator; facts F02)
 
-#### Beat b06
-**English:** "In contrast, the Repo Rate, short for Repurchase Agreement, is a collateralized loan rate where an institution sells government securities and agrees to buy them back later at a slightly higher price. Because it is fully secured by collateral, repo rates trade slightly below unsecured interbank lending rates."
+- en: Commercial banks quote interest on a discrete compounding basis. Discrete compounding means interest is calculated and added at fixed calendar intervals like semiannually or monthly.
+- hi: कमर्शियल बैंक डिस्क्रीट कंपाउंडिंग के आधार पर ब्याज कोट करते हैं। डिस्क्रीट कंपाउंडिंग का मतलब है कि ब्याज अर्धवार्षिक या मासिक जैसे निश्चित कैलेंडर अंतरालों पर जोड़ा जाता है।
+- on screen: Show commercial banking discrete compounding intervals on a calendar timeline
 
-**Hindi:** "Doosri taraf, Repo Rate yaani Repurchase Agreement collateralized loan rate hota hai, jahan ek financial institution government securities girvi rakhkar short-term cash borrow karti hai. Collateral hone ki wajah se Repo rate unsecured borrowing se thoda kam hota hai."
+**s01b2** (narrator; facts F02)
 
----
+- en: In derivatives modeling, financial economists require continuous compounding. Continuous compounding means interest is added continuously at every infinitesimal fraction of a second.
+- hi: डेरिवेटिव्स मॉडलिंग में वित्तीय अर्थशास्त्रियों को कंटीन्यूअस कंपाउंडिंग की आवश्यकता होती है। कंटीन्यूअस कंपाउंडिंग का मतलब है कि ब्याज हर पल लगातार जुड़ता रहता है।
+- on screen: Show analytical continuous compounding curve smoothly expanding terminal value
 
-### Scene 2: Compounding Frequencies & Continuous Compounding
+**s01b3** (narrator; facts F03)
 
-#### Beat b07
-**English:** "When quoting an interest rate, specifying the compounding frequency is mandatory. When interest compounds m times per year at annual rate R, an initial principal A grows after n years to A multiplied by one plus R over m, raised to the power of m times n."
+- en: Can we switch seamlessly between discrete banking quotes and continuous quantitative formulas? The natural logarithm provides an exact mathematical bridge between both worlds.
+- hi: क्या हम डिस्क्रीट बैंकिंग कोट्स और कंटीन्यूअस क्वांटिटेटिव फॉर्मूलों के बीच आसानी से स्विच कर सकते हैं? नेचुरल लॉगरिदम दोनों दुनिया के बीच एक सटीक गणितीय पुल प्रदान करता है।
+- on screen: Show mathematical conversion bridge linking discrete rates to continuous rates
 
-**Hindi:** "Interest rate quote karte waqt compounding frequency specify karna mandatory hota hai. Ek saal mein m baar interest add hone par future value A guna one plus R divided by m to the power m n hoti hai."
+## Scene 2: Four Pillars of Interest Rate Mechanics
 
-#### Beat b08
-**English:** "In quantitative finance and derivative pricing models, we take the compounding frequency m to infinity. This is known as continuous compounding, governed by the natural exponential function e raised to the power of R times n."
+_Pillars: The Four Pillars of Interest Rate Mechanics: Rates, Compounding, Zero Curve, and Forward Rates_
 
-**Hindi:** "Quantitative finance aur derivatives pricing mein hum frequency m ko infinity tak le jate hain, jise Continuous Compounding kehte hain. Iska mathematical form exponential function e to the power R n hota hai."
+**s02b1** (narrator; facts F01)
 
-#### Beat b09
-**English:** "The conversion formulas between a discrete rate R_m and its continuous equivalent R_c are exact: R_c equals m times the natural logarithm of one plus R_m divided by m. Inverting this, R_m equals m times e raised to the power of R_c over m, minus one."
+- en: Pillar 1 establishes benchmark rates. Sovereign Treasury rates reflect default-free borrowing, while the repo rate is collateralized borrowing secured by government debt securities.
+- hi: पहला पिलर बेंचमार्क दरों को स्थापित करता है। सॉवरेन ट्रेजरी दरें डिफॉल्ट-मुक्त उधार को दर्शाती हैं, जबकि रेपो रेट सरकारी ऋण प्रतिभूतियों द्वारा सुरक्षित उधार दर है।
+- on screen: Card 1: Benchmark Rates showing Treasury rates and repo rate collateralization
 
-**Hindi:** "Discrete rate R m aur continuous rate R c ke beech conversion formula dekhiye: R c barabar m guna natural log of one plus R m divided by m. Aur R m barabar m guna e to the power R c divided by m minus one."
+**s02b2** (narrator; facts F04)
 
-#### Beat b10
-**English:** "Consider John Hull's numerical example: if a bank quotes an annual rate of ten percent with semi-annual compounding, where m equals two, the continuous equivalent rate is two times the natural logarithm of one point zero five, which equals exactly nine point seven five eight percent."
+- en: Pillar 2 defines continuous discounting. A discount factor is the current value today of one dollar received at a future date. Present cash flow values multiply future payments by exponential discount factor e to the power minus R T.
+- hi: दूसरा पिलर कंटीन्यूअस डिस्काउंटिंग को परिभाषित करता है। डिस्काउंट फैक्टर भविष्य की तारीख पर मिलने वाले एक डॉलर का आज का वर्तमान मूल्य है। वर्तमान कैश फ्लो मूल्य भविष्य के भुगतानों को घातीय डिस्काउंट फैक्टर e की घात माइनस R T से गुणा करते हैं।
+- on screen: Card 2: Continuous Discounting showing exponential discount factor PV = B * e^(-RT)
 
-**Hindi:** "Hull ka numerical example dekhiye: agar koi bank ten percent per annum semi-annual compounding quote karta hai, toh continuous equivalent nikalta hai: two guna natural log of one point zero five, yaani exactly nine point seven five eight percent."
+**s02b3** (narrator; facts F05, F08)
 
----
+- en: Pillar 3 constructs the zero curve. A zero rate is the return on an investment with no intermediate coupons, extracted recursively from coupon bonds using bootstrapping.
+- hi: तीसरा पिलर जीरो कर्व का निर्माण करता है। जीरो रेट बिना किसी मध्यवर्ती कूपन के निवेश पर रिटर्न है, जिसे बूटस्ट्रैपिंग का उपयोग करके कूपन बॉन्ड से निकाला जाता है।
+- on screen: Card 3: Zero Curve showing zero rate spot yields stripped from bond prices
 
-### Scene 3: Present Value Discounting via Exponential Form
+**s02b4** (narrator; facts F09)
 
-#### Beat b11
-**English:** "The greatest analytical advantage of continuous compounding lies in cash flow discounting. The present value of a future cash flow B, received at time T, is simply B multiplied by e raised to the power of minus R times T."
+- en: Pillar 4 derives forward rates. A forward rate is the future interest rate implied today by zero rates for borrowing between two upcoming dates.
+- hi: चौथा पिलर फॉरवर्ड दरों को प्राप्त करता है। फॉरवर्ड रेट दो आने वाली तारीखों के बीच उधार लेने के लिए आज जीरो दरों द्वारा निहित भविष्य की ब्याज दर है।
+- on screen: Card 4: Forward Rates showing future implied interest rate extraction
 
-**Hindi:** "Continuous compounding ka sabse bada advantage cash flow discounting mein milta hai. Future time T par milne wale cash flow B ki present value directly B guna e to the power minus R T hoti hai."
+## Scene 3: Continuous Compounding Mechanics
 
-#### Beat b12
-**English:** "Here, e to the power of minus R times T is defined as the Discount Factor. It represents the exact present cash value today of one dollar received with complete certainty at future maturity T."
+_Formula: Continuous compounding and present value discount factors_
 
-**Hindi:** "Yahan e to the power minus R T ko Discount Factor kaha jata hai. Ye factor batata hai ki future mein milne wale one dollar ki aaj exact present value kitni hai."
+**s03b1** (narrator; facts F03)
 
-#### Beat b13
-**English:** "Continuous discounting ensures mathematical additivity across time horizons. This elegance simplifies stochastic calculus and makes the valuation of multi-period cash flows analytically tractable."
+- en: Let us examine the conversion formula. To transform a rate R m compounded m times into continuous rate R c, we calculate m times the natural logarithm of one plus R m over m.
+- hi: आइए रूपांतरण सूत्र की जांच करें। m बार कंपाउंड की गई दर R m को कंटीन्यूअस दर R c में बदलने के लिए, हम m गुना एक प्लस R m बटे m के नेचुरल लॉग की गणना करते हैं।
+- on screen: Show formula breakdown for continuous rate conversion R_c = m * ln(1 + R_m / m)
 
-**Hindi:** "Continuous discounting derivatives mathematics ko clean aur additive banata hai, jisse multi-period cash flows ko mathematically integrate karna behad aasan ho jata hai."
+**s03b2** (narrator; facts F11)
 
----
+- en: Consider a concrete numerical example. A bank quotes an annual rate of 10% compounded semiannually, meaning frequency m equals 2. The periodic six-month rate is 5%.
+- hi: एक ठोस संख्यात्मक उदाहरण पर विचार करें। एक बैंक अर्धवार्षिक रूप से 10% वार्षिक दर कोट करता है, जिसका अर्थ है आवृत्ति m 2 के बराबर है। छह महीने की दर 5% है।
+- on screen: Display given numbers: R_m = 0.10, compounding frequency m = 2, periodic rate 1.05
 
-### Scene 4: Zero Rates: The Pure Building Blocks of Yield
+**s03b3** (narrator; facts F02, F11)
 
-#### Beat b14
-**English:** "Now we examine an essential concept: the Zero Rate, also known as the zero-coupon interest rate. An n-year zero rate is the annual rate of interest earned on an investment that makes zero intermediate coupon payments."
+- en: Taking 2 times the natural logarithm of 1.05 gives 0.09758, or 9.758%. Compounding continuously requires a lower stated interest rate to achieve the exact same final balance.
+- hi: 1.05 का नेचुरल लॉग लेकर 2 से गुणा करने पर 0.09758, यानी 9.758% प्राप्त होता है। समान अंतिम बैलेंस प्राप्त करने के लिए कंटीन्यूअस कंपाउंडिंग में कम दर की आवश्यकता होती है।
+- on screen: Show calculated result: R_c = 0.09758 (9.758%) with terminal value equality
 
-**Hindi:** "Ab ek critical concept samajhte hain: Zero Rate, jise zero-coupon interest rate bhi kaha jata hai. Ek n-year zero rate wo interest rate hai jo aise investment par earn hota hai jisme koi intermediate coupon payment nahi hoti."
+## Scene 4: Causal Architecture of the Bootstrap
 
-#### Beat b15
-**English:** "All principal and accumulated interest are returned together as a single terminal lump sum at maturity n. Each maturity possesses its own distinct zero rate, and a plot of these zero rates across all maturities forms the Zero Curve, or spot yield curve."
+_Causal Chain: The recursive Bootstrap method for stripping coupons_
 
-**Hindi:** "Principal aur pura accumulated interest maturity date n par ek sath single lump sum mein pay hota hai. Har maturity ka apna dedicated zero rate hota hai, aur in sabhi zero rates ka graph Zero Curve ya Spot Curve kehlata hai."
+**s04b1** (narrator; facts F06)
 
-#### Beat b16
-**English:** "In modern derivative pricing, we never assume a single flat interest rate across time. Instead, every individual future cash flow is discounted using its exact maturity-matched zero rate."
+- en: The market presents coupon bond prices across maturities. Because each bond pays periodic coupons, market prices bundle multiple maturities into one package.
+- hi: बाजार विभिन्न मैच्योरिटी के कूपन बॉन्ड की कीमतें पेश करता है। चूंकि प्रत्येक बॉन्ड समय-समय पर कूपन का भुगतान करता है, बाजार कीमतें कई मैच्योरिटी को एक पैकेज में बंडल करती हैं।
+- on screen: Node 1: Market bond prices observed containing bundled periodic cash flows
 
-**Hindi:** "Derivatives pricing mein hum kabhi bhi single flat interest rate assume nahi karte. Har cash flow ko uske exact maturity-matched zero rate se discount kiya jata hai."
+**s04b2** (narrator; facts F08)
 
-#### Beat b17
-**English:** "However, pure zero rates are directly observable in the market only for short maturities via Treasury bills. Longer-term debt trades almost exclusively as coupon-bearing bonds, requiring analysts to construct the zero curve mathematically."
+- en: The bootstrap algorithm strips prior known coupon cash flows recursively. Each intermediate coupon is discounted using the previously solved zero rates.
+- hi: बूटस्ट्रैप एल्गोरिदम पहले से ज्ञात कूपन कैश फ्लो को रिकर्सिव तरीके से अलग करता है। प्रत्येक मध्यवर्ती कूपन को पहले हल किए गए जीरो रेट्स का उपयोग करके डिस्काउंट किया जाता है।
+- on screen: Node 2: Recursive coupon stripping discounting earlier payments with known zero rates
 
-**Hindi:** "Lekin market mein zero rates sirf short term ke liye directly observe hote hain. Longer maturities ke liye market mein coupon-bearing bonds trade hote hain. Isliye hume Zero Curve construct karni padti hai."
+**s04b3** (narrator; facts F06, F08)
 
----
+- en: Subtracting discounted coupons isolates the final principal and interest. We solve directly for the next zero rate, unlocking accurate pricing across all corporate derivatives.
+- hi: डिस्काउंटेड कूपन घटाने से अंतिम मूलधन और ब्याज अलग हो जाता है। हम सीधे अगले जीरो रेट को हल करते हैं, जिससे सभी कॉर्पोरेट डेरिवेटिव्स की सटीक कीमत संभव हो जाती है।
+- on screen: Node 3: Final cash flow isolated to solve next zero rate and complete spot curve
 
-### Scene 5: Bond Pricing, Yield to Maturity (YTM) & Par Yield
+## Scene 5: Bootstrapping Treasury Zero Rates
 
-#### Beat b18
-**English:** "To determine the theoretical fair value of a coupon-bearing bond, every intermediate coupon payment and the final principal return must be discounted at its own respective zero rate."
+_Worked Example: Bootstrapping Treasury zero rates from bill and coupon bond prices_
 
-**Hindi:** "Ek coupon bond ki theoretical fair value nikalne ke liye uske sabhi future coupons aur principal ko respective zero rates se discount kiya jata hai."
+**s05b1** (narrator; facts F08, F12)
 
-#### Beat b19
-**English:** "Yield to Maturity, or YTM, is the single constant discount rate that equates the present value of all future bond cash flows to its current market price. But YTM is merely an internal average yield; it is not the true market zero curve."
+- en: Let us bootstrap the six-month zero rate from a Treasury bill. A Treasury bill is a short-term government debt security that pays no regular coupon. A bill with face value 100 dollars and maturity 0.5 years trades at 97.50 dollars.
+- hi: आइए ट्रेजरी बिल से छह महीने के जीरो रेट को बूटस्ट्रैप करें। ट्रेजरी बिल एक शॉर्ट-टर्म सरकारी ऋण प्रतिभूति है जो कोई नियमित कूपन नहीं देती है। 100 डॉलर फेस वैल्यू और 0.5 वर्ष मैच्योरिटी वाला बिल 97.50 डॉलर पर ट्रेड करता है।
+- on screen: Show given bill parameters: Price = 97.50, Face = 100, Maturity T = 0.5 years
 
-**Hindi:** "Yield to Maturity yaani YTM wo single constant interest rate hota hai jo bond ke sabhi cash flows ki present value ko uske market price ke barabar bana deta hai. Lekin YTM ek internal average hai, ye actual market zero curve nahi hai."
+**s05b2** (narrator; facts F04, F12)
 
-#### Beat b20
-**English:** "Par Yield is defined as the coupon rate per annum that causes a bond's theoretical price to equal its par face value. It serves as the primary market benchmark when pricing new debt issuances."
+- en: Setting price 97.50 equal to 100 times e to the power minus 0.5 R yields discount ratio 0.975. Taking natural logarithm and dividing by minus 0.5 solves for rate R.
+- hi: कीमत 97.50 को 100 गुना e की घात माइनस 0.5 R के बराबर रखने पर डिस्काउंट रेश्यो 0.975 प्राप्त होता है। नेचुरल लॉग लेकर माइनस 0.5 से भाग देने पर दर R प्राप्त होती है।
+- on screen: Step 1: Compute ratio 0.975 and apply continuous rate formula -ln(0.975) / 0.5
 
-**Hindi:** "Par Yield wo coupon rate hota hai jo bond ke theoretical price ko uski par value, yaani face value ke exactly barabar bana deta hai. New bond issues ko price karne ke liye Par Yield standard benchmark hota hai."
+**s05b3** (narrator; facts F05, F12)
 
-#### Beat b21
-**English:** "This brings us to the most celebrated algorithm in fixed-income finance, utilized by trading desks worldwide to construct the zero curve: The Bootstrap Method."
+- en: The continuously compounded six-month zero rate equals 0.05064, or 5.064%. This exact rate now discounts six-month coupons on all longer-dated coupon bonds.
+- hi: कंटीन्यूअसली कंपाउंडेड छह महीने की जीरो दर 0.05064, यानी 5.064% के बराबर है। यह सटीक दर अब लंबी अवधि के कूपन बॉन्ड पर छह महीने के कूपन को डिस्काउंट करती है।
+- on screen: Result: 6-month zero rate = 0.05064 (5.064%) used to discount subsequent coupons
 
-**Hindi:** "Ab aate hain quantitative finance ke sabse famous algorithm par jisse investment banks zero curve generate karte hain: The Bootstrap Method."
+## Scene 6: Flat YTM vs Spot Zero Curve
 
----
+_Misconception: Flat Yield to Maturity versus the true zero curve_
 
-### Scene 6: The Bootstrap Method: Extracting Zero Curves
+**s06b1** (narrator; facts F06)
 
-#### Beat b22
-**English:** "The Bootstrap Method is a recursive, step-by-step algorithm where known short-term zero rates are utilized to solve for progressively longer-term zero rates."
+- en: A common novice misconception assumes that discounting all cash flows with a single flat yield to maturity accurately prices fixed income instruments.
+- hi: एक आम नौसिखिया गलत धारणा यह मानती है कि सभी कैश फ्लो को एक ही फ्लैट यील्ड टू मैच्योरिटी से डिस्काउंट करने से सही कीमत मिलती है।
+- on screen: Novice trap panel: Flat Yield to Maturity assumption applied across all tenors
 
-**Hindi:** "Bootstrap Method ek recursive step-by-step technique hai jisme short-term zero rates ka use karke progressively longer-term zero rates solve kiye jate hain."
+**s06b2** (narrator; facts F05, F06)
 
-#### Beat b23
-**English:** "In Step One, Treasury bills directly provide zero-coupon rates for maturities such as six months and one year, because they contain zero intermediate coupon payments."
+- en: In reality, each coupon cash flow must be discounted at the unique spot zero rate matching its exact maturity. Yield to maturity is merely a weighted average.
+- hi: वास्तव में प्रत्येक कूपन कैश फ्लो को उसकी सटीक मैच्योरिटी से मेल खाने वाले अद्वितीय स्पॉट जीरो रेट पर डिस्काउंट किया जाना चाहिए। यील्ड टू मैच्योरिटी केवल एक भारित औसत है।
+- on screen: Professional reality panel: Unique zero rates discounting each cash flow independently
 
-**Hindi:** "Step One mein Treasury bills se zero point five year aur one point zero year ke zero rates directly mil jate hain kyunki unme koi intermediate coupon nahi hota."
+**s06b3** (narrator; facts F07)
 
-#### Beat b24
-**English:** "In Step Two, we take a one-point-five-year coupon bond. Its first two coupons, arriving at six months and twelve months, are discounted using the known zero-point-five-year and one-year zero rates."
+- en: The par yield is the coupon rate that makes the bond price equal to face value. Par yields reflect the shape of the zero curve without replacing spot rates.
+- hi: पार यील्ड वह कूपन दर है जो बॉन्ड की कीमत को फेस वैल्यू के बराबर बनाती है। पार यील्ड स्पॉट दरों की जगह लिए बिना जीरो कर्व के आकार को दर्शाती है।
+- on screen: Show Par Yield definition F07 and comparison with spot zero curve
 
-**Hindi:** "Step Two mein hum one point five year ka coupon bond lete hain. Iske pehle do coupons ko already known zero point five aur one point zero year ke zero rates se discount karte hain."
+## Scene 7: Extracting Implied Forward Rates
 
-#### Beat b25
-**English:** "In Step Three, these discounted coupon values are subtracted from the bond's total market price, isolating the final cash flow and allowing the unknown one-point-five-year zero rate to be solved algebraically."
+_Formula Breakdown: Implied forward interest rate calculation_
 
-**Hindi:** "Step Three mein bond ke total market price se in discounted coupons ko subtract karke final cash flow ke liye unknown one point five year zero rate ko algebraically solve kar liya jata hai."
+**s07b1** (narrator; facts F09)
 
----
+- en: Forward rates represent borrowing costs implied between future dates T 1 and T 2. The formula calculates R 2 times T 2 minus R 1 times T 1, divided by T 2 minus T 1.
+- hi: फॉरवर्ड दरें भविष्य की तारीखों T 1 और T 2 के बीच निहित उधार लागत का प्रतिनिधित्व करती हैं। फॉर्मूला R 2 गुना T 2 माइनस R 1 गुना T 1, बटे T 2 माइनस T 1 की गणना करता है।
+- on screen: Formula breakdown: R_F = (R_2*T_2 - R_1*T_1) / (T_2 - T_1)
 
-### Scene 7: Worked Bootstrap Example: Numerical Progression
+**s07b2** (narrator; facts F09, F10)
 
-#### Beat b26
-**English:** "Let us examine John Hull's Table four point five. The zero-point-five-year rate is five point zero percent, and the one-year rate is five point eight percent, continuously compounded."
+- en: If the 1-year zero rate is 3% and the 2-year zero rate is 4%, what must the 1-year forward rate starting at year 1 be? The numerator is 0.04 times 2 minus 0.03 times 1.
+- hi: यदि 1-वर्ष की जीरो दर 3% है और 2-वर्ष की जीरो दर 4% है, तो वर्ष 1 से शुरू होने वाली 1-वर्षीय फॉरवर्ड दर क्या होनी चाहिए? अंश 0.04 गुना 2 माइनस 0.03 गुना 1 है।
+- on screen: Prediction Question: Calculate forward rate with R_1 = 3%, T_1 = 1, R_2 = 4%, T_2 = 2
 
-**Hindi:** "John C. Hull ki Table four point five ko dekhiye. Zero point five year rate five point zero percent hai, aur one point zero year rate five point eight percent continuous compounding par determined hai."
+**s07b3** (narrator; facts F10)
 
-#### Beat b27
-**English:** "A one-point-five-year bond with a six-dollar semi-annual coupon and one-hundred-dollar face value trades at ninety-six dollars. Setting up the equation: three e to the minus point zero five times point five, plus three e to the minus point zero five eight times one, plus one hundred and three e to the minus R times one point five equals ninety-six. Solving for R yields an exact one-point-five-year continuous zero rate of six point zero five percent."
+- en: Subtracting 0.03 from 0.04 times 2 leaves 0.05, and dividing by 1 year gives exactly 5.0%. The forward rate must be 5.0% to prevent profitable multi-year borrowing arbitrage.
+- hi: 0.04 गुना 2 में से 0.03 घटाने पर 0.05 बचता है, और 1 वर्ष से भाग देने पर ठीक 5.0% प्राप्त होता है। बहु-वर्षीय आर्बिट्राज को रोकने के लिए फॉरवर्ड दर 5.0% होनी चाहिए।
+- on screen: Show reveal: Forward rate R_F = 5.0% with no-arbitrage proof
 
-**Hindi:** "One point five year bond par six dollar semi-annual coupon aur hundred dollar face value hai, jiska market price ninety-six dollars hai. Formula mein values substitute karke equation solve karne par one point five year continuous zero rate six point zero five percent nikalta hai."
+## Scene 8: Zero Rates vs Forward Curve
 
----
+_Data Chart: The term structure relationship between forward rates and zero rates_
 
-### Scene 8: Forward Rates: Implied Future Borrowing Costs
+**s08b1** (narrator; facts F05, F09)
 
-#### Beat b28
-**English:** "Now we examine Forward Rates. A forward rate is the interest rate implied by today's zero curve for borrowing or lending over a specific period in the future."
+- en: When the zero curve slopes upward, implied forward rates must lie strictly above the zero curve. Each incremental year pulls up the cumulative average rate.
+- hi: जब जीरो कर्व ऊपर की ओर ढलान वाला होता है, तो निहित फॉरवर्ड दरें निश्चित रूप से जीरो कर्व के ऊपर स्थित होनी चाहिए। प्रत्येक अतिरिक्त वर्ष संचयी औसत दर को ऊपर खींचता है।
+- on screen: Display chart: Upward sloping zero curve with forward curve plotted strictly above it
 
-**Hindi:** "Ab hum aate hain Forward Rates par. Forward rate wo interest rate hota hai jo current zero curve ke mutabik future time period ke liye automatically imply hota hai."
+**s08b2** (narrator; facts F10)
 
-#### Beat b29
-**English:** "If R-one is the zero rate for maturity T-one, and R-two is the zero rate for maturity T-two, the continuous forward rate R-sub-F between T-one and T-two is given by: R-two times T-two minus R-one times T-one, divided by T-two minus T-one."
+- en: At year 1 the zero rate is 3.0%, while at year 2 the zero rate rises to 4.0%. The implied forward rate for that second year reaches 5.0%.
+- hi: वर्ष 1 पर जीरो दर 3.0% है, जबकि वर्ष 2 पर जीरो दर बढ़कर 4.0% हो जाती है। उस दूसरे वर्ष के लिए निहित फॉरवर्ड दर 5.0% तक पहुंच जाती है।
+- on screen: Highlight data points: Year 1 at 3%, Year 2 at 4%, Forward rate Year 2 at 5%
 
-**Hindi:** "Agar maturity T-one ka zero rate R-one ho aur maturity T-two ka zero rate R-two ho, toh T-one aur T-two ke beech ka forward rate R F barabar hota hai: R-two T-two minus R-one T-one divided by T-two minus T-one."
+**s08b3** (narrator; facts F09)
 
-#### Beat b30
-**English:** "The economic intuition is clear: when committing funds across horizon T-two, the forward rate represents the marginal return required during the final interval to make the total compounded return equal the two-period zero investment."
+- en: Conversely, if the zero curve slopes downward, forward rates lie below zero rates. Understanding this geometric relationship is essential for bond portfolio management.
+- hi: इसके विपरीत यदि जीरो कर्व नीचे की ओर ढलान वाला है, तो फॉरवर्ड दरें जीरो दरों से नीचे होती हैं। इस ज्यामितीय संबंध को समझना बॉन्ड पोर्टफोलियो प्रबंधन के लिए आवश्यक है।
+- on screen: Contrast with inverted zero curve showing forward rate below spot rate
 
-**Hindi:** "Is formula ka financial intuition samajhiye: Agar aap T-two duration tak invest karte hain, toh initial period T-one ke baad remaining time mein aapko jo marginal rate milna chahiye, wahi forward rate hai."
+## Scene 9: Interactive Assessment
 
----
+_Interactive Quiz: Testing forward rate calculation and compounding mechanics_
 
-### Scene 9: Active Recall Scenario: Calculating the Forward Rate
+**s09b1** (narrator; facts F09, F10)
 
-#### Beat b31
-**English:** "Let us test your mastery of forward rate derivation with a practical scenario. Suppose the one-year continuous zero rate is three percent, and the two-year continuous zero rate is four percent. What is the implied forward rate for the second year, from year one to year two?"
+- en: Suppose a sovereign zero curve quotes a 1-year zero rate of 3.0% and a 2-year zero rate of 4.0%. What is the implied 1-year forward rate starting at year 1?
+- hi: मान लीजिए कि एक सॉवरेन जीरो कर्व 1-वर्षीय जीरो दर 3.0% और 2-वर्षीय जीरो दर 4.0% कोट करता है। वर्ष 1 से शुरू होने वाली निहित 1-वर्षीय फॉरवर्ड दर क्या है?
+- on screen: Quiz question presented with four options A to D in 2x2 grid
 
-**Hindi:** "Chaliye ek practical forward rate calculation test karte hain. Ek saal ka zero rate three percent hai aur do saal ka zero rate four percent hai continuous compounding par. Year one se year two ke beech ka implied forward rate kya hoga?"
+**s09b2** (narrator; facts F09)
 
-#### Beat b32
-**English:** "Apply the formula: R-two times T-two minus R-one times T-one, divided by T-two minus T-one. Pause and consider the options."
+- en: Pause and calculate the forward rate using the continuous formula. Multiply 4% by 2 years, subtract 3% times 1 year, and divide by the 1-year time difference.
+- hi: रुकें और कंटीन्यूअस फॉर्मूले का उपयोग करके फॉरवर्ड दर की गणना करें। 4% को 2 साल से गुणा करें, 3% गुना 1 साल घटाएं, और 1 साल के अंतर से भाग दें।
+- on screen: Thinking pause with countdown timer and visible formula hint
 
-**Hindi:** "Formula apply kijiye: R-two T-two minus R-one T-one divided by T-two minus T-one. Pause and consider."
+**s09b3** (narrator; facts F10)
 
-#### Beat b33
-**English:** "The correct answer is Option C: five point zero percent. Evaluating the expression: four percent times two, minus three percent times one, divided by two minus one, equals eight percent minus three percent, which is five point zero percent. In order to achieve a four percent average return across two years, the second year must yield an incremental five percent."
+- en: The correct answer is Option C: 5.0%. Subtracting 0.03 from 0.04 times 2 leaves 0.05, and dividing by 1 year yields exactly 5.0%, preventing arbitrage between consecutive investments.
+- hi: सही उत्तर Option C: 5.0% है। 0.04 गुना 2 में से 0.03 घटाकर 1 से भाग देने पर ठीक 5.0% प्राप्त होता है, जो आर्बिट्राज को रोकता है।
+- on screen: Reveal correct option: Option C (5.0%) highlights green with explanation
 
-**Hindi:** "Correct answer hai Option C: Five point zero percent. Calculation dekhiye: four percent guna two minus three percent guna one divided by two minus one. Eight minus three barabar exactly five point zero percent. Two-year average four percent tak pahunchne ke liye second year mein five percent earn hona zaroori hai."
+## Scene 10: Where We Are on the Journey
 
----
+_Roadmap: Where we are on the interest rate mastery journey_
 
-### Scene 10: Yield Curve Anatomy: Upward vs. Downward Sloping
+**s10b1** (narrator; facts F01, F08)
 
-#### Beat b34
-**English:** "The mathematical relationship between forward rates and zero rates creates an inviolable structural law governing the anatomy of all yield curves."
+- en: We have mastered the foundational mechanics of interest rates. We progressed from Treasury benchmark rates to continuous discounting and recursive zero curve bootstrapping.
+- hi: हमने ब्याज दरों के बुनियादी तंत्र में महारत हासिल कर ली है। हम ट्रेजरी बेंचमार्क दरों से कंटीन्यूअस डिस्काउंटिंग और रिकर्सिव जीरो कर्व बूटस्ट्रैपिंग की ओर बढ़े हैं।
+- on screen: Roadmap step 1 to 3 completed: Benchmarks, Compounding, and Zero Curve Bootstrap
 
-**Hindi:** "Forward rate aur zero rate ke relationship se yield curve ka fundamental law banta hai jo har derivatives trader ko yaad rakhna chahiye."
+**s10b2** (narrator; facts F09)
 
-#### Beat b35
-**English:** "When the Zero Curve slopes upward—meaning spot interest rates increase with maturity—the Forward Rate is always strictly greater than the Zero Rate, and the Zero Rate is strictly greater than the Par Yield."
+- en: We also extracted forward interest rates from spot zero curves. These implied forward rates dictate fair pricing for forward rate agreements and multi-period interest rate swaps.
+- hi: हमने स्पॉट जीरो कर्व्स से फॉरवर्ड ब्याज दरें भी निकाली हैं। ये निहित फॉरवर्ड दरें फॉरवर्ड रेट एग्रीमेंट्स और मल्टी-पीरियड इंटरेस्ट रेट स्वैप के लिए उचित मूल्य तय करती हैं।
+- on screen: Roadmap step 4: Forward Rates unlocked for derivative pricing
 
-**Hindi:** "Jab Zero Curve upward sloping hoti hai—yaani interest rates maturity ke sath badhte hain—toh Forward Rate hamesha Zero Rate se bada hota hai, aur Zero Rate hamesha Par Yield se bada hota hai."
+**s10b3** (narrator; facts F01)
 
-#### Beat b36
-**English:** "Conversely, when the Zero Curve is inverted or downward sloping, the Forward Rate is always strictly below the Zero Rate. This mathematical relationship is the core foundation used to structure and price Interest Rate Swaps and Forward Rate Agreements."
+- en: In Part 2, we will apply these zero curves to Forward Rate Agreements, bond portfolio duration, convexity hedging, and theories of the term structure.
+- hi: भाग 2 में, हम इन जीरो कर्व्स को फॉरवर्ड रेट एग्रीमेंट्स, बॉन्ड पोर्टफोलियो ड्यूरेशन, कन्वेक्सिटी हेजिंग और टर्म स्ट्रक्चर के सिद्धांतों पर लागू करेंगे।
+- on screen: Bridge to Part 2: FRAs, Duration, Convexity, and Term Structure Theories
 
-**Hindi:** "Iske opposite, jab Zero Curve inverted ya downward sloping hoti hai, toh Forward Rate hamesha Zero Rate se chhota hota hai. Ye mathematical relationship Swaps aur Forward Rate Agreements ko price karne ka foundation hai."
+## Scene 11: The 8 Golden Rules
 
----
+_Summary Thread: The 8 Golden Rules of Interest Rates and Zero Curves_
 
-### Scene 11: Summary Thread: Four Pillars of Interest Rate Mechanics
+**s11b1** (narrator; facts F01)
 
-#### Beat b37
-**English:** "Let us consolidate the four foundational pillars of interest rate mechanics established in Part One."
+- en: Here are the eight golden rules that govern interest rate mechanics, zero curves, and forward rate calculations in fixed income markets.
+- hi: यहाँ आठ सुनहरे नियम हैं जो निश्चित आय बाजारों में ब्याज दर तंत्र, जीरो कर्व्स और फॉरवर्ड दर गणनाओं को नियंत्रित करते हैं।
+- on screen: Summary header: The 8 Golden Rules of Interest Rates and Zero Curves
 
-**Hindi:** "Aaiye aaj ke lesson ke chaar essential interest rate pillars ko summarize karte hain."
+**s11b2** (narrator; facts F01, F02)
 
-#### Beat b38
-**English:** "Pillar One: Benchmark Rates. Treasury rates form the sovereign baseline, while collateralized repo rates govern institutional money market financing."
+- en: Rule 1: Treasury rates represent default-free sovereign borrowing. Rule 2: Continuous compounding provides terminal value A times e to the power R n.
+- hi: नियम 1: ट्रेजरी दरें डिफॉल्ट-मुक्त सॉवरेन उधार का प्रतिनिधित्व करती हैं। नियम 2: कंटीन्यूअस कंपाउंडिंग टर्मिनल मूल्य A गुना e की घात R n प्रदान करती है।
+- on screen: Show Rule 1 (Treasury Rates) and Rule 2 (Continuous Compounding)
 
-**Hindi:** "Pehla pillar: Benchmark Rates. Treasury rates sovereign risk-free baseline hain, jabki Repo rates collateralized institutional financing provide karti hain."
+**s11b3** (narrator; facts F03, F04)
 
-#### Beat b39
-**English:** "Pillar Two: Continuous Compounding. Discrete rates convert to continuous rates via R_c equals m times the natural log of one plus R_m over m, enabling additive discounting."
+- en: Rule 3: Converting discrete rate R m to continuous rate R c uses m times natural logarithm of one plus R m over m. Rule 4: Present value discount factor is e to the power minus R T.
+- hi: नियम 3: डिस्क्रीट दर को कंटीन्यूअस दर में बदलने के लिए m गुना नेचुरल लॉग का उपयोग किया जाता है। नियम 4: वर्तमान मूल्य डिस्काउंट फैक्टर e की घात माइनस R T है।
+- on screen: Show Rule 3 (Rate Conversion) and Rule 4 (Discount Factors)
 
-**Hindi:** "Dusra pillar: Continuous Compounding. Discrete quotes ko R c barabar m guna natural log of one plus R m divided by m se continuous banaya jata hai taaki discounting additive ho."
+**s11b4** (narrator; facts F05, F07)
 
-#### Beat b40
-**English:** "Pillar Three: Zero Rates and Bootstrapping. Known short-term T-bill rates are used to recursively strip coupon bonds and construct the complete zero curve."
+- en: Rule 5: Zero rates discount single cash flows with zero intermediate coupons. Rule 6: Par yield is the coupon rate causing bond price to equal face value.
+- hi: नियम 5: जीरो दरें बिना किसी मध्यवर्ती कूपन के एकल कैश फ्लो को डिस्काउंट करती हैं। नियम 6: पार यील्ड वह कूपन दर है जिससे बॉन्ड की कीमत फेस वैल्यू के बराबर होती है।
+- on screen: Show Rule 5 (Zero-Coupon Rates) and Rule 6 (Par Yields)
 
-**Hindi:** "Teesra pillar: Zero Rates & Bootstrap. Coupon bonds se recursive subtraction karke theoretical zero curve construct ki jati hai."
+**s11b5** (narrator; facts F08, F09)
 
-#### Beat b41
-**English:** "Pillar Four: Forward Rates and Yield Curve Geometry. The forward rate reflects implied marginal future borrowing costs. In Part Two, we will explore Forward Rate Agreements, bond duration, and the Orange County bankruptcy."
+- en: Rule 7: The Bootstrap method strips prior coupons recursively to build the spot curve. Rule 8: Implied forward rates equal the difference in rate-time products over time difference.
+- hi: नियम 7: बूटस्ट्रैप विधि स्पॉट कर्व बनाने के लिए पहले के कूपनों को रिकर्सिव तरीके से अलग करती है। नियम 8: निहित फॉरवर्ड दरें समय अंतर पर दर-समय उत्पादों के अंतर के बराबर होती हैं।
+- on screen: Show Rule 7 (Bootstrap Stripping) and Rule 8 (Forward Rate Formula)
 
-**Hindi:** "Chautha pillar: Forward Rates. Zero curve se implied future borrowing rate R F nikalta hai. Part Two mein hum Forward Rate Agreements, Duration, aur Orange County bankruptcy ko dissect karenge."
+**s11b6** (narrator; facts F01, F08, F09)
 
----
-
+- en: Review all eight rules from Rule 1 through Rule 8. Mastering these foundations prepares you to price complex derivatives, swaps, and manage interest rate risk.
+- hi: नियम 1 से नियम 8 तक सभी आठ नियमों की समीक्षा करें। इन बुनियादी बातों में महारत हासिल करने से आप जटिल डेरिवेटिव्स और स्वैप्स की सही कीमत तय कर सकते हैं।
+- on screen: Show full 8-rule summary grid from Rule 1 to Rule 8

@@ -44,6 +44,15 @@ A light theme ships too. QA check R-07 samples background and panel pixels in re
 
 Elements appear through `visualCues` anchored to word timestamps from TTS ("reveal step 2 when the narrator says 'multiply'"), never by percentage interpolation and never by parsing narration at render time.
 
+## Beat-level narration-visual agreement
+
+Every beat's on-screen visual must show the specific content being narrated in that beat. This is validated by quality gates:
+
+- **C-16 (beat-visual overlap)**: The visual elements (`visual.show`) displayed during a beat must contain at least one content word that also appears in that beat's narration. A beat that shows unrelated or generic background fails.
+- **C-17 (empty visual)**: Every beat's `visual.show` must be non-empty (at least one element is revealed or held visible). A beat with `show: []` fails.
+- **C-18 (item count match)**: When the narration names a counted set (e.g., "four pillars", "five steps"), the number of visual items of the corresponding type must match.
+- **C-19 (untimed elements)**: Every visual element displayed during the episode must be tied to a specific beat. No element may appear without being in some beat's `visual.show` list.
+
 ## Charts
 
 - Both axes labeled with variable and unit (C-14).

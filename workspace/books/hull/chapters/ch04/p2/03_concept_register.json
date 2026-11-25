@@ -1,0 +1,242 @@
+{
+  "concepts": [
+    {
+      "id": "K01",
+      "term": "Forward Rate Agreement",
+      "fullForm": "FRA",
+      "kind": "term",
+      "plainMeaning": "An over-the-counter contract where two counterparties agree to lock an interest rate on a principal amount over a future period.",
+      "roleHere": "Core derivative contract introduced in Section 4.7 for hedging interest rate risk.",
+      "connectsTo": "forward rate",
+      "analogy": "Like signing a guaranteed fixed hotel rate months in advance of a peak holiday trip.",
+      "depth": "L3",
+      "familiarity": "new",
+      "aliases": [
+        "Forward Rate Agreements",
+        "FRA",
+        "FRAs"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F03",
+        "F11"
+      ]
+    },
+    {
+      "id": "K02",
+      "term": "FRA",
+      "fullForm": "Forward Rate Agreement",
+      "kind": "acronym",
+      "plainMeaning": "The standard abbreviation for a Forward Rate Agreement contract.",
+      "roleHere": "Used as the standard acronym across all formulas and pricing statements.",
+      "connectsTo": "Forward Rate Agreement",
+      "analogy": "A financial short-hand acronym like ATM or APR.",
+      "depth": "L1",
+      "familiarity": "new",
+      "aliases": [
+        "FRAs"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F03",
+        "F11"
+      ]
+    },
+    {
+      "id": "K03",
+      "term": "notional principal",
+      "kind": "term",
+      "plainMeaning": "The hypothetical face amount used solely to calculate interest cash payments without ever being borrowed or lent.",
+      "roleHere": "Defines the scale L of interest calculations in the FRA payoff formula.",
+      "connectsTo": "principal",
+      "analogy": "An agreed insured property value used to calculate claim payouts without moving the building.",
+      "depth": "L2",
+      "familiarity": "new",
+      "aliases": [
+        "notional amount",
+        "notional",
+        "principal L"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F03",
+        "F11"
+      ]
+    },
+    {
+      "id": "K04",
+      "term": "cash settlement",
+      "kind": "concept",
+      "plainMeaning": "Settling a financial agreement through a single net cash transfer at start date T1 instead of borrowing the full principal.",
+      "roleHere": "Explains why the FRA payoff is discounted back to settlement date T1.",
+      "connectsTo": "Forward Rate Agreement",
+      "analogy": "Settling a friendly bet with coins at the start of a match rather than exchanging expensive tickets.",
+      "depth": "L2",
+      "familiarity": "new",
+      "aliases": [
+        "in-advance settlement",
+        "cash-settled payoff"
+      ],
+      "factIds": [
+        "F02",
+        "F11"
+      ]
+    },
+    {
+      "id": "K05",
+      "term": "Macaulay duration",
+      "kind": "term",
+      "plainMeaning": "The weighted average time in years until all cash flow payments of a bond are received.",
+      "roleHere": "Core metric in Section 4.8 measuring interest rate sensitivity and effective maturity.",
+      "connectsTo": "yield to maturity",
+      "analogy": "The physical balance point on a seesaw where weighted coupon bricks balance out the fulcrum.",
+      "depth": "L3",
+      "familiarity": "new",
+      "aliases": [
+        "duration",
+        "Macaulay duration D",
+        "weighted maturity"
+      ],
+      "factIds": [
+        "F04"
+      ]
+    },
+    {
+      "id": "K06",
+      "term": "Modified duration",
+      "kind": "term",
+      "plainMeaning": "Macaulay duration adjusted for compounding frequency, measuring percentage bond price change per unit yield shift.",
+      "roleHere": "Provides the linear slope linking rate hikes directly to portfolio price declines.",
+      "connectsTo": "Macaulay duration",
+      "analogy": "A car steering ratio that shows how many degrees the tires pivot for every turn of the steering wheel.",
+      "depth": "L4",
+      "familiarity": "new",
+      "aliases": [
+        "modified duration",
+        "D*",
+        "price sensitivity factor"
+      ],
+      "factIds": [
+        "F05",
+        "F09"
+      ]
+    },
+    {
+      "id": "K07",
+      "term": "convexity",
+      "kind": "term",
+      "plainMeaning": "The curvature in a bond's price-yield curve showing how duration changes as interest rates shift.",
+      "roleHere": "Provides the second-order Taylor correction in Section 4.9 for large interest rate moves.",
+      "connectsTo": "Modified duration",
+      "analogy": "A curved archery bow that bends stiffer and stiffer the harder you pull the string.",
+      "depth": "L3",
+      "familiarity": "new",
+      "aliases": [
+        "bond convexity",
+        "curvature C"
+      ],
+      "factIds": [
+        "F06"
+      ]
+    },
+    {
+      "id": "K08",
+      "term": "Liquidity Preference Theory",
+      "kind": "concept",
+      "plainMeaning": "The economic theory stating forward rates exceed expected future zero rates because lenders demand an extra premium for locking funds in long maturities.",
+      "roleHere": "Explains why upward-sloping yield curves naturally dominate normal economic conditions in Section 4.10.",
+      "connectsTo": "forward rate",
+      "analogy": "A landlord charging higher total rent for a ten-year fixed lease to give up liquidity.",
+      "depth": "L3",
+      "familiarity": "new",
+      "aliases": [
+        "liquidity preference",
+        "liquidity premium"
+      ],
+      "factIds": [
+        "F07"
+      ]
+    },
+    {
+      "id": "K09",
+      "term": "Expectations Theory",
+      "kind": "concept",
+      "plainMeaning": "The economic theory stating long-term interest rates are simply an average of expected future short-term rates without risk premiums.",
+      "roleHere": "Provides the foundational baseline hypothesis for the shape of the term structure of interest rates in Section 4.10.",
+      "connectsTo": "zero curve",
+      "analogy": "Estimating the total travel time of a journey by simply averaging the speed limits of each individual road segment.",
+      "depth": "L2",
+      "familiarity": "new",
+      "aliases": [
+        "pure expectations theory",
+        "unbiased expectations"
+      ],
+      "factIds": [
+        "F12"
+      ]
+    },
+    {
+      "id": "K10",
+      "term": "duration hedging",
+      "kind": "concept",
+      "plainMeaning": "Matching portfolio duration against interest rate futures contracts to neutralize price volatility from yield curve shifts.",
+      "roleHere": "Introduces the duration-based hedging formula N* for bond portfolios in Section 4.8.",
+      "connectsTo": "hedging",
+      "analogy": "Placing counterbalancing sandbags on a balance beam to cancel out an uneven tilt.",
+      "depth": "L3",
+      "familiarity": "new",
+      "aliases": [
+        "duration-based hedging",
+        "immunization",
+        "portfolio duration hedge"
+      ],
+      "factIds": [
+        "F10"
+      ]
+    },
+    {
+      "id": "K11",
+      "term": "Orange County",
+      "kind": "concept",
+      "plainMeaning": "A landmark 1994 municipal bankruptcy where a leveraged repo portfolio collapsed after aggressive interest rate hikes.",
+      "roleHere": "The real-world case study in Section 4.8 showing what happens when duration risk is ignored.",
+      "connectsTo": "Modified duration",
+      "analogy": "A speedboat loaded with heavy cargo that flips over when hitting unexpectedly tall waves.",
+      "depth": "L2",
+      "familiarity": "new",
+      "aliases": [
+        "Orange County bankruptcy",
+        "Robert Citron portfolio"
+      ],
+      "factIds": [
+        "F08"
+      ]
+    },
+    {
+      "id": "K12",
+      "term": "forward rate",
+      "kind": "term",
+      "plainMeaning": "The interest rate implied today for borrowing or lending money across a future time period.",
+      "roleHere": "The current market forward benchmark R_F used to calculate the value of an existing FRA.",
+      "connectsTo": "zero rate",
+      "analogy": "A contract price agreed today for delivery of grain three months into the future.",
+      "depth": "L1",
+      "familiarity": "introduced_earlier",
+      "introducedIn": {
+        "chapterId": "ch04",
+        "partId": "p1"
+      },
+      "aliases": [
+        "forward rates",
+        "R_F",
+        "implied forward rate"
+      ],
+      "factIds": [
+        "F03"
+      ]
+    }
+  ]
+}

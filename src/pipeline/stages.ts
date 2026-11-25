@@ -450,12 +450,13 @@ const S7: Stage = {
 const S8: Stage = {
   id: "S8",
   name: "storyboard",
-  version: 1,
-  inputs: (ctx) => ({ files: [p(ctx, A.scriptJson), p(ctx, A.plan), repairFile(ctx, "S8")], params: { llmMock: ctx.llmMock, kind: kindOf(ctx.chapterId), templates: availableTemplates(ctx).map((t) => t.id), displayLanguage: ctx.cfg.displayLanguage } }),
+  version: 2,
+  inputs: (ctx) => ({ files: [p(ctx, A.scriptJson), p(ctx, A.facts), p(ctx, A.plan), repairFile(ctx, "S8")], params: { llmMock: ctx.llmMock, kind: kindOf(ctx.chapterId), templates: availableTemplates(ctx).map((t) => t.id), displayLanguage: ctx.cfg.displayLanguage } }),
   outputs: (ctx) => [p(ctx, A.brief), p(ctx, A.storyboard)],
   run: async (ctx) => {
     const kind = kindOf(ctx.chapterId);
     const script = TeachingScript.parse(loadJson(p(ctx, A.scriptJson)));
+    const facts = SourceFacts.parse(loadJson(p(ctx, A.facts)));
     const plan = LessonPlan.parse(loadJson(p(ctx, A.plan)));
     const dl = ctx.cfg.displayLanguage;
     const slim = {
@@ -466,10 +467,16 @@ const S8: Stage = {
         beats: s.beats.map((b) => ({ id: b.id, speaker: b.speaker, onScreenIntent: b.onScreenIntent, narration: (b.narration[dl] ?? Object.values(b.narration)[0]).display, sourceFactIds: b.sourceFactIds })),
       })),
     };
+    /* Include cited facts per scene so the storyboard LLM can reference concrete numbers and terms */
+    const factsById = new Map(facts.facts.map((f) => [f.id, f]));
+    const sceneFacts = slim.scenes.map((s) => ({
+      index: s.index,
+      facts: [...new Set(s.beats.flatMap((b) => b.sourceFactIds))].map((id) => factsById.get(id)).filter(Boolean),
+    }));
     const out = await llmCall<{ visualBrief: VisualBrief; storyboard: Storyboard }>(ctx, {
       stage: "S8",
       kind: "storyboard",
-      input: { kind, script: slim, plan, availableTemplates: availableTemplates(ctx) },
+      input: { kind, script: slim, plan, availableTemplates: availableTemplates(ctx), sceneFacts },
       vars: { fixedTemplates: fixedTemplatesText(kindLayout(kind)) },
       standards: ["VISUAL_DESIGN", "SCENE_STRUCTURE"],
     });
@@ -832,6 +839,11 @@ const S12: Stage = {
 /* ---------- S13 package ---------- */
 
 function packagedFiles(ctx: PartContext, releasable: boolean): string[] {
+  const dir = path.join(outDir(ctx, releasable), ctx.chapterId);
+  return [...ctx.langs.map((l) => path.join(dir, `${videoBase(ctx, l)}.mp4`)), path.join(dir, `${ctx.chapterId}_${ctx.partId}_qa.html`), path.join(dir, `${ctx.chapterId}_${ctx.partId}_qa.json`)];
+}
+
+function legacyFlatPackagedFiles(ctx: PartContext, releasable: boolean): string[] {
   const dir = outDir(ctx, releasable);
   return [...ctx.langs.map((l) => path.join(dir, `${videoBase(ctx, l)}.mp4`)), path.join(dir, `${ctx.chapterId}_${ctx.partId}_qa.html`), path.join(dir, `${ctx.chapterId}_${ctx.partId}_qa.json`)];
 }
@@ -844,14 +856,20 @@ function reportReleasable(ctx: PartContext): boolean {
 const S13: Stage = {
   id: "S13",
   name: "package",
-  version: 1,
+  version: 2,
   inputs: (ctx) => ({ files: [path.join(qaDir(ctx), "report.json"), path.join(qaDir(ctx), "report.html"), ...ctx.langs.map((l) => renderFile(ctx, l))], params: { langs: ctx.langs } }),
   outputs: (ctx) => packagedFiles(ctx, reportReleasable(ctx)),
   run: async (ctx) => {
     const rel = reportReleasable(ctx);
-    for (const f of packagedFiles(ctx, !rel)) if (exists(f)) fs.rmSync(f);
-    const dest = ensureDir(outDir(ctx, rel));
-    for (const l of ctx.langs) fs.copyFileSync(renderFile(ctx, l), path.join(dest, `${videoBase(ctx, l)}.mp4`));
+    for (const f of [...packagedFiles(ctx, !rel), ...legacyFlatPackagedFiles(ctx, true), ...legacyFlatPackagedFiles(ctx, false)]) {
+      if (exists(f)) fs.rmSync(f, { force: true });
+    }
+    const dest = ensureDir(path.join(outDir(ctx, rel), ctx.chapterId));
+    for (const l of ctx.langs) {
+      const dstFile = path.join(dest, `${videoBase(ctx, l)}.mp4`);
+      if (exists(dstFile)) fs.rmSync(dstFile, { force: true });
+      fs.copyFileSync(renderFile(ctx, l), dstFile);
+    }
     fs.copyFileSync(path.join(qaDir(ctx), "report.html"), path.join(dest, `${ctx.chapterId}_${ctx.partId}_qa.html`));
     fs.copyFileSync(path.join(qaDir(ctx), "report.json"), path.join(dest, `${ctx.chapterId}_${ctx.partId}_qa.json`));
     log.ok(`packaged into ${dest}${rel ? "" : " (not releasable: drafts)"}`);
@@ -863,11 +881,20 @@ const S13: Stage = {
 function listVideos(ctx: PartContext): { rel: string; size: number }[] {
   const root = outDir(ctx, true);
   const out: { rel: string; size: number }[] = [];
-  for (const sub of ["", "drafts"]) {
-    const d = path.join(root, sub);
-    if (!exists(d)) continue;
-    for (const f of fs.readdirSync(d).sort()) if (f.endsWith(".mp4") || f.endsWith("_qa.html")) out.push({ rel: sub ? `${sub}/${f}` : f, size: fs.statSync(path.join(d, f)).size });
-  }
+  const scan = (baseDir: string, prefix: string) => {
+    if (!exists(baseDir)) return;
+    for (const entry of fs.readdirSync(baseDir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+      const full = path.join(baseDir, entry.name);
+      const rel = prefix ? `${prefix}/${entry.name}` : entry.name;
+      if (entry.isDirectory()) {
+        if (prefix === "" && entry.name === "drafts") scan(full, "drafts");
+        else scan(full, rel);
+      } else if (entry.name.endsWith(".mp4") || entry.name.endsWith("_qa.html")) {
+        out.push({ rel, size: fs.statSync(full).size });
+      }
+    }
+  };
+  scan(root, "");
   return out;
 }
 

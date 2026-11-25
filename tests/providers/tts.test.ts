@@ -68,7 +68,7 @@ describe("edge TTS", () => {
 
   it("retries six times (rate limits), then fails", async () => {
     const calls = { n: 0 };
-    await expect(new EdgeTts(fakeEdge("fail", calls), { backoffMs: 1 }).synthesize(req())).rejects.toThrow(/websocket/);
+    await expect(new EdgeTts(fakeEdge("fail", calls), { attempts: 6, backoffMs: 1 }).synthesize(req())).rejects.toThrow(/websocket/);
     expect(calls.n).toBe(6);
   });
 

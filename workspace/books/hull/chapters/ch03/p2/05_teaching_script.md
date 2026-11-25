@@ -1,4 +1,4 @@
-# Cross Hedging, Beta Hedging & Metallgesellschaft
+# Cross Hedging, Minimum Variance, Beta Hedging & Metallgesellschaft
 
 ## Scene 0: Beyond Identical Assets: The Cross-Hedging Dilemma
 
@@ -24,8 +24,8 @@ _Problem-first hook: why airlines and treasurers must hedge with non-identical c
 
 **s00b4** (mentor; facts F02)
 
-- en: This raises a fundamental quantitative question: if the two assets do not move in perfect one-to-one lockstep, exactly how many futures contracts should the corporate treasurer trade? The mathematical solution to this challenge is the Minimum Variance Hedge Ratio, derived through statistical calculus.
-- hi: Lekin ab ek fundamental quantitative sawal samne aata hai: agar do assets ke price movements perfectly match nahi karte, toh hume kitne contracts trade karne chahiye? Is sawal ka jawab deta hai Minimum Variance Hedge Ratio.
+- en: In this part, we examine the quantitative mechanics of cross hedging. The minimum variance hedge ratio means the ratio of futures to spot that minimizes price variance. Treasurers calculate this ratio to protect non-standard commercial assets.
+- hi: Is part mein hum cross hedging ke quantitative calculations master karenge. Minimum variance hedge ratio ka matlab hai futures aur spot ka wo ratio jo price variance ko minimize karta hai. Treasurers is formula se non-standard assets ko protect karte hain.
 - on screen: Introduction of the Minimum Variance Hedge Ratio formula
 
 ## Scene 1: The Minimum Variance Hedge Ratio Formula
@@ -52,8 +52,8 @@ _Mathematical breakdown of h* = rho * (sigma_S / sigma_F)_
 
 **s01b4** (mentor; facts F02, F03)
 
-- en: Once the optimal hedge ratio h star is determined, the required number of futures contracts, N star, is computed as h star multiplied by Q sub A divided by Q sub F, where Q sub A is the total physical units of the commercial exposure, and Q sub F is the standardized volume of a single futures contract.
-- hi: Ek baar h star calculate ho jaye, toh total optimal contracts N star ka formula hota hai: h star guna Q A divided by Q F, jahan Q A physical exposure size hai aur Q F ek futures contract ka size hai.
+- en: Once the optimal hedge ratio h star is determined, calculate the contracts. The required number N star equals h star multiplied by Q A divided by Q F. Here, Q A is the size of the physical asset, and Q F is the size of one futures contract.
+- hi: Optimal hedge ratio h star milne ke baad required contracts calculate kijiye. Total contracts N star barabar h star guna Q A divided by Q F hota hai. Yahan Q A physical exposure ka size hai, aur Q F ek futures contract ka size hai.
 - on screen: Hedge effectiveness formula R2 = rho squared
 
 ## Scene 2: Worked Example: The Airline Jet Fuel Hedge
@@ -68,14 +68,14 @@ _Numerical calculation of optimal contracts for airline hedging jet fuel with he
 
 **s02b2** (mentor; facts F04)
 
-- en: Analyzing historical monthly price changes over the past eighteen months yields the following statistical parameters: the standard deviation of jet fuel price changes sigma S is zero point zero two six three dollars; the standard deviation of heating oil futures changes sigma F is zero point zero three one three dollars; and their statistical correlation rho is zero point nine two eight.
-- hi: Historical statistical data ke mutabik: spot jet fuel volatility sigma S zero point zero two six three hai, heating oil futures volatility sigma F zero point zero three one three hai, aur dono ke beech correlation rho zero point nine two eight hai.
+- en: Historical price changes yield the necessary statistical parameters. The standard deviation of jet fuel price changes is zero point zero two six three. Futures standard deviation is zero point zero three one three. Their statistical correlation rho is zero point nine two eight.
+- hi: Historical price changes se statistical parameters milte hain. Spot jet fuel volatility sigma S zero point zero two six three hai. Futures volatility sigma F zero point zero three one three hai. Dono ke beech correlation rho zero point nine two eight hai.
 - on screen: Step 1: Calculate h* = 0.7777
 
 **s02b3** (mentor; facts F03, F04)
 
-- en: Substituting these values into the minimum variance formula gives: h star equals zero point nine two eight multiplied by zero point zero two six three divided by zero point zero three one three, which equals zero point seven seven seven seven. Because one NYMEX heating oil contract represents forty-two thousand gallons, N star equals zero point seven seven seven seven multiplied by two million divided by forty-two thousand, yielding thirty-seven point zero three, or exactly thirty-seven contracts.
-- hi: Hedge ratio calculate kijiye: zero point nine two eight guna zero point zero two six three divided by zero point zero three one three barabar zero point seven seven seven seven. NYMEX heating oil ka contract size forty-two thousand gallons hota hai. Isliye N star barabar zero point seven seven seven seven guna twenty lakh divided by forty-two thousand equals thirty-seven point zero three, yaani exactly thirty-seven contracts.
+- en: Substituting these parameters into the formula gives h star equals zero point seven eight. Because one NYMEX contract represents forty-two thousand gallons, the airline calculates thirty-seven point one four contracts. Rounding gives thirty-seven contracts.
+- hi: Parameters ko formula mein rakhne par h star zero point seven eight milta hai. NYMEX contract forty-two thousand gallons ka hone se airline ko thirty-seven point one four contracts milte hain. Isko round karke exactly thirty-seven contracts bante hain.
 - on screen: Step 2: Calculate N* = 37.03, rounded to 37 contracts
 
 ## Scene 3: Marking-to-Market Friction & Tailing the Hedge
@@ -96,8 +96,8 @@ _Contrasting forward contract theoretical hedging with daily futures margin sett
 
 **s03b3** (mentor; facts F01, F03)
 
-- en: Under a tailed hedge framework, the optimal number of contracts is formulated using total portfolio dollar values: N star equals h hat multiplied by V sub A divided by V sub F, where V sub A is the current dollar value of the hedged asset, and V sub F is the current dollar notional value of one futures contract. This adjustment provides enhanced precision in institutional portfolio risk management.
-- hi: Tailed hedge ratio h-hat ke tahat optimal contracts ka formula dollar values par base ho jata hai: h-hat guna portfolio value V A divided by futures contract value V F. Ye practical asset management mein precision provide karta hai.
+- en: Under a tailed hedge framework, contract sizing uses total dollar values. The optimal number N star equals h star multiplied by portfolio value divided by futures value. This small adjustment neutralizes daily interest earned or paid on variation margin.
+- hi: Tailed hedge framework mein contract sizing total dollar value par hoti hai. Optimal contracts N star barabar h star guna portfolio value divided by futures value hota hai. Ye adjustment daily margin par milne ya dene wale interest ko neutralize karta hai.
 - on screen: Tailing formula resolution: N* = h* * (V_A / V_F)
 
 ## Scene 4: Stock Index Futures: Neutralizing Market Exposure
@@ -118,14 +118,14 @@ _Mathematical derivation of portfolio beta hedging using index futures_
 
 **s04b3** (mentor; facts F05)
 
-- en: In this formula, beta represents the portfolio's systematic sensitivity relative to the equity index, V sub A is the total market value of the equity portfolio, and V sub F is the notional value of one index futures contract—calculated as the current futures price multiplied by the exchange contract multiplier.
-- hi: Yahan beta Capital Asset Pricing Model ke mutabik portfolio ki systematic market sensitivity hai, V A portfolio ki total dollar value hai, aur V F ek futures contract ki notional value hai yaani index futures price guna contract multiplier.
+- en: In this formula, beta represents the portfolio's systematic sensitivity to the equity index. P is the total market value of the investment portfolio. A denotes the current market value of one index futures contract.
+- hi: Is formula mein beta stock portfolio ki market sensitivity ko represent karta hai. P investment portfolio ki total current market value hai. A ek stock index futures contract ki current market value hoti hai.
 - on screen: Formula N* = beta * (P / A) derivation
 
 **s04b4** (mentor; facts F05)
 
-- en: Shorting index futures instead of selling individual equities delivers immense operational advantages: it dramatically slashes trading commissions, completely avoids market price impact, eliminates disruptive capital gains taxes, and preserves the manager's stock-picking alpha while neutralizing broad market beta.
-- hi: Stocks bechne ki jagah index futures short karne ka sabse bada benefit ye hai ki brokerage commissions aur transaction costs drastically kam hoti hain, aur manager ka stock-picking excess return yaani alpha hundred percent intact rehta hai.
+- en: Shorting index futures instead of selling individual equities delivers immense operational advantages. It slashes transaction costs and avoids disruptive tax consequences. Managers preserve their chosen stock selections.
+- hi: Direct shares bechne ke bajaye index futures short karna behtar hota hai. Ye transaction costs ko dramatically kam karta hai aur capital gains taxes bachata hai. Portfolio manager apne chosen stocks ko retain karta hai.
 - on screen: Contract value A = Index Price x Multiplier (e.g. S&P 500 x 250)
 
 ## Scene 5: Tactical Beta Adjustment: Changing Market Sensitivity
@@ -134,20 +134,20 @@ _Step-by-step mechanism for adjusting portfolio beta without liquidating underly
 
 **s05b1** (mentor; facts F06)
 
-- en: Index futures provide another extraordinary institutional capability: Tactical Beta Adjustment. Fund managers do not have to eliminate market risk entirely; they can dynamically increase or decrease their portfolio's beta without buying or selling a single share of stock.
-- hi: Futures market fund managers ko ek aur powerful ability deti hai jise Tactical Beta Adjustment kehte hain. Bina ek bhi stock khareede ya beche, manager portfolio ke market risk ko systematically modify kar sakta hai.
+- en: Hedging equity portfolios is not always about eliminating every drop of market risk. Market risk means market-wide volatility that affects all publicly traded stocks. Often, investment managers want to steer portfolio sensitivity dynamically.
+- hi: Equity portfolios ko hedge karne ka matlab hamesha market risk ko zero karna nahi hota. Market risk यानी market-wide volatility hoti hai jo sabhi stocks ko affect karti hai. Aksar fund managers portfolio sensitivity ko dynamically adjust karna chahte hain.
 - on screen: The dilemma: why managers avoid selling high-conviction stocks
 
 **s05b2** (mentor; facts F06)
 
-- en: If a manager wishes to reduce a portfolio's beta from an existing level of beta to a more conservative target level beta star—for example, reducing beta from one point four down to zero point seven—the manager simply shorts beta minus beta star multiplied by V sub A divided by V sub F contracts.
-- hi: Agar current beta se target beta star kam karna ho—jaise beta one point four se zero point seven par lana ho—toh manager beta minus beta star guna V A divided by V F contracts short kar deta hai.
+- en: To reduce portfolio beta from beta to a lower target beta star, short index contracts. The required number equals beta minus beta star, multiplied by portfolio value divided by futures value. This defensiveness cushions potential market drops.
+- hi: Agar portfolio beta ko lower target beta star par lana ho, toh index futures short kijiye. Contracts ka number beta minus beta star, guna portfolio value divided by futures value hota hai. Ye strategy market decline ke dauran downside buffer deti hai.
 - on screen: The formula N* = (beta - beta*) * (P / A) mechanism
 
 **s05b3** (mentor; facts F06)
 
-- en: Conversely, ahead of an anticipated market rally, if the manager wishes to amplify market exposure by raising beta from zero point eight up to one point two, the manager goes long beta star minus beta multiplied by V sub A divided by V sub F contracts. Futures enable frictionless, instantaneous portfolio rebalancing.
-- hi: Iske opposite, agar market mein bullish rally expected ho aur beta badhana ho—jaise zero point eight se one point two karna ho—toh manager beta star minus beta guna V A divided by V F contracts long kar leta hai.
+- en: Conversely, to amplify exposure ahead of a rally, raise beta to a higher target beta star. The manager goes long futures contracts. The formula remains identical, generating a negative short position which represents buying futures.
+- hi: Iske opposite, market rally se pehle exposure badhane ke liye beta ko target beta star tak raise kijiye. Manager index futures buy karta hai. Formula bilkul same rehta hai aur negative sign futures buy karne ko indicate karta hai.
 - on screen: Synthetic beta adjustment advantages: zero tax, zero slippage
 
 ## Scene 6: Hedging Individual Equities & Market Risk
@@ -162,14 +162,14 @@ _Analyzing how index futures insulate individual high-conviction stock bets_
 
 **s06b2** (mentor; facts F05)
 
-- en: The investor can purchase the individual stock and simultaneously short index futures in an amount proportional to the stock's beta. This strategy is known as Alpha Isolation: broad market systematic noise is filtered out, leaving the investor exposed purely to the company's idiosyncratic outperformance.
-- hi: Is strategy ko Alpha Isolation kehte hain. Market chahe crash kare ya rally kare, market ka systematic component neutralize ho jata hai, aur aapko sirf company ki outperformance ka pure profit milta hai.
+- en: This strategy enables alpha isolation. Alpha isolation means removing broad market swings so returns depend entirely on superior stock picking. If an asset manager picks equities that outperform the index, shorting futures extracts excess alpha.
+- hi: Ye strategy alpha isolation enable karti hai. Alpha isolation ka matlab hai market swings ko remove karke returns ko pure stock picking par depend karwana. Agar manager ke shares index se behtar perform karte hain, toh short futures pure alpha deliver karta hai.
 - on screen: Card 2: Stripping broad market swings with index futures
 
 **s06b3** (mentor; facts F05)
 
-- en: Now, let us examine a sophisticated corporate hedging strategy that resulted in one of the most famous and catastrophic risk management failures in financial history: Stack and Roll.
-- hi: Lekin ab aate hain corporate finance ke ek aise dangerous strategy par jisne global financial history ka sabse bada hedging breakdown create kiya: Stack and Roll.
+- en: What happens when corporate exposures extend over multiple years, but long-dated futures lack liquidity? Hedgers use stack and roll. Stack and roll means rolling front-month futures contracts forward periodically to maintain long-dated hedges.
+- hi: Jab corporate commitments kai saalon tak extend hoti hain aur long-dated futures liquid nahi hote, tab kya karein? Treasurers stack and roll deploy karte hain. Stack and roll ka matlab hai front-month contracts ko bar-bar roll karke long hedge maintain karna.
 - on screen: Card 3: Pure alpha isolation across bull or bear markets
 
 ## Scene 7: Stack and Roll: Rolling Front-Month Contracts
@@ -190,8 +190,8 @@ _Comparative matrix of Stack-and-Roll versus Strip Hedging for long-dated exposu
 
 **s07b3** (mentor; facts F07)
 
-- en: As the front-month contracts approach expiration, the firm closes them out via offsetting trades and immediately re-establishes the positions in the subsequent contract month—effectively 'rolling' the hedge forward in time. When markets remain in backwardation, this roll yields consistent profits; but when markets flip into contango, rolling produces severe rollover losses.
-- hi: Jab ye short-dated contracts expire hone wale hote hain, toh unhe closeout karke immediately agle front-month contracts mein shift kar diya jata hai, jise Rolling the hedge forward kehte hain.
+- en: The fatal flaw of stack and roll is rollover basis risk. Contango means distant futures trade above spot, while backwardation means spot trades above distant futures. In contango, rolling contracts generates persistent cash losses and margin calls.
+- hi: Stack and roll ki sabse badi weakness rollover basis risk hoti hai. Contango यानी distant futures spot se mehnga hona, jabki backwardation यानी spot distant futures se mehnga hota hai. Contango mein roll karne par cash drain aur margin calls face karni padti hain.
 - on screen: Comparative summary matrix: liquidity versus rollover risk
 
 ## Scene 8: Case Study: Metallgesellschaft's $1.33B Disaster
@@ -200,8 +200,8 @@ _Historical post-mortem of how stack-and-roll triggered liquidity insolvency_
 
 **s08b1** (mentor; facts F08)
 
-- en: In Business Snapshot 3.2, John Hull dissects the historic one-point-three-three billion dollar collapse of German industrial conglomerate Metallgesellschaft in 1993. Its American subsidiary, MGRM, sold long-term fixed-price delivery contracts covering one hundred and sixty million barrels of refined oil over five to ten years.
-- hi: Nineteen ninety-three mein German conglomerate Metallgesellschaft ki US subsidiary MGRM ne independent retailers ko ten years ke liye fixed price par sixteen crore barrels heating oil aur gasoline supply karne ka contract sign kiya.
+- en: Consider Business Snapshot 3.2: the 1993 collapse of German conglomerate Metallgesellschaft. Its American subsidiary, MGRM, Metallgesellschaft Refining and Marketing, sold ten-year fixed-price heating oil and gasoline supply contracts covering 160 million barrels.
+- hi: Business Snapshot 3.2 mein German conglomerate Metallgesellschaft ka 1993 collapse dekhiye. Unki US subsidiary, MGRM, Metallgesellschaft Refining and Marketing ne customers ko ten-year fixed price par 160 million barrels oil supply karne ke contracts beche.
 - on screen: Metallgesellschaft initial setup: 160M barrels guaranteed
 
 **s08b2** (mentor; facts F08)
@@ -228,8 +228,8 @@ _Check student mastery of minimum variance hedge ratio calculation_
 
 **s09b1** (mentor; facts F02, F09)
 
-- en: Let us now test your practical mastery of minimum variance calculations. Suppose an institutional risk manager measures the historical standard deviation of spot price changes to be zero point zero three zero, and the standard deviation of futures price changes to be zero point zero four zero. If the correlation between spot and futures changes is zero point eight zero, what is the optimal Minimum Variance Hedge Ratio, h star?
-- hi: Chaliye ab aapki quantitative calculation test karte hain. Ek commodity spot price ka standard deviation zero point zero three zero hai, futures ka standard deviation zero point zero four zero hai, aur correlation zero point eight zero hai. Minimum variance hedge ratio kya hoga?
+- en: Let us test your understanding with an active recall calculation. Spot price standard deviation is zero point zero four zero. Futures standard deviation is zero point zero five zero. Their correlation rho is zero point eight zero.
+- hi: Aaiye active recall calculation se aapka understanding test karte hain. Spot price standard deviation sigma S zero point zero four zero hai. Futures standard deviation sigma F zero point zero five zero hai. Dono ke beech correlation rho zero point eight zero hai.
 - on screen: Quiz question presented with sigma_S = 0.04, sigma_F = 0.05, rho = 0.80
 
 **s09b2** (mentor; facts F02)
@@ -240,8 +240,8 @@ _Check student mastery of minimum variance hedge ratio calculation_
 
 **s09b3** (mentor; facts F02, F09)
 
-- en: The correct answer is Option C: zero point six zero. Applying the formula: zero point eight zero multiplied by zero point zero three zero divided by zero point zero four zero yields zero point eight zero multiplied by zero point seven five, which equals zero point six zero. This indicates that for every one thousand units of physical exposure, exactly six hundred units of futures contracts must be traded to achieve the variance-minimizing hedge.
-- hi: Correct answer hai Option C: Zero point six zero. Calculation dekhiye: h star barabar rho guna sigma S divided by sigma F, yaani zero point eight zero guna zero point zero three zero divided by zero point zero four zero barabar zero point six zero. Iska matlab spot position ke har one thousand units ke liye six hundred units futures contract ki zaroorat hogi.
+- en: The correct answer is Option B: zero point six four. Multiply zero point eight zero by zero point zero four zero, then divide by zero point zero five zero. This yields zero point six four, hedging sixty-four percent of exposure.
+- hi: Sahi answer Option B hai: zero point six four. Formula lagaiye: zero point eight zero guna zero point zero four zero divided by zero point zero five zero. Result zero point six four aata hai, jo sixty-four percent optimal hedge ratio hai.
 - on screen: Reveal Option B (0.64) with complete mathematical walkthrough
 
 ## Scene 10: Where We Are: Liquidity vs. Basis Risk
@@ -266,37 +266,36 @@ _Institutional rules codifying cross hedging, beta adjustments, and roll risk_
 
 **s11b1** (mentor; facts F01)
 
-- en: Let us codify the four quantitative pillars of Chapter 3 that will govern your institutional risk management practice.
-- hi: Aaiye Chapter Three ke final chaar quantitative pillars ko summarize karte hain jo aapko hamesha yaad rakhne hain.
+- en: Let us codify the eight quantitative rules of cross hedging and portfolio risk management that govern institutional practice.
+- hi: Aaiye cross hedging aur portfolio risk management ke eight quantitative rules ko systematically summarize karte hain.
 - on screen: Overview of the 8 quantitative hedging rules
 
 **s11b2** (mentor; facts F01, F02)
 
-- en: First Pillar: Minimum Variance Hedge Ratio. When cross-hedging non-identical assets, contract sizing is statistically optimized through h star equals rho multiplied by sigma S divided by sigma F.
-- hi: Pehla pillar: Minimum Variance Hedge Ratio. Jab underlying assets alag hon, h star barabar rho guna sigma S divided by sigma F se optimal hedge sizing nikala jata hai.
+- en: Rule 1 optimizes cross hedge sizing using the minimum variance hedge ratio formula. Rule 2 calculates optimal futures contracts by scaling the hedge ratio by relative exposure sizes.
+- hi: Rule 1 minimum variance hedge ratio se optimal cross hedge sizing karta hai. Rule 2 relative position sizes ko scale karke total contracts calculate karta hai.
 - on screen: Rules 1 and 2 highlighted: Cross hedge definition & h* formula
 
 **s11b3** (mentor; facts F02, F03)
 
-- en: Second Pillar: Equity Beta Hedging. Shorting N star equals beta multiplied by V sub A divided by V sub F index contracts immunizes stock portfolios against systematic market downturns while preserving stock-picking alpha.
-- hi: Dusra pillar: Equity Beta Hedging. N star barabar beta guna V A divided by V F stock portfolio ke systematic market risk ko zero karta hai bina underlying shares beche.
+- en: Rule 3 dictates that tailing the hedge adjusts contract counts for daily interest on margin cash flows. Rule 4 uses stock index futures to immunize equity portfolios against systematic market risk.
+- hi: Rule 3 daily margin interest ke liye contract count ko tailing adjustment deta hai. Rule 4 stock index futures se equity portfolio ke systematic market risk ko immunize karta hai.
 - on screen: Rules 3 and 4 highlighted: Contract count N* & R2 effectiveness
 
 **s11b4** (mentor; facts F05)
 
-- en: Third Pillar: Tactical Beta Adjustment. Futures allow investment managers to dynamically raise or lower portfolio market sensitivity without buying or selling a single physical share.
-- hi: Teesra pillar: Tactical Beta Adjustment. Index futures long ya short karke fund manager portfolio beta ko desired target beta star par smoothly steer kar sakta hai.
+- en: Rule 5 dynamically adjusts portfolio market beta using the beta differential formula. Rule 6 enables alpha isolation by removing index movements to isolate stock picking gains.
+- hi: Rule 5 beta differential formula se portfolio beta ko dynamically steer karta hai. Rule 6 market index moves ko eliminate karke pure stock selection alpha isolate karta hai.
 - on screen: Rules 5 and 6 highlighted: Tailing adjustment & beta hedging
 
 **s11b5** (mentor; facts F06, F08)
 
-- en: Fourth Pillar: The Metallgesellschaft Rule. Cash flow timing mismatches can turn sound hedges fatal. Always back futures positions with robust liquid reserves to survive daily marking-to-market calls. In Chapter 4, we will master Interest Rates, Zero Rates, Forward Rates, and the Yield Curve!
-- hi: Chautha pillar: Metallgesellschaft Liquidity Rule. Stack-and-roll hedging mein cash flow timing mismatch sabse bada killer hai. Hamesha margin liquidity ko hedge ka hissa maniye.
+- en: Rule 7 utilizes stack and roll strategies to hedge multi-year exposures with liquid front-month contracts. Rule 8 warns that contango markets turn stack and roll into catastrophic margin call drains.
+- hi: Rule 7 liquid front-month contracts ko stack and roll karke long-dated commitments hedge karta hai. Rule 8 warn karta hai ki contango markets mein rollover massive cash margin deficits create karta hai.
 - on screen: Rules 7 and 8 highlighted: Tactical beta shift & stack and roll discipline
 
-**s11b6** (mentor; facts none)
+**s11b6** (mentor; facts F01, F02, F08)
 
-- en: Master these eight quantitative principles to navigate real-world derivatives risk with complete institutional rigor. You are now prepared for Chapter 4.
-- hi: इन आठ नियमों को अच्छी तरह समझकर आप रियल-वर्ल्ड डेरिवेटिव्स रिस्क को पूरी सूझबूझ के साथ मैनेज कर सकते हैं। अब आप चैप्टर 4 के लिए तैयार हैं।
+- en: Master these eight rules to navigate real-world cross hedging with complete institutional discipline. You are now prepared for Chapter 4.
+- hi: इन 8 rules ko yaad rakhkar aap real-world cross hedging ko puri discipline ke saath manage kar sakte hain. Ab aap Chapter 4 ke liye taiyar hain.
 - on screen: Compact final summary overview of all 8 rules
-

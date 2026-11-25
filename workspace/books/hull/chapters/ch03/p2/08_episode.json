@@ -36,8 +36,8 @@
     }
   },
   "progress": {
-    "index": 2,
-    "total": 2
+    "index": 1,
+    "total": 4
   },
   "theme": "dark-classroom",
   "provenance": {
@@ -47,50 +47,14 @@
     {
       "id": "s00",
       "index": 0,
-      "title": "Beyond Identical Assets: The Cross-Hedging Dilemma",
+      "title": "Cross Hedging: Beyond Identical Assets",
       "purpose": "Problem-first hook: why airlines and treasurers must hedge with non-identical contracts",
       "takeaways": [
-        "Cross hedging applies when no direct futures contract exists for the underlying",
-        "A one-to-one hedge ratio fails when asset volatilities diverge",
-        "The minimum variance hedge ratio optimizes risk reduction"
+        "Firms often lack liquid futures for their exact commodity",
+        "Cross hedging uses correlated contracts on related assets",
+        "Optimal hedge sizing uses Minimum Variance Hedge Ratio"
       ],
       "pedagogicalContinuation": false,
-      "template": "chat_story",
-      "data": {
-        "messages": [
-          {
-            "id": "m1",
-            "speaker": "novice",
-            "text": "What happens when a company needs to hedge a commercial asset, like jet fuel, that has no actively traded futures contract on any exchange?"
-          },
-          {
-            "id": "m2",
-            "speaker": "mentor",
-            "text": "In the real world, corporations rarely find perfectly matching futures contracts. They must execute a Cross Hedge using a related, highly correlated asset."
-          },
-          {
-            "id": "m3",
-            "speaker": "mentor",
-            "text": "However, simply hedging one-to-one is dangerous. Because price volatilities differ, a naïve hedge can actually increase portfolio risk rather than reduce it."
-          },
-          {
-            "id": "m4",
-            "speaker": "mentor",
-            "text": "In Section 3.4, John Hull introduces the Minimum Variance Hedge Ratio, mathematically calibrating contract volume to minimize cash flow variance."
-          }
-        ],
-        "whereWeAre": {
-          "label": "WHERE WE ARE",
-          "items": [
-            "Basic Principles",
-            "Basis Risk",
-            "Cross Hedging (Part 2)",
-            "Beta Hedging",
-            "Stack & Roll"
-          ],
-          "current": 2
-        }
-      },
       "beats": [
         {
           "id": "s00b1",
@@ -117,7 +81,15 @@
               "m1"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m1",
+              "anchor": {
+                "en": "fuel",
+                "hi": "फ्यूल"
+              }
+            }
+          ]
         },
         {
           "id": "s00b2",
@@ -143,7 +115,15 @@
               "m2"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m2",
+              "anchor": {
+                "en": "identical",
+                "hi": "identical"
+              }
+            }
+          ]
         },
         {
           "id": "s00b3",
@@ -159,7 +139,8 @@
           "onScreenIntent": "Dangers of naive one-to-one hedging across differing volatilities",
           "sourceFactIds": [
             "F01",
-            "F02"
+            "F02",
+            "F11"
           ],
           "newTerms": [],
           "pauseAfterMs": 300,
@@ -171,17 +152,25 @@
               "m3"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m3",
+              "anchor": {
+                "en": "Cross",
+                "hi": "Cross"
+              }
+            }
+          ]
         },
         {
           "id": "s00b4",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "This raises a fundamental quantitative question: if the two assets do not move in perfect one-to-one lockstep, exactly how many futures contracts should the corporate treasurer trade? The mathematical solution to this challenge is the Minimum Variance Hedge Ratio, derived through statistical calculus."
+              "display": "In this part, we examine the quantitative mechanics of cross hedging. The minimum variance hedge ratio means the ratio of futures to spot that minimizes price variance. Treasurers calculate this ratio to protect non-standard commercial assets."
             },
             "hi": {
-              "display": "Lekin ab ek fundamental quantitative sawal samne aata hai: agar do assets ke price movements perfectly match nahi karte, toh hume kitne contracts trade karne chahiye? Is sawal ka jawab deta hai Minimum Variance Hedge Ratio."
+              "display": "Is part mein hum cross hedging ke quantitative calculations master karenge. Minimum variance hedge ratio ka matlab hai futures aur spot ka wo ratio jo price variance ko minimize karta hai. Treasurers is formula se non-standard assets ko protect karte hain."
             }
           },
           "onScreenIntent": "Introduction of the Minimum Variance Hedge Ratio formula",
@@ -201,83 +190,64 @@
               "m4"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m4",
+              "anchor": {
+                "en": "minimum",
+                "hi": "Minimum"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "chat_story",
+      "data": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "Novice",
+            "text": "What happens when an airline must hedge 2 million gallons of jet fuel, but no jet fuel futures exist?"
+          },
+          {
+            "id": "m2",
+            "speaker": "Mentor",
+            "text": "When exact physical commodity futures do not exist, basis risk is no longer negligible."
+          },
+          {
+            "id": "m3",
+            "speaker": "Mentor",
+            "text": "Treasurers use Cross Hedging: hedging jet fuel with correlated NYMEX heating oil futures contracts."
+          },
+          {
+            "id": "m4",
+            "speaker": "Mentor",
+            "text": "We calculate the statistical Minimum Variance Hedge Ratio to find the variance-minimizing position."
+          }
+        ],
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "Cross Hedging Foundations",
+            "Minimum Variance and Airline Example",
+            "Beta Steering and Alpha Isolation",
+            "Stack and Roll Collapse"
+          ],
+          "current": 0
+        }
+      }
     },
     {
       "id": "s01",
       "index": 1,
-      "title": "The Minimum Variance Hedge Ratio Formula",
+      "title": "Minimum Variance Hedge Ratio Formula",
       "purpose": "Mathematical breakdown of h* = rho * (sigma_S / sigma_F)",
       "takeaways": [
-        "h* equals the slope coefficient of delta S regressed on delta F",
-        "rho measures correlation; sigma ratio scales relative volatilities",
-        "Optimal contracts N* equals h* * (Q_A / Q_F)"
+        "Optimal hedge ratio minimizes variance of value changes",
+        "Formula: h-star equals rho times spot volatility over futures",
+        "Optimal contracts scale h-star by physical size over contract"
       ],
       "pedagogicalContinuation": false,
-      "template": "formula_breakdown",
-      "data": {
-        "title": "Minimum Variance Hedge Ratio",
-        "formula": {
-          "latex": "h^* = \\rho \\frac{\\sigma_S}{\\sigma_F}",
-          "expression": "rho * (sigma_S / sigma_F)",
-          "solvesFor": "h^*",
-          "variables": [
-            {
-              "symbol": "h^*",
-              "latex": "h^*",
-              "meaning": "Minimum Variance Hedge Ratio",
-              "unit": "ratio"
-            },
-            {
-              "symbol": "rho",
-              "latex": "\\rho",
-              "meaning": "Correlation Coefficient between delta S and delta F",
-              "unit": "dimensionless"
-            },
-            {
-              "symbol": "sigma_S",
-              "latex": "\\sigma_S",
-              "meaning": "Standard Deviation of delta S",
-              "unit": "dollars"
-            },
-            {
-              "symbol": "sigma_F",
-              "latex": "\\sigma_F",
-              "meaning": "Standard Deviation of delta F",
-              "unit": "dollars"
-            }
-          ]
-        },
-        "parts": [
-          {
-            "id": "p1",
-            "symbolLatex": "h^*",
-            "meaning": "Optimal hedge ratio minimizing variance",
-            "unit": "dimensionless"
-          },
-          {
-            "id": "p2",
-            "symbolLatex": "\\rho",
-            "meaning": "Correlation between spot and futures changes",
-            "unit": "[-1, 1]"
-          },
-          {
-            "id": "p3",
-            "symbolLatex": "\\sigma_S",
-            "meaning": "Historical volatility of physical asset",
-            "unit": "USD/unit"
-          },
-          {
-            "id": "p4",
-            "symbolLatex": "\\sigma_F",
-            "meaning": "Historical volatility of futures contract",
-            "unit": "USD/unit"
-          }
-        ],
-        "note": "Hedge Effectiveness = R^2 = rho^2"
-      },
       "beats": [
         {
           "id": "s01b1",
@@ -299,10 +269,19 @@
           "transition": false,
           "visual": {
             "show": [
-              "p1"
+              "formula",
+              "part_h"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "part_h",
+              "anchor": {
+                "en": "formula",
+                "hi": "formula"
+              }
+            }
+          ]
         },
         {
           "id": "s01b2",
@@ -324,21 +303,30 @@
           "transition": false,
           "visual": {
             "show": [
-              "p1",
-              "p2"
+              "formula",
+              "part_h",
+              "part_rho"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "part_rho",
+              "anchor": {
+                "en": "variable",
+                "hi": "statistical"
+              }
+            }
+          ]
         },
         {
           "id": "s01b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Notice the intuitive economics: if the futures contract is more volatile than the underlying spot asset—meaning sigma F exceeds sigma S—each futures contract exhibits larger price swings. Consequently, fewer futures contracts are required to offset spot movements, driving h star below one."
+              "display": "What happens if futures volatility exceeds spot volatility? If the futures contract is more volatile than the underlying spot asset, each contract produces larger price swings. Consequently, fewer contracts are needed to offset spot movements, driving h star below one."
             },
             "hi": {
-              "display": "Is formula ka intuition samajhiye. Agar futures contract spot asset ke comparison mein zyada volatile ho—yaani sigma F bada ho—toh futures ka har contract zyada dollar movement produce karega. Isliye hume kam futures contracts ki zaroorat padegi, aur h star ek se kam ho jayega."
+              "display": "Agar futures volatility spot se zyada ho toh kya hoga? Agar futures contract spot se zyada volatile ho, toh har contract zyada dollar movement produce karega. Isliye kam contracts ki zaroorat padegi aur h star ek se kam ho jayega."
             }
           },
           "onScreenIntent": "Regression interpretation: slope coefficient of OLS fit",
@@ -350,22 +338,32 @@
           "transition": false,
           "visual": {
             "show": [
-              "p1",
-              "p2",
-              "p3"
+              "formula",
+              "part_h",
+              "part_rho",
+              "part_sigma",
+              "note"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "part_sigma",
+              "anchor": {
+                "en": "volatility",
+                "hi": "volatility"
+              }
+            }
+          ]
         },
         {
           "id": "s01b4",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Once the optimal hedge ratio h star is determined, the required number of futures contracts, N star, is computed as h star multiplied by Q sub A divided by Q sub F, where Q sub A is the total physical units of the commercial exposure, and Q sub F is the standardized volume of a single futures contract."
+              "display": "Once the optimal hedge ratio h star is determined, calculate the contracts. The required number N star equals h star multiplied by Q A divided by Q F. Here, Q A is the size of the physical asset, and Q F is the size of one futures contract."
             },
             "hi": {
-              "display": "Ek baar h star calculate ho jaye, toh total optimal contracts N star ka formula hota hai: h star guna Q A divided by Q F, jahan Q A physical exposure size hai aur Q F ek futures contract ka size hai."
+              "display": "Optimal hedge ratio h star milne ke baad required contracts calculate kijiye. Total contracts N star barabar h star guna Q A divided by Q F hota hai. Yahan Q A physical exposure ka size hai, aur Q F ek futures contract ka size hai."
             }
           },
           "onScreenIntent": "Hedge effectiveness formula R2 = rho squared",
@@ -380,116 +378,99 @@
           "transition": false,
           "visual": {
             "show": [
-              "p1",
-              "p2",
-              "p3",
-              "p4"
+              "formula",
+              "part_h",
+              "part_rho",
+              "part_sigma",
+              "note",
+              "part_n"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "part_n",
+              "anchor": {
+                "en": "contracts",
+                "hi": "contracts"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Optimal Minimum Variance Hedge Ratio Formula",
+        "formula": {
+          "latex": "h^* = \\rho \\times \\frac{\\sigma_S}{\\sigma_F}",
+          "expression": "rho * (sigma_S / sigma_F)",
+          "solvesFor": "h^*",
+          "variables": [
+            {
+              "symbol": "h^*",
+              "latex": "h^*",
+              "meaning": "Minimum variance hedge ratio",
+              "unit": "dimensionless"
+            },
+            {
+              "symbol": "rho",
+              "latex": "\\rho",
+              "meaning": "Correlation coefficient between delta S and delta F",
+              "unit": "dimensionless"
+            },
+            {
+              "symbol": "sigma_S",
+              "latex": "\\sigma_S",
+              "meaning": "Standard deviation of spot price changes",
+              "unit": "dollars"
+            },
+            {
+              "symbol": "sigma_F",
+              "latex": "\\sigma_F",
+              "meaning": "Standard deviation of futures price changes",
+              "unit": "dollars"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "part_h",
+            "symbolLatex": "h^*",
+            "meaning": "Optimal hedge ratio minimizing portfolio variance",
+            "unit": "dimensionless"
+          },
+          {
+            "id": "part_rho",
+            "symbolLatex": "\\rho",
+            "meaning": "Linear correlation coefficient between spot and futures changes",
+            "unit": "dimensionless"
+          },
+          {
+            "id": "part_sigma",
+            "symbolLatex": "\\frac{\\sigma_S}{\\sigma_F}",
+            "meaning": "Ratio of spot volatility to futures volatility",
+            "unit": "dimensionless"
+          },
+          {
+            "id": "part_n",
+            "symbolLatex": "N^* = h^* \\times \\frac{Q_A}{Q_F}",
+            "meaning": "Optimal number of futures contracts for physical size QA and contract size QF",
+            "unit": "count"
+          }
+        ],
+        "note": "When futures are more volatile than spot, hedge ratio is below 1.0, requiring fewer futures contracts."
+      }
     },
     {
       "id": "s02",
       "index": 2,
-      "title": "Worked Example: The Airline Jet Fuel Hedge",
+      "title": "Worked Example: Airline Jet Fuel Cross Hedge",
       "purpose": "Numerical calculation of optimal contracts for airline hedging jet fuel with heating oil",
       "takeaways": [
-        "h* = 0.928 * (0.0263 / 0.0313) = 0.7777",
-        "Total contracts N* = 0.7777 * (2,000,000 / 42,000) = 37.03",
-        "Rounding to 37 contracts achieves maximum variance reduction"
+        "Airline hedges 2M gallons fuel with NYMEX heating oil",
+        "Optimal hedge ratio h-star is 0.78 from statistical data",
+        "Optimal contract count is 37.14 rounded to 37 contracts"
       ],
       "pedagogicalContinuation": false,
-      "template": "worked_example",
-      "data": {
-        "title": "Airline Jet Fuel Cross Hedge",
-        "formula": {
-          "latex": "N^* = h^* \\frac{Q_A}{Q_F}",
-          "expression": "h * (Q_A / Q_F)",
-          "solvesFor": "N^*",
-          "variables": [
-            {
-              "symbol": "N^*",
-              "latex": "N^*",
-              "meaning": "Optimal Number of Contracts",
-              "unit": "contracts"
-            },
-            {
-              "symbol": "h",
-              "latex": "h^*",
-              "meaning": "Hedge Ratio",
-              "unit": "ratio"
-            },
-            {
-              "symbol": "Q_A",
-              "latex": "Q_A",
-              "meaning": "Position Size to Hedge",
-              "unit": "gallons"
-            },
-            {
-              "symbol": "Q_F",
-              "latex": "Q_F",
-              "meaning": "Futures Contract Size",
-              "unit": "gallons"
-            }
-          ]
-        },
-        "given": [
-          {
-            "id": "g1",
-            "label": "Fuel Volume (Q_A)",
-            "value": 2000000,
-            "unit": "gallons",
-            "display": "2,000,000 gal"
-          },
-          {
-            "id": "g2",
-            "label": "Contract Size (Q_F)",
-            "value": 42000,
-            "unit": "gallons",
-            "display": "42,000 gal"
-          },
-          {
-            "id": "g3",
-            "label": "Correlation (rho)",
-            "value": 0.928,
-            "unit": "dimensionless",
-            "display": "0.928"
-          },
-          {
-            "id": "g4",
-            "label": "Vol Ratio (sigma_S / sigma_F)",
-            "value": 0.8402,
-            "unit": "ratio",
-            "display": "0.0263 / 0.0313"
-          }
-        ],
-        "steps": [
-          {
-            "id": "st1",
-            "label": "Hedge Ratio h*",
-            "latex": "0.928 \\times \\frac{0.0263}{0.0313} = 0.7777",
-            "value": 0.7777
-          },
-          {
-            "id": "st2",
-            "label": "Unrounded Contracts",
-            "latex": "0.7777 \\times \\frac{2{,}000{,}000}{42{,}000} = 37.03",
-            "value": 37.03
-          }
-        ],
-        "result": {
-          "id": "res",
-          "label": "Optimal Contracts",
-          "value": 37,
-          "unit": "contracts",
-          "display": "37 Contracts",
-          "rounding": 0
-        },
-        "conclusion": "The airline purchases 37 heating oil futures contracts, neutralizing 86% of jet fuel price variance.",
-        "isHypothetical": false
-      },
       "beats": [
         {
           "id": "s02b1",
@@ -511,23 +492,30 @@
           "transition": false,
           "visual": {
             "show": [
-              "g1",
-              "g2",
-              "g3",
-              "g4"
+              "formula",
+              "g_qa",
+              "g_qf"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "g_qa",
+              "anchor": {
+                "en": "airline",
+                "hi": "airline"
+              }
+            }
+          ]
         },
         {
           "id": "s02b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Analyzing historical monthly price changes over the past eighteen months yields the following statistical parameters: the standard deviation of jet fuel price changes sigma S is zero point zero two six three dollars; the standard deviation of heating oil futures changes sigma F is zero point zero three one three dollars; and their statistical correlation rho is zero point nine two eight."
+              "display": "Historical price changes yield the necessary statistical parameters. The standard deviation of jet fuel price changes is zero point zero two six three. Futures standard deviation is zero point zero three one three. Their statistical correlation rho is zero point nine two eight."
             },
             "hi": {
-              "display": "Historical statistical data ke mutabik: spot jet fuel volatility sigma S zero point zero two six three hai, heating oil futures volatility sigma F zero point zero three one three hai, aur dono ke beech correlation rho zero point nine two eight hai."
+              "display": "Historical price changes se statistical parameters milte hain. Spot jet fuel volatility sigma S zero point zero two six three hai. Futures volatility sigma F zero point zero three one three hai. Dono ke beech correlation rho zero point nine two eight hai."
             }
           },
           "onScreenIntent": "Step 1: Calculate h* = 0.7777",
@@ -539,24 +527,33 @@
           "transition": false,
           "visual": {
             "show": [
-              "g1",
-              "g2",
-              "g3",
-              "g4",
-              "st1"
+              "formula",
+              "g_qa",
+              "g_qf",
+              "g_sigmas",
+              "g_sigmaf",
+              "g_rho"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "g_sigmas",
+              "anchor": {
+                "en": "statistical",
+                "hi": "parameters"
+              }
+            }
+          ]
         },
         {
           "id": "s02b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Substituting these values into the minimum variance formula gives: h star equals zero point nine two eight multiplied by zero point zero two six three divided by zero point zero three one three, which equals zero point seven seven seven seven. Because one NYMEX heating oil contract represents forty-two thousand gallons, N star equals zero point seven seven seven seven multiplied by two million divided by forty-two thousand, yielding thirty-seven point zero three, or exactly thirty-seven contracts."
+              "display": "Substituting these parameters into the formula gives h star equals 0.78. Because one NYMEX contract represents 42,000 gallons, the airline calculates 37.14 contracts. Rounding to the nearest whole contract gives 37 contracts."
             },
             "hi": {
-              "display": "Hedge ratio calculate kijiye: zero point nine two eight guna zero point zero two six three divided by zero point zero three one three barabar zero point seven seven seven seven. NYMEX heating oil ka contract size forty-two thousand gallons hota hai. Isliye N star barabar zero point seven seven seven seven guna twenty lakh divided by forty-two thousand equals thirty-seven point zero three, yaani exactly thirty-seven contracts."
+              "display": "In values ko formula mein rakhne par h star 0.78 milta hai. Kyunki ek NYMEX contract 42,000 gallons ka hota hai, airline 37.14 contracts calculate karti hai. Round karke 37 contracts bante hain."
             }
           },
           "onScreenIntent": "Step 2: Calculate N* = 37.03, rounded to 37 contracts",
@@ -569,56 +566,165 @@
           "transition": false,
           "visual": {
             "show": [
-              "g1",
-              "g2",
-              "g3",
-              "g4",
-              "st1",
-              "st2",
-              "res"
+              "formula",
+              "g_qa",
+              "g_qf",
+              "g_sigmas",
+              "g_sigmaf",
+              "g_rho",
+              "step1",
+              "step2",
+              "step3",
+              "res",
+              "conclusion"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "step1",
+              "anchor": {
+                "en": "Substituting",
+                "hi": "formula"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "worked_example",
+      "data": {
+        "title": "Textbook Example: Airline Jet Fuel Cross Hedge",
+        "formula": {
+          "id": "f_cross",
+          "latex": "N^* = h^* \\frac{Q_A}{Q_F}",
+          "expression": "round(0.78 * (QA / QF))",
+          "solvesFor": "N^*",
+          "variables": [
+            {
+              "symbol": "N^*",
+              "latex": "N^*",
+              "meaning": "Optimal futures contract count",
+              "unit": "count"
+            },
+            {
+              "symbol": "QA",
+              "latex": "Q_A",
+              "meaning": "Jet fuel physical exposure",
+              "unit": "gallons"
+            },
+            {
+              "symbol": "QF",
+              "latex": "Q_F",
+              "meaning": "NYMEX heating oil contract size",
+              "unit": "gallons"
+            },
+            {
+              "symbol": "sigmaS",
+              "latex": "\\sigma_S",
+              "meaning": "Spot price volatility",
+              "unit": "dollars"
+            },
+            {
+              "symbol": "sigmaF",
+              "latex": "\\sigma_F",
+              "meaning": "Futures price volatility",
+              "unit": "dollars"
+            },
+            {
+              "symbol": "rho",
+              "latex": "\\rho",
+              "meaning": "Statistical correlation",
+              "unit": "dimensionless"
+            }
+          ]
+        },
+        "given": [
+          {
+            "id": "g_qa",
+            "symbol": "QA",
+            "label": "Jet Fuel Exposure QA",
+            "value": 2000000,
+            "unit": "gallons",
+            "display": "2,000,000 gal"
+          },
+          {
+            "id": "g_qf",
+            "symbol": "QF",
+            "label": "NYMEX Contract Size QF",
+            "value": 42000,
+            "unit": "gallons",
+            "display": "42,000 gal"
+          },
+          {
+            "id": "g_sigmas",
+            "symbol": "sigmaS",
+            "label": "Spot Volatility sigma S",
+            "value": 0.0263,
+            "unit": "dollars",
+            "display": "0.0263"
+          },
+          {
+            "id": "g_sigmaf",
+            "symbol": "sigmaF",
+            "label": "Futures Volatility sigma F",
+            "value": 0.0313,
+            "unit": "dollars",
+            "display": "0.0313"
+          },
+          {
+            "id": "g_rho",
+            "symbol": "rho",
+            "label": "Correlation rho",
+            "value": 0.928,
+            "unit": "dimensionless",
+            "display": "0.928"
+          }
+        ],
+        "steps": [
+          {
+            "id": "step1",
+            "label": "Optimal Ratio h*",
+            "latex": "h^* = 0.928 \\times \\frac{0.0263}{0.0313} = 0.78",
+            "expr": "0.928 * (0.0263 / 0.0313)",
+            "value": 0.78
+          },
+          {
+            "id": "step2",
+            "label": "Required Contracts N*",
+            "latex": "N^* = 0.78 \\times \\frac{2000000}{42000} = 37.14",
+            "expr": "0.78 * (2000000 / 42000)",
+            "value": 37.14
+          },
+          {
+            "id": "step3",
+            "label": "Integer Contracts",
+            "latex": "N^* = \\text{round}(37.14) = 37",
+            "expr": "37",
+            "value": 37
+          }
+        ],
+        "result": {
+          "id": "res",
+          "label": "Optimal Futures Contracts",
+          "value": 37,
+          "unit": "contracts",
+          "display": "37 contracts",
+          "rounding": 0
+        },
+        "conclusion": "The airline enters 37 long NYMEX heating oil futures contracts.",
+        "isHypothetical": false
+      }
     },
     {
       "id": "s03",
       "index": 3,
-      "title": "Marking-to-Market Friction & Tailing the Hedge",
+      "title": "Settlement Friction: Forward vs Futures Tailing",
       "purpose": "Contrasting forward contract theoretical hedging with daily futures margin settlement",
       "takeaways": [
-        "Daily marking to market generates daily interest cash flows",
-        "Tailing the hedge scales down contract size by discounting spot value",
-        "Standard practice adjusts N* by multiplying by S / F"
+        "Forwards settle at maturity while futures settle daily",
+        "Tailing the hedge neutralizes daily margin interest drag",
+        "Tailed contract sizing uses total dollar asset values"
       ],
       "pedagogicalContinuation": false,
-      "template": "tug_of_war",
-      "data": {
-        "left": {
-          "id": "theoretical_forward",
-          "label": "Theoretical Forward Hedge",
-          "points": [
-            "Single cash settlement at terminal maturity",
-            "No daily cash inflows or outflows",
-            "Formula N* assumes unadjusted terminal payoff"
-          ]
-        },
-        "right": {
-          "id": "daily_futures_margin",
-          "label": "Daily Futures Margin Reality",
-          "points": [
-            "Daily settlement generates interest reinvestment risk",
-            "Positive margin gains earn interest; losses incur debt",
-            "Tailing adjustment discounts contract count by S / F"
-          ]
-        },
-        "resolution": {
-          "id": "tailing_resolution",
-          "label": "Tailing Adjustment",
-          "text": "Multiply contract count by Spot / Futures price ratio to neutralize reinvestment drag."
-        }
-      },
       "beats": [
         {
           "id": "s03b1",
@@ -642,10 +748,18 @@
           "transition": false,
           "visual": {
             "show": [
-              "theoretical_forward"
+              "untailed_forward"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "untailed_forward",
+              "anchor": {
+                "en": "settlement",
+                "hi": "settlement"
+              }
+            }
+          ]
         },
         {
           "id": "s03b2",
@@ -660,28 +774,37 @@
           },
           "onScreenIntent": "Daily interest drag and reinvestment friction",
           "sourceFactIds": [
-            "F01"
+            "F01",
+            "F10"
           ],
           "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
           "visual": {
             "show": [
-              "theoretical_forward",
-              "daily_futures_margin"
+              "untailed_forward",
+              "tailed_futures"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "tailed_futures",
+              "anchor": {
+                "en": "Tailing",
+                "hi": "Tailing"
+              }
+            }
+          ]
         },
         {
           "id": "s03b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Under a tailed hedge framework, the optimal number of contracts is formulated using total portfolio dollar values: N star equals h hat multiplied by V sub A divided by V sub F, where V sub A is the current dollar value of the hedged asset, and V sub F is the current dollar notional value of one futures contract. This adjustment provides enhanced precision in institutional portfolio risk management."
+              "display": "Under a tailed hedge framework, contract sizing uses total dollar values. The optimal number N star equals h star multiplied by portfolio value divided by futures value. This small adjustment neutralizes daily interest earned or paid on variation margin."
             },
             "hi": {
-              "display": "Tailed hedge ratio h-hat ke tahat optimal contracts ka formula dollar values par base ho jata hai: h-hat guna portfolio value V A divided by futures contract value V F. Ye practical asset management mein precision provide karta hai."
+              "display": "Tailed hedge framework mein contract sizing total dollar value par hoti hai. Optimal contracts N star barabar h star guna portfolio value divided by futures value hota hai. Ye adjustment daily margin par milne ya dene wale interest ko neutralize karta hai."
             }
           },
           "onScreenIntent": "Tailing formula resolution: N* = h* * (V_A / V_F)",
@@ -694,88 +817,61 @@
           "transition": false,
           "visual": {
             "show": [
-              "theoretical_forward",
-              "daily_futures_margin",
-              "tailing_resolution"
+              "untailed_forward",
+              "tailed_futures",
+              "v1"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "v1",
+              "anchor": {
+                "en": "portfolio",
+                "hi": "dollar"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "untailed_forward",
+          "heading": "Untailed Forward Trap",
+          "tone": "trap",
+          "points": [
+            "Assumes single lump-sum cash settlement at final maturity",
+            "Ignores daily cash flow friction and interest discounting drag",
+            "Sizes contracts purely on physical volume without cash flow adjustment"
+          ]
+        },
+        "right": {
+          "id": "tailed_futures",
+          "heading": "Tailed Futures Reality",
+          "tone": "positive",
+          "points": [
+            "Daily marking-to-market crediting or debiting margin cash flows",
+            "Estimates optimal hedge ratio using percentage returns rather than dollar changes",
+            "Sizes contracts using total dollar values: N-star equals h-star times portfolio value over futures value"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Tailing neutralizes daily interest drag earned or paid on daily variation margin."
+        }
+      }
     },
     {
       "id": "s04",
       "index": 4,
-      "title": "Stock Index Futures: Neutralizing Market Exposure",
+      "title": "Stock Index Futures Hedging Formula",
       "purpose": "Mathematical derivation of portfolio beta hedging using index futures",
       "takeaways": [
-        "Stock index futures hedge systematic market risk while preserving stock picking alpha",
-        "Optimal contracts formula is N* = beta * (P / A)",
-        "Contract value A equals futures price times index multiplier"
+        "Stock index futures immunize portfolios without stock sales",
+        "Formula scales portfolio value by contract value and beta",
+        "Slashes transaction costs and avoids capital gains tax"
       ],
       "pedagogicalContinuation": false,
-      "template": "formula_breakdown",
-      "data": {
-        "title": "Stock Index Beta Hedge",
-        "formula": {
-          "latex": "N^* = \\beta \\frac{P}{A}",
-          "expression": "beta * (P / A)",
-          "solvesFor": "N^*",
-          "variables": [
-            {
-              "symbol": "N^*",
-              "latex": "N^*",
-              "meaning": "Number of Index Contracts",
-              "unit": "contracts"
-            },
-            {
-              "symbol": "beta",
-              "latex": "\\beta",
-              "meaning": "Portfolio Market Beta",
-              "unit": "dimensionless"
-            },
-            {
-              "symbol": "P",
-              "latex": "P",
-              "meaning": "Current Portfolio Value",
-              "unit": "USD"
-            },
-            {
-              "symbol": "A",
-              "latex": "A",
-              "meaning": "Futures Contract Value (Price x Multiplier)",
-              "unit": "USD"
-            }
-          ]
-        },
-        "parts": [
-          {
-            "id": "p1",
-            "symbolLatex": "N^*",
-            "meaning": "Number of index contracts to short",
-            "unit": "contracts"
-          },
-          {
-            "id": "p2",
-            "symbolLatex": "\\beta",
-            "meaning": "Portfolio systematic sensitivity to market index",
-            "unit": "dimensionless"
-          },
-          {
-            "id": "p3",
-            "symbolLatex": "P",
-            "meaning": "Current dollar value of equity portfolio",
-            "unit": "USD"
-          },
-          {
-            "id": "p4",
-            "symbolLatex": "A",
-            "meaning": "Dollar size of one index futures contract",
-            "unit": "USD"
-          }
-        ],
-        "note": "Shorting N* contracts converts portfolio beta to zero (risk-free yield)"
-      },
       "beats": [
         {
           "id": "s04b1",
@@ -799,10 +895,19 @@
           "transition": false,
           "visual": {
             "show": [
-              "p1"
+              "formula",
+              "part_beta"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "part_beta",
+              "anchor": {
+                "en": "portfolio",
+                "hi": "portfolio"
+              }
+            }
+          ]
         },
         {
           "id": "s04b2",
@@ -826,21 +931,30 @@
           "transition": false,
           "visual": {
             "show": [
-              "p1",
-              "p2"
+              "formula",
+              "part_beta",
+              "part_va"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "part_va",
+              "anchor": {
+                "en": "futures",
+                "hi": "futures"
+              }
+            }
+          ]
         },
         {
           "id": "s04b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "In this formula, beta represents the portfolio's systematic sensitivity relative to the equity index, V sub A is the total market value of the equity portfolio, and V sub F is the notional value of one index futures contract—calculated as the current futures price multiplied by the exchange contract multiplier."
+              "display": "In this formula, beta represents the portfolio's systematic sensitivity to the equity index. P is the total market value of the investment portfolio. A denotes the current market value of one index futures contract."
             },
             "hi": {
-              "display": "Yahan beta Capital Asset Pricing Model ke mutabik portfolio ki systematic market sensitivity hai, V A portfolio ki total dollar value hai, aur V F ek futures contract ki notional value hai yaani index futures price guna contract multiplier."
+              "display": "Is formula mein beta stock portfolio ki market sensitivity ko represent karta hai. P investment portfolio ki total current market value hai. A ek stock index futures contract ki current market value hoti hai."
             }
           },
           "onScreenIntent": "Formula N* = beta * (P / A) derivation",
@@ -852,22 +966,31 @@
           "transition": false,
           "visual": {
             "show": [
-              "p1",
-              "p2",
-              "p3"
+              "formula",
+              "part_beta",
+              "part_va",
+              "part_vf"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "part_vf",
+              "anchor": {
+                "en": "formula",
+                "hi": "formula"
+              }
+            }
+          ]
         },
         {
           "id": "s04b4",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Shorting index futures instead of selling individual equities delivers immense operational advantages: it dramatically slashes trading commissions, completely avoids market price impact, eliminates disruptive capital gains taxes, and preserves the manager's stock-picking alpha while neutralizing broad market beta."
+              "display": "Shorting index futures instead of selling individual equities delivers immense operational advantages. It slashes transaction costs and avoids disruptive tax consequences. Managers preserve their chosen stock selections."
             },
             "hi": {
-              "display": "Stocks bechne ki jagah index futures short karne ka sabse bada benefit ye hai ki brokerage commissions aur transaction costs drastically kam hoti hain, aur manager ka stock-picking excess return yaani alpha hundred percent intact rehta hai."
+              "display": "Direct shares bechne ke bajaye index futures short karna behtar hota hai. Ye transaction costs ko dramatically kam karta hai aur capital gains taxes bachata hai. Portfolio manager apne chosen stocks ko retain karta hai."
             }
           },
           "onScreenIntent": "Contract value A = Index Price x Multiplier (e.g. S&P 500 x 250)",
@@ -879,67 +1002,105 @@
           "transition": false,
           "visual": {
             "show": [
-              "p1",
-              "p2",
-              "p3",
-              "p4"
+              "part_ops",
+              "note"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "part_ops",
+              "anchor": {
+                "en": "transaction",
+                "hi": "transaction"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Portfolio Immunization with Stock Index Futures",
+        "formula": {
+          "latex": "N^* = \\beta \\times \\frac{V_A}{V_F}",
+          "expression": "beta * (V_A / V_F)",
+          "solvesFor": "N^*",
+          "variables": [
+            {
+              "symbol": "N^*",
+              "latex": "N^*",
+              "meaning": "Optimal number of stock index futures contracts",
+              "unit": "count"
+            },
+            {
+              "symbol": "beta",
+              "latex": "\\beta",
+              "meaning": "Portfolio beta measuring sensitivity to index",
+              "unit": "dimensionless"
+            },
+            {
+              "symbol": "V_A",
+              "latex": "V_A",
+              "meaning": "Total market value of the equity portfolio",
+              "unit": "dollars"
+            },
+            {
+              "symbol": "V_F",
+              "latex": "V_F",
+              "meaning": "Market value of one index futures contract",
+              "unit": "dollars"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "part_beta",
+            "symbolLatex": "\\beta",
+            "meaning": "Portfolio systematic beta sensitivity to broad market",
+            "unit": "dimensionless"
+          },
+          {
+            "id": "part_va",
+            "symbolLatex": "V_A",
+            "meaning": "Total portfolio market value P",
+            "unit": "dollars"
+          },
+          {
+            "id": "part_vf",
+            "symbolLatex": "V_F",
+            "meaning": "Market value of one index futures contract A",
+            "unit": "dollars"
+          },
+          {
+            "id": "part_ops",
+            "symbolLatex": "N^*",
+            "meaning": "Operational advantages: slashes transaction costs, avoids taxes, preserves stock selection",
+            "unit": "count"
+          }
+        ],
+        "note": "Shorting index futures slashes transaction costs, avoids disruptive tax consequences, and preserves stock selections."
+      }
     },
     {
       "id": "s05",
       "index": 5,
-      "title": "Tactical Beta Adjustment: Changing Market Sensitivity",
+      "title": "Causal Mechanism: Dynamic Beta Steering",
       "purpose": "Step-by-step mechanism for adjusting portfolio beta without liquidating underlying stocks",
       "takeaways": [
-        "Managers can adjust portfolio beta to a target beta* using N* = (beta - beta*) * (P / A)",
-        "Lowering beta requires shorting futures; raising beta requires going long futures",
-        "Eliminates capital gains taxation and massive transaction brokerage fees"
+        "Hedging allows tactical beta adjustment across cycles",
+        "Shorting index futures cuts portfolio beta to target level",
+        "Futures margin inflows cushion downside market plunges"
       ],
       "pedagogicalContinuation": false,
-      "template": "causal_chain",
-      "data": {
-        "links": [
-          {
-            "id": "l1",
-            "role": "condition",
-            "text": "Manager anticipates market correction but loves stock holdings"
-          },
-          {
-            "id": "l2",
-            "role": "action",
-            "text": "Calculates N* = (beta - beta*) * (P / A) and shorts index contracts"
-          },
-          {
-            "id": "l3",
-            "role": "mechanism",
-            "text": "Market drop produces futures cash gains offsetting equity losses"
-          },
-          {
-            "id": "l4",
-            "role": "result",
-            "text": "Portfolio beta is synthetically reduced without selling a single share"
-          },
-          {
-            "id": "l5",
-            "role": "consequence",
-            "text": "Saves millions in capital gains taxes and trading commissions"
-          }
-        ]
-      },
       "beats": [
         {
           "id": "s05b1",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Index futures provide another extraordinary institutional capability: Tactical Beta Adjustment. Fund managers do not have to eliminate market risk entirely; they can dynamically increase or decrease their portfolio's beta without buying or selling a single share of stock."
+              "display": "Hedging equity portfolios is not always about eliminating every drop of market risk. Market risk means market-wide volatility that affects all publicly traded stocks. Often, investment managers want to steer portfolio sensitivity dynamically."
             },
             "hi": {
-              "display": "Futures market fund managers ko ek aur powerful ability deti hai jise Tactical Beta Adjustment kehte hain. Bina ek bhi stock khareede ya beche, manager portfolio ke market risk ko systematically modify kar sakta hai."
+              "display": "Equity portfolios ko hedge karne ka matlab hamesha market risk ko zero karna nahi hota. Market risk यानी market-wide volatility hoti hai jo sabhi stocks ko affect karti hai. Aksar fund managers portfolio sensitivity ko dynamically adjust karna chahte hain."
             }
           },
           "onScreenIntent": "The dilemma: why managers avoid selling high-conviction stocks",
@@ -951,21 +1112,28 @@
           "transition": false,
           "visual": {
             "show": [
-              "l1",
-              "l2"
+              "node_condition"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "node_condition",
+              "anchor": {
+                "en": "sensitivity",
+                "hi": "sensitivity"
+              }
+            }
+          ]
         },
         {
           "id": "s05b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "If a manager wishes to reduce a portfolio's beta from an existing level of beta to a more conservative target level beta star—for example, reducing beta from one point four down to zero point seven—the manager simply shorts beta minus beta star multiplied by V sub A divided by V sub F contracts."
+              "display": "To reduce portfolio beta from beta to a lower target beta star, short index contracts. The required number equals beta minus beta star, multiplied by portfolio value divided by futures value. This defensiveness cushions potential market drops."
             },
             "hi": {
-              "display": "Agar current beta se target beta star kam karna ho—jaise beta one point four se zero point seven par lana ho—toh manager beta minus beta star guna V A divided by V F contracts short kar deta hai."
+              "display": "Agar portfolio beta ko lower target beta star par lana ho, toh index futures short kijiye. Contracts ka number beta minus beta star, guna portfolio value divided by futures value hota hai. Ye strategy market decline ke dauran downside buffer deti hai."
             }
           },
           "onScreenIntent": "The formula N* = (beta - beta*) * (P / A) mechanism",
@@ -977,22 +1145,30 @@
           "transition": false,
           "visual": {
             "show": [
-              "l1",
-              "l2",
-              "l3"
+              "node_condition",
+              "node_action",
+              "node_mechanism"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "node_action",
+              "anchor": {
+                "en": "reduce",
+                "hi": "target"
+              }
+            }
+          ]
         },
         {
           "id": "s05b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Conversely, ahead of an anticipated market rally, if the manager wishes to amplify market exposure by raising beta from zero point eight up to one point two, the manager goes long beta star minus beta multiplied by V sub A divided by V sub F contracts. Futures enable frictionless, instantaneous portfolio rebalancing."
+              "display": "Conversely, to amplify exposure ahead of a rally, raise beta to a higher target beta star. The manager goes long futures contracts. The formula remains identical, generating a negative short position which represents buying futures."
             },
             "hi": {
-              "display": "Iske opposite, agar market mein bullish rally expected ho aur beta badhana ho—jaise zero point eight se one point two karna ho—toh manager beta star minus beta guna V A divided by V F contracts long kar leta hai."
+              "display": "Iske opposite, market rally se pehle exposure badhane ke liye beta ko target beta star tak raise kijiye. Manager index futures buy karta hai. Formula bilkul same rehta hai aur negative sign futures buy karne ko indicate karta hai."
             }
           },
           "onScreenIntent": "Synthetic beta adjustment advantages: zero tax, zero slippage",
@@ -1004,48 +1180,66 @@
           "transition": false,
           "visual": {
             "show": [
-              "l1",
-              "l2",
-              "l3",
-              "l4",
-              "l5"
+              "node_condition",
+              "node_action",
+              "node_mechanism",
+              "node_result",
+              "node_consequence"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "node_result",
+              "anchor": {
+                "en": "rally",
+                "hi": "rally"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "causal_chain",
+      "data": {
+        "links": [
+          {
+            "id": "node_condition",
+            "role": "condition",
+            "text": "Portfolio holds systematic market risk sensitivity and volatility"
+          },
+          {
+            "id": "node_action",
+            "role": "action",
+            "text": "Manager shorts index futures to reduce portfolio beta to target level"
+          },
+          {
+            "id": "node_mechanism",
+            "role": "mechanism",
+            "text": "Market downturn generates daily cash margin gains from short futures"
+          },
+          {
+            "id": "node_result",
+            "role": "result",
+            "text": "Net portfolio sensitivity drops dynamically to target defensiveness"
+          },
+          {
+            "id": "node_consequence",
+            "role": "consequence",
+            "text": "Capital preserved without selling underlying stocks or incurring tax"
+          }
+        ]
+      }
     },
     {
       "id": "s06",
       "index": 6,
-      "title": "Hedging Individual Equities & Market Risk",
+      "title": "Individual Stocks & Long-Dated Hedging",
       "purpose": "Analyzing how index futures insulate individual high-conviction stock bets",
       "takeaways": [
-        "CAPM divides risk into systematic market risk and unsystematic specific risk",
-        "Shorting beta-weighted index futures strips away broad market volatility",
-        "The hedged position captures pure idiosyncratic company outperformance"
+        "Stock risk splits into systematic risk and unique alpha",
+        "Alpha isolation strips market swings to isolate stock gains",
+        "Stack and roll renews short contracts for multi-year hedges"
       ],
       "pedagogicalContinuation": false,
-      "template": "progressive_cards",
-      "data": {
-        "cards": [
-          {
-            "id": "c1",
-            "title": "Pillar 1: Risk Decomposition",
-            "body": "Total risk equals systematic market risk plus unsystematic company specific risk."
-          },
-          {
-            "id": "c2",
-            "title": "Pillar 2: Market Risk Stripping",
-            "body": "Shorting index futures neutralizes market swings, leaving only idiosyncratic alpha."
-          },
-          {
-            "id": "c3",
-            "title": "Pillar 3: Alpha Isolation",
-            "body": "If the chosen stock outperforms its beta expectation, the investor profits regardless of market direction."
-          }
-        ]
-      },
       "beats": [
         {
           "id": "s06b1",
@@ -1067,20 +1261,28 @@
           "transition": false,
           "visual": {
             "show": [
-              "c1"
+              "card_decomp"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "card_decomp",
+              "anchor": {
+                "en": "individual",
+                "hi": "individual"
+              }
+            }
+          ]
         },
         {
           "id": "s06b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "The investor can purchase the individual stock and simultaneously short index futures in an amount proportional to the stock's beta. This strategy is known as Alpha Isolation: broad market systematic noise is filtered out, leaving the investor exposed purely to the company's idiosyncratic outperformance."
+              "display": "This strategy enables alpha isolation. Alpha isolation means removing broad market swings so returns depend entirely on superior stock picking. If an asset manager picks equities that outperform the index, shorting futures extracts excess alpha."
             },
             "hi": {
-              "display": "Is strategy ko Alpha Isolation kehte hain. Market chahe crash kare ya rally kare, market ka systematic component neutralize ho jata hai, aur aapko sirf company ki outperformance ka pure profit milta hai."
+              "display": "Ye strategy alpha isolation enable karti hai. Alpha isolation ka matlab hai market swings ko remove karke returns ko pure stock picking par depend karwana. Agar manager ke shares index se behtar perform karte hain, toh short futures pure alpha deliver karta hai."
             }
           },
           "onScreenIntent": "Card 2: Stripping broad market swings with index futures",
@@ -1092,21 +1294,29 @@
           "transition": false,
           "visual": {
             "show": [
-              "c1",
-              "c2"
+              "card_decomp",
+              "card_alpha"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "card_alpha",
+              "anchor": {
+                "en": "isolation",
+                "hi": "Isolation"
+              }
+            }
+          ]
         },
         {
           "id": "s06b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Now, let us examine a sophisticated corporate hedging strategy that resulted in one of the most famous and catastrophic risk management failures in financial history: Stack and Roll."
+              "display": "What happens when corporate exposures extend over multiple years, but long-dated futures lack liquidity? Hedgers use stack and roll. Stack and roll means rolling front-month futures contracts forward periodically to maintain long-dated hedges."
             },
             "hi": {
-              "display": "Lekin ab aate hain corporate finance ke ek aise dangerous strategy par jisne global financial history ka sabse bada hedging breakdown create kiya: Stack and Roll."
+              "display": "Jab corporate commitments kai saalon tak extend hoti hain aur long-dated futures liquid nahi hote, tab kya karein? Treasurers stack and roll deploy karte hain. Stack and roll ka matlab hai front-month contracts ko bar-bar roll karke long hedge maintain karna."
             }
           },
           "onScreenIntent": "Card 3: Pure alpha isolation across bull or bear markets",
@@ -1120,55 +1330,54 @@
           "transition": false,
           "visual": {
             "show": [
-              "c1",
-              "c2",
-              "c3"
+              "card_decomp",
+              "card_alpha",
+              "card_stack"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "card_stack",
+              "anchor": {
+                "en": "stack",
+                "hi": "stack"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "progressive_cards",
+      "data": {
+        "cards": [
+          {
+            "id": "card_decomp",
+            "title": "Card 1: Risk Decomposition",
+            "body": "Individual equities combine broad systematic market risk with company-specific unsystematic alpha."
+          },
+          {
+            "id": "card_alpha",
+            "title": "Card 2: Alpha Isolation",
+            "body": "Shorting index futures neutralizes market swings so returns depend purely on superior stock selection."
+          },
+          {
+            "id": "card_stack",
+            "title": "Card 3: Stack and Roll",
+            "body": "Rolling front-month contracts periodically maintains long-dated hedges when distant futures lack liquidity."
+          }
+        ]
+      }
     },
     {
       "id": "s07",
       "index": 7,
-      "title": "Stack and Roll: Rolling Front-Month Contracts",
+      "title": "Stack & Roll vs Strip Hedge Mechanics",
       "purpose": "Comparative matrix of Stack-and-Roll versus Strip Hedging for long-dated exposures",
       "takeaways": [
-        "Stack-and-roll rolls liquid front-month contracts to hedge long-dated liabilities",
-        "Strip hedging buys multiple contract maturities matching future dates",
-        "Stack-and-roll creates rollover basis risk and severe cash margin timing mismatches"
+        "Long-dated exposures face illiquid distant futures",
+        "Stack and roll uses liquid front-month contracts",
+        "Contango produces cash drains and margin calls"
       ],
       "pedagogicalContinuation": false,
-      "template": "table_compare",
-      "data": {
-        "columns": [
-          "Strategy",
-          "Execution Method",
-          "Liquidity Profile",
-          "Primary Risk Exposure"
-        ],
-        "rows": [
-          {
-            "id": "r_stack",
-            "cells": [
-              "Stack and Roll",
-              "Short-term contracts rolled forward periodically",
-              "High liquidity in front months",
-              "Roll risk & margin cash drain"
-            ]
-          },
-          {
-            "id": "r_strip",
-            "cells": [
-              "Strip Hedge",
-              "Series of contracts matching each delivery date",
-              "Low liquidity in distant months",
-              "Higher bid-ask spreads & illiquidity"
-            ]
-          }
-        ]
-      },
       "beats": [
         {
           "id": "s07b1",
@@ -1192,10 +1401,18 @@
           "transition": false,
           "visual": {
             "show": [
-              "r_stack"
+              "row_strip"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "row_strip",
+              "anchor": {
+                "en": "frequently",
+                "hi": "contracts"
+              }
+            }
+          ]
         },
         {
           "id": "s07b2",
@@ -1219,88 +1436,107 @@
           "transition": false,
           "visual": {
             "show": [
-              "r_strip"
+              "row_strip",
+              "row_stack"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "row_stack",
+              "anchor": {
+                "en": "Stack",
+                "hi": "Stack"
+              }
+            }
+          ]
         },
         {
           "id": "s07b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "As the front-month contracts approach expiration, the firm closes them out via offsetting trades and immediately re-establishes the positions in the subsequent contract month—effectively 'rolling' the hedge forward in time. When markets remain in backwardation, this roll yields consistent profits; but when markets flip into contango, rolling produces severe rollover losses."
+              "display": "The fatal flaw of stack and roll is rollover basis risk. Contango means distant futures trade above spot, while backwardation means spot trades above distant futures. In contango, rolling contracts generates persistent cash losses and margin calls."
             },
             "hi": {
-              "display": "Jab ye short-dated contracts expire hone wale hote hain, toh unhe closeout karke immediately agle front-month contracts mein shift kar diya jata hai, jise Rolling the hedge forward kehte hain."
+              "display": "Stack and roll ki sabse badi weakness rollover basis risk hoti hai. Contango यानी distant futures spot se mehnga hona, jabki backwardation यानी spot distant futures se mehnga hota hai. Contango mein roll karne par cash drain aur margin calls face karni padti hain."
             }
           },
           "onScreenIntent": "Comparative summary matrix: liquidity versus rollover risk",
           "sourceFactIds": [
-            "F07"
+            "F07",
+            "F12"
           ],
           "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
           "visual": {
             "show": [
-              "r_stack",
-              "r_strip"
+              "row_strip",
+              "row_stack"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "row_stack",
+              "anchor": {
+                "en": "Contango",
+                "hi": "Contango"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "table_compare",
+      "data": {
+        "columns": [
+          "Hedging Strategy",
+          "Execution Mechanism",
+          "Liquidity Profile",
+          "Rollover Basis Risk"
+        ],
+        "rows": [
+          {
+            "id": "row_strip",
+            "cells": [
+              "Strip Hedge",
+              "Buy contracts across all delivery months",
+              "Poor liquidity beyond 1 year",
+              "Locked basis with zero cash drain"
+            ]
+          },
+          {
+            "id": "row_stack",
+            "cells": [
+              "Stack and Roll",
+              "Hold exposure in front-month contracts",
+              "Highest liquidity and tight spreads",
+              "Severe rollover cash drain in contango"
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "s08",
       "index": 8,
-      "title": "Case Study: Metallgesellschaft's $1.33B Disaster",
+      "title": "Case Study: The 1993 Metallgesellschaft Collapse",
       "purpose": "Historical post-mortem of how stack-and-roll triggered liquidity insolvency",
       "takeaways": [
-        "MG sold 160M barrels of 10-year fixed price oil guarantees",
-        "Hedged using stacked front-month futures contracts",
-        "Oil shifted from backwardation into contango, triggering $1.33B in margin calls"
+        "MGRM committed to 160M barrels of 10-year fuel supply",
+        "Long customer contracts hedged with short-term futures",
+        "Oil price collapse led to $1.33B net cash loss"
       ],
       "pedagogicalContinuation": false,
-      "template": "stat_counter",
-      "data": {
-        "stats": [
-          {
-            "id": "st_loss",
-            "value": 1.33,
-            "prefix": "$",
-            "suffix": "B",
-            "decimals": 2,
-            "label": "Total Realized Loss",
-            "sublabel": "Cash margin insolvency liquidation"
-          },
-          {
-            "id": "st_volume",
-            "value": 160,
-            "suffix": "M bbl",
-            "label": "Fixed Price Volume",
-            "sublabel": "10-year customer delivery commitments"
-          },
-          {
-            "id": "st_mismatch",
-            "value": 10,
-            "suffix": " Years",
-            "label": "Maturity Mismatch",
-            "sublabel": "10-year physical vs 1-month futures"
-          }
-        ]
-      },
       "beats": [
         {
           "id": "s08b1",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "In Business Snapshot 3.2, John Hull dissects the historic one-point-three-three billion dollar collapse of German industrial conglomerate Metallgesellschaft in 1993. Its American subsidiary, MGRM, sold long-term fixed-price delivery contracts covering one hundred and sixty million barrels of refined oil over five to ten years."
+              "display": "Consider Business Snapshot 3.2: the 1993 collapse of German conglomerate Metallgesellschaft. Its American subsidiary, MGRM, Metallgesellschaft Refining and Marketing, sold ten-year fixed-price heating oil and gasoline supply contracts covering 160 million barrels."
             },
             "hi": {
-              "display": "Nineteen ninety-three mein German conglomerate Metallgesellschaft ki US subsidiary MGRM ne independent retailers ko ten years ke liye fixed price par sixteen crore barrels heating oil aur gasoline supply karne ka contract sign kiya."
+              "display": "Business Snapshot 3.2 mein German conglomerate Metallgesellschaft ka 1993 collapse dekhiye. Unki US subsidiary, MGRM, Metallgesellschaft Refining and Marketing ne customers ko ten-year fixed price par 160 million barrels oil supply karne ke contracts beche."
             }
           },
           "onScreenIntent": "Metallgesellschaft initial setup: 160M barrels guaranteed",
@@ -1312,10 +1548,18 @@
           "transition": false,
           "visual": {
             "show": [
-              "st_volume"
+              "stat_supply"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "stat_supply",
+              "anchor": {
+                "en": "collapse",
+                "hi": "collapse"
+              }
+            }
+          ]
         },
         {
           "id": "s08b2",
@@ -1337,11 +1581,19 @@
           "transition": false,
           "visual": {
             "show": [
-              "st_volume",
-              "st_mismatch"
+              "stat_supply",
+              "stat_years"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "stat_years",
+              "anchor": {
+                "en": "stacked",
+                "hi": "stack"
+              }
+            }
+          ]
         },
         {
           "id": "s08b3",
@@ -1366,12 +1618,20 @@
           "transition": false,
           "visual": {
             "show": [
-              "st_volume",
-              "st_mismatch",
-              "st_loss"
+              "stat_supply",
+              "stat_years",
+              "stat_margin"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "stat_margin",
+              "anchor": {
+                "en": "NYMEX",
+                "hi": "NYMEX"
+              }
+            }
+          ]
         },
         {
           "id": "s08b4",
@@ -1393,48 +1653,78 @@
           "transition": false,
           "visual": {
             "show": [
-              "st_volume",
-              "st_mismatch",
-              "st_loss"
+              "stat_supply",
+              "stat_years",
+              "stat_margin",
+              "stat_loss"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "stat_loss",
+              "anchor": {
+                "en": "billion",
+                "hi": "billion"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "stat_counter",
+      "data": {
+        "stats": [
+          {
+            "id": "stat_loss",
+            "value": 1.33,
+            "decimals": 2,
+            "label": "$1.33B Net Cash Loss",
+            "sublabel": "Crystallized by bank liquidation"
+          },
+          {
+            "id": "stat_supply",
+            "value": 160,
+            "decimals": 0,
+            "label": "160M Barrels Supply",
+            "sublabel": "Fixed-price customer commitments"
+          },
+          {
+            "id": "stat_years",
+            "value": 10,
+            "decimals": 0,
+            "label": "10-Year Horizon",
+            "sublabel": "Customer fixed supply contracts"
+          },
+          {
+            "id": "stat_margin",
+            "value": 1993,
+            "decimals": 0,
+            "label": "1993 Oil Price Crash",
+            "sublabel": "Triggered fatal margin calls"
+          }
+        ]
+      }
     },
     {
       "id": "s09",
       "index": 9,
-      "title": "Active Recall: Calculating the Hedge Ratio",
+      "title": "Knowledge Check: Calculating Hedge Ratio",
       "purpose": "Check student mastery of minimum variance hedge ratio calculation",
       "takeaways": [
-        "h* = rho * (sigma_S / sigma_F) = 0.80 * (0.04 / 0.05) = 0.64",
-        "Optimal hedge ratio reflects both correlation and relative volatility",
-        "Naive 1.0 hedge ratio would severely over-hedge the physical asset"
+        "Active recall: calculating optimal hedge ratio",
+        "Formula: 0.80 times 0.040 over 0.050 equals 0.64",
+        "Optimal hedge position neutralizes 64% of variance"
       ],
       "pedagogicalContinuation": false,
-      "template": "interactive_quiz",
-      "data": {
-        "question": "An asset has daily spot volatility of 0.04, the futures contract has daily volatility of 0.05, and correlation is 0.80. What is the minimum variance hedge ratio h*?",
-        "options": [
-          "A) 0.50",
-          "B) 0.64",
-          "C) 0.80",
-          "D) 1.00"
-        ],
-        "correctIndex": 1,
-        "explanation": "h* = rho * (sigma_S / sigma_F) = 0.80 * (0.04 / 0.05) = 0.80 * 0.80 = 0.64. Option B is correct."
-      },
       "beats": [
         {
           "id": "s09b1",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Let us now test your practical mastery of minimum variance calculations. Suppose an institutional risk manager measures the historical standard deviation of spot price changes to be zero point zero three zero, and the standard deviation of futures price changes to be zero point zero four zero. If the correlation between spot and futures changes is zero point eight zero, what is the optimal Minimum Variance Hedge Ratio, h star?"
+              "display": "Let us test your understanding with an active recall calculation. Spot price standard deviation is zero point zero four zero. Futures standard deviation is zero point zero five zero. Their correlation rho is zero point eight zero."
             },
             "hi": {
-              "display": "Chaliye ab aapki quantitative calculation test karte hain. Ek commodity spot price ka standard deviation zero point zero three zero hai, futures ka standard deviation zero point zero four zero hai, aur correlation zero point eight zero hai. Minimum variance hedge ratio kya hoga?"
+              "display": "Aaiye active recall calculation se aapka understanding test karte hain. Spot price standard deviation sigma S zero point zero four zero hai. Futures standard deviation sigma F zero point zero five zero hai. Dono ke beech correlation rho zero point eight zero hai."
             }
           },
           "onScreenIntent": "Quiz question presented with sigma_S = 0.04, sigma_F = 0.05, rho = 0.80",
@@ -1446,7 +1736,9 @@
           "pauseAfterMs": 3200,
           "transition": false,
           "visual": {
-            "show": []
+            "show": [],
+            "phase": "question",
+            "hypothetical": true
           },
           "visualCues": []
         },
@@ -1466,10 +1758,12 @@
             "F02"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 3200,
           "transition": false,
           "visual": {
-            "show": []
+            "show": [],
+            "phase": "thinking",
+            "hypothetical": true
           },
           "visualCues": []
         },
@@ -1478,10 +1772,10 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "The correct answer is Option C: zero point six zero. Applying the formula: zero point eight zero multiplied by zero point zero three zero divided by zero point zero four zero yields zero point eight zero multiplied by zero point seven five, which equals zero point six zero. This indicates that for every one thousand units of physical exposure, exactly six hundred units of futures contracts must be traded to achieve the variance-minimizing hedge."
+              "display": "The correct answer is Option B: zero point six four. Multiply zero point eight zero by zero point zero four zero, then divide by zero point zero five zero. This yields zero point six four, hedging sixty-four percent of exposure."
             },
             "hi": {
-              "display": "Correct answer hai Option C: Zero point six zero. Calculation dekhiye: h star barabar rho guna sigma S divided by sigma F, yaani zero point eight zero guna zero point zero three zero divided by zero point zero four zero barabar zero point six zero. Iska matlab spot position ke har one thousand units ke liye six hundred units futures contract ki zaroorat hogi."
+              "display": "Sahi answer Option B hai: zero point six four. Formula lagaiye: zero point eight zero guna zero point zero four zero divided by zero point zero five zero. Result zero point six four aata hai, jo sixty-four percent optimal hedge ratio hai."
             }
           },
           "onScreenIntent": "Reveal Option B (0.64) with complete mathematical walkthrough",
@@ -1493,49 +1787,37 @@
           "pauseAfterMs": 300,
           "transition": false,
           "visual": {
-            "show": []
+            "show": [],
+            "phase": "reveal",
+            "hypothetical": true
           },
           "visualCues": []
         }
-      ]
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "A company cross-hedges an asset with spot volatility sigma S = 0.040 using futures with volatility sigma F = 0.050 and correlation rho = 0.80. What is the optimal hedge ratio?",
+        "options": [
+          "0.50",
+          "0.64",
+          "0.80",
+          "1.00"
+        ],
+        "correctIndex": 1,
+        "explanation": "Hedge ratio equals rho times spot volatility over futures volatility, giving 0.80 times 0.040 over 0.050 which equals 0.64."
+      }
     },
     {
       "id": "s10",
       "index": 10,
-      "title": "Where We Are: Liquidity vs. Basis Risk",
+      "title": "Institutional Synthesis: Liquidity vs Basis Risk",
       "purpose": "Synthesize quantitative hedging lessons and bridge to Chapter 4 Interest Rates",
       "takeaways": [
-        "Effective hedging balances basis risk against liquidity and cash flow constraints",
-        "Short-term contracts provide liquidity but demand disciplined margin reserves",
-        "Chapter 4 introduces interest rates, yield curves, and bond duration"
+        "Hedging is active liquidity management, not basis spread",
+        "Committed credit lines are essential for margin calls",
+        "Bridge to Chapter 4: Interest Rate Futures duration"
       ],
       "pedagogicalContinuation": false,
-      "template": "chat_story",
-      "data": {
-        "messages": [
-          {
-            "id": "m10_1",
-            "speaker": "mentor",
-            "text": "The lesson of quantitative hedging is clear: eliminating price risk always introduces basis risk or liquidity risk."
-          },
-          {
-            "id": "m10_2",
-            "speaker": "mentor",
-            "text": "In Chapter 4, we move from commodities and equities to Interest Rates: zero rates, forward rates, and bond yield curves."
-          }
-        ],
-        "whereWeAre": {
-          "label": "WHERE WE ARE",
-          "items": [
-            "Chapter 3 Part 1 (Basic Principles)",
-            "Chapter 3 Part 2 (Cross & Beta Hedging)",
-            "Chapter 4 (Interest Rates)",
-            "Chapter 5 (Determination of Forward Prices)",
-            "Chapter 6 (Interest Rate Futures)"
-          ],
-          "current": 1
-        }
-      },
       "beats": [
         {
           "id": "s10b1",
@@ -1558,10 +1840,18 @@
           "transition": false,
           "visual": {
             "show": [
-              "m10_1"
+              "p1"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "p1",
+              "anchor": {
+                "en": "liquidity",
+                "hi": "liquidity"
+              }
+            }
+          ]
         },
         {
           "id": "s10b2",
@@ -1583,81 +1873,86 @@
           "transition": false,
           "visual": {
             "show": [
-              "m10_1",
-              "m10_2"
+              "p1",
+              "p2",
+              "p3",
+              "p4"
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "p2",
+              "anchor": {
+                "en": "credit",
+                "hi": "credit"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "structured_cards",
+        "pillars": {
+          "primaryCard": {
+            "title": "Cross Hedging Synthesis & Risk Architecture",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Liquidity vs Basis Risk",
+                "description": "Hedging is fundamentally active cash flow liquidity management, not theoretical basis spreads."
+              },
+              {
+                "id": "p2",
+                "title": "Credit Line Commitment",
+                "description": "Committed credit facilities are vital to survive marking-to-market margin calls."
+              },
+              {
+                "id": "p3",
+                "title": "Rollover Discipline",
+                "description": "Beware contango markets where rolling front-month futures drains cash persistently."
+              },
+              {
+                "id": "p4",
+                "title": "Bridge to Chapter 4",
+                "description": "Extending hedging mechanics to interest rates, duration, and yield curves."
+              }
+            ]
+          }
+        },
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "Cross Hedging Foundations",
+            "Minimum Variance and Airline Example",
+            "Beta Steering and Alpha Isolation",
+            "Stack and Roll Collapse"
+          ],
+          "current": 3
+        }
+      }
     },
     {
       "id": "s11",
       "index": 11,
-      "title": "Eight Rules to Remember",
+      "title": "Summary: The Eight Quantitative Hedging Rules",
       "purpose": "Institutional rules codifying cross hedging, beta adjustments, and roll risk",
       "takeaways": [
-        "h* = rho * (sigma_S / sigma_F) minimizes variance for cross hedges",
-        "Beta hedging insulates equity portfolios using N* = (beta - beta*) * (P / A)",
-        "Stack-and-roll requires massive cash liquidity buffers against contango margin calls"
+        "Rules 1 & 2: Minimum variance ratio and contract sizing",
+        "Rules 3 & 4: Tailing margin interest and index beta",
+        "Rules 5 to 8: Beta steering, alpha, stack, and contango"
       ],
       "pedagogicalContinuation": false,
-      "template": "summary_thread",
-      "data": {
-        "title": "Quantitative Hedging in 8 Rules",
-        "rules": [
-          {
-            "id": "r1",
-            "title": "Cross hedging definition",
-            "text": "Cross hedging applies when the physical asset differs from the futures contract underlying."
-          },
-          {
-            "id": "r2",
-            "title": "Minimum variance formula",
-            "text": "Optimal hedge ratio h* = rho * (sigma_S / sigma_F) scales by correlation and relative volatility."
-          },
-          {
-            "id": "r3",
-            "title": "Optimal contract sizing",
-            "text": "Total contracts N* = h* * (Q_A / Q_F) calculates exact volume needed to minimize portfolio variance."
-          },
-          {
-            "id": "r4",
-            "title": "Hedge effectiveness",
-            "text": "Hedge effectiveness equals R^2 = rho^2, quantifying the percentage of price risk eliminated."
-          },
-          {
-            "id": "r5",
-            "title": "Tailing the hedge",
-            "text": "Tailing adjusts contract count for daily marking-to-market interest drag by multiplying by S / F."
-          },
-          {
-            "id": "r6",
-            "title": "Portfolio beta hedging",
-            "text": "Stock index futures eliminate market risk with N* = beta * (P / A), preserving individual stock alpha."
-          },
-          {
-            "id": "r7",
-            "title": "Tactical beta adjustment",
-            "text": "Target beta* is achieved without liquidating stocks using N* = (beta - beta*) * (P / A)."
-          },
-          {
-            "id": "r8",
-            "title": "Stack and roll liquidity discipline",
-            "text": "Rolling short-dated futures requires ample credit lines to withstand contango margin calls."
-          }
-        ]
-      },
       "beats": [
         {
           "id": "s11b1",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Let us codify the four quantitative pillars of Chapter 3 that will govern your institutional risk management practice."
+              "display": "Let us codify the eight quantitative rules of cross hedging and portfolio risk management that govern institutional practice."
             },
             "hi": {
-              "display": "Aaiye Chapter Three ke final chaar quantitative pillars ko summarize karte hain jo aapko hamesha yaad rakhne hain."
+              "display": "Aaiye cross hedging aur portfolio risk management ke eight quantitative rules ko systematically summarize karte hain."
             }
           },
           "onScreenIntent": "Overview of the 8 quantitative hedging rules",
@@ -1681,10 +1976,10 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "First Pillar: Minimum Variance Hedge Ratio. When cross-hedging non-identical assets, contract sizing is statistically optimized through h star equals rho multiplied by sigma S divided by sigma F."
+              "display": "Rule 1 optimizes cross hedge sizing using the minimum variance hedge ratio formula. Rule 2 calculates optimal futures contracts by scaling the hedge ratio by relative exposure sizes."
             },
             "hi": {
-              "display": "Pehla pillar: Minimum Variance Hedge Ratio. Jab underlying assets alag hon, h star barabar rho guna sigma S divided by sigma F se optimal hedge sizing nikala jata hai."
+              "display": "Rule 1 minimum variance hedge ratio se optimal cross hedge sizing karta hai. Rule 2 relative position sizes ko scale karke total contracts calculate karta hai."
             }
           },
           "onScreenIntent": "Rules 1 and 2 highlighted: Cross hedge definition & h* formula",
@@ -1697,25 +1992,33 @@
           "transition": false,
           "visual": {
             "show": [
-              "r1",
-              "r2"
+              "rule_1",
+              "rule_2"
             ],
             "range": [
               1,
               2
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "rule_1",
+              "anchor": {
+                "en": "Rule 1",
+                "hi": "Rule 1"
+              }
+            }
+          ]
         },
         {
           "id": "s11b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Second Pillar: Equity Beta Hedging. Shorting N star equals beta multiplied by V sub A divided by V sub F index contracts immunizes stock portfolios against systematic market downturns while preserving stock-picking alpha."
+              "display": "Rule 3 dictates that tailing the hedge adjusts contract counts for daily interest on margin cash flows. Rule 4 uses stock index futures to immunize equity portfolios against systematic market risk."
             },
             "hi": {
-              "display": "Dusra pillar: Equity Beta Hedging. N star barabar beta guna V A divided by V F stock portfolio ke systematic market risk ko zero karta hai bina underlying shares beche."
+              "display": "Rule 3 daily margin interest ke liye contract count ko tailing adjustment deta hai. Rule 4 stock index futures se equity portfolio ke systematic market risk ko immunize karta hai."
             }
           },
           "onScreenIntent": "Rules 3 and 4 highlighted: Contract count N* & R2 effectiveness",
@@ -1728,25 +2031,33 @@
           "transition": false,
           "visual": {
             "show": [
-              "r3",
-              "r4"
+              "rule_3",
+              "rule_4"
             ],
             "range": [
               3,
               4
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "rule_3",
+              "anchor": {
+                "en": "Rule 3",
+                "hi": "Rule 3"
+              }
+            }
+          ]
         },
         {
           "id": "s11b4",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Third Pillar: Tactical Beta Adjustment. Futures allow investment managers to dynamically raise or lower portfolio market sensitivity without buying or selling a single physical share."
+              "display": "Rule 5 dynamically adjusts portfolio market beta using the beta differential formula. Rule 6 enables alpha isolation by removing index movements to isolate stock picking gains."
             },
             "hi": {
-              "display": "Teesra pillar: Tactical Beta Adjustment. Index futures long ya short karke fund manager portfolio beta ko desired target beta star par smoothly steer kar sakta hai."
+              "display": "Rule 5 beta differential formula se portfolio beta ko dynamically steer karta hai. Rule 6 market index moves ko eliminate karke pure stock selection alpha isolate karta hai."
             }
           },
           "onScreenIntent": "Rules 5 and 6 highlighted: Tailing adjustment & beta hedging",
@@ -1758,25 +2069,33 @@
           "transition": false,
           "visual": {
             "show": [
-              "r5",
-              "r6"
+              "rule_5",
+              "rule_6"
             ],
             "range": [
               5,
               6
             ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "rule_5",
+              "anchor": {
+                "en": "Rule 5",
+                "hi": "Rule 5"
+              }
+            }
+          ]
         },
         {
           "id": "s11b5",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Fourth Pillar: The Metallgesellschaft Rule. Cash flow timing mismatches can turn sound hedges fatal. Always back futures positions with robust liquid reserves to survive daily marking-to-market calls. In Chapter 4, we will master Interest Rates, Zero Rates, Forward Rates, and the Yield Curve!"
+              "display": "Rule 7 utilizes stack and roll strategies to hedge multi-year exposures with liquid front-month contracts. Rule 8 warns that contango markets turn stack and roll into catastrophic margin call drains."
             },
             "hi": {
-              "display": "Chautha pillar: Metallgesellschaft Liquidity Rule. Stack-and-roll hedging mein cash flow timing mismatch sabse bada killer hai. Hamesha margin liquidity ko hedge ka hissa maniye."
+              "display": "Rule 7 liquid front-month contracts ko stack and roll karke long-dated commitments hedge karta hai. Rule 8 warn karta hai ki contango markets mein rollover massive cash margin deficits create karta hai."
             }
           },
           "onScreenIntent": "Rules 7 and 8 highlighted: Tactical beta shift & stack and roll discipline",
@@ -1789,43 +2108,54 @@
           "transition": false,
           "visual": {
             "show": [
-              "r7",
-              "r8"
+              "rule_7",
+              "rule_8"
             ],
             "range": [
               7,
               8
-            ],
-            "focus": "r8"
+            ]
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "rule_7",
+              "anchor": {
+                "en": "Rule 7",
+                "hi": "Rule 7"
+              }
+            }
+          ]
         },
         {
           "id": "s11b6",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Master these eight quantitative principles to navigate real-world derivatives risk with complete institutional rigor. You are now prepared for Chapter 4."
+              "display": "Master these eight rules to navigate real-world cross hedging with complete institutional discipline. You are now prepared for Chapter 4."
             },
             "hi": {
-              "display": "इन आठ नियमों को अच्छी तरह समझकर आप रियल-वर्ल्ड डेरिवेटिव्स रिस्क को पूरी सूझबूझ के साथ मैनेज कर सकते हैं। अब आप चैप्टर 4 के लिए तैयार हैं।"
+              "display": "इन 8 rules ko yaad rakhkar aap real-world cross hedging ko puri discipline ke saath manage kar sakte hain. Ab aap Chapter 4 ke liye taiyar hain."
             }
           },
           "onScreenIntent": "Compact final summary overview of all 8 rules",
-          "sourceFactIds": [],
+          "sourceFactIds": [
+            "F01",
+            "F02",
+            "F08"
+          ],
           "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
           "visual": {
             "show": [
-              "r1",
-              "r2",
-              "r3",
-              "r4",
-              "r5",
-              "r6",
-              "r7",
-              "r8"
+              "rule_1",
+              "rule_2",
+              "rule_3",
+              "rule_4",
+              "rule_5",
+              "rule_6",
+              "rule_7",
+              "rule_8"
             ],
             "range": [
               1,
@@ -1833,9 +2163,63 @@
             ],
             "compact": true
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "rule_8",
+              "anchor": {
+                "en": "eight",
+                "hi": "8"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "The Eight Quantitative Rules of Cross Hedging",
+        "rules": [
+          {
+            "id": "rule_1",
+            "title": "Rule 1: Minimum Variance Ratio",
+            "text": "Optimize cross hedge sizing using the minimum variance hedge ratio formula h-star equals rho times sigma S over sigma F."
+          },
+          {
+            "id": "rule_2",
+            "title": "Rule 2: Contract Sizing",
+            "text": "Calculate required futures contracts N-star equals h-star times QA over QF by scaling relative exposure sizes."
+          },
+          {
+            "id": "rule_3",
+            "title": "Rule 3: Tailing the Hedge",
+            "text": "Tail the hedge using total dollar values N-star equals h-star times VA over VF to neutralize daily margin interest."
+          },
+          {
+            "id": "rule_4",
+            "title": "Rule 4: Stock Index Immunization",
+            "text": "Immunize equity portfolios against market crashes by shorting stock index futures N-star equals beta times VA over VF."
+          },
+          {
+            "id": "rule_5",
+            "title": "Rule 5: Tactical Beta Steering",
+            "text": "Steer portfolio sensitivity dynamically using the beta differential formula N-star equals beta minus target beta times P over A."
+          },
+          {
+            "id": "rule_6",
+            "title": "Rule 6: Alpha Isolation",
+            "text": "Isolate alpha and monetize superior stock selection by stripping broad index market swings with short futures."
+          },
+          {
+            "id": "rule_7",
+            "title": "Rule 7: Stack and Roll",
+            "text": "Deploy stack and roll strategies to hedge multi-year commitments with liquid front-month contracts."
+          },
+          {
+            "id": "rule_8",
+            "title": "Rule 8: Contango Rollover Risk",
+            "text": "Recognize that contango turns stack and roll into catastrophic cash drains and fatal margin calls."
+          }
+        ]
+      }
     }
   ]
 }

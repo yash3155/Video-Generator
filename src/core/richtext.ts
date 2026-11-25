@@ -52,6 +52,7 @@ export const NON_DISPLAY_KEYS: ReadonlySet<string> = new Set([
   "show",
   "highlightRowId",
   "arrangement",
+  "presentation",
   "type",
   "generator",
   "scope",

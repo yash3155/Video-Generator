@@ -658,6 +658,7 @@ export const ConceptClarification: React.FC<{ data: ConceptClarificationData }> 
 export const Roadmap: React.FC<{ data: RoadmapData }> = ({ data }) => {
   const { theme, reveal, lang } = useRc();
   const L = ui(lang);
+  const many = data.items.length > 4;
   return (
     <div style={col(theme.space.gap, { height: "100%" })}>
       <Heading>{text(data.title, "data.title")}</Heading>
@@ -667,15 +668,15 @@ export const Roadmap: React.FC<{ data: RoadmapData }> = ({ data }) => {
           const color = it.status === "current" ? theme.colors.gold : it.status === "done" ? theme.colors.teal : theme.colors.textMuted;
           return (
             <div key={it.id} style={col(14, { flex: 1, alignItems: "center", textAlign: "center", ...revealStyle(reveal, it.id) })}>
-              <Badge color={color} filled={it.status !== "next"} size={it.status === "current" ? 92 : 76}>
-                {it.status === "done" ? <Icon name="check" color={theme.colors.textOnAccent} size={42} /> : i + 1}
+              <Badge color={color} filled={it.status !== "next"} size={it.status === "current" ? (many ? 80 : 92) : (many ? 68 : 76)}>
+                {it.status === "done" ? <Icon name="check" color={theme.colors.textOnAccent} size={many ? 36 : 42} /> : i + 1}
               </Badge>
               <Label color={color}>{L.status[it.status]}</Label>
-              <Fit id={it.id} style={col(8, { height: 120, padding: "0 10px", alignItems: "center" })}>
-                <Body size={32} style={{ fontWeight: it.status === "current" ? 700 : 600 }} color={it.status === "next" ? theme.colors.textMuted : theme.colors.text}>
+              <Fit id={it.id} style={col(many ? 6 : 8, { height: many ? 130 : 120, padding: "0 8px", alignItems: "center" })}>
+                <Body size={many ? 25 : 32} style={{ fontWeight: it.status === "current" ? 700 : 600 }} color={it.status === "next" ? theme.colors.textMuted : theme.colors.text}>
                   {text(it.label, `data.items[${i}].label`)}
                 </Body>
-                {it.sublabel ? <Body size={26} color={theme.colors.textMuted}>{text(it.sublabel, `data.items[${i}].sublabel`)}</Body> : null}
+                {it.sublabel ? <Body size={many ? 20 : 26} color={theme.colors.textMuted}>{text(it.sublabel, `data.items[${i}].sublabel`)}</Body> : null}
               </Fit>
             </div>
           );

@@ -16,11 +16,43 @@
     {
       "id": "F02",
       "category": "formula",
-      "statement": "Discrete compounding terminal value is A*(1 + R/m)^(mn). As m approaches infinity, continuous compounding yields terminal value A*e^(Rn).",
+      "statement": "Discrete compounding terminal value is A*(1 + R/m)^(mn). As compounding frequency m approaches infinity, continuous compounding yields terminal value A*e^(Rn).",
       "citation": {
         "chapter": "4",
         "section": "4.2",
         "page": "79"
+      },
+      "formula": {
+        "id": "f_terminal_value",
+        "latex": "V = A \\times e^{R \\times n}",
+        "expression": "A * exp(R * n)",
+        "solvesFor": "V",
+        "variables": [
+          {
+            "symbol": "V",
+            "latex": "V",
+            "meaning": "terminal compounded value",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "A",
+            "latex": "A",
+            "meaning": "initial principal amount",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "R",
+            "latex": "R",
+            "meaning": "continuously compounded interest rate per annum",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "n",
+            "latex": "n",
+            "meaning": "investment duration in years",
+            "unit": "years"
+          }
+        ]
       }
     },
     {
@@ -31,6 +63,32 @@
         "chapter": "4",
         "section": "4.2",
         "page": "80"
+      },
+      "formula": {
+        "id": "f_rate_conversion",
+        "latex": "R_c = m \\times \\ln\\left(1 + \\frac{R_m}{m}\\right)",
+        "expression": "m * log(1 + R_m / m)",
+        "solvesFor": "R_c",
+        "variables": [
+          {
+            "symbol": "R_c",
+            "latex": "R_c",
+            "meaning": "continuously compounded equivalent rate",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "m",
+            "latex": "m",
+            "meaning": "compounding frequency per annum",
+            "unit": "count"
+          },
+          {
+            "symbol": "R_m",
+            "latex": "R_m",
+            "meaning": "stated rate compounded m times per annum",
+            "unit": "dimensionless"
+          }
+        ]
       }
     },
     {
@@ -41,6 +99,38 @@
         "chapter": "4",
         "section": "4.2",
         "page": "81"
+      },
+      "formula": {
+        "id": "f_present_value",
+        "latex": "PV = B \\times e^{-R \\times T}",
+        "expression": "B * exp(-R * T)",
+        "solvesFor": "PV",
+        "variables": [
+          {
+            "symbol": "PV",
+            "latex": "PV",
+            "meaning": "present value discount factor times cash flow",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "B",
+            "latex": "B",
+            "meaning": "future cash flow amount",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "R",
+            "latex": "R",
+            "meaning": "continuously compounded zero rate for maturity T",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "T",
+            "latex": "T",
+            "meaning": "time until cash flow receipt",
+            "unit": "years"
+          }
+        ]
       }
     },
     {
@@ -61,6 +151,56 @@
         "chapter": "4",
         "section": "4.4",
         "page": "82"
+      },
+      "formula": {
+        "id": "f_bond_price",
+        "latex": "P = \\sum_{i=1}^{n} C \\times e^{-R_i t_i} + F \\times e^{-R_n t_n}",
+        "expression": "sum(C * exp(-R_i * t_i)) + F * exp(-R_n * t_n)",
+        "solvesFor": "P",
+        "variables": [
+          {
+            "symbol": "P",
+            "latex": "P",
+            "meaning": "theoretical bond price",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "C",
+            "latex": "C",
+            "meaning": "coupon cash flow payment",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "F",
+            "latex": "F",
+            "meaning": "face par value at maturity",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "R_i",
+            "latex": "R_i",
+            "meaning": "zero rate for maturity t_i",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "t_i",
+            "latex": "t_i",
+            "meaning": "payment date in years",
+            "unit": "years"
+          },
+          {
+            "symbol": "R_n",
+            "latex": "R_n",
+            "meaning": "zero rate for bond final maturity t_n",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "t_n",
+            "latex": "t_n",
+            "meaning": "final maturity in years",
+            "unit": "years"
+          }
+        ]
       }
     },
     {
@@ -75,7 +215,7 @@
     },
     {
       "id": "F08",
-      "category": "process",
+      "category": "rule",
       "statement": "The Bootstrap method determines zero rates recursively from Treasury bills and coupon bond market prices by stripping prior known coupon cash flows.",
       "citation": {
         "chapter": "4",
@@ -91,6 +231,44 @@
         "chapter": "4",
         "section": "4.6",
         "page": "86"
+      },
+      "formula": {
+        "id": "f_forward_rate",
+        "latex": "R_F = \\frac{R_2 T_2 - R_1 T_1}{T_2 - T_1}",
+        "expression": "(R_2 * T_2 - R_1 * T_1) / (T_2 - T_1)",
+        "solvesFor": "R_F",
+        "variables": [
+          {
+            "symbol": "R_F",
+            "latex": "R_F",
+            "meaning": "implied forward interest rate",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "R_1",
+            "latex": "R_1",
+            "meaning": "zero rate for maturity T_1",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "T_1",
+            "latex": "T_1",
+            "meaning": "maturity of first period",
+            "unit": "years"
+          },
+          {
+            "symbol": "R_2",
+            "latex": "R_2",
+            "meaning": "zero rate for maturity T_2",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "T_2",
+            "latex": "T_2",
+            "meaning": "maturity of second period",
+            "unit": "years"
+          }
+        ]
       }
     },
     {
@@ -101,6 +279,149 @@
         "chapter": "4",
         "section": "4.6",
         "page": "87"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "R_1",
+            "label": "1-year zero rate",
+            "value": 0.03,
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "T_1",
+            "label": "First maturity",
+            "value": 1,
+            "unit": "years"
+          },
+          {
+            "symbol": "R_2",
+            "label": "2-year zero rate",
+            "value": 0.04,
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "T_2",
+            "label": "Second maturity",
+            "value": 2,
+            "unit": "years"
+          }
+        ],
+        "steps": [
+          {
+            "label": "Numerator product difference",
+            "expr": "0.04 * 2 - 0.03 * 1",
+            "value": 0.05
+          },
+          {
+            "label": "Denominator time difference",
+            "expr": "2 - 1",
+            "value": 1
+          }
+        ],
+        "result": {
+          "symbol": "R_F",
+          "label": "Forward rate for year 2",
+          "value": 0.05,
+          "unit": "dimensionless"
+        },
+        "rounding": 4
+      }
+    },
+    {
+      "id": "F11",
+      "category": "numerical_example",
+      "statement": "A bank quotes 10% per annum with semiannual compounding (m=2). The continuous compounding equivalent is R_c = 2 * ln(1 + 0.10 / 2) = 2 * ln(1.05) ≈ 0.09758 (9.758%).",
+      "citation": {
+        "chapter": "4",
+        "section": "4.2",
+        "page": "80"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "R_m",
+            "label": "Stated annual rate",
+            "value": 0.10,
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "m",
+            "label": "Compounding frequency per annum",
+            "value": 2,
+            "unit": "count"
+          }
+        ],
+        "steps": [
+          {
+            "label": "Per-period rate",
+            "expr": "1 + 0.10 / 2",
+            "value": 1.05
+          },
+          {
+            "label": "Continuous equivalent rate",
+            "expr": "2 * log(1.05)",
+            "value": 0.09758
+          }
+        ],
+        "result": {
+          "symbol": "R_c",
+          "label": "Continuously compounded equivalent rate",
+          "value": 0.09758,
+          "unit": "dimensionless"
+        },
+        "rounding": 5
+      }
+    },
+    {
+      "id": "F12",
+      "category": "numerical_example",
+      "statement": "A 6-month Treasury bill with face value 100 trades at 97.50. The continuously compounded 6-month zero rate is -ln(97.50 / 100) / 0.5 = -2 * ln(0.975) ≈ 0.05064 (5.064%).",
+      "citation": {
+        "chapter": "4",
+        "section": "4.5",
+        "page": "84"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "P",
+            "label": "Bill market price",
+            "value": 97.50,
+            "unit": "dollars"
+          },
+          {
+            "symbol": "F",
+            "label": "Face value",
+            "value": 100,
+            "unit": "dollars"
+          },
+          {
+            "symbol": "T",
+            "label": "Maturity in years",
+            "value": 0.5,
+            "unit": "years"
+          }
+        ],
+        "steps": [
+          {
+            "label": "Discount ratio",
+            "expr": "97.50 / 100",
+            "value": 0.975
+          },
+          {
+            "label": "Continuously compounded rate",
+            "expr": "-log(0.975) / 0.5",
+            "value": 0.05064
+          }
+        ],
+        "result": {
+          "symbol": "R",
+          "label": "6-month zero rate",
+          "value": 0.05064,
+          "unit": "dimensionless"
+        },
+        "rounding": 5
       }
     }
   ],
@@ -116,5 +437,49 @@
       "F08",
       "F09"
     ]
-  }
+  },
+  "terms": [
+    {
+      "term": "Treasury rate",
+      "definition": "Sovereign default-free borrowing rate in national currency.",
+      "factId": "F01"
+    },
+    {
+      "term": "repo rate",
+      "definition": "Collateralized borrowing rate backed by government securities.",
+      "factId": "F01"
+    },
+    {
+      "term": "continuous compounding",
+      "definition": "Limit of discrete compounding where interest is calculated and reinvested infinitely often.",
+      "factId": "F02"
+    },
+    {
+      "term": "zero rate",
+      "definition": "Interest rate earned on an investment from today to maturity with zero intermediate cash flows.",
+      "factId": "F05"
+    },
+    {
+      "term": "par yield",
+      "definition": "Coupon rate per annum that makes the present value of bond cash flows equal to face value.",
+      "factId": "F07"
+    },
+    {
+      "term": "Bootstrap method",
+      "definition": "Recursive technique to derive zero rates sequentially from bill and coupon bond prices.",
+      "factId": "F08"
+    },
+    {
+      "term": "forward rate",
+      "definition": "Interest rate implied today by zero rates for a future borrowing period between two future dates.",
+      "factId": "F09"
+    }
+  ],
+  "dependencies": {
+    "earlier": [],
+    "later": [
+      "ch04/p2"
+    ]
+  },
+  "quotes": []
 }

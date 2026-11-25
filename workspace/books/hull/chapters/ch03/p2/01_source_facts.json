@@ -21,6 +21,18 @@
         "chapter": "3",
         "section": "3.4",
         "page": "60"
+      },
+      "formula": {
+        "id": "f_h_star",
+        "latex": "h^* = \\rho \\times \\frac{\\sigma_S}{\\sigma_F}",
+        "expression": "rho * (sigma_S / sigma_F)",
+        "solvesFor": "h",
+        "variables": [
+          { "symbol": "h", "latex": "h^*", "meaning": "minimum variance hedge ratio", "unit": "dimensionless" },
+          { "symbol": "rho", "latex": "\\rho", "meaning": "correlation between delta S and delta F", "unit": "dimensionless" },
+          { "symbol": "sigma_S", "latex": "\\sigma_S", "meaning": "standard deviation of delta S", "unit": "dimensionless" },
+          { "symbol": "sigma_F", "latex": "\\sigma_F", "meaning": "standard deviation of delta F", "unit": "dimensionless" }
+        ]
       }
     },
     {
@@ -31,26 +43,70 @@
         "chapter": "3",
         "section": "3.4",
         "page": "61"
+      },
+      "formula": {
+        "id": "f_n_star",
+        "latex": "N^* = h^* \\times \\frac{Q_A}{Q_F}",
+        "expression": "h * (Q_A / Q_F)",
+        "solvesFor": "N",
+        "variables": [
+          { "symbol": "N", "latex": "N^*", "meaning": "optimal number of contracts", "unit": "contracts" },
+          { "symbol": "h", "latex": "h^*", "meaning": "minimum variance hedge ratio", "unit": "dimensionless" },
+          { "symbol": "Q_A", "latex": "Q_A", "meaning": "size of position hedged", "unit": "units" },
+          { "symbol": "Q_F", "latex": "Q_F", "meaning": "size of one futures contract", "unit": "units" }
+        ]
       }
     },
     {
       "id": "F04",
       "category": "numerical_example",
-      "statement": "An airline hedging 2,000,000 gallons of jet fuel using heating oil futures (42,000 gallons per contract) with sigma_S = 0.0263, sigma_F = 0.0313, and rho = 0.928 calculates h* = 0.7777, requiring N* = 37 contracts.",
+      "statement": "An airline hedging 2,000,000 gallons of jet fuel using heating oil futures (42,000 gallons per contract) with sigma_S = 0.0263, sigma_F = 0.0313, and rho = 0.928 calculates h* = 0.78, requiring N* = 37 contracts.",
       "citation": {
         "chapter": "3",
         "section": "3.4",
         "page": "61"
+      },
+      "numbers": {
+        "inputs": [
+          { "symbol": "rho", "label": "correlation", "value": 0.928, "unit": "dimensionless" },
+          { "symbol": "sigma_S", "label": "jet fuel std dev", "value": 0.0263, "unit": "dimensionless" },
+          { "symbol": "sigma_F", "label": "heating oil std dev", "value": 0.0313, "unit": "dimensionless" },
+          { "symbol": "Q_A", "label": "jet fuel gallons", "value": 2000000, "unit": "gallons" },
+          { "symbol": "Q_F", "label": "contract size", "value": 42000, "unit": "gallons" }
+        ],
+        "steps": [
+          { "label": "hedge ratio", "expr": "rho * (sigma_S / sigma_F)", "value": 0.78 },
+          { "label": "raw contracts", "expr": "0.78 * (Q_A / Q_F)", "value": 37.14 }
+        ],
+        "result": {
+          "symbol": "N",
+          "label": "optimal contracts",
+          "value": 37,
+          "unit": "contracts"
+        },
+        "rounding": 0
       }
     },
     {
       "id": "F05",
       "category": "formula",
-      "statement": "To hedge an equity portfolio against overall market risk using stock index futures, the optimal number of contracts is N* = beta * (P / A), where P is portfolio value, A is futures contract value, and beta is portfolio market sensitivity.",
+      "statement": "To hedge an equity portfolio against overall market risk using S&P 500 stock index futures, the optimal number of contracts is N* = beta * (P / A), where P is portfolio value, A is futures contract value, and beta is portfolio market sensitivity.",
       "citation": {
         "chapter": "3",
         "section": "3.5",
         "page": "63"
+      },
+      "formula": {
+        "id": "f_equity_hedge",
+        "latex": "N^* = \\beta \\times \\frac{P}{A}",
+        "expression": "beta * (P / A)",
+        "solvesFor": "N",
+        "variables": [
+          { "symbol": "N", "latex": "N^*", "meaning": "optimal index contracts", "unit": "contracts" },
+          { "symbol": "beta", "latex": "\\beta", "meaning": "portfolio beta", "unit": "dimensionless" },
+          { "symbol": "P", "latex": "P", "meaning": "portfolio market value", "unit": "dollars" },
+          { "symbol": "A", "latex": "A", "meaning": "futures contract value", "unit": "dollars" }
+        ]
       }
     },
     {
@@ -61,6 +117,19 @@
         "chapter": "3",
         "section": "3.5",
         "page": "64"
+      },
+      "formula": {
+        "id": "f_beta_change",
+        "latex": "N^* = (\\beta - \\beta^*) \\times \\frac{P}{A}",
+        "expression": "(beta - beta_star) * (P / A)",
+        "solvesFor": "N",
+        "variables": [
+          { "symbol": "N", "latex": "N^*", "meaning": "contracts to adjust beta", "unit": "contracts" },
+          { "symbol": "beta", "latex": "\\beta", "meaning": "current portfolio beta", "unit": "dimensionless" },
+          { "symbol": "beta_star", "latex": "\\beta^*", "meaning": "target portfolio beta", "unit": "dimensionless" },
+          { "symbol": "P", "latex": "P", "meaning": "portfolio market value", "unit": "dollars" },
+          { "symbol": "A", "latex": "A", "meaning": "futures contract value", "unit": "dollars" }
+        ]
       }
     },
     {
@@ -76,7 +145,7 @@
     {
       "id": "F08",
       "category": "case_study",
-      "statement": "In 1993, German conglomerate Metallgesellschaft lost $1.33 billion when its US subsidiary hedged 160 million barrels of long-term customer commitments using stacked short-term futures that suffered massive margin calls as oil shifted into contango.",
+      "statement": "In Business Snapshot 3.2, in 1993, German conglomerate Metallgesellschaft lost $1.33 billion when its US subsidiary hedged 160 million barrels of long-term customer commitments using stacked short-term futures that suffered massive margin calls as oil shifted into contango.",
       "citation": {
         "chapter": "3",
         "section": "Snapshot 3.2",
@@ -91,6 +160,53 @@
         "chapter": "3",
         "section": "3.4",
         "page": "60"
+      },
+      "numbers": {
+        "inputs": [
+          { "symbol": "rho", "label": "correlation", "value": 0.80, "unit": "dimensionless" },
+          { "symbol": "sigma_S", "label": "asset std dev", "value": 0.04, "unit": "dimensionless" },
+          { "symbol": "sigma_F", "label": "futures std dev", "value": 0.05, "unit": "dimensionless" }
+        ],
+        "steps": [
+          { "label": "ratio of std devs", "expr": "sigma_S / sigma_F", "value": 0.80 }
+        ],
+        "result": {
+          "symbol": "h",
+          "label": "hedge ratio",
+          "value": 0.64,
+          "unit": "dimensionless"
+        },
+        "rounding": 2
+      }
+    },
+    {
+      "id": "F10",
+      "category": "rule",
+      "statement": "Tailing the hedge adjusts the hedge ratio by discounting or using the spot-to-futures price ratio to account for the daily interest and marking to market on futures contracts.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.4",
+        "page": "62"
+      }
+    },
+    {
+      "id": "F11",
+      "category": "rule",
+      "statement": "In cross hedging, basis risk arises from two components: the basis between the asset hedged and the contract asset, and the basis between the contract asset spot and futures price.",
+      "citation": {
+        "chapter": "3",
+        "section": "3.4",
+        "page": "60"
+      }
+    },
+    {
+      "id": "F12",
+      "category": "rule",
+      "statement": "Stack and roll strategies face liquidity rollover risk: when futures markets shift from backwardation into contango, rolls generate persistent cash outflows and margin calls.",
+      "citation": {
+        "chapter": "3",
+        "section": "Snapshot 3.2",
+        "page": "69"
       }
     }
   ],
@@ -98,11 +214,10 @@
     "actors": "Corporate treasurers, airline risk managers, and equity portfolio managers",
     "situation": "Managing exposure to assets lacking direct futures contracts, requiring imperfect cross hedges and long-dated rollover strategies",
     "failure": "Mismatched hedge ratios or severe margin roll friction trigger billions in liquidity insolvency",
-    "invention": "Minimum variance hedge ratios, beta hedging formulas, and stack-and-roll protocols",
+    "invention": "Minimum variance hedge ratios and systematic roll strategies that quantify correlation and price volatility",
     "factIds": [
       "F01",
       "F02",
-      "F03",
       "F04",
       "F08"
     ]
@@ -111,8 +226,6 @@
     "earlier": [
       "ch03-p1"
     ],
-    "later": [
-      "ch04-p1"
-    ]
+    "later": []
   }
 }

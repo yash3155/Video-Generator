@@ -21,6 +21,23 @@ You are authoring the on-screen content of every scene. The scaffold in the inpu
 - Summary (summary_thread): exactly 8 rules of at most 30 words; beat ranges [0,0], [1,2], [3,4], [5,6], [7,8], [1,8] with `compact: true` on the last.
 - On-screen text uses only the display language ({{displayLanguage}}).
 
+## Beat-level narration-visual sync (critical)
+
+Every beat's visual must show what that beat's narration is saying, not a generic background:
+
+1. **One beat, one visual**: For each beat, the elements in `visual.show` must display the specific thing that beat's narration text describes. Extract concrete nouns and numbers (e.g., "1,000,000 barrels", "$80 spot", "$79 futures", "seventy-five million dollars") from the narration and ensure the data elements shown contain matching content.
+
+2. **Template data must match narration content**:
+   - `tug_of_war`: The `left` and `right` labels and points must name the specific actors and numbers from the narration (e.g., "Short Hedger: Oil Producer" with "1M barrels, $80 spot, sells 1,000 August futures at $79").
+   - `progressive_cards`: Each card's `title` and `body` must match the pillar/concept being named in the narration at the moment it is revealed. Cards revealed in beat N must contain content from beat N's narration.
+   - `causal_chain`: Each link's `text` must name the specific step from the narration with its numbers (e.g., "Physical exposure: 1,000,000 barrels crude oil" not "Enterprise holds commodity inventory").
+   - `worked_example`: `given` values, `steps` and `result` must use the exact numbers from the narration and facts.
+   - Apply the same principle to every other template.
+
+3. **Timing via visualCues**: For each data element (card, node, step, stat), provide a `visualCue` that ties the element's appearance to a specific anchor word in the narration. The element appears when the narrator says that word.
+
+4. **Number agreement**: Every number shown in a beat's visible elements must appear in that beat's narration text or the immediately preceding beat.
+
 ## Template data schemas
 
 {{templateSchemas}}

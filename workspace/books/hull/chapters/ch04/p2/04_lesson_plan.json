@@ -1,141 +1,285 @@
 {
-  "bookId": "hull",
-  "chapterId": "ch04",
-  "partId": "p2",
-  "title": "FRAs, Duration, Convexity & Term Structure Theories",
-  "targetMinutes": 14,
-  "prerequisites": [
-    "Hull Chapter 4 Part 1: Compounding, Zero Rates & The Bootstrap Method"
+  "outcomes": [
+    "Calculate the cash settlement payoff of a Forward Rate Agreement at maturity.",
+    "Measure bond interest rate sensitivity using Macaulay and Modified duration.",
+    "Estimate bond price percentage changes using first-order duration and second-order convexity.",
+    "Formulate a duration-based futures hedge to immunize a fixed income portfolio.",
+    "Compare Expectations Theory and Liquidity Preference Theory in shaping upward-sloping yield curves."
   ],
-  "learningOutcomes": [
-    "Structure Forward Rate Agreements (FRAs) and calculate cash settlement payoffs with in-advance discounting",
-    "Mark-to-market value existing FRAs prior to expiration using current forward rates and zero discount factors",
-    "Calculate Macaulay and Modified duration to immunize bond portfolios against parallel yield curve shifts",
-    "Apply convexity corrections Delta B / B ≈ -D*Delta y + 0.5*C*(Delta y)^2 for large interest rate shocks",
-    "Analyze Liquidity Preference Theory and examine the 1994 Orange County $1.6B leveraged repo collapse"
-  ],
-  "causalChain": [
-    "Corporate borrowing creates future rate exposure -> FRAs lock borrowing rates between T1 and T2 to eliminate uncertainty",
-    "Interest rates shift -> Bond prices respond inversely proportional to Modified duration",
-    "Large yield shifts create non-linear price curvature -> Convexity correction restores pricing precision and protects hedged portfolios"
-  ],
-  "predictionQuestions": [
+  "coreConcepts": [
     {
-      "question": "If a bond portfolio has a modified duration of 5 years and yields rise by 50 basis points (0.5%), what is the approximate percentage price change?",
-      "answer": "-2.50%, calculated as Delta B / B = -D* * Delta y = -5.0 * 0.0050 = -0.0250 (-2.50%)."
+      "conceptId": "K01",
+      "term": "Forward Rate Agreement",
+      "stages": {
+        "intuition": {
+          "sceneIndex": 1,
+          "note": "Locking a guaranteed hotel room rate months in advance of holiday travel"
+        },
+        "why": {
+          "sceneIndex": 0,
+          "note": "Borrowers need certainty on future borrowing costs to avoid devastating rate spikes"
+        },
+        "what": {
+          "sceneIndex": 3,
+          "note": "An over-the-counter contract agreeing to pay a fixed interest rate on principal over a future period"
+        },
+        "how": {
+          "sceneIndex": 3,
+          "note": "Cash settlement at date T1 discounts the interest rate difference back to the present"
+        },
+        "workedExample": {
+          "sceneIndex": 4,
+          "note": "Calculating the 246,913.58 dollar payoff on a 100M dollar notional with 4.0% fixed versus 5.0% market rate"
+        },
+        "guided": {
+          "sceneIndex": 4,
+          "note": "Predicting the advance discount divisor 1.0125 before calculating final cash transfer"
+        },
+        "independent": {
+          "sceneIndex": 9,
+          "note": "Evaluating cash settlement mechanics and interest rate direction in the quiz"
+        },
+        "limitations": {
+          "sceneIndex": 8,
+          "note": "Valuing an existing FRA requires market forward rates and continuous zero curve discounting"
+        }
+      }
+    },
+    {
+      "conceptId": "K06",
+      "term": "Modified duration",
+      "stages": {
+        "intuition": {
+          "sceneIndex": 5,
+          "note": "A seesaw fulcrum balancing weighted payment bricks over time"
+        },
+        "why": {
+          "sceneIndex": 0,
+          "note": "Interest rate hikes cause catastrophic price drops if portfolio duration is unhedged"
+        },
+        "what": {
+          "sceneIndex": 6,
+          "note": "Macaulay duration divided by one plus yield per period measuring percentage price sensitivity"
+        },
+        "how": {
+          "sceneIndex": 6,
+          "note": "Multiplying minus modified duration by yield shift Delta y directly estimates proportional bond price change"
+        },
+        "workedExample": {
+          "sceneIndex": 6,
+          "note": "A bond with 5.0 years modified duration losing 2.50% when interest rates rise by 50 basis points"
+        },
+        "guided": {
+          "sceneIndex": 7,
+          "note": "Calculating the optimal number of futures contracts N* to hedge portfolio duration"
+        },
+        "independent": {
+          "sceneIndex": 9,
+          "note": "Applying modified duration to estimate bond price decline under a yield shock"
+        },
+        "limitations": {
+          "sceneIndex": 8,
+          "note": "First-order linear duration underestimates bond price gains and overstates drops without convexity"
+        }
+      }
     }
   ],
+  "misconception": {
+    "myth": "Modified duration gives an exact prediction of bond price changes for any interest rate movement.",
+    "reality": "Modified duration is only a first-order linear approximation; large interest rate shifts require adding positive convexity curvature.",
+    "factIds": [
+      "F05",
+      "F06",
+      "F09"
+    ],
+    "sceneIndex": 6
+  },
+  "predictionQuestions": [
+    {
+      "question": "If market interest rates rise by 50 basis points on a bond with a 5.0 year modified duration, will the bond price rise or fall, and by how much?",
+      "sceneIndex": 6,
+      "revealBeat": "s06b2"
+    }
+  ],
+  "causalChain": {
+    "condition": "Orange County held a leveraged 20 billion dollar repo portfolio with a high duration of 7.4 years.",
+    "action": "The Federal Reserve aggressively increased benchmark interest rates by 300 basis points in 1994.",
+    "mechanism": "The long 7.4 year duration multiplied the interest rate increase into massive capital losses on bond collateral.",
+    "result": "The leveraged investment pool suffered a devastating 1.6 billion dollar cash loss.",
+    "consequence": "Orange County declared municipal bankruptcy, demonstrating the fatal danger of unhedged duration risk.",
+    "factIds": [
+      "F08",
+      "F05"
+    ],
+    "sceneIndex": 7
+  },
   "sceneOutline": [
     {
-      "sceneIndex": 0,
-      "title": "The Over-the-Counter Rate Lock: Introducing FRAs",
-      "beats": [
-        "b01",
-        "b02",
-        "b03"
+      "index": 0,
+      "purpose": "Problem-first hook: Corporate interest rate risk and the Orange County municipal bankruptcy dilemma",
+      "concepts": [
+        "K01",
+        "K06",
+        "K11"
+      ],
+      "factIds": [
+        "F01",
+        "F08"
       ]
     },
     {
-      "sceneIndex": 1,
-      "title": "FRA Mechanics: Payer vs. Receiver Profiles",
-      "beats": [
-        "b04",
-        "b05",
-        "b06"
+      "index": 1,
+      "purpose": "Tension: Fixed rate borrowers seeking cost certainty versus floating rate market lenders",
+      "concepts": [
+        "K01",
+        "K02"
+      ],
+      "factIds": [
+        "F01"
       ]
     },
     {
-      "sceneIndex": 2,
-      "title": "The FRA Cash Settlement Formula & In-Advance Discounting",
-      "beats": [
-        "b07",
-        "b08",
-        "b09"
+      "index": 2,
+      "purpose": "Roadmap: The Four Pillars of Forward Rates, Duration, Convexity, and Term Structure",
+      "concepts": [
+        "K01",
+        "K05",
+        "K06",
+        "K07",
+        "K08"
+      ],
+      "factIds": [
+        "F01",
+        "F04",
+        "F05",
+        "F06",
+        "F07"
       ]
     },
     {
-      "sceneIndex": 3,
-      "title": "Valuing an Existing FRA Prior to Maturity",
-      "beats": [
-        "b10",
-        "b11",
-        "b12"
+      "index": 3,
+      "purpose": "Deep Dive: Forward Rate Agreement mechanics and in-advance cash settlement formula",
+      "concepts": [
+        "K01",
+        "K02",
+        "K03",
+        "K04"
+      ],
+      "factIds": [
+        "F01",
+        "F02"
       ]
     },
     {
-      "sceneIndex": 4,
-      "title": "Macaulay Duration: The Weighted Average Horizon",
-      "beats": [
-        "b13",
-        "b14",
-        "b15"
+      "index": 4,
+      "purpose": "Worked Example: Step-by-step 100M dollar FRA cash settlement payoff calculation",
+      "concepts": [
+        "K01",
+        "K04",
+        "K03"
+      ],
+      "factIds": [
+        "F02",
+        "F11"
       ]
     },
     {
-      "sceneIndex": 5,
-      "title": "Modified Duration & Price Sensitivity",
-      "beats": [
-        "b16",
-        "b17",
-        "b18"
+      "index": 5,
+      "purpose": "Deep Dive: Macaulay duration as the weighted average maturity of cash flows",
+      "concepts": [
+        "K05"
+      ],
+      "factIds": [
+        "F04"
       ]
     },
     {
-      "sceneIndex": 6,
-      "title": "Convexity: Correcting the Linear Approximation",
-      "beats": [
-        "b19",
-        "b20",
-        "b21"
+      "index": 6,
+      "purpose": "Deep Dive & Worked Example: Modified duration price sensitivity and 50 bps yield hike calculation",
+      "concepts": [
+        "K06"
+      ],
+      "factIds": [
+        "F05",
+        "F09"
       ]
     },
     {
-      "sceneIndex": 7,
-      "title": "Theories of the Term Structure: Expectations vs. Segmentation",
-      "beats": [
-        "b22",
-        "b23",
-        "b24"
+      "index": 7,
+      "purpose": "Case Study & Hedging: Orange County 1.6B dollar loss and duration-based futures hedging formula",
+      "concepts": [
+        "K10",
+        "K11",
+        "K06"
+      ],
+      "factIds": [
+        "F08",
+        "F10"
       ]
     },
     {
-      "sceneIndex": 8,
-      "title": "Liquidity Preference Theory: Why Curves Slope Upward",
-      "beats": [
-        "b25",
-        "b26",
-        "b27"
+      "index": 8,
+      "purpose": "Deep Dive: Convexity curvature adjustment and Liquidity Preference vs Expectations Theory",
+      "concepts": [
+        "K07",
+        "K08",
+        "K09",
+        "K12"
+      ],
+      "factIds": [
+        "F03",
+        "F06",
+        "F07",
+        "F12"
       ]
     },
     {
-      "sceneIndex": 9,
-      "title": "Active Recall Scenario: Calculating Bond Price Move via Duration",
-      "beats": [
-        "b28",
-        "b29",
-        "b30"
+      "index": 9,
+      "purpose": "Independent Application: Interactive quiz testing modified duration bond price drop",
+      "concepts": [
+        "K06"
+      ],
+      "factIds": [
+        "F05",
+        "F09"
       ]
     },
     {
-      "sceneIndex": 10,
-      "title": "Case Study: The $1.6B Orange County Bankruptcy",
-      "beats": [
-        "b31",
-        "b32",
-        "b33",
-        "b34"
+      "index": 10,
+      "purpose": "Wisdom & Bridge: Non-linear curvature risk, immunization discipline, and course roadmap",
+      "concepts": [
+        "K06",
+        "K07",
+        "K10"
+      ],
+      "factIds": [
+        "F05",
+        "F06",
+        "F10"
       ]
     },
     {
-      "sceneIndex": 11,
-      "title": "Summary Thread: Four Pillars of Fixed Income Risk Management",
-      "beats": [
-        "b35",
-        "b36",
-        "b37",
-        "b38",
-        "b39",
-        "b40"
+      "index": 11,
+      "purpose": "Summary Thread: Eight fundamental rules of forward rate agreements, duration, and convexity",
+      "concepts": [
+        "K01",
+        "K02",
+        "K04",
+        "K05",
+        "K06",
+        "K07",
+        "K08",
+        "K10"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F10"
       ]
     }
   ]

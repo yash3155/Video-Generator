@@ -340,6 +340,87 @@ export function episodeChecks(ep: Episode, ctx: ContentContext): CheckRun {
   }
   f.push(...checkSixWayEpisode(ep, { knownNumbers: nums }));
 
+  /* C-16/C-17/C-18/C-19: beat-level narration-visual synchronization checks. */
+  for (const s of ep.scenes) {
+    const dataIds = elementIds(s);
+    /* Build a map from element id to its textual content. */
+    const elTextMap = new Map<string, string>();
+    const walk2 = (v: unknown, _p: string, parentId?: string) => {
+      if (Array.isArray(v)) {
+        for (const [i, x] of v.entries()) {
+          if (typeof x === "string" && parentId && x.trim()) {
+            elTextMap.set(parentId, (elTextMap.get(parentId) ?? "") + " " + x);
+          } else {
+            walk2(x, `${_p}[${i}]`, parentId);
+          }
+        }
+      } else if (v && typeof v === "object") {
+        const o = v as Record<string, unknown>;
+        const id = typeof o.id === "string" ? o.id : parentId;
+        const texts: string[] = [];
+        for (const [k, x] of Object.entries(o)) {
+          if (typeof x === "string" && !NON_TEXT_KEYS.has(k) && x.trim()) texts.push(x);
+          else if (typeof x === "object") walk2(x, `${_p}.${k}`, id);
+        }
+        if (id && texts.length) elTextMap.set(id, (elTextMap.get(id) ?? "") + " " + texts.join(" "));
+      }
+    };
+    walk2(s.data, "data");
+    for (const b of s.beats) {
+      /* C-17: empty visual show (exempt quiz scenes which animate via visual.phase, whole-scene data charts, and summary intro beat) */
+      const isSummaryIntro = s.template === "summary_thread" && b.visual.range?.[0] === 0;
+      if ((!b.visual.show || !b.visual.show.length) && !b.transition && !b.visual.phase && s.template !== "interactive_quiz" && s.template !== "data_chart" && !isSummaryIntro) {
+        f.push(finding("C-17", "HIGH", `${b.id} has empty visual.show`, "Every beat must display at least one on-screen element.", "Add element ids to visual.show for this beat.", { sceneId: s.id, beatId: b.id }));
+      }
+      /* C-16: beat-visual overlap with narration (exempt compact overview beats) */
+      if (b.visual.show?.length && !b.visual.compact && ep.languages.includes(display)) {
+        const beatNarr = b.narration[display]?.display ?? "";
+        if (beatNarr) {
+          const beatWords = new Set(contentWords(beatNarr).map(stem));
+          const shownText = b.visual.show
+            .map((id: string) => elTextMap.get(id) ?? "")
+            .join(" ");
+          if (shownText.trim()) {
+            const shownWords = contentWords(shownText).map(stem);
+            const overlap = shownWords.filter((w) => beatWords.has(w)).length;
+            if (shownWords.length >= 3 && overlap / shownWords.length < 0.15) {
+              f.push(finding("C-16", "HIGH", `${b.id}: visual elements have < 15% word overlap with the beat narration`, "The on-screen content must show what the narrator is saying in this beat.", "Rewrite the visual element text to match the narration's concrete nouns and numbers.", { sceneId: s.id, beatId: b.id }));
+            }
+          }
+        }
+      }
+    }
+    /* C-19: untimed elements – every data element should appear in at least one beat's visual.show */
+    const shownIds = new Set(s.beats.flatMap((b) => b.visual.show ?? []));
+    for (const id of dataIds) {
+      if (!shownIds.has(id) && id !== "formula" && id !== "note" && id !== "conclusion") {
+        f.push(finding("C-19", "MEDIUM", `scene ${s.index} element "${id}" is defined in data but never shown in any beat`, "Every visual element must be tied to at least one beat's visual.show.", "Add this element id to the beat that discusses it.", { sceneId: s.id }));
+      }
+    }
+  }
+  /* C-18: counted item match – when narration says "four pillars" or "five steps", the visual item count should match. */
+  const countPattern = /\b(two|three|four|five|six|seven|eight|nine|ten|\d+)\s+(pillars?|steps?|cards?|rules?|nodes?|links?|stages?|phases?|points?|items?)\b/gi;
+  const countMap: Record<string, number> = { two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10 };
+  for (const s of ep.scenes) {
+    const sceneNarr = s.beats.map((b) => b.narration[display]?.display ?? "").join(" ");
+    let m: RegExpExecArray | null;
+    while ((m = countPattern.exec(sceneNarr)) !== null) {
+      const num = countMap[m[1].toLowerCase()] ?? parseInt(m[1], 10);
+      if (!num || num < 2 || num > 10) continue;
+      /* Count matching elements in the data */
+      const dataArrays: unknown[][] = [];
+      const findArrays = (v: unknown) => {
+        if (Array.isArray(v) && v.length >= 2 && v.every((x) => x && typeof x === "object" && "id" in (x as Record<string, unknown>))) dataArrays.push(v);
+        else if (v && typeof v === "object") for (const x of Object.values(v as Record<string, unknown>)) findArrays(x);
+      };
+      findArrays(s.data);
+      const hasMatch = dataArrays.some((arr) => arr.length === num);
+      if (dataArrays.length > 0 && !hasMatch) {
+        f.push(finding("C-18", "MEDIUM", `scene ${s.index}: narration says "${m[0]}" but no data array has ${num} items (found ${dataArrays.map((a) => a.length).join(", ")})`, "The number of visual items must match the count stated in the narration.", `Adjust the data to have exactly ${num} items or fix the narration.`, { sceneId: s.id }));
+      }
+    }
+  }
+
   const deny = [...DEFAULT_BOILERPLATE, ...(ctx.cfg.boilerplateDenylist ?? [])].map((x) => x.toLowerCase());
   const factText = facts.facts.map((x) => x.statement).join(" ").toLowerCase();
   const allScreen = ep.scenes.flatMap((s) => screenStrings(s).map((x) => ({ s, text: x.text })));
@@ -365,7 +446,7 @@ export function episodeChecks(ep: Episode, ctx: ContentContext): CheckRun {
     run.skipped["C-05"] = "no other parts in the workspace";
     run.skipped["C-06"] = "no other parts in the workspace";
   }
-  run.ran.push("C-01", "C-02", "C-03", "C-04", "C-07", "C-08", "C-09", "C-10", "C-11", "C-12", "C-13", "C-14", "C-15");
+  run.ran.push("C-01", "C-02", "C-03", "C-04", "C-07", "C-08", "C-09", "C-10", "C-11", "C-12", "C-13", "C-14", "C-15", "C-16", "C-17", "C-18", "C-19");
   return run;
 }
 

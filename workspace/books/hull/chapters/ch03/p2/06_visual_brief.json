@@ -3,66 +3,78 @@
     {
       "index": 0,
       "topology": "hook",
-      "visualIntent": "Problem-first hook: cross hedging without direct contracts",
+      "visualIntent": "Problem-first opening dilemma on cross hedging 2M gallons of jet fuel without direct futures contracts",
       "keyElements": [
-        "Opening question",
-        "Related asset cross hedge",
-        "Volatility divergence hazard",
-        "Minimum variance solution"
+        "commercial airline jet fuel",
+        "NYMEX heating oil futures",
+        "2M gallons physical exposure",
+        "cross hedging definition",
+        "minimum variance hedge ratio"
       ],
       "factIds": [
-        "F01"
+        "F01",
+        "F02"
       ]
     },
     {
       "index": 1,
       "topology": "formula",
-      "visualIntent": "Deconstruct h* = rho * (sigma_S / sigma_F)",
+      "visualIntent": "Mathematical breakdown of optimal Minimum Variance Hedge Ratio formula h* = rho * (sigma_S / sigma_F) and contract sizing N*",
       "keyElements": [
-        "Formula h*",
-        "Correlation rho",
-        "Volatility ratio",
-        "Hedge effectiveness R2"
+        "formula h* = rho * (sigma_S / sigma_F)",
+        "correlation rho",
+        "spot volatility sigma_S",
+        "futures volatility sigma_F",
+        "contract sizing formula N* = h* * (Q_A / Q_F)"
       ],
       "factIds": [
-        "F02"
+        "F02",
+        "F03"
       ]
     },
     {
       "index": 2,
       "topology": "worked_example",
-      "visualIntent": "Worked example of airline jet fuel hedge",
+      "visualIntent": "Step-by-step worked example: airline hedging 2M gallons jet fuel using 42,000-gallon NYMEX heating oil contracts",
       "keyElements": [
-        "Givens: 2M gallons, 42k contract, 0.928 rho",
-        "h* = 0.7777",
-        "N* = 37 contracts"
+        "2,000,000 gallons jet fuel",
+        "NYMEX heating oil 42,000 gallon contract",
+        "sigma_S = 0.0263",
+        "sigma_F = 0.0313",
+        "correlation rho = 0.928",
+        "hedge ratio h* = 0.78",
+        "calculated 37.14 contracts",
+        "rounded 37 contracts"
       ],
       "factIds": [
+        "F03",
         "F04"
       ]
     },
     {
       "index": 3,
-      "topology": "tension",
-      "visualIntent": "Marking to market drag and tailing the hedge",
+      "topology": "comparison",
+      "visualIntent": "Institutional comparison of forward lump-sum settlement versus futures daily marking-to-market and tailed hedge sizing",
       "keyElements": [
-        "Theoretical forward hedge",
-        "Daily futures margin reality",
-        "Tailing adjustment S / F"
+        "forward contract single lump sum settlement",
+        "daily marking to market margin cash flows",
+        "tailing the hedge percentage returns",
+        "contract sizing formula N* = h* * (V_A / V_F)"
       ],
       "factIds": [
-        "F01"
+        "F01",
+        "F03"
       ]
     },
     {
       "index": 4,
       "topology": "formula",
-      "visualIntent": "Stock index beta hedge formula N* = beta * (P / A)",
+      "visualIntent": "Stock index futures portfolio immunization formula N* = beta * (V_P / V_F) and tactical beta modification",
       "keyElements": [
-        "Formula N*",
-        "Portfolio beta",
-        "Portfolio value P",
-        "Contract value A"
+        "multi-million dollar equity portfolio",
+        "S&P 500 index futures",
+        "immunization formula N* = beta * (V_P / V_F)",
+        "beta modification formula N* = (beta - beta*) * (V_P / V_F)"
       ],
       "factIds": [
         "F05"
@@ -71,38 +83,42 @@
     {
       "index": 5,
       "topology": "process",
-      "visualIntent": "Tactical beta adjustment causal chain",
+      "visualIntent": "Five-node causal chain demonstrating tactical beta steering under severe market downturn",
       "keyElements": [
-        "High conviction stocks",
-        "N* = (beta - beta*) * (P / A)",
-        "Zero tax synthetic shift",
-        "Capital preservation"
+        "Condition: systematic market risk beta = 1.4",
+        "Action: short 14 S&P 500 futures",
+        "Mechanism: market plunges 10% generating cash inflows",
+        "Result: net portfolio sensitivity cut in half to beta* = 0.7",
+        "Consequence: capital preserved without stock liquidation"
       ],
       "factIds": [
+        "F05",
         "F06"
       ]
     },
     {
       "index": 6,
       "topology": "pillars",
-      "visualIntent": "Individual equity risk stripping progressive cards",
+      "visualIntent": "Three-card progressive reveal: systematic vs unsystematic risk, alpha isolation, and multi-year hedging need",
       "keyElements": [
-        "Risk decomposition",
-        "Market risk stripping",
-        "Alpha isolation"
+        "Card 1: systematic vs unsystematic risk decomposition",
+        "Card 2: alpha isolation via index futures",
+        "Card 3: stack and roll for multi-year exposures"
       ],
       "factIds": [
-        "F05"
+        "F05",
+        "F06"
       ]
     },
     {
       "index": 7,
-      "topology": "comparison",
-      "visualIntent": "Stack and roll vs strip hedge matrix",
+      "topology": "table",
+      "visualIntent": "Structured table comparison of Stack and Roll versus Strip Hedge across maturity, liquidity, and rollover risk",
       "keyElements": [
-        "Stack and roll",
-        "Strip hedge",
-        "Rollover margin risk"
+        "5-10 year supply commitment",
+        "front-month liquid futures volume",
+        "stack and roll concentrated front-month contracts",
+        "contango cash losses vs backwardation gains"
       ],
       "factIds": [
         "F07"
@@ -110,12 +126,14 @@
     },
     {
       "index": 8,
-      "topology": "quantity_over_time",
-      "visualIntent": "Metallgesellschaft $1.33B case study stat counter",
+      "topology": "statistic",
+      "visualIntent": "Four-stat metric dashboard of the 1993 Metallgesellschaft $1.33B collapse and cash flow timing mismatch",
       "keyElements": [
-        "$1.33B loss",
-        "160M barrels",
-        "10-year maturity mismatch"
+        "$1.33 Billion net loss",
+        "160 Million barrels supply contracts",
+        "55 Million barrels front-month futures stacked",
+        "hundreds of millions daily margin calls",
+        "cash flow timing mismatch"
       ],
       "factIds": [
         "F08"
@@ -124,11 +142,13 @@
     {
       "index": 9,
       "topology": "quiz",
-      "visualIntent": "Active recall quiz on calculating h*",
+      "visualIntent": "Interactive calculation quiz: finding optimal hedge ratio h* from sigma_S=0.040, sigma_F=0.050, rho=0.80",
       "keyElements": [
-        "sigma_S = 0.04, sigma_F = 0.05, rho = 0.80",
-        "Thinking countdown",
-        "Option B (0.64) reveal"
+        "sigma_S = 0.040",
+        "sigma_F = 0.050",
+        "rho = 0.80",
+        "Options A: 0.50, B: 0.64, C: 0.80, D: 1.00",
+        "Option B 0.64 correct answer"
       ],
       "factIds": [
         "F02",
@@ -138,27 +158,29 @@
     {
       "index": 10,
       "topology": "hook",
-      "visualIntent": "Synthesis: Liquidity vs basis risk and bridge to Chapter 4",
+      "visualIntent": "Pedagogical synthesis panel: liquidity risk versus basis risk, credit lines, and course roadmap bridge",
       "keyElements": [
-        "Basis vs liquidity trade-off",
-        "Where we are roadmap",
-        "Chapter 4 interest rates preview"
+        "cash flow liquidity vs basis risk",
+        "committed credit lines for margin calls",
+        "whereWeAre roadmap bridging to Chapter 4"
       ],
       "factIds": [
         "F01",
-        "F07"
+        "F07",
+        "F08"
       ]
     },
     {
       "index": 11,
-      "topology": "pillars",
-      "visualIntent": "Eight quantitative hedging rules",
+      "topology": "summary",
+      "visualIntent": "Eight-rule summary thread codifying cross hedging, beta steering, and liquidity discipline",
       "keyElements": [
-        "Rule 1-2: Cross hedge & h*",
-        "Rule 3-4: N* & R2",
-        "Rule 5-6: Tailing & Beta hedge",
-        "Rule 7-8: Tactical beta & Stack and roll",
-        "Compact 2-column final summary"
+        "Eight Rules of Cross Hedging",
+        "Rule 1 & Rule 2",
+        "Rule 3 & Rule 4",
+        "Rule 5 & Rule 6",
+        "Rule 7 & Rule 8",
+        "Rules 1-8 compact grid"
       ],
       "factIds": [
         "F01",

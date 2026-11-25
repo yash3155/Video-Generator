@@ -1,131 +1,263 @@
 {
-  "bookId": "hull",
-  "chapterId": "ch04",
-  "partId": "p1",
   "scenes": [
     {
-      "sceneIndex": 0,
-      "title": "The Cornerstone of Derivatives: Interest Rates",
+      "index": 0,
       "template": "chat_story",
+      "justification": "Fixed hook template presenting two-party institutional dilemma and flat yield trap",
+      "pedagogicalContinuation": false,
       "beats": [
-        "b01",
-        "b02",
-        "b03"
+        {
+          "id": "s00b1",
+          "visualIntent": "Display bank trading desk managing multi-year corporate derivative contract with 10-year cash flow exposure"
+        },
+        {
+          "id": "s00b2",
+          "visualIntent": "Show novice analyst applying single flat yield to maturity across all payment dates"
+        },
+        {
+          "id": "s00b3",
+          "visualIntent": "Highlight upward sloping curve mispricing, arbitrage exploitation, and trading losses"
+        },
+        {
+          "id": "s00b4",
+          "visualIntent": "Reveal resolution: sovereign Treasury rate definition and spot zero curve construction"
+        }
       ]
     },
     {
-      "sceneIndex": 1,
-      "title": "The Taxonomy of Rates: Treasury, LIBOR & Repo",
-      "template": "split_comparison",
+      "index": 1,
+      "template": "tug_of_war",
+      "justification": "Tension topology contrasting discrete commercial banking quotes against continuous modeling reality",
+      "pedagogicalContinuation": false,
       "beats": [
-        "b04",
-        "b05",
-        "b06"
+        {
+          "id": "s01b1",
+          "visualIntent": "Left side: Commercial discrete compounding quotes at fixed calendar intervals"
+        },
+        {
+          "id": "s01b2",
+          "visualIntent": "Right side: Continuous compounding analytical curve with terminal value A*e^(Rn)"
+        },
+        {
+          "id": "s01b3",
+          "visualIntent": "Center fulcrum: Natural logarithm formula bridging discrete and continuous rates"
+        }
       ]
     },
     {
-      "sceneIndex": 2,
-      "title": "Compounding Frequencies & Continuous Compounding",
-      "template": "formula_breakdown",
-      "beats": [
-        "b07",
-        "b08",
-        "b09",
-        "b10"
-      ]
-    },
-    {
-      "sceneIndex": 3,
-      "title": "Present Value Discounting via Exponential Form",
-      "template": "worked_example",
-      "beats": [
-        "b11",
-        "b12",
-        "b13"
-      ]
-    },
-    {
-      "sceneIndex": 4,
-      "title": "Zero Rates: The Pure Building Blocks of Yield",
+      "index": 2,
       "template": "progressive_cards",
+      "justification": "Pillars topology revealing the four core building blocks of interest rate mechanics",
+      "pedagogicalContinuation": false,
       "beats": [
-        "b14",
-        "b15",
-        "b16",
-        "b17"
+        {
+          "id": "s02b1",
+          "visualIntent": "Card 1: Sovereign Treasury rates and collateralized repo rate definition"
+        },
+        {
+          "id": "s02b2",
+          "visualIntent": "Card 2: Continuous discount factor e^(-RT) calculating present values"
+        },
+        {
+          "id": "s02b3",
+          "visualIntent": "Card 3: Spot zero rate definition and recursive Bootstrap method"
+        },
+        {
+          "id": "s02b4",
+          "visualIntent": "Card 4: Forward rate definition implied for future borrowing periods"
+        }
       ]
     },
     {
-      "sceneIndex": 5,
-      "title": "Bond Pricing, Yield to Maturity (YTM) & Par Yield",
-      "template": "table_compare",
-      "beats": [
-        "b18",
-        "b19",
-        "b20",
-        "b21"
-      ]
-    },
-    {
-      "sceneIndex": 6,
-      "title": "The Bootstrap Method: Extracting Zero Curves",
-      "template": "diagram_flow",
-      "beats": [
-        "b22",
-        "b23",
-        "b24",
-        "b25"
-      ]
-    },
-    {
-      "sceneIndex": 7,
-      "title": "Worked Bootstrap Example: Numerical Progression",
-      "template": "stat_counter",
-      "beats": [
-        "b26",
-        "b27"
-      ]
-    },
-    {
-      "sceneIndex": 8,
-      "title": "Forward Rates: Implied Future Borrowing Costs",
+      "index": 3,
       "template": "formula_breakdown",
+      "justification": "Formula topology breaking down continuous compounding rate conversion R_c = m * ln(1 + R_m / m)",
+      "pedagogicalContinuation": false,
       "beats": [
-        "b28",
-        "b29",
-        "b30"
+        {
+          "id": "s03b1",
+          "visualIntent": "Display rate conversion formula R_c = m * ln(1 + R_m / m) with highlighted parameters"
+        },
+        {
+          "id": "s03b2",
+          "visualIntent": "Show bank quote numbers: annual rate 10%, semiannual frequency m = 2, periodic rate 1.05"
+        },
+        {
+          "id": "s03b3",
+          "visualIntent": "Show calculation result: R_c = 0.09758 (9.758%) achieving equal terminal balance"
+        }
       ]
     },
     {
-      "sceneIndex": 9,
-      "title": "Active Recall Scenario: Calculating the Forward Rate",
-      "template": "interactive_quiz",
-      "beats": [
-        "b31",
-        "b32",
-        "b33"
-      ]
-    },
-    {
-      "sceneIndex": 10,
-      "title": "Yield Curve Anatomy: Upward vs. Downward Sloping",
+      "index": 4,
       "template": "causal_chain",
+      "justification": "Process topology showing the three-step causal architecture of coupon stripping",
+      "pedagogicalContinuation": false,
       "beats": [
-        "b34",
-        "b35",
-        "b36"
+        {
+          "id": "s04b1",
+          "visualIntent": "Node 1: Market bond prices observed bundling periodic coupon cash flows"
+        },
+        {
+          "id": "s04b2",
+          "visualIntent": "Node 2: Recursive coupon stripping discounting prior payments at known zero rates"
+        },
+        {
+          "id": "s04b3",
+          "visualIntent": "Node 3: Final payment isolated to solve next zero rate and complete spot curve"
+        }
       ]
     },
     {
-      "sceneIndex": 11,
-      "title": "Summary Thread: Four Pillars of Interest Rate Mechanics",
-      "template": "summary_thread",
+      "index": 5,
+      "template": "worked_example",
+      "justification": "Worked example topology calculating 6-month Treasury bill continuous zero rate",
+      "pedagogicalContinuation": false,
       "beats": [
-        "b37",
-        "b38",
-        "b39",
-        "b40",
-        "b41"
+        {
+          "id": "s05b1",
+          "visualIntent": "Given panel: Treasury bill price 97.50 dollars, face value 100 dollars, maturity 0.5 years"
+        },
+        {
+          "id": "s05b2",
+          "visualIntent": "Step 1: Set 97.50 = 100*e^(-0.5*R), compute ratio 0.975, apply -ln(0.975) / 0.5"
+        },
+        {
+          "id": "s05b3",
+          "visualIntent": "Result card: 6-month continuously compounded zero rate equals 0.05064 (5.064%)"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "template": "split_comparison",
+      "justification": "Comparison topology contrasting novice flat YTM myth against professional zero curves",
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s06b1",
+          "visualIntent": "Novice trap: Single flat yield to maturity applied across all cash flow tenors"
+        },
+        {
+          "id": "s06b2",
+          "visualIntent": "Professional reality: Unique spot zero rates discounting each cash flow independently"
+        },
+        {
+          "id": "s06b3",
+          "visualIntent": "Par yield definition: Coupon rate causing bond theoretical price to equal face value"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "template": "formula_breakdown",
+      "justification": "Formula topology for forward rate extraction with prediction question and reveal",
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s07b1",
+          "visualIntent": "Display forward rate formula R_F = (R_2*T_2 - R_1*T_1) / (T_2 - T_1)"
+        },
+        {
+          "id": "s07b2",
+          "visualIntent": "Prediction question: 1-year rate 3% and 2-year rate 4%, calculate 0.04*2 - 0.03*1"
+        },
+        {
+          "id": "s07b3",
+          "visualIntent": "Reveal step: 0.05 divided by 1 year gives forward rate 5.0% with no-arbitrage proof"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "template": "data_chart",
+      "justification": "Quantity over time topology plotting zero curve against implied forward curve",
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s08b1",
+          "visualIntent": "Plot upward sloping zero curve with forward rate curve lying strictly above it"
+        },
+        {
+          "id": "s08b2",
+          "visualIntent": "Highlight data points: Year 1 zero rate 3%, Year 2 zero rate 4%, Year 2 forward rate 5%"
+        },
+        {
+          "id": "s08b3",
+          "visualIntent": "Display inverted curve comparison: downward sloping zero curve places forward rates below"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "template": "interactive_quiz",
+      "justification": "Fixed assessment template testing forward rate calculation in 3 beats",
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s09b1",
+          "visualIntent": "Question beat: 1-year zero rate 3.0% and 2-year zero rate 4.0%, four options A to D"
+        },
+        {
+          "id": "s09b2",
+          "visualIntent": "Thinking pause: 3.2-second countdown timer with visible formula guidance"
+        },
+        {
+          "id": "s09b3",
+          "visualIntent": "Reveal beat: Option C (5.0%) highlights green with calculation explanation"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "template": "roadmap",
+      "justification": "Wisdom and course positioning roadmap reviewing progress and bridging to Part 2",
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s10b1",
+          "visualIntent": "Roadmap steps 1-3 completed: Benchmarks, Continuous Compounding, and Zero Curve Bootstrap"
+        },
+        {
+          "id": "s10b2",
+          "visualIntent": "Roadmap step 4: Implied forward rates unlocked for swap and derivative pricing"
+        },
+        {
+          "id": "s10b3",
+          "visualIntent": "Bridge to Part 2: FRAs, Macaulay Duration, Convexity, and Term Structure Theories"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "template": "summary_thread",
+      "justification": "Fixed summary template presenting the 8 golden rules across 6 progressive beats",
+      "pedagogicalContinuation": false,
+      "beats": [
+        {
+          "id": "s11b1",
+          "visualIntent": "Display summary title: The 8 Golden Rules of Interest Rates and Zero Curves"
+        },
+        {
+          "id": "s11b2",
+          "visualIntent": "Reveal Rule 1 (Treasury Rates) and Rule 2 (Continuous Terminal Value)"
+        },
+        {
+          "id": "s11b3",
+          "visualIntent": "Reveal Rule 3 (Rate Conversion R_c) and Rule 4 (Discount Factors e^(-RT))"
+        },
+        {
+          "id": "s11b4",
+          "visualIntent": "Reveal Rule 5 (Zero Rates) and Rule 6 (Par Yield Face Value Equality)"
+        },
+        {
+          "id": "s11b5",
+          "visualIntent": "Reveal Rule 7 (Bootstrap Stripping) and Rule 8 (Forward Rate Formula)"
+        },
+        {
+          "id": "s11b6",
+          "visualIntent": "Show complete 8-rule review grid from Rule 1 through Rule 8"
+        }
       ]
     }
   ]

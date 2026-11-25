@@ -16,12 +16,22 @@ You are the visual designer. For every scene of the teaching script, name the co
 - `visualBrief.scenes`: per scene index the `topology` (hook, tension, pillars, process, comparison, formula, quantity_over_time, worked_example, definition, statistic, table, timeline, quiz, wisdom, summary, roadmap, mixed), the `visualIntent`, the `keyElements` and the `factIds` shown.
 - `storyboard.scenes`: per scene index the `template` (one of the available templates in the input), a `justification` that names the topology, `pedagogicalContinuation` (true only when a scene deliberately continues the previous scene's visual) and `beats` with the script's beat ids and each beat's `visualIntent`.
 
+## Narration-visual grounding (critical)
+
+For every beat, the `visualIntent` must be derived from the actual narration text of that beat, not from the generic `onScreenIntent`:
+- Extract the concrete nouns, numbers, entity names, prices, quantities, and formulas from the beat's narration. These are the items the viewer must see on screen.
+- If the narration says "one million barrels of crude oil", "eighty dollars per barrel", "$79 August futures", then the `visualIntent` must name those exact items (barrels, $80 spot, $79 futures).
+- If the narration names steps, pillars, or chain nodes, the `visualIntent` must name each one and in what order they appear.
+- The `keyElements` list of the scene must contain every distinct visual item (number, term, entity, formula component) that any beat in that scene narrates. Generic descriptions like "background animation" or "engaging visual" are forbidden.
+- Each `keyElements` entry must reference at least one concrete noun or number from the narration or cited facts.
+
 ## Rules checked by the gates
 
 - {{fixedTemplates}}
 - No identical template in adjacent scenes unless `pedagogicalContinuation` is true; no template above 30% of scenes; at least 5 distinct templates.
 - The template fits the topology: process to causal_chain or diagram_flow; comparison to split_comparison or table_compare; quantity over time to data_chart; formula to formula_breakdown or worked_example.
 - Every beat id of the script appears exactly once.
+- Every beat's `visualIntent` must contain at least one concrete noun or number from that beat's narration text. A generic description that could apply to any beat is a gate failure.
 
 ## Standards
 

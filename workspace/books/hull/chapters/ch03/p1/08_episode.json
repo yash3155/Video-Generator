@@ -36,8 +36,8 @@
     }
   },
   "progress": {
-    "index": 1,
-    "total": 1
+    "index": 0,
+    "total": 4
   },
   "theme": "dark-classroom",
   "provenance": {
@@ -50,47 +50,11 @@
       "title": "The Corporate Dilemma: Why Companies Hedge",
       "purpose": "Problem-first hook: why commercial enterprises trade futures without seeking speculative profit",
       "takeaways": [
-        "Corporations hedge to neutralize price risk, not to speculate",
-        "Hedging minimizes cash flow variance and guarantees solvency",
-        "Core hedge types are the Short Hedge and Long Hedge"
+        "Commercial enterprises hedge to neutralize severe price risks, not to speculate",
+        "Hedging minimizes cash flow variance and preserves operating solvency",
+        "Short hedges protect inventory while long hedges lock in raw material costs"
       ],
       "pedagogicalContinuation": false,
-      "template": "chat_story",
-      "data": {
-        "messages": [
-          {
-            "id": "m1",
-            "speaker": "novice",
-            "text": "Why do commercial enterprises trade millions in futures contracts if they never intend to take physical delivery or seek trading profits? Is hedging really worth the capital?"
-          },
-          {
-            "id": "m2",
-            "speaker": "mentor",
-            "text": "Commercial enterprises do not enter futures markets to engage in speculation; rather, they deploy futures to neutralize severe commercial price risks and safeguard enterprise solvency."
-          },
-          {
-            "id": "m3",
-            "speaker": "mentor",
-            "text": "The foundational philosophy of corporate hedging is straightforward: its purpose is never to generate speculative trading profits, but to minimize the variance and unpredictability of corporate cash flows."
-          },
-          {
-            "id": "m4",
-            "speaker": "mentor",
-            "text": "In Section 3.1, John Hull establishes the two core categories: the Short Hedge, deployed to protect physical inventories, and the Long Hedge, utilized to lock in acquisition costs for essential raw materials."
-          }
-        ],
-        "whereWeAre": {
-          "label": "WHERE WE ARE",
-          "items": [
-            "Basic Principles",
-            "Short & Long Hedges",
-            "Basis Risk",
-            "Hedge Ratio (Part 2)",
-            "Index Hedges (Part 3)"
-          ],
-          "current": 0
-        }
-      },
       "beats": [
         {
           "id": "s00b1",
@@ -115,9 +79,18 @@
           "visual": {
             "show": [
               "m1"
-            ]
+            ],
+            "focus": "m1"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m1",
+              "anchor": {
+                "en": "millions",
+                "hi": "करोड़ों"
+              }
+            }
+          ]
         },
         {
           "id": "s00b2",
@@ -141,19 +114,28 @@
             "show": [
               "m1",
               "m2"
-            ]
+            ],
+            "focus": "m2"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m2",
+              "anchor": {
+                "en": "solvency",
+                "hi": "neutralize"
+              }
+            }
+          ]
         },
         {
           "id": "s00b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "The foundational philosophy of corporate hedging is straightforward: its purpose is never to generate speculative trading profits, but to minimize the variance and unpredictability of corporate cash flows. By stabilizing revenues and raw material input costs, a company can focus on its core operating activities without fearing catastrophic market price swings."
+              "display": "The foundational philosophy of corporate hedging is straightforward. Hedging means entering a financial position to neutralize severe commercial price risks and reduce cash flow variance. By stabilizing revenues and raw material costs, a company can operate safely."
             },
             "hi": {
-              "display": "Hedging ka fundamental rule samajhna bahut zaroori hai. Hedging ka maksad spot market se outsmart karke extra profit kamana nahi hota. Iska sole objective corporate cash flows ki variance ko minimize karna hai, taaki ek business predictable prices par safely operate kar sake."
+              "display": "Hedging ka fundamental rule samajhna bahut zaroori hai. Hedging ka matlab hai price risk ko neutralize karke cash flow variance ko kam karna. Iska objective cash flows ko stabilize karna hai taaki business safely operate kar sake."
             }
           },
           "onScreenIntent": "Variance minimization as the foundational corporate philosophy",
@@ -168,24 +150,34 @@
               "m1",
               "m2",
               "m3"
-            ]
+            ],
+            "focus": "m3"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m3",
+              "anchor": {
+                "en": "variance",
+                "hi": "variance"
+              }
+            }
+          ]
         },
         {
           "id": "s00b4",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "In Section 3.1, John Hull establishes the two core categories of corporate hedging strategies: the Short Hedge, deployed to protect physical inventories and future production against falling market prices, and the Long Hedge, utilized to lock in acquisition costs for essential raw materials. Let us explore the mechanics of both strategies."
+              "display": "In Section 3.1, John Hull establishes the two core categories of corporate hedging. The Short Hedge protects physical inventories and future production against falling market prices. In contrast, the Long Hedge locks in acquisition costs for essential raw materials."
             },
             "hi": {
-              "display": "John C. Hull ne corporate hedging ko do core categories mein classify kiya hai: pehla, Short Hedge, jo existing inventory ya future production ko protect karta hai; aur doosra, Long Hedge, jo raw material purchase costs ko lock karta hai."
+              "display": "Section 3.1 mein John C. Hull ne do core categories classify ki hain. Pehla, Short Hedge, jo inventory ko falling prices se protect karta hai. Aur doosra, Long Hedge, jo raw material acquisition costs ko lock karta hai."
             }
           },
           "onScreenIntent": "Introduction of Short Hedge and Long Hedge categories",
           "sourceFactIds": [
-            "F01"
+            "F01",
+            "F12"
           ],
           "newTerms": [
             "short hedge",
@@ -199,11 +191,55 @@
               "m2",
               "m3",
               "m4"
-            ]
+            ],
+            "focus": "m4"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m4",
+              "anchor": {
+                "en": "Short",
+                "hi": "Short"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "chat_story",
+      "data": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "Novice",
+            "text": "Why do commercial enterprises trade millions in futures if they never take physical delivery?"
+          },
+          {
+            "id": "m2",
+            "speaker": "Mentor",
+            "text": "Derivatives neutralize severe commercial price risks and safeguard enterprise solvency."
+          },
+          {
+            "id": "m3",
+            "speaker": "Mentor",
+            "text": "The foundational philosophy is to minimize variance and unpredictability of cash flows."
+          },
+          {
+            "id": "m4",
+            "speaker": "Mentor",
+            "text": "Section 3.1 establishes two core categories: Short Hedge for inventory and Long Hedge for raw material costs."
+          }
+        ],
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "Why companies hedge",
+            "Short vs Long hedges",
+            "Basis risk mechanics",
+            "Minimum variance hedge"
+          ],
+          "current": 0
+        }
+      }
     },
     {
       "id": "s01",
@@ -211,47 +247,21 @@
       "title": "The Mechanics of Short and Long Hedges",
       "purpose": "Contrasting physical commercial exposure with offsetting futures contracts",
       "takeaways": [
-        "Short hedges lock in selling prices for natural longs",
-        "Long hedges lock in purchase costs for natural shorts",
-        "Offsetting positions eliminate market price exposure"
+        "Short hedger: oil producer hedges 1,000,000 barrels at $79 NYMEX futures against price decline",
+        "Long hedger: copper fabricator buys 4 COMEX contracts at 320 cents ($3.20) to cap acquisition outlay",
+        "Offsetting futures positions absorb spot market shocks, locking in target revenues"
       ],
       "pedagogicalContinuation": false,
-      "template": "tug_of_war",
-      "data": {
-        "left": {
-          "id": "short_hedge",
-          "label": "Short Hedger (Natural Long)",
-          "points": [
-            "Owns inventory or future production",
-            "Exposed to falling market spot prices",
-            "Shorts futures to lock in floor revenue"
-          ]
-        },
-        "right": {
-          "id": "long_hedge",
-          "label": "Long Hedger (Natural Short)",
-          "points": [
-            "Needs to buy raw materials in future",
-            "Exposed to rising market spot prices",
-            "Buys futures to cap acquisition costs"
-          ]
-        },
-        "resolution": {
-          "id": "offset",
-          "label": "Offsetting Mechanism",
-          "text": "Physical market exposure and financial futures move in exact opposite directions."
-        }
-      },
       "beats": [
         {
           "id": "s01b1",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "A Short Hedge is implemented when a commercial enterprise already owns an asset, or expects to produce a commodity in the future, and fears that market prices might decline before the asset can be sold in the physical marketplace. To eliminate downside price risk, the company takes a short position in futures contracts."
+              "display": "A Short Hedge is implemented when a commercial enterprise owns an asset or expects to produce commodities. The firm fears that market prices might decline before physical sale. To eliminate downside price risk, the company sells futures contracts."
             },
             "hi": {
-              "display": "Short Hedge tab lagaya jata hai jab kisi company ke paas koi physical asset already maujood ho, ya wo future date par use produce karne wali ho, aur use darr ho ki selling date tak market prices gir na jayein."
+              "display": "Short Hedge tab lagaya jata hai jab company ke paas physical asset ho ya wo commodity produce karne wali ho. Selling date tak market prices girne ka darr rehta hai. Is downside risk ko hatane ke liye company futures contracts short karti hai."
             }
           },
           "onScreenIntent": "Defining the short hedger natural long exposure",
@@ -265,34 +275,54 @@
           "visual": {
             "show": [
               "short_hedge"
-            ]
+            ],
+            "focus": "short_hedge"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "short_hedge",
+              "anchor": {
+                "en": "Short",
+                "hi": "Short"
+              }
+            }
+          ]
         },
         {
           "id": "s01b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Consider John Hull's classic crude oil producer example: on May 15, an independent oil company anticipates having one million barrels of crude oil ready for physical sale in mid-August. The current spot price is eighty dollars per barrel, and the August NYMEX crude oil futures contract trades at seventy-nine dollars per barrel."
+              "display": "Consider John Hull's classic crude oil producer example. On May 15, an independent oil producer anticipates having one million barrels ready for physical sale in mid-August. Current spot is eighty dollars, and August futures on the NYMEX exchange trade at seventy-nine dollars."
             },
             "hi": {
-              "display": "John C. Hull ka classic crude oil producer example dekhiye. May ke mahine mein ek oil company ke paas ten lakh barrels crude oil hai, jise use August mein sell karna hai. Current spot price eighty dollars per barrel hai, aur August futures contract NYMEX par seventy-nine dollars per barrel quote ho raha hai."
+              "display": "John C. Hull ka classic crude oil producer example dekhiye. May 15 ko oil company ke paas ten lakh barrels crude oil hai jise August mein sell karna hai. Current spot price eighty dollars hai, aur NYMEX exchange par August futures seventy-nine dollars par quote ho raha hai."
             }
           },
           "onScreenIntent": "Crude oil producer example initial setup",
           "sourceFactIds": [
             "F02"
           ],
-          "newTerms": [],
+          "newTerms": [
+            "NYMEX"
+          ],
           "pauseAfterMs": 300,
           "transition": false,
           "visual": {
             "show": [
               "short_hedge"
-            ]
+            ],
+            "focus": "short_hedge"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "short_hedge",
+              "anchor": {
+                "en": "barrels",
+                "hi": "barrels"
+              }
+            }
+          ]
         },
         {
           "id": "s01b3",
@@ -317,19 +347,28 @@
             "show": [
               "short_hedge",
               "long_hedge"
-            ]
+            ],
+            "focus": "long_hedge"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "long_hedge",
+              "anchor": {
+                "en": "contracts",
+                "hi": "contracts"
+              }
+            }
+          ]
         },
         {
           "id": "s01b4",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Suppose by August 15, global spot crude prices have plunged to seventy-five dollars per barrel. The producer sells its physical oil in the spot market for seventy-five million dollars, suffering a five-million-dollar loss relative to May. However, the short futures position is bought back at seventy-five dollars, generating a four-dollar-per-barrel profit, or four million dollars cash. Adding the four-million-dollar futures gain to the seventy-five-million-dollar physical sale locks in an effective selling price of exactly seventy-nine million dollars, completely immunizing the firm against the market crash."
+              "display": "Suppose by August 15, global spot crude plunges to seventy-five dollars per barrel. The producer sells physical oil for seventy-five million dollars, losing five million relative to May. However, the short futures gain four dollars per barrel, or four million dollars. Combined net revenue is exactly seventy-nine million dollars, locking in seventy-nine dollars per barrel."
             },
             "hi": {
-              "display": "Agar August aate-aate crude oil ka spot price girkar seventy-five dollars ho jata hai, toh physical oil seventy-five million dollars mein bikega. Lekin futures position par company ko four dollars per barrel ka profit hoga, yaani four million dollars. Dono milakar total revenue exactly seventy-nine million dollars par lock ho gayi."
+              "display": "Agar August 15 ko spot price girkar seventy-five dollars ho jata hai, toh physical oil seventy-five million dollars mein bikega. Lekin short futures position par four million dollars ka profit hoga. Dono milakar total revenue exactly seventy-nine million dollars par lock ho jati hai."
             }
           },
           "onScreenIntent": "Copper fabricator example capping raw material costs",
@@ -345,11 +384,46 @@
               "short_hedge",
               "long_hedge",
               "offset"
-            ]
+            ],
+            "focus": "offset"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "offset",
+              "anchor": {
+                "en": "seventy-five",
+                "hi": "seventy-five"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "tug_of_war",
+      "data": {
+        "left": {
+          "id": "short_hedge",
+          "label": "Short Hedger: Crude Oil Producer",
+          "points": [
+            "1,000,000 barrels crude oil; May 15 spot is $80/bbl",
+            "Short sells 1,000 August NYMEX futures contracts at $79/bbl",
+            "August 15 spot crash to $75 offset by $4 gain, locking $79M net"
+          ]
+        },
+        "right": {
+          "id": "long_hedge",
+          "label": "Long Hedger: Copper Fabricator",
+          "points": [
+            "100,000 lbs physical copper needed May 15; spot is 340 cents ($3.40)",
+            "Purchases 4 May COMEX futures at 320 cents ($3.20) per pound",
+            "Spot rise to 325 cents ($3.25) offset by 5 cents gain: $320,000 net"
+          ]
+        },
+        "resolution": {
+          "id": "offset",
+          "label": "Variance Neutralization",
+          "text": "Physical market exposure and financial exchange positions move in exact opposite directions."
+        }
+      }
     },
     {
       "id": "s02",
@@ -357,46 +431,21 @@
       "title": "Four Pillars of Corporate Hedging",
       "purpose": "Architectural principles underpinning corporate derivatives usage",
       "takeaways": [
-        "Duality aligns physical exposure with futures direction",
-        "Hedging substitutes price risk with basis risk",
-        "Delivery month selection protects against liquidity squeezes"
+        "Pillars 1 & 2: Long hedges defend manufacturers against raw material price surges",
+        "Pillar 3: Copper fabricator requires 100,000 lbs copper on May 15 with spot 340 cents vs 320 cents futures",
+        "Pillar 4: 4 COMEX contracts lock in total cash outlay at exactly $320,000 ($3.20/lb)"
       ],
       "pedagogicalContinuation": false,
-      "template": "progressive_cards",
-      "data": {
-        "cards": [
-          {
-            "id": "c1",
-            "title": "Pillar 1: Position Duality",
-            "body": "Physical asset owners short futures; physical asset buyers long futures."
-          },
-          {
-            "id": "c2",
-            "title": "Pillar 2: Basis Risk Substitution",
-            "body": "Corporate hedging replaces outright price risk with smaller, manageable basis risk."
-          },
-          {
-            "id": "c3",
-            "title": "Pillar 3: Directional Symmetry",
-            "body": "Strengthening basis benefits short hedgers; weakening basis benefits long hedgers."
-          },
-          {
-            "id": "c4",
-            "title": "Pillar 4: Delivery Month Rule",
-            "body": "Choose a delivery month later than expiration to eliminate physical delivery hazards."
-          }
-        ]
-      },
       "beats": [
         {
           "id": "s02b1",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Conversely, a Long Hedge is deployed when a commercial manufacturer knows it must purchase a physical commodity or raw material in the future, and fears that an unexpected market price surge might squeeze profit margins or cause severe operational losses."
+              "display": "Conversely, a Long Hedge is deployed when a commercial manufacturer must purchase raw materials in the future. The firm fears that an unexpected market price surge might squeeze profit margins. To eliminate upside risk, the company buys futures contracts."
             },
             "hi": {
-              "display": "Doosri taraf, Long Hedge tab use hota hai jab kisi company ko future mein koi raw material purchase karna ho, aur use darr ho ki input prices tezi se surge ho sakti hain."
+              "display": "Doosri taraf, Long Hedge tab use hota hai jab company ko future mein raw material purchase karna ho. Use darr hota hai ki market price surge profit margins squeeze kar dega. Upside risk ko hatane ke liye company futures buy karti hai."
             }
           },
           "onScreenIntent": "Pillar 1 and 2 introduction",
@@ -411,26 +460,44 @@
             "show": [
               "c1",
               "c2"
-            ]
+            ],
+            "focus": "c1"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "c1",
+              "anchor": {
+                "en": "Long",
+                "hi": "Long"
+              }
+            },
+            {
+              "target": "c2",
+              "anchor": {
+                "en": "surge",
+                "hi": "surge"
+              }
+            }
+          ]
         },
         {
           "id": "s02b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Analyze John Hull's copper fabricator example: on January 15, a copper manufacturing company wins a commercial contract to supply pipe fittings in mid-May. Fulfilling the order requires purchasing one hundred thousand pounds of physical copper on May 15. The current spot price is three dollars and forty cents per pound, and the May COMEX copper futures contract trades at three dollars and twenty cents per pound."
+              "display": "Analyze John Hull's copper fabricator example. On January 15, a manufacturing company wins a contract for mid-May delivery, requiring one hundred thousand pounds of copper on May 15. Spot is 340 cents, and May futures on the COMEX exchange trade at 320 cents per pound."
             },
             "hi": {
-              "display": "Hull ke copper fabricator example ko analyze kijiye. January fifteenth ko ek manufacturing company ko pata chalta hai ki May fifteenth ko use one lakh pounds copper ki zaroorat padegi. Current spot price three hundred forty cents per pound hai, aur May COMEX futures three hundred twenty cents per pound chal raha hai."
+              "display": "Hull ke copper fabricator example ko analyze kijiye. January 15 ko company ko May 15 ke liye one lakh pounds copper ki zaroorat hoti hai. Current spot price 340 cents hai, aur COMEX exchange par May futures 320 cents per pound chal raha hai."
             }
           },
           "onScreenIntent": "Pillar 3 basis dynamics",
           "sourceFactIds": [
             "F06"
           ],
-          "newTerms": [],
+          "newTerms": [
+            "COMEX"
+          ],
           "pauseAfterMs": 300,
           "transition": false,
           "visual": {
@@ -438,9 +505,18 @@
               "c1",
               "c2",
               "c3"
-            ]
+            ],
+            "focus": "c3"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "c3",
+              "anchor": {
+                "en": "copper",
+                "hi": "copper"
+              }
+            }
+          ]
         },
         {
           "id": "s02b3",
@@ -466,11 +542,45 @@
               "c2",
               "c3",
               "c4"
-            ]
+            ],
+            "focus": "c4"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "c4",
+              "anchor": {
+                "en": "contracts",
+                "hi": "contracts"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "progressive_cards",
+      "data": {
+        "cards": [
+          {
+            "id": "c1",
+            "title": "Pillar 1: Long Hedge Protection",
+            "body": "Deployed when a manufacturer must purchase commodities in the future and fears rising costs."
+          },
+          {
+            "id": "c2",
+            "title": "Pillar 2: Price Surge Defense",
+            "body": "Caps acquisition costs to protect operational profit margins from severe price surges."
+          },
+          {
+            "id": "c3",
+            "title": "Pillar 3: Copper Fabricator Setup",
+            "body": "Requires 100,000 lbs copper on May 15; spot is 340 cents ($3.40) vs 320 cents ($3.20) May COMEX futures."
+          },
+          {
+            "id": "c4",
+            "title": "Pillar 4: Net Cost Lockout",
+            "body": "Purchases 4 COMEX contracts; $5,000 futures gain locks in $320,000 net cash outlay ($3.20/lb)."
+          }
+        ]
+      }
     },
     {
       "id": "s03",
@@ -478,74 +588,11 @@
       "title": "The Concept of Basis: Measuring Market Divergence",
       "purpose": "Mathematical definition of basis and the net realized price formula",
       "takeaways": [
-        "Basis is Spot minus Futures: b = S - F",
-        "Net realized price for a short hedger is F1 + b2",
-        "At maturity, spot converges to futures and basis becomes zero"
+        "Short hedger has natural long inventory; long hedger has natural short liability",
+        "Exchange positions move inversely to physical commercial exposures",
+        "Real-world hedges face Basis Risk due to imperfect price convergence"
       ],
       "pedagogicalContinuation": false,
-      "template": "formula_breakdown",
-      "data": {
-        "title": "The Basis Equation",
-        "formula": {
-          "latex": "b = S - F",
-          "expression": "S - F",
-          "solvesFor": "b",
-          "variables": [
-            {
-              "symbol": "b",
-              "latex": "b",
-              "meaning": "Basis",
-              "unit": "USD per barrel"
-            },
-            {
-              "symbol": "S",
-              "latex": "S",
-              "meaning": "Spot Price of Asset Hedged",
-              "unit": "USD per barrel"
-            },
-            {
-              "symbol": "F",
-              "latex": "F",
-              "meaning": "Futures Price of Contract",
-              "unit": "USD per barrel"
-            }
-          ]
-        },
-        "parts": [
-          {
-            "id": "p1",
-            "symbolLatex": "b",
-            "meaning": "Basis: difference between spot and futures",
-            "unit": "USD/bbl"
-          },
-          {
-            "id": "p2",
-            "symbolLatex": "S",
-            "meaning": "Spot price of the asset being hedged",
-            "unit": "USD/bbl"
-          },
-          {
-            "id": "p3",
-            "symbolLatex": "F",
-            "meaning": "Futures price of the contract used",
-            "unit": "USD/bbl"
-          }
-        ],
-        "note": [
-          {
-            "type": "text",
-            "text": "Net Realized Price for Short Hedger: "
-          },
-          {
-            "type": "math",
-            "latex": "\\text{Price} = F_1 + b_2"
-          },
-          {
-            "type": "text",
-            "text": " where b2 is terminal basis."
-          }
-        ]
-      },
       "beats": [
         {
           "id": "s03b1",
@@ -570,9 +617,18 @@
           "visual": {
             "show": [
               "p1"
-            ]
+            ],
+            "focus": "p1"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "p1",
+              "anchor": {
+                "en": "Short",
+                "hi": "Short"
+              }
+            }
+          ]
         },
         {
           "id": "s03b2",
@@ -596,19 +652,28 @@
             "show": [
               "p1",
               "p2"
-            ]
+            ],
+            "focus": "p2"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "p2",
+              "anchor": {
+                "en": "Long",
+                "hi": "Long"
+              }
+            }
+          ]
         },
         {
           "id": "s03b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "However, this raises a crucial practical question: are real-world corporate hedges always mathematically perfect? In real commercial markets, the answer is almost never. Real-world corporate treasurers face an unavoidable financial reality known as Basis Risk."
+              "display": "Are real-world corporate hedges always mathematically perfect? In commercial markets, the answer is almost never. Treasurers face Basis Risk, which means the risk that spot and futures prices diverge unexpectedly before contract closeout."
             },
             "hi": {
-              "display": "Lekin ab ek critical sawal uthta hai: kya real world mein ye hedges hamesha hundred percent perfect hote hain? Bilkul nahi. Real world mein hume face karna padta hai Basis Risk."
+              "display": "Kya real world mein corporate hedges hamesha mathematically perfect hote hain? Bilkul nahi. Treasurers ko Basis Risk face karna padta hai, यानी which means spot aur futures prices ka unexpected divergence."
             }
           },
           "onScreenIntent": "Basis convergence and substitution insight",
@@ -624,13 +689,66 @@
           "visual": {
             "show": [
               "p1",
-              "p2",
-              "p3"
-            ]
+              "p2"
+            ],
+            "focus": "p2"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "p2",
+              "anchor": {
+                "en": "Basis",
+                "hi": "Basis"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "formula_breakdown",
+      "data": {
+        "title": "Corporate Position Duality & Basis Mechanics",
+        "formula": {
+          "id": "f_net",
+          "latex": "\\text{Net} = F_1 + b_2",
+          "expression": "F1 + b2",
+          "solvesFor": "Net",
+          "variables": [
+            {
+              "symbol": "Net",
+              "latex": "\\text{Net}",
+              "meaning": "Net realized selling price per unit",
+              "unit": "$/unit"
+            },
+            {
+              "symbol": "F1",
+              "latex": "F_1",
+              "meaning": "Initial futures contract price",
+              "unit": "$/unit"
+            },
+            {
+              "symbol": "b2",
+              "latex": "b_2",
+              "meaning": "Terminal basis at closeout (S2 - F2)",
+              "unit": "$/unit"
+            }
+          ]
+        },
+        "parts": [
+          {
+            "id": "p1",
+            "symbolLatex": "F_1",
+            "meaning": "Short hedger physical inventory offset by initial short futures position F1",
+            "unit": "$/unit"
+          },
+          {
+            "id": "p2",
+            "symbolLatex": "b_2",
+            "meaning": "Long hedger commercial buyer facing basis risk from spot and futures price divergence",
+            "unit": "$/unit"
+          }
+        ],
+        "note": "Corporate hedging replaces outright spot price risk S2 with manageable basis divergence b2."
+      }
     },
     {
       "id": "s04",
@@ -638,41 +756,11 @@
       "title": "The Causal Architecture of Corporate Hedging",
       "purpose": "Tracing the end-to-end mechanism from exposure to solvency preservation",
       "takeaways": [
-        "Inventory exposure creates severe downside vulnerability",
-        "Short futures generate offsetting cash gains during market crashes",
-        "Cash flow variance is compressed to near zero"
+        "Basis b = S - F defines the divergence between spot price S and futures price F",
+        "Terminal basis b2 governs the net realized outcome via Net = F1 + b2",
+        "Hedging substitutes extreme spot price volatility with smaller basis volatility"
       ],
       "pedagogicalContinuation": false,
-      "template": "causal_chain",
-      "data": {
-        "links": [
-          {
-            "id": "l1",
-            "role": "condition",
-            "text": "Physical exposure: 1,000,000 barrels crude oil in production"
-          },
-          {
-            "id": "l2",
-            "role": "action",
-            "text": "Short hedge: Sell 1,000 August NYMEX futures contracts at $79"
-          },
-          {
-            "id": "l3",
-            "role": "mechanism",
-            "text": "Offsetting cash flows: $4/bbl futures gain absorbs $5/bbl spot decline"
-          },
-          {
-            "id": "l4",
-            "role": "result",
-            "text": "Deterministic outcome: $79,000,000 net proceeds locked in"
-          },
-          {
-            "id": "l5",
-            "role": "consequence",
-            "text": "Enterprise solvency and operating stability fully guaranteed"
-          }
-        ]
-      },
       "beats": [
         {
           "id": "s04b1",
@@ -695,11 +783,19 @@
           "transition": false,
           "visual": {
             "show": [
-              "l1",
-              "l2"
-            ]
+              "l1"
+            ],
+            "focus": "l1"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "l1",
+              "anchor": {
+                "en": "Basis",
+                "hi": "Basis"
+              }
+            }
+          ]
         },
         {
           "id": "s04b2",
@@ -722,11 +818,19 @@
           "visual": {
             "show": [
               "l1",
-              "l2",
-              "l3"
-            ]
+              "l2"
+            ],
+            "focus": "l2"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "l2",
+              "anchor": {
+                "en": "maturity",
+                "hi": "maturity"
+              }
+            }
+          ]
         },
         {
           "id": "s04b3",
@@ -752,9 +856,25 @@
               "l2",
               "l3",
               "l4"
-            ]
+            ],
+            "focus": "l4"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "l3",
+              "anchor": {
+                "en": "equations",
+                "hi": "equation"
+              }
+            },
+            {
+              "target": "l4",
+              "anchor": {
+                "en": "realized",
+                "hi": "realized"
+              }
+            }
+          ]
         },
         {
           "id": "s04b4",
@@ -781,11 +901,50 @@
               "l3",
               "l4",
               "l5"
-            ]
+            ],
+            "focus": "l5"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "l5",
+              "anchor": {
+                "en": "Basis",
+                "hi": "Basis"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "causal_chain",
+      "data": {
+        "links": [
+          {
+            "id": "l1",
+            "role": "condition",
+            "text": "Exposure: Asset spot price S and futures price F define basis b = S - F"
+          },
+          {
+            "id": "l2",
+            "role": "action",
+            "text": "Market Shock: Divergence occurs if hedge is closed before maturity or grade differs"
+          },
+          {
+            "id": "l3",
+            "role": "mechanism",
+            "text": "Offsetting Cash Flow: Futures position generates gain or loss absorbing spot price swing"
+          },
+          {
+            "id": "l4",
+            "role": "result",
+            "text": "Deterministic Revenue: Short hedger locks in net realized selling price Net = F1 + b2"
+          },
+          {
+            "id": "l5",
+            "role": "consequence",
+            "text": "Solvency Preserved: Outright spot volatility replaced by smaller basis volatility"
+          }
+        ]
+      }
     },
     {
       "id": "s05",
@@ -793,103 +952,21 @@
       "title": "Worked Example: Crude Oil Short Hedge",
       "purpose": "Step-by-step mathematical demonstration of NYMEX short hedge payoff",
       "takeaways": [
-        "Spot sale yields $75M during a market crash",
-        "Short futures gain yields $4M to offset spot drop",
-        "Total net proceeds exactly equal $79,000,000"
+        "Givens: 1M barrels crude oil with August futures F1 = $79 and crash spot S2 = $75",
+        "Futures gain: F1 - F2 = $79 - $75 = $4/bbl gain absorbing spot decline",
+        "Net selling price: S2 + futures gain = $75 + $4 = $79/bbl, locking target proceeds"
       ],
       "pedagogicalContinuation": false,
-      "template": "worked_example",
-      "data": {
-        "title": "Worked Example: Crude Oil Short Hedge",
-        "formula": {
-          "latex": "R = S + G",
-          "expression": "S + G",
-          "solvesFor": "R",
-          "variables": [
-            {
-              "symbol": "R",
-              "latex": "R",
-              "meaning": "Net Realized Revenue",
-              "unit": "USD"
-            },
-            {
-              "symbol": "S",
-              "latex": "S",
-              "meaning": "Spot Physical Revenue",
-              "unit": "USD"
-            },
-            {
-              "symbol": "G",
-              "latex": "G",
-              "meaning": "Futures Trading Gain",
-              "unit": "USD"
-            }
-          ]
-        },
-        "given": [
-          {
-            "id": "g1",
-            "label": "Physical Production",
-            "value": 1000000,
-            "unit": "barrels",
-            "display": "1,000,000 bbl"
-          },
-          {
-            "id": "g2",
-            "label": "Initial Spot Price",
-            "value": 80,
-            "unit": "USD/bbl",
-            "display": "$80.00"
-          },
-          {
-            "id": "g3",
-            "label": "August Futures Price",
-            "value": 79,
-            "unit": "USD/bbl",
-            "display": "$79.00"
-          }
-        ],
-        "steps": [
-          {
-            "id": "st1",
-            "label": "Spot Physical Revenue",
-            "latex": "1{,}000{,}000 \\times 75 = 75{,}000{,}000",
-            "value": 75000000
-          },
-          {
-            "id": "st2",
-            "label": "Short Futures Gain",
-            "latex": "1{,}000{,}000 \\times (79 - 75) = 4{,}000{,}000",
-            "value": 4000000
-          },
-          {
-            "id": "st3",
-            "label": "Total Net Proceeds",
-            "latex": "75{,}000{,}000 + 4{,}000{,}000 = 79{,}000{,}000",
-            "value": 79000000
-          }
-        ],
-        "result": {
-          "id": "res",
-          "label": "Net Revenue Realized",
-          "value": 79000000,
-          "unit": "USD",
-          "display": "$79,000,000",
-          "rounding": 0
-        },
-        "conclusion": "The $4M futures gain offsets the physical crash, locking net revenue at exactly $79M ($79/bbl).",
-        "isHypothetical": false
-      },
       "beats": [
         {
           "id": "s05b1",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "In financial risk management, two standard technical terms describe basis movements over time: Strengthening of the Basis and Weakening of the Basis."
+              "display": "If global spot oil plunges by five dollars, does the producer lose money? Let us examine the mechanics of strengthening and weakening basis to discover the exact answer."
             },
             "hi": {
-              "display": "Basis ke behavior ko describe karne ke liye finance mein do standard terms use hoti hain: Strengthening of Basis aur Weakening of Basis."
+              "display": "Agar global spot oil paanch dollar gir jaye, toh kya producer ko loss hoga? Chaliye strengthening aur weakening basis ke mathematical concepts ko detail mein samajhte hain taaki answer mil sake."
             }
           },
           "onScreenIntent": "Givens: 1M barrels, $80 spot, $79 August futures",
@@ -904,9 +981,18 @@
               "g1",
               "g2",
               "g3"
-            ]
+            ],
+            "focus": "g1"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "g1",
+              "anchor": {
+                "en": "oil",
+                "hi": "oil"
+              }
+            }
+          ]
         },
         {
           "id": "s05b2",
@@ -931,21 +1017,29 @@
               "g1",
               "g2",
               "g3",
-              "st1",
-              "st2"
-            ]
+              "st1"
+            ],
+            "focus": "st1"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "st1",
+              "anchor": {
+                "en": "Strengthening",
+                "hi": "Strengthening"
+              }
+            }
+          ]
         },
         {
           "id": "s05b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Conversely, a Weakening of the Basis occurs when the basis decreases—meaning the spot price falls faster than futures, or rises more slowly. A weakening basis benefits the long hedger by lowering the net acquisition price paid for raw materials. Understanding basis direction is essential for corporate treasurers."
+              "display": "Conversely, a Weakening of the Basis occurs when the basis decreases—meaning the spot price falls faster than futures. For this oil producer, the hedge locks in exactly 79 dollars per barrel. Understanding basis direction is essential for corporate treasurers."
             },
             "hi": {
-              "display": "Doosri taraf, Weakening of Basis ka matlab hai basis ka decrease hona. Yaani spot price futures price ke comparison mein kam badha hai ya zyada gira hai. Ye situation Long Hedger ke liye favorable hoti hai kyunki purchase cost reduce ho jati hai."
+              "display": "Doosri taraf, Weakening of Basis ka matlab hai basis ka decrease hona. Yaani spot price futures price ke comparison mein kam badha hai ya zyada gira hai. Is short hedge se oil producer ko exactly 79 dollars per barrel lock ho jate hain."
             }
           },
           "onScreenIntent": "Combined net revenue of $79M proves perfect hedge neutralization",
@@ -962,13 +1056,109 @@
               "g3",
               "st1",
               "st2",
-              "st3",
               "res"
-            ]
+            ],
+            "focus": "res"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "st2",
+              "anchor": {
+                "en": "Weakening",
+                "hi": "Weakening"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "worked_example",
+      "data": {
+        "title": "Crude Oil Short Hedge Calculation",
+        "formula": {
+          "id": "f_net",
+          "latex": "\\text{Net} = S_2 + (F_1 - F_2)",
+          "expression": "S2 + (F1 - F2)",
+          "solvesFor": "Net",
+          "variables": [
+            {
+              "symbol": "Net",
+              "latex": "\\text{Net}",
+              "meaning": "Net realized price per barrel",
+              "unit": "$/bbl"
+            },
+            {
+              "symbol": "S2",
+              "latex": "S_2",
+              "meaning": "Spot price at August closeout",
+              "unit": "$/bbl"
+            },
+            {
+              "symbol": "F1",
+              "latex": "F_1",
+              "meaning": "Initial August NYMEX futures price",
+              "unit": "$/bbl"
+            },
+            {
+              "symbol": "F2",
+              "latex": "F_2",
+              "meaning": "Futures price at August closeout",
+              "unit": "$/bbl"
+            }
+          ]
+        },
+        "given": [
+          {
+            "id": "g1",
+            "symbol": "F1",
+            "label": "Oil Producer Initial Futures Price",
+            "value": 79,
+            "unit": "$/bbl",
+            "display": "$79.00/bbl"
+          },
+          {
+            "id": "g2",
+            "symbol": "S2",
+            "label": "Spot Oil Plunge Closeout Price",
+            "value": 75,
+            "unit": "$/bbl",
+            "display": "$75.00/bbl"
+          },
+          {
+            "id": "g3",
+            "symbol": "F2",
+            "label": "Futures Closeout Price",
+            "value": 75,
+            "unit": "$/bbl",
+            "display": "$75.00/bbl"
+          }
+        ],
+        "steps": [
+          {
+            "id": "st1",
+            "label": "Futures Gain per Barrel",
+            "latex": "F_1 - F_2 = 79 - 75 = 4",
+            "expr": "F1 - F2",
+            "value": 4
+          },
+          {
+            "id": "st2",
+            "label": "Effective Realized Price per Barrel",
+            "latex": "S_2 + (F_1 - F_2) = 75 + 4 = 79",
+            "expr": "S2 + (F1 - F2)",
+            "value": 79
+          }
+        ],
+        "result": {
+          "id": "res",
+          "label": "Net Realized Selling Price",
+          "value": 79,
+          "unit": "$/bbl",
+          "display": "$79.00/bbl",
+          "rounding": 2
+        },
+        "conclusion": "The four-dollar futures gain fully offsets the five-dollar spot price plunge, locking in seventy-nine dollars per barrel.",
+        "isHypothetical": false
+      }
     },
     {
       "id": "s06",
@@ -976,63 +1166,47 @@
       "title": "Hedging vs Speculation: The Novice Trap",
       "purpose": "Debunking the myth that hedging exists to beat market price trends",
       "takeaways": [
-        "Speculators seek market gains; hedgers seek risk elimination",
-        "Regretting a hedge during price rallies is an institutional error",
-        "Deterministic cash flows preserve enterprise valuation"
+        "CAPM theory argues diversified shareholders already eliminate commodity risk",
+        "Corporate reality shows distress costs and debt covenants necessitate hedging",
+        "Hedging stabilizes cash flows to preserve credit ratings and enterprise solvency"
       ],
       "pedagogicalContinuation": false,
-      "template": "split_comparison",
-      "data": {
-        "left": {
-          "id": "novice_trap",
-          "heading": "COMMON NOVICE TRAP",
-          "tone": "trap",
-          "points": [
-            "Expects hedging to outperform spot rallies",
-            "Views hedging losses as wasted money",
-            "Treats treasury department as profit center"
-          ]
-        },
-        "right": {
-          "id": "corporate_reality",
-          "heading": "CORPORATE REALITY",
-          "tone": "positive",
-          "points": [
-            "Minimizes variance and operational volatility",
-            "Locks in margins regardless of price trend",
-            "Eliminates bankruptcy risk and distress costs"
-          ]
-        },
-        "verdict": {
-          "id": "verdict",
-          "text": "Hedging trades speculative upside for complete cash flow certainty."
-        }
-      },
       "beats": [
         {
           "id": "s06b1",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "In Section 3.2, John Hull explores a profound academic debate in corporate finance: should non-financial corporations hedge price risks at all? Theoretical finance presents a skeptical view rooted in the Capital Asset Pricing Model, or CAPM."
+              "display": "In Section 3.2, John Hull explores an academic debate: should non-financial corporations hedge price risks at all? Theoretical finance presents a skeptical view rooted in the Capital Asset Pricing Model, which is called CAPM."
             },
             "hi": {
-              "display": "Ab ek important academic debate ko samajhte hain jo corporate finance mein aksar puchi jati hai: Kya companies ko sach mein hedge karna chahiye?"
+              "display": "Section 3.2 mein John Hull academic debate explore karte hain: Kya companies ko hedge karna chahiye? Theoretical finance mein CAPM yaani Capital Asset Pricing Model ka matlab hota hai diversified investors ka portfolio model."
             }
           },
           "onScreenIntent": "The novice trap of treating treasury as profit center",
           "sourceFactIds": [
             "F01"
           ],
-          "newTerms": [],
+          "newTerms": [
+            "CAPM"
+          ],
           "pauseAfterMs": 300,
           "transition": false,
           "visual": {
             "show": [
-              "novice_trap"
-            ]
+              "theory"
+            ],
+            "focus": "theory"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "theory",
+              "anchor": {
+                "en": "CAPM",
+                "hi": "CAPM"
+              }
+            }
+          ]
         },
         {
           "id": "s06b2",
@@ -1055,10 +1229,19 @@
           "transition": false,
           "visual": {
             "show": [
-              "corporate_reality"
-            ]
+              "theory"
+            ],
+            "focus": "theory"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "theory",
+              "anchor": {
+                "en": "diversified",
+                "hi": "diversified"
+              }
+            }
+          ]
         },
         {
           "id": "s06b3",
@@ -1080,14 +1263,50 @@
           "transition": false,
           "visual": {
             "show": [
-              "novice_trap",
-              "corporate_reality",
-              "verdict"
-            ]
+              "theory",
+              "reality",
+              "v1"
+            ],
+            "focus": "reality"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "reality",
+              "anchor": {
+                "en": "bankruptcy",
+                "hi": "bankruptcy"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "split_comparison",
+      "data": {
+        "left": {
+          "id": "theory",
+          "heading": "Academic CAPM Skepticism",
+          "tone": "trap",
+          "points": [
+            "Well-diversified shareholders eliminate unsystematic risk",
+            "Corporate hedging duplicates individual investor risk management",
+            "Hedging transaction costs reduce net shareholder capital"
+          ]
+        },
+        "right": {
+          "id": "reality",
+          "heading": "Corporate Operating Reality",
+          "tone": "positive",
+          "points": [
+            "Bankruptcy and financial distress costs are immense",
+            "Debt covenants restrict operating cash flow volatility",
+            "Stabilizes cash flows to protect credit ratings and solvency"
+          ]
+        },
+        "verdict": {
+          "id": "v1",
+          "text": "Corporate hedging stabilizes cash flows and protects solvency against catastrophic bankruptcy."
+        }
+      }
     },
     {
       "id": "s07",
@@ -1095,40 +1314,11 @@
       "title": "Strengthening vs. Weakening Basis",
       "purpose": "Comparative matrix of basis movements and party payoffs",
       "takeaways": [
-        "Strengthening basis (b rises) benefits the short hedger",
-        "Weakening basis (b falls) benefits the long hedger",
-        "Basis shifts alter net realized price via Net = F1 + b2"
+        "The Worse Outcome Dilemma: profitable physical sales masked by futures margin calls",
+        "Evaluating hedges in isolation creates destructive pressure to abandon risk control",
+        "American Barrick gold hedging lessons show dangers of short hedges in bull markets"
       ],
       "pedagogicalContinuation": false,
-      "template": "table_compare",
-      "data": {
-        "columns": [
-          "Shift Type",
-          "Basis Move",
-          "Beneficiary",
-          "Net Realized Impact"
-        ],
-        "rows": [
-          {
-            "id": "r_str",
-            "cells": [
-              "Strengthening",
-              "Basis Increases (S - F rises)",
-              "Short Hedger",
-              "Higher net realized selling price"
-            ]
-          },
-          {
-            "id": "r_wk",
-            "cells": [
-              "Weakening",
-              "Basis Decreases (S - F falls)",
-              "Long Hedger",
-              "Lower net acquisition purchase cost"
-            ]
-          }
-        ]
-      },
       "beats": [
         {
           "id": "s07b1",
@@ -1152,10 +1342,19 @@
           "transition": false,
           "visual": {
             "show": [
-              "r_str"
-            ]
+              "r1"
+            ],
+            "focus": "r1"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "r1",
+              "anchor": {
+                "en": "Outcome",
+                "hi": "Outcome"
+              }
+            }
+          ]
         },
         {
           "id": "s07b2",
@@ -1179,10 +1378,20 @@
           "transition": false,
           "visual": {
             "show": [
-              "r_wk"
-            ]
+              "r1",
+              "r2"
+            ],
+            "focus": "r2"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "r2",
+              "anchor": {
+                "en": "isolation",
+                "hi": "derivatives"
+              }
+            }
+          ]
         },
         {
           "id": "s07b3",
@@ -1204,13 +1413,62 @@
           "transition": false,
           "visual": {
             "show": [
-              "r_str",
-              "r_wk"
+              "r1",
+              "r2",
+              "r3"
+            ],
+            "focus": "r3"
+          },
+          "visualCues": [
+            {
+              "target": "r3",
+              "anchor": {
+                "en": "Barrick",
+                "hi": "Barrick"
+              }
+            }
+          ]
+        }
+      ],
+      "template": "table_compare",
+      "data": {
+        "columns": [
+          "Corporate Scenario",
+          "Physical Business",
+          "Futures Hedge Account",
+          "Executive Consequence"
+        ],
+        "rows": [
+          {
+            "id": "r1",
+            "cells": [
+              "Oil Rallies ($80 to $120)",
+              "Record physical cash profit",
+              "Multi-million dollar margin calls",
+              "The Worse Outcome Dilemma"
             ]
           },
-          "visualCues": []
-        }
-      ]
+          {
+            "id": "r2",
+            "cells": [
+              "Isolated Hedge Review",
+              "Physical gains ignored by board",
+              "Derivatives viewed as speculative loss",
+              "Destructive pressure to abandon"
+            ]
+          },
+          {
+            "id": "r3",
+            "cells": [
+              "Gold Miners Bull Market",
+              "Lagged unhedged competitors",
+              "Massive futures buyback losses",
+              "American Barrick hedge unwind"
+            ]
+          }
+        ],
+        "highlightRowId": "r1"
+      }
     },
     {
       "id": "s08",
@@ -1218,38 +1476,11 @@
       "title": "Delivery Month Selection & The Gold Miner Trap",
       "purpose": "Contract selection rules and historical lessons from gold producer hedging",
       "takeaways": [
-        "Select contract delivery month strictly later than hedge expiration",
-        "Avoid trading during the delivery month to prevent liquidity crunches",
-        "Gold producers suffered severe mark-to-market losses during bull markets"
+        "Two strategic decisions: selecting the underlying contract and optimal delivery month",
+        "Golden rule: select a delivery month strictly later than the hedge closeout date",
+        "Avoid holding positions into the delivery month due to illiquidity and delivery notices"
       ],
       "pedagogicalContinuation": false,
-      "template": "stat_counter",
-      "data": {
-        "stats": [
-          {
-            "id": "st_month",
-            "value": 1,
-            "prefix": "+",
-            "suffix": " Mo",
-            "label": "Delivery Month Buffer",
-            "sublabel": "Contract month later than expiration"
-          },
-          {
-            "id": "st_risk",
-            "value": 0,
-            "suffix": "%",
-            "label": "Delivery Squeeze Hazard",
-            "sublabel": "Avoid physical delivery month trading"
-          },
-          {
-            "id": "st_gold",
-            "value": 100,
-            "suffix": "%",
-            "label": "Bull Market Regret Risk",
-            "sublabel": "Unhedged peers outperform during gold rallies"
-          }
-        ]
-      },
       "beats": [
         {
           "id": "s08b1",
@@ -1271,10 +1502,19 @@
           "transition": false,
           "visual": {
             "show": [
-              "st_month"
-            ]
+              "st_decisions"
+            ],
+            "focus": "st_decisions"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "st_decisions",
+              "anchor": {
+                "en": "strategic",
+                "hi": "decisions"
+              }
+            }
+          ]
         },
         {
           "id": "s08b2",
@@ -1296,11 +1536,20 @@
           "transition": false,
           "visual": {
             "show": [
-              "st_month",
-              "st_risk"
-            ]
+              "st_decisions",
+              "st_rule"
+            ],
+            "focus": "st_rule"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "st_rule",
+              "anchor": {
+                "en": "golden",
+                "hi": "golden"
+              }
+            }
+          ]
         },
         {
           "id": "s08b3",
@@ -1322,14 +1571,49 @@
           "transition": false,
           "visual": {
             "show": [
-              "st_month",
-              "st_risk",
-              "st_gold"
-            ]
+              "st_decisions",
+              "st_rule",
+              "st_hazard"
+            ],
+            "focus": "st_hazard"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "st_hazard",
+              "anchor": {
+                "en": "liquidity",
+                "hi": "liquidity"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "stat_counter",
+      "data": {
+        "stats": [
+          {
+            "id": "st_decisions",
+            "value": 2,
+            "decimals": 0,
+            "label": "Strategic Hedging Decisions",
+            "sublabel": "Underlying contract and delivery month"
+          },
+          {
+            "id": "st_rule",
+            "value": 1,
+            "decimals": 0,
+            "label": "Delivery Month Golden Rule",
+            "sublabel": "Select month strictly later than closeout"
+          },
+          {
+            "id": "st_hazard",
+            "value": 0,
+            "decimals": 0,
+            "label": "Delivery Month Liquidity Buffer",
+            "sublabel": "Avoid delivery notices and erratic price swings"
+          }
+        ]
+      }
     },
     {
       "id": "s09",
@@ -1337,23 +1621,11 @@
       "title": "Active Recall: Net Realized Price Calculation",
       "purpose": "Check student mastery of basis calculation and net realized price",
       "takeaways": [
-        "Basis b2 equals S2 minus F2 ($85 - $87 = -$2)",
-        "Net realized price equals initial futures F1 plus basis b2 ($90 + (-$2) = $88)",
-        "Hedging converts volatile spot swings into deterministic revenue"
+        "Short futures at F1 = $90/bbl; closeout at S2 = $85/bbl and F2 = $87/bbl",
+        "Terminal basis b2 = S2 - F2 = $85 - $87 = -$2/bbl (basis weakened)",
+        "Net realized selling price = F1 + b2 = $90 + (-$2) = $88/bbl (Option B)"
       ],
       "pedagogicalContinuation": false,
-      "template": "interactive_quiz",
-      "data": {
-        "question": "A producer shorts crude oil futures at $90. At hedge closeout, the spot price is $85 and the futures price is $87. What is the net price realized per barrel?",
-        "options": [
-          "A) $85 per barrel",
-          "B) $88 per barrel",
-          "C) $90 per barrel",
-          "D) $92 per barrel"
-        ],
-        "correctIndex": 1,
-        "explanation": "Terminal basis b2 = S2 - F2 = $85 - $87 = -$2. Net price realized = F1 + b2 = $90 + (-$2) = $88 per barrel (or $85 physical + $3 futures gain)."
-      },
       "beats": [
         {
           "id": "s09b1",
@@ -1376,7 +1648,8 @@
           "pauseAfterMs": 3200,
           "transition": false,
           "visual": {
-            "show": []
+            "show": [],
+            "phase": "question"
           },
           "visualCues": []
         },
@@ -1397,10 +1670,11 @@
             "F05"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 3200,
           "transition": false,
           "visual": {
-            "show": []
+            "show": [],
+            "phase": "thinking"
           },
           "visualCues": []
         },
@@ -1409,10 +1683,10 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "The correct answer is Option B: eighty-eight dollars per barrel. The terminal basis b two is S two minus F two, or eighty-five minus eighty-seven, which equals negative two dollars. The net realized price for a short hedger is F one plus b two, which is ninety plus negative two, yielding eighty-eight dollars. Physically, the oil sold for eighty-five dollars, and the short futures gained three dollars, locking in eighty-eight dollars. The basis weakened by two dollars, reducing net proceeds."
+              "display": "The correct answer is Option B: eighty-eight dollars per barrel. Terminal basis b two is eighty-five minus eighty-seven, or negative two dollars. Net realized price is initial futures ninety plus negative two, yielding eighty-eight dollars. The two-dollar basis weakening reduced net proceeds."
             },
             "hi": {
-              "display": "Correct answer hai Option B: Eighty-eight dollars per barrel. Calculation dekhiye: b-two barabar S-two minus F-two, yaani eighty-five minus eighty-seven equals minus two dollars. Net realized price F-one plus b-two hai, yaani ninety minus two barabar eighty-eight dollars. Basis do dollars se weaken hua tha, isliye short hedger ka realized price ninety se girkar eighty-eight ho gaya."
+              "display": "Correct answer hai Option B: eighty-eight dollars per barrel. Terminal basis b-two eighty-five minus eighty-seven, yaani minus two dollars hai. Net realized price ninety minus two barabar eighty-eight dollars banta hai."
             }
           },
           "onScreenIntent": "Reveal Option B ($88) with complete mathematical walkthrough",
@@ -1424,11 +1698,24 @@
           "pauseAfterMs": 300,
           "transition": false,
           "visual": {
-            "show": []
+            "show": [],
+            "phase": "reveal"
           },
           "visualCues": []
         }
-      ]
+      ],
+      "template": "interactive_quiz",
+      "data": {
+        "question": "An oil producer enters a Short Hedge at F1 = $90/bbl. In August, spot is S2 = $85/bbl and futures trade at F2 = $87/bbl. What is the net realized price per barrel?",
+        "options": [
+          "$85 per barrel",
+          "$88 per barrel",
+          "$90 per barrel",
+          "$92 per barrel"
+        ],
+        "correctIndex": 1,
+        "explanation": "Terminal basis b2 = S2 - F2 = $85 - $87 = -$2. Net realized price = F1 + b2 = $90 + (-$2) = $88 per barrel ($85 spot physical sale + $3 futures gain)."
+      }
     },
     {
       "id": "s10",
@@ -1436,37 +1723,11 @@
       "title": "Where We Are: Synthesis & Bridge to Part 2",
       "purpose": "Synthesis of Part 1 and intellectual bridge to minimum variance hedge ratio",
       "takeaways": [
-        "Hedging converts outright price volatility into basis risk",
-        "Part 2 introduces cross hedging and imperfect correlation",
-        "The minimum variance hedge ratio h* will optimize hedge sizing"
+        "Hedging transforms catastrophic outright price risk into manageable basis risk",
+        "Cross hedging applies when the exposure asset differs from the futures contract asset",
+        "Part 2 covers the Minimum Variance Hedge Ratio and Metallgesellschaft's collapse"
       ],
       "pedagogicalContinuation": false,
-      "template": "chat_story",
-      "data": {
-        "messages": [
-          {
-            "id": "m10_1",
-            "speaker": "mentor",
-            "text": "Hedging does not eliminate uncertainty entirely; it transforms severe price volatility into smaller, manageable basis risk."
-          },
-          {
-            "id": "m10_2",
-            "speaker": "mentor",
-            "text": "In Part 2, we tackle Cross Hedging: when the physical asset differs from the futures contract, requiring the Minimum Variance Hedge Ratio (h* = ρ × σS / σF)."
-          }
-        ],
-        "whereWeAre": {
-          "label": "WHERE WE ARE",
-          "items": [
-            "Basic Principles",
-            "Short & Long Hedges",
-            "Basis Risk",
-            "Hedge Ratio (Part 2)",
-            "Index Hedges (Part 3)"
-          ],
-          "current": 2
-        }
-      },
       "beats": [
         {
           "id": "s10b1",
@@ -1489,25 +1750,35 @@
           "transition": false,
           "visual": {
             "show": [
-              "m10_1"
-            ]
+              "p1"
+            ],
+            "focus": "p1"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "p1",
+              "anchor": {
+                "en": "transformed",
+                "hi": "transform"
+              }
+            }
+          ]
         },
         {
           "id": "s10b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "However, when the asset being hedged differs from the asset underlying the futures contract—such as an airline hedging jet fuel with heating oil futures—we encounter Cross Hedging. In Part 2, we will develop the mathematical formulas for the Minimum Variance Hedge Ratio, portfolio beta hedging, and the infamous one-point-three-billion-dollar collapse of Metallgesellschaft."
+              "display": "When the exposure asset differs from the futures contract asset, we encounter cross hedging. In Part 2, we will develop the Minimum Variance Hedge Ratio and analyze the 1.3 billion dollar collapse of Metallgesellschaft."
             },
             "hi": {
-              "display": "Lekin jab hedged asset aur futures contract ka underlying asset identical na ho—jaise jet fuel ko heating oil futures se hedge karna—toh hume Cross Hedging aur minimum variance hedge ratio calculate karna padta hai. Is mathematical optimization ko hum Part Two mein explore karenge."
+              "display": "Jab exposure asset futures contract se alag ho, use cross hedging kehte hain. Part 2 mein hum Minimum Variance Hedge Ratio aur Metallgesellschaft ke 1.3 billion dollar rollover disaster ko samjhenge."
             }
           },
           "onScreenIntent": "Roadmap preview and intellectual bridge to Part 2",
           "sourceFactIds": [
-            "F01"
+            "F01",
+            "F13"
           ],
           "newTerms": [
             "cross hedging"
@@ -1516,13 +1787,65 @@
           "transition": false,
           "visual": {
             "show": [
-              "m10_1",
-              "m10_2"
-            ]
+              "p1",
+              "p2",
+              "p3",
+              "p4"
+            ],
+            "focus": "p2"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "p2",
+              "anchor": {
+                "en": "Cross",
+                "hi": "Cross"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "technical_panel",
+      "data": {
+        "presentation": "structured_cards",
+        "pillars": {
+          "primaryCard": {
+            "title": "Hedging Synthesis & Part 2 Preview",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "Risk Transformation",
+                "description": "Corporate hedging replaces outright price volatility with smaller, manageable Basis Risk."
+              },
+              {
+                "id": "p2",
+                "title": "Cross Hedging Asset Mismatch",
+                "description": "Applied when hedged asset differs from futures contract (e.g., jet fuel vs heating oil)."
+              },
+              {
+                "id": "p3",
+                "title": "Minimum Variance Hedge Ratio",
+                "description": "Mathematical formula determining the variance-minimizing futures coverage ratio."
+              },
+              {
+                "id": "p4",
+                "title": "Metallgesellschaft Cautionary Tale",
+                "description": "The $1.3B stack-and-roll rollover disaster demonstrating cash flow liquidity risks."
+              }
+            ]
+          }
+        },
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "Why companies hedge",
+            "Short vs Long hedges",
+            "Basis risk mechanics",
+            "Minimum variance hedge"
+          ],
+          "current": 3
+        }
+      }
     },
     {
       "id": "s11",
@@ -1530,67 +1853,21 @@
       "title": "Eight Rules to Remember",
       "purpose": "Institutional rules codifying hedging strategies and basis mechanics",
       "takeaways": [
-        "Hedging reduces variance; short hedges protect sellers, long hedges protect buyers",
-        "Basis is Spot minus Futures; net price for short hedger is F1 + b2",
-        "Select a delivery month later than the closeout date to avoid delivery hazards"
+        "Rules 1 & 2: Hedging neutralizes cash flow variance; short hedges lock in selling prices",
+        "Rules 3 & 4: Long hedges cap purchase costs; basis b = S - F defines market divergence",
+        "Rules 5 to 8: Basis risk substitution, directional payoffs, and delivery month selection"
       ],
       "pedagogicalContinuation": false,
-      "template": "summary_thread",
-      "data": {
-        "title": "Corporate Hedging in 8 Rules",
-        "rules": [
-          {
-            "id": "r1",
-            "title": "Objective is variance reduction",
-            "text": "Hedging reduces cash flow variance; its purpose is never to seek speculative trading profit."
-          },
-          {
-            "id": "r2",
-            "title": "Short hedge protects sellers",
-            "text": "Short hedges protect physical inventory and expected production against falling market prices."
-          },
-          {
-            "id": "r3",
-            "title": "Long hedge secures input costs",
-            "text": "Long hedges cap raw material acquisition costs for commercial manufacturers against price surges."
-          },
-          {
-            "id": "r4",
-            "title": "Basis formula",
-            "text": "Basis is defined as Spot Price minus Futures Price: b = S - F."
-          },
-          {
-            "id": "r5",
-            "title": "Net realized selling price",
-            "text": "The net realized price per unit for a short hedger equals initial futures price plus terminal basis: F1 + b2."
-          },
-          {
-            "id": "r6",
-            "title": "Strengthening basis benefits short hedger",
-            "text": "When basis increases unexpectedly, the short hedger realizes higher net revenue than anticipated."
-          },
-          {
-            "id": "r7",
-            "title": "Weakening basis benefits long hedger",
-            "text": "When basis decreases unexpectedly, the long hedger achieves lower net acquisition costs."
-          },
-          {
-            "id": "r8",
-            "title": "Delivery month selection rule",
-            "text": "Always choose a delivery month later than the closeout date to avoid physical delivery squeezes."
-          }
-        ]
-      },
       "beats": [
         {
           "id": "s11b1",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Let us summarize the four structural pillars of corporate hedging that every quantitative finance student and risk manager must remember."
+              "display": "Let us now summarize the four foundational pillars and eight structural rules of corporate hedging that every quantitative risk manager and treasury professional must remember."
             },
             "hi": {
-              "display": "Aaiye aaj ke lesson ke chaar essential pillars ko summarize karte hain jo har finance professional ko hamesha yaad rakhne chahiye."
+              "display": "Aaiye ab corporate hedging ke chaar main pillars aur aath foundational rules ko summarize karte hain jo har finance professional aur treasury risk manager ko hamesha yaad rakhne chahiye."
             }
           },
           "onScreenIntent": "Overview of the 8 rules",
@@ -1601,23 +1878,34 @@
           "pauseAfterMs": 300,
           "transition": false,
           "visual": {
-            "show": [],
+            "show": [
+              "r1"
+            ],
             "range": [
               0,
               0
-            ]
+            ],
+            "compact": false
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "r1",
+              "anchor": {
+                "en": "pillars",
+                "hi": "pillars"
+              }
+            }
+          ]
         },
         {
           "id": "s11b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "First Pillar: Short versus Long Hedging. Producers enter short hedges to lock in selling prices for physical inventory; manufacturers enter long hedges to cap raw material acquisition costs."
+              "display": "Rule 1 dictates that producers enter short hedges to lock in selling prices for physical inventory. Rule 2 establishes that commercial manufacturers enter long hedges to cap raw material acquisition costs."
             },
             "hi": {
-              "display": "Pehla pillar: Short Hedge versus Long Hedge. Producer price drop ke risk ko lock karne ke liye futures sell karta hai; manufacturer raw material price hike se bachne ke liye futures buy karta hai."
+              "display": "Rule 1 ke mutabik producers inventory selling prices ko lock karne ke liye short hedge karte hain. Rule 2 ke mutabik manufacturers raw material costs ko cap karne ke liye long hedge deploy karte hain."
             }
           },
           "onScreenIntent": "Rules 1 and 2 highlighted",
@@ -1636,19 +1924,28 @@
             "range": [
               1,
               2
-            ]
+            ],
+            "compact": false
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "r1",
+              "anchor": {
+                "en": "Rule",
+                "hi": "Rule"
+              }
+            }
+          ]
         },
         {
           "id": "s11b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Second Pillar: Nature of Basis. Basis is defined as Spot Price minus Futures Price. Hedging substitutes extreme spot price volatility with manageable basis risk."
+              "display": "Rule 3 defines basis as spot price minus futures price. Rule 4 shows that corporate hedging substitutes extreme outright price volatility with smaller, manageable basis risk across operating cycles."
             },
             "hi": {
-              "display": "Dusra pillar: The Nature of Basis. Basis spot aur futures price ka spread hai. Hedging price uncertainty ko basis risk se substitute karti hai."
+              "display": "Rule 3 basis ko spot price minus futures price ke roop mein define karta hai. Rule 4 kehta hai ki hedging outright price volatility ko chote aur manageable basis risk se substitute karti hai."
             }
           },
           "onScreenIntent": "Rules 3 and 4 highlighted",
@@ -1667,19 +1964,28 @@
             "range": [
               3,
               4
-            ]
+            ],
+            "compact": false
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "r3",
+              "anchor": {
+                "en": "Rule",
+                "hi": "Rule"
+              }
+            }
+          ]
         },
         {
           "id": "s11b4",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Third Pillar: Strengthening versus Weakening Basis. A strengthening basis increases net realized proceeds for a short hedger, whereas a weakening basis reduces net acquisition costs for a long hedger."
+              "display": "Rule 5 demonstrates that a strengthening basis increases net realized selling prices for short hedgers. Rule 6 shows that a weakening basis reduces net acquisition costs for long hedgers during procurement."
             },
             "hi": {
-              "display": "Teesra pillar: Strengthening versus Weakening. Strengthening basis short hedger ko reward karta hai, jabki weakening basis long hedger ke favor mein kaam karta hai."
+              "display": "Rule 5 dikhata hai ki strengthening basis short hedgers ke net realized price ko badhata hai. Rule 6 batata hai ki weakening basis long hedgers ke net procurement cost ko efficiently reduce karta hai."
             }
           },
           "onScreenIntent": "Rules 5 and 6 highlighted",
@@ -1698,19 +2004,28 @@
             "range": [
               5,
               6
-            ]
+            ],
+            "compact": false
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "r5",
+              "anchor": {
+                "en": "Rule",
+                "hi": "Rule"
+              }
+            }
+          ]
         },
         {
           "id": "s11b5",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Fourth Pillar: The Delivery Month Rule. Hedgers must always select a futures contract maturing after the hedge closeout date to avoid delivery month illiquidity and unexpected delivery notices."
+              "display": "Rule 7 establishes the golden delivery month rule, selecting contracts maturing strictly after hedge closeout. Rule 8 warns against delivery month illiquidity and unexpected delivery notices from exchange clearinghouses."
             },
             "hi": {
-              "display": "Chautha pillar: Delivery Month Rule. Contract hamesha closeout date ke baad ka select kijiye taaki delivery month ke liquidity traps aur physical notice se bacha ja sake."
+              "display": "Rule 7 golden delivery month rule establish karta hai jisme contract maturity closeout ke baad hoti hai. Rule 8 delivery month ki illiquidity aur exchange clearinghouse ke physical delivery notice se protect karta hai."
             }
           },
           "onScreenIntent": "Rules 7 and 8 highlighted",
@@ -1730,23 +2045,34 @@
               7,
               8
             ],
-            "focus": "r8"
+            "compact": false
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "r7",
+              "anchor": {
+                "en": "Rule",
+                "hi": "Rule"
+              }
+            }
+          ]
         },
         {
           "id": "s11b6",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "In Part 2, we will master the Minimum Variance Hedge Ratio, optimal contract calculation, stock index beta hedging, and Metallgesellschaft's multi-billion dollar rollover disaster."
+              "display": "Remember all 8 rules when structuring hedges. In Part 2, we will master the Minimum Variance Hedge Ratio, beta hedging, and Metallgesellschaft's multi-billion dollar rollover disaster."
             },
             "hi": {
-              "display": "Next part mein hum cross-hedging formulas, stock portfolio beta adjustments, aur Metallgesellschaft ke famous one point three billion dollar hedging disaster ko dissect karenge."
+              "display": "In sabhi 8 rules ko hamesha dhyan mein rakhiye. Part 2 mein hum Minimum Variance Hedge Ratio, beta hedging, aur Metallgesellschaft ke multi-billion dollar disaster ko master karenge."
             }
           },
           "onScreenIntent": "Compact summary overview of all 8 rules",
-          "sourceFactIds": [],
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
           "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
@@ -1767,9 +2093,63 @@
             ],
             "compact": true
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "r1",
+              "anchor": {
+                "en": "rules",
+                "hi": "rules"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "template": "summary_thread",
+      "data": {
+        "title": "Eight Essential Rules of Corporate Hedging",
+        "rules": [
+          {
+            "id": "r1",
+            "title": "Rule 1: Risk Neutralization",
+            "text": "Hedging minimizes corporate cash flow variance and guarantees solvency, never seeking speculative profit."
+          },
+          {
+            "id": "r2",
+            "title": "Rule 2: Short Hedge Duality",
+            "text": "Commodity producers enter short futures hedges to establish a price floor against falling market prices."
+          },
+          {
+            "id": "r3",
+            "title": "Rule 3: Long Hedge Duality",
+            "text": "Commercial manufacturers enter long futures hedges to cap acquisition costs for essential raw materials."
+          },
+          {
+            "id": "r4",
+            "title": "Rule 4: Definition of Basis",
+            "text": "Basis equals spot price minus futures price (b = S - F), converging to zero at contract maturity."
+          },
+          {
+            "id": "r5",
+            "title": "Rule 5: Basis Risk Substitution",
+            "text": "Hedging substitutes outright spot price volatility with smaller, manageable basis volatility across operating cycles."
+          },
+          {
+            "id": "r6",
+            "title": "Rule 6: Strengthening vs Weakening",
+            "text": "A strengthening basis benefits short hedgers; a weakening basis benefits long hedgers during procurement."
+          },
+          {
+            "id": "r7",
+            "title": "Rule 7: Delivery Month Selection",
+            "text": "Always select a delivery month strictly later than the anticipated hedge closeout date."
+          },
+          {
+            "id": "r8",
+            "title": "Rule 8: Minimum Variance & Rollover Risk",
+            "text": "Master the minimum variance hedge ratio and beta hedging to avoid multi-billion dollar rollover disasters."
+          }
+        ]
+      }
     }
   ]
 }
