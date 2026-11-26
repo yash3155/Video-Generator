@@ -30,6 +30,7 @@ import { mergeRuns, screenStrings, type CheckRun, type OtherPart } from "../qa/c
 import { ARTIFACT_SCHEMAS, runPartChecks } from "../qa/part";
 import { buildReport, releaseChecks, writeReport, type ReportStill } from "../qa/report";
 import { factsGate } from "./gates";
+import type { NextPartInfo } from "../pedagogy/structure-rules";
 import { buildScaffold, mergeEpisode, type ScaffoldMeta } from "./episode";
 import { fixedScenesText, fixedTemplatesText, kindLayout } from "./layout";
 import { llmCall } from "./llm-stage";
@@ -84,6 +85,7 @@ export interface PartInfo {
   progress: { index: number; total: number };
   chapterLabel: string;
   partLabel: string;
+  nextPart: NextPartInfo | null;
 }
 
 export function partInfo(ctx: Pick<PartContext, "bookId" | "chapterId" | "partId">): PartInfo {
@@ -94,7 +96,30 @@ export function partInfo(ctx: Pick<PartContext, "bookId" | "chapterId" | "partId
   if (pi < 0) throw new Error(`part ${ctx.partId} is not in chapter ${ctx.chapterId} (parts: ${chapter.parts.map((x) => x.id).join(", ")})`);
   const all = map.chapters.flatMap((c) => c.parts.map((x) => `${c.id}/${x.id}`));
   const chapterLabel = chapter.kind === "orientation" ? "Orientation" : chapter.kind === "synthesis" ? "Synthesis" : `Chapter ${chapter.number}`;
-  return { map, chapter, part: chapter.parts[pi], progress: { index: all.indexOf(`${ctx.chapterId}/${ctx.partId}`), total: all.length }, chapterLabel, partLabel: `Part ${pi + 1}` };
+  const flatParts = map.chapters.filter((c) => c.kind === "chapter_part").flatMap((c) => c.parts.map((pt) => ({ c, pt })));
+  const curIdx = flatParts.findIndex((x) => x.c.id === ctx.chapterId && x.pt.id === ctx.partId);
+  const nextEntry = curIdx >= 0 && curIdx + 1 < flatParts.length ? flatParts[curIdx + 1] : null;
+  const nextPart: NextPartInfo | null = nextEntry
+    ? {
+        chapterId: nextEntry.c.id,
+        partId: nextEntry.pt.id,
+        chapterNumber: nextEntry.c.number,
+        chapterTitle: nextEntry.c.title,
+        partTitle: nextEntry.pt.title,
+        summary: nextEntry.c.summary,
+        sections: nextEntry.pt.sections,
+      }
+    : null;
+  return { map, chapter, part: chapter.parts[pi], progress: { index: all.indexOf(`${ctx.chapterId}/${ctx.partId}`), total: all.length }, chapterLabel, partLabel: `Part ${pi + 1}`, nextPart };
+}
+
+function safeNextPart(ctx: Pick<PartContext, "bookId" | "chapterId" | "partId">): NextPartInfo | null | undefined {
+  if (!exists(courseMapFile(ctx.bookId))) return undefined;
+  try {
+    return partInfo(ctx).nextPart;
+  } catch {
+    return undefined;
+  }
 }
 
 function gate(stage: StageId, problems: string[]): void {
@@ -433,10 +458,11 @@ const S7: Stage = {
     const register = ConceptRegister.parse(loadJson(p(ctx, A.register)));
     const plan = LessonPlan.parse(loadJson(p(ctx, A.plan)));
     const names = personaNames(ctx);
+    const nextPart = safeNextPart(ctx);
     const script = await llmCall<TeachingScript>(ctx, {
       stage: "S7",
       kind: "teaching_script",
-      input: { ...sp, facts, register, plan },
+      input: { ...sp, facts, register, plan, nextPart },
       vars: { ...names, languages: sp.languages.join(", "), fixedScenes: fixedScenesText(kindLayout(sp.kind)) },
       standards: ["NARRATION_CRAFT", "JIT_CONCEPT_CLARIFICATION", "SCENE_STRUCTURE", "ASSESSMENT"],
     });
@@ -532,10 +558,11 @@ const S9: Stage = {
     const register = ConceptRegister.parse(loadJson(p(ctx, A.register)));
     const plan = LessonPlan.parse(loadJson(p(ctx, A.plan)));
     const scaffold = buildScaffold(scaffoldMeta(ctx), script, brief, board, kindLayout(kind).quiz);
+    const nextPart = safeNextPart(ctx);
     const fill = await llmCall<EpisodeFill>(ctx, {
       stage: "S9",
       kind: "episode_fill",
-      input: { kind, cfg: cfgSubset(ctx), scaffold, facts, register, plan },
+      input: { kind, cfg: cfgSubset(ctx), scaffold, facts, register, plan, nextPart },
       vars: { displayLanguage: ctx.cfg.displayLanguage, templateSchemas: templateSchemasText(board.scenes.map((s) => s.template)) },
       standards: ["VISUAL_DESIGN", "FORMULA_RULES", "ASSESSMENT", "SOURCE_GROUNDING"],
     });
@@ -700,24 +727,18 @@ const S11: Stage = {
     for (const lang of ctx.langs) {
       if (!compiled.timelines[lang]) throw new Error(`no ${lang} timeline in the compiled episode; re-run S10`);
       const out = renderFile(ctx, lang);
-      if (exists(out) && fs.statSync(out).size > 1_000_000) {
-        log.info(`render ${lang}: already rendered (${Math.round(fs.statSync(out).size / 1024 / 1024)} MB), reusing video`);
-      } else {
-        log.info(`render ${lang}${ctx.draft ? " (draft)" : ""}`);
-        await renderLessonVideo({ partDir: ctx.partDir, compiled, lang, output: out, draft: ctx.draft });
-      }
+      log.info(`render ${lang}${ctx.draft ? " (draft)" : ""}`);
+      await renderLessonVideo({ partDir: ctx.partDir, compiled, lang, output: out, draft: ctx.draft });
       const fd = framesDir(ctx, lang);
-      if (!exists(stillsIndex(ctx, lang)) || !exists(contactFile(ctx, lang))) {
-        if (exists(fd)) fs.rmSync(fd, { recursive: true, force: true });
-        log.info(`beat stills ${lang}`);
-        const stills = await renderLessonStills({ partDir: ctx.partDir, compiled, lang, outDir: fd, draft: ctx.draft });
-        const rel = stills.map((s) => ({ ...s, png: path.relative(ctx.partDir, s.png).split(path.sep).join("/") }));
-        writeJson(stillsIndex(ctx, lang), rel);
-        contactSheet(
-          stills.filter((s) => s.kind === "end").map((s) => s.png),
-          contactFile(ctx, lang),
-        );
-      }
+      if (exists(fd)) fs.rmSync(fd, { recursive: true, force: true });
+      log.info(`beat stills ${lang}`);
+      const stills = await renderLessonStills({ partDir: ctx.partDir, compiled, lang, outDir: fd, draft: ctx.draft });
+      const rel = stills.map((s) => ({ ...s, png: path.relative(ctx.partDir, s.png).split(path.sep).join("/") }));
+      writeJson(stillsIndex(ctx, lang), rel);
+      contactSheet(
+        stills.filter((s) => s.kind === "end").map((s) => s.png),
+        contactFile(ctx, lang),
+      );
       outputs.push(out, stillsIndex(ctx, lang), contactFile(ctx, lang));
     }
     pruneBundles(3);
@@ -788,6 +809,7 @@ const S12: Stage = {
       kind: kindOf(ctx.chapterId),
       langs: ctx.langs,
       scenes: ctx.scenes,
+      nextPart: safeNextPart(ctx),
       others: otherParts(ctx),
       partDir: ctx.partDir,
       draft: ctx.draft,

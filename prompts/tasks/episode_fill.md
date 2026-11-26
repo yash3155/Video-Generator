@@ -18,7 +18,8 @@ You are authoring the on-screen content of every scene. The scaffold in the inpu
 - Formulas: typed `latex` fields only, KaTeX-valid, every variable listed with meaning and unit; the equation, arithmetic, chart, annotations, narration and conclusion agree (six-way check).
 - `visualCues`: `target` is an element id in `data` (card id, step id, node id, option, rule index as declared by the template); `anchor` gives, for every narration language, a word or short phrase that occurs verbatim in that beat's narration display text. The element appears when the narrator says that word.
 - Quiz (interactive_quiz): 4 distinct, plausible options without spoiler markers; `correctIndex` identifies the answer; beat phases question, thinking, reveal.
-- Summary (summary_thread): exactly 8 rules of at most 30 words; beat ranges [0,0], [1,2], [3,4], [5,6], [7,8], [1,8] with `compact: true` on the last.
+- Summary (summary_thread): exactly 8 rules of at most 30 words; beat ranges [0,0], [1,2], [3,4], [5,6], [7,8], [1,8] with `compact: true` on the last. Every rule `r1..r8` must align 1-to-1 with the corresponding rule spoken in `s11b2..s11b5`, and every rule must recap ONLY concepts taught in scenes 0–9 of this part (never preview-only concepts from `nextPart`).
+- Scene 10 roadmap & bridge: when `nextPart` is present in input, `s10` `whereWeAre` / `roadmap` must include an upcoming item naming what comes next (`current < items.length - 1` or `status: "next"`), and on-screen cards/pillars must highlight the bridge to `nextPart` with concrete topics.
 - On-screen text uses only the display language ({{displayLanguage}}).
 
 ## Beat-level narration-visual sync (critical)

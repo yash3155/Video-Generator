@@ -250,9 +250,9 @@ _Wisdom & Bridge: Non-linear curvature risk, immunization discipline, and course
 
 **s10b3** (mentor; facts F01, F04, F10)
 
-- en: Looking at our course roadmap, we have mastered forward rate agreements, duration, and term structure theories. Next, we will explore interest rate swaps to transform cash flow obligations across corporate balance sheets.
-- hi: हमारे कोर्स रोडमैप पर, हमने फॉरवर्ड रेट एग्रीमेंट्स, ड्यूरेशन, और टर्म स्ट्रक्चर थ्योरीज में महारत हासिल कर ली है। इसके बाद, हम कॉर्पोरेट बैलेंस शीट्स पर कैश फ्लो दायित्वों को बदलने के लिए इंटरेस्ट रेट स्वैप्स का अध्ययन करेंगे।
-- on screen: Display Course Roadmap: ch04/p2 complete -> Chapter 7 Interest Rate Swaps preview.
+- en: Looking at our course roadmap, we have mastered forward rate agreements, duration, and convexity. Next, in Chapter 5, we derive Forward and Futures Prices using no-arbitrage replication and cost of carry.
+- hi: हमारे कोर्स रोडमैप पर, हमने फॉरवर्ड रेट एग्रीमेंट्स, ड्यूरेशन और कॉन्वेक्सिटी में महारत हासिल कर ली है। इसके बाद, चैप्टर 5 में हम नो-आर्बिट्राज रेप्लिकेशन और कॉस्ट ऑफ कैरी से फॉरवर्ड एंड फ्यूचर्स प्राइसेस का अध्ययन करेंगे।
+- on screen: Display Course Roadmap: ch04/p2 complete -> Chapter 5 Forward and Futures Prices preview.
 
 ## Scene 11: Summary of Eight Core Principles
 

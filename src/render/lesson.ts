@@ -56,10 +56,14 @@ const isMac = process.platform === "darwin";
 
 const browserOpts = {
   chromiumOptions: {
-    // Windows headless Remotion uses swangle to prevent D3D11 GPU crashes.
-    // macOS uses angle (Metal-backed) or system GL for high-speed hardware acceleration.
-    gl: (isWin ? "swangle" : isMac ? "angle" : undefined) as any,
+    // Hardware-accelerated ANGLE (Direct3D11 on Windows, Metal on macOS) for fast compositing; renderLessonVideo falls back to swangle on GPU error.
+    gl: (isWin || isMac ? "angle" : undefined) as any,
   },
+  logLevel: "error" as const,
+};
+
+const swangleOpts = {
+  chromiumOptions: { gl: "swangle" as any },
   logLevel: "error" as const,
 };
 
@@ -80,7 +84,7 @@ export async function renderLessonVideo(o: RenderVideoOptions): Promise<void> {
   const tmp = o.output.replace(/\.mp4$/, ".part.mp4");
   let last = -1;
   const t0 = Date.now();
-  const render = () =>
+  const render = (opts = browserOpts) =>
     renderMedia({
       serveUrl,
       composition,
@@ -88,6 +92,7 @@ export async function renderLessonVideo(o: RenderVideoOptions): Promise<void> {
       concurrency: os.cpus().length,
       codec: "h264",
       crf: o.draft ? 28 : 17,
+      x264Preset: o.draft ? "superfast" : "veryfast",
       pixelFormat: "yuv420p",
       colorSpace: "bt709",
       audioCodec: "aac",
@@ -96,7 +101,7 @@ export async function renderLessonVideo(o: RenderVideoOptions): Promise<void> {
       outputLocation: tmp,
       overwrite: true,
       timeoutInMilliseconds: 120000,
-      ...browserOpts,
+      ...opts,
       onProgress: ({ progress }) => {
         const pct = Math.floor(progress * 10) * 10;
         if (pct !== last) {
@@ -106,16 +111,16 @@ export async function renderLessonVideo(o: RenderVideoOptions): Promise<void> {
       },
     });
   try {
-    await render();
+    await render(browserOpts);
   } catch (e) {
-    // Remotion's temp asset folders are occasionally removed mid-render (antivirus, temp cleanup); one retry recovers.
+    // Retry once with software SwiftShader (swangle) in case hardware ANGLE fails or temp folders were cleaned.
     log.warn(
       `render ${o.lang} failed (${String((e as Error).message)
         .split("\n")[0]
-        .slice(0, 160)}); retrying once`,
+        .slice(0, 160)}); retrying with swangle`,
     );
     last = -1;
-    await render();
+    await render(swangleOpts);
   }
   fs.renameSync(tmp, o.output);
   log.info(`rendered ${path.basename(o.output)} (${composition.durationInFrames} frames) in ${((Date.now() - t0) / 1000).toFixed(0)} s`);

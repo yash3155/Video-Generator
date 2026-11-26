@@ -13,29 +13,34 @@ export const FormulaBreakdown: React.FC<{ data: FormulaBreakdownData }> = ({ dat
   const { theme, size } = useRc();
   const n = data.parts.length;
   const cols = size === "half" ? 2 : Math.min(n, 4);
+  const heroSize = size === "half" ? 44 : data.formula.latex.length > 48 ? 54 : data.formula.latex.length > 30 ? 64 : 74;
   return (
     <div style={col(theme.space.gap, { height: "100%" })}>
       <div style={row(theme.space.gap, { alignItems: "center" })}>
         <Heading style={{ flex: "none", maxWidth: "34%" }}>{text(data.title, "data.title")}</Heading>
-        <Fit id="formula" style={{ flex: 1, background: theme.colors.background, border: `2px solid ${theme.colors.gold}`, borderRadius: theme.radius.card, padding: size === "half" ? "16px 24px" : "26px 40px", display: "flex", justifyContent: "center" }}>
-          <MathTex latex={data.formula.latex} size={size === "half" ? 48 : 76} color={theme.colors.text} />
+        <Fit id="formula" style={{ flex: 1, background: theme.colors.background, border: `2px solid ${theme.colors.gold}`, borderRadius: theme.radius.card, padding: size === "half" ? "16px 24px" : "24px 36px", display: "flex", justifyContent: "center" }}>
+          <MathTex latex={data.formula.latex} size={heroSize} color={theme.colors.text} />
         </Fit>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, gridAutoRows: "minmax(0, 1fr)", gap: 18, flex: 1, minHeight: 0 }}>
-        {data.parts.map((p, i) => (
-          <Card key={p.id} id={p.id} accent={theme.colors.teal} style={size === "half" ? undefined : { justifyContent: "center", gap: 16 }}>
-            <div style={row(16, { alignItems: "center" })}>
-              <MathTex latex={p.symbolLatex} size={size === "half" ? 44 : 64} color={theme.colors.gold} />
-              <Label color={theme.colors.teal}>{text(p.unit, `data.parts[${i}].unit`)}</Label>
-            </div>
-            <Body size={size === "half" ? undefined : n <= 4 ? 30 : 27}>{text(p.meaning, `data.parts[${i}].meaning`)}</Body>
-          </Card>
-        ))}
+        {data.parts.map((p, i) => {
+          const symLen = p.symbolLatex.length;
+          const symSize = size === "half" ? (symLen > 8 ? 30 : 40) : symLen > 12 ? 36 : symLen > 6 ? 48 : 60;
+          return (
+            <Card key={p.id} id={p.id} accent={theme.colors.teal} style={size === "half" ? undefined : { justifyContent: "center", gap: 14 }}>
+              <div style={row(12, { alignItems: "center", flexWrap: "wrap" })}>
+                <MathTex latex={p.symbolLatex} size={symSize} color={theme.colors.gold} />
+                <Label color={theme.colors.teal}>{text(p.unit, `data.parts[${i}].unit`)}</Label>
+              </div>
+              <Body size={size === "half" ? undefined : n <= 4 ? 28 : 25}>{text(p.meaning, `data.parts[${i}].meaning`)}</Body>
+            </Card>
+          );
+        })}
       </div>
       {data.note ? (
-        <Fit id="note" style={row(14, { alignItems: "center", flex: "none" })}>
+        <Fit id="note" style={row(14, { alignItems: "center", flex: "none", padding: "4px 0" })}>
           <Icon name="bulb" color={theme.colors.gold} size={32} />
-          <Body color={theme.colors.textMuted}>
+          <Body size={24} color={theme.colors.textMuted} style={{ lineHeight: 1.35 }}>
             <Rich value={data.note} path="data.note" />
           </Body>
         </Fit>
@@ -50,50 +55,51 @@ export const WorkedExample: React.FC<{ data: WorkedExampleData }> = ({ data }) =
   const half = size === "half";
   const manyGiven = data.given.length > 3;
   const manySteps = data.steps.length >= 3;
+  const isHi = lang.startsWith("hi");
   return (
     <div style={{ display: "flex", flexDirection: half ? "column" : "row", gap: theme.space.gap, height: "100%" }}>
-      <div style={col(manyGiven ? 12 : 18, { width: half ? "auto" : "38%", flex: half ? "none" : undefined, justifyContent: half ? "flex-start" : "center" })}>
+      <div style={col(manyGiven ? 10 : 14, { width: half ? "auto" : "38%", flex: half ? "none" : undefined, justifyContent: half ? "flex-start" : "center" })}>
         <Heading size={half ? 26 : manyGiven ? 28 : 32}>{text(data.title, "data.title")}</Heading>
         {data.formula ? (
-          <Fit id="formula" style={{ flexShrink: 0, background: theme.colors.background, border: `2px solid ${theme.colors.gold}`, borderRadius: theme.radius.card, padding: manyGiven ? "10px 16px" : "14px 20px", display: "flex", justifyContent: "center" }}>
-            <MathTex latex={data.formula.latex} size={half ? 40 : manyGiven ? 40 : 42} color={theme.colors.text} />
+          <Fit id="formula" style={{ flexShrink: 0, background: theme.colors.background, border: `2px solid ${theme.colors.gold}`, borderRadius: theme.radius.card, padding: manyGiven ? "12px 16px" : "16px 20px", display: "flex", justifyContent: "center" }}>
+            <MathTex latex={data.formula.latex} size={half ? 38 : manyGiven ? 38 : 40} color={theme.colors.text} />
           </Fit>
         ) : null}
         {!half ? <Label color={theme.colors.teal}>{L.given}</Label> : null}
-        <div style={{ display: "flex", flexDirection: half ? "row" : "column", gap: manyGiven ? 8 : 12 }}>
+        <div style={{ display: "flex", flexDirection: half ? "row" : "column", gap: manyGiven ? 8 : 10 }}>
           {data.given.map((g, i) => (
-            <Fit key={g.id} id={g.id} style={{ ...row(14, { alignItems: "center", background: theme.colors.panelRaised, borderRadius: 12, padding: half ? "10px 16px" : manyGiven ? "10px 14px" : "14px 18px", flex: half ? 1 : undefined }), ...revealStyle(reveal, g.id) }}>
-              {g.symbol ? <MathTex latex={g.symbol} size={half ? 30 : manyGiven ? 28 : 34} color={theme.colors.gold} /> : null}
-              <Body size={half ? 24 : manyGiven ? 24 : 27} color={theme.colors.textMuted}>
+            <Fit key={g.id} id={g.id} style={{ ...row(12, { alignItems: "center", background: theme.colors.panelRaised, borderRadius: 12, padding: half ? "10px 16px" : manyGiven ? "10px 14px" : "12px 16px", flex: half ? 1 : "none" }), ...revealStyle(reveal, g.id) }}>
+              {g.symbol ? <MathTex latex={g.symbol} size={half ? 28 : manyGiven ? 26 : 32} color={theme.colors.gold} /> : null}
+              <Body size={half ? 22 : manyGiven ? 22 : isHi ? 24 : 26} color={theme.colors.textMuted}>
                 {text(g.label, `data.given[${i}].label`)}
               </Body>
-              <Body size={half ? 26 : manyGiven ? 26 : 30} style={{ fontWeight: 700, marginLeft: "auto" }}>
+              <Body size={half ? 24 : manyGiven ? 24 : 28} style={{ fontWeight: 700, marginLeft: "auto" }}>
                 {text(g.display, `data.given[${i}].display`)}
               </Body>
             </Fit>
           ))}
         </div>
       </div>
-      <div style={col(manySteps ? 12 : 18, { flex: 1, justifyContent: half ? "flex-start" : "center" })}>
+      <div style={col(manySteps ? 10 : 14, { flex: 1, justifyContent: half ? "flex-start" : "center" })}>
         {data.steps.map((s, i) => (
-          <Fit key={s.id} id={s.id} style={{ ...row(18, { alignItems: "center", background: theme.colors.panelRaised, borderRadius: 12, padding: half ? "10px 18px" : manySteps ? "12px 20px" : "16px 22px", border: `2px solid ${reveal.focused(s.id) ? theme.colors.gold : "transparent"}` }), ...revealStyle(reveal, s.id) }}>
-            <Badge color={theme.colors.blue} size={half ? 34 : manySteps ? 36 : 42}>
+          <Fit key={s.id} id={s.id} style={{ ...row(16, { flexShrink: 0, alignItems: "center", background: theme.colors.panelRaised, borderRadius: 12, padding: half ? "10px 18px" : manySteps ? "12px 18px" : "14px 20px", border: `2px solid ${reveal.focused(s.id) ? theme.colors.gold : "transparent"}` }), ...revealStyle(reveal, s.id) }}>
+            <Badge color={theme.colors.blue} size={half ? 34 : manySteps ? 36 : 40}>
               {i + 1}
             </Badge>
-            <Label color={theme.colors.blue} style={{ width: half ? 120 : 150, flex: "none" }}>
+            <Label color={theme.colors.blue} style={{ width: half ? 120 : 160, flex: "none" }}>
               {text(s.label, `data.steps[${i}].label`)}
             </Label>
-            <MathTex latex={s.latex} size={half ? 32 : manySteps ? 36 : 40} color={theme.colors.text} />
+            <MathTex latex={s.latex} size={half ? 30 : manySteps ? 34 : 38} color={theme.colors.text} />
           </Fit>
         ))}
-        <Fit id={data.result.id} style={{ ...row(18, { alignItems: "center", background: theme.colors.background, border: `3px solid ${theme.colors.gold}`, borderRadius: theme.radius.card, padding: half ? "12px 20px" : manySteps ? "14px 22px" : "18px 24px" }), ...revealStyle(reveal, data.result.id) }}>
-          <Icon name="check" color={theme.colors.gold} size={manySteps ? 32 : 36} />
-          <Body color={theme.colors.textMuted} size={half ? undefined : manySteps ? 28 : 30}>{text(data.result.label, "data.result.label")}</Body>
-          <div style={{ marginLeft: "auto", fontSize: half ? 44 : manySteps ? 48 : 56, fontWeight: 700, color: theme.colors.gold }}>{text(data.result.display, "data.result.display")}</div>
+        <Fit id={data.result.id} style={{ ...row(16, { flexShrink: 0, alignItems: "center", background: theme.colors.background, border: `3px solid ${theme.colors.gold}`, borderRadius: theme.radius.card, padding: half ? "12px 20px" : manySteps ? "14px 20px" : "16px 22px" }), ...revealStyle(reveal, data.result.id) }}>
+          <Icon name="check" color={theme.colors.gold} size={manySteps ? 30 : 34} />
+          <Body color={theme.colors.textMuted} size={half ? 24 : manySteps ? 26 : isHi ? 26 : 28}>{text(data.result.label, "data.result.label")}</Body>
+          <div style={{ marginLeft: "auto", fontSize: half ? 40 : manySteps ? 44 : 50, fontWeight: 700, color: theme.colors.gold }}>{text(data.result.display, "data.result.display")}</div>
         </Fit>
-        <Fit id="conclusion" style={{ ...row(14, { alignItems: "flex-start" }), ...revealStyle(reveal, "conclusion") }}>
-          <Icon name="bulb" color={theme.colors.teal} size={30} style={{ marginTop: 2 }} />
-          <Body size={half ? undefined : manySteps ? 26 : 29}>
+        <Fit id="conclusion" style={{ ...row(14, { flexShrink: 0, alignItems: "flex-start", padding: "2px 0" }), ...revealStyle(reveal, "conclusion") }}>
+          <Icon name="bulb" color={theme.colors.teal} size={28} style={{ marginTop: 2 }} />
+          <Body size={half ? 22 : manySteps ? 24 : isHi ? 24 : 27}>
             <Rich value={data.conclusion} path="data.conclusion" />
           </Body>
         </Fit>

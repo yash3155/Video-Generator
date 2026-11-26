@@ -258,7 +258,13 @@ _Synthesize quantitative hedging lessons and bridge to Chapter 4 Interest Rates_
 
 - en: Without dedicated, committed credit lines capable of withstanding severe marking-to-market margin calls, even a mathematically perfect hedge can force a solvent corporation into bankruptcy, exactly as witnessed in the Metallgesellschaft disaster.
 - hi: Agar aapki company ke paas marking-to-market margin calls jhelne ke liye committed credit lines nahi hain, toh mathematically correct hedge bhi aapko bankruptcy ke kagaar par khada kar sakta hai, jaisa Metallgesellschaft ke sath hua.
-- on screen: Roadmap milestone marker and intellectual bridge to Chapter 4
+- on screen: Committed credit lines survival lesson
+
+**s10b3** (mentor; facts F01)
+
+- en: Looking ahead on our course roadmap, Chapter 4 turns to Interest Rates. You will learn continuous compounding, treasury zero rates, and how treasurers bootstrap the zero curve from coupon bonds.
+- hi: Hamare course roadmap par aage, Chapter 4 mein hum Interest Rates padhenge. Aap continuous compounding, treasury zero rates, aur coupon bonds se zero curve bootstrap karna seekhenge.
+- on screen: Roadmap milestone marker and intellectual bridge to Chapter 4 Interest Rates
 
 ## Scene 11: Eight Rules to Remember
 
@@ -296,6 +302,6 @@ _Institutional rules codifying cross hedging, beta adjustments, and roll risk_
 
 **s11b6** (mentor; facts F01, F02, F08)
 
-- en: Master these eight rules to navigate real-world cross hedging with complete institutional discipline. You are now prepared for Chapter 4.
-- hi: इन 8 rules ko yaad rakhkar aap real-world cross hedging ko puri discipline ke saath manage kar sakte hain. Ab aap Chapter 4 ke liye taiyar hain.
+- en: Master these eight rules to navigate real-world cross hedging with complete institutional discipline. Next in Chapter 4, we explore interest rates, compounding conventions, and bootstrapping zero curves.
+- hi: इन 8 rules ko yaad rakhkar aap real-world cross hedging ko puri discipline ke saath manage kar sakte hain. Next Chapter 4 mein hum interest rates, compounding, aur zero curve bootstrapping seekhenge.
 - on screen: Compact final summary overview of all 8 rules

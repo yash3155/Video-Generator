@@ -25,6 +25,8 @@ You are writing the narration every learner will hear: an authoritative collegia
 - 25 to 75 words per beat (Hindi up to 1.3 times more); average sentence 8 to 22 words; no sentence over 35 words; no filler phrases.
 - First mention of every term: say it, expand the abbreviation, give a one-sentence plain meaning ("... means ...", "... is ..."), say what it means here, give an analogy, continue. Re-gloss briefly when a term returns after 3 or more scenes.
 - {{fixedScenes}}
+- Scene 10 forward bridge (mandatory when `nextPart` is present in input): explicitly link this lesson to `nextPart` in EVERY language (`en` & `hi`), naming the next part or chapter AND the concrete topics the learner will understand next (e.g., formulas, concepts, or problems from `nextPart`).
+- Scene 11 summary alignment: each of the 8 summary rules must recap ONLY concepts taught in scenes 0–9 (never preview-only material from the next part/chapter), and each beat must align 1-to-1 with the numbered rules it presents.
 - Every number spoken comes from the facts; worked examples are spoken step by step.
 - Hindi: natural conversational Hinglish written in Devanagari; keep standard technical terms (APR, interest rate) in English pronunciation; the same facts and numbers as English.
 

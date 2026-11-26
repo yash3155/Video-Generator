@@ -86,4 +86,27 @@ describe("structure helpers", () => {
     expect(checkHook(ep)).toEqual([]);
     expect(checkSummary(ep)).toEqual([]);
   });
+
+  it("flags summary rules that mismatch beat narration or cover untaught preview content (P-08)", () => {
+    const ep = Episode.parse(rawEpisode());
+    const sum = ep.scenes.find((s) => s.template === "summary_thread")!;
+    if (sum.template === "summary_thread") {
+      sum.data.rules[7] = {
+        id: "r8",
+        title: "Metallgesellschaft Stack and Roll",
+        text: "Contango markets turn stack and roll hedges into catastrophic margin call drains.",
+      };
+    }
+    const findings = checkSummary(ep);
+    expect(findings.some((f) => f.id === "P-08" && f.severity === "HIGH" && /does not match/.test(f.message))).toBe(true);
+    expect(findings.some((f) => f.id === "P-08" && f.severity === "HIGH" && /not taught in this part/.test(f.message))).toBe(true);
+  });
+
+  it("flags scene 10 missing forward bridge or wrong next-chapter topics (P-04)", () => {
+    const ep = Episode.parse(rawEpisode());
+    const s10 = ep.scenes.find((s) => s.index === 10)!;
+    s10.beats[2].narration.en.display = "Review these compounding rules carefully and practice them on your own.";
+    const findings = runAllChecks(ep);
+    expect(findings.some((f) => f.id === "P-04" && f.severity === "HIGH" && /forward link/.test(f.message))).toBe(true);
+  });
 });

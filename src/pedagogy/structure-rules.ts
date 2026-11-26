@@ -3,8 +3,42 @@ import type { Episode, Scene } from "../schemas/episode";
 import type { LessonPlan } from "../schemas/plan";
 import type { Topology } from "../schemas/storyboard";
 import type { TemplateId } from "../remotion/templates/schemas";
+import { richTextToPlain } from "../core/richtext";
 import { finding, type QaFinding } from "../qa/finding";
+import { contentWords } from "./concept-register";
 import { countWords, splitSentences } from "./narration-metrics";
+
+export interface NextPartInfo {
+  chapterId: string;
+  partId: string;
+  chapterNumber: number;
+  chapterTitle: string;
+  partTitle: string;
+  summary?: string;
+  sections: string[];
+}
+
+const stem = (w: string) => w.replace(/(ing|ed|es|s)$/u, "");
+const SUMMARY_GENERIC = new Set(["rule", "rules", "number", "numbers", "principle", "principles", "pillar", "pillars"]);
+
+function meaningfulStems(text: string): string[] {
+  return [...new Set(contentWords(text).map(stem).filter((w) => w.length >= 3 && !SUMMARY_GENERIC.has(w)))];
+}
+
+function scenePlainStrings(scene: Scene): string[] {
+  const out: string[] = [scene.title, ...scene.takeaways];
+  const walk = (v: unknown) => {
+    if (typeof v === "string") out.push(v);
+    else if (Array.isArray(v)) v.forEach(walk);
+    else if (v && typeof v === "object") {
+      const o = v as Record<string, unknown>;
+      if ("type" in o && "text" in o) out.push(richTextToPlain(v as never));
+      else for (const [k, x] of Object.entries(o)) if (k !== "id" && k !== "template" && k !== "latex") walk(x);
+    }
+  };
+  walk(scene.data);
+  return out.filter(Boolean);
+}
 
 /** D.5 spoiler regex. */
 export const SPOILER_RE = /\((?:correct|answer|true|right|उचित|सही|उत्तर)\)/i;
@@ -81,8 +115,8 @@ export function checkProgression(ep: Episode, plan: LessonPlan): QaFinding[] {
   return out;
 }
 
-/** P-04: causal chain card, prediction question, guided application before the quiz, misconception vs reality, roadmaps in scenes 0 and 10. */
-export function checkRequiredElements(ep: Episode, plan?: LessonPlan): QaFinding[] {
+/** P-04: causal chain card, prediction question, guided application before the quiz, misconception vs reality, roadmaps in scenes 0 and 10, and forward bridge to next part/chapter. */
+export function checkRequiredElements(ep: Episode, plan?: LessonPlan, nextPart?: NextPartInfo | null): QaFinding[] {
   const out: QaFinding[] = [];
   const chain = ep.scenes.map((s) => panelData<{ links: { role: string }[] }>(s, "causal_chain")).find(Boolean);
   if (!chain) out.push(finding("P-04", "HIGH", "no causal chain card", "Every part shows Condition -> Action -> Mechanism -> Result -> Consequence.", "Add a causal_chain scene built from the plan's causal chain."));
@@ -112,6 +146,68 @@ export function checkRequiredElements(ep: Episode, plan?: LessonPlan): QaFinding
     if (!s) continue;
     const ok = s.template === "roadmap" || templatesOf(s).includes("roadmap") || ((s.template === "chat_story" || s.template === "technical_panel") && !!s.data.whereWeAre);
     if (!ok) out.push(finding("P-04", "HIGH", `scene ${idx} has no "where we are" roadmap`, "Scenes 0 and 10 position the part in the course.", `Add whereWeAre to scene ${idx}.`, { sceneId: s.id }));
+  }
+  if (ep.kind === "chapter_part" && nextPart !== null) {
+    const s10 = ep.scenes.find((x) => x.index === 10);
+    if (s10) {
+      const nextChRe = nextPart ? new RegExp(`\\b(?:chapter|ch)\\s*0?${nextPart.chapterNumber}\\b`, "i") : /\bchapter\s*\d+\b/i;
+      const hasBridgeEn = new RegExp(
+        `\\b(next|upcoming|ahead|part\\s*(?:2|two|ii)|will\\s+(?:explore|learn|cover|derive|master|examine|build|study|apply|develop|analyze)|bridg(?:e|ing)\\s+to|advancing\\s+(?:next|to))\\b|${nextChRe.source}`,
+        "i",
+      );
+      const hasBridgeHi = /(अगले|आगे|भाग\s*[2२]|पार्ट\s*(?:2|टू|दो)|चैप्टर\s*\d+|सीखेंगे|पढ़ेंगे|समझेंगे|लागू करेंगे|अध्ययन करेंगे|तैयार|मास्टर करेंगे)/u;
+      for (const lang of ep.languages) {
+        const s10Text = narrationOf(s10, lang).join(" ");
+        const baseLang = lang.split("-")[0];
+        const ok = baseLang === "hi" ? hasBridgeHi.test(s10Text) || hasBridgeEn.test(s10Text) : hasBridgeEn.test(s10Text);
+        if (!ok) {
+          out.push(
+            finding(
+              "P-04",
+              "HIGH",
+              `scene 10 (${lang}) has no forward link explaining what the learner will understand next`,
+              "Scene 10 must connect this part to what comes next in the course.",
+              nextPart
+                ? `Add a forward bridge in scene 10 (${lang}) explaining what comes next in Chapter ${nextPart.chapterNumber} ${nextPart.partId.toUpperCase()} (${nextPart.partTitle}).`
+                : `Add a forward bridge in scene 10 (${lang}) naming the next part or chapter and its key topics.`,
+              { sceneId: s10.id, lang },
+            ),
+          );
+        }
+      }
+      if (nextPart) {
+        const displayLang = ep.languages.includes(ep.displayLanguage) ? ep.displayLanguage : ep.languages[0];
+        const bridgeBeatText = s10.beats.slice(-1)[0]?.narration[displayLang]?.display ?? "";
+        const screenText = scenePlainStrings(s10).join(" ");
+        const topicStems = meaningfulStems(`${nextPart.chapterTitle} ${nextPart.partTitle} ${nextPart.summary ?? ""}`).filter(
+          (w) => !["part", "chapter", "method", "theories", "strategy", "strategies", "mechanics", "principles", "basic", "rate", "rates"].includes(w),
+        );
+        const bridgeStems = new Set(meaningfulStems(bridgeBeatText));
+        const screenStems = new Set(meaningfulStems(screenText));
+        const nextNumHit = nextChRe.test(bridgeBeatText) || (nextPart.chapterId === ep.chapterId && /\bpart\s*(?:2|two|ii)\b/i.test(bridgeBeatText));
+        const topicMatch = topicStems.length === 0 || (topicStems.some((w) => bridgeStems.has(w)) && (topicStems.some((w) => screenStems.has(w)) || nextNumHit));
+        if (!topicMatch) {
+          out.push(
+            finding(
+              "P-04",
+              "HIGH",
+              `scene 10 does not describe what comes next (${nextPart.chapterId}/${nextPart.partId}: "${nextPart.partTitle}")`,
+              "The forward bridge in scene 10 must name concrete topics from the upcoming part/chapter.",
+              `In scene 10's final beat and on-screen roadmap, explicitly preview Chapter ${nextPart.chapterNumber} ${nextPart.partId.toUpperCase()}: ${nextPart.partTitle}.`,
+              { sceneId: s10.id },
+            ),
+          );
+        }
+      }
+      if (s10.template === "roadmap") {
+        if (!s10.data.items.some((it) => it.status === "next"))
+          out.push(finding("P-04", "HIGH", "scene 10 roadmap has no upcoming 'next' item", "The roadmap must show what the learner will study next.", "Add a status: \"next\" item for the upcoming part or chapter.", { sceneId: s10.id }));
+      } else if ((s10.template === "chat_story" || s10.template === "technical_panel") && s10.data.whereWeAre) {
+        const w = s10.data.whereWeAre;
+        if (w.current >= w.items.length - 1)
+          out.push(finding("P-04", "HIGH", "scene 10 whereWeAre roadmap shows no upcoming step after current", "The WHERE WE ARE panel must show the next part or chapter after the current item.", "Add the upcoming part/chapter to whereWeAre.items and keep current before the last item.", { sceneId: s10.id }));
+      }
+    }
   }
   return out;
 }
@@ -166,7 +262,7 @@ const SUMMARY_RANGES: [number, number][] = [
   [1, 8],
 ];
 
-/** P-08: 8 rules of at most 30 words, 6 beats with the fixed ranges, narration names the rules shown. */
+/** P-08: 8 rules of at most 30 words, 6 beats with the fixed ranges, narration names the rules shown, per-rule narration alignment, and taught-in-part grounding. */
 export function checkSummary(ep: Episode): QaFinding[] {
   const out: QaFinding[] = [];
   const s = ep.scenes.find((x) => x.template === "summary_thread");
@@ -178,6 +274,30 @@ export function checkSummary(ep: Episode): QaFinding[] {
     if (n > 30) out.push(finding("P-08", "MEDIUM", `rule ${i + 1} has ${n} words (max 30)`, "Rules must be short enough to read in a glance.", `Shorten rule ${i + 1}.`, ctx));
   });
   if (s.beats.length !== 6) out.push(finding("P-08", "HIGH", `summary has ${s.beats.length} beats, expected 6`, "Ranges [0,0],[1,2],[3,4],[5,6],[7,8],[1,8].", "Use the six fixed summary beats.", ctx));
+  const displayLang = ep.languages.includes(ep.displayLanguage) ? ep.displayLanguage : ep.languages[0];
+  const quizIdx = ep.scenes.find((x) => x.template === "interactive_quiz")?.index ?? s.index;
+  const taughtCoreText = ep.scenes
+    .filter((x) => x.index <= quizIdx)
+    .map((x) => `${narrationOf(x, displayLang).join(" ")} ${scenePlainStrings(x).join(" ")}`)
+    .join(" ");
+  const taughtCoreStems = new Set(meaningfulStems(taughtCoreText));
+  const s10 = ep.scenes.find((x) => x.index === 10 && x.index < s.index);
+  const bridgeRegex = /\b(next\s+chapter|part\s*2|part\s*two|bridge\s+to|preview|will\s+(?:develop|explore|learn|cover|master|apply))\b/i;
+  const s10BridgeText = s10
+    ? s10.beats
+        .filter((b) => bridgeRegex.test(b.narration[displayLang]?.display ?? "") || bridgeRegex.test(b.onScreenIntent))
+        .map((b) => b.narration[displayLang]?.display ?? "")
+        .join(" ")
+    : "";
+  const s10BridgeStems = new Set(meaningfulStems(s10BridgeText));
+  const s10SynthText = s10
+    ? s10.beats
+        .filter((b) => !bridgeRegex.test(b.narration[displayLang]?.display ?? "") && !bridgeRegex.test(b.onScreenIntent))
+        .map((b) => b.narration[displayLang]?.display ?? "")
+        .join(" ")
+    : "";
+  const taughtAllStems = new Set([...taughtCoreStems, ...meaningfulStems(s10SynthText)]);
+
   s.beats.forEach((b, i) => {
     const want = SUMMARY_RANGES[i];
     if (!want) return;
@@ -189,6 +309,46 @@ export function checkSummary(ep: Episode): QaFinding[] {
       const need = i === 5 ? [8] : want;
       const missing = need.filter((k) => !mentionsNumber(n.display, k, lang));
       if (missing.length) out.push(finding("P-08", "HIGH", `${b.id} (${lang}) does not name rule ${missing.join(" and ")}`, "Narration must name the rule numbers shown.", `Say "rule ${missing.join(" and ")}" in ${b.id}.`, { ...ctx, beatId: b.id, lang }));
+    }
+    if (i >= 1 && i <= 4) {
+      const beatStems = new Set(meaningfulStems(b.narration[displayLang]?.display ?? ""));
+      for (let k = want[0]; k <= want[1]; k++) {
+        const rule = s.data.rules[k - 1];
+        if (!rule) continue;
+        const ruleStems = meaningfulStems(`${rule.title} ${rule.text}`);
+        const hits = ruleStems.filter((w) => beatStems.has(w)).length;
+        if (ruleStems.length >= 3 && (hits < 2 || hits / ruleStems.length < 0.25)) {
+          out.push(
+            finding(
+              "P-08",
+              "HIGH",
+              `summary rule ${k} ("${rule.title}") does not match what ${b.id} narrates`,
+              "Each summary rule shown on screen must match the rule spoken in that beat.",
+              `Align rule ${k} on screen with ${b.id}'s narration (1-to-1 rule numbering).`,
+              { ...ctx, beatId: b.id, lang: displayLang },
+            ),
+          );
+        }
+      }
+    }
+  });
+
+  s.data.rules.forEach((rule, idx) => {
+    const k = idx + 1;
+    const ruleStems = meaningfulStems(`${rule.title} ${rule.text}`);
+    const taughtHits = ruleStems.filter((w) => taughtAllStems.has(w)).length;
+    const bridgeOnly = ruleStems.filter((w) => !taughtCoreStems.has(w) && s10BridgeStems.has(w));
+    if (ruleStems.length >= 4 && (taughtHits / ruleStems.length < 0.55 || bridgeOnly.length >= 2)) {
+      out.push(
+        finding(
+          "P-08",
+          "HIGH",
+          `summary rule ${k} ("${rule.title}") covers material not taught in this part${bridgeOnly.length >= 2 ? ` (only in next-part preview: ${bridgeOnly.slice(0, 3).join(", ")})` : ""}`,
+          "Summary rules must recap only concepts taught in this video, never upcoming preview topics.",
+          `Rewrite rule ${k} to summarize a concept taught in scenes 0-${quizIdx} of this part.`,
+          ctx,
+        ),
+      );
     }
   });
   return out;

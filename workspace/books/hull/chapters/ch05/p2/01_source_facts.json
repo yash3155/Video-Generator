@@ -6,17 +6,55 @@
     {
       "id": "F01",
       "category": "formula",
-      "statement": "Stock index futures are priced using continuous dividend yield: F_0 = S_0 * e^((r - q) * T), where q is annualized dividend yield of the index.",
+      "statement": "Stock index futures are priced using continuous dividend yield q: F0 = S0 * exp((r - q) * T), where q is the annualized dividend yield on the constituent stock basket.",
       "citation": {
         "chapter": "5",
         "section": "5.4",
         "page": "111"
+      },
+      "formula": {
+        "id": "f_idx_fut",
+        "latex": "F_0 = S_0 e^{(r - q)T}",
+        "expression": "S0 * exp((r - q) * T)",
+        "solvesFor": "F0",
+        "variables": [
+          {
+            "symbol": "F0",
+            "latex": "F_0",
+            "meaning": "Stock index futures fair price",
+            "unit": "points"
+          },
+          {
+            "symbol": "S0",
+            "latex": "S_0",
+            "meaning": "Current stock index spot level",
+            "unit": "points"
+          },
+          {
+            "symbol": "r",
+            "latex": "r",
+            "meaning": "Continuous risk-free rate",
+            "unit": "per year"
+          },
+          {
+            "symbol": "q",
+            "latex": "q",
+            "meaning": "Continuous annualized dividend yield",
+            "unit": "per year"
+          },
+          {
+            "symbol": "T",
+            "latex": "T",
+            "meaning": "Time to expiration",
+            "unit": "years"
+          }
+        ]
       }
     },
     {
       "id": "F02",
       "category": "definition",
-      "statement": "Index arbitrage involves trading index futures and a basket of constituent stocks via program trading when the spread exceeds transaction costs (arbitrage band).",
+      "statement": "Index arbitrage trades index futures against baskets of 500 constituent shares via program trading once mispricings exceed the transaction-cost arbitrage band. Quarterly unwinds trigger Triple Witching Hour volume surges.",
       "citation": {
         "chapter": "5",
         "section": "5.4",
@@ -26,17 +64,55 @@
     {
       "id": "F03",
       "category": "formula",
-      "statement": "Covered Interest Parity (CIP) states that forward foreign exchange rate is F_0 = S_0 * e^((r - r_f) * T), where S_0 is domestic currency per foreign currency, r is domestic risk-free rate, and r_f is foreign risk-free rate.",
+      "statement": "Covered Interest Parity states that currency forward exchange rates satisfy F0 = S0 * exp((r - rf) * T), where S0 is domestic per foreign unit, r is domestic rate, and rf is foreign risk-free rate.",
       "citation": {
         "chapter": "5",
         "section": "5.7",
         "page": "116"
+      },
+      "formula": {
+        "id": "f_fx_cip",
+        "latex": "F_0 = S_0 e^{(r - r_f)T}",
+        "expression": "S0 * exp((r - rf) * T)",
+        "solvesFor": "F0",
+        "variables": [
+          {
+            "symbol": "F0",
+            "latex": "F_0",
+            "meaning": "Theoretical forward exchange rate",
+            "unit": "USD/FX"
+          },
+          {
+            "symbol": "S0",
+            "latex": "S_0",
+            "meaning": "Spot exchange rate today",
+            "unit": "USD/FX"
+          },
+          {
+            "symbol": "r",
+            "latex": "r",
+            "meaning": "Domestic continuous risk-free rate",
+            "unit": "per year"
+          },
+          {
+            "symbol": "rf",
+            "latex": "r_f",
+            "meaning": "Foreign continuous risk-free rate",
+            "unit": "per year"
+          },
+          {
+            "symbol": "T",
+            "latex": "T",
+            "meaning": "Time to delivery",
+            "unit": "years"
+          }
+        ]
       }
     },
     {
       "id": "F04",
       "category": "definition",
-      "statement": "Covered interest arbitrage exploits CIP deviations: borrowing currency with lower synthetic cost and lending in higher yielding currency, fully hedged via forward contracts.",
+      "statement": "Covered interest arbitrage exploits deviations from parity by borrowing one currency, converting spot, investing at the foreign rate, and locking forward conversion for riskless profit.",
       "citation": {
         "chapter": "5",
         "section": "5.7",
@@ -46,37 +122,151 @@
     {
       "id": "F05",
       "category": "formula",
-      "statement": "For investment commodities with storage cost rate u as a fraction of price, F_0 = S_0 * e^((r + u) * T). Storage costs act like negative dividend yield.",
+      "statement": "For investment commodities with continuous storage cost rate u, futures follow F0 = S0 * exp((r + u) * T). Storage acts like a negative dividend yield.",
       "citation": {
         "chapter": "5",
         "section": "5.10",
         "page": "121"
+      },
+      "formula": {
+        "id": "f_inv_comm",
+        "latex": "F_0 = S_0 e^{(r + u)T}",
+        "expression": "S0 * exp((r + u) * T)",
+        "solvesFor": "F0",
+        "variables": [
+          {
+            "symbol": "F0",
+            "latex": "F_0",
+            "meaning": "Investment commodity futures price",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "S0",
+            "latex": "S_0",
+            "meaning": "Spot commodity price",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "r",
+            "latex": "r",
+            "meaning": "Continuous risk-free rate",
+            "unit": "per year"
+          },
+          {
+            "symbol": "u",
+            "latex": "u",
+            "meaning": "Annual storage cost fraction",
+            "unit": "per year"
+          },
+          {
+            "symbol": "T",
+            "latex": "T",
+            "meaning": "Time to expiration",
+            "unit": "years"
+          }
+        ]
       }
     },
     {
       "id": "F06",
       "category": "formula",
-      "statement": "For consumption commodities, convenience yield y reflects non-monetary benefit of physical custody: F_0 = S_0 * e^((r + u - y) * T). Arbitrage enforces only upper bound F_0 <= S_0 * e^((r + u) * T).",
+      "statement": "For consumption commodities, convenience yield y measures non-monetary operational benefits of physical inventory: F0 = S0 * exp((r + u - y) * T), with upper bound F0 <= S0 * exp((r + u) * T).",
       "citation": {
         "chapter": "5",
         "section": "5.11",
         "page": "123"
+      },
+      "formula": {
+        "id": "f_cons_comm",
+        "latex": "F_0 = S_0 e^{(r + u - y)T}",
+        "expression": "S0 * exp((r + u - y) * T)",
+        "solvesFor": "F0",
+        "variables": [
+          {
+            "symbol": "F0",
+            "latex": "F_0",
+            "meaning": "Consumption commodity futures price",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "S0",
+            "latex": "S_0",
+            "meaning": "Spot commodity price",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "r",
+            "latex": "r",
+            "meaning": "Continuous risk-free rate",
+            "unit": "per year"
+          },
+          {
+            "symbol": "u",
+            "latex": "u",
+            "meaning": "Storage cost rate",
+            "unit": "per year"
+          },
+          {
+            "symbol": "y",
+            "latex": "y",
+            "meaning": "Convenience yield of physical inventory",
+            "unit": "per year"
+          },
+          {
+            "symbol": "T",
+            "latex": "T",
+            "meaning": "Time to expiration",
+            "unit": "years"
+          }
+        ]
       }
     },
     {
       "id": "F07",
       "category": "formula",
-      "statement": "The master Cost of Carry equation is F_0 = S_0 * e^(c * T), where c = r for non-income assets, c = r - q for indices, c = r - r_f for foreign currencies, and c = r + u - y for commodities.",
+      "statement": "The unified Cost of Carry equation is F0 = S0 * exp(c * T), where c = r for non-income stocks, r - q for stock indices, r - rf for currencies, and r + u - y for commodities.",
       "citation": {
         "chapter": "5",
         "section": "5.12",
         "page": "125"
+      },
+      "formula": {
+        "id": "f_cost_carry",
+        "latex": "F_0 = S_0 e^{cT}",
+        "expression": "S0 * exp(c * T)",
+        "solvesFor": "F0",
+        "variables": [
+          {
+            "symbol": "F0",
+            "latex": "F_0",
+            "meaning": "Fair forward or futures price",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "S0",
+            "latex": "S_0",
+            "meaning": "Current spot price",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "c",
+            "latex": "c",
+            "meaning": "Net cost of carry rate",
+            "unit": "per year"
+          },
+          {
+            "symbol": "T",
+            "latex": "T",
+            "meaning": "Time to maturity",
+            "unit": "years"
+          }
+        ]
       }
     },
     {
       "id": "F08",
       "category": "definition",
-      "statement": "Delivery options (timing, grade, location) benefit the short party, slightly depressing futures prices relative to forward prices.",
+      "statement": "Contango means futures trade above spot, while Normal Backwardation describes futures trading below expected future spot due to convenience yield or hedger risk transfer. Embedded delivery options for timing, location, and cheapest-to-deliver grade favor the short seller and slightly depress futures prices.",
       "citation": {
         "chapter": "5",
         "section": "5.13",
@@ -86,26 +276,190 @@
     {
       "id": "F09",
       "category": "numerical_example",
-      "statement": "With S_0 = 1.5000 USD/GBP, r_US = 5.0%, r_UK = 8.0%, T = 1 yr, forward rate is F_0 = 1.5000 * e^((0.05 - 0.08) * 1) = 1.5000 * e^(-0.03) = 1.4558 USD/GBP (forward discount).",
+      "statement": "With spot S0 = 1.5000 dollars per pound, US rate r = 5.0% (0.05), UK rate rf = 8.0% (0.08), and T = 1 year, the spread is -0.03 (3% difference) and Covered Interest Parity gives F0 = 1.5000 * exp((0.05 - 0.08) * 1) = 1.4557 dollars per pound (forward discount).",
       "citation": {
         "chapter": "5",
         "section": "5.7",
         "page": "117"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "S0",
+            "label": "Spot exchange rate",
+            "value": 1.5,
+            "unit": "dollars/GBP"
+          },
+          {
+            "symbol": "r",
+            "label": "US risk-free rate",
+            "value": 0.05,
+            "unit": "per year"
+          },
+          {
+            "symbol": "rf",
+            "label": "UK risk-free rate",
+            "value": 0.08,
+            "unit": "per year"
+          },
+          {
+            "symbol": "T",
+            "label": "Maturity horizon",
+            "value": 1,
+            "unit": "years"
+          }
+        ],
+        "steps": [
+          {
+            "label": "Interest rate spread (3% difference)",
+            "expr": "0.05 - 0.08",
+            "value": -0.03
+          },
+          {
+            "label": "Forward parity exchange rate",
+            "expr": "1.5 * exp((0.05 - 0.08) * 1)",
+            "value": 1.4557
+          }
+        ],
+        "result": {
+          "symbol": "F0",
+          "label": "1-Year Forward Exchange Rate",
+          "value": 1.4557,
+          "unit": "dollars/GBP"
+        },
+        "rounding": 4
+      }
+    },
+    {
+      "id": "F10",
+      "category": "numerical_example",
+      "statement": "With euro spot S0 = 1.2500 dollars per euro, US rate r = 6.0% (0.06), and Eurozone rate rf = 4.0% (0.04) over T = 1 year, F0 = 1.2500 * exp((0.06 - 0.04) * 1) = 1.2753 dollars per euro (a forward premium because r exceeds rf; reversing the spread would falsely suggest 1.2252 and linear summing would give 1.3100).",
+      "citation": {
+        "chapter": "5",
+        "section": "5.7",
+        "page": "117"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "S0",
+            "label": "Euro spot rate",
+            "value": 1.25,
+            "unit": "dollars/euro"
+          },
+          {
+            "symbol": "r",
+            "label": "US rate",
+            "value": 0.06,
+            "unit": "per year"
+          },
+          {
+            "symbol": "rf",
+            "label": "Eurozone rate",
+            "value": 0.04,
+            "unit": "per year"
+          },
+          {
+            "symbol": "T",
+            "label": "Horizon",
+            "value": 1,
+            "unit": "years"
+          }
+        ],
+        "steps": [
+          {
+            "label": "Positive rate spread",
+            "expr": "0.06 - 0.04",
+            "value": 0.02
+          },
+          {
+            "label": "Forward dollar/euro price",
+            "expr": "1.25 * exp((0.06 - 0.04) * 1)",
+            "value": 1.2753
+          }
+        ],
+        "result": {
+          "symbol": "F0",
+          "label": "1-Year Forward Exchange Rate",
+          "value": 1.2753,
+          "unit": "dollars/euro"
+        },
+        "rounding": 4
       }
     }
   ],
   "realWorldProblem": {
-    "actors": "Macro FX trading desks, commodity trading houses, and algorithmic index arbitrageurs",
-    "situation": "Pricing futures contracts and enforcing no-arbitrage bounds across global equity indices, foreign exchange, and physical commodities",
-    "failure": "Ignoring storage costs, convenience yields, or foreign interest rates causes mispriced hedges and millions in trading losses",
-    "invention": "Covered Interest Parity, Program Trading algorithms, and the Unified Cost of Carry model",
+    "actors": "Macro FX desks, commodity trading houses, and algorithmic index arbitrageurs",
+    "situation": "Enforcing forward pricing parity across stock baskets, global currencies, and physical commodities",
+    "failure": "Ignoring trading friction bands, foreign interest rates, or physical convenience yield misprices hedges",
+    "invention": "Program trading bands, Covered Interest Parity, and the Unified Cost of Carry model",
     "factIds": [
       "F01",
+      "F02",
       "F03",
       "F05",
       "F06",
-      "F07",
-      "F09"
+      "F07"
     ]
-  }
+  },
+  "terms": [
+    {
+      "term": "index arbitrage",
+      "definition": "Simultaneous trading of stock index futures and constituent equity baskets to capture spread.",
+      "factId": "F02"
+    },
+    {
+      "term": "program trading",
+      "definition": "Automated computer routing executing orders across hundreds of constituent shares instantaneously.",
+      "factId": "F02"
+    },
+    {
+      "term": "arbitrage band",
+      "definition": "Transaction-cost corridor around fair value within which arbitrage is unprofitable.",
+      "factId": "F02"
+    },
+    {
+      "term": "Covered Interest Parity",
+      "fullForm": "CIP",
+      "definition": "No-arbitrage FX theorem equating forward exchange premiums to interest rate differentials.",
+      "factId": "F03"
+    },
+    {
+      "term": "covered interest arbitrage",
+      "definition": "Borrowing low-carry currency, investing in foreign bills, and selling proceeds forward.",
+      "factId": "F04"
+    },
+    {
+      "term": "storage costs",
+      "definition": "Warehousing and insurance outlays u that lift investment metal futures prices.",
+      "factId": "F05"
+    },
+    {
+      "term": "convenience yield",
+      "definition": "Non-monetary benefit y of holding physical commodity inventory for operational continuity.",
+      "factId": "F06"
+    },
+    {
+      "term": "cost of carry",
+      "definition": "Net holding rate c combining financing interest, storage costs, and income yields.",
+      "factId": "F07"
+    },
+    {
+      "term": "contango",
+      "definition": "Upward-sloping futures curve regime where futures prices trade above spot.",
+      "factId": "F08"
+    },
+    {
+      "term": "delivery options",
+      "definition": "Short-party privileges covering delivery timing, warehouse location, and asset grade.",
+      "factId": "F08"
+    }
+  ],
+  "dependencies": {
+    "earlier": [
+      "ch05/p1"
+    ],
+    "later": []
+  },
+  "quotes": []
 }

@@ -87,6 +87,8 @@ export interface PartQaInput {
   langs: string[];
   /** Selected scene indices (--scenes); undefined for all scenes. */
   scenes?: number[];
+  /** Next part in the course (for P-04 forward-bridge check; null if last part, undefined if unknown). */
+  nextPart?: ContentContext["nextPart"];
   others: OtherPart[];
   partDir: string;
   draft: boolean;
@@ -128,7 +130,7 @@ export function runPartChecks(o: PartQaInput): PartQaResult {
 
   const topologies: Partial<Record<number, Topology>> = Object.fromEntries(brief.scenes.map((s) => [s.index, s.topology]));
   runs.push(scriptChecks(script, { cfg: o.cfg, facts, register }, o.kind));
-  runs.push(episodeChecks(ep, { cfg: o.cfg, facts, register, plan, topologies, others: o.others }));
+  runs.push(episodeChecks(ep, { cfg: o.cfg, facts, register, plan, topologies, nextPart: o.nextPart, others: o.others }));
   runs.push({ findings: cueChecks(ep, foldText), ran: ["A-06"], skipped: {} });
   const selected = o.scenes?.length ? ep.scenes.filter((s) => o.scenes!.includes(s.index)) : ep.scenes;
   runs.push(

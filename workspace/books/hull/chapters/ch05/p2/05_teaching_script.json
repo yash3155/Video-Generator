@@ -1,0 +1,897 @@
+{
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "scenes": [
+    {
+      "index": 0,
+      "title": "Macro Markets: Indices, Currencies & Commodities",
+      "purpose": "Problem-first hook extending no-arbitrage pricing to indices, FX, and physical commodities",
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "novice",
+          "narration": {
+            "en": {
+              "display": "How can arbitrage desks replicate a 500-stock index, global currencies, and crude oil barrels in seconds?"
+            },
+            "hi": {
+              "display": "आर्बिट्राज डेस्क कुछ ही सेकंड में 500 स्टॉक्स के इंडेक्स, विदेशी मुद्राओं और कच्चे तेल को कैसे रेप्लिकेट करते हैं?"
+            }
+          },
+          "onScreenIntent": "Novice raises macro replication problem",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Most derivatives volume trades macro markets, where desks confront 500-stock baskets, foreign money-market rates, and physical storage vaults."
+            },
+            "hi": {
+              "display": "डेरिवेटिव्स का अधिकांश कारोबार मैक्रो बाजारों में होता है, जहां 500 शेयरों के बास्केट, विदेशी ब्याज दरों और भौतिक गोदामों की चुनौती होती है।"
+            }
+          },
+          "onScreenIntent": "Mentor frames operational obstacles in macro markets",
+          "sourceFactIds": [
+            "F02",
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Automated baskets, foreign rates, and warehouse vaults all simplify under cost of carry. Cost of carry means the net rate unifying financing, storage, and yields."
+            },
+            "hi": {
+              "display": "ऑटोमेटेड बास्केट, विदेशी दरें और गोदाम सब कॉस्ट ऑफ कैरी से जुड़ते हैं, जिसका अर्थ है ब्याज, स्टोरेज और यील्ड को जोड़ने वाली शुद्ध दर।"
+            }
+          },
+          "onScreenIntent": "Define cost of carry early to anchor architecture",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [
+            "cost of carry"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part 2, we master 500-stock basket replication, foreign interest rates for global currencies, physical warehouse commodities, and one master Cost of Carry formula."
+            },
+            "hi": {
+              "display": "पार्ट 2 में हम 500 स्टॉक्स की बास्केट रेप्लिकेशन, ग्लोबल करेंसी फॉरवर्ड्स, कमोडिटी स्टोरेज और एकीकृत कॉस्ट ऑफ कैरी फॉर्मूले में महारत हासिल करेंगे।"
+            }
+          },
+          "onScreenIntent": "Preview Part 2 learning map",
+          "sourceFactIds": [
+            "F02",
+            "F03",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Stock Index Futures & Program Trading",
+      "purpose": "Explain how index arbitrage and automated program trading replicate constituent stock baskets",
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Stock index futures follow our continuous yield formula F zero equals S zero exp(r minus q times T), aggregating index dividends smoothly."
+            },
+            "hi": {
+              "display": "स्टॉक इंडेक्स फ्यूचर्स हमारे फॉर्मूले एफ जीरो बराबर एस जीरो ई की पावर आर माइनस क्यू टी पर चलते हैं, जहां क्यू कुल डिविडेंड यील्ड है।"
+            }
+          },
+          "onScreenIntent": "Connect Part 1 continuous yield formula to index futures",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When index quotes drift apart, desks launch index arbitrage, which means trading index futures against weighted baskets of all 500 stocks."
+            },
+            "hi": {
+              "display": "जब इंडेक्स कोट भटकते हैं, तो डेस्क इंडेक्स आर्बिट्राज करते हैं, जिसका अर्थ है फ्यूचर्स के साथ 500 शेयरों के बास्केट का एक साथ व्यापार करना।"
+            }
+          },
+          "onScreenIntent": "Define index arbitrage on 500-stock basket",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "index arbitrage"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Humans cannot route 500 tickets fast enough. Instead, firms deploy program trading, which means computerized order engines hitting every stock simultaneously."
+            },
+            "hi": {
+              "display": "इंसान 500 ऑर्डर इतनी तेजी से नहीं लगा सकते। इसके लिए कंपनियां प्रोग्राम ट्रेडिंग का इस्तेमाल करती हैं, जिसका अर्थ है कंप्यूटर द्वारा एक साथ सभी शेयर ट्रेड करना।"
+            }
+          },
+          "onScreenIntent": "Define program trading millisecond execution",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "program trading"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Arbitrage Bands, FX Myths & Triple Witching",
+      "purpose": "Contrast frictionless textbook myths with arbitrage bands and quarterly expiration surges",
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Real markets are not zero-fee. Commissions and spreads form an arbitrage band, which means a narrow zone around fair value where trading loses money."
+            },
+            "hi": {
+              "display": "असली बाजार बिना शुल्क के नहीं होते। कमीशन और स्प्रेड एक आर्बिट्राज बैंड बनाते हैं, जिसका अर्थ है सही मूल्य के आसपास वह दायरा जहां ट्रेडिंग घाटे का सौदा है।"
+            }
+          },
+          "onScreenIntent": "Define arbitrage band caused by trading costs",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "arbitrage band"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Beyond the band, program orders flood exchanges, especially during quarterly Triple Witching Hour expirations when huge arbitrage baskets unwind together."
+            },
+            "hi": {
+              "display": "बैंड से बाहर निकलते ही प्रोग्राम ऑर्डर बाढ़ ला देते हैं, खासकर तिमाही ट्रिपल विचिंग आवर पर जब बड़े बास्केट एक साथ अनवाइंड होते हैं।"
+            }
+          },
+          "onScreenIntent": "Highlight Triple Witching expiration volume surges",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Avoid the currency trap too: higher foreign rates do not lift currency forwards higher. Arbitrage forces high-interest currencies to a forward discount."
+            },
+            "hi": {
+              "display": "विदेशी मुद्रा के भ्रम से भी बचें: ऊंची विदेशी ब्याज दरें फॉरवर्ड कोट को ऊपर नहीं धकेलतीं, बल्कि ऊंचे ब्याज वाली मुद्रा को फॉरवर्ड डिस्काउंट पर लाती हैं।"
+            }
+          },
+          "onScreenIntent": "Reveal misconception verdict on FX forward discount",
+          "sourceFactIds": [
+            "F03",
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Currency Forwards: Covered Interest Parity",
+      "purpose": "Derive Covered Interest Parity by modeling foreign interest rf as continuous dividend yield",
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Hold foreign cash in London or Tokyo, and it earns the foreign risk-free interest rate rf continuously, behaving just like a dividend yield."
+            },
+            "hi": {
+              "display": "लंदन या टोक्यो में रखी विदेशी मुद्रा लगातार विदेशी रिस्क-फ्री दर आरएफ कमाती है, जो बिल्कुल डिविडेंड यील्ड की तरह काम करती है।"
+            }
+          },
+          "onScreenIntent": "Model foreign currency interest rf as continuous yield",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Replacing q with rf produces Covered Interest Parity, which means currency forward rates strictly mirror the domestic minus foreign interest rate spread."
+            },
+            "hi": {
+              "display": "क्यू की जगह आरएफ रखने से कवर्ड इंटरेस्ट पैरिटी बनता है, जिसका अर्थ है करेंसी फॉरवर्ड दरें घरेलू और विदेशी ब्याज अंतर के बराबर रहती हैं।"
+            }
+          },
+          "onScreenIntent": "Define Covered Interest Parity formula and spread",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [
+            "Covered Interest Parity"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "When domestic interest r beats foreign rate rf, the foreign currency trades at a premium; when foreign rf exceeds r, it trades at a discount."
+            },
+            "hi": {
+              "display": "जब घरेलू दर आर विदेशी दर आरएफ से अधिक हो, तो विदेशी मुद्रा प्रीमियम पर ट्रेड करती है; अन्यथा वह डिस्काउंट पर ट्रेड करती है।"
+            }
+          },
+          "onScreenIntent": "Explain forward premium and discount regimes",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Covered Interest Arbitrage Mechanics",
+      "purpose": "Trace the causal chain enforcing Covered Interest Parity across global money markets",
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Whenever currency quotes violate parity, desks fire covered interest arbitrage, which means borrowing one currency, converting spot, investing abroad, and hedging forward."
+            },
+            "hi": {
+              "display": "जब करेंसी कोट पैरिटी तोड़ते हैं, तो डेस्क कवर्ड इंटरेस्ट आर्बिट्राज करते हैं, जिसका अर्थ है एक मुद्रा उधार लेकर दूसरी में निवेश करना और फॉरवर्ड हेज लगाना।"
+            }
+          },
+          "onScreenIntent": "Trigger condition and define covered interest arbitrage",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "covered interest arbitrage"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "While foreign treasury bills earn rf, locking the forward sale price today completely removes any exchange rate fluctuation risk."
+            },
+            "hi": {
+              "display": "विदेशी बिल पर आरएफ ब्याज कमाते हुए आज ही फॉरवर्ड बिक्री मूल्य लॉक करने से करेंसी उतार-चढ़ाव का सारा जोखिम खत्म हो जाता है।"
+            }
+          },
+          "onScreenIntent": "Lock forward conversion eliminating currency exposure",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "At delivery, converted domestic funds exceed the initial loan repayment, locking riskless spread and snapping currency quotes right back to parity."
+            },
+            "hi": {
+              "display": "डिलीवरी पर कनवर्ट की गई घरेलू राशि शुरुआती लोन से अधिक होती है, जिससे बिना जोखिम मुनाफा मिलता है और कोट तुरंत पैरिटी पर लौट आता है।"
+            }
+          },
+          "onScreenIntent": "Repay domestic loan and close arbitrage spread",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "title": "Worked Example: USD/GBP Forward Discount",
+      "purpose": "Solve textbook numerical example calculating 1-year USD/GBP forward rate at 1.4557",
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us price a currency forward directly. Spot exchange trades at 1.5000 dollars per British pound, US rates sit at 5.0%, and UK rates pay 8.0% for 1 year."
+            },
+            "hi": {
+              "display": "आइए एक करेंसी फॉरवर्ड की गणना करें। स्पॉट दर 1.5000 डॉलर प्रति पाउंड है, अमेरिकी दर 5.0% है और यूके दर 1 वर्ष के लिए 8.0% है।"
+            }
+          },
+          "onScreenIntent": "Display spot S0=1.5000, r=5.0%, rf=8.0%, T=1",
+          "sourceFactIds": [
+            "F03",
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Compute rate spread r minus rf first: UK rate 8.0% minus US 5.0% makes spread negative. Will the forward pound trade at a premium or discount?"
+            },
+            "hi": {
+              "display": "पहले ब्याज दर अंतर आर माइनस आरएफ निकालें: यूके दर 8.0% अमेरिकी 5.0% से ज्यादा है, तो क्या फॉरवर्ड पाउंड प्रीमियम पर होगा या डिस्काउंट पर?"
+            }
+          },
+          "onScreenIntent": "Prediction prompt on rate spread r - rf = -0.03",
+          "sourceFactIds": [
+            "F03",
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "A discount. Multiplying 1.5000 by e to the minus 0.03 yields 1.4557 dollars per pound, neutralizing the extra 3% British interest."
+            },
+            "hi": {
+              "display": "डिस्काउंट पर। 1.5000 को ई की पावर माइनस 0.03 से गुणा करने पर 1.4557 डॉलर प्रति पाउंड आता है, जो अतिरिक्त 3% यूके ब्याज को बराबर कर देता है।"
+            }
+          },
+          "onScreenIntent": "Reveal result 1.4557 dollars per GBP",
+          "sourceFactIds": [
+            "F03",
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "title": "Commodities: Storage Costs & Convenience Yield",
+      "purpose": "Derive commodity carry adding storage u and subtracting physical convenience yield y",
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Turning to commodities, holding gold or silver incurs storage costs, which means vault warehousing and insurance expenses u added directly onto financing rate r."
+            },
+            "hi": {
+              "display": "कमोडिटीज में सोना या चांदी रखने पर स्टोरेज कॉस्ट लगती है, जिसका अर्थ है गोदाम और बीमा खर्च यू जिसे फाइनेंसिंग दर आर में जोड़ा जाता है।"
+            }
+          },
+          "onScreenIntent": "Define storage costs u as negative dividend",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "storage costs"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Alongside vault storage outlays u, firms holding oil or copper earn convenience yield, which means the operational security benefit y of keeping physical inventory."
+            },
+            "hi": {
+              "display": "गोदाम स्टोरेज खर्च यू के साथ तेल या तांबे में कंपनियों को कन्वीनिएंस यील्ड मिलता है, जिसका अर्थ है सप्लाई की कमी के समय भौतिक स्टॉक पास रखने का परिचालन लाभ वाई।"
+            }
+          },
+          "onScreenIntent": "Define convenience yield y on consumption goods",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "convenience yield"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because refineries cannot easily short oil barrels in storage, futures obey only an upper bound below compounded storage cost r plus u."
+            },
+            "hi": {
+              "display": "क्योंकि रिफाइनरी भंडारित तेल के बैरल आसानी से शॉर्ट नहीं कर सकतीं, इसलिए फ्यूचर्स केवल आर प्लस यू की ऊपरी सीमा का पालन करते हैं।"
+            }
+          },
+          "onScreenIntent": "Highlight upper bound F0 <= S0 exp((r + u)T)",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "title": "Unified Cost of Carry Architecture",
+      "purpose": "Synthesize all asset classes inside Hull's single Cost of Carry equation",
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "John Hull unites non-income stocks, equity indexes, and every market inside one equation: F zero equals S zero exp(cT), where continuous financing and yield define cost of carry c."
+            },
+            "hi": {
+              "display": "जॉन हल नॉन-इनकम स्टॉक, इक्विटी इंडेक्स और सभी बाजारों को एक समीकरण में समेटते हैं: एफ जीरो बराबर एस जीरो ई की पावर सीटी, जिसे नेट कॉस्ट ऑफ कैरी सी चलाती है।"
+            }
+          },
+          "onScreenIntent": "Introduce unified table for F0 = S0 exp(cT)",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "For zero-income stocks c equals r, for equity indices c equals r minus q, and for global currencies c equals r minus rf."
+            },
+            "hi": {
+              "display": "बिना आय वाले शेयरों के लिए सी बराबर आर, इंडेक्स के लिए आर माइनस क्यू और विदेशी मुद्राओं के लिए आर माइनस आरएफ होता है।"
+            }
+          },
+          "onScreenIntent": "Map stocks, indices, and foreign exchange carry c",
+          "sourceFactIds": [
+            "F01",
+            "F03",
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Physical metals add storage cost u, while industrial commodities subtract convenience yield y. One unified carry architecture powers every global desk."
+            },
+            "hi": {
+              "display": "धातुओं में स्टोरेज खर्च यू जुड़ता है, जबकि औद्योगिक कमोडिटीज में कन्वीनिएंस यील्ड वाई घटता है। यह एकीकृत ढांचा हर ग्लोबल डेस्क चलाता है।"
+            }
+          },
+          "onScreenIntent": "Highlight metal and commodity carry rows",
+          "sourceFactIds": [
+            "F05",
+            "F06",
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "title": "Contango, Backwardation & Delivery Options",
+      "purpose": "Contrast upward contango carry forces against downward backwardation and short delivery options",
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Every commodity forward curve reflects a tug of war. Contango means futures prices trade above current spot prices because financing and storage dominate."
+            },
+            "hi": {
+              "display": "हर कमोडिटी कर्व दो ताकतों के बीच खींचतान दिखाता है। कॉन्टैंगो का अर्थ है जब ब्याज और स्टोरेज खर्च हावी होने से फ्यूचर्स दाम स्पॉट से ऊपर रहते हैं।"
+            }
+          },
+          "onScreenIntent": "Define contango on left tug-of-war side",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "contango"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, tight supply yields and hedger selling create normal backwardation below spot, reinforced by delivery options, which means short-seller rights over timing, location, and cheapest grade."
+            },
+            "hi": {
+              "display": "इसके विपरीत, सप्लाई संकट और हेजर्स की बिक्री नॉर्मल बैकवर्डेशन बनाती है, जिसे डिलीवरी ऑप्शंस मजबूत करते हैं जिनका अर्थ है शॉर्ट विक्रेता के समय, स्थान और ग्रेड चुनने के अधिकार।"
+            }
+          },
+          "onScreenIntent": "Define delivery options and backwardation on right panel",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "delivery options"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because exchange delivery options favor the short seller, buyers demand slightly lower futures prices relative to custom forwards."
+            },
+            "hi": {
+              "display": "क्योंकि एक्सचेंज के डिलीवरी ऑप्शंस शॉर्ट विक्रेता के पक्ष में होते हैं, खरीदार कस्टम फॉरवर्ड की तुलना में फ्यूचर्स पर थोड़ी कम कीमत मांगते हैं।"
+            }
+          },
+          "onScreenIntent": "Reveal equilibrium resolution panel",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "title": "Active Recall: EUR/USD Covered Interest Parity",
+      "purpose": "3-beat interactive quiz solving 1-year EUR/USD forward premium 1.2753",
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Now apply Covered Interest Parity yourself. Spot euro trades at 1.2500 dollars per euro, US rates pay 6.0%, and Eurozone rates pay 4.0%. Find the 1-year forward rate."
+            },
+            "hi": {
+              "display": "अब स्वयं कवर्ड इंटरेस्ट पैरिटी लागू करें। स्पॉट यूरो 1.2500 डॉलर प्रति यूरो है, अमेरिकी दर 6.0% और यूरोजोन दर 4.0% है। 1-वर्ष की फॉरवर्ड दर निकालें।"
+            }
+          },
+          "onScreenIntent": "Present euro/dollar quiz parameters",
+          "sourceFactIds": [
+            "F03",
+            "F10"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and evaluate: subtract the 4.0% foreign rate from the 6.0% US rate, check the sign, and apply exponential compounding to 1.2500."
+            },
+            "hi": {
+              "display": "रुकें और हल करें: 6.0% अमेरिकी दर में से 4.0% विदेशी दर घटाएं, चिन्ह जांचें और 1.2500 पर एक्सपोनेन्शियल कम्पाउंडिंग लागू करें।"
+            }
+          },
+          "onScreenIntent": "Thinking pause while learner evaluates 4 options",
+          "sourceFactIds": [
+            "F03",
+            "F10"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 3500,
+          "transition": false
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option B is right: 1.2753 dollars per euro. Since US rate 6.0% beats Eurozone 4.0%, positive carry compounds 1.2500 up to a forward premium of 1.2753."
+            },
+            "hi": {
+              "display": "विकल्प बी सही है: 1.2753 डॉलर प्रति यूरो। चूंकि अमेरिकी दर 6.0% यूरोजोन की 4.0% से अधिक है, इसलिए सकारात्मक कैरी से 1.2753 का फॉरवर्ड प्रीमियम बनता है।"
+            }
+          },
+          "onScreenIntent": "Reveal Option B: 1.2753 dollars per euro forward premium",
+          "sourceFactIds": [
+            "F03",
+            "F10"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "title": "Macro Carry Synthesis & Bridge to Chapter 6",
+      "purpose": "Synthesize Chapter 5 macro forward pricing and bridge clearly to Chapter 6 Interest Rate Futures",
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Chapter 5 unifies equities, metals, and industrial goods inside one carry model, while brokerage spreads form arbitrage bands limiting program trading."
+            },
+            "hi": {
+              "display": "अध्याय 5 इक्विटी, धातुओं और औद्योगिक वस्तुओं को एक कैरी मॉडल में जोड़ता है, जबकि ब्रोकरेज स्प्रेड प्रोग्राम ट्रेडिंग की आर्बिट्राज सीमाएं तय करते हैं।"
+            }
+          },
+          "onScreenIntent": "Highlight global carry unification synthesis",
+          "sourceFactIds": [
+            "F01",
+            "F03",
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In practice, transaction bands limit micro-arbitrage, while operational convenience yields and short delivery options pull physical commodity futures curves away from textbook ideals."
+            },
+            "hi": {
+              "display": "व्यवहार में, लेन-देन बैंड छोटे आर्बिट्राज को रोकते हैं, जबकि कन्वीनिएंस यील्ड और डिलीवरी ऑप्शंस कमोडिटी कर्व को किताबी आदर्श से थोड़ा अलग रखते हैं।"
+            }
+          },
+          "onScreenIntent": "Highlight friction bands and physical inventory reality",
+          "sourceFactIds": [
+            "F02",
+            "F06",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Looking ahead on our roadmap, Chapter 6 covers Interest Rate Futures: day count conventions, Treasury bond cheapest-to-deliver pricing, Eurodollar futures, and convexity adjustments."
+            },
+            "hi": {
+              "display": "हमारे रोडमैप पर आगे, अध्याय 6 में हम इंटरेस्ट रेट फ्यूचर्स पढ़ेंगे: डे काउंट कन्वेंशन, ट्रेजरी बॉन्ड फ्यूचर्स, यूरोडॉलर फ्यूचर्स और कॉन्वेक्सिटी एडजस्टमेंट।"
+            }
+          },
+          "onScreenIntent": "Roadmap bridge to Chapter 6 Interest Rate Futures",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "title": "Summary Thread: Eight Macro Pricing Rules",
+      "purpose": "Fixed 6-beat summary thread consolidating all 8 macro forward pricing principles from Part 2",
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us summarize all eight macro forward pricing rules from Chapter 5 Part 2 before moving onward to Interest Rate Futures."
+            },
+            "hi": {
+              "display": "इंटरेस्ट रेट फ्यूचर्स की ओर बढ़ने से पहले आइए अध्याय 5 पार्ट 2 के सभी आठ मैक्रो फॉरवर्ड प्राइसिंग नियमों को संक्षेप में दोहराएं।"
+            }
+          },
+          "onScreenIntent": "Overview header of 8 macro pricing rules",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1 executes index arbitrage across 500-stock baskets via program trading. Rule 2 recognizes transaction arbitrage bands and Triple Witching unwind spikes."
+            },
+            "hi": {
+              "display": "नियम 1 प्रोग्राम ट्रेडिंग से 500 शेयरों के बास्केट पर इंडेक्स आर्बिट्राज करता है। नियम 2 आर्बिट्राज बैंड और ट्रिपल विचिंग उतार-चढ़ाव को स्पष्ट करता है।"
+            }
+          },
+          "onScreenIntent": "Rules 1 and 2 displayed",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3 applies Covered Interest Parity using domestic minus foreign interest rates. Rule 4 proves high foreign rates create a forward currency discount."
+            },
+            "hi": {
+              "display": "नियम 3 घरेलू व विदेशी ब्याज अंतर से कवर्ड इंटरेस्ट पैरिटी लागू करता है। नियम 4 दिखाता है कि अधिक विदेशी ब्याज से फॉरवर्ड डिस्काउंट बनता है।"
+            }
+          },
+          "onScreenIntent": "Rules 3 and 4 displayed",
+          "sourceFactIds": [
+            "F03",
+            "F04",
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5 lifts precious metal forwards by storage cost u. Rule 6 deducts physical convenience yield y on consumption goods, enforcing an upper bound."
+            },
+            "hi": {
+              "display": "नियम 5 स्टोरेज खर्च यू से धातुओं के फॉरवर्ड बढ़ाता है। नियम 6 कंजम्प्शन कमोडिटीज से कन्वीनिएंस यील्ड वाई घटाकर ऊपरी सीमा तय करता है।"
+            }
+          },
+          "onScreenIntent": "Rules 5 and 6 displayed",
+          "sourceFactIds": [
+            "F05",
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7 creates a unified framework under Cost of Carry c. Rule 8 balances upward contango against normal backwardation and short delivery edge options."
+            },
+            "hi": {
+              "display": "नियम 7 सभी बाजारों को यूनिफाइड कॉस्ट ऑफ कैरी सी में जोड़ता है। नियम 8 कॉन्टैंगो और नॉर्मल बैकवर्डेशन तथा शॉर्ट डिलीवरी ऑप्शंस को संतुलित करता है।"
+            }
+          },
+          "onScreenIntent": "Rules 7 and 8 displayed",
+          "sourceFactIds": [
+            "F07",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Review all 8 rules from Chapter 5 carefully. Next in Chapter 6: Interest Rate Futures, we master Treasury bond contracts and Eurodollar hedging."
+            },
+            "hi": {
+              "display": "अध्याय 5 के इन सभी 8 नियमों की अच्छी तरह समीक्षा करें। अगले अध्याय 6 यानी इंटरेस्ट रेट फ्यूचर्स में हम ट्रेजरी बॉन्ड और यूरोडॉलर हेजिंग सीखेंगे।"
+            }
+          },
+          "onScreenIntent": "Compact 8-rule overview and transition to Chapter 6",
+          "sourceFactIds": [
+            "F07",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false
+        }
+      ]
+    }
+  ]
+}

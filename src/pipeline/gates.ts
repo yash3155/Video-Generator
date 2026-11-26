@@ -12,7 +12,7 @@ import type { QaReview } from "../schemas/qa";
 import { compileLatex } from "../math/katex-compile";
 import { checkFormulaVariables, recomputeNumbers } from "../math/recompute";
 import { checkLatexSource } from "../math/latex-sanitize";
-import { checkDiversity } from "../pedagogy/structure-rules";
+import { checkDiversity, type NextPartInfo } from "../pedagogy/structure-rules";
 import { cueChecks, episodeChecks, scriptChecks } from "../qa/content";
 import { foldText } from "../tts/speech";
 import { kindLayout } from "./layout";
@@ -59,6 +59,7 @@ export interface FillInput {
   facts: SourceFacts;
   register: ConceptRegister;
   plan: LessonPlan;
+  nextPart?: NextPartInfo | null;
 }
 
 /** Findings that fail a gate: BLOCKER and HIGH. */
@@ -202,7 +203,7 @@ export function fillGate(fill: EpisodeFill, input: FillInput): string[] {
   if (!merged.ok) return merged.problems;
   const ep = merged.episode;
   const topo = Object.fromEntries(input.scaffold.scenes.map((s) => [s.index, s.topology]));
-  const run = episodeChecks(ep, { cfg: input.cfg, facts: input.facts, register: input.register, plan: input.plan, topologies: topo });
+  const run = episodeChecks(ep, { cfg: input.cfg, facts: input.facts, register: input.register, plan: input.plan, topologies: topo, nextPart: input.nextPart });
   return [...blocking(run.findings), ...blocking(cueChecks(ep, foldText))];
 }
 

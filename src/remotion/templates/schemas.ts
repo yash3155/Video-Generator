@@ -73,13 +73,13 @@ export const TechnicalPanelData = z.object({
   presentation: z.enum(["two_party_mechanism", "single_concept", "structured_cards"]).optional(),
   twoParty: TwoPartyMechanismData.optional(),
   pillars: FourPillarFrameworkData.optional(),
-  messages: z.array(z.object({ id: ElId, speaker: z.string().min(1), text: RichText })).optional(),
+  messages: z.array(z.object({ id: ElId, speaker: z.string().min(1), text: RichText, label: z.string().min(1).optional() })).optional(),
   whereWeAre: WhereWeAre.optional(),
 });
 export type TechnicalPanelData = z.infer<typeof TechnicalPanelData>;
 
 export const ChatStoryData = z.object({
-  messages: z.array(z.object({ id: ElId, speaker: z.string().min(1), text: RichText })).min(1).max(6),
+  messages: z.array(z.object({ id: ElId, speaker: z.string().min(1), text: RichText, label: z.string().min(1).optional() })).min(1).max(6),
   whereWeAre: WhereWeAre.optional(),
   presentation: z.enum(["two_party_mechanism", "single_concept", "structured_cards", "chat_bubbles"]).optional(),
   twoParty: TwoPartyMechanismData.optional(),

@@ -1,0 +1,183 @@
+{
+  "scenes": [
+    {
+      "index": 0,
+      "topology": "hook",
+      "visualIntent": "Problem-first hook showing forward prices depend on replication cost, not spot forecasts",
+      "keyElements": [
+        "Forward prices are pinned by replication costs, not market guesses",
+        "No-arbitrage means identical future cash flows carry identical prices today",
+        "Overpriced forwards trigger instant cash-and-carry profits"
+      ],
+      "factIds": [
+        "F01",
+        "F03",
+        "F04",
+        "F06"
+      ]
+    },
+    {
+      "index": 1,
+      "topology": "table",
+      "visualIntent": "Contrast investment assets and consumption assets to explain two-sided vs upper bounds",
+      "keyElements": [
+        "Investment assets allow two-sided arbitrage equality",
+        "Consumption assets cannot easily be shorted physically",
+        "Short-sale limits give consumption assets an upper bound only"
+      ],
+      "factIds": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "index": 2,
+      "topology": "process",
+      "visualIntent": "Causal chain of borrowing shares, paying intermediate dividends, and closing the short",
+      "keyElements": [
+        "Short selling borrows unowned shares to raise immediate spot cash",
+        "Short sellers must compensate lenders for all intermediate dividends",
+        "Forward delivery returns borrowed shares to close the position"
+      ],
+      "factIds": [
+        "F05"
+      ]
+    },
+    {
+      "index": 3,
+      "topology": "formula",
+      "visualIntent": "Derive F0 = S0 exp(rT) and define cash-and-carry arbitrage",
+      "keyElements": [
+        "Non-income forward price compounds spot at risk-free rate: F0 = S0 exp(rT)",
+        "Overpriced forwards trigger cash-and-carry arbitrage",
+        "Financing cost r pins forward value strictly above spot"
+      ],
+      "factIds": [
+        "F03",
+        "F04"
+      ]
+    },
+    {
+      "index": 4,
+      "topology": "worked_example",
+      "visualIntent": "Compute exact 1-year forward price on a dividend-paying stock with prediction prompt",
+      "keyElements": [
+        "Subtract dividend present value I from spot before compounding",
+        "Forward buyers forfeit dividends paid before expiration",
+        "Adjusted spot $58.00 grows at 5.0% to fair price $60.97"
+      ],
+      "factIds": [
+        "F06",
+        "F10"
+      ]
+    },
+    {
+      "index": 5,
+      "topology": "process",
+      "visualIntent": "Trace step-by-step reverse cash-and-carry arbitrage when F0 < S0 exp(rT)",
+      "keyElements": [
+        "Underpriced forwards trigger reverse cash-and-carry arbitrage",
+        "Shorting spot and investing proceeds funds future delivery",
+        "Riskless surplus lifts depressed forward quotes back to fair value"
+      ],
+      "factIds": [
+        "F05"
+      ]
+    },
+    {
+      "index": 6,
+      "topology": "formula",
+      "visualIntent": "Compare discrete dividend PV adjustment I against continuous dividend yield q",
+      "keyElements": [
+        "Discrete dividends subtract cash present value I from spot",
+        "Continuous dividend yield q adjusts net carry rate to (r - q)",
+        "Higher dividend yield reduces the theoretical forward price"
+      ],
+      "factIds": [
+        "F06",
+        "F07"
+      ]
+    },
+    {
+      "index": 7,
+      "topology": "definition",
+      "visualIntent": "Distinguish contractual delivery price K, market forward F0, and mark-to-market value f",
+      "keyElements": [
+        "Delivery price K stays locked at inception when initial value f = 0",
+        "Market forward price F0 shifts continuously as spot prices evolve",
+        "Long contract value equals discounted difference f = (F0 - K) exp(-rT)"
+      ],
+      "factIds": [
+        "F08"
+      ]
+    },
+    {
+      "index": 8,
+      "topology": "comparison",
+      "visualIntent": "Contrast novice pricing myths against no-arbitrage replication and forward-futures convergence",
+      "keyElements": [
+        "Forward quotes do not measure subjective expectations of future spot",
+        "Forward and futures prices match identically under constant rates",
+        "Positive rate correlation slightly lifts futures prices over forwards"
+      ],
+      "factIds": [
+        "F03",
+        "F08",
+        "F11"
+      ]
+    },
+    {
+      "index": 9,
+      "topology": "quiz",
+      "visualIntent": "3-beat interactive quiz calculating arbitrage profit on a $100 stock quoted at $108.00",
+      "keyElements": [
+        "Spot $100 compounded 1 year at 5.0% gives fair forward $105.13",
+        "Market quote $108.00 exceeds fair value by $2.87",
+        "Borrow cash, buy spot, and short forward to capture $2.87"
+      ],
+      "factIds": [
+        "F09",
+        "F04"
+      ]
+    },
+    {
+      "index": 10,
+      "topology": "wisdom",
+      "visualIntent": "Synthesize Part 1 valuation principles and bridge forward to Chapter 5 Part 2 macro assets",
+      "keyElements": [
+        "No-arbitrage replication enforces tight bounds on investment assets",
+        "Dividends and yields reduce forward carry costs proportionally",
+        "Part 2 extends pricing to index arbitrage, FX parity, and commodities"
+      ],
+      "factIds": [
+        "F01",
+        "F03",
+        "F04",
+        "F06",
+        "F07",
+        "F08"
+      ]
+    },
+    {
+      "index": 11,
+      "topology": "summary",
+      "visualIntent": "Fixed 6-beat summary codifying all 8 core forward pricing rules taught in Part 1",
+      "keyElements": [
+        "No-arbitrage replication enforces pricing across investment assets",
+        "Cash dividends and yields adjust carry directly",
+        "Delivery price K fixes at entry while value f floats"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F05",
+        "F03",
+        "F04",
+        "F06",
+        "F07",
+        "F08",
+        "F11"
+      ]
+    }
+  ]
+}

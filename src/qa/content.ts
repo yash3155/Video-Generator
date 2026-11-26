@@ -100,6 +100,8 @@ export interface ContentContext {
   register: ConceptRegister;
   plan?: LessonPlan;
   topologies?: Partial<Record<number, Topology>>;
+  /** Next part in the course (for P-04 forward-bridge verification; null if last part, undefined if unknown). */
+  nextPart?: S.NextPartInfo | null;
   /** Text of other parts in the workspace (C-05, C-06); undefined skips those checks. */
   others?: OtherPart[];
 }
@@ -241,7 +243,7 @@ export function episodeChecks(ep: Episode, ctx: ContentContext): CheckRun {
   f.push(...S.checkHook(ep));
   if (ctx.plan) f.push(...S.checkProgression(ep, ctx.plan));
   else run.skipped["P-02"] = "no lesson plan";
-  f.push(...S.checkRequiredElements(ep, ctx.plan).filter((x) => kind === "chapter_part" || !/causal chain|roadmap/.test(x.message)));
+  f.push(...S.checkRequiredElements(ep, ctx.plan, ctx.nextPart).filter((x) => kind === "chapter_part" || !/causal chain|roadmap|forward link/.test(x.message)));
   f.push(...S.checkQuiz(ep), ...S.checkSummary(ep), ...S.checkDiversity(S.diversityScenesFromEpisode(ep, ctx.topologies)));
   for (const lang of ep.languages) {
     const beats = beatRefs(ep, lang);

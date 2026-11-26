@@ -61,13 +61,13 @@ const Footer: React.FC<{ takeaways: string[] }> = ({ takeaways }) => {
   const { theme, lang } = useRc();
   const h = theme.layout.footerHeight;
   return (
-    <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: h, background: theme.colors.panel, borderTop: `2px solid ${theme.colors.border}`, padding: "14px 56px 18px", display: "flex", flexDirection: "column", gap: 10 }}>
+    <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: h, background: theme.colors.panel, borderTop: `2px solid ${theme.colors.border}`, padding: "10px 56px 12px", display: "flex", flexDirection: "column", gap: 6 }}>
       <Label color={theme.colors.gold}>{ui(lang).pointsToRemember}</Label>
       <div style={{ display: "flex", gap: 20, flex: 1, minHeight: 0 }}>
         {takeaways.slice(0, 3).map((t, i) => (
           <Fit key={i} id={`takeaway-${i}`} style={{ flex: 1, display: "flex", gap: 12, alignItems: "flex-start" }}>
-            <Icon name="check" color={theme.colors.teal} size={26} style={{ marginTop: 2 }} />
-            <div style={{ fontSize: 24, lineHeight: 1.3, color: theme.colors.text }}>{text(t, `takeaways[${i}]`)}</div>
+            <Icon name="check" color={theme.colors.teal} size={24} style={{ marginTop: 2 }} />
+            <div style={{ fontSize: 21, lineHeight: 1.25, color: theme.colors.text }}>{text(t, `takeaways[${i}]`)}</div>
           </Fit>
         ))}
       </div>

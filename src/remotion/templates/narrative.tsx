@@ -192,20 +192,28 @@ export const TechnicalPanel: React.FC<{ data: TechnicalPanelData | ChatStoryData
         </Fit>
 
         {data.whereWeAre ? (
-          <Fit id="where" style={col(14, { width: size === "half" ? 280 : 380, flex: "none", background: theme.colors.panelRaised, borderRadius: theme.radius.card, border: `2px solid ${theme.colors.border}`, padding: "22px 24px" })}>
+          <Fit id="where" style={col(14, { width: size === "half" ? 280 : 400, flex: "none", background: theme.colors.panelRaised, borderRadius: theme.radius.card, border: `2px solid ${theme.colors.border}`, padding: "22px 24px" })}>
             <Label color={theme.colors.gold}>{data.whereWeAre.label === "WHERE WE ARE" ? L.whereWeAre : text(data.whereWeAre.label, "data.whereWeAre.label")}</Label>
             {data.whereWeAre.items.map((it, i) => {
               const cur = i === data.whereWeAre!.current;
               const done = i < data.whereWeAre!.current;
-              const color = cur ? theme.colors.gold : done ? theme.colors.teal : theme.colors.textMuted;
+              const next = i === data.whereWeAre!.current + 1;
+              const color = cur ? theme.colors.gold : done ? theme.colors.teal : next ? theme.colors.blue : theme.colors.textMuted;
               return (
                 <div key={i} style={row(14, { alignItems: "center" })}>
                   <Badge color={color} filled={cur} size={34}>
                     {done ? <Icon name="check" color={theme.colors.textOnAccent} size={20} /> : <span style={{ fontSize: 16 }}>{i + 1}</span>}
                   </Badge>
-                  <Body size={22} color={cur ? theme.colors.text : theme.colors.textMuted} style={{ fontWeight: cur ? 700 : 400 }}>
-                    {text(it, `data.whereWeAre.items[${i}]`)}
-                  </Body>
+                  <div style={col(2, { flex: 1 })}>
+                    {next ? (
+                      <Label color={theme.colors.blue} style={{ fontSize: 18, letterSpacing: 1.1 }}>
+                        {L.status.next}
+                      </Label>
+                    ) : null}
+                    <Body size={22} color={cur || next ? theme.colors.text : theme.colors.textMuted} style={{ fontWeight: cur ? 700 : next ? 600 : 400 }}>
+                      {text(it, `data.whereWeAre.items[${i}]`)}
+                    </Body>
+                  </div>
                 </div>
               );
             })}
@@ -312,20 +320,28 @@ export const TechnicalPanel: React.FC<{ data: TechnicalPanelData | ChatStoryData
         </Fit>
 
         {data.whereWeAre ? (
-          <Fit id="where" style={col(14, { width: size === "half" ? 280 : 380, flex: "none", background: theme.colors.panelRaised, borderRadius: theme.radius.card, border: `2px solid ${theme.colors.border}`, padding: "22px 24px" })}>
+          <Fit id="where" style={col(14, { width: size === "half" ? 280 : 400, flex: "none", background: theme.colors.panelRaised, borderRadius: theme.radius.card, border: `2px solid ${theme.colors.border}`, padding: "22px 24px" })}>
             <Label color={theme.colors.gold}>{data.whereWeAre.label === "WHERE WE ARE" ? L.whereWeAre : text(data.whereWeAre.label, "data.whereWeAre.label")}</Label>
             {data.whereWeAre.items.map((it, i) => {
               const cur = i === data.whereWeAre!.current;
               const done = i < data.whereWeAre!.current;
-              const color = cur ? theme.colors.gold : done ? theme.colors.teal : theme.colors.textMuted;
+              const next = i === data.whereWeAre!.current + 1;
+              const color = cur ? theme.colors.gold : done ? theme.colors.teal : next ? theme.colors.blue : theme.colors.textMuted;
               return (
                 <div key={i} style={row(14, { alignItems: "center" })}>
                   <Badge color={color} filled={cur} size={34}>
                     {done ? <Icon name="check" color={theme.colors.textOnAccent} size={20} /> : <span style={{ fontSize: 16 }}>{i + 1}</span>}
                   </Badge>
-                  <Body size={22} color={cur ? theme.colors.text : theme.colors.textMuted} style={{ fontWeight: cur ? 700 : 400 }}>
-                    {text(it, `data.whereWeAre.items[${i}]`)}
-                  </Body>
+                  <div style={col(2, { flex: 1 })}>
+                    {next ? (
+                      <Label color={theme.colors.blue} style={{ fontSize: 18, letterSpacing: 1.1 }}>
+                        {L.status.next}
+                      </Label>
+                    ) : null}
+                    <Body size={22} color={cur || next ? theme.colors.text : theme.colors.textMuted} style={{ fontWeight: cur ? 700 : next ? 600 : 400 }}>
+                      {text(it, `data.whereWeAre.items[${i}]`)}
+                    </Body>
+                  </div>
                 </div>
               );
             })}
@@ -337,6 +353,15 @@ export const TechnicalPanel: React.FC<{ data: TechnicalPanelData | ChatStoryData
 
   // 3. Structured Collegiate Presentation Cards (replacing on-screen chat bubbles)
   const messages = data.messages ?? [];
+  const isClosingBridge = Boolean(data.whereWeAre && data.whereWeAre.current > 0);
+  const cardLabel = (m: (typeof messages)[number], i: number) => {
+    if (m.label) return text(m.label, `data.messages[${i}].label`);
+    if (isClosingBridge) {
+      if (i === messages.length - 1) return "WHAT'S NEXT";
+      return i === 0 ? "KEY SYNTHESIS" : i === 1 ? "PRACTICAL REALITY" : "TAKEAWAY";
+    }
+    return i === 0 ? "PROBLEM-FIRST HOOK" : i === 1 ? "CONTEXT & ACTORS" : i === 2 ? "THE COMMERCIAL TRAP" : "INVENTION & RESOLUTION";
+  };
   return (
     <div style={row(theme.space.gap, { height: "100%" })}>
       <Fit id="chat" style={col(16, { flex: 1, justifyContent: "center", padding: "4px 8px" })}>
@@ -363,7 +388,7 @@ export const TechnicalPanel: React.FC<{ data: TechnicalPanelData | ChatStoryData
                 </Badge>
                 <div style={{ flex: 1 }}>
                   <Label color={color} style={{ fontSize: 18, letterSpacing: 1.2, marginBottom: 4 }}>
-                    {i === 0 ? "PROBLEM-FIRST HOOK" : i === 1 ? "CONTEXT & ACTORS" : i === 2 ? "THE COMMERCIAL TRAP" : "INVENTION & RESOLUTION"}
+                    {cardLabel(m, i)}
                   </Label>
                   <Body size={24}>
                     <Rich value={m.text} path={`data.messages[${i}].text`} />
@@ -375,20 +400,28 @@ export const TechnicalPanel: React.FC<{ data: TechnicalPanelData | ChatStoryData
         })}
       </Fit>
       {data.whereWeAre ? (
-        <Fit id="where" style={col(14, { width: size === "half" ? 300 : 430, flex: "none", background: theme.colors.panelRaised, borderRadius: theme.radius.card, border: `2px solid ${theme.colors.border}`, padding: "22px 24px" })}>
+        <Fit id="where" style={col(14, { width: size === "half" ? 300 : 440, flex: "none", background: theme.colors.panelRaised, borderRadius: theme.radius.card, border: `2px solid ${theme.colors.border}`, padding: "22px 24px" })}>
           <Label color={theme.colors.gold}>{data.whereWeAre.label === "WHERE WE ARE" ? L.whereWeAre : text(data.whereWeAre.label, "data.whereWeAre.label")}</Label>
           {data.whereWeAre.items.map((it, i) => {
             const cur = i === data.whereWeAre!.current;
             const done = i < data.whereWeAre!.current;
-            const color = cur ? theme.colors.gold : done ? theme.colors.teal : theme.colors.textMuted;
+            const next = i === data.whereWeAre!.current + 1;
+            const color = cur ? theme.colors.gold : done ? theme.colors.teal : next ? theme.colors.blue : theme.colors.textMuted;
             return (
               <div key={i} style={row(14, { alignItems: "center" })}>
                 <Badge color={color} filled={cur} size={34}>
                   {done ? <Icon name="check" color={theme.colors.textOnAccent} size={20} /> : <span style={{ fontSize: 16 }}>{i + 1}</span>}
                 </Badge>
-                <Body size={24} color={cur ? theme.colors.text : theme.colors.textMuted} style={{ fontWeight: cur ? 700 : 400 }}>
-                  {text(it, `data.whereWeAre.items[${i}]`)}
-                </Body>
+                <div style={col(2, { flex: 1 })}>
+                  {next ? (
+                    <Label color={theme.colors.blue} style={{ fontSize: 18, letterSpacing: 1.1 }}>
+                      {L.status.next}
+                    </Label>
+                  ) : null}
+                  <Body size={22} color={cur || next ? theme.colors.text : theme.colors.textMuted} style={{ fontWeight: cur ? 700 : next ? 600 : 400 }}>
+                    {text(it, `data.whereWeAre.items[${i}]`)}
+                  </Body>
+                </div>
               </div>
             );
           })}
@@ -466,7 +499,7 @@ export const ProgressiveCards: React.FC<{ data: ProgressiveCardsData }> = ({ dat
                 {text(c.title, `data.cards[${i}].title`)}
               </Heading>
             </div>
-            <Fit id={`${c.id}-body`} style={singleRow ? { flex: "none", maxHeight: "70%" } : { flex: 1 }}>
+            <Fit id={`${c.id}-body`} style={singleRow ? { flex: "none", maxHeight: "70%", padding: "6px 0" } : { flex: 1, padding: "6px 0" }}>
               <Body size={bodySize}>
                 <Rich value={c.body} path={`data.cards[${i}].body`} />
               </Body>

@@ -9,8 +9,8 @@ Chapter parts follow a canonical 12-scene structure. Orientation and Synthesis v
 | 2 | progressive_cards | 4 | The four pillars of the solution: the part's roadmap. |
 | 3 to 8 | chosen per concept | 1 to 3 each | Deep dive: definitions, mechanisms, formulas, charts, causal chains, worked example, guided application, limitations. |
 | 9 | interactive_quiz | 3 | b1: the question (a scenario of at least 18 words) with four options A to D in a 2x2 grid. b2: thinking pause of at least 3 seconds, spinner visible, options visible. b3: reveal: the correct option turns green with a check badge, the others fade to 45% opacity, and an explanation banner appears. |
-| 10 | chat_story | 2 to 3 | Mentor wisdom tied back to the opening trap; misconception versus reality; "where we are" roadmap. |
-| 11 | summary_thread | 6 | Exactly 8 rules. Beats show ranges [0,0] roadmap, [1,2], [3,4], [5,6], [7,8] (rule 8 gets its own spotlight), then [1,8] as a compact two-column overview. The narration names the rule numbers shown. |
+| 10 | chat_story / roadmap | 2 to 3 | Mentor wisdom tied back to the opening trap; misconception versus reality; "where we are" roadmap with an explicit forward link (both narration and on-screen upcoming step) detailing what the learner will understand in the next part or chapter. |
+| 11 | summary_thread | 6 | Exactly 8 rules recapping only concepts taught in this part (no preview-only topics). Beats show ranges [0,0] roadmap, [1,2], [3,4], [5,6], [7,8] (rule 8 gets its own spotlight), then [1,8] as a compact two-column overview. Each rule on screen matches the narration 1-to-1. |
 
 ## Diversity engine
 

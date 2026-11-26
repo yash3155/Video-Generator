@@ -1,0 +1,266 @@
+{
+  "outcomes": [
+    "Distinguish investment assets from consumption assets under arbitrage bounds.",
+    "Derive forward prices for non-income, discrete-dividend, and continuous-yield assets.",
+    "Execute cash-and-carry and reverse cash-and-carry replication trades.",
+    "Separate delivery price K, market forward price F0, and contract value f."
+  ],
+  "coreConcepts": [
+    {
+      "conceptId": "K05",
+      "term": "cash-and-carry arbitrage",
+      "stages": {
+        "intuition": {
+          "sceneIndex": 0,
+          "note": "Locking identical future cash flows forces identical prices today"
+        },
+        "why": {
+          "sceneIndex": 0,
+          "note": "Forecasting errors lose money; replication enforces strict pricing"
+        },
+        "what": {
+          "sceneIndex": 3,
+          "note": "Formula F0 = S0 exp(rT) and arbitrage condition F0 > S0 exp(rT)"
+        },
+        "how": {
+          "sceneIndex": 2,
+          "note": "Borrowing, buying spot, and shorting forward replication steps"
+        },
+        "workedExample": {
+          "sceneIndex": 4,
+          "note": "Dividend-adjusted forward example ($60 spot, $2 PV div, $60.97 F0)"
+        },
+        "guided": {
+          "sceneIndex": 4,
+          "note": "Predicting the dividend deduction before compounding forward"
+        },
+        "independent": {
+          "sceneIndex": 9,
+          "note": "Active recall quiz solving $100 stock quoted at $108"
+        },
+        "limitations": {
+          "sceneIndex": 1,
+          "note": "Consumption assets lack short sales so only upper bound holds"
+        }
+      }
+    },
+    {
+      "conceptId": "K09",
+      "term": "contract value",
+      "stages": {
+        "intuition": {
+          "sceneIndex": 7,
+          "note": "Resale ticket value after market quotes shift away from K"
+        },
+        "why": {
+          "sceneIndex": 8,
+          "note": "Novices confuse forward delivery price F0 with mark-to-market worth f"
+        },
+        "what": {
+          "sceneIndex": 7,
+          "note": "f = (F0 - K) exp(-rT) starting from zero at initiation"
+        },
+        "how": {
+          "sceneIndex": 7,
+          "note": "Discounting difference between new quote F0 and locked delivery K"
+        },
+        "workedExample": {
+          "sceneIndex": 4,
+          "note": "Using risk-free compounding across delivery horizon T"
+        },
+        "guided": {
+          "sceneIndex": 6,
+          "note": "Subtracting dividend present value I from spot price S0"
+        },
+        "independent": {
+          "sceneIndex": 9,
+          "note": "Independent arbitrage strategy selection quiz"
+        },
+        "limitations": {
+          "sceneIndex": 8,
+          "note": "Daily futures margin differs from forwards only under stochastic rates"
+        }
+      }
+    }
+  ],
+  "misconception": {
+    "myth": "Forward prices are market forecasts of future spot prices, and forward value equals forward price.",
+    "reality": "Forward prices reflect mechanical replication carry, while contract value f starts at zero when K equals F0.",
+    "factIds": [
+      "F03",
+      "F08",
+      "F11"
+    ],
+    "sceneIndex": 8
+  },
+  "predictionQuestions": [
+    {
+      "question": "Before multiplying by exp(0.05), why must we subtract the $2.00 dividend from the $60.00 spot price?",
+      "sceneIndex": 4,
+      "revealBeat": "s04b3"
+    }
+  ],
+  "causalChain": {
+    "condition": "Observed market forward quote falls below theoretical value: F0 < S0 * exp(rT).",
+    "action": "Traders execute short selling of spot shares from a custodian and collect cash proceeds.",
+    "mechanism": "Lenders receive any intermediate dividends while cash compounds at risk-free rate r.",
+    "result": "Traders take forward delivery at K to return borrowed stock at expiration.",
+    "consequence": "Net guaranteed profit enforces the lower no-arbitrage pricing boundary.",
+    "factIds": [
+      "F05"
+    ],
+    "sceneIndex": 2
+  },
+  "sceneOutline": [
+    {
+      "index": 0,
+      "purpose": "Problem-first hook: Forecasting myth versus no-arbitrage replication",
+      "concepts": [
+        "K01"
+      ],
+      "factIds": [
+        "F01",
+        "F03"
+      ]
+    },
+    {
+      "index": 1,
+      "purpose": "Asset classification: Investment vs Consumption bounds",
+      "concepts": [
+        "K02",
+        "K03"
+      ],
+      "factIds": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "index": 2,
+      "purpose": "Short selling mechanics and passing dividends to the lender",
+      "concepts": [
+        "K04"
+      ],
+      "factIds": [
+        "F05"
+      ]
+    },
+    {
+      "index": 3,
+      "purpose": "Core no-arbitrage forward formula and cash-and-carry condition",
+      "concepts": [
+        "K01",
+        "K05"
+      ],
+      "factIds": [
+        "F03",
+        "F04"
+      ]
+    },
+    {
+      "index": 4,
+      "purpose": "Worked example: Dividend-adjusted forward price ($60.97)",
+      "concepts": [
+        "K05"
+      ],
+      "factIds": [
+        "F06",
+        "F10"
+      ]
+    },
+    {
+      "index": 5,
+      "purpose": "Reverse cash-and-carry flow enforcing lower boundary",
+      "concepts": [
+        "K06",
+        "K04"
+      ],
+      "factIds": [
+        "F05"
+      ]
+    },
+    {
+      "index": 6,
+      "purpose": "Formula breakdown: Known cash income and continuous dividend yield q",
+      "concepts": [
+        "K07"
+      ],
+      "factIds": [
+        "F06",
+        "F07"
+      ]
+    },
+    {
+      "index": 7,
+      "purpose": "Progressive cards: Delivery price K vs contract value f",
+      "concepts": [
+        "K08",
+        "K09"
+      ],
+      "factIds": [
+        "F08"
+      ]
+    },
+    {
+      "index": 8,
+      "purpose": "Misconception split: Forecasting fallacy & deterministic vs stochastic rates",
+      "concepts": [
+        "K01",
+        "K09"
+      ],
+      "factIds": [
+        "F03",
+        "F08",
+        "F11"
+      ]
+    },
+    {
+      "index": 9,
+      "purpose": "Interactive quiz: Cash-and-carry profit on $100 stock quoted at $108",
+      "concepts": [
+        "K05"
+      ],
+      "factIds": [
+        "F04",
+        "F09"
+      ]
+    },
+    {
+      "index": 10,
+      "purpose": "Wisdom & bridge to Part 2: Index arbitrage, FX parity & commodities",
+      "concepts": [
+        "K01",
+        "K05"
+      ],
+      "factIds": [
+        "F03",
+        "F07",
+        "F08"
+      ]
+    },
+    {
+      "index": 11,
+      "purpose": "Summary thread: Eight rules of forward valuation Part 1",
+      "concepts": [
+        "K02",
+        "K03",
+        "K04",
+        "K05",
+        "K06",
+        "K07",
+        "K08",
+        "K09"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08"
+      ]
+    }
+  ]
+}
