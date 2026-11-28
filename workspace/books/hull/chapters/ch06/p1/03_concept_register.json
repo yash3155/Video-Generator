@@ -1,0 +1,169 @@
+{
+  "concepts": [
+    {
+      "id": "K01",
+      "term": "day count convention",
+      "kind": "term",
+      "plainMeaning": "Market rule counting days between coupons to calculate exact accrued interest.",
+      "roleHere": "Sets accrued interest across Treasury, corporate, and money-market securities.",
+      "connectsTo": "accrued interest",
+      "analogy": "Prorating monthly apartment rent cleanly by the exact calendar days you stayed.",
+      "depth": "L2",
+      "familiarity": "new",
+      "aliases": [
+        "day count conventions"
+      ],
+      "factIds": [
+        "F01"
+      ]
+    },
+    {
+      "id": "K02",
+      "term": "dirty price",
+      "kind": "term",
+      "plainMeaning": "Total cash price actually paid for a bond, adding accrued interest to quoted clean price.",
+      "roleHere": "Separates quoted screen price from true settlement cash.",
+      "connectsTo": "clean price",
+      "analogy": "Seeing a menu price plus mandatory service charge when paying your restaurant bill.",
+      "depth": "L2",
+      "familiarity": "new",
+      "aliases": [
+        "Cash Price"
+      ],
+      "factIds": [
+        "F02"
+      ]
+    },
+    {
+      "id": "K03",
+      "term": "clean price",
+      "kind": "term",
+      "plainMeaning": "The quoted bond price displayed without accrued coupon interest.",
+      "roleHere": "Base price adjusted by Conversion Factor inside Treasury futures.",
+      "connectsTo": "dirty price",
+      "analogy": "The sticker tag before adding prorated coupon interest owed to the seller.",
+      "depth": "L2",
+      "familiarity": "new",
+      "aliases": [
+        "Quoted Price"
+      ],
+      "factIds": [
+        "F02"
+      ]
+    },
+    {
+      "id": "K04",
+      "term": "Conversion Factor",
+      "fullForm": "CF",
+      "kind": "term",
+      "plainMeaning": "Standardizing multiplier valuing a bond as if its yield were 6.0% semi-annual.",
+      "roleHere": "Allows heterogeneous Treasury bonds to settle into one futures contract.",
+      "connectsTo": "Invoice Price",
+      "analogy": "Currency exchange weights converting foreign coins into one uniform score.",
+      "depth": "L3",
+      "familiarity": "new",
+      "aliases": [
+        "CF",
+        "conversion factor"
+      ],
+      "factIds": [
+        "F04",
+        "F09"
+      ]
+    },
+    {
+      "id": "K05",
+      "term": "Invoice Price",
+      "kind": "concept",
+      "plainMeaning": "Actual cash settlement amount equals settlement times conversion factor plus accrued interest.",
+      "roleHere": "Governs cash wired to the short seller upon physical bond delivery.",
+      "connectsTo": "Conversion Factor",
+      "analogy": "Scaling a standardized ticket by grade multiplier plus accrued daily storage.",
+      "depth": "L3",
+      "familiarity": "new",
+      "aliases": [
+        "invoice price"
+      ],
+      "factIds": [
+        "F05",
+        "F09",
+        "F10"
+      ]
+    },
+    {
+      "id": "K06",
+      "term": "Cheapest-to-Deliver",
+      "fullForm": "CTD",
+      "kind": "concept",
+      "plainMeaning": "The specific eligible Treasury bond minimizing net purchase minus delivery proceeds.",
+      "roleHere": "Determines which real bond tracks CBOT Treasury bond futures.",
+      "connectsTo": "Conversion Factor",
+      "analogy": "A contractor choosing the lowest-cost approved material that satisfies building specs.",
+      "depth": "L3",
+      "familiarity": "new",
+      "aliases": [
+        "CTD",
+        "cheapest-to-deliver"
+      ],
+      "factIds": [
+        "F06",
+        "F07"
+      ]
+    },
+    {
+      "id": "K07",
+      "term": "Wild Card play",
+      "kind": "concept",
+      "plainMeaning": "Short delivery option capturing late-day bond drops between 2:00 PM settlement and 8:00 PM cutoff.",
+      "roleHere": "Timing edge built into CBOT settlement rules.",
+      "connectsTo": "Cheapest-to-Deliver",
+      "analogy": "Locking an afternoon auction price while keeping until evening to choose whether to ship.",
+      "depth": "L3",
+      "familiarity": "new",
+      "aliases": [
+        "Wild Card Play"
+      ],
+      "factIds": [
+        "F08"
+      ]
+    },
+    {
+      "id": "K08",
+      "term": "CBOT",
+      "fullForm": "Chicago Board of Trade",
+      "kind": "acronym",
+      "plainMeaning": "Major derivatives exchange organizing Treasury bond futures settlement and delivery rules.",
+      "roleHere": "Exchange governing the 15-year delivery basket and 2:00 PM / 8:00 PM clock.",
+      "connectsTo": "Cheapest-to-Deliver",
+      "analogy": "The central clearinghouse stadium setting delivery rules for Treasury futures.",
+      "depth": "L1",
+      "familiarity": "new",
+      "aliases": [
+        "Chicago Board of Trade"
+      ],
+      "factIds": [
+        "F03",
+        "F08"
+      ]
+    },
+    {
+      "id": "K09",
+      "term": "accrued interest",
+      "kind": "term",
+      "plainMeaning": "Coupon interest earned since the last payment date and owed to the bond seller.",
+      "roleHere": "Added to clean price to get dirty cash settlement and invoice totals.",
+      "connectsTo": "dirty price",
+      "analogy": "Prorated daily rent earned between billing dates.",
+      "depth": "L2",
+      "familiarity": "new",
+      "aliases": [
+        "accrued coupon interest"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F05"
+      ]
+    }
+  ]
+}

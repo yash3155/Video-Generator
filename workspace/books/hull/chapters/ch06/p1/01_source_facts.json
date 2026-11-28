@@ -6,7 +6,7 @@
     {
       "id": "F01",
       "category": "definition",
-      "statement": "Day count conventions define how accrued interest is calculated: Actual/Actual for Treasury bonds, 30/360 for corporate/municipal bonds, and Actual/360 for money market instruments.",
+      "statement": "Day count conventions determine accrued interest fractions: Actual/Actual applies to Treasury bonds, 30/360 applies to corporate and municipal bonds, and Actual/360 applies to money market instruments.",
       "citation": {
         "chapter": "6",
         "section": "6.1",
@@ -16,17 +16,43 @@
     {
       "id": "F02",
       "category": "formula",
-      "statement": "Cash Price (Dirty Price) equals Quoted Clean Price plus Accrued Interest: Cash Price = Quoted Price + Accrued Interest.",
+      "statement": "Cash Price (dirty price) equals the quoted clean price plus accrued interest: CashPrice = CleanPrice + Accrued.",
       "citation": {
         "chapter": "6",
         "section": "6.1",
         "page": "132"
+      },
+      "formula": {
+        "id": "f_cash_price",
+        "latex": "\\text{Cash Price} = \\text{Clean Price} + \\text{Accrued Interest}",
+        "expression": "CleanPrice + Accrued",
+        "solvesFor": "CashPrice",
+        "variables": [
+          {
+            "symbol": "CashPrice",
+            "latex": "\\text{Cash}",
+            "meaning": "Total dirty price paid by buyer",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "CleanPrice",
+            "latex": "\\text{Clean}",
+            "meaning": "Exchange-quoted clean bond price",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "Accrued",
+            "latex": "\\text{Accrued}",
+            "meaning": "Coupon interest earned since last payment",
+            "unit": "dollars"
+          }
+        ]
       }
     },
     {
       "id": "F03",
       "category": "definition",
-      "statement": "CBOT Treasury bond futures allow delivery of any Treasury bond with remaining maturity >= 15 years, non-callable for >= 15 years. Prices quote in points and 32nds.",
+      "statement": "CBOT Treasury bond futures permit the short party to deliver any non-callable Treasury bond with remaining maturity of 15 years or longer, quoted in points and 32nds.",
       "citation": {
         "chapter": "6",
         "section": "6.2",
@@ -36,7 +62,7 @@
     {
       "id": "F04",
       "category": "definition",
-      "statement": "The Conversion Factor (CF) is the theoretical clean price of $1.00 face value of the bond if its yield to maturity were exactly 6.0% semi-annual.",
+      "statement": "The Conversion Factor (CF) is the theoretical clean price of a bond per $1.00 face value discounted at a standardized 6.0% semi-annual yield.",
       "citation": {
         "chapter": "6",
         "section": "6.2",
@@ -46,27 +72,91 @@
     {
       "id": "F05",
       "category": "formula",
-      "statement": "Invoice Price received by seller upon physical bond delivery is: Invoice Price = (Most Recent Settlement Price * Conversion Factor) + Accrued Interest.",
+      "statement": "The Invoice Price paid upon physical Treasury bond delivery is InvoicePrice = Settlement * CF + Accrued.",
       "citation": {
         "chapter": "6",
         "section": "6.2",
         "page": "135"
+      },
+      "formula": {
+        "id": "f_invoice",
+        "latex": "\\text{Invoice Price} = (\\text{Settlement} \\times \\text{CF}) + \\text{Accrued}",
+        "expression": "Settlement * CF + Accrued",
+        "solvesFor": "InvoicePrice",
+        "variables": [
+          {
+            "symbol": "InvoicePrice",
+            "latex": "\\text{Invoice}",
+            "meaning": "Total cash invoice paid on delivery",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "Settlement",
+            "latex": "\\text{Settlement}",
+            "meaning": "Most recent CBOT settlement price",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "CF",
+            "latex": "\\text{CF}",
+            "meaning": "Conversion factor of delivered bond",
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "Accrued",
+            "latex": "\\text{Accrued}",
+            "meaning": "Accrued coupon interest on delivery day",
+            "unit": "dollars"
+          }
+        ]
       }
     },
     {
       "id": "F06",
-      "category": "definition",
-      "statement": "The Cheapest-to-Deliver (CTD) bond minimizes Net Cost = Quoted Cash Price - (Futures Price * Conversion Factor).",
+      "category": "formula",
+      "statement": "The Cheapest-to-Deliver (CTD) bond minimizes NetCost = QuotedCash - Settlement * CF across all eligible delivery bonds.",
       "citation": {
         "chapter": "6",
         "section": "6.2",
         "page": "136"
+      },
+      "formula": {
+        "id": "f_ctd_cost",
+        "latex": "\\text{Net Cost} = \\text{Quoted Price} - (\\text{Settlement} \\times \\text{CF})",
+        "expression": "QuotedPrice - Settlement * CF",
+        "solvesFor": "NetCost",
+        "variables": [
+          {
+            "symbol": "NetCost",
+            "latex": "\\text{Cost}",
+            "meaning": "Net clean delivery cost to short party",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "QuotedPrice",
+            "latex": "\\text{Quoted}",
+            "meaning": "Clean spot bond purchase price",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "Settlement",
+            "latex": "\\text{Settlement}",
+            "meaning": "Futures settlement price",
+            "unit": "dollars"
+          },
+          {
+            "symbol": "CF",
+            "latex": "\\text{CF}",
+            "meaning": "Bond conversion factor",
+            "unit": "dimensionless"
+          }
+        ]
       }
     },
     {
       "id": "F07",
       "category": "rule",
-      "statement": "When market yields > 6%, low-coupon long-maturity bonds tend to be CTD; when market yields < 6%, high-coupon short-maturity bonds tend to be CTD.",
+      "statement": "When market yields rise above 6.0%, low-coupon long-maturity bonds tend to be Cheapest-to-Deliver; when yields fall below 6.0%, high-coupon short-maturity bonds dominate delivery.",
       "citation": {
         "chapter": "6",
         "section": "6.2",
@@ -76,7 +166,7 @@
     {
       "id": "F08",
       "category": "definition",
-      "statement": "The Wild Card play exploits the settlement price being fixed at 2:00 PM while notice of intention to deliver can be filed up to 8:00 PM Chicago time.",
+      "statement": "The Wild Card play lets a short seller lock futures settlement at 2:00 PM Chicago time and still wait until 8:00 PM to submit delivery notice if bond prices drop late in the day.",
       "citation": {
         "chapter": "6",
         "section": "6.2",
@@ -86,28 +176,169 @@
     {
       "id": "F09",
       "category": "numerical_example",
-      "statement": "With futures settlement price $90.00, CF = 1.2000, and accrued interest $2.50 per $100 par, Invoice Price = ($90.00 * 1.2000) + $2.50 = $108.00 + $2.50 = $110.50.",
+      "statement": "With futures settlement price $90.00, Conversion Factor CF = 1.2000, and accrued interest $2.50 per $100 par, Invoice Price = ($90.00 * 1.2000) + $2.50 = $108.00 + $2.50 = $110.50.",
       "citation": {
         "chapter": "6",
         "section": "6.2",
         "page": "135"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "Settlement",
+            "label": "Futures settlement price",
+            "value": 90,
+            "unit": "dollars"
+          },
+          {
+            "symbol": "CF",
+            "label": "Conversion factor",
+            "value": 1.2,
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "Accrued",
+            "label": "Accrued interest",
+            "value": 2.5,
+            "unit": "dollars"
+          }
+        ],
+        "steps": [
+          {
+            "label": "Adjusted principal value",
+            "expr": "90 * 1.2",
+            "value": 108
+          },
+          {
+            "label": "Add accrued interest",
+            "expr": "108 + 2.5",
+            "value": 110.5
+          }
+        ],
+        "result": {
+          "symbol": "InvoicePrice",
+          "label": "Total invoice price",
+          "value": 110.5,
+          "unit": "dollars"
+        },
+        "rounding": 2
+      }
+    },
+    {
+      "id": "F10",
+      "category": "numerical_example",
+      "statement": "Independent check: with settlement price $95.00, CF = 1.1000, and accrued interest $1.50 per $100 par, adjusted value is $104.50 and total Invoice Price is ($95.00 * 1.1000) + $1.50 = $106.00 (distractors: $104.50 omits accrued interest, $96.50 omits CF, $87.86 divides instead of multiplying CF).",
+      "citation": {
+        "chapter": "6",
+        "section": "6.2",
+        "page": "135"
+      },
+      "numbers": {
+        "inputs": [
+          {
+            "symbol": "Settlement",
+            "label": "Settlement price",
+            "value": 95,
+            "unit": "dollars"
+          },
+          {
+            "symbol": "CF",
+            "label": "Conversion factor",
+            "value": 1.1,
+            "unit": "dimensionless"
+          },
+          {
+            "symbol": "Accrued",
+            "label": "Accrued coupon",
+            "value": 1.5,
+            "unit": "dollars"
+          }
+        ],
+        "steps": [
+          {
+            "label": "Multiply by CF",
+            "expr": "95 * 1.1",
+            "value": 104.5
+          },
+          {
+            "label": "Add accrued coupon",
+            "expr": "104.5 + 1.5",
+            "value": 106
+          }
+        ],
+        "result": {
+          "symbol": "InvoicePrice",
+          "label": "Invoice Price",
+          "value": 106,
+          "unit": "dollars"
+        },
+        "rounding": 2
       }
     }
   ],
   "realWorldProblem": {
-    "actors": "Fixed income institutional traders, Treasury primary dealers, and bond portfolio managers",
-    "situation": "Hedging multi-billion dollar sovereign bond portfolios and calculating delivery obligations under CBOT futures",
-    "failure": "Misidentifying the Cheapest-to-Deliver bond or miscalculating conversion factor adjustments creates fatal delivery losses",
-    "invention": "Conversion Factor equalization system, CTD optimization algorithms, and Wild Card delivery options",
+    "actors": "Fixed income dealers, Treasury portfolio managers, and CBOT bond futures desks",
+    "situation": "Settling Treasury bond futures when short sellers can deliver from an eligible multi-bond basket",
+    "failure": "Ignoring day count accruals, conversion factor distortion, or CTD shifts misprices invoice cash flows",
+    "invention": "Conversion Factors calibrated at 6.0%, CTD minimization, and Wild Card delivery timing rules",
     "factIds": [
       "F01",
       "F02",
       "F04",
       "F05",
       "F06",
-      "F07",
-      "F08",
-      "F09"
+      "F08"
     ]
-  }
+  },
+  "terms": [
+    {
+      "term": "day count convention",
+      "definition": "Rule counting calendar days to compute accrued interest fractions.",
+      "factId": "F01"
+    },
+    {
+      "term": "accrued interest",
+      "definition": "Coupon interest earned since the last payment date and owed to the bond seller.",
+      "factId": "F02"
+    },
+    {
+      "term": "clean price",
+      "definition": "Quoted bond price excluding accrued interest.",
+      "factId": "F02"
+    },
+    {
+      "term": "dirty price",
+      "definition": "Actual cash price paid by the buyer including accrued interest.",
+      "factId": "F02"
+    },
+    {
+      "term": "Conversion Factor",
+      "fullForm": "CF",
+      "definition": "Theoretical clean bond price per dollar face value discounted at 6.0% yield.",
+      "factId": "F04"
+    },
+    {
+      "term": "Invoice Price",
+      "definition": "Total delivery cash equal to settlement price times conversion factor plus accrued interest.",
+      "factId": "F05"
+    },
+    {
+      "term": "Cheapest-to-Deliver",
+      "fullForm": "CTD",
+      "definition": "Eligible Treasury bond minimizing delivery cost to the short seller.",
+      "factId": "F06"
+    },
+    {
+      "term": "Wild Card play",
+      "definition": "Option allowing shorts between 2:00 PM and 8:00 PM to deliver at locked 2:00 PM settlement.",
+      "factId": "F08"
+    }
+  ],
+  "dependencies": {
+    "earlier": [
+      "ch05/p2"
+    ],
+    "later": []
+  },
+  "quotes": []
 }

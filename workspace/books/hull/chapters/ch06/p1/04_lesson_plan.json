@@ -1,0 +1,257 @@
+{
+  "outcomes": [
+    "Compute accrued interest fractions under Actual/Actual, 30/360, and Actual/360.",
+    "Distinguish clean quoted bond prices from dirty cash settlement prices.",
+    "Calculate CBOT Treasury Invoice Price using Conversion Factors and accrued interest.",
+    "Identify the Cheapest-to-Deliver bond across yield regimes above and below 6.0%."
+  ],
+  "coreConcepts": [
+    {
+      "conceptId": "K05",
+      "term": "Invoice Price",
+      "stages": {
+        "intuition": {
+          "sceneIndex": 0,
+          "note": "Scaling diverse Treasury coupons onto one uniform delivery basket"
+        },
+        "why": {
+          "sceneIndex": 0,
+          "note": "Dozens of different coupon bonds could cheat buyers without standardization"
+        },
+        "what": {
+          "sceneIndex": 4,
+          "note": "InvoicePrice = Settlement * CF + Accrued"
+        },
+        "how": {
+          "sceneIndex": 4,
+          "note": "Scaling futures quote by bond CF then adding accrued coupon cash"
+        },
+        "workedExample": {
+          "sceneIndex": 5,
+          "note": "$90.00 settlement * 1.2000 CF + $2.50 accrued = $110.50"
+        },
+        "guided": {
+          "sceneIndex": 5,
+          "note": "Predicting why $2.50 accrued adds after CF multiplication"
+        },
+        "independent": {
+          "sceneIndex": 9,
+          "note": "Quiz solving $95.00 * 1.1000 + $1.50 = $106.00"
+        },
+        "limitations": {
+          "sceneIndex": 8,
+          "note": "After-hours Wild Card clock introduces delivery timing option value"
+        }
+      }
+    },
+    {
+      "conceptId": "K06",
+      "term": "Cheapest-to-Deliver",
+      "stages": {
+        "intuition": {
+          "sceneIndex": 3,
+          "note": "6.0% yield calibration creates tiny gaps shorts exploit"
+        },
+        "why": {
+          "sceneIndex": 2,
+          "note": "Mixing clean quotes and accrued cash obscures delivery profitability"
+        },
+        "what": {
+          "sceneIndex": 6,
+          "note": "Minimize QuotedPrice - Settlement * CF"
+        },
+        "how": {
+          "sceneIndex": 6,
+          "note": "Comparing cash spot cost against adjusted futures delivery receipt"
+        },
+        "workedExample": {
+          "sceneIndex": 5,
+          "note": "Using CF 1.2000 inside CBOT settlement math"
+        },
+        "guided": {
+          "sceneIndex": 7,
+          "note": "Tug of war between yields > 6% and < 6% bond duration"
+        },
+        "independent": {
+          "sceneIndex": 9,
+          "note": "Independent Invoice Price active recall problem"
+        },
+        "limitations": {
+          "sceneIndex": 7,
+          "note": "Yields crossing 6.0% switch CTD winner unexpectedly"
+        }
+      }
+    }
+  ],
+  "misconception": {
+    "myth": "Buyers pay the quoted clean bond price displayed on trading screens.",
+    "reality": "Buyers must pay the dirty cash price, adding accrued interest earned since the last coupon.",
+    "factIds": [
+      "F02"
+    ],
+    "sceneIndex": 2
+  },
+  "predictionQuestions": [
+    {
+      "question": "After scaling $90.00 by 1.2000 to $108.00, why must we still add $2.50 before settling?",
+      "sceneIndex": 5,
+      "revealBeat": "s05b3"
+    }
+  ],
+  "causalChain": {
+    "condition": "Short seller holds discretion to deliver any eligible 15-year Treasury bond.",
+    "action": "Short evaluates net cost = clean buy price minus settlement times CF.",
+    "mechanism": "Imperfections away from the 6.0% yield calibration create distinct bond costs.",
+    "result": "Short buys and delivers the single Cheapest-to-Deliver bond.",
+    "consequence": "Futures market prices anchor tightly to that CTD bond across trading cycles.",
+    "factIds": [
+      "F06"
+    ],
+    "sceneIndex": 6
+  },
+  "sceneOutline": [
+    {
+      "index": 0,
+      "purpose": "Hook: Multi-bond Treasury delivery basket dilemma",
+      "concepts": [
+        "K08"
+      ],
+      "factIds": [
+        "F01",
+        "F03"
+      ]
+    },
+    {
+      "index": 1,
+      "purpose": "Table compare: Day count conventions across bond markets",
+      "concepts": [
+        "K01"
+      ],
+      "factIds": [
+        "F01"
+      ]
+    },
+    {
+      "index": 2,
+      "purpose": "Misconception split: Clean vs dirty price accrual gap",
+      "concepts": [
+        "K02",
+        "K03"
+      ],
+      "factIds": [
+        "F02"
+      ]
+    },
+    {
+      "index": 3,
+      "purpose": "Progressive cards: CBOT 15-year basket & 6.0% Conversion Factor",
+      "concepts": [
+        "K04",
+        "K08"
+      ],
+      "factIds": [
+        "F03",
+        "F04"
+      ]
+    },
+    {
+      "index": 4,
+      "purpose": "Formula breakdown: CBOT Invoice Price equation",
+      "concepts": [
+        "K05"
+      ],
+      "factIds": [
+        "F05"
+      ]
+    },
+    {
+      "index": 5,
+      "purpose": "Worked example: $110.50 CBOT Invoice Price calculation",
+      "concepts": [
+        "K05"
+      ],
+      "factIds": [
+        "F05",
+        "F09"
+      ]
+    },
+    {
+      "index": 6,
+      "purpose": "Causal chain: Identifying the Cheapest-to-Deliver bond",
+      "concepts": [
+        "K06"
+      ],
+      "factIds": [
+        "F06"
+      ]
+    },
+    {
+      "index": 7,
+      "purpose": "Tug of war: 6.0% yield regime shift on CTD bonds",
+      "concepts": [
+        "K06"
+      ],
+      "factIds": [
+        "F07"
+      ]
+    },
+    {
+      "index": 8,
+      "purpose": "Diagram flow: Wild Card play from 2:00 PM to 8:00 PM",
+      "concepts": [
+        "K07"
+      ],
+      "factIds": [
+        "F08"
+      ]
+    },
+    {
+      "index": 9,
+      "purpose": "Interactive quiz: $95.00 * 1.1000 + $1.50 = $106.00 invoice",
+      "concepts": [
+        "K05"
+      ],
+      "factIds": [
+        "F05",
+        "F10"
+      ]
+    },
+    {
+      "index": 10,
+      "purpose": "Wisdom & bridge to Part 2: Eurodollar/SOFR & Duration Hedging",
+      "concepts": [
+        "K05",
+        "K06",
+        "K07"
+      ],
+      "factIds": [
+        "F05",
+        "F06",
+        "F08"
+      ]
+    },
+    {
+      "index": 11,
+      "purpose": "Summary thread: Eight rules of Treasury bond futures Part 1",
+      "concepts": [
+        "K01",
+        "K02",
+        "K04",
+        "K05",
+        "K06",
+        "K07",
+        "K08"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08"
+      ]
+    }
+  ]
+}

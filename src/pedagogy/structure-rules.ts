@@ -285,16 +285,16 @@ export function checkSummary(ep: Episode): QaFinding[] {
   const bridgeRegex = /\b(next\s+chapter|part\s*2|part\s*two|bridge\s+to|preview|will\s+(?:develop|explore|learn|cover|master|apply))\b/i;
   const s10BridgeText = s10
     ? s10.beats
-        .filter((b) => bridgeRegex.test(b.narration[displayLang]?.display ?? "") || bridgeRegex.test(b.onScreenIntent))
-        .map((b) => b.narration[displayLang]?.display ?? "")
-        .join(" ")
+      .filter((b) => bridgeRegex.test(b.narration[displayLang]?.display ?? "") || bridgeRegex.test(b.onScreenIntent))
+      .map((b) => b.narration[displayLang]?.display ?? "")
+      .join(" ")
     : "";
   const s10BridgeStems = new Set(meaningfulStems(s10BridgeText));
   const s10SynthText = s10
     ? s10.beats
-        .filter((b) => !bridgeRegex.test(b.narration[displayLang]?.display ?? "") && !bridgeRegex.test(b.onScreenIntent))
-        .map((b) => b.narration[displayLang]?.display ?? "")
-        .join(" ")
+      .filter((b) => !bridgeRegex.test(b.narration[displayLang]?.display ?? "") && !bridgeRegex.test(b.onScreenIntent))
+      .map((b) => b.narration[displayLang]?.display ?? "")
+      .join(" ")
     : "";
   const taughtAllStems = new Set([...taughtCoreStems, ...meaningfulStems(s10SynthText)]);
 

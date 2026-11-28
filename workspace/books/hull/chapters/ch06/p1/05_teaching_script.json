@@ -1,0 +1,891 @@
+{
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "scenes": [
+    {
+      "index": 0,
+      "title": "Treasury Bond Futures: Solving Multi-Bond Delivery",
+      "purpose": "Problem-first hook introducing CBOT bond futures and multi-bond basket complexity",
+      "beats": [
+        {
+          "id": "s00b1",
+          "speaker": "novice",
+          "narration": {
+            "en": {
+              "display": "How can one Treasury bond futures contract stay fairly priced when sellers can deliver dozens of different bonds?"
+            },
+            "hi": {
+              "display": "जब विक्रेता दर्जनों अलग-अलग ट्रेजरी बॉन्ड डिलीवर कर सकते हैं, तो एक ही फ्यूचर्स कॉन्ट्रैक्ट की सही कीमत कैसे तय होती है?"
+            }
+          },
+          "onScreenIntent": "Novice raises multi-bond delivery pricing dilemma",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s00b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Without strict math, sellers would dump low-coupon bonds onto buyers for full face value, destroying market trust."
+            },
+            "hi": {
+              "display": "सख्त गणित के बिना, विक्रेता खरीदारों को कम कूपन वाले बॉन्ड देकर पूरा भुगतान ले लेंगे, जिससे बाजार का भरोसा टूट जाएगा।"
+            }
+          },
+          "onScreenIntent": "Mentor explains basket adverse selection danger",
+          "sourceFactIds": [
+            "F03",
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s00b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Therefore the Chicago Board of Trade, or CBOT, meaning the major derivatives exchange for Treasury futures, enforces day count accruals and coupon conversion rules."
+            },
+            "hi": {
+              "display": "इसलिए शिकागो बोर्ड ऑफ ट्रेड यानी सीबीओटी, जो ट्रेजरी फ्यूचर्स का मुख्य एक्सचेंज है, डे काउंट और कूपन कन्वर्जन नियम लागू करता है।"
+            }
+          },
+          "onScreenIntent": "Expand CBOT acronym and preview mechanism",
+          "sourceFactIds": [
+            "F01",
+            "F03"
+          ],
+          "newTerms": [
+            "CBOT"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s00b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "In Part 1, we master day counts, dirty pricing, invoice formulas, bond delivery selection, and the late-day timing option."
+            },
+            "hi": {
+              "display": "पार्ट 1 में हम डे काउंट, डर्टी प्राइस, इनवॉइस फॉर्मूला, बॉन्ड डिलीवरी चयन और लेट-डे टाइमिंग विकल्प सीखेंगे।"
+            }
+          },
+          "onScreenIntent": "Preview Part 1 roadmap topics cleanly",
+          "sourceFactIds": [
+            "F01",
+            "F05",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Day Count Conventions Across Debt Markets",
+      "purpose": "Compare Actual/Actual, 30/360, and Actual/360 day count rules",
+      "beats": [
+        {
+          "id": "s01b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Every bond pays coupons periodically, so pricing requires a day count convention, which means the market rule counting days to compute accrued interest."
+            },
+            "hi": {
+              "display": "हर बॉन्ड समय-समय पर कूपन देता है, इसलिए डे काउंट कन्वेंशन आवश्यक है, जिसका अर्थ है अर्जित ब्याज की गणना के लिए दिन गिनने का नियम।"
+            }
+          },
+          "onScreenIntent": "Define day count convention and show Treasury row",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [
+            "day count convention"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s01b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Treasury bonds use exact Actual/Actual calendar ratios, whereas corporate and municipal bonds simplify every month to 30 days under 30/360."
+            },
+            "hi": {
+              "display": "ट्रेजरी बॉन्ड सटीक एक्चुअल/एक्चुअल अनुपात उपयोग करते हैं, जबकि कॉर्पोरेट और म्यूनिसिपल बॉन्ड 30/360 नियम से हर माह को 30 दिन मानते हैं।"
+            }
+          },
+          "onScreenIntent": "Highlight Treasury vs Corporate day count rows",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s01b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Meanwhile, short-term money market paper quotes actual elapsed days divided by a 360-day year. Mixing conventions creates costly settlement errors."
+            },
+            "hi": {
+              "display": "वहीं शॉर्ट-टर्म मनी मार्केट में वास्तविक दिनों को 360 दिनों के वर्ष से बांटा जाता है। गलत नियम लगाने से भुगतान में बड़ी चूक हो सकती है।"
+            }
+          },
+          "onScreenIntent": "Show Actual/360 money market convention row",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Clean Price vs. Dirty Price: Accrual Reality",
+      "purpose": "Clarify clean screen quotes versus dirty cash settlement prices",
+      "beats": [
+        {
+          "id": "s02b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Beginners often fall into a cash trap: thinking the quoted screen price is the total cash wired when buying a bond."
+            },
+            "hi": {
+              "display": "नौसिखिए अक्सर एक जाल में फंसते हैं: वे स्क्रीन पर दिखने वाली कीमत को ही बॉन्ड खरीदने की कुल नकद लागत मान लेते हैं।"
+            }
+          },
+          "onScreenIntent": "Highlight clean-price misconception on left split",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s02b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On exchanges, clean price means the quoted bond price excluding accrued coupon interest, while accrued interest means coupon interest earned since the last payment."
+            },
+            "hi": {
+              "display": "एक्सचेंज पर क्लीन प्राइस का अर्थ है बिना अर्जित ब्याज वाली कीमत, जबकि एक्रूड इंटरेस्ट का अर्थ है पिछली तारीख से कमाया गया कूपन ब्याज।"
+            }
+          },
+          "onScreenIntent": "Define clean price and accrued interest cleanly",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "clean price",
+            "accrued interest"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s02b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Dirty price means the actual cash price paid, adding accrued interest to clean price so sellers receive every day of earned coupon."
+            },
+            "hi": {
+              "display": "डर्टी प्राइस का अर्थ है खरीदार द्वारा चुकाई जाने वाली वास्तविक नकद कीमत, जिसमें क्लीन प्राइस के साथ अर्जित ब्याज भी शामिल होता है।"
+            }
+          },
+          "onScreenIntent": "Define dirty price and display cash verdict",
+          "sourceFactIds": [
+            "F02"
+          ],
+          "newTerms": [
+            "dirty price"
+          ],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "CBOT Contract Specs & The Conversion Factor",
+      "purpose": "Explain the 15-year delivery basket and 6.0% yield Conversion Factor calibration",
+      "beats": [
+        {
+          "id": "s03b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Under CBOT Treasury bond futures rules, shorts can deliver any non-callable Treasury bond with at least 15 years remaining maturity, quoted in points and 32nds."
+            },
+            "hi": {
+              "display": "सीबीओटी ट्रेजरी बॉन्ड फ्यूचर्स में कम से कम 15 वर्ष शेष अवधि वाला कोई भी नॉन-कॉलेबल बॉन्ड डिलीवर हो सकता है, जो पॉइंट्स और 32वें हिस्से में कोट होता है।"
+            }
+          },
+          "onScreenIntent": "Introduce 15-year CBOT delivery basket and 32nds quote",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s03b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "To adjust for different coupons, exchanges assign a Conversion Factor, which means the theoretical clean bond price per $1.00 face value discounted at a 6.0% semi-annual yield."
+            },
+            "hi": {
+              "display": "अलग-अलग कूपन को बराबर करने के लिए कन्वर्जन फैक्टर तय होता है, जिसका अर्थ है 6.0% अर्धवार्षिक यील्ड पर प्रति $1.00 फेस वैल्यू की सैद्धांतिक कीमत।"
+            }
+          },
+          "onScreenIntent": "Define Conversion Factor 6.0% semi-annual standard",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [
+            "Conversion Factor"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s03b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Bonds paying coupons above 6.0% earn Conversion Factors above one, while low-coupon bonds get factors below one so deliveries stay roughly fair."
+            },
+            "hi": {
+              "display": "6.0% से ज्यादा कूपन वाले बॉन्ड का फैक्टर एक से बड़ा और कम कूपन वाले बॉन्ड का फैक्टर एक से छोटा होता है ताकि डिलीवरी संतुलित रहे।"
+            }
+          },
+          "onScreenIntent": "Show CF equalization across high vs low coupon bonds",
+          "sourceFactIds": [
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "The Invoice Price Equation",
+      "purpose": "Deconstruct CBOT physical delivery cash equation",
+      "beats": [
+        {
+          "id": "s04b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "On physical delivery, Invoice Price means total cash proceeds wired by the buyer, equal to clean bond settlement times conversion factor plus unscaled earned coupon interest."
+            },
+            "hi": {
+              "display": "बॉन्ड डिलीवरी पर इनवॉइस प्राइस का अर्थ खरीदार द्वारा चुकाई जाने वाली कुल नकद राशि है, यानी क्लीन सेटलमेंट गुणा कन्वर्जन फैक्टर प्लस अर्जित कूपन ब्याज।"
+            }
+          },
+          "onScreenIntent": "Define Invoice Price and show full equation",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [
+            "Invoice Price"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s04b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Multiplying settlement by Conversion Factor standardizes the clean bond principal, accounting for higher or lower coupons relative to the 6.0% baseline."
+            },
+            "hi": {
+              "display": "सेटलमेंट को कन्वर्जन फैक्टर से गुणा करने पर 6.0% आधार की तुलना में बॉन्ड के कूपन के अनुसार मुख्य मूल्य समायोजित हो जाता है।"
+            }
+          },
+          "onScreenIntent": "Explain Settlement * CF clean scaling factor",
+          "sourceFactIds": [
+            "F04",
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s04b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Finally, add exact accrued interest without multiplying it by Conversion Factor, since coupon cash transfers dollar-for-dollar on settlement day."
+            },
+            "hi": {
+              "display": "अंत में, कन्वर्जन फैक्टर से गुणा किए बिना ठीक अर्जित ब्याज जोड़ें, क्योंकि कूपन ब्याज डॉलर-के-बदले-डॉलर दिया जाता है।"
+            }
+          },
+          "onScreenIntent": "Highlight unscaled Accrued addition",
+          "sourceFactIds": [
+            "F02",
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "title": "Worked Example: CBOT Invoice Price Calculation",
+      "purpose": "Compute Invoice Price for $90.00 settlement, CF 1.2000, and $2.50 accrued interest",
+      "beats": [
+        {
+          "id": "s05b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us calculate an exact invoice wire. Futures settle at $90.00, your chosen bond has Conversion Factor 1.2000, and accrued interest stands at $2.50."
+            },
+            "hi": {
+              "display": "आइए सटीक इनवॉइस राशि निकालें। फ्यूचर्स $90.00 पर सेटल हुए हैं, बॉन्ड का कन्वर्जन फैक्टर 1.2000 है और अर्जित ब्याज $2.50 है।"
+            }
+          },
+          "onScreenIntent": "Present inputs $90.00, 1.2000, $2.50",
+          "sourceFactIds": [
+            "F05",
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "First scale the $90.00 settlement price by the 1.2000 conversion factor to get $108.00. Predict: why add the $2.50 accrued interest afterwards without multiplying by the factor?"
+            },
+            "hi": {
+              "display": "पहले $90.00 सेटलमेंट कीमत को 1.2000 कन्वर्जन फैक्टर से गुणा करने पर $108.00 आता है। अनुमान लगाएं: हमें $2.50 अर्जित ब्याज को बिना फैक्टर गुणा किए क्यों जोड़ना होगा?"
+            }
+          },
+          "onScreenIntent": "Prediction prompt on accrued coupon addition",
+          "sourceFactIds": [
+            "F05",
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        },
+        {
+          "id": "s05b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because accrued coupon days belong dollar-for-dollar to the seller. Adding $2.50 onto $108.00 gives the exact invoice price of $110.50 per $100 par."
+            },
+            "hi": {
+              "display": "क्योंकि अर्जित कूपन ब्याज पूरा-का-पूरा विक्रेता का होता है। $108.00 में $2.50 जोड़ने पर ठीक $110.50 प्रति $100 पार मूल्य प्राप्त होता है।"
+            }
+          },
+          "onScreenIntent": "Reveal final invoice result $110.50",
+          "sourceFactIds": [
+            "F05",
+            "F09"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "title": "The Cheapest-to-Deliver (CTD) Bond",
+      "purpose": "Causal chain explaining how shorts identify the CTD bond in the basket",
+      "beats": [
+        {
+          "id": "s06b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Because dozens of bonds qualify in the basket, shorts hunt for the Cheapest-to-Deliver bond, which means the eligible bond minimizing net delivery cost."
+            },
+            "hi": {
+              "display": "बास्केट में दर्जनों बॉन्ड पात्र होने के कारण, विक्रेता चीपेस्ट-टू-डिलीवर बॉन्ड चुनते हैं, जिसका अर्थ है डिलीवरी लागत को न्यूनतम रखने वाला बॉन्ड।"
+            }
+          },
+          "onScreenIntent": "Define Cheapest-to-Deliver bond minimization",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [
+            "Cheapest-to-Deliver"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s06b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Whenever market yields diverge from the fixed 6.0% baseline, Conversion Factors fail to equalize every bond identically, creating profit gaps."
+            },
+            "hi": {
+              "display": "जब भी बाजार की यील्ड स्थिर 6.0% आधार से अलग होती है, तो कन्वर्जन फैक्टर सभी बॉन्ड्स को बिल्कुल बराबर नहीं रख पाते, जिससे अंतर पैदा होता है।"
+            }
+          },
+          "onScreenIntent": "Show divergence from 6.0% calibration creating gaps",
+          "sourceFactIds": [
+            "F04",
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s06b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Shorts minimize Quoted minus Settlement times CF, buy that winning Cheapest-to-Deliver bond, and pin futures prices closely to it."
+            },
+            "hi": {
+              "display": "शॉर्ट्स कोटेड प्राइस माइनस सेटलमेंट गुणा सीएफ को न्यूनतम रखकर उस विजयी सीटीडी बॉन्ड को डिलीवर करते हैं, जिससे फ्यूचर्स कीमत उसी से जुड़ जाती है।"
+            }
+          },
+          "onScreenIntent": "Reveal CTD bond convergence outcome",
+          "sourceFactIds": [
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "title": "Yield Regimes: Above vs. Below 6.0%",
+      "purpose": "Contrast which bond types become CTD when market yields rise above or fall below 6.0%",
+      "beats": [
+        {
+          "id": "s07b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Which bond wins CTD status? When market yields sit above 6.0%, high-duration low-coupon long-maturity bonds fall fastest in price, becoming cheapest to deliver."
+            },
+            "hi": {
+              "display": "कौन सा बॉन्ड सीटीडी बनता है? जब बाजार यील्ड 6.0% से ऊपर हो, तो कम कूपन और लंबी अवधि वाले बॉन्ड सबसे सस्ते पड़ते हैं और डिलीवरी जीतते हैं।"
+            }
+          },
+          "onScreenIntent": "Highlight yields > 6.0% low-coupon long-bond rule",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s07b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Conversely, when market yields drop below 6.0%, high-coupon short-maturity bonds gain less value and dominate delivery across Treasury desks."
+            },
+            "hi": {
+              "display": "इसके विपरीत, जब बाजार यील्ड 6.0% से नीचे हो, तो उच्च कूपन और कम अवधि वाले बॉन्ड सबसे किफायती डिलीवरी विकल्प बन जाते हैं।"
+            }
+          },
+          "onScreenIntent": "Highlight yields < 6.0% high-coupon short-bond rule",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s07b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Remember 6.0% is the tipping point: large yield swings across that threshold rotate the cheapest bond mid-contract."
+            },
+            "hi": {
+              "display": "याद रखें कि 6.0% मुख्य मोड़ बिंदु है: इसके आर-पार बड़े ब्याज बदलाव से कॉन्ट्रैक्ट के बीच सीटीडी बॉन्ड बदल सकता है।"
+            }
+          },
+          "onScreenIntent": "Reveal 6.0% tipping point resolution",
+          "sourceFactIds": [
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "title": "The Wild Card Play: After-Hours Timing Edge",
+      "purpose": "Illustrate the 2:00 PM settlement to 8:00 PM delivery notice Wild Card option",
+      "beats": [
+        {
+          "id": "s08b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Beyond choosing which bond to ship, shorts also hold the Wild Card play, which means an option between 2:00 PM settlement and 8:00 PM notice cutoff."
+            },
+            "hi": {
+              "display": "सही बॉन्ड चुनने के अलावा, विक्रेताओं के पास वाइल्ड कार्ड प्ले भी होता है, जिसका अर्थ है दोपहर 2:00 बजे के सेटलमेंट और रात 8:00 बजे तक डिलीवरी सूचना के बीच का विकल्प।"
+            }
+          },
+          "onScreenIntent": "Define Wild Card play 2:00 PM to 8:00 PM window",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [
+            "Wild Card play"
+          ],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s08b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "CBOT freezes futures settlement at 2:00 PM Chicago time, while Treasury cash bonds keep trading later into the afternoon."
+            },
+            "hi": {
+              "display": "सीबीओटी दोपहर 2:00 बजे शिकागो समय पर फ्यूचर्स सेटलमेंट लॉक कर देता है, जबकि नकद ट्रेजरी बॉन्ड शाम तक ट्रेड होते रहते हैं।"
+            }
+          },
+          "onScreenIntent": "Highlight afternoon cash market drop after 2:00 PM freeze",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s08b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "If spot bonds fall sharply before 8:00 PM, the short buys cash bonds cheaply, files notice, and bills at the higher 2:00 PM price."
+            },
+            "hi": {
+              "display": "यदि रात 8:00 बजे से पहले स्पॉट बॉन्ड गिर जाएं, तो शॉर्ट सस्ता बॉन्ड खरीदकर डिलीवरी नोटिस देता है और 2:00 बजे की ऊंची कीमत वसूलता है।"
+            }
+          },
+          "onScreenIntent": "Reveal Wild Card delivery profit at 8:00 PM",
+          "sourceFactIds": [
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "title": "Active Recall: Computing CBOT Invoice Price",
+      "purpose": "3-beat quiz calculating Invoice Price for $95.00, CF 1.1000, Accrued $1.50",
+      "beats": [
+        {
+          "id": "s09b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Apply our delivery formula yourself. Futures settle at $95.00, Conversion Factor equals 1.1000, and accrued interest equals $1.50. What is the Invoice Price?"
+            },
+            "hi": {
+              "display": "अब स्वयं डिलीवरी फॉर्मूला लगाएं। फ्यूचर्स $95.00 पर सेटल हैं, कन्वर्जन फैक्टर 1.1000 है और अर्जित ब्याज $1.50 है। कुल इनवॉइस प्राइस क्या होगी?"
+            }
+          },
+          "onScreenIntent": "Present quiz inputs $95.00, 1.1000, $1.50",
+          "sourceFactIds": [
+            "F05",
+            "F10"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        },
+        {
+          "id": "s09b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Pause and calculate cleanly: scale settlement $95.00 by 1.1000 first, then add accrued interest $1.50 before selecting your option."
+            },
+            "hi": {
+              "display": "रुकें और गणना करें: पहले $95.00 सेटलमेंट को 1.1000 से गुणा करें और फिर $1.50 अर्जित ब्याज जोड़कर सही विकल्प चुनें।"
+            }
+          },
+          "onScreenIntent": "Thinking timer phase with 4 options displayed",
+          "sourceFactIds": [
+            "F05",
+            "F10"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 3500,
+          "transition": false
+        },
+        {
+          "id": "s09b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Option B is right: $106.00. Scaling $95.00 by 1.1000 gives $104.50, and adding $1.50 accrued interest yields $106.00 total cash."
+            },
+            "hi": {
+              "display": "विकल्प बी सही है: $106.00। $95.00 को 1.1000 से गुणा करने पर $104.50 आता है, और $1.50 अर्जित ब्याज जोड़ने पर $106.00 बनता है।"
+            }
+          },
+          "onScreenIntent": "Reveal Option B: $106.00 complete solution",
+          "sourceFactIds": [
+            "F05",
+            "F10"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "title": "Treasury Delivery Synthesis & Bridge to Part 2",
+      "purpose": "Synthesize Part 1 bond futures delivery rules and bridge to Part 2 Eurodollar & Duration Hedging",
+      "beats": [
+        {
+          "id": "s10b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Institutional bond traders always separate clean quotes from dirty cash via day count rules and apply Conversion Factors calibrated at 6.0%."
+            },
+            "hi": {
+              "display": "संस्थागत बॉन्ड ट्रेडर्स हमेशा डे काउंट नियमों से क्लीन व डर्टी प्राइस अलग रखते हैं और 6.0% पर आधारित कन्वर्जन फैक्टर लागू करते हैं।"
+            }
+          },
+          "onScreenIntent": "Highlight accrual hygiene and conversion calibration",
+          "sourceFactIds": [
+            "F01",
+            "F02",
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s10b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Short sellers exploit CTD basket selection and the 2:00 PM to 8:00 PM Wild Card window, slightly lowering fair Treasury futures prices."
+            },
+            "hi": {
+              "display": "शॉर्ट विक्रेता सीटीडी बास्केट और दोपहर 2:00 से रात 8:00 बजे की वाइल्ड कार्ड विंडो का लाभ उठाते हैं, जिससे फ्यूचर्स मूल्य थोड़े कम रहते हैं।"
+            }
+          },
+          "onScreenIntent": "Highlight short optionality edge",
+          "sourceFactIds": [
+            "F06",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s10b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Next in Part 2, we move to short-term rates: Eurodollar and Secured Overnight Financing Rate futures pricing, Convexity Adjustment, and duration-based portfolio hedging."
+            },
+            "hi": {
+              "display": "आगे पार्ट 2 में हम शॉर्ट-टर्म दरों पर बढ़ेंगे: यूरोडॉलर और सिक्योर्ड ओवरनाइट फाइनेंसिंग रेट फ्यूचर्स प्राइसिंग, कॉन्वेक्सिटी एडजस्टमेंट और ड्यूरेशन-बेस्ड पोर्टफोलियो हेजिंग।"
+            }
+          },
+          "onScreenIntent": "Roadmap bridge to Part 2 Eurodollar, Secured Rate, Convexity & Duration Hedging",
+          "sourceFactIds": [
+            "F05"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 300,
+          "transition": false
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "title": "Summary Thread: Eight Rules of Bond Futures",
+      "purpose": "Fixed 6-beat summary codifying all 8 rules of day counts and Treasury futures taught in Part 1",
+      "beats": [
+        {
+          "id": "s11b1",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Let us lock in all eight foundational rules of Treasury bond futures from Part 1 before exploring Eurodollar futures in Part 2."
+            },
+            "hi": {
+              "display": "पार्ट 2 में यूरोडॉलर फ्यूचर्स पढ़ने से पहले आइए पार्ट 1 के ट्रेजरी बॉन्ड फ्यूचर्स के सभी आठ बुनियादी नियमों को दोहराएं।"
+            }
+          },
+          "onScreenIntent": "Header overview of 8 rules",
+          "sourceFactIds": [
+            "F01"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s11b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 1 matches day count conventions across Treasury, corporate, and money markets. Rule 2 adds accrued interest onto clean quotes to produce dirty cash prices."
+            },
+            "hi": {
+              "display": "नियम 1 ट्रेजरी, कॉर्पोरेट और मनी मार्केट में डे काउंट नियम तय करता है। नियम 2 क्लीन प्राइस में अर्जित ब्याज जोड़कर डर्टी कैश प्राइस बनाता है।"
+            }
+          },
+          "onScreenIntent": "Rules 1 and 2 displayed side by side",
+          "sourceFactIds": [
+            "F01",
+            "F02"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s11b3",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 3 limits CBOT delivery baskets to 15-year Treasuries quoted in 32nds. Rule 4 calibrates each bond's Conversion Factor at a 6.0% semi-annual yield."
+            },
+            "hi": {
+              "display": "नियम 3 सीबीओटी डिलीवरी बास्केट को 15 वर्ष के ट्रेजरी बॉन्ड तक सीमित रखता है। नियम 4 6.0% अर्धवार्षिक यील्ड पर कन्वर्जन फैक्टर तय करता है।"
+            }
+          },
+          "onScreenIntent": "Rules 3 and 4 displayed side by side",
+          "sourceFactIds": [
+            "F03",
+            "F04"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s11b4",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 5 computes Invoice Price cash as Settlement times CF plus accrued interest. Rule 6 selects the CTD bond minimizing Quoted minus Settlement times CF."
+            },
+            "hi": {
+              "display": "नियम 5 इनवॉइस प्राइस को सेटलमेंट गुणा सीएफ प्लस अर्जित ब्याज से निकालता है। नियम 6 न्यूनतम लागत वाला सीटीडी बॉन्ड चुनता है।"
+            }
+          },
+          "onScreenIntent": "Rules 5 and 6 displayed side by side",
+          "sourceFactIds": [
+            "F05",
+            "F06"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s11b5",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Rule 7 flags 6.0% as the CTD tipping yield between low and high coupons. Rule 8 captures Wild Card timing between 2:00 PM settlement and 8:00 PM cutoff."
+            },
+            "hi": {
+              "display": "नियम 7 कम और अधिक कूपन बॉन्ड्स के बीच 6.0% मोड़ को दर्शाता है। नियम 8 दोपहर 2:00 बजे और रात 8:00 बजे के बीच वाइल्ड कार्ड समय विकल्प बताता है।"
+            }
+          },
+          "onScreenIntent": "Rules 7 and 8 displayed side by side",
+          "sourceFactIds": [
+            "F07",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Keep all 8 rules ready. Next in Part 2, we cover Eurodollar and secured short-rate futures, Convexity Adjustment, and duration hedging."
+            },
+            "hi": {
+              "display": "इन सभी 8 नियमों को याद रखें। अगले पार्ट 2 में हम यूरोडॉलर और सिक्योर्ड शॉर्ट-रेट फ्यूचर्स, कॉन्वेक्सिटी एडजस्टमेंट और ड्यूरेशन हेजिंग सीखेंगे।"
+            }
+          },
+          "onScreenIntent": "Compact 8-rule overview and Part 2 transition",
+          "sourceFactIds": [
+            "F01",
+            "F05",
+            "F08"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 400,
+          "transition": false
+        }
+      ]
+    }
+  ]
+}

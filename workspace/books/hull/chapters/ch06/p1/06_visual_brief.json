@@ -1,0 +1,182 @@
+{
+  "scenes": [
+    {
+      "index": 0,
+      "topology": "hook",
+      "visualIntent": "Problem-first hook introducing CBOT bond futures and multi-bond basket complexity",
+      "keyElements": [
+        "Treasury bond futures allow delivery of many eligible bonds",
+        "Day count rules govern accrued interest between coupons",
+        "Conversion factors standardize diverse coupons at delivery"
+      ],
+      "factIds": [
+        "F03",
+        "F04",
+        "F01",
+        "F05",
+        "F08"
+      ]
+    },
+    {
+      "index": 1,
+      "topology": "table",
+      "visualIntent": "Compare Actual/Actual, 30/360, and Actual/360 day count rules",
+      "keyElements": [
+        "US Treasury bonds accrue interest using Actual/Actual day counts",
+        "Corporate and municipal bonds follow standardized 30/360 months",
+        "Short-term money markets quote interest over 360-day years"
+      ],
+      "factIds": [
+        "F01"
+      ]
+    },
+    {
+      "index": 2,
+      "topology": "comparison",
+      "visualIntent": "Clarify clean screen quotes versus dirty cash settlement prices",
+      "keyElements": [
+        "Clean price strips out accrued interest from trading screen quotes",
+        "Dirty price adds accrued interest to reflect true settlement cash",
+        "Cash price = Quoted clean price + Accrued interest"
+      ],
+      "factIds": [
+        "F02"
+      ]
+    },
+    {
+      "index": 3,
+      "topology": "pillars",
+      "visualIntent": "Explain the 15-year delivery basket and 6.0% yield Conversion Factor calibration",
+      "keyElements": [
+        "CBOT allows delivery of non-callable bonds with >= 15 years maturity",
+        "Futures prices quote in points and 32nds per $100 par",
+        "Conversion Factor values each bond as if yielding 6.0% semi-annual"
+      ],
+      "factIds": [
+        "F03",
+        "F04"
+      ]
+    },
+    {
+      "index": 4,
+      "topology": "formula",
+      "visualIntent": "Deconstruct CBOT physical delivery cash equation",
+      "keyElements": [
+        "Invoice Price scales settlement price by bond Conversion Factor",
+        "Accrued interest adds after scaling clean settlement price",
+        "Formula balances diverse bond coupons cleanly upon delivery"
+      ],
+      "factIds": [
+        "F05",
+        "F04",
+        "F02"
+      ]
+    },
+    {
+      "index": 5,
+      "topology": "worked_example",
+      "visualIntent": "Compute Invoice Price for $90.00 settlement, CF 1.2000, and $2.50 accrued interest",
+      "keyElements": [
+        "Multiply $90.00 settlement by CF 1.2000 to obtain $108.00",
+        "Add $2.50 accrued interest to arrive at $110.50 total cash",
+        "Invoice cash transfers clean value plus earned coupon days"
+      ],
+      "factIds": [
+        "F05",
+        "F09"
+      ]
+    },
+    {
+      "index": 6,
+      "topology": "process",
+      "visualIntent": "Causal chain explaining how shorts identify the CTD bond in the basket",
+      "keyElements": [
+        "Conversion factors match market yields cleanly only near 6.0%",
+        "Short traders minimize net delivery cost across eligible bonds",
+        "Futures quotes track the Cheapest-to-Deliver bond directly"
+      ],
+      "factIds": [
+        "F06",
+        "F04"
+      ]
+    },
+    {
+      "index": 7,
+      "topology": "comparison",
+      "visualIntent": "Contrast which bond types become CTD when market yields rise above or fall below 6.0%",
+      "keyElements": [
+        "Yields above 6.0% push low-coupon long-maturity bonds to CTD",
+        "Yields below 6.0% push high-coupon short-maturity bonds to CTD",
+        "Yield shifts across 6.0% rotate the optimal CTD bond"
+      ],
+      "factIds": [
+        "F07"
+      ]
+    },
+    {
+      "index": 8,
+      "topology": "timeline",
+      "visualIntent": "Illustrate the 2:00 PM settlement to 8:00 PM delivery notice Wild Card option",
+      "keyElements": [
+        "Futures settlement locks daily at 2:00 PM Chicago time",
+        "Short sellers hold until 8:00 PM to file delivery notices",
+        "Afternoon yield spikes give shorts an asymmetric Wild Card profit"
+      ],
+      "factIds": [
+        "F08"
+      ]
+    },
+    {
+      "index": 9,
+      "topology": "quiz",
+      "visualIntent": "3-beat quiz calculating Invoice Price for $95.00, CF 1.1000, Accrued $1.50",
+      "keyElements": [
+        "Multiply $95.00 settlement by CF 1.1000 to obtain $104.50",
+        "Add $1.50 accrued interest for total invoice $106.00",
+        "Always apply Conversion Factor before adding accrued days"
+      ],
+      "factIds": [
+        "F05",
+        "F10"
+      ]
+    },
+    {
+      "index": 10,
+      "topology": "wisdom",
+      "visualIntent": "Synthesize Part 1 bond futures delivery rules and bridge to Part 2 Eurodollar & Duration Hedging",
+      "keyElements": [
+        "Day counts and Conversion Factors standardize bond basket delivery",
+        "CTD minimization and Wild Card rules create short optionality",
+        "Part 2 next covers Eurodollar/SOFR, Convexity & Duration Hedging"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F04",
+        "F06",
+        "F08",
+        "F05"
+      ]
+    },
+    {
+      "index": 11,
+      "topology": "summary",
+      "visualIntent": "Fixed 6-beat summary codifying all 8 rules of day counts and Treasury futures taught in Part 1",
+      "keyElements": [
+        "Actual/Actual, 30/360, and Actual/360 govern bond accrual math",
+        "Invoice Price = Settlement * CF + Accrued",
+        "CTD rules and Wild Card timing favor the short seller"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08"
+      ]
+    }
+  ]
+}

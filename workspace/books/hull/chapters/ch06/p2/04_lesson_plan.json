@@ -1,0 +1,259 @@
+{
+  "outcomes": [
+    "Interpret 100 - R quotation and $25 basis point moves on 3-month rate futures.",
+    "Compute unbiased forward rates from futures rates via the Convexity Adjustment.",
+    "Derive and apply duration-based futures hedging formula N* = (P * DP) / (FC * DF).",
+    "Recognize ALM duration gaps, curve steepening, and credit spread hedge risks."
+  ],
+  "coreConcepts": [
+    {
+      "conceptId": "K04",
+      "term": "Convexity Adjustment",
+      "stages": {
+        "intuition": {
+          "sceneIndex": 2,
+          "note": "Daily cash wins earned when rates rise reinvest at high yields"
+        },
+        "why": {
+          "sceneIndex": 0,
+          "note": "Raw 5-10 year futures overestimate true forward rates"
+        },
+        "what": {
+          "sceneIndex": 3,
+          "note": "ForwardRate = FuturesRate - 0.5 * sigma^2 * T1 * T2"
+        },
+        "how": {
+          "sceneIndex": 4,
+          "note": "Stripping adjusted futures rates sequentially to extend zero curves"
+        },
+        "workedExample": {
+          "sceneIndex": 6,
+          "note": "Scaling rate volatility and maturity in practice"
+        },
+        "guided": {
+          "sceneIndex": 4,
+          "note": "Tracing adjusted futures to continuous zero rates"
+        },
+        "independent": {
+          "sceneIndex": 9,
+          "note": "Applying duration hedge sizing independently"
+        },
+        "limitations": {
+          "sceneIndex": 8,
+          "note": "Curve steepening and credit spreads limit duration-only precision"
+        }
+      }
+    },
+    {
+      "conceptId": "K05",
+      "term": "dollar duration",
+      "stages": {
+        "intuition": {
+          "sceneIndex": 5,
+          "note": "Balancing portfolio dollar duration against futures contract duration"
+        },
+        "why": {
+          "sceneIndex": 7,
+          "note": "Banks hold long loans funded by short deposits creating rate vulnerability"
+        },
+        "what": {
+          "sceneIndex": 5,
+          "note": "N* = (P * DP) / (FC * DF)"
+        },
+        "how": {
+          "sceneIndex": 6,
+          "note": "Dividing portfolio dollar duration by single contract dollar duration"
+        },
+        "workedExample": {
+          "sceneIndex": 6,
+          "note": "Hedging $10M 6.80y portfolio with 9.20y CTD -> 79 contracts"
+        },
+        "guided": {
+          "sceneIndex": 6,
+          "note": "Predicting numerator vs denominator dollar durations before division"
+        },
+        "independent": {
+          "sceneIndex": 9,
+          "note": "Quiz solving $50M 5.0y portfolio -> 313 contracts"
+        },
+        "limitations": {
+          "sceneIndex": 8,
+          "note": "Non-parallel shifts and CTD switches leave residual basis risk"
+        }
+      }
+    }
+  ],
+  "misconception": {
+    "myth": "Futures interest rates and OTC forward interest rates are always mathematically identical.",
+    "reality": "Daily variation margin turns futures rates systematically higher than forward rates at long maturities.",
+    "factIds": [
+      "F02",
+      "F04"
+    ],
+    "sceneIndex": 2
+  },
+  "predictionQuestions": [
+    {
+      "question": "Why does our 6.80-year portfolio divide by CTD duration 9.20 years inside N*?",
+      "sceneIndex": 6,
+      "revealBeat": "s06b3"
+    }
+  ],
+  "causalChain": {
+    "condition": "Desks seek reliable zero-coupon discount rates out to 5 or 10 years.",
+    "action": "Collect liquid 3-month Eurodollar and SOFR futures prices quoted at 100 - R.",
+    "mechanism": "Subtract 0.5 * sigma^2 * T1 * T2 Convexity Adjustment from each futures rate.",
+    "result": "Convert adjusted unbiased forward rates sequentially via continuous bootstrap.",
+    "consequence": "Obtain an accurate extended zero curve pricing long-term cash flows.",
+    "factIds": [
+      "F01",
+      "F02",
+      "F09"
+    ],
+    "sceneIndex": 4
+  },
+  "sceneOutline": [
+    {
+      "index": 0,
+      "purpose": "Hook: Short-term rate volume & futures-forward divergence",
+      "concepts": [
+        "K01",
+        "K02"
+      ],
+      "factIds": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "index": 1,
+      "purpose": "Progressive cards: 100 - R quotation & $25 basis point rule",
+      "concepts": [
+        "K01",
+        "K02"
+      ],
+      "factIds": [
+        "F01",
+        "F10"
+      ]
+    },
+    {
+      "index": 2,
+      "purpose": "Misconception split: Futures vs forward rates under variation margin",
+      "concepts": [
+        "K03"
+      ],
+      "factIds": [
+        "F04"
+      ]
+    },
+    {
+      "index": 3,
+      "purpose": "Formula breakdown: Convexity Adjustment equation",
+      "concepts": [
+        "K04"
+      ],
+      "factIds": [
+        "F02"
+      ]
+    },
+    {
+      "index": 4,
+      "purpose": "Causal chain: Extending continuous zero curve beyond 2 years",
+      "concepts": [
+        "K04"
+      ],
+      "factIds": [
+        "F02",
+        "F09"
+      ]
+    },
+    {
+      "index": 5,
+      "purpose": "Formula breakdown: Optimal duration hedging ratio N*",
+      "concepts": [
+        "K05"
+      ],
+      "factIds": [
+        "F03"
+      ]
+    },
+    {
+      "index": 6,
+      "purpose": "Worked example: $10M bond hedge -> 79.32 (79 contracts)",
+      "concepts": [
+        "K05"
+      ],
+      "factIds": [
+        "F03",
+        "F05"
+      ]
+    },
+    {
+      "index": 7,
+      "purpose": "Diagram flow: Bank ALM duration gap immunization",
+      "concepts": [
+        "K06"
+      ],
+      "factIds": [
+        "F06"
+      ]
+    },
+    {
+      "index": 8,
+      "purpose": "Tug of war: Parallel shifts vs real hedging imperfections",
+      "concepts": [
+        "K07"
+      ],
+      "factIds": [
+        "F07"
+      ]
+    },
+    {
+      "index": 9,
+      "purpose": "Interactive quiz: $50M portfolio hedge -> 313 contracts",
+      "concepts": [
+        "K05"
+      ],
+      "factIds": [
+        "F03",
+        "F08"
+      ]
+    },
+    {
+      "index": 10,
+      "purpose": "Wisdom & bridge to Chapter 7 Swaps",
+      "concepts": [
+        "K04",
+        "K05",
+        "K06"
+      ],
+      "factIds": [
+        "F02",
+        "F05",
+        "F06"
+      ]
+    },
+    {
+      "index": 11,
+      "purpose": "Summary thread: Eight rules of short-rate & duration futures",
+      "concepts": [
+        "K01",
+        "K02",
+        "K03",
+        "K04",
+        "K05",
+        "K06",
+        "K07"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F06",
+        "F07"
+      ]
+    }
+  ]
+}

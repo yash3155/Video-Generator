@@ -16,20 +16,28 @@
   "personas": {
     "en": {
       "novice": {
-        "name": "Professor",
+        "name": "Alex",
         "voice": "en-US-ChristopherNeural"
       },
       "mentor": {
+        "name": "Professor",
+        "voice": "en-US-ChristopherNeural"
+      },
+      "narrator": {
         "name": "Professor",
         "voice": "en-US-ChristopherNeural"
       }
     },
     "hi": {
       "novice": {
-        "name": "Professor",
+        "name": "Alex",
         "voice": "hi-IN-MadhurNeural"
       },
       "mentor": {
+        "name": "Professor",
+        "voice": "hi-IN-MadhurNeural"
+      },
+      "narrator": {
         "name": "Professor",
         "voice": "hi-IN-MadhurNeural"
       }
@@ -47,12 +55,12 @@
     {
       "id": "s00",
       "index": 0,
-      "title": "The Short End of the Curve: Introducing Eurodollar Futures",
-      "purpose": "Transition from long-term bond futures to short-term money market derivatives and duration hedging",
+      "title": "Short-Rate Futures: Eurodollar, SOFR & Duration",
+      "purpose": "Problem-first hook transitioning from Treasury delivery to short-rate hedging and duration",
       "takeaways": [
-        "The largest global derivative trading volumes trade on short-term rates (Eurodollar & SOFR)",
-        "Contracts feature a standardized $1,000,000 notional principal on 3-month rates",
-        "Part 2 masters quotation mechanics, convexity adjustments, and duration-based hedging"
+        "Eurodollar and SOFR futures dominate global short-rate volume",
+        "Contracts cover 3-month rates on $1,000,000 notional principal",
+        "Part 2 links rate adjustments directly to bond duration hedging"
       ],
       "pedagogicalContinuation": false,
       "template": "chat_story",
@@ -61,33 +69,31 @@
           {
             "id": "m1",
             "speaker": "novice",
-            "text": "How do trading desks hedge billions in short-term interest rates, and why do futures rates differ from forward rates?"
+            "text": "How do banks hedge billions in 3-month interest rate risk, and why do futures rates differ from forward rates?"
           },
           {
             "id": "m2",
             "speaker": "mentor",
-            "text": "In Part One, we mastered long-term Treasury bond futures. But the most massive derivative trading volume in history trades on short-term rates: Eurodollar and SOFR futures."
+            "text": "Short-term rate futures—historically Eurodollar and today Three-Month SOFR—move trillions daily on $1,000,000 contracts."
           },
           {
             "id": "m3",
             "speaker": "mentor",
-            "text": "Eurodollar futures are based on 3-month dollar deposits with a $1,000,000 notional principal, providing liquid instruments to fix borrowing costs."
+            "text": "Daily cash margin makes long-dated futures rates slightly higher than OTC forward rates unless corrected."
           },
           {
             "id": "m4",
             "speaker": "mentor",
-            "text": "In Part Two, we master 100 - R quotation, the mathematical Convexity Adjustment, and institutional Duration-Based Hedging."
+            "text": "In Part 2, we learn 100 - R quoting, futures-to-forward adjustment, zero-curve extension, and bond duration hedging."
           }
         ],
         "whereWeAre": {
           "label": "WHERE WE ARE",
           "items": [
-            "Short-Rate Intro",
-            "100 - R Quotation",
-            "Mark-to-Market Divergence",
-            "Convexity Adjustment",
-            "Zero Curve Extension",
-            "Duration Hedging"
+            "Short-Rate Hook",
+            "100 - R & Convexity Adjustment",
+            "Duration Hedge N* & ALM",
+            "Chapter 7 Swaps Next"
           ],
           "current": 0
         }
@@ -98,100 +104,124 @@
           "speaker": "novice",
           "narration": {
             "en": {
-              "display": "How do trading desks hedge billions in short-term interest rates, and why do futures rates differ from forward rates?"
+              "display": "How do global banks hedge billions in short-term interest rates, and why do futures rates diverge from forward rates?"
             },
             "hi": {
-              "display": "ट्रेडिंग डेस्क शॉर्ट-टर्म इंटरेस्ट रेट्स को कैसे हेज करते हैं, और फ्यूचर्स और फॉरवर्ड रेट्स में फर्क क्यों होता है?"
+              "display": "वैश्विक बैंक शॉर्ट-टर्म ब्याज दरों के अरबों डॉलर के जोखिम को कैसे हेज करते हैं, और फ्यूचर्स व फॉरवर्ड दरें अलग क्यों होती हैं?"
             }
           },
-          "onScreenIntent": "Opening dilemma question on short-rate hedging and rate divergence",
+          "onScreenIntent": "Novice raises short-rate hedging and rate gap question",
           "sourceFactIds": [
             "F01",
-            "F02"
+            "F04"
           ],
-          "newTerms": [
-            "short-term rate hedging"
-          ],
-          "pauseAfterMs": 300,
+          "newTerms": [],
+          "pauseAfterMs": 260,
           "transition": false,
           "visual": {
             "show": [
               "m1"
-            ]
+            ],
+            "focus": "m1"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m1",
+              "anchor": {
+                "en": "banks",
+                "hi": "बैंक"
+              }
+            }
+          ]
         },
         {
           "id": "s00b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "In Part One, we mastered long-term Treasury bond futures. But the most massive derivative trading volume in global financial history trades on short-term rates: historically Eurodollar Futures, and in contemporary markets, Three-Month SOFR Futures."
+              "display": "Eurodollar futures mean 3-month $1,000,000 dollar rate futures quoted cleanly via 100 minus R, and SOFR, which stands for Secured Overnight Financing Rate, powers modern 3-month contracts."
             },
             "hi": {
-              "display": "Part One mein humne dekha ki long-term Treasury bond futures kaise price hote hain. Lekin global financial system ka sabse massive derivative volume short-term money market rates par trade hota hai, jise Eurodollar Futures ya modern markets mein Three-Month SOFR Futures kaha jata hai."
+              "display": "यूरोडॉलर फ्यूचर्स का अर्थ है $1,000,000 के तीन-माह ब्याज दर कॉन्ट्रैक्ट, और एसओएफआर यानी सिक्योर्ड ओवरनाइट फाइनेंसिंग रेट आज का आधुनिक मानक है।"
             }
           },
-          "onScreenIntent": "The mentor highlights massive global volume in Eurodollar and SOFR futures",
+          "onScreenIntent": "Define Eurodollar futures and expand SOFR acronym",
           "sourceFactIds": [
             "F01"
           ],
           "newTerms": [
             "Eurodollar futures",
-            "SOFR futures"
+            "SOFR"
           ],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
           "visual": {
             "show": [
               "m1",
               "m2"
-            ]
+            ],
+            "focus": "m2"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m2",
+              "anchor": {
+                "en": "Eurodollar",
+                "hi": "यूरोडॉलर"
+              }
+            }
+          ]
         },
         {
           "id": "s00b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Eurodollar futures are based on three-month dollar deposit interest rates held outside the United States. Each contract features a standardized notional principal of one million dollars, providing a liquid instrument to fix short-term borrowing costs."
+              "display": "At long maturities, daily clearinghouse settlement lifts futures rates slightly above custom forward rates unless desks subtract a clean volatility correction."
             },
             "hi": {
-              "display": "Eurodollar futures US ke bahar offshore banks mein deposit hone wale three-month dollar interest rate par based hote hain. Inka principal size exactly one million dollars hota hai, aur inka use short-term borrowing costs ko lock karne ke liye hota hai."
+              "display": "लंबी अवधि पर दैनिक क्लियरिंगहाउस सेटलमेंट फ्यूचर्स दरों को फॉरवर्ड दरों से थोड़ा ऊपर ले जाता है, जिसे सुधारना जरूरी होता है।"
             }
           },
-          "onScreenIntent": "The mentor details $1M notional principal and 3-month deposit foundation",
+          "onScreenIntent": "Preview daily settlement futures-forward bias",
           "sourceFactIds": [
-            "F01"
+            "F04"
           ],
-          "newTerms": [
-            "notional principal"
-          ],
-          "pauseAfterMs": 300,
+          "newTerms": [],
+          "pauseAfterMs": 260,
           "transition": false,
           "visual": {
             "show": [
               "m1",
               "m2",
               "m3"
-            ]
+            ],
+            "focus": "m3"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m3",
+              "anchor": {
+                "en": "forward",
+                "hi": "फॉरवर्ड"
+              }
+            }
+          ]
         },
         {
           "id": "s00b4",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "In Part Two of Chapter Six, we master Eurodollar quotation mechanics, the mathematical Convexity Adjustment between futures and forward rates, and institutional Duration-Based Hedging."
+              "display": "In Part 2, we learn 100 minus R quoting, the futures-to-forward adjustment, zero-curve extension, and bond duration hedging."
             },
             "hi": {
-              "display": "Chapter Six ke Part Two mein hum Eurodollar pricing mechanics, futures aur forwards ke beech ka Convexity Adjustment, aur institutional Duration-Based Hedging formula ko deeply dissect karenge."
+              "display": "पार्ट 2 में हम 100 माइनस आर कोटिंग, फ्यूचर्स-टू-फॉरवर्ड एडजस्टमेंट, जीरो-कर्व विस्तार और बॉन्ड ड्यूरेशन हेजिंग सीखेंगे।"
             }
           },
-          "onScreenIntent": "The mentor outlines Part 2 learning objectives and mathematical topics",
+          "onScreenIntent": "Preview Part 2 roadmap topics cleanly",
           "sourceFactIds": [
+            "F01",
             "F02",
             "F03"
           ],
@@ -204,42 +234,67 @@
               "m2",
               "m3",
               "m4"
-            ]
+            ],
+            "focus": "m4"
           },
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "m4",
+              "anchor": {
+                "en": "hedging",
+                "hi": "हेजिंग"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "s01",
       "index": 1,
-      "title": "Contract Mechanics: $100 - R$ Pricing & The $25 Tick Value",
-      "purpose": "Examine the 100 - R quotation index and derive the $25 basis point tick value",
+      "title": "Index Quoting Mechanics & The $25 Tick",
+      "purpose": "Teach 100 - R price quotation and $25 value per basis point per contract",
       "takeaways": [
-        "Eurodollar/SOFR futures quote as 100 - R, where R is annualized interest rate percentage",
-        "The formula preserves bond inverse pricing: rising rates produce falling futures quotes",
-        "A 1 basis point (0.01%) move equals exactly $25 per contract ($1M * 0.0001 * 90/360)"
+        "Contract price quote equals 100 minus annualized 3-month rate R",
+        "Index quote 95.00 implies 5.00% annualized 3-month interest",
+        "Each 1 basis point move equals exactly $25 per contract"
       ],
       "pedagogicalContinuation": false,
-      "template": "technical_panel",
+      "template": "progressive_cards",
       "data": {
-        "title": "Short-Rate Futures Quotation & Valuation",
-        "subtitle": "100 - R Index Pricing & The Exact $25 Tick Derivation",
-        "sections": [
+        "cards": [
           {
-            "id": "quote-formula",
-            "title": "Index Price Formula",
-            "content": "Quoted Price = 100 - R. For example, if 3-month interest rate R = 4.25%, the futures contract trades at exactly 95.75."
+            "id": "c1",
+            "title": "$1,000,000 Principal",
+            "body": "Each contract references a 90-day deposit on $1,000,000 notional."
           },
           {
-            "id": "quote-inverse",
-            "title": "Inverse Fixed Income Dynamics",
-            "content": "When rates increase, futures price drops. When rates decrease, futures price climbs, matching standard bond exposure."
+            "id": "c2",
+            "title": "Price Index Quotation",
+            "body": [
+              {
+                "type": "text",
+                "text": "Quote = "
+              },
+              {
+                "type": "math",
+                "latex": "100 - R"
+              },
+              {
+                "type": "text",
+                "text": " (so 95.00 implies 5.00%)."
+              }
+            ]
           },
           {
-            "id": "quote-tick",
-            "title": "Exact $25 Tick Derivation",
-            "content": "1 bp change = $1,000,000 principal * 0.0001 * (90 days / 360 days) = $25.00 cash profit/loss per contract."
+            "id": "c3",
+            "title": "Inverse Price-Rate Move",
+            "body": "When interest rate R rises, the quoted futures price falls."
+          },
+          {
+            "id": "c4",
+            "title": "$25 Basis Point Value",
+            "body": "One 0.01% rate change alters value by $25 per contract."
           }
         ]
       },
@@ -249,108 +304,148 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Eurodollar and SOFR futures utilize a unique price index quotation convention: the quoted futures price equals one hundred minus R, where R represents the annualized three-month interest rate percentage."
+              "display": "Each Eurodollar or SOFR contract covers a 3-month rate on $1,000,000 notional, quoted via 100 minus R so a 95.00 quote means 5.00% interest."
             },
             "hi": {
-              "display": "Eurodollar futures ka quotation convention unique hota hai. Contract price quote barabar hota hai: one hundred minus R, jahan R annualized three-month interest rate percentage mein hai."
+              "display": "प्रत्येक यूरोडॉलर या एसओएफआर कॉन्ट्रैक्ट $1,000,000 मूलधन पर 3-माह की दर कवर करता है, जहां 95.00 का कोट 5.00% ब्याज दर्शाता है।"
             }
           },
-          "onScreenIntent": "Introduce 100 - R quotation convention",
+          "onScreenIntent": "Present $1,000,000 contract size and 95.00 = 5.00% example",
           "sourceFactIds": [
-            "F01"
+            "F01",
+            "F10"
           ],
-          "newTerms": [
-            "100 - R quotation"
-          ],
-          "pauseAfterMs": 300,
+          "newTerms": [],
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "c1",
+              "c2"
+            ],
+            "focus": "c2"
+          },
+          "visualCues": [
+            {
+              "target": "c2",
+              "anchor": {
+                "en": "95.00",
+                "hi": "95.00"
+              }
+            }
+          ]
         },
         {
           "id": "s01b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "This convention preserves the familiar inverse relationship of fixed income: when interest rates R rise, the futures price falls; when interest rates fall, the futures price rises."
+              "display": "Because price equals 100 minus R, quotes move inversely to yields: rising interest rates push the futures index down and benefit short sellers."
             },
             "hi": {
-              "display": "Is formula ki wajah se futures price aur interest rates ke beech standard inverse relationship maintain rehti hai. Agar interest rate R badhta hai, toh futures price girta hai; agar rate girta hai, toh futures price badhta hai."
+              "display": "क्योंकि कोट 100 माइनस आर है, कीमतें ब्याज के विपरीत चलती हैं: बढ़ती दरें फ्यूचर्स कोट को नीचे धकेलती हैं और शॉर्ट्स को लाभ देती हैं।"
             }
           },
-          "onScreenIntent": "Explain why inverse relationship aligns with standard fixed-income intuition",
+          "onScreenIntent": "Highlight inverse price-rate relationship",
           "sourceFactIds": [
             "F01"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "c1",
+              "c2",
+              "c3"
+            ],
+            "focus": "c3"
+          },
+          "visualCues": [
+            {
+              "target": "c3",
+              "anchor": {
+                "en": "rising",
+                "hi": "बढ़ती"
+              }
+            }
+          ]
         },
         {
           "id": "s01b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "A one-basis-point move of point zero one percent corresponds to an exact profit or loss of twenty-five dollars per contract: one million dollars multiplied by point zero zero zero one, times ninety over three hundred sixty, equals exactly twenty-five dollars."
+              "display": "Every 0.01% basis point rate change alters one $1,000,000 contract value by $25 per contract, matching 90 over 360 notional interest."
             },
             "hi": {
-              "display": "Ek basis point yaani zero point zero one percent ke change hone par har contract ki value mein exactly twenty-five dollars ka profit ya loss hota hai: one million dollars guna zero point zero zero zero one guna ninety divided by three-sixty barabar twenty-five dollars."
+              "display": "हर एक 0.01% बेसिस पॉइंट दर बदलाव $1,000,000 कॉन्ट्रैक्ट मूल्य में $25 प्रति कॉन्ट्रैक्ट का अंतर लाता है।"
             }
           },
-          "onScreenIntent": "Derive exact $25 cash tick value per basis point",
+          "onScreenIntent": "Highlight exact $25 tick calculation",
           "sourceFactIds": [
             "F01"
           ],
-          "newTerms": [
-            "$25 tick value"
-          ],
+          "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "c1",
+              "c2",
+              "c3",
+              "c4"
+            ],
+            "focus": "c4"
+          },
+          "visualCues": [
+            {
+              "target": "c4",
+              "anchor": {
+                "en": "$25",
+                "hi": "$25"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "s02",
       "index": 2,
-      "title": "Futures vs. Forwards: The Daily Marking-to-Market Divergence",
-      "purpose": "Contrast daily settled futures cash flows with terminal settled FRAs to explain rate disparity",
+      "title": "Why Futures Rates Exceed Forward Rates",
+      "purpose": "Misconception split showing how daily variation margin reinvestment splits futures from forwards",
       "takeaways": [
-        "Futures interest rates systematically exceed corresponding FRA forward rates",
-        "Daily marking-to-market reinvests positive variation margin at prevailing higher rates",
-        "FRAs settle with zero interim cash flow, requiring a mathematical convexity adjustment"
+        "Daily variation margin settles futures profits immediately every day",
+        "Short futures earn cash wins when rates surge and reinvest higher",
+        "Favorable daily reinvestment makes futures rates exceed forward rates"
       ],
       "pedagogicalContinuation": false,
       "template": "split_comparison",
       "data": {
         "left": {
-          "id": "cmp-futures-rate",
-          "heading": "Futures Rate Dynamics",
-          "tone": "positive",
+          "id": "trap-parity",
+          "heading": "Novice Parity Myth",
+          "tone": "trap",
           "points": [
-            "Settles cash variation margin every business day based on closing prices",
-            "When interest rates rise, short futures gain cash that is immediately reinvested at higher yields",
-            "Positive correlation between cash flow and reinvestment rates elevates futures rates",
-            "Systematically trades at higher theoretical interest yields than forwards"
+            "Assuming futures rates always equal forward rates identically",
+            "Ignoring daily exchange variation margin cash flows",
+            "Underpricing long-dated swaps built from raw futures"
           ]
         },
         "right": {
-          "id": "cmp-forward-rate",
-          "heading": "Forward Rate (FRA) Dynamics",
-          "tone": "neutral",
+          "id": "real-margin",
+          "heading": "Variation Margin Reality",
+          "tone": "positive",
           "points": [
-            "Over-the-counter contract with zero interim cash variation margin payments",
-            "Single cash settlement occurs at inception T_1 discounted for in-advance settlement",
-            "No interim cash flow reinvestment benefit during the holding period",
-            "Represents the true unencumbered forward rate needed for zero curve bootstrapping"
+            "Rising yields generate daily gains for short rate futures",
+            "Variation margin wins reinvest immediately at high interest",
+            "Reinvestment advantage pushes futures rate above forward rate"
           ]
         },
         "verdict": {
-          "id": "vrd-divergence",
-          "text": "Daily marking-to-market reinvestment raises futures rates above forward rates: Futures > Forwards."
+          "id": "vrd-bias",
+          "text": "At long maturities, daily variation margin forces futures rates higher than forward rates."
         }
       },
       "beats": [
@@ -359,143 +454,177 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Market participants often assume that Eurodollar futures rates and Forward Rate Agreement rates are identical. Mathematically, however, futures interest rates are systematically higher than corresponding forward rates."
+              "display": "A classic novice trap assumes 3-month futures interest rates match forward rates identically at every horizon out to 10 years."
             },
             "hi": {
-              "display": "Traders aksar assume karte hain ki Eurodollar futures rate aur Forward Rate Agreement yaani FRA rate exactly identical hote hain. Lekin mathematically futures rate hamesha forward rate se thoda high hota hai."
+              "display": "नौसिखियों का एक आम भ्रम यह मानना है कि 10 वर्ष तक की अवधि में 3-माह की फ्यूचर्स दरें और फॉरवर्ड दरें हमेशा बिल्कुल बराबर होती हैं।"
             }
           },
-          "onScreenIntent": "Address misconception that futures rates and forward rates are identical",
+          "onScreenIntent": "Present parity misconception on left panel",
           "sourceFactIds": [
             "F04"
           ],
-          "newTerms": [
-            "futures-forward disparity"
-          ],
-          "pauseAfterMs": 300,
+          "newTerms": [],
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "trap-parity"
+            ],
+            "focus": "trap-parity"
+          },
+          "visualCues": [
+            {
+              "target": "trap-parity",
+              "anchor": {
+                "en": "trap",
+                "hi": "भ्रम"
+              }
+            }
+          ]
         },
         {
           "id": "s02b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "The primary driver of this disparity is Daily Marking to Market: futures settle cash variation margin daily, which is immediately reinvested at prevailing rates. When interest rates rise, long futures positions generate positive cash flows that are reinvested at higher yields."
+              "display": "Futures involve variation margin, which means daily cash profit or loss settled every evening. When interest rates climb, short futures collect cash immediately and reinvest at higher rates."
             },
             "hi": {
-              "display": "Iska primary reason Daily Marking to Market hai. Futures contract mein har din variation margin cash settle hota hai aur immediately reinvest ho jata hai. Jab rates badhte hain, toh long futures holder ko daily cash inflow milta hai jise wo higher interest rates par reinvest karta hai."
+              "display": "फ्यूचर्स में वेरिएशन मार्जिन होता है, जिसका अर्थ है कीमत बदलने पर प्रतिदिन होने वाला नकद लाभ-हानि सेटलमेंट। दरें बढ़ने पर मिली नकदी ऊंचे ब्याज पर दोबारा निवेश होती है।"
             }
           },
-          "onScreenIntent": "Explain daily mark-to-market cash reinvestment mechanics",
+          "onScreenIntent": "Define variation margin and favorable reinvestment",
           "sourceFactIds": [
             "F04"
           ],
           "newTerms": [
-            "daily marking-to-market"
+            "variation margin"
           ],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "trap-parity",
+              "real-margin"
+            ],
+            "focus": "real-margin"
+          },
+          "visualCues": [
+            {
+              "target": "real-margin",
+              "anchor": {
+                "en": "reinvest",
+                "hi": "निवेश"
+              }
+            }
+          ]
         },
         {
           "id": "s02b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Conversely, an FRA pays zero interim cash, settling entirely at the start or conclusion of the borrowing horizon. Reconciling this cash flow timing asymmetry requires a quantitative Convexity Adjustment."
+              "display": "That asymmetric reinvestment perk attracts borrowers to short futures at higher implied yields, forcing futures rates above unbiased forward rates."
             },
             "hi": {
-              "display": "Doosri taraf, FRA contract maturity tak koi daily cash flow nahi deta, iska pura settlement period ke end par hota hai. Is reinvestment difference ko reconcile karne ke liye Convexity Adjustment calculate kiya jata hai."
+              "display": "दैनिक पुनर्निवेश का यह लाभ फ्यूचर्स दरों को वास्तविक फॉरवर्ड दरों से व्यवस्थित रूप से थोड़ा ऊपर ले जाता है।"
             }
           },
-          "onScreenIntent": "Contrast terminal settled FRAs and introduce convexity adjustment",
+          "onScreenIntent": "Reveal verdict explaining upward bias",
           "sourceFactIds": [
             "F04"
           ],
-          "newTerms": [
-            "convexity adjustment"
-          ],
+          "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "trap-parity",
+              "real-margin",
+              "vrd-bias"
+            ],
+            "focus": "vrd-bias"
+          },
+          "visualCues": [
+            {
+              "target": "vrd-bias",
+              "anchor": {
+                "en": "higher",
+                "hi": "ऊपर"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "s03",
       "index": 3,
-      "title": "The Convexity Adjustment Formula: Correcting the Futures Rate",
-      "purpose": "Formulate the exact mathematical deduction: Forward Rate = Futures Rate - 0.5 * sigma^2 * T_1 * T_2",
+      "title": "The Convexity Adjustment Formula",
+      "purpose": "Deconstruct ForwardRate = FuturesRate - 0.5 * sigma^2 * T1 * T2",
       "takeaways": [
-        "Convexity adjustment formula: Forward Rate = Futures Rate - 0.5 * sigma^2 * T_1 * T_2",
-        "Sigma is interest rate change volatility; T_2 = T_1 + 0.25 years",
-        "Adjustment grows quadratically with maturity, reaching 50-100 bps for 8-10 year horizons"
+        "Convexity Adjustment converts raw futures rates to forward rates",
+        "Deduction grows quadratically with rate volatility sigma",
+        "Long horizons T1 * T2 make convexity gaps material past 2 years"
       ],
       "pedagogicalContinuation": false,
       "template": "formula_breakdown",
       "data": {
-        "title": "The Hull-White Convexity Adjustment Formula",
+        "title": "Reconciling Futures and Forward Interest Rates",
         "formula": {
-          "latex": "\\text{Forward Rate} = \\text{Futures Rate} - \\frac{1}{2} \\sigma^2 T_1 T_2",
-          "expression": "Forward Rate = Futures Rate - 0.5 * sigma^2 * T_1 * T_2",
-          "solvesFor": "True Continuous Forward Rate (R_F)",
+          "id": "f_convexity_adj",
+          "latex": "R_{\\text{forward}} = R_{\\text{futures}} - \\frac{1}{2} \\sigma^2 T_1 T_2",
+          "expression": "FuturesRate - 0.5 * sigma^2 * T1 * T2",
+          "solvesFor": "ForwardRate",
           "variables": [
             {
-              "symbol": "R_F",
-              "latex": "\\text{Forward Rate}",
-              "meaning": "True unencumbered forward interest rate",
-              "unit": "decimal/year"
+              "symbol": "ForwardRate",
+              "latex": "R_{\\text{forward}}",
+              "meaning": "True forward interest rate",
+              "unit": "per year"
             },
             {
-              "symbol": "R_G",
-              "latex": "\\text{Futures Rate}",
-              "meaning": "Quoted futures rate: (100 - Quoted Price) / 100",
-              "unit": "decimal/year"
+              "symbol": "FuturesRate",
+              "latex": "R_{\\text{futures}}",
+              "meaning": "Continuous futures interest rate",
+              "unit": "per year"
             },
             {
               "symbol": "sigma",
               "latex": "\\sigma",
-              "meaning": "Annualized standard deviation of interest rate changes",
-              "unit": "decimal/year"
+              "meaning": "Annual interest rate standard deviation",
+              "unit": "per year"
             },
             {
-              "symbol": "T_1",
+              "symbol": "T1",
               "latex": "T_1",
-              "meaning": "Time to contract expiration in years",
+              "meaning": "Time to futures contract maturity",
               "unit": "years"
             },
             {
-              "symbol": "T_2",
+              "symbol": "T2",
               "latex": "T_2",
-              "meaning": "Maturity of underlying rate: T_1 + 0.25 years",
+              "meaning": "End of 3-month rate period",
               "unit": "years"
             }
           ]
         },
         "parts": [
           {
-            "id": "ca1",
-            "symbolLatex": "\\frac{1}{2} \\sigma^2 T_1 T_2",
-            "meaning": "Quadratic convexity correction factor deducted from futures quote",
-            "unit": "decimal/year"
+            "id": "p1",
+            "symbolLatex": "\\sigma^2",
+            "meaning": "Rate variance magnifying daily margin reinvestment advantage",
+            "unit": "per year squared"
           },
           {
-            "id": "ca2",
-            "symbolLatex": "T_2 = T_1 + 0.25",
-            "meaning": "Underlying 3-month borrowing horizon (+ 90/360 years)",
-            "unit": "years"
-          },
-          {
-            "id": "ca3",
-            "symbolLatex": "T_1 > 5 \\implies 50\\text{--}100\\text{ bps}",
-            "meaning": "Significant correction factor for multi-year interest rate swaps",
-            "unit": "impact"
+            "id": "p2",
+            "symbolLatex": "T_1 T_2",
+            "meaning": "Horizon product making multi-year corrections grow sharply",
+            "unit": "squared years"
           }
-        ]
+        ],
+        "note": "Convexity Adjustment is tiny inside 1 year, but essential at 5 to 10 years."
       },
       "beats": [
         {
@@ -503,109 +632,147 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "To extract the true forward rate from quoted futures rates, John Hull establishes the Convexity Adjustment formula: Forward Rate equals Futures Rate minus one-half sigma squared times T-one times T-two."
+              "display": "Quant desks apply the Convexity Adjustment, which means subtracting a rate variance daily margin reinvestment correction over multi-year horizons."
             },
             "hi": {
-              "display": "Futures rate ko true forward rate mein convert karne ke liye Hull ka Convexity Adjustment formula use hota hai: Forward Rate barabar Futures Rate minus half sigma square T-one T-two."
+              "display": "क्वांट डेस्क कॉन्वेक्सिटी एडजस्टमेंट लागू करते हैं, जिसका अर्थ है बहु-वर्षीय अवधि में दैनिक मार्जिन पुनर्निवेश सुधार घटाकर सही फॉरवर्ड दर पाना।"
             }
           },
-          "onScreenIntent": "Formulate Convexity Adjustment: Forward = Futures - 0.5 * sigma^2 * T_1 * T_2",
+          "onScreenIntent": "Define Convexity Adjustment formula cleanly",
           "sourceFactIds": [
             "F02"
           ],
           "newTerms": [
-            "convexity deduction"
+            "Convexity Adjustment"
           ],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "p1",
+              "p2"
+            ],
+            "focus": "p1"
+          },
+          "visualCues": [
+            {
+              "target": "p1",
+              "anchor": {
+                "en": "reinvestment",
+                "hi": "पुनर्निवेश"
+              }
+            }
+          ]
         },
         {
           "id": "s03b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Here, sigma represents the annualized volatility of interest rate changes, T-one is the time to futures contract maturity, and T-two is the maturity of the underlying three-month borrowing rate, which equals T-one plus zero point two five years."
+              "display": "The deduction equals half sigma squared times T1 times T2, where rate volatility sigma drives variation margin swings squared."
             },
             "hi": {
-              "display": "Yahan sigma interest rates ki annual standard deviation hai, T-one futures contract ki expiration maturity hai, aur T-two underlying interest rate ki final maturity hai, yaani T-one plus zero point two five years."
+              "display": "यह कटौती आधा सिग्मा स्क्वायर गुणा टी1 टी2 होती है, जहां ब्याज दर अस्थिरता सिग्मा दैनिक मार्जिन लाभ को बढ़ाती है।"
             }
           },
-          "onScreenIntent": "Define parameters: rate volatility sigma, expiry T_1, and rate maturity T_2",
+          "onScreenIntent": "Highlight sigma squared margin sensitivity",
           "sourceFactIds": [
             "F02"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "p1"
+            ],
+            "focus": "p1"
+          },
+          "visualCues": [
+            {
+              "target": "p1",
+              "anchor": {
+                "en": "volatility",
+                "hi": "अस्थिरता"
+              }
+            }
+          ]
         },
         {
           "id": "s03b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "While negligibly small for one-year contracts, this adjustment grows quadratically with maturity, reaching fifty to one hundred basis points at eight to ten years. Failing to apply this adjustment causes severe pricing errors when constructing yield curves."
+              "display": "Because horizon factor T1 times T2 scales quadratically, the adjustment stays tiny inside 1 year but becomes substantial over 5 to 10 years."
             },
             "hi": {
-              "display": "Short maturities par ye adjustment negligibly small hota hai, lekin five ya ten-year maturities par ye adjustment fifty se one hundred basis points tak pahunch sakta hai. Is correction ke bina yield curve construct karna fatal pricing errors create karta hai."
+              "display": "चूंकि अवधि गुणनफल टी1 गुणा टी2 तेजी से बढ़ता है, यह सुधार 1 वर्ष में नगण्य पर 5 से 10 वर्षों में बेहद महत्वपूर्ण हो जाता है।"
             }
           },
-          "onScreenIntent": "Demonstrate quadratic growth of adjustment: reaching 50 to 100 bps at 8-10 years",
+          "onScreenIntent": "Highlight multi-year T1 * T2 quadratic growth",
           "sourceFactIds": [
             "F02"
           ],
-          "newTerms": [
-            "quadratic growth"
-          ],
+          "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "p1",
+              "p2"
+            ],
+            "focus": "p2"
+          },
+          "visualCues": [
+            {
+              "target": "p2",
+              "anchor": {
+                "en": "10",
+                "hi": "10"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "s04",
       "index": 4,
-      "title": "Extending the Zero Curve via Adjusted Futures Rates",
-      "purpose": "Trace the 3-step bootstrapping methodology extending smooth zero curves via convexity-adjusted futures",
+      "title": "Extending the Zero Curve Beyond 2 Years",
+      "purpose": "Causal chain stripping adjusted Eurodollar and SOFR futures into zero curves",
       "takeaways": [
-        "Trading desks use convexity-adjusted futures to bootstrap zero curves up to 10 years",
-        "Convexity deduction of 0.5 * sigma^2 * T_1 * T_2 isolates true forward rates",
-        "Forward rates are chained recursively to build the continuous discount curve"
+        "Treasury bonds run thin between 2 and 10 years, so futures fill gaps",
+        "Convexity deduction converts quarterly futures quotes to forwards",
+        "Continuous bootstrap extends zero discount curves accurately"
       ],
       "pedagogicalContinuation": false,
       "template": "causal_chain",
       "data": {
-        "title": "Bootstrapping Zero Curves from Short-Rate Futures",
         "links": [
           {
-            "id": "boot1",
+            "id": "z1",
             "role": "condition",
-            "text": "Liquid money market futures prices trade across consecutive quarterly expirations up to 10 years"
+            "text": "Liquid Eurodollar and SOFR futures quote quarterly out 5 to 10 years"
           },
           {
-            "id": "boot2",
+            "id": "z2",
             "role": "action",
-            "text": "Step 1: Collect quoted settlement prices and extract raw futures interest rates: (100 - Price) / 100"
+            "text": "Extract implied continuous 3-month futures rates from 100 - R"
           },
           {
-            "id": "boot3",
+            "id": "z3",
             "role": "mechanism",
-            "text": "Step 2: Subtract exact convexity adjustment 0.5 * sigma^2 * T_1 * T_2 to yield true forward rates"
+            "text": "Subtract half sigma-squared times T1 T2 Convexity Adjustment bias"
           },
           {
-            "id": "boot4",
+            "id": "z4",
             "role": "result",
-            "text": "Step 3: Recursively link continuous forward rates to compute zero-coupon spot rates"
+            "text": "Convert unbiased forward rates into continuous zero spot rates"
           },
           {
-            "id": "boot5",
+            "id": "z5",
             "role": "consequence",
-            "text": "Generate institutional benchmark zero curve for pricing swaps and multi-billion-dollar debt"
+            "text": "Bootstrap complete 5-10 year discount curve cleanly"
           }
         ]
       },
@@ -615,128 +782,181 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Major investment banks utilize convexity-adjusted money market futures to bootstrap smooth, liquid zero curves extending up to ten years into the future."
+              "display": "With short-term Treasury bills sparse past 1 year, desks rely on liquid 5 to 10 year rate futures quoted via 100 minus R."
             },
             "hi": {
-              "display": "Investment banks Eurodollar futures ka use karke liquid forward curve ko out to ten years tak bootstrap karte hain."
+              "display": "1 वर्ष के बाद कम ट्रेजरी बिल्स होने के कारण, डेस्क 5 से 10 वर्ष तक 100 माइनस आर पर कोट होने वाले रेट फ्यूचर्स का उपयोग करते हैं।"
             }
           },
-          "onScreenIntent": "Introduce bootstrapping smooth zero curves up to 10 years",
+          "onScreenIntent": "Show liquid 5-10 year futures quotes as condition",
           "sourceFactIds": [
-            "F02"
+            "F01",
+            "F09"
           ],
-          "newTerms": [
-            "zero curve bootstrapping"
-          ],
-          "pauseAfterMs": 300,
+          "newTerms": [],
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "z1",
+              "z2"
+            ],
+            "focus": "z2"
+          },
+          "visualCues": [
+            {
+              "target": "z2",
+              "anchor": {
+                "en": "quoted",
+                "hi": "कोट"
+              }
+            }
+          ]
         },
         {
           "id": "s04b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "In Step One, trading desks collect consecutive active quarterly futures prices across all active contract expirations."
+              "display": "Next, analysts convert quotes to continuous compounding and subtract the Convexity Adjustment before plugging rates into zero-curve bootstrapping."
             },
             "hi": {
-              "display": "Step One mein exchange par active consecutive quarterly Eurodollar futures quotes collect kiye jate hain."
+              "display": "इसके बाद विश्लेषक कोट्स को सतत कम्पाउंडिंग में बदलकर कॉन्वेक्सिटी एडजस्टमेंट घटाते हैं और जीरो-कर्व बूटस्ट्रैपिंग करते हैं।"
             }
           },
-          "onScreenIntent": "Step 1: Collecting consecutive active quarterly futures rates",
+          "onScreenIntent": "Highlight convexity subtraction step in pipeline",
           "sourceFactIds": [
-            "F02"
+            "F02",
+            "F09"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "z1",
+              "z2",
+              "z3"
+            ],
+            "focus": "z3"
+          },
+          "visualCues": [
+            {
+              "target": "z3",
+              "anchor": {
+                "en": "subtract",
+                "hi": "घटाते"
+              }
+            }
+          ]
         },
         {
           "id": "s04b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "In Step Two, the exact convexity deduction of one-half sigma squared T-one T-two is subtracted from each futures rate, isolating the true continuous forward rate."
+              "display": "Linking each unbiased forward rate sequentially builds a smooth 5 to 10 year continuous zero discount curve for institutional pricing."
             },
             "hi": {
-              "display": "Step Two mein har contract maturity ke liye exact half sigma square T-one T-two convexity deduction apply karke true quarterly forward rates calculate kiye jate hain."
+              "display": "हर शुद्ध फॉरवर्ड दर को क्रमिक रूप से जोड़ने पर संस्थागत वैल्यूएशन के लिए 5 से 10 वर्ष का सटीक जीरो डिस्काउंट कर्व तैयार हो जाता है।"
             }
           },
-          "onScreenIntent": "Step 2: Deducting convexity adjustment to isolate true forward rates",
+          "onScreenIntent": "Complete continuous zero curve construction flow",
           "sourceFactIds": [
-            "F02"
+            "F09"
           ],
           "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
-          "visualCues": []
-        },
-        {
-          "id": "s04b4",
-          "speaker": "mentor",
-          "narration": {
-            "en": {
-              "display": "In Step Three, these corrected forward rates are recursively chained together to build the continuous zero-coupon discount curve used to value interest rate swaps and exotic derivatives."
-            },
-            "hi": {
-              "display": "Step Three mein in corrected forward rates ko recursively link karke continuous zero-coupon yield curve derive ki jati hai jo Swaps aur structured derivatives ko price karti hai."
-            }
+          "visual": {
+            "show": [
+              "z1",
+              "z2",
+              "z3",
+              "z4",
+              "z5"
+            ],
+            "focus": "z5"
           },
-          "onScreenIntent": "Step 3: Chaining forward rates into continuous zero discount curves",
-          "sourceFactIds": [
-            "F02"
-          ],
-          "newTerms": [],
-          "pauseAfterMs": 300,
-          "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visualCues": [
+            {
+              "target": "z5",
+              "anchor": {
+                "en": "curve",
+                "hi": "कर्व"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "s05",
       "index": 5,
-      "title": "Duration-Based Hedging: Matching Dollar Duration",
-      "purpose": "Define dollar duration and establish the principle of equalizing portfolio and futures dollar duration",
+      "title": "The Duration-Based Hedge Ratio N*",
+      "purpose": "Deconstruct N* = (P * DP) / (FC * DF) matching portfolio dollar duration",
       "takeaways": [
-        "Dollar loss from interest rate shifts is governed by Dollar Duration: P * D_P",
-        "Duration-based hedging equalizes portfolio dollar duration with aggregate futures dollar duration",
-        "Net balance sheet sensitivity to parallel yield curve shifts is fully neutralized"
+        "Dollar duration equals market value multiplied by duration",
+        "Duration hedge matches portfolio sensitivity to CTD futures bond",
+        "Higher portfolio duration demands more short futures contracts"
       ],
       "pedagogicalContinuation": false,
-      "template": "split_comparison",
+      "template": "formula_breakdown",
       "data": {
-        "left": {
-          "id": "cmp-unhedged-risk",
-          "heading": "Unhedged Portfolio Risk",
-          "tone": "trap",
-          "points": [
-            "Exposed to capital losses whenever market yields shift upward",
-            "Loss magnitude governed by Dollar Duration: Delta P ≈ -P * D_P * Delta y",
-            "A 100 bps rate surge causes immediate severe balance sheet equity contraction",
-            "Violates fiduciary risk limits for pension funds and insurance balance sheets"
+        "title": "Duration-Based Futures Hedging Ratio",
+        "formula": {
+          "id": "f_dur_hedge",
+          "latex": "N^* = \\frac{P \\cdot D_P}{F_C \\cdot D_F}",
+          "expression": "(P * DP) / (FC * DF)",
+          "solvesFor": "Nstar",
+          "variables": [
+            {
+              "symbol": "Nstar",
+              "latex": "N^*",
+              "meaning": "Number of futures contracts to short",
+              "unit": "contracts"
+            },
+            {
+              "symbol": "P",
+              "latex": "P",
+              "meaning": "Total bond portfolio value",
+              "unit": "dollars"
+            },
+            {
+              "symbol": "DP",
+              "latex": "D_P",
+              "meaning": "Portfolio duration at hedge closeout",
+              "unit": "years"
+            },
+            {
+              "symbol": "FC",
+              "latex": "F_C",
+              "meaning": "Futures contract dollar value",
+              "unit": "dollars"
+            },
+            {
+              "symbol": "DF",
+              "latex": "D_F",
+              "meaning": "Duration of underlying CTD bond",
+              "unit": "years"
+            }
           ]
         },
-        "right": {
-          "id": "cmp-hedged-neutral",
-          "heading": "Dollar-Duration Immunization",
-          "tone": "positive",
-          "points": [
-            "Positions futures contracts to match dollar sensitivity: F_C * D_F * N*",
-            "Portfolio losses are offset dollar-for-dollar by futures margin gains",
-            "Net sensitivity to parallel yield curve shifts becomes exactly zero",
-            "Preserves asset holdings while completely insulating portfolio capital value"
-          ]
-        },
-        "verdict": {
-          "id": "vrd-immunize",
-          "text": "Matching Dollar Duration neutralizes interest rate risk: P * D_P = N* * F_C * D_F."
-        }
+        "parts": [
+          {
+            "id": "n1",
+            "symbolLatex": "P \\cdot D_P",
+            "meaning": "Portfolio dollar duration requiring interest rate protection",
+            "unit": "dollars*years"
+          },
+          {
+            "id": "n2",
+            "symbolLatex": "F_C \\cdot D_F",
+            "meaning": "Contract dollar duration of one CTD Treasury futures position",
+            "unit": "dollars*years"
+          }
+        ],
+        "note": "Divide total portfolio dollar duration by single contract dollar duration."
       },
       "beats": [
         {
@@ -744,143 +964,228 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Now we examine the primary risk management tool deployed across banking and fixed income desks: Duration-Based Hedging."
+              "display": "To protect a bond portfolio against yield spikes, managers compute dollar duration, which means market price multiplied by duration to measure interest sensitivity."
             },
             "hi": {
-              "display": "Ab hum aate hain corporate aur banking risk management ke sabse widely used hedging technique par: Duration-Based Hedging."
+              "display": "बॉन्ड पोर्टफोलियो को ब्याज उछाल से बचाने के लिए मैनेजर डॉलर ड्यूरेशन निकालते हैं, जिसका अर्थ है बाजार मूल्य गुणा ड्यूरेशन से संवेदनशीलता मापना।"
             }
           },
-          "onScreenIntent": "Introduce Duration-Based Hedging across institutional desks",
-          "sourceFactIds": [
-            "F03"
-          ],
-          "newTerms": [
-            "duration-based hedging"
-          ],
-          "pauseAfterMs": 300,
-          "transition": false,
-          "visual": {},
-          "visualCues": []
-        },
-        {
-          "id": "s05b2",
-          "speaker": "mentor",
-          "narration": {
-            "en": {
-              "display": "The dollar loss experienced by a bond portfolio when market interest rates shift is governed by its Dollar Duration: the portfolio market value P, multiplied by its Modified Duration D-sub-P."
-            },
-            "hi": {
-              "display": "Ek bond portfolio ki value interest rates change hone par kitne dollars se shift hogi, ye uske Dollar Duration par depend karta hai: portfolio value P guna portfolio duration D P."
-            }
-          },
-          "onScreenIntent": "Define Dollar Duration: Portfolio Market Value P multiplied by Duration D_P",
+          "onScreenIntent": "Define dollar duration on numerator P * DP",
           "sourceFactIds": [
             "F03"
           ],
           "newTerms": [
             "dollar duration"
           ],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "n1"
+            ],
+            "focus": "n1"
+          },
+          "visualCues": [
+            {
+              "target": "n1",
+              "anchor": {
+                "en": "sensitivity",
+                "hi": "संवेदनशीलता"
+              }
+            }
+          ]
+        },
+        {
+          "id": "s05b2",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Optimal futures contracts N star divide total portfolio dollar duration by one futures contract value times its cheapest-to-deliver, or CTD, bond duration."
+            },
+            "hi": {
+              "display": "सर्वोत्तम फ्यूचर्स कॉन्ट्रैक्ट्स एन स्टार निकालने के लिए कुल पोर्टफोलियो डॉलर ड्यूरेशन को एक कॉन्ट्रैक्ट मूल्य व चीपेस्ट-टू-डिलीवर यानी सीटीडी ड्यूरेशन के गुणनफल से बांटते हैं।"
+            }
+          },
+          "onScreenIntent": "Contrast portfolio vs CTD contract dollar duration",
+          "sourceFactIds": [
+            "F03"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false,
+          "visual": {
+            "show": [
+              "n1",
+              "n2"
+            ],
+            "focus": "n2"
+          },
+          "visualCues": [
+            {
+              "target": "n2",
+              "anchor": {
+                "en": "duration",
+                "hi": "ड्यूरेशन"
+              }
+            }
+          ]
         },
         {
           "id": "s05b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "When hedging with futures, the objective is to equalize the dollar duration of the bond portfolio with the aggregate dollar duration of the futures contracts, neutralizing net balance sheet sensitivity."
+              "display": "If yields jump evenly, gains on short futures contracts offset portfolio bond losses nearly dollar for dollar."
             },
             "hi": {
-              "display": "Agar hum futures contract ke zariye hedge create karte hain, toh hedge ka objective portfolio ke dollar duration ko futures contracts ke aggregate dollar duration ke exactly barabar banana hota hai taaki net sensitivity zero ho jaye."
+              "display": "यदि ब्याज दरें एक साथ ऊपर जाती हैं, तो शॉर्ट फ्यूचर्स से होने वाला मुनाफा पोर्टफोलियो के बॉन्ड नुकसान की लगभग पूरी भरपाई कर देता है।"
             }
           },
-          "onScreenIntent": "Establish objective: equalizing portfolio and futures dollar durations",
+          "onScreenIntent": "Summarize duration neutralization across N* contracts",
           "sourceFactIds": [
             "F03"
           ],
-          "newTerms": [
-            "duration immunization"
-          ],
+          "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "n1",
+              "n2"
+            ],
+            "focus": "n1"
+          },
+          "visualCues": [
+            {
+              "target": "n1",
+              "anchor": {
+                "en": "offset",
+                "hi": "भरपाई"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "s06",
       "index": 6,
-      "title": "The Optimal Number of Contracts Formula: $N^*$",
-      "purpose": "Derive the universal duration-based hedging equation N* = (P * D_P) / (F_C * D_F)",
+      "title": "Worked Example: Hedging a $10M Bond Portfolio",
+      "purpose": "Solve Hull's $10,000,000 corporate bond duration hedge requiring short 79 contracts",
       "takeaways": [
-        "Optimal contract sizing equation: N* = (P * D_P) / (F_C * D_F)",
-        "P * D_P is portfolio dollar duration; F_C * D_F is single contract dollar duration",
-        "Rising rates cause bond price drops offset by cash gains on short futures"
+        "$10,000,000 portfolio at 6.80y carries $68,000,000 dollar duration",
+        "$93,187.50 futures with 9.20y CTD carries $857,325 duration",
+        "Ratio 79.32 contracts rounds to shorting 79 futures contracts"
       ],
       "pedagogicalContinuation": false,
-      "template": "formula_breakdown",
+      "template": "worked_example",
       "data": {
-        "title": "The Optimal Duration-Based Hedge Ratio Equation",
+        "title": "Hull $10M Corporate Bond Duration Hedge",
         "formula": {
+          "id": "f_dur_hedge",
           "latex": "N^* = \\frac{P \\cdot D_P}{F_C \\cdot D_F}",
-          "expression": "N* = (Portfolio Value * Portfolio Duration) / (Futures Contract Price * CTD Duration)",
-          "solvesFor": "Optimal Number of Futures Contracts (N*)",
+          "expression": "(P * DP) / (FC * DF)",
+          "solvesFor": "Nstar",
           "variables": [
             {
-              "symbol": "N^*",
+              "symbol": "Nstar",
               "latex": "N^*",
-              "meaning": "Number of futures contracts required to immunize portfolio",
+              "meaning": "Optimal contracts",
               "unit": "contracts"
             },
             {
               "symbol": "P",
               "latex": "P",
-              "meaning": "Current market value of the bond portfolio being hedged",
-              "unit": "currency"
+              "meaning": "Portfolio value",
+              "unit": "dollars"
             },
             {
-              "symbol": "D_P",
+              "symbol": "DP",
               "latex": "D_P",
-              "meaning": "Modified duration of the bond portfolio",
+              "meaning": "Portfolio duration",
               "unit": "years"
             },
             {
-              "symbol": "F_C",
+              "symbol": "FC",
               "latex": "F_C",
-              "meaning": "Current contract dollar price of one futures contract",
-              "unit": "currency"
+              "meaning": "Contract price",
+              "unit": "dollars"
             },
             {
-              "symbol": "D_F",
+              "symbol": "DF",
               "latex": "D_F",
-              "meaning": "Modified duration of the CTD bond underlying the futures contract",
+              "meaning": "CTD bond duration",
               "unit": "years"
             }
           ]
         },
-        "parts": [
+        "given": [
           {
-            "id": "hf1",
-            "symbolLatex": "P \\cdot D_P",
-            "meaning": "Total portfolio dollar duration (risk being hedged)",
-            "unit": "currency * years"
+            "id": "g1",
+            "symbol": "P",
+            "label": "Portfolio (P)",
+            "value": 10000000,
+            "unit": "dollars",
+            "display": "$10,000,000"
           },
           {
-            "id": "hf2",
-            "symbolLatex": "F_C \\cdot D_F",
-            "meaning": "Dollar duration delivered per individual futures contract",
-            "unit": "currency * years"
+            "id": "g2",
+            "symbol": "DP",
+            "label": "Portfolio Dur (DP)",
+            "value": 6.8,
+            "unit": "years",
+            "display": "6.80 years"
           },
           {
-            "id": "hf3",
-            "symbolLatex": "\\text{Short } N^*",
-            "meaning": "Short position shields against rate rises; Long shields against rate falls",
-            "unit": "direction"
+            "id": "g3",
+            "symbol": "FC",
+            "label": "Futures (FC)",
+            "value": 93187.5,
+            "unit": "dollars",
+            "display": "$93,187.50"
+          },
+          {
+            "id": "g4",
+            "symbol": "DF",
+            "label": "CTD Dur (DF)",
+            "value": 9.2,
+            "unit": "years",
+            "display": "9.20 years"
           }
-        ]
+        ],
+        "steps": [
+          {
+            "id": "st1",
+            "label": "Portfolio dollar dur",
+            "expr": "P * DP",
+            "latex": "10{,}000{,}000 \\times 6.80 = 68{,}000{,}000",
+            "value": 68000000
+          },
+          {
+            "id": "st2",
+            "label": "Contract dollar dur",
+            "expr": "FC * DF",
+            "latex": "93{,}187.50 \\times 9.20 = 857{,}325",
+            "value": 857325
+          },
+          {
+            "id": "st3",
+            "label": "Divide dollar durs",
+            "expr": "(P * DP) / (FC * DF)",
+            "latex": "\\frac{68{,}000{,}000}{857{,}325} = 79.32",
+            "value": 79.32
+          }
+        ],
+        "result": {
+          "id": "res",
+          "label": "Exact Contracts N*",
+          "value": 79.32,
+          "unit": "contracts",
+          "display": "79.32 (short 79)",
+          "rounding": 2
+        },
+        "conclusion": "Short 79 CBOT Treasury bond futures contracts to immunize portfolio duration.",
+        "isHypothetical": false
       },
       "beats": [
         {
@@ -888,128 +1193,176 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "The universal formula to determine the exact number of interest rate futures contracts required to hedge a portfolio is: N-star equals P times D-sub-P, divided by F-sub-C times D-sub-F."
+              "display": "Follow John Hull's classic case: a $10,000,000 bond portfolio has duration 6.80 years, while Treasury futures trade at $93,187.50 with CTD duration 9.20 years."
             },
             "hi": {
-              "display": "Interest rate futures mein exact contract sizing calculate karne ka universal formula hai: N star barabar P guna D P, divided by F C guna D F."
+              "display": "जॉन हल का प्रसिद्ध उदाहरण देखें: $10,000,000 बॉन्ड पोर्टफोलियो का ड्यूरेशन 6.80 वर्ष है, और फ्यूचर्स कीमत $93,187.50 तथा सीटीडी ड्यूरेशन 9.20 वर्ष है।"
             }
           },
-          "onScreenIntent": "Present the universal hedge ratio equation N* = (P * D_P) / (F_C * D_F)",
+          "onScreenIntent": "Present Hull inputs $10M, 6.80y, $93,187.50, 9.20y",
           "sourceFactIds": [
-            "F03"
+            "F03",
+            "F05"
           ],
-          "newTerms": [
-            "hedge ratio formula"
-          ],
-          "pauseAfterMs": 300,
+          "newTerms": [],
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "g1",
+              "g2",
+              "g3",
+              "g4"
+            ],
+            "focus": "g1"
+          },
+          "visualCues": [
+            {
+              "target": "g2",
+              "anchor": {
+                "en": "6.80",
+                "hi": "6.80"
+              }
+            }
+          ]
         },
         {
           "id": "s06b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "In this equation, P is portfolio market value, D-sub-P is portfolio duration, F-sub-C is the dollar value of one futures contract, and D-sub-F is the duration of the CTD deliverable bond underlying the futures contract."
+              "display": "Portfolio dollar duration equals $68,000,000. Before finishing, predict: why does our 6.80-year portfolio divide by CTD duration 9.20 years inside N*?"
             },
             "hi": {
-              "display": "Yahan P portfolio ka current market value hai, D P portfolio duration hai, F C futures contract ka quoted price multiplied by contract size hai, aur D F underlying futures asset yaani CTD bond ka duration hai."
+              "display": "पोर्टफोलियो डॉलर ड्यूरेशन $68,000,000 आता है। पूरा करने से पहले अनुमान लगाएं: हम 6.80 वर्ष वाले पोर्टफोलियो को 9.20 वर्ष के सीटीडी ड्यूरेशन से क्यों बांटते हैं?"
             }
           },
-          "onScreenIntent": "Define each variable: portfolio value P, duration D_P, futures price F_C, CTD duration D_F",
+          "onScreenIntent": "Prediction prompt on CTD duration scaling",
           "sourceFactIds": [
-            "F03"
+            "F03",
+            "F05"
           ],
           "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "g1",
+              "g2",
+              "g3",
+              "g4",
+              "st1",
+              "st2"
+            ],
+            "focus": "st2"
+          },
+          "visualCues": [
+            {
+              "target": "st2",
+              "anchor": {
+                "en": "9.20",
+                "hi": "9.20"
+              }
+            }
+          ]
         },
         {
           "id": "s06b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "If market interest rates rise, the capital depreciation of the bond portfolio is offset dollar-for-dollar by cash variation margin gains on the short futures position."
+              "display": "Because the 9.20-year CTD bond moves more per dollar than our 6.80-year portfolio. Dividing $68,000,000 by $857,325 gives 79.32, so short 79 contracts."
             },
             "hi": {
-              "display": "Agar market interest rates badhte hain, toh portfolio ka capital loss futures short position ke gain se dollar-for-dollar offset ho jata hai."
+              "display": "क्योंकि 9.20 वर्ष वाला सीटीडी बॉन्ड प्रति डॉलर ज्यादा संवेदनशील है। $68,000,000 को $857,325 से बांटने पर 79.32 आता है, यानी 79 कॉन्ट्रैक्ट शॉर्ट करें।"
             }
           },
-          "onScreenIntent": "Explain how short futures gains balance portfolio bond depreciation",
+          "onScreenIntent": "Reveal final hedge ratio 79.32 -> short 79 contracts",
           "sourceFactIds": [
-            "F03"
+            "F03",
+            "F05"
           ],
           "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "g1",
+              "g2",
+              "g3",
+              "g4",
+              "st1",
+              "st2",
+              "st3",
+              "res"
+            ],
+            "focus": "res"
+          },
+          "visualCues": [
+            {
+              "target": "res",
+              "anchor": {
+                "en": "79",
+                "hi": "79"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "s07",
       "index": 7,
-      "title": "Worked Hedging Example: Protecting a $10M Corporate Bond Portfolio",
-      "purpose": "Work through John Hull's numerical hedging case step-by-step: P = $10M, D_P = 6.80 yrs -> N* = 79 contracts",
+      "title": "Bank ALM & The Balance Sheet Duration Gap",
+      "purpose": "Illustrate Asset-Liability Management immunization using interest rate futures",
       "takeaways": [
-        "P = $10,000,000, D_P = 6.80 yrs -> Portfolio dollar duration = $68,000,000",
-        "Futures at 93-06 ($93,187.50) with CTD duration 9.20 yrs -> Contract dollar duration = $857,325",
-        "N* = $68,000,000 / $857,325 = 79.31 contracts -> Short 79 Treasury bond futures"
+        "Banks hold long fixed loans funded by short customer deposits",
+        "Positive duration gap exposes bank equity to rising yields",
+        "ALM committees short interest futures to close balance-sheet gaps"
       ],
       "pedagogicalContinuation": false,
-      "template": "formula_breakdown",
+      "template": "diagram_flow",
       "data": {
-        "title": "Duration Hedging: Sizing the $10M Portfolio Shield",
-        "formula": {
-          "latex": "N^* = \\frac{P \\cdot D_P}{F_C \\cdot D_F}",
-          "expression": "N_star = (P * D_P) / (F_C * D_F)",
-          "solvesFor": "N*",
-          "variables": [
-            {
-              "symbol": "N*",
-              "latex": "N^*",
-              "meaning": "Optimal Number of Futures Contracts",
-              "unit": "contracts"
-            },
-            {
-              "symbol": "P * D_P",
-              "latex": "P \\cdot D_P",
-              "meaning": "Portfolio Dollar Duration ($68,000,000)",
-              "unit": "USD"
-            },
-            {
-              "symbol": "F_C * D_F",
-              "latex": "F_C \\cdot D_F",
-              "meaning": "Futures Contract Dollar Duration ($857,325)",
-              "unit": "USD"
-            }
-          ]
-        },
-        "parts": [
+        "mode": "flow",
+        "nodes": [
           {
-            "id": "p1",
-            "symbolLatex": "P \\cdot D_P = \\$10\\text{M} \\times 6.80 = \\$68\\text{M}",
-            "meaning": "Dollar duration of bond asset portfolio",
-            "unit": "USD"
+            "id": "a1",
+            "label": "Long Fixed Loans",
+            "sublabel": "High asset duration"
           },
           {
-            "id": "p2",
-            "symbolLatex": "F_C \\cdot D_F = \\$93,187.50 \\times 9.20 = \\$857,325",
-            "meaning": "Dollar duration of one CBOT futures contract",
-            "unit": "USD"
+            "id": "a2",
+            "label": "Short Deposits",
+            "sublabel": "Low liability duration"
           },
           {
-            "id": "p3",
-            "symbolLatex": "N^* = \\frac{\\$68,000,000}{\\$857,325} = 79.31 \\rightarrow 79",
-            "meaning": "Optimal hedge: short 79 CBOT contracts",
-            "unit": "contracts"
+            "id": "a3",
+            "label": "Duration Gap",
+            "sublabel": "Equity drops on hike"
+          },
+          {
+            "id": "a4",
+            "label": "Short Rate Futures",
+            "sublabel": "Closes net gap to zero"
           }
         ],
-        "note": "Shorting 79 contracts immunizes the $10,000,000 corporate bond portfolio against parallel yield curve shifts."
+        "edges": [
+          {
+            "from": "a1",
+            "to": "a3",
+            "label": "Mismatched"
+          },
+          {
+            "from": "a2",
+            "to": "a3",
+            "label": "Mismatched"
+          },
+          {
+            "from": "a3",
+            "to": "a4",
+            "label": "Hedge"
+          }
+        ]
       },
       "beats": [
         {
@@ -1017,98 +1370,149 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Let us examine John Hull's practical numerical application: a fund manager holds a ten million dollar bond portfolio with a duration of six point eight zero years."
+              "display": "Commercial banks rely on Asset-Liability Management, called ALM, which means matching the duration of long fixed loans against short-term deposits."
             },
             "hi": {
-              "display": "John C. Hull ka numerical example dekhiye: ek fund manager ke paas ten million dollars ka bond portfolio hai jiski duration six point eight zero years hai."
+              "display": "वाणिज्यिक बैंक एसेट-लायबिलिटी मैनेजमेंट यानी एएलएम का उपयोग करते हैं, जिसका अर्थ है लंबी अवधि के ऋणों और कम अवधि की जमाओं के ड्यूरेशन का मिलान करना।"
             }
           },
-          "onScreenIntent": "Introduce John Hull's $10M portfolio hedging problem",
+          "onScreenIntent": "Define Asset-Liability Management and loan vs deposit durations",
           "sourceFactIds": [
-            "F05"
+            "F06"
           ],
-          "newTerms": [],
-          "pauseAfterMs": 300,
+          "newTerms": [
+            "Asset-Liability Management"
+          ],
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "a1",
+              "a2"
+            ],
+            "focus": "a1"
+          },
+          "visualCues": [
+            {
+              "target": "a1",
+              "anchor": {
+                "en": "loans",
+                "hi": "ऋणों"
+              }
+            }
+          ]
         },
         {
           "id": "s07b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Treasury bond futures trade at ninety-three dash zero six, giving a contract dollar value of ninety-three thousand one hundred eighty-seven dollars and fifty cents, and the CTD bond duration is nine point two zero years."
+              "display": "Because long-dated mortgages outlast checking deposits, banks carry a wide duration gap that hurts net equity whenever rates climb sharply."
             },
             "hi": {
-              "display": "Treasury bond futures ninety-three point zero six par quote ho raha hai, jiska contract value ninety-three thousand one hundred eighty-seven point five zero dollars hai, aur CTD bond ki duration nine point two zero years hai."
+              "display": "चूंकि लंबी अवधि के लोन जमाओं से अधिक समय के होते हैं, इसलिए दरों में उछाल आने पर ड्यूरेशन गैप बैंक की इक्विटी को नुकसान पहुंचाता है।"
             }
           },
-          "onScreenIntent": "Specify futures contract parameters: quote 93-06 and CTD duration 9.20 yrs",
+          "onScreenIntent": "Highlight balance-sheet duration gap exposure",
           "sourceFactIds": [
-            "F05"
+            "F06"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "a1",
+              "a2",
+              "a3"
+            ],
+            "focus": "a3"
+          },
+          "visualCues": [
+            {
+              "target": "a3",
+              "anchor": {
+                "en": "gap",
+                "hi": "गैप"
+              }
+            }
+          ]
         },
         {
           "id": "s07b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Applying the formula: ten million times six point eight zero, divided by ninety-three thousand one hundred eighty-seven point five zero times nine point two zero, equals sixty-eight million divided by eight hundred fifty-seven thousand three hundred twenty-five, which yields exactly seventy-nine point three one contracts. The manager shorts seventy-nine contracts."
+              "display": "Instead of turning away depositors, banks short Treasury or SOFR futures directly to bring balance-sheet duration gap smoothly to zero."
             },
             "hi": {
-              "display": "Formula apply kijiye: ten million guna six point eight zero, divided by ninety-three thousand one hundred eighty-seven point five zero guna nine point two zero. Calculate karne par N star seventy-nine point three, yaani exactly seventy-nine contracts short karne honge."
+              "display": "ग्राहक जमा रोकने के बजाय, बैंक सीधे ट्रेजरी या एसओएफआर फ्यूचर्स शॉर्ट करके इस ड्यूरेशन गैप को शून्य पर ले आते हैं।"
             }
           },
-          "onScreenIntent": "Walk through division: $68M / $857,325 = 79.31 -> short 79 contracts",
+          "onScreenIntent": "Show futures closing duration gap to zero",
           "sourceFactIds": [
-            "F05"
+            "F06"
           ],
           "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "a1",
+              "a2",
+              "a3",
+              "a4"
+            ],
+            "focus": "a4"
+          },
+          "visualCues": [
+            {
+              "target": "a4",
+              "anchor": {
+                "en": "zero",
+                "hi": "शून्य"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "s08",
       "index": 8,
-      "title": "Asset-Liability Management (ALM) & The Duration Gap",
-      "purpose": "Examine commercial bank balance sheet duration gaps and immunization using futures",
+      "title": "Duration Hedge Imperfections & Real Curves",
+      "purpose": "Contrast ideal parallel shifts against real curve steepening, credit spreads, and CTD shifts",
       "takeaways": [
-        "Commercial banks face structural interest rate risk: long-duration loans vs. short-duration deposits",
-        "Rising rates cause asset values to drop faster than liabilities shrink, eroding bank equity",
-        "Shorting interest rate futures immunizes the duration gap without forcing loan liquidations"
+        "Duration hedges assume uniform parallel yield curve shifts",
+        "Curve steepening or inversion breaks single-factor protection",
+        "Corporate credit spreads and CTD switches leave residual basis"
       ],
       "pedagogicalContinuation": false,
-      "template": "technical_panel",
+      "template": "tug_of_war",
       "data": {
-        "title": "Asset-Liability Management (ALM) in Banking",
-        "subtitle": "Closing the Balance Sheet Duration Gap with Futures",
-        "sections": [
-          {
-            "id": "alm-structure",
-            "title": "Structural Duration Mismatch",
-            "content": "Banks borrow short-term retail deposits (duration ~0-1 yr) and fund long-term mortgages and fixed corporate loans (duration ~5-10 yrs)."
-          },
-          {
-            "id": "alm-gap",
-            "title": "The Duration Gap Danger",
-            "content": "Positive Duration Gap = D_Assets - (Liabilities / Assets) * D_Liabilities > 0. When market yields rise, equity capital collapses."
-          },
-          {
-            "id": "alm-futures",
-            "title": "Synthetic Futures Immunization",
-            "content": "By shorting interest rate futures, banks generate variation margin cash during rate hikes, neutralizing the duration gap off-balance-sheet."
-          }
-        ]
+        "left": {
+          "id": "ideal-shift",
+          "label": "Ideal Parallel Shift Model",
+          "points": [
+            "Every maturity jumps by identical basis points",
+            "CTD bond never rotates during hedge lifespan",
+            "Corporate yields move lockstep with Treasuries"
+          ]
+        },
+        "right": {
+          "id": "real-frictions",
+          "label": "Real Curve Imperfections",
+          "points": [
+            "Non-parallel curve steepening or inversion twists values",
+            "Corporate credit spreads widen independently in stress",
+            "CTD bond switching alters futures duration abruptly"
+          ]
+        },
+        "resolution": {
+          "id": "res-imperf",
+          "label": "Active Rebalancing Required",
+          "text": "Monitor curve twists, credit spreads, and CTD switching continuously."
+        }
       },
       "beats": [
         {
@@ -1116,92 +1520,132 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "A commercial bank's balance sheet is naturally exposed to structural interest rate risk, managed systematically through Asset-Liability Management, or ALM."
+              "display": "Every basic duration hedge assumes a parallel shift, which means every yield along the curve moves by the exact same basis points."
             },
             "hi": {
-              "display": "Commercial banks ki balance sheet naturally interest rate risk se exposed hoti hai jise Asset-Liability Management yaani ALM ke zariye monitor kiya jata hai."
+              "display": "हर बुनियादी ड्यूरेशन हेज पैरेलल शिफ्ट मानता है, जिसका अर्थ है कर्व की हर अवधि की ब्याज दर में बिल्कुल एक जैसा बदलाव होना।"
             }
           },
-          "onScreenIntent": "Introduce bank balance sheet structural interest rate exposure",
+          "onScreenIntent": "Define parallel shift assumption cleanly",
           "sourceFactIds": [
-            "F06"
+            "F07"
           ],
           "newTerms": [
-            "asset-liability management",
-            "duration gap"
+            "parallel shift"
           ],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "ideal-shift"
+            ],
+            "focus": "ideal-shift"
+          },
+          "visualCues": [
+            {
+              "target": "ideal-shift",
+              "anchor": {
+                "en": "curve",
+                "hi": "कर्व"
+              }
+            }
+          ]
         },
         {
           "id": "s08b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Banks traditionally borrow short-term customer deposits with near-zero duration, and lend long-term fixed-rate commercial loans and mortgages with high duration, creating a positive Duration Gap."
+              "display": "In real crises, yield curves steepen or invert non-parallelly, corporate credit spreads widen independently, and CTD bonds switch abruptly."
             },
             "hi": {
-              "display": "Banks short-term deposits borrow karte hain jinki duration bahut low hoti hai, aur long-term fixed mortgages lend karte hain jinki duration high hoti hai. Is mismatch ko Duration Gap kehte hain."
+              "display": "असली संकट में यील्ड कर्व असमान रूप से मुड़ते हैं, कॉर्पोरेट क्रेडिट स्प्रेड अलग से बढ़ते हैं और सीटीडी बॉन्ड अचानक बदल जाते हैं।"
             }
           },
-          "onScreenIntent": "Explain why short-term deposits and long-term loans create positive duration gaps",
+          "onScreenIntent": "Highlight curve twist, credit spread, and CTD switching",
           "sourceFactIds": [
-            "F06"
+            "F07"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "ideal-shift",
+              "real-frictions"
+            ],
+            "focus": "real-frictions"
+          },
+          "visualCues": [
+            {
+              "target": "real-frictions",
+              "anchor": {
+                "en": "credit",
+                "hi": "क्रेडिट"
+              }
+            }
+          ]
         },
         {
           "id": "s08b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "When market interest rates surge, long-term asset values fall far faster than deposit liabilities shrink. By shorting interest rate futures, banks immunize this duration gap without having to sell physical loan assets."
+              "display": "Because curve twists, credit spreads, and CTD switching shift risk regimes, active rebalancing is required continuously."
             },
             "hi": {
-              "display": "Jab interest rates suddenly badhte hain, toh long-term assets ki value collapse ho jati hai jabki liabilities par deposit costs badh jati hain. Futures contracts short karke banks is duration gap ko zero par immunize kar leti hain bina loans beche."
+              "display": "क्योंकि कर्व बदलाव, क्रेडिट स्प्रेड और सीटीडी स्विचिंग जोखिम बदलते हैं, इसलिए लगातार सक्रिय रीबैलेंसिंग आवश्यक होती है।"
             }
           },
-          "onScreenIntent": "Detail how shorting futures immunizes bank equity without selling physical loans",
+          "onScreenIntent": "Reveal continuous rebalancing resolution",
           "sourceFactIds": [
-            "F06"
+            "F07"
           ],
           "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "ideal-shift",
+              "real-frictions",
+              "res-imperf"
+            ],
+            "focus": "res-imperf"
+          },
+          "visualCues": [
+            {
+              "target": "res-imperf",
+              "anchor": {
+                "en": "rebalancing",
+                "hi": "रीबैलेंसिंग"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "s09",
       "index": 9,
-      "title": "Active Recall Scenario: Calculating the Optimal Hedge Ratio",
-      "purpose": "Test student calculation of N* for a $50M portfolio with duration 5.0 yrs",
+      "title": "Active Recall: Sizing a $50M Portfolio Hedge",
+      "purpose": "3-beat quiz sizing N* for $50M portfolio (5.0y duration) vs $100,000 contract (8.0y CTD)",
       "takeaways": [
-        "P = $50,000,000, D_P = 5.0 yrs -> Portfolio dollar duration = $250,000,000",
-        "Futures price = $100,000, D_F = 8.0 yrs -> Contract dollar duration = $800,000",
-        "N* = $250,000,000 / $800,000 = 312.5 -> Short 313 contracts"
+        "$50M portfolio at 5.0y duration carries $250M dollar duration",
+        "$100,000 contract at 8.0y CTD carries $800,000 duration",
+        "Hedge ratio 312.50 rounds cleanly to short 313 contracts"
       ],
       "pedagogicalContinuation": false,
       "template": "interactive_quiz",
       "data": {
-        "title": "Active Recall: Sizing the Institutional Duration Hedge",
-        "question": "A bond portfolio has market value P = $50,000,000 and duration D_P = 5.0 years. Futures price F_C = $100,000 and CTD duration D_F = 8.0 years. How many futures contracts must be shorted?",
+        "question": "A $50,000,000 portfolio has 5.0-year duration. Futures trade at $100,000 with 8.0-year CTD duration. How many contracts should you short?",
         "options": [
-          "Short 250 contracts: Matching portfolio duration directly to futures contracts.",
-          "Short 313 contracts: ($50M * 5.0) / ($100k * 8.0) = $250M / $800k = 312.5 contracts.",
-          "Short 400 contracts: Sized by dividing portfolio value by futures contract price alone.",
-          "Short 160 contracts: Inverting the ratio between portfolio and contract durations."
+          "250 contracts",
+          "313 contracts (312.50 exact)",
+          "400 contracts",
+          "160 contracts"
         ],
         "correctIndex": 1,
-        "explanation": "Using the optimal duration hedge formula: N* = (P * D_P) / (F_C * D_F) = ($50,000,000 * 5.0) / ($100,000 * 8.0) = $250,000,000 / $800,000 = 312.5. Rounding to the nearest integer requires shorting exactly 313 contracts to fully immunize the portfolio."
+        "explanation": "N* = ($50,000,000 * 5.0) / ($100,000 * 8.0) = $250,000,000 / $800,000 = 312.50 contracts, rounded to short 313 contracts."
       },
       "beats": [
         {
@@ -1209,20 +1653,24 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Let us test your duration hedge sizing skills. A bond portfolio has a market value of fifty million dollars and a duration of five point zero years. The futures contract price is one hundred thousand dollars, and the CTD bond duration is eight point zero years. How many futures contracts must be shorted to immunize the portfolio?"
+              "display": "Size a hedge yourself. Portfolio value is $50,000,000 with 5.0 years duration. Futures trade at $100,000 with 8.0 years CTD duration. Find N star."
             },
             "hi": {
-              "display": "Chaliye ek practical duration hedging scenario test karte hain. Ek fifty million dollar portfolio ki duration five point zero years hai. Futures contract price one hundred thousand dollars hai aur underlying CTD bond duration eight point zero years hai. Portfolio ko immunize karne ke liye kitne futures contracts short karne honge?"
+              "display": "स्वयं हेज अनुपात निकालें। पोर्टफोलियो मूल्य $50,000,000 और ड्यूरेशन 5.0 वर्ष है। फ्यूचर्स कीमत $100,000 और सीटीडी ड्यूरेशन 8.0 वर्ष है। एन स्टार ज्ञात करें।"
             }
           },
-          "onScreenIntent": "Present the $50M portfolio hedge sizing challenge",
+          "onScreenIntent": "Present $50M quiz inputs",
           "sourceFactIds": [
+            "F03",
             "F08"
           ],
           "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
+          "visual": {
+            "show": [],
+            "phase": "question"
+          },
           "visualCues": []
         },
         {
@@ -1230,20 +1678,24 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Apply the formula: N-star equals P times D-sub-P, divided by F-sub-C times D-sub-F, which equals fifty million times five, divided by one hundred thousand times eight. Pause and evaluate the options."
+              "display": "Pause and calculate first: multiply portfolio value by 5.0, divide by $100,000 times 8.0, then choose the nearest contract count."
             },
             "hi": {
-              "display": "Formula apply kijiye: N star barabar P guna D P divided by F C guna D F. Chaar options ko evaluate kijiye. Pause and consider."
+              "display": "रुकें और हल करें: पहले पोर्टफोलियो मूल्य को 5.0 से गुणा करें, फिर $100,000 गुणा 8.0 से भाग देकर सही विकल्प चुनें।"
             }
           },
-          "onScreenIntent": "Prompt calculation of numerator $250M and denominator $800k",
+          "onScreenIntent": "Thinking timer phase",
           "sourceFactIds": [
+            "F03",
             "F08"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 3500,
           "transition": false,
-          "visual": {},
+          "visual": {
+            "show": [],
+            "phase": "thinking"
+          },
           "visualCues": []
         },
         {
@@ -1251,20 +1703,24 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "The correct answer is Option B: short three hundred thirteen contracts. Evaluating the numerator: fifty million times five equals two hundred fifty million dollar duration. In the denominator: one hundred thousand times eight equals eight hundred thousand. Dividing two hundred fifty million by eight hundred thousand yields three hundred twelve point five, requiring exactly three hundred thirteen short contracts."
+              "display": "Option B is right: 313 contracts. Dividing 250,000,000 by 800,000 equals 312.50 exact contracts, rounding cleanly to short 313 contracts."
             },
             "hi": {
-              "display": "Correct answer hai Option B: Three hundred thirteen contracts short. Calculation: fifty million guna five barabar two hundred fifty million dollar duration. One hundred thousand guna eight barabar eight hundred thousand. Two fifty million divided by eight hundred thousand barabar three hundred twelve point five, yaani three hundred thirteen contracts."
+              "display": "विकल्प बी सही है: 313 कॉन्ट्रैक्ट। 250,000,000 को 800,000 से भाग देने पर 312.50 आता है, जिसे पूर्णांक में 313 शॉर्ट कॉन्ट्रैक्ट चुनते हैं।"
             }
           },
-          "onScreenIntent": "Reveal Option B: 313 short contracts and trace duration cancellation",
+          "onScreenIntent": "Reveal Option B: 313 contracts solution",
           "sourceFactIds": [
+            "F03",
             "F08"
           ],
           "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
+          "visual": {
+            "show": [],
+            "phase": "reveal"
+          },
           "visualCues": []
         }
       ]
@@ -1272,41 +1728,53 @@
     {
       "id": "s10",
       "index": 10,
-      "title": "Hedging Imperfections: Basis Risk & Non-Parallel Shifts",
-      "purpose": "Examine three real-world limitations of duration hedging: non-parallel shifts, credit spreads, and CTD switches",
+      "title": "Chapter 6 Synthesis & Bridge to Chapter 7",
+      "purpose": "Synthesize Chapter 6 short-rate & duration hedging and bridge forward to Chapter 7 Swaps",
       "takeaways": [
-        "Duration assumes strictly parallel yield curve shifts; curve twists introduce basis risk",
-        "Corporate bond credit spreads are uncorrelated with sovereign Treasury yields",
-        "Large yield moves can trigger CTD bond switching, abruptly altering hedge duration"
+        "Convexity Adjustment converts 5-10 year futures into zero curves",
+        "Duration hedge N* immunizes bond portfolios and bank ALM gaps",
+        "Chapter 7 next covers Interest Rate Swaps & Comparative Advantage"
       ],
       "pedagogicalContinuation": false,
-      "template": "split_comparison",
+      "template": "technical_panel",
       "data": {
-        "left": {
-          "id": "cmp-theory-model",
-          "heading": "Theoretical Assumptions",
-          "tone": "neutral",
-          "points": [
-            "Assumes parallel yield curve shifts where all maturities shift by exact same Delta y",
-            "Assumes underlying portfolio bonds possess zero credit spread volatility against Treasuries",
-            "Assumes the identity of the CTD deliverable bond remains permanently constant",
-            "Guarantees mathematically perfect cancellation in friction-free continuous models"
-          ]
+        "presentation": "structured_cards",
+        "pillars": {
+          "primaryCard": {
+            "title": "Chapter 6 Synthesis & Chapter 7 Bridge",
+            "pillars": [
+              {
+                "id": "p1",
+                "title": "100 - R & Convexity",
+                "description": "Subtract volatility margin bias before building 5-10 year zero curves."
+              },
+              {
+                "id": "p2",
+                "title": "Dollar Duration Immunizer",
+                "description": "Divide portfolio dollar duration by CTD contract dollar duration for N*."
+              },
+              {
+                "id": "p3",
+                "title": "Curve Twist Discipline",
+                "description": "Watch credit spreads, curve twists, and CTD swaps continuously."
+              },
+              {
+                "id": "p4",
+                "title": "Next: Chapter 7 — Interest Rate & Currency Swaps",
+                "description": "Master fixed-for-floating swaps, comparative advantage, and swap valuation."
+              }
+            ]
+          }
         },
-        "right": {
-          "id": "cmp-market-reality",
-          "heading": "Real-World Imperfections",
-          "tone": "trap",
-          "points": [
-            "Non-parallel shifts: yield curve steepening, flattening, and butterfly twists create basis risk",
-            "Credit spread widening: corporate bond yields rise while Treasuries rally to safety",
-            "CTD bond switching: large yield moves abruptly change deliverable bond and hedge duration",
-            "Requires continuous algorithmic dynamic rebalancing by institutional trading desks"
-          ]
-        },
-        "verdict": {
-          "id": "vrd-imperfection",
-          "text": "Duration hedging protects against parallel shocks; basis risk, credit spreads, and CTD switches require dynamic rebalancing."
+        "whereWeAre": {
+          "label": "WHERE WE ARE",
+          "items": [
+            "Eurodollar & SOFR 100 - R",
+            "Convexity & Zero Curves",
+            "Duration N* & ALM Gaps",
+            "Next: Ch 7 Swaps — Mechanics & Valuation"
+          ],
+          "current": 2
         }
       },
       "beats": [
@@ -1315,128 +1783,168 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "While duration-based hedging is exceptionally powerful, it is not a perfect shield. In practical markets, three primary real-world imperfections exist."
+              "display": "By deducting Convexity Adjustment bias from 100 minus R futures, institutions unlock reliable 5 to 10 year zero curves and exact hedge sizing N*."
             },
             "hi": {
-              "display": "Duration-based hedging powerful hai, lekin ye perfect shield nahi hai. Real world mein teen primary imperfections exist karti hain."
+              "display": "100 माइनस आर फ्यूचर्स से कॉन्वेक्सिटी एडजस्टमेंट घटाकर संस्थाएं 5 से 10 वर्ष का सटीक जीरो कर्व और हेज अनुपात एन स्टार प्राप्त करती हैं।"
             }
           },
-          "onScreenIntent": "Introduce the three real-world imperfections of duration hedging",
+          "onScreenIntent": "Highlight convexity and duration immunizer pillars",
           "sourceFactIds": [
-            "F07"
+            "F01",
+            "F02",
+            "F03"
           ],
-          "newTerms": [
-            "hedging imperfections"
-          ],
-          "pauseAfterMs": 300,
+          "newTerms": [],
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "p1",
+              "p2"
+            ],
+            "focus": "p2"
+          },
+          "visualCues": [
+            {
+              "target": "p2",
+              "anchor": {
+                "en": "exact",
+                "hi": "सटीक"
+              }
+            }
+          ]
         },
         {
           "id": "s10b2",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "First, duration assumes strictly parallel yield curve shifts. If the yield curve steepens, inverts, or undergoes butterfly twists, the duration hedge develops basis risk."
+              "display": "Yet duration hedges remain dynamic: desks must watch balance-sheet ALM gaps, credit spreads, curve twists, and CTD switching continuously."
             },
             "hi": {
-              "display": "Pehli imperfection: Duration sirf parallel yield curve shifts assume karti hai. Agar yield curve steepen hoti hai ya flatten hoti hai, toh duration hedge imperfect ho jata hai."
+              "display": "फिर भी ड्यूरेशन हेजिंग गतिशील रहती है: डेस्क को लगातार एएलएम गैप, क्रेडिट स्प्रेड, कर्व बदलाव और सीटीडी स्विचिंग पर ध्यान देना होता है।"
             }
           },
-          "onScreenIntent": "Examine limitation one: non-parallel curve shifts and basis risk",
+          "onScreenIntent": "Highlight dynamic risk monitoring pillar",
           "sourceFactIds": [
+            "F06",
             "F07"
           ],
-          "newTerms": [
-            "non-parallel shifts",
-            "basis risk"
-          ],
-          "pauseAfterMs": 300,
+          "newTerms": [],
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "p1",
+              "p2",
+              "p3"
+            ],
+            "focus": "p3"
+          },
+          "visualCues": [
+            {
+              "target": "p3",
+              "anchor": {
+                "en": "continuously",
+                "hi": "लगातार"
+              }
+            }
+          ]
         },
         {
           "id": "s10b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Second, corporate bond holdings possess credit spread risk that is uncorrelated with Treasury yields. Third, market yield moves can trigger a change in the Cheapest-to-Deliver bond, abruptly altering the duration of the hedging instrument."
+              "display": "Next on our course roadmap, Chapter 7 introduces Swaps: fixed-for-floating interest rate swaps, comparative advantage, credit risk, and swap valuation."
             },
             "hi": {
-              "display": "Doosri imperfection: Corporate bonds par credit spread risk hota hai jo Treasury futures se hedge nahi hota. Aur teesri: market interest rates move hone par CTD bond switch ho sakta hai, jisse futures duration D F suddenly change ho jati hai."
+              "display": "हमारे कोर्स रोडमैप पर आगे, अध्याय 7 में हम स्वैप्स सीखेंगे: इंटरेस्ट रेट स्वैप्स की कार्यप्रणाली, तुलनात्मक लाभ, क्रेडिट रिस्क और स्वैप वैल्यूएशन।"
             }
           },
-          "onScreenIntent": "Examine limitations two and three: corporate credit spreads and CTD switching",
+          "onScreenIntent": "Roadmap bridge to Chapter 7 Interest Rate and Currency Swaps",
           "sourceFactIds": [
-            "F07"
+            "F06"
           ],
-          "newTerms": [
-            "credit spread risk",
-            "CTD switching"
-          ],
+          "newTerms": [],
           "pauseAfterMs": 300,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "p1",
+              "p2",
+              "p3",
+              "p4"
+            ],
+            "focus": "p4"
+          },
+          "visualCues": [
+            {
+              "target": "p4",
+              "anchor": {
+                "en": "Swaps",
+                "hi": "स्वैप्स"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "s11",
       "index": 11,
-      "title": "Summary Thread: Four Pillars of Short-Rate Futures & Hedging",
-      "purpose": "Consolidate Chapter 6 Part 2 short-rate derivatives and duration hedging before Chapter 7 Swaps",
+      "title": "Summary Thread: Eight Short-Rate & Duration Rules",
+      "purpose": "Fixed 6-beat summary codifying all 8 rules taught in Chapter 6 Part 2",
       "takeaways": [
-        "Money market futures quote as 100 - R with a $25 tick value per basis point",
-        "Convexity adjustments deduct 0.5 * sigma^2 * T_1 * T_2 to isolate true forward rates",
-        "Optimal duration hedging equation N* = (P * D_P) / (F_C * D_F) insulates balance sheets"
+        "100 - R futures move $25 per basis point on $1,000,000",
+        "Subtract Convexity Adjustment before extending zero curves",
+        "Duration hedge N* matches dollar duration across portfolios"
       ],
       "pedagogicalContinuation": false,
       "template": "summary_thread",
       "data": {
-        "title": "Executive Synthesis: The Four Pillars of Rates Futures & Hedging",
+        "title": "Eight Essential Rules of Short-Rate & Duration Hedging",
         "rules": [
           {
-            "id": "rul-1",
-            "title": "Money Market 100 - R Quotation",
-            "text": "Eurodollar and SOFR contracts quote as 100 - R, preserving the inverse bond price-rate relationship."
+            "id": "r1",
+            "title": "Rule 1: Index 100 - R Quote",
+            "text": "Eurodollar and SOFR futures quote 100 minus R, falling as yields rise."
           },
           {
-            "id": "rul-2",
-            "title": "The $25 Tick Value",
-            "text": "1 basis point change corresponds to exactly $25 cash gain/loss per $1,000,000 contract."
+            "id": "r2",
+            "title": "Rule 2: $25 Basis Point Tick",
+            "text": "A 1 basis point shift changes $1,000,000 contract value by $25."
           },
           {
-            "id": "rul-3",
-            "title": "Futures vs. Forward Disparity",
-            "text": "Daily marking to market elevates futures rates above forward rates via positive reinvestment correlation."
+            "id": "r3",
+            "title": "Rule 3: Margin Reinvestment Bias",
+            "text": "Daily variation margin pushes futures rates systematically above forward rates."
           },
           {
-            "id": "rul-4",
-            "title": "The Convexity Adjustment",
-            "text": "Forward Rate = Futures Rate - 0.5 * sigma^2 * T_1 * T_2 corrects futures rates for zero curve bootstrapping."
+            "id": "r4",
+            "title": "Rule 4: Convexity Adjustment",
+            "text": "Subtract half sigma-squared times T1 T2 from futures rates to match forwards."
           },
           {
-            "id": "rul-5",
-            "title": "Matching Dollar Duration",
-            "text": "Hedging equalizes portfolio dollar duration with aggregate futures duration: P * D_P = N* * F_C * D_F."
+            "id": "r5",
+            "title": "Rule 5: Zero Curve Extension",
+            "text": "Adjusted quarterly rate futures extend zero discount curves out 5 to 10 years."
           },
           {
-            "id": "rul-6",
-            "title": "Optimal Sizing Equation N*",
-            "text": "N* = (P * D_P) / (F_C * D_F) specifies the exact number of contracts required to immunize portfolio capital."
+            "id": "r6",
+            "title": "Rule 6: Duration Hedge N*",
+            "text": "Short contracts N* equal portfolio dollar duration over contract dollar duration."
           },
           {
-            "id": "rul-7",
-            "title": "Asset-Liability Management (ALM)",
-            "text": "Banks deploy interest rate futures to neutralize duration gaps between long-term loans and short deposits."
+            "id": "r7",
+            "title": "Rule 7: Bank ALM Immunization",
+            "text": "Banks short interest futures to eliminate asset-liability duration gaps."
           },
           {
-            "id": "rul-8",
-            "title": "Hedging Imperfections",
-            "text": "Non-parallel shifts, corporate credit spread widening, and CTD bond switches require active dynamic rebalancing."
+            "id": "r8",
+            "title": "Rule 8: Curve & Spread Limits",
+            "text": "Non-parallel twists, credit spreads, and CTD shifts require dynamic rebalancing."
           }
         ]
       },
@@ -1446,23 +1954,27 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Let us synthesize the four structural pillars of short-rate futures and duration hedging established in Part Two."
+              "display": "Let us summarize all eight quantitative rules of Eurodollar futures and duration hedging from Chapter 6 Part 2 before Chapter 7 Swaps."
             },
             "hi": {
-              "display": "Aaiye Chapter Six Part Two ke chaar core interest rate futures pillars ko summarize karte hain."
+              "display": "अध्याय 7 स्वैप्स से पहले आइए अध्याय 6 पार्ट 2 के यूरोडॉलर फ्यूचर्स और ड्यूरेशन हेजिंग के सभी आठ नियमों का सार दोहराएं।"
             }
           },
-          "onScreenIntent": "Introduce synthesis of the four structural pillars",
+          "onScreenIntent": "Overview header of 8 rules",
           "sourceFactIds": [
-            "F01",
-            "F02",
-            "F03",
-            "F06"
+            "F01"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
+          "visual": {
+            "show": [],
+            "range": [
+              0,
+              0
+            ],
+            "compact": false
+          },
           "visualCues": []
         },
         {
@@ -1470,85 +1982,226 @@
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Pillar One: Money Market Futures. Eurodollar and SOFR contracts utilize one hundred minus R pricing with twenty-five dollar tick values to benchmark short-term interest rates."
+              "display": "Rule 1 quotes Eurodollar and SOFR contracts at 100 minus R, moving inverse to rates. Rule 2 values each 1 basis point move at $25."
             },
             "hi": {
-              "display": "Pehla pillar: Eurodollar & SOFR Futures. One hundred minus R quote convention aur twenty-five dollar tick value se short-term money market rates benchmark hote hain."
+              "display": "नियम 1 यूरोडॉलर और एसओएफआर को 100 माइनस आर पर कोट करता है। नियम 2 हर 1 बेसिस पॉइंट बदलाव को $25 के बराबर आंकता है।"
             }
           },
-          "onScreenIntent": "Review Pillar One: Money Market Futures and the $25 Tick Value",
+          "onScreenIntent": "Rules 1 and 2 displayed side by side",
           "sourceFactIds": [
-            "F01"
+            "F01",
+            "F10"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "r1",
+              "r2"
+            ],
+            "range": [
+              1,
+              2
+            ],
+            "compact": false
+          },
+          "visualCues": [
+            {
+              "target": "r1",
+              "anchor": {
+                "en": "Rule 1",
+                "hi": "नियम 1"
+              }
+            },
+            {
+              "target": "r2",
+              "anchor": {
+                "en": "Rule 2",
+                "hi": "नियम 2"
+              }
+            }
+          ]
         },
         {
           "id": "s11b3",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Pillar Two: Convexity Adjustment. Daily variation margin reinvestment systematically elevates futures rates above forward rates via one-half sigma squared T-one T-two."
+              "display": "Rule 3 recognizes daily variation margin lifts futures rates above forwards. Rule 4 applies the Convexity Adjustment deduction half sigma squared T1 T2."
             },
             "hi": {
-              "display": "Dusra pillar: Convexity Adjustment. Daily variation margin reinvestment ki wajah se forward rate barabar futures rate minus half sigma square T-one T-two hota hai."
+              "display": "नियम 3 बताता है कि वेरिएशन मार्जिन से फ्यूचर्स दरें फॉरवर्ड से ऊपर रहती हैं। नियम 4 आधा सिग्मा स्क्वायर टी1 टी2 का कॉन्वेक्सिटी एडजस्टमेंट लागू करता है।"
             }
           },
-          "onScreenIntent": "Review Pillar Two: Convexity Adjustment",
+          "onScreenIntent": "Rules 3 and 4 displayed side by side",
           "sourceFactIds": [
             "F02",
             "F04"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "r3",
+              "r4"
+            ],
+            "range": [
+              3,
+              4
+            ],
+            "compact": false
+          },
+          "visualCues": [
+            {
+              "target": "r3",
+              "anchor": {
+                "en": "Rule 3",
+                "hi": "नियम 3"
+              }
+            },
+            {
+              "target": "r4",
+              "anchor": {
+                "en": "Rule 4",
+                "hi": "नियम 4"
+              }
+            }
+          ]
         },
         {
           "id": "s11b4",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Pillar Three: Duration-Based Hedging. N-star equals P D-sub-P divided by F-sub-C D-sub-F equalizes dollar duration to protect portfolio capital from interest rate shocks."
+              "display": "Rule 5 uses convexity-adjusted futures to extend continuous zero curves out 5 to 10 years. Rule 6 calculates N star matching portfolio dollar duration."
             },
             "hi": {
-              "display": "Teesra pillar: Duration-Based Hedging. N star barabar P D P divided by F C D F dollar duration ko equalize karke portfolio capital protect karta hai."
+              "display": "नियम 5 समायोजित फ्यूचर्स से 5 से 10 वर्ष का जीरो कर्व विस्तार करता है। नियम 6 पोर्टफोलियो डॉलर ड्यूरेशन के बराबर एन स्टार निकालता है।"
             }
           },
-          "onScreenIntent": "Review Pillar Three: Duration-Based Hedging and N* sizing",
+          "onScreenIntent": "Rules 5 and 6 displayed side by side",
           "sourceFactIds": [
             "F03",
-            "F05"
+            "F09"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 260,
           "transition": false,
-          "visual": {},
-          "visualCues": []
+          "visual": {
+            "show": [
+              "r5",
+              "r6"
+            ],
+            "range": [
+              5,
+              6
+            ],
+            "compact": false
+          },
+          "visualCues": [
+            {
+              "target": "r5",
+              "anchor": {
+                "en": "Rule 5",
+                "hi": "नियम 5"
+              }
+            },
+            {
+              "target": "r6",
+              "anchor": {
+                "en": "Rule 6",
+                "hi": "नियम 6"
+              }
+            }
+          ]
         },
         {
           "id": "s11b5",
           "speaker": "mentor",
           "narration": {
             "en": {
-              "display": "Pillar Four: Asset-Liability Management. Commercial banks deploy interest rate futures to close duration gaps and insulate shareholder equity from rate spikes."
+              "display": "Rule 7 immunizes bank ALM duration gaps using short rate futures. Rule 8 flags non-parallel curve twists, credit spreads, and CTD shifts requiring rebalancing."
             },
             "hi": {
-              "display": "Chautha pillar: Asset-Liability Management. Commercial banks balance sheet duration gap ko zero par immunize karke shareholder equity ko rate spikes se insulate karti hain."
+              "display": "नियम 7 फ्यूचर्स से बैंक एएलएम ड्यूरेशन गैप समाप्त करता है। नियम 8 असमान कर्व बदलाव, क्रेडिट स्प्रेड और सीटीडी बदलाव से सतर्क करता है।"
             }
           },
-          "onScreenIntent": "Review Pillar Four: ALM Duration Gap and preview Chapter 7 Swaps",
+          "onScreenIntent": "Rules 7 and 8 displayed side by side",
           "sourceFactIds": [
+            "F06",
+            "F07"
+          ],
+          "newTerms": [],
+          "pauseAfterMs": 260,
+          "transition": false,
+          "visual": {
+            "show": [
+              "r7",
+              "r8"
+            ],
+            "range": [
+              7,
+              8
+            ],
+            "compact": false
+          },
+          "visualCues": [
+            {
+              "target": "r7",
+              "anchor": {
+                "en": "Rule 7",
+                "hi": "नियम 7"
+              }
+            },
+            {
+              "target": "r8",
+              "anchor": {
+                "en": "Rule 8",
+                "hi": "नियम 8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "s11b6",
+          "speaker": "mentor",
+          "narration": {
+            "en": {
+              "display": "Review all 8 rules from Chapter 6 carefully. Next in Chapter 7: Swaps, we master fixed-for-floating swaps, comparative advantage, and valuation."
+            },
+            "hi": {
+              "display": "अध्याय 6 के इन सभी 8 नियमों की समीक्षा करें। अगले अध्याय 7 यानी स्वैप्स में हम इंटरेस्ट रेट स्वैप्स, तुलनात्मक लाभ और वैल्यूएशन सीखेंगे।"
+            }
+          },
+          "onScreenIntent": "Compact overview of all 8 rules and Chapter 7 transition",
+          "sourceFactIds": [
+            "F01",
+            "F03",
             "F06"
           ],
           "newTerms": [],
-          "pauseAfterMs": 300,
+          "pauseAfterMs": 400,
           "transition": false,
-          "visual": {},
+          "visual": {
+            "show": [
+              "r1",
+              "r2",
+              "r3",
+              "r4",
+              "r5",
+              "r6",
+              "r7",
+              "r8"
+            ],
+            "range": [
+              1,
+              8
+            ],
+            "compact": true
+          },
           "visualCues": []
         }
       ]

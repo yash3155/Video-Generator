@@ -181,3 +181,35 @@ export function runQaChecksCmd(json: boolean): number {
   process.stdout.write(`${QA_CHECKS.length} checks\n`);
   return 0;
 }
+
+export async function runPreflightCmd(
+  o: MakeCliOptions & { compiled?: boolean; stills?: boolean; release?: boolean },
+): Promise<number> {
+  if (!o.book) throw new Error("--book <id> is required");
+  if (!o.chapter) throw new Error("--chapter <id> is required");
+  const { runPreflight } = await import("../qa/preflight");
+  const res = await runPreflight({
+    bookId: o.book,
+    chapterId: o.chapter,
+    partId: o.part ?? "p1",
+    langs: list(o.lang),
+    compiled: Boolean(o.compiled),
+    stills: Boolean(o.stills),
+    release: Boolean(o.release),
+  });
+  if (o.json) {
+    process.stdout.write(JSON.stringify(res, null, 2) + "\n");
+    return res.ok ? 0 : 1;
+  }
+  const blocking = res.findings.filter((f) => f.severity === "BLOCKER" || f.severity === "HIGH");
+  for (const f of blocking) {
+    const loc = [f.sceneId, f.beatId, f.lang].filter(Boolean).join(" ");
+    log.fail(`${f.id} ${f.severity}${loc ? ` [${loc}]` : ""}: ${f.message} -> ${f.repair}`);
+  }
+  if (res.ok) {
+    log.ok(`PREFLIGHT PASSED for ${res.bookId}/${res.chapterId}/${res.partId} (0 BLOCKER, 0 HIGH, ${res.summary.MEDIUM} MEDIUM)`);
+    return 0;
+  }
+  log.warn(`PREFLIGHT FAILED for ${res.bookId}/${res.chapterId}/${res.partId} (BLOCKER ${res.summary.BLOCKER}, HIGH ${res.summary.HIGH})`);
+  return 1;
+}

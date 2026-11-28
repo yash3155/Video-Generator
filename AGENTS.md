@@ -41,6 +41,16 @@ node bin/openlectern.mjs task:validate <task_id>
 ```
 Once validation reports `[OK]`, re-run the exact previous pipeline command. Stages are cached by content hash, so the pipeline resumes seamlessly at the next step.
 
+## Standard Episode Generation Process (Low / Medium / High Reasoning Parity)
+
+Follow **[docs/EPISODE_GENERATION_PROCESS.md](docs/EPISODE_GENERATION_PROCESS.md)** for generating any chapter or episode. That playbook is enforced by `node bin/openlectern.mjs part:preflight` so **Low / Medium** reasoning models achieve the exact same release-grade quality as **High** reasoning:
+
+1. **Clean & Author (`S1`–`S9`)**: Remove any legacy files (`02_lesson_plan.json`, `03_math_blueprint.json`, `04_pedagogical_script.json`), build complete `01_source_facts.json` (`dependencies`, typed `formula` & `numbers`) through `08_episode.json`, keep footer `takeaways` `<= 78` chars, keep `s09` `interactive_quiz` `visual.show: []`, ensure `s10` explicitly bridges to `nextPart` in `course_map.json` (`whereWeAre.current < items.length - 1`), and align `s11` `r1`–`r8` strictly to content taught in this part.
+2. **Pre-Compile Preflight Gate**: Run `S4` audit and `node bin/openlectern.mjs part:preflight --book <book> --chapter <ch> --part <pt>` — must exit `0` (**0 BLOCKER, 0 HIGH**).
+3. **Compile & Fast Stills Gate (`S10` + `--stills`)**: Run `S10` (bilingual `en` + `hi`) then `node bin/openlectern.mjs part:preflight --book <book> --chapter <ch> --part <pt> --compiled --stills` — verifies **0 unresolved `visualCues` (`A-06`)** and **0 `R-04`/`R-06` layout overflows** in seconds before encoding full MP4s.
+4. **Render, QA & Package (`S11`–`S14`)**: Run `S11`, `S12 --no-review` (`releasable: true`), `S13` (packages to `out/<book>/<chapter>/` and cleans drafts/flat files), and `S14` (`index.html`).
+5. **Post-Render Release Audit**: Run `node bin/openlectern.mjs part:preflight --book <book> --chapter <ch> --part <pt> --release` (must exit `0`), plus `npm run check` if `src/`/`tests/` changed, then commit cleanly to git.
+
 ## Production & Delivery Standards (Mandatory)
 
 1. **Bilingual Every Time (`en` & `hi`)**: Always compile (`S10`) and render (`S11`) in **both** narration languages configured in `book.config.json` (`en` and `hi`). Never ship or stop at English-only renders.

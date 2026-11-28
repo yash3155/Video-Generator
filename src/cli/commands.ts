@@ -181,6 +181,19 @@ export function registerCommands(program: Command): void {
       process.exitCode = runQaChecksCmd(Boolean(opts.json));
     });
 
+  partOptions(
+    program
+      .command("part:preflight")
+      .description("deterministic pre/post-render validation gate (schemas, L1-L3 QA, compiled cues, fast --stills overflow check, and --release packaging check)"),
+  )
+    .option("--compiled", "require compiled audio timelines (S10) with zero unresolved visualCues")
+    .option("--stills", "render beat stills cleanly and assert 0 R-04/R-06 layout overflows before full S11 MP4 encode")
+    .option("--release", "verify releasable=true QA report, packaged subfolder deliverables, clean drafts/flat dirs, and index.html links")
+    .action(async (opts) => {
+      const { runPreflightCmd } = await import("./make-cmds");
+      process.exitCode = await runPreflightCmd(opts);
+    });
+
   program
     .command("render:stills")
     .description("render template fixtures (or one fixture file) to PNG stills and report text overflow")

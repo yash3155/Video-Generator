@@ -1,0 +1,179 @@
+{
+  "scenes": [
+    {
+      "index": 0,
+      "topology": "hook",
+      "visualIntent": "Problem-first hook transitioning from Treasury delivery to short-rate hedging and duration",
+      "keyElements": [
+        "Eurodollar and SOFR futures dominate global short-rate volume",
+        "Contracts cover 3-month rates on $1,000,000 notional principal",
+        "Part 2 links rate adjustments directly to bond duration hedging"
+      ],
+      "factIds": [
+        "F01",
+        "F04",
+        "F02",
+        "F03"
+      ]
+    },
+    {
+      "index": 1,
+      "topology": "pillars",
+      "visualIntent": "Teach 100 - R price quotation and $25 value per basis point per contract",
+      "keyElements": [
+        "Contract price quote equals 100 minus annualized 3-month rate R",
+        "Index quote 95.00 implies 5.00% annualized 3-month interest",
+        "Each 1 basis point move equals exactly $25 per contract"
+      ],
+      "factIds": [
+        "F01",
+        "F10"
+      ]
+    },
+    {
+      "index": 2,
+      "topology": "comparison",
+      "visualIntent": "Misconception split showing how daily variation margin reinvestment splits futures from forwards",
+      "keyElements": [
+        "Daily variation margin settles futures profits immediately every day",
+        "Short futures earn cash wins when rates surge and reinvest higher",
+        "Favorable daily reinvestment makes futures rates exceed forward rates"
+      ],
+      "factIds": [
+        "F04"
+      ]
+    },
+    {
+      "index": 3,
+      "topology": "formula",
+      "visualIntent": "Deconstruct ForwardRate = FuturesRate - 0.5 * sigma^2 * T1 * T2",
+      "keyElements": [
+        "Convexity Adjustment converts raw futures rates to forward rates",
+        "Deduction grows quadratically with rate volatility sigma",
+        "Long horizons T1 * T2 make convexity gaps material past 2 years"
+      ],
+      "factIds": [
+        "F02"
+      ]
+    },
+    {
+      "index": 4,
+      "topology": "process",
+      "visualIntent": "Causal chain stripping adjusted Eurodollar and SOFR futures into zero curves",
+      "keyElements": [
+        "Treasury bonds run thin between 2 and 10 years, so futures fill gaps",
+        "Convexity deduction converts quarterly futures quotes to forwards",
+        "Continuous bootstrap extends zero discount curves accurately"
+      ],
+      "factIds": [
+        "F01",
+        "F09",
+        "F02"
+      ]
+    },
+    {
+      "index": 5,
+      "topology": "formula",
+      "visualIntent": "Deconstruct N* = (P * DP) / (FC * DF) matching portfolio dollar duration",
+      "keyElements": [
+        "Dollar duration equals market value multiplied by duration",
+        "Duration hedge matches portfolio sensitivity to CTD futures bond",
+        "Higher portfolio duration demands more short futures contracts"
+      ],
+      "factIds": [
+        "F03"
+      ]
+    },
+    {
+      "index": 6,
+      "topology": "worked_example",
+      "visualIntent": "Solve Hull's $10,000,000 corporate bond duration hedge requiring short 79 contracts",
+      "keyElements": [
+        "$10,000,000 portfolio at 6.80y carries $68,000,000 dollar duration",
+        "$93,187.50 futures with 9.20y CTD carries $857,325 duration",
+        "Ratio 79.32 contracts rounds to shorting 79 futures contracts"
+      ],
+      "factIds": [
+        "F03",
+        "F05"
+      ]
+    },
+    {
+      "index": 7,
+      "topology": "process",
+      "visualIntent": "Illustrate Asset-Liability Management immunization using interest rate futures",
+      "keyElements": [
+        "Banks hold long fixed loans funded by short customer deposits",
+        "Positive duration gap exposes bank equity to rising yields",
+        "ALM committees short interest futures to close balance-sheet gaps"
+      ],
+      "factIds": [
+        "F06"
+      ]
+    },
+    {
+      "index": 8,
+      "topology": "comparison",
+      "visualIntent": "Contrast ideal parallel shifts against real curve steepening, credit spreads, and CTD shifts",
+      "keyElements": [
+        "Duration hedges assume uniform parallel yield curve shifts",
+        "Curve steepening or inversion breaks single-factor protection",
+        "Corporate credit spreads and CTD switches leave residual basis"
+      ],
+      "factIds": [
+        "F07"
+      ]
+    },
+    {
+      "index": 9,
+      "topology": "quiz",
+      "visualIntent": "3-beat quiz sizing N* for $50M portfolio (5.0y duration) vs $100,000 contract (8.0y CTD)",
+      "keyElements": [
+        "$50M portfolio at 5.0y duration carries $250M dollar duration",
+        "$100,000 contract at 8.0y CTD carries $800,000 duration",
+        "Hedge ratio 312.50 rounds cleanly to short 313 contracts"
+      ],
+      "factIds": [
+        "F03",
+        "F08"
+      ]
+    },
+    {
+      "index": 10,
+      "topology": "wisdom",
+      "visualIntent": "Synthesize Chapter 6 short-rate & duration hedging and bridge forward to Chapter 7 Swaps",
+      "keyElements": [
+        "Convexity Adjustment converts 5-10 year futures into zero curves",
+        "Duration hedge N* immunizes bond portfolios and bank ALM gaps",
+        "Chapter 7 next covers Interest Rate Swaps & Comparative Advantage"
+      ],
+      "factIds": [
+        "F01",
+        "F02",
+        "F03",
+        "F06",
+        "F07"
+      ]
+    },
+    {
+      "index": 11,
+      "topology": "summary",
+      "visualIntent": "Fixed 6-beat summary codifying all 8 rules taught in Chapter 6 Part 2",
+      "keyElements": [
+        "100 - R futures move $25 per basis point on $1,000,000",
+        "Subtract Convexity Adjustment before extending zero curves",
+        "Duration hedge N* matches dollar duration across portfolios"
+      ],
+      "factIds": [
+        "F01",
+        "F10",
+        "F02",
+        "F04",
+        "F03",
+        "F09",
+        "F06",
+        "F07"
+      ]
+    }
+  ]
+}
